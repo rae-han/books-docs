@@ -52,6 +52,22 @@ public void testMixedAddition() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('mixed addition', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+    expect(result).toEqual(Money.dollar(10));
+});
+```
+
+</details>
+
 이 테스트가 하는 일을 단계별로 분해하면:
 
 1. `Money.dollar(5)` — 5달러 생성
@@ -78,6 +94,19 @@ public Money reduce(Bank bank, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Sum.ts — 현재 코드
+reduce(bank: Bank, to: string): Money {
+    const amount = this.augend.amount + this.addend.amount;
+    return new Money(amount, to);
+}
+```
+
+</details>
+
 문제가 보이는가? `augend.amount + addend.amount`에서 **각 피연산자를 먼저 목표 통화로 변환하지 않고** 그냥 금액을 더하고 있다. `5(USD) + 10(CHF) = 15`가 되어 버린다. 10 CHF를 먼저 5 USD로 변환한 후 더해야 한다.
 
 ### 2.3 Green — Sum.reduce()에서 각 피연산자를 reduce
@@ -92,6 +121,20 @@ public Money reduce(Bank bank, String to) {
     return new Money(amount, to);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Sum.ts — 수정 후
+reduce(bank: Bank, to: string): Money {
+    const amount = this.augend.reduce(bank, to).amount
+                 + this.addend.reduce(bank, to).amount;
+    return new Money(amount, to);
+}
+```
+
+</details>
 
 변경점을 비교하면:
 
@@ -217,6 +260,30 @@ class Sum implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Sum.ts
+class Sum implements Expression {
+    augend: Expression;
+    addend: Expression;
+
+    constructor(augend: Expression, addend: Expression) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+
+    reduce(bank: Bank, to: string): Money {
+        const amount = this.augend.reduce(bank, to).amount
+                     + this.addend.reduce(bank, to).amount;
+        return new Money(amount, to);
+    }
+}
+```
+
+</details>
+
 ### 5.2 테스트 코드
 
 ```java
@@ -229,6 +296,22 @@ public void testMixedAddition() {
     assertEquals(Money.dollar(10), result);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+test('mixed addition', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+    expect(result).toEqual(Money.dollar(10));
+});
+```
+
+</details>
 
 ---
 

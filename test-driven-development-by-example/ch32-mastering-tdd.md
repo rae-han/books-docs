@@ -74,6 +74,54 @@ int fib(int n) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 큰 단계 — 구현이 명백할 때
+test('sum', () => {
+  expect(add(2, 3)).toBe(5);
+});
+// 바로 올바른 구현
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// 작은 단계 — 불확실할 때
+test('fibonacci of 0', () => {
+  expect(fib(0)).toBe(0);
+});
+// Fake It
+function fib(n: number): number {
+  return 0; // 상수 반환
+}
+
+test('fibonacci of 1', () => {
+  expect(fib(1)).toBe(1);
+});
+// 한 단계 진전
+function fib(n: number): number {
+  if (n === 0) return 0;
+  return 1;
+}
+
+test('fibonacci of 2', () => {
+  expect(fib(2)).toBe(1);
+});
+// 여전히 통과 — 다음 테스트가 필요
+
+test('fibonacci of 3', () => {
+  expect(fib(3)).toBe(2);
+});
+// 이제 일반화
+function fib(n: number): number {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+```
+
+</details>
+
 Part I에서도 이 원칙이 일관되게 적용되었다. 처음에는 `Dollar.times()`에 상수를 반환하는 것부터 시작했다(Chapter 1). 이것이 놀라울 정도로 작은 단계였지만, 그 작은 단계가 안전한 진행을 보장했다.
 
 > **핵심 통찰**: "올바른" 단계 크기는 없다. 단계 크기는 고정된 것이 아니라 **자신감의 함수**다. 같은 프로그래머라도 상황에 따라 다른 크기의 단계를 밟는다. 문제가 생기면 항상 더 작은 단계로 돌아갈 수 있다는 것이 TDD의 안전망이다.
@@ -158,6 +206,30 @@ public void testOrderTotal() {
     // 내부 구조가 바뀌어도 이 테스트는 유효
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 테스트 — 내부 구조에 의존
+test('order total (bad)', () => {
+  const order = new Order();
+  (order as any).items = [];  // 내부 필드에 직접 접근
+  (order as any).items.push(new Item("book", 1000));
+  // items 필드의 타입이 바뀌면 테스트가 깨짐
+  expect(order.calculateTotal()).toBe(1000);
+});
+
+// 좋은 테스트 — 공개 행위에 의존
+test('order total (good)', () => {
+  const order = new Order();
+  order.addItem("book", 1000); // 공개 API 사용
+  expect(order.calculateTotal()).toBe(1000);
+  // 내부 구조가 바뀌어도 이 테스트는 유효
+});
+```
+
+</details>
 
 ### 4.4 테스트 냄새(Test Smell)
 
@@ -442,6 +514,23 @@ class OrderProcessor {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 변경하고 싶은 레거시 코드가 있다
+class OrderProcessor {
+  process(order: Order): void {
+    // ... 수백 줄의 코드 ...
+    // 여기를 바꾸고 싶다
+    const tax = order.total * 0.08;
+    // ... 더 많은 코드 ...
+  }
+}
+```
+
+</details>
+
 ```java
 // 1단계: 변경할 부분에 대한 테스트를 작성
 public void testTaxCalculation() {
@@ -460,6 +549,30 @@ public void testTaxCalculation() {
     assertEquals(8.0, policy.calculate(100.0), 0.001);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 1단계: 변경할 부분에 대한 테스트를 작성
+test('tax calculation', () => {
+  const processor = new OrderProcessor();
+  // ... 현재 동작을 확인하는 테스트
+});
+
+// 2단계: 변경할 부분을 추출하고 테스트
+test('tax calculation', () => {
+  expect(calculateTax(100.0)).toBeCloseTo(8.0);
+});
+
+// 3단계: 안전하게 변경
+test('tax calculation', () => {
+  const policy = new DefaultTaxPolicy();
+  expect(policy.calculate(100.0)).toBeCloseTo(8.0);
+});
+```
+
+</details>
 
 **전략 2: 새 코드부터 TDD로**
 

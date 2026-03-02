@@ -61,6 +61,19 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    five.times(2);
+    expect(five.amount).toBe(10);
+});
+```
+
+</details>
+
 이 테스트는 한 번 작성한 후 폐기되지 않는다. Part I 전체에 걸쳐 계속 실행되며, 코드를 변경할 때마다 기존 동작이 깨지지 않았는지 확인해준다.
 
 > **핵심 통찰**: 테스트는 일회용 검증 행위가 아니라, 코드베이스와 함께 살아가는 **실행 가능한 명세서**다. "이 코드가 어떻게 동작해야 하는가?"를 코드로 표현한 것이 테스트다.
@@ -103,6 +116,27 @@ public void testAddition() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 예 — 테스트 간 상태 공유
+const sharedDollar = new Dollar(5);
+
+test('multiplication', () => {
+    sharedDollar.times(2);
+    expect(sharedDollar.amount).toBe(10);
+    // sharedDollar의 amount가 이제 10으로 변경됨!
+});
+
+test('addition', () => {
+    // sharedDollar.amount가 10인 상태에서 시작...
+    // multiplication 테스트가 먼저 실행되었을 때만 통과!
+});
+```
+
+</details>
+
 ```java
 // 좋은 예 — 각 테스트가 독립적
 public void testMultiplication() {
@@ -118,6 +152,26 @@ public void testAddition() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 좋은 예 — 각 테스트가 독립적
+test('multiplication', () => {
+    const five = new Dollar(5);  // 자체 생성
+    const result = five.times(2);
+    expect(result).toEqual(new Dollar(10));
+});
+
+test('addition', () => {
+    const five = new Dollar(5);  // 자체 생성
+    const result = five.plus(five);
+    expect(result).toEqual(new Dollar(10));
+});
+```
+
+</details>
+
 ### Part II에서의 예시
 
 Part II에서 xUnit을 구현할 때, `setUp()` 메서드가 바로 Isolated Test 패턴을 지원하기 위해 존재한다. 매 테스트 실행 전에 `setUp()`이 호출되어 깨끗한 환경을 보장한다:
@@ -132,6 +186,27 @@ class TestCaseTest(TestCase):
         test.run(self.result)
         assert test.wasRun  # 이전 테스트와 무관하게 동작
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+describe('TestCase', () => {
+    let result: TestResult;
+
+    beforeEach(() => {
+        result = new TestResult();  // 매 테스트마다 새 결과 객체
+    });
+
+    test('running', () => {
+        const test = new WasRun('testMethod');
+        test.run(result);
+        expect(test.wasRun).toBe(true);  // 이전 테스트와 무관하게 동작
+    });
+});
+```
+
+</details>
 
 > **핵심 통찰**: 테스트 격리는 편의성이 아니라 **필수 조건**이다. 테스트가 서로 의존하면, 하나의 실패가 연쇄 실패를 일으켜 디버깅이 극도로 어려워진다. 테스트 격리를 위해 약간의 중복 코드(setup)를 감수하는 것은 그만한 가치가 있다.
 
@@ -220,6 +295,20 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar 클래스가 아직 없다!
+test('multiplication', () => {
+    const five = new Dollar(5);  // 컴파일 에러 — Dollar가 없음
+    five.times(2);
+    expect(five.amount).toBe(10);
+});
+```
+
+</details>
+
 이 테스트가 먼저 존재했기 때문에, `Dollar` 클래스의 인터페이스(`생성자에 int`, `times(int)`, `amount 필드`)가 자연스럽게 결정되었다.
 
 > **핵심 통찰**: Test First는 단순한 습관이 아니라 **설계 기법**이다. 테스트를 먼저 작성하면 "이 코드를 사용하는 입장에서 가장 편한 인터페이스가 무엇인가?"를 강제로 고민하게 된다. 이것이 좋은 API를 만드는 가장 확실한 방법이다.
@@ -284,6 +373,19 @@ public void testSocketCloses() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('socket closes', () => {
+    const socket = new Socket('localhost', defaultPort());
+    socket.close();
+    expect(socket.isClosed()).toBe(true);
+});
+```
+
+</details>
+
 ### Assert First가 효과적인 이유
 
 ```
@@ -326,6 +428,20 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 예 — 불필요하게 큰 숫자, 의미 불분명
+test('multiplication', () => {
+    const price = new Dollar(1472);
+    const result = price.times(37);
+    expect(result).toEqual(new Dollar(54464));
+});
+```
+
+</details>
+
 ```java
 // 좋은 예 — 작고 명확한 숫자
 public void testMultiplication() {
@@ -334,6 +450,20 @@ public void testMultiplication() {
     assertEquals(new Dollar(10), result);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 좋은 예 — 작고 명확한 숫자
+test('multiplication', () => {
+    const five = new Dollar(5);
+    const result = five.times(2);
+    expect(result).toEqual(new Dollar(10));
+});
+```
+
+</details>
 
 첫 번째 테스트에서 `1472 × 37 = 54464`를 검증하지만, 이 숫자들은 아무런 추가 의미도 전달하지 않는다. `5 × 2 = 10`으로 충분히 곱하기가 동작하는지 검증할 수 있으며, 의도도 더 명확하다.
 
@@ -374,6 +504,22 @@ public void testCurrencyConversion() {
 // 독자: "왜 50달러가 되는 거지?" → 100 / 2 = 50임을 머리로 계산해야 함
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 예 — 기대값의 출처가 불분명
+test('currency conversion', () => {
+    const bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result = bank.reduce(Money.franc(100), 'USD');
+    expect(result).toEqual(Money.dollar(50));
+});
+// 독자: "왜 50달러가 되는 거지?" → 100 / 2 = 50임을 머리로 계산해야 함
+```
+
+</details>
+
 ```java
 // 좋은 예 — 입력과 기대값의 관계가 명백
 public void testCurrencyConversion() {
@@ -384,6 +530,22 @@ public void testCurrencyConversion() {
 }
 // 독자: "100 CHF를 환율 2로 나누면 50 USD" → 즉시 이해 가능
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 좋은 예 — 입력과 기대값의 관계가 명백
+test('currency conversion', () => {
+    const bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result = bank.reduce(Money.franc(100), 'USD');
+    expect(result).toEqual(Money.dollar(100 / 2));
+});
+// 독자: "100 CHF를 환율 2로 나누면 50 USD" → 즉시 이해 가능
+```
+
+</details>
 
 두 번째 테스트에서 `Money.dollar(100 / 2)`라고 쓰면, "100프랑을 환율 2로 나누면 50달러"라는 관계가 코드에 직접 드러난다. `Money.dollar(50)`이라고 쓰면, 독자가 직접 역산해야 한다.
 
@@ -404,6 +566,25 @@ public void testMixedAddition() {
 // 5 USD + 10 CHF = 5 + (10 / 2) = 5 + 5 = 10 USD
 // 이 계산 과정이 테스트의 숫자 선택에 녹아 있다
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Part I에서의 실제 테스트
+test('mixed addition', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD');
+    expect(result).toEqual(Money.dollar(10));
+});
+// 5 USD + 10 CHF = 5 + (10 / 2) = 5 + 5 = 10 USD
+// 이 계산 과정이 테스트의 숫자 선택에 녹아 있다
+```
+
+</details>
 
 여기서 Kent Beck은 환율을 `2:1`로 설정했다. `1.5:1` 같은 실제적인 환율 대신 계산이 명백한 숫자를 선택하여, 독자가 테스트의 의도를 즉시 파악할 수 있게 했다.
 

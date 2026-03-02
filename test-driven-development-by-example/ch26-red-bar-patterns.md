@@ -101,6 +101,21 @@ public void testSort() {
 // 이 테스트를 통과시키려면 완전한 정렬 알고리즘이 필요!
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 시작 — 첫 테스트가 너무 복잡
+test('sort', () => {
+    const input = [5, 3, 8, 1, 9, 2, 7];
+    const result = sort(input);
+    expect(result).toEqual([1, 2, 3, 5, 7, 8, 9]);
+});
+// 이 테스트를 통과시키려면 완전한 정렬 알고리즘이 필요!
+```
+
+</details>
+
 ```java
 // 좋은 시작 — 가장 퇴화된 경우부터
 public void testSortEmpty() {
@@ -121,6 +136,32 @@ public void testSortTwoElements() {
 }
 // 이제야 실제 정렬 로직이 필요하다 — 하지만 2개뿐이므로 간단
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 좋은 시작 — 가장 퇴화된 경우부터
+test('sort empty', () => {
+    const result = sort([]);
+    expect(result.length).toBe(0);
+});
+// 빈 배열은 빈 배열을 반환하면 된다 — 즉시 Green!
+
+test('sort one element', () => {
+    const result = sort([1]);
+    expect(result).toEqual([1]);
+});
+// 원소 하나는 정렬할 필요 없다 — 그대로 반환
+
+test('sort two elements', () => {
+    const result = sort([2, 1]);
+    expect(result).toEqual([1, 2]);
+});
+// 이제야 실제 정렬 로직이 필요하다 — 하지만 2개뿐이므로 간단
+```
+
+</details>
 
 ### Part I에서의 예시
 
@@ -209,6 +250,35 @@ public void testArrayListRemoval() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 배열의 동작을 학습하기 위한 테스트
+test('array growth', () => {
+    const list: string[] = [];
+    expect(list.length === 0).toBe(true);
+
+    list.push('first');
+    expect(list.length).toBe(1);
+    expect(list[0]).toBe('first');
+
+    list.push('second');
+    expect(list.length).toBe(2);
+});
+
+test('array removal', () => {
+    const list: string[] = ['a', 'b', 'c'];
+
+    list.splice(1, 1);  // 인덱스 1의 요소 제거
+    expect(list.length).toBe(2);
+    expect(list[0]).toBe('a');
+    expect(list[1]).toBe('c');  // "c"가 인덱스 1로 이동했는가?
+});
+```
+
+</details>
+
 이 테스트들은 `ArrayList`에 대한 자신의 이해를 코드로 표현한 것이다. `remove(1)` 후에 나머지 요소가 앞으로 당겨지는지를 **추측이 아니라 실행으로** 확인한다.
 
 ### 실무 활용
@@ -229,6 +299,26 @@ public void testJacksonMissingField() {
     assertNull(person.getName());  // 필드가 없으면 null인가?
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// JSON 파싱의 동작 학습
+test('JSON null handling', () => {
+    const json = '{"name": null}';
+    const person: Person = JSON.parse(json);
+    expect(person.name).toBeNull();  // null이 그대로 전달되는가?
+});
+
+test('JSON missing field', () => {
+    const json = '{}';  // name 필드가 없음
+    const person: Person = JSON.parse(json);
+    expect(person.name).toBeUndefined();  // 필드가 없으면 undefined인가?
+});
+```
+
+</details>
 
 > **핵심 통찰**: Learning Test는 "문서 읽기"의 TDD 버전이다. API 문서를 읽는 대신 테스트를 작성하면, 이해가 정확한지 즉시 피드백을 받을 수 있다. 또한 라이브러리 업그레이드 시 "기존에 의존하던 동작이 바뀌었는가?"를 자동으로 감지하는 경보 시스템이 된다.
 
@@ -310,6 +400,30 @@ public void testFractionalConversion() {
 
 // Step 5: 이 테스트는 영구적으로 테스트 스위트에 남는다
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Step 1: 버그 보고 — "1.33 CHF를 USD로 변환하면 0 USD가 된다"
+
+// Step 2: 재현 테스트
+test('fractional conversion', () => {
+    const bank = new Bank();
+    bank.addRate('CHF', 'USD', 1.5);
+    const result = bank.reduce(Money.franc(1.33), 'USD');
+    // 1.33 / 1.5 = 0.8866...
+    expect(result).toEqual(Money.dollar(0.89));  // 반올림
+});
+
+// Step 3: 이 테스트가 실패하면, 버그가 재현된 것이다
+
+// Step 4: 변환 로직에서 소수점 처리를 수정한다
+
+// Step 5: 이 테스트는 영구적으로 테스트 스위트에 남는다
+```
+
+</details>
 
 ### Regression Test의 의미
 

@@ -60,6 +60,20 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트
+test('multiplication', () => {
+    const five = new Dollar(5);
+    five.times(2);
+    expect(five.amount).toBe(10);
+});
+```
+
+</details>
+
 ```java
 // Step 1: Fake It — 상수 반환
 class Dollar {
@@ -69,6 +83,21 @@ class Dollar {
 }
 // Green Bar!
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Step 1: Fake It — 상수 반환
+class Dollar {
+    amount: number = 10;  // 하드코딩!
+    constructor(amount: number) {}
+    times(multiplier: number): void {}
+}
+// Green Bar!
+```
+
+</details>
 
 ```java
 // Step 2: 중복 제거 — 10은 어디서 왔는가? 5 × 2에서 왔다
@@ -83,6 +112,25 @@ class Dollar {
 }
 // 여전히 Green Bar! 그리고 이제 일반적인 구현이다
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Step 2: 중복 제거 — 10은 어디서 왔는가? 5 × 2에서 왔다
+class Dollar {
+    amount: number;
+    constructor(amount: number) {
+        this.amount = amount;  // 5를 받아서
+    }
+    times(multiplier: number): void {
+        this.amount *= multiplier;  // 2를 곱한다
+    }
+}
+// 여전히 Green Bar! 그리고 이제 일반적인 구현이다
+```
+
+</details>
 
 이 과정에서 핵심은 **"10"이라는 중복**이다:
 - 테스트가 `assertEquals(10, ...)`이라고 말한다
@@ -164,6 +212,19 @@ public boolean equals(Object object) {
 // 두 테스트 모두 통과!
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 일반화가 강제된다
+equals(other: Dollar): boolean {
+    return this.amount === other.amount;  // 실제 비교
+}
+// 두 테스트 모두 통과!
+```
+
+</details>
+
 ### 삼각측량의 사고 과정
 
 ```
@@ -222,12 +283,40 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);
+    product = five.times(3);
+    expect(product.amount).toBe(15);
+});
+```
+
+</details>
+
 ```java
 // Obvious Implementation — 바로 올바른 구현을 작성
 Dollar times(int multiplier) {
     return new Dollar(amount * multiplier);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Obvious Implementation — 바로 올바른 구현을 작성
+times(multiplier: number): Dollar {
+    return new Dollar(this.amount * multiplier);
+}
+```
+
+</details>
 
 여기서 Kent Beck은 Fake It을 사용하지 않았다. `new Dollar(amount * multiplier)`라는 구현이 명백했기 때문이다.
 
@@ -290,6 +379,18 @@ public void testSumSingle() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 하나의 숫자에 대한 합계
+test('sum single', () => {
+    expect(sum(5)).toBe(5);
+});
+```
+
+</details>
+
 ```java
 // 가장 단순한 구현
 int sum(int value) {
@@ -297,6 +398,19 @@ int sum(int value) {
 }
 // Green!
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 가장 단순한 구현
+function sum(value: number): number {
+    return value;
+}
+// Green!
+```
+
+</details>
 
 **Step 2**: 두 개의 원소에 대한 테스트
 
@@ -306,6 +420,18 @@ public void testSumTwo() {
     assertEquals(7, sum(3, 4));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 두 숫자의 합계
+test('sum two', () => {
+    expect(sum(3, 4)).toBe(7);
+});
+```
+
+</details>
 
 ```java
 // 구현 변경 — 가변 인자 도입
@@ -319,6 +445,23 @@ int sum(int... values) {
 // Green!
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 구현 변경 — 나머지 매개변수 도입
+function sum(...values: number[]): number {
+    let result = 0;
+    for (const value of values) {
+        result += value;
+    }
+    return result;
+}
+// Green!
+```
+
+</details>
+
 **Step 3**: 컬렉션에 대한 테스트
 
 ```java
@@ -328,6 +471,19 @@ public void testSumList() {
     assertEquals(15, sum(numbers));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 배열로 받기
+test('sum list', () => {
+    const numbers = [1, 2, 3, 4, 5];
+    expect(sum(...numbers)).toBe(15);
+});
+```
+
+</details>
 
 ### Part I에서의 적용
 
@@ -352,6 +508,27 @@ Expression sum = Money.dollar(5).plus(Money.franc(10));
 Money reduced = bank.reduce(sum, "USD");
 assertEquals(Money.dollar(10), reduced);
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Step 1: 단일 Money의 reduce
+let reduced = bank.reduce(Money.dollar(1), 'USD');
+expect(reduced).toEqual(Money.dollar(1));
+
+// Step 2: 두 Money의 합(Sum)의 reduce
+const sum1 = new Sum(Money.dollar(3), Money.dollar(4));
+reduced = bank.reduce(sum1, 'USD');
+expect(reduced).toEqual(Money.dollar(7));
+
+// Step 3: 다중 통화의 합
+const sum2 = Money.dollar(5).plus(Money.franc(10));
+reduced = bank.reduce(sum2, 'USD');
+expect(reduced).toEqual(Money.dollar(10));
+```
+
+</details>
 
 ### One to Many의 단계별 전략
 
@@ -437,6 +614,37 @@ Dollar times(int multiplier) {
 // 테스트 추가: assertEquals(new Dollar(15), five.times(3))
 // → 두 테스트를 모두 통과시키려면 amount * multiplier가 필수
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 1. Obvious Implementation 시도
+times(multiplier: number): Dollar {
+    return new Dollar(this.amount * multiplier);
+}
+// → Green! 성공. 끝.
+
+// 만약 실패했다면...
+
+// 2. Fake It으로 전환
+times(multiplier: number): Dollar {
+    return new Dollar(10);  // 상수
+}
+// → Green. 이제 중복 제거:
+times(multiplier: number): Dollar {
+    return new Dollar(this.amount * multiplier);
+}
+// → 여전히 Green. 일반화 완료.
+
+// 만약 일반화 방향이 불확실했다면...
+
+// 3. Triangulation으로 전환
+// 테스트 추가: expect(five.times(3)).toEqual(new Dollar(15))
+// → 두 테스트를 모두 통과시키려면 this.amount * multiplier가 필수
+```
+
+</details>
 
 ### Part I과 Part II에서의 전략 사용 빈도
 

@@ -56,6 +56,21 @@ class TestCaseTest(TestCase):
         assert("setUp testMethod tearDown " == test.log)
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+}
+```
+
+</details>
+
 기존 테스트에서 기대하는 로그 문자열을 `"setUp testMethod "`에서 `"setUp testMethod tearDown "`으로 변경했다.
 
 이 테스트를 실행하면 실패한다:
@@ -92,6 +107,36 @@ class TestCase:
         self.tearDown()  # 테스트 메서드 후에 tearDown 호출!
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {
+        // 기본 구현: 아무것도 하지 않는다
+    }
+
+    tearDown(): void {
+        // 기본 구현: 아무것도 하지 않는다
+    }
+
+    run(): void {
+        this.setUp();
+        const method = (this as any)[this.name];
+        method.call(this);
+        this.tearDown();  // 테스트 메서드 후에 tearDown 호출!
+    }
+}
+```
+
+</details>
+
 **Step 2**: `WasRun`에서 `tearDown()` 오버라이드하여 로그에 기록
 
 ```python
@@ -105,6 +150,29 @@ class WasRun(TestCase):
     def tearDown(self):
         self.log = self.log + "tearDown "
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+```
+
+</details>
 
 테스트 실행:
 
@@ -277,6 +345,58 @@ class TestCaseTest(TestCase):
 
 TestCaseTest("testTemplateMethod").run()
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(): void {
+        this.setUp();
+        const method = (this as any)[this.name];
+        method.call(this);
+        this.tearDown();
+    }
+}
+
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+}
+
+new TestCaseTest("testTemplateMethod").run();
+```
+
+</details>
 
 코드 변경 요약:
 

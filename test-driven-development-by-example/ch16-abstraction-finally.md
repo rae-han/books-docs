@@ -57,6 +57,23 @@ public void testSumPlusMoney() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('sum plus money', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(15));
+});
+```
+
+</details>
+
 이 테스트가 하는 일:
 1. `$5 + 10 CHF = $10 (USD)` — Sum 생성
 2. 이 Sum에 `$5`를 더한다 → `($5 + 10 CHF) + $5`
@@ -73,6 +90,18 @@ public Expression plus(Expression addend) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Sum.ts
+plus(addend: Expression): Expression {
+    return new Sum(this, addend);
+}
+```
+
+</details>
+
 `Sum.plus()`는 `this`(현재 Sum)와 새로운 `addend`를 합치는 새로운 `Sum`을 반환한다. 이것은 Money.plus()와 동일한 구조다:
 
 ```java
@@ -81,6 +110,18 @@ public Expression plus(Expression addend) {
     return new Sum(this, addend);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts (이미 구현되어 있음)
+plus(addend: Expression): Expression {
+    return new Sum(this, addend);
+}
+```
+
+</details>
 
 `Expression` 인터페이스에도 `plus()`를 추가한다:
 
@@ -91,6 +132,19 @@ interface Expression {
     Expression plus(Expression addend);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Expression.ts
+interface Expression {
+    reduce(bank: Bank, to: string): Money;
+    plus(addend: Expression): Expression;
+}
+```
+
+</details>
 
 **테스트 통과! Green Bar!**
 
@@ -109,6 +163,23 @@ public Expression plus(Expression addend) {
     return new Sum(this, addend);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.plus()
+plus(addend: Expression): Expression {
+    return new Sum(this, addend);
+}
+
+// Sum.plus()
+plus(addend: Expression): Expression {
+    return new Sum(this, addend);
+}
+```
+
+</details>
 
 이 중복을 제거할 수 있을까? 공통 상위 클래스에 올리거나 default 메서드로 만들 수 있지만, Kent Beck은 이 단계에서는 그대로 둔다. 두 곳의 중복은 아직 리팩토링할 만큼 부담스럽지 않다.
 
@@ -132,6 +203,23 @@ public void testSumTimes() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('sum times', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).times(2);
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(20));
+});
+```
+
+</details>
+
 이 테스트가 하는 일:
 1. `$5 + 10 CHF` — Sum 생성
 2. 이 Sum에 2를 곱한다 → `($5 + 10 CHF) × 2 = ($5 × 2) + (10 CHF × 2) = $10 + 20 CHF`
@@ -147,6 +235,18 @@ public Expression times(int multiplier) {
     return new Sum(augend.times(multiplier), addend.times(multiplier));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Sum.ts
+times(multiplier: number): Expression {
+    return new Sum(this.augend.times(multiplier), this.addend.times(multiplier));
+}
+```
+
+</details>
 
 Sum의 times()는 **분배 법칙(distributive property)** 을 적용한다:
 
@@ -167,6 +267,20 @@ interface Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Expression.ts
+interface Expression {
+    reduce(bank: Bank, to: string): Money;
+    plus(addend: Expression): Expression;
+    times(multiplier: number): Expression;
+}
+```
+
+</details>
+
 **테스트 통과! Green Bar!**
 
 #### Refactor
@@ -186,6 +300,19 @@ interface Expression {
     Expression times(int multiplier);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+interface Expression {
+    reduce(bank: Bank, to: string): Money;
+    plus(addend: Expression): Expression;
+    times(multiplier: number): Expression;
+}
+```
+
+</details>
 
 이 세 가지 메서드가 Expression의 전체 프로토콜이다:
 
@@ -262,6 +389,19 @@ interface Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+interface Expression {
+    reduce(bank: Bank, to: string): Money;
+    plus(addend: Expression): Expression;
+    times(multiplier: number): Expression;
+}
+```
+
+</details>
+
 ### 5.2 Sum.java
 
 ```java
@@ -289,6 +429,37 @@ class Sum implements Expression {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Sum implements Expression {
+    augend: Expression;
+    addend: Expression;
+
+    constructor(augend: Expression, addend: Expression) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+
+    reduce(bank: Bank, to: string): Money {
+        const amount = this.augend.reduce(bank, to).amount
+                     + this.addend.reduce(bank, to).amount;
+        return new Money(amount, to);
+    }
+
+    plus(addend: Expression): Expression {
+        return new Sum(this, addend);
+    }
+
+    times(multiplier: number): Expression {
+        return new Sum(this.augend.times(multiplier), this.addend.times(multiplier));
+    }
+}
+```
+
+</details>
 
 ### 5.3 Money.java (참고 — 이미 구현되어 있던 메서드들)
 
@@ -338,6 +509,58 @@ class Money implements Expression {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Money implements Expression {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Money(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Money(amount, "CHF");
+    }
+
+    plus(addend: Expression): Expression {
+        return new Sum(this, addend);
+    }
+
+    times(multiplier: number): Expression {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    reduce(bank: Bank, to: string): Money {
+        const rate = bank.rate(this._currency, to);
+        return new Money(Math.floor(this.amount / rate), to);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    toString(): string {
+        return `${this.amount} ${this._currency}`;
+    }
+}
+```
+
+</details>
 
 ---
 

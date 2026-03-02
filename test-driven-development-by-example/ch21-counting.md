@@ -54,6 +54,21 @@ class TestCaseTest(TestCase):
         assert("1 run, 0 failed" == result.summary())
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+}
+```
+
+</details>
+
 이 테스트에는 두 가지 새로운 것이 있다:
 1. `run()`이 **`TestResult` 객체를 반환**한다
 2. `TestResult`에 `summary()` 메서드가 있다
@@ -77,6 +92,25 @@ class TestResult:
     def summary(self):
         return "%d run, 0 failed" % self.runCount
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestResult {
+    runCount: number = 0;
+
+    testStarted(): void {
+        this.runCount += 1;
+    }
+
+    summary(): string {
+        return `${this.runCount} run, 0 failed`;
+    }
+}
+```
+
+</details>
 
 `TestResult`의 구조:
 - `runCount`: 실행된 테스트 수를 추적하는 카운터
@@ -105,6 +139,35 @@ class TestCase:
         self.tearDown()
         return result
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(): TestResult {
+        const result = new TestResult();
+        result.testStarted();
+        this.setUp();
+        const method = (this as any)[this.name];
+        method.call(this);
+        this.tearDown();
+        return result;
+    }
+}
+```
+
+</details>
 
 핵심 변경:
 1. `TestResult` 객체를 생성한다
@@ -155,6 +218,27 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert("1 run, 0 failed" == result.summary())
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+}
+```
+
+</details>
 
 `testTemplateMethod`는 `run()`의 반환값을 사용하지 않으므로 (`test.run()`의 반환값을 변수에 담지 않음), `run()`이 `TestResult`를 반환하도록 바뀌어도 기존 동작에 영향이 없다.
 
@@ -265,6 +349,80 @@ class TestCaseTest(TestCase):
 TestCaseTest("testTemplateMethod").run()
 TestCaseTest("testResult").run()
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestResult {
+    runCount: number = 0;
+
+    testStarted(): void {
+        this.runCount += 1;
+    }
+
+    summary(): string {
+        return `${this.runCount} run, 0 failed`;
+    }
+}
+
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(): TestResult {
+        const result = new TestResult();
+        result.testStarted();
+        this.setUp();
+        const method = (this as any)[this.name];
+        method.call(this);
+        this.tearDown();
+        return result;
+    }
+}
+
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+}
+
+new TestCaseTest("testTemplateMethod").run();
+new TestCaseTest("testResult").run();
+```
+
+</details>
 
 ---
 

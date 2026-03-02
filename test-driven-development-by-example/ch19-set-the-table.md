@@ -26,6 +26,23 @@ five_b = Dollar(5)
 # ...
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// testMultiplication
+const five = new Dollar(5);
+const product = five.times(2);
+// ...
+
+// testEquality
+const fiveA = new Dollar(5);
+const fiveB = new Dollar(5);
+// ...
+```
+
+</details>
+
 `Dollar(5)`라는 객체 생성이 여러 테스트에서 반복된다. 이러한 **테스트에 필요한 공통 객체와 데이터**를 **테스트 픽스처(Test Fixture)** 라고 한다.
 
 ### 1.2 픽스처 반복의 문제
@@ -79,6 +96,28 @@ class TestCaseTest(TestCase):
         assert(test.wasSetUp)
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testRunning(): void {
+        const test = new WasRun("testMethod");
+        expect(test.wasRun).toBeFalsy();
+        test.run();
+        expect(test.wasRun).toBeTruthy();
+    }
+
+    testSetUp(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect((test as any).wasSetUp).toBeTruthy();
+    }
+}
+```
+
+</details>
+
 이 테스트는 실패한다 — `WasRun`에 `wasSetUp` 속성이 없기 때문이다. Red Bar!
 
 ### 3.2 Green — setUp() 호출 구현
@@ -104,6 +143,31 @@ class TestCase:
         method()
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {
+        // 기본 구현은 아무것도 하지 않는다
+    }
+
+    run(): void {
+        this.setUp();  // 테스트 메서드 전에 setUp 호출!
+        const method = (this as any)[this.name];
+        method.call(this);
+    }
+}
+```
+
+</details>
+
 `setUp()`의 기본 구현은 `pass`다. 하위 클래스가 필요에 따라 오버라이드한다.
 
 **Step 2**: `WasRun`에서 `setUp()` 오버라이드
@@ -120,6 +184,30 @@ class WasRun(TestCase):
     def testMethod(self):
         self.wasRun = 1
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    wasRun: number | null = null;
+    wasSetUp: number = 0;
+
+    constructor(name: string) {
+        super(name);
+    }
+
+    setUp(): void {
+        this.wasSetUp = 1;  // setUp이 호출되었음을 기록
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+```
+
+</details>
 
 테스트 실행:
 
@@ -143,6 +231,27 @@ class WasRun(TestCase):
         self.wasRun = 1
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    wasRun: number | null = null;
+    wasSetUp: number = 0;
+
+    setUp(): void {
+        this.wasRun = null;   // constructor에서 setUp으로 이동
+        this.wasSetUp = 1;
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+```
+
+</details>
+
 `__init__`에서 `self.wasRun = None`을 설정하던 것을 `setUp()`으로 이동했다. `__init__`에서는 더 이상 `WasRun` 고유의 초기화를 하지 않으므로, `__init__` 자체를 삭제할 수 있다 (상위 클래스 `TestCase.__init__`이 자동으로 호출된다... 는 Python에서는 아니지만, 여기서는 `name` 설정은 `TestCase.__init__`이 담당한다).
 
 실제로 정리하면:
@@ -156,6 +265,27 @@ class WasRun(TestCase):
     def testMethod(self):
         self.wasRun = 1
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    wasRun: number | null = null;
+    wasSetUp: number = 0;
+
+    setUp(): void {
+        this.wasRun = null;
+        this.wasSetUp = 1;
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+```
+
+</details>
 
 > **핵심 통찰**: `setUp()`은 단순히 편의 기능이 아니다. 핵심 가치는 **각 테스트가 깨끗한 상태에서 시작하도록 보장**하는 것이다. `run()`이 매번 `setUp()`을 호출하므로, 이전 테스트가 남긴 부작용이 다음 테스트에 영향을 주지 않는다. 이것이 **테스트 격리(Test Isolation)** 의 기반이다.
 
@@ -180,6 +310,25 @@ class WasRun(TestCase):
         self.log = self.log + "testMethod "  # 로그에 추가
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";   // 로그 문자열 시작
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";  // 로그에 추가
+    }
+}
+```
+
+</details>
+
 이제 `testMethod()` 실행 후 `self.log`를 확인하면 `"setUp testMethod "`가 된다. **호출 순서**가 문자열에 기록된다!
 
 테스트도 더 간단해진다:
@@ -191,6 +340,21 @@ class TestCaseTest(TestCase):
         test.run()
         assert("setUp testMethod " == test.log)
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod ");
+    }
+}
+```
+
+</details>
 
 이 하나의 테스트가 두 가지를 동시에 검증한다:
 1. `setUp()`이 호출되었다 (`"setUp"` 문자열이 존재)
@@ -209,6 +373,23 @@ class TestCaseTest(TestCase):
 
 TestCaseTest("testTemplateMethod").run()
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod ");
+    }
+}
+
+new TestCaseTest("testTemplateMethod").run();
+```
+
+</details>
 
 `testRunning`과 `testSetUp`은 더 이상 필요하지 않다. `testTemplateMethod` 하나가 모든 것을 검증한다.
 
@@ -249,6 +430,53 @@ class TestCaseTest(TestCase):
 
 TestCaseTest("testTemplateMethod").run()
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {
+        // 기본 구현: 아무것도 하지 않는다
+    }
+
+    run(): void {
+        this.setUp();
+        const method = (this as any)[this.name];
+        method.call(this);
+    }
+}
+
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod ");
+    }
+}
+
+new TestCaseTest("testTemplateMethod").run();
+```
+
+</details>
 
 **실행 흐름 상세**:
 

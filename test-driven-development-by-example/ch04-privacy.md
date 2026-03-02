@@ -22,6 +22,21 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);    // amount 필드에 직접 접근!
+    product = five.times(3);
+    expect(product.amount).toBe(15);    // amount 필드에 직접 접근!
+});
+```
+
+</details>
+
 이 테스트는 `Dollar` 객체의 **내부 구현**인 `amount` 필드에 직접 접근하고 있다. `assertEquals(10, product.amount)`는 "결과의 amount가 10이다"라고 말하고 있다. 하지만 우리가 진짜 검증하고 싶은 것은 **"5달러에 2를 곱하면 10달러가 된다"** 이다.
 
 ### 1.2 왜 이것이 문제인가?
@@ -58,6 +73,21 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);    // number와 비교
+    product = five.times(3);
+    expect(product.amount).toBe(15);    // number와 비교
+});
+```
+
+</details>
+
 개선된 테스트:
 
 ```java
@@ -69,6 +99,21 @@ public void testMultiplication() {
     assertEquals(new Dollar(15), product);   // Dollar 객체와 비교!
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.equals(new Dollar(10))).toBe(true);   // Dollar 객체와 비교!
+    product = five.times(3);
+    expect(product.equals(new Dollar(15))).toBe(true);   // Dollar 객체와 비교!
+});
+```
+
+</details>
 
 핵심 변경점:
 - `assertEquals(10, product.amount)` → `assertEquals(new Dollar(10), product)`
@@ -105,6 +150,29 @@ class Dollar {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar {
+    private amount: number;   // public → private
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
 
 **모든 테스트 통과! Green Bar!**
 
@@ -168,6 +236,28 @@ class Dollar {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);       // ← amount 직접 접근
+    product = five.times(3);
+    expect(product.amount).toBe(15);       // ← amount 직접 접근
+});
+
+// Dollar.ts
+class Dollar {
+    amount: number;  // ← public (기본 접근 제어자)
+    // ...
+}
+```
+
+</details>
+
 **Step 2**: 테스트 변경 — Dollar 객체로 비교
 
 ```java
@@ -180,6 +270,22 @@ public void testMultiplication() {
     assertEquals(new Dollar(15), product);  // ← Dollar 객체 비교
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.equals(new Dollar(10))).toBe(true);  // ← Dollar 객체 비교
+    product = five.times(3);
+    expect(product.equals(new Dollar(15))).toBe(true);  // ← Dollar 객체 비교
+});
+```
+
+</details>
 
 **Step 3**: amount를 private으로 변경
 
@@ -202,6 +308,30 @@ class Dollar {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    private amount: number;  // ← private으로 변경!
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
 
 ---
 
@@ -242,6 +372,46 @@ public void testEquality() {
     assertFalse(new Dollar(5).equals(new Dollar(6)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+```typescript
+// Dollar.test.ts
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.equals(new Dollar(10))).toBe(true);
+    product = five.times(3);
+    expect(product.equals(new Dollar(15))).toBe(true);
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+});
+```
+
+</details>
 
 ---
 

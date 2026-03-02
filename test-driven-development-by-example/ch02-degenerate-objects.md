@@ -20,6 +20,19 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    five.times(2);
+    expect(five.amount).toBe(10);
+});
+```
+
+</details>
+
 이 코드의 문제: `five.times(2)` 호출 후 `five.amount`가 10이 된다. **`five`라는 변수 이름이 거짓말을 하고 있다** — 더 이상 5달러가 아니기 때문이다.
 
 만약 같은 Dollar 객체에 대해 연산을 두 번 하고 싶다면?
@@ -33,6 +46,21 @@ public void testMultiplication() {
     assertEquals(15, five.amount);  // 실패! amount는 30 (10 × 3)
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    five.times(2);
+    expect(five.amount).toBe(10);
+    five.times(3);
+    expect(five.amount).toBe(15);  // 실패! amount는 30 (10 × 3)
+});
+```
+
+</details>
 
 `times()`가 `five` 객체 자체를 변경하기 때문에, 두 번째 `times(3)`은 원래의 5가 아니라 이미 변경된 10에 3을 곱한다. 이것이 **부작용(side effect)** 이다.
 
@@ -87,6 +115,21 @@ public void testMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);
+    product = five.times(3);
+    expect(product.amount).toBe(15);
+});
+```
+
+</details>
+
 핵심 변경점:
 - `five.times(2)`의 반환값을 `product`라는 새 변수에 담는다
 - `five` 객체는 변경되지 않으므로, `five.times(3)`은 항상 5 × 3 = 15다
@@ -111,6 +154,25 @@ class Dollar {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 변경 사항:
 1. 반환 타입: `void` → `Dollar`
@@ -165,6 +227,18 @@ Dollar b = new Dollar(5);
 // a.equals(b)가 true여야 한다
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const a = new Dollar(5);
+const b = new Dollar(5);
+// a === b는 false (TypeScript에서 ===는 참조 비교)
+// a.equals(b)가 true여야 한다
+```
+
+</details>
+
 값 객체는 같은 값을 가지면 동등해야 한다. 이를 위해 `equals()` 메서드를 구현해야 한다. → TODO 리스트에 추가
 
 ### 5.2 해시 코드도 필요하다
@@ -204,6 +278,37 @@ public void testMultiplication() {
     assertEquals(15, product.amount);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+```
+
+```typescript
+// Dollar.test.ts
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);
+    product = five.times(3);
+    expect(product.amount).toBe(15);
+});
+```
+
+</details>
 
 ---
 

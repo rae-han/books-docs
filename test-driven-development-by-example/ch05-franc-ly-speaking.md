@@ -52,6 +52,19 @@ public void testFrancMultiplication() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('franc multiplication', () => {
+    const five = new Franc(5);
+    expect(five.times(2).equals(new Franc(10))).toBe(true);
+    expect(five.times(3).equals(new Franc(15))).toBe(true);
+});
+```
+
+</details>
+
 이 테스트는 **컴파일 에러**가 발생한다. `Franc` 클래스가 존재하지 않기 때문이다.
 
 **Red Bar!**
@@ -79,6 +92,30 @@ class Franc {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Franc.ts — Dollar.ts를 복사한 것!
+class Franc {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+
+    equals(object: Franc): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
 
 변경된 부분은 오직:
 - 클래스 이름: `Dollar` → `Franc`
@@ -180,6 +217,30 @@ class Dollar {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
+
 **Step 2**: Franc 클래스 추가 (Dollar를 복사)
 
 ```java
@@ -201,6 +262,30 @@ class Franc {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Franc.ts (새 파일)
+class Franc {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+
+    equals(object: Franc): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
 
 ---
 
@@ -265,6 +350,69 @@ public void testFrancMultiplication() {
     assertEquals(new Franc(15), five.times(3));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Dollar.ts (변경 없음)
+class Dollar {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+```typescript
+// Franc.ts (새로 추가)
+class Franc {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+
+    equals(object: Franc): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+```typescript
+// Money.test.ts
+test('multiplication', () => {
+    const five = new Dollar(5);
+    expect(five.times(2).equals(new Dollar(10))).toBe(true);
+    expect(five.times(3).equals(new Dollar(15))).toBe(true);
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+});
+
+test('franc multiplication', () => {
+    const five = new Franc(5);
+    expect(five.times(2).equals(new Franc(10))).toBe(true);
+    expect(five.times(3).equals(new Franc(15))).toBe(true);
+});
+```
+
+</details>
 
 ---
 

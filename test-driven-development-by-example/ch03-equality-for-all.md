@@ -29,6 +29,19 @@ a == b;       // false — 서로 다른 객체이므로
 a.equals(b);  // Object의 기본 equals()는 == 과 동일하므로 역시 false
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const a = new Dollar(5);
+const b = new Dollar(5);
+
+a === b;       // false — 서로 다른 객체이므로
+a.equals(b);   // equals()를 구현하지 않으면 메서드 자체가 존재하지 않음
+```
+
+</details>
+
 `equals()`를 오버라이드하지 않으면, 값 객체로서의 Dollar는 제대로 동작하지 않는다. 예를 들어 `assertEquals(new Dollar(5), new Dollar(5))`도 실패한다.
 
 ### 1.3 TODO 리스트 확인
@@ -61,6 +74,17 @@ public void testEquality() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+});
+```
+
+</details>
+
 이 테스트는 **실패**한다. `Dollar`는 `equals()`를 오버라이드하지 않았으므로 `Object`의 기본 `equals()`가 사용된다. `Object.equals()`는 `==`와 동일하게 참조를 비교하므로, 서로 다른 두 객체는 항상 `false`를 반환한다.
 
 **Red Bar!**
@@ -75,6 +99,18 @@ public boolean equals(Object object) {
     return true;
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+equals(object: object): boolean {
+    return true;
+}
+```
+
+</details>
 
 **테스트 통과! Green Bar!**
 
@@ -95,6 +131,18 @@ public void testEquality() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+});
+```
+
+</details>
+
 두 번째 단언(`assertFalse`)이 **실패**한다. `equals()`가 무조건 `true`를 반환하기 때문이다.
 
 **Red Bar!**
@@ -110,6 +158,18 @@ public boolean equals(Object object) {
     return amount == dollar.amount;
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+equals(object: Dollar): boolean {
+    return this.amount === object.amount;
+}
+```
+
+</details>
 
 구현 내용:
 1. 파라미터를 `Dollar`로 캐스팅한다
@@ -184,6 +244,25 @@ class Dollar {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+```
+
+</details>
+
 **Step 2**: Fake It — `equals()` 추가 (무조건 true)
 
 ```java
@@ -203,6 +282,29 @@ class Dollar {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return true;  // Fake It!
+    }
+}
+```
+
+</details>
 
 **Step 3**: 삼각측량 후 — `equals()` 진짜 구현
 
@@ -224,6 +326,29 @@ class Dollar {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
 
 ---
 
@@ -264,6 +389,46 @@ public void testEquality() {
     assertFalse(new Dollar(5).equals(new Dollar(6)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+```typescript
+// Dollar.test.ts
+test('multiplication', () => {
+    const five = new Dollar(5);
+    let product = five.times(2);
+    expect(product.amount).toBe(10);
+    product = five.times(3);
+    expect(product.amount).toBe(15);
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+});
+```
+
+</details>
 
 ---
 

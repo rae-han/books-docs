@@ -20,11 +20,33 @@ public boolean equals(Object object) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+equals(object: Object): boolean {
+    const money = object as Money;
+    return this.amount === money.amount;
+}
+```
+
+</details>
+
 이 코드는 **amount만 비교**한다. 그래서 다음과 같은 일이 벌어진다:
 
 ```java
 new Dollar(5).equals(new Franc(5));  // true를 반환한다!
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+new Dollar(5).equals(new Franc(5));  // true를 반환한다!
+```
+
+</details>
 
 5달러와 5프랑은 **다른 통화**이므로 동등하지 않아야 한다. 하지만 현재 구현은 amount(5)만 비교하므로 `true`를 반환한다.
 
@@ -52,6 +74,21 @@ public void testEquality() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(new Dollar(5).equals(new Franc(5))).toBe(false);  // 새로 추가!
+});
+```
+
+</details>
+
 마지막 줄이 새로 추가된 테스트다: `Dollar(5)`와 `Franc(5)`는 같지 않아야 한다.
 
 이 테스트는 **실패**한다. 현재 `equals()`는 amount만 비교하므로 `Dollar(5).equals(Franc(5))`가 `true`를 반환한다.
@@ -70,6 +107,20 @@ public boolean equals(Object object) {
         && getClass().equals(money.getClass());
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+equals(object: Object): boolean {
+    const money = object as Money;
+    return this.amount === money.amount
+        && this.constructor === money.constructor;
+}
+```
+
+</details>
 
 `getClass()`는 Java에서 객체의 **런타임 클래스**를 반환한다:
 - `new Dollar(5).getClass()` → `Dollar.class`
@@ -159,6 +210,22 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount;    // amount만 비교
+    }
+}
+```
+
+</details>
+
 **Step 2**: 클래스 비교 추가
 
 ```java
@@ -172,6 +239,23 @@ class Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;  // 클래스도 비교!
+    }
+}
+```
+
+</details>
 
 ---
 
@@ -238,6 +322,71 @@ public void testEquality() {
     assertFalse(new Dollar(5).equals(new Franc(5)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+
+// Dollar.ts
+class Dollar extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+
+// Franc.ts
+class Franc extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+}
+
+// 테스트
+test('multiplication', () => {
+    const five = new Dollar(5);
+    expect(five.times(2)).toEqual(new Dollar(10));
+    expect(five.times(3)).toEqual(new Dollar(15));
+});
+
+test('franc multiplication', () => {
+    const five = new Franc(5);
+    expect(five.times(2)).toEqual(new Franc(10));
+    expect(five.times(3)).toEqual(new Franc(15));
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(new Dollar(5).equals(new Franc(5))).toBe(false);
+});
+```
+
+</details>
 
 ---
 

@@ -35,6 +35,20 @@ result = suite.run()
 print(result.summary())  # "3 run, 0 failed"
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const suite = new TestSuite();
+suite.add(new TestCaseTest("testTemplateMethod"));
+suite.add(new TestCaseTest("testResult"));
+suite.add(new TestCaseTest("testFailedResult"));
+const result = suite.run();
+console.log(result.summary());  // "3 run, 0 failed"
+```
+
+</details>
+
 > **핵심 통찰**: TestSuite는 **Composite 패턴**의 전형적인 예다. 개별 테스트(TestCase)와 테스트 묶음(TestSuite) 모두 `run()` 메서드를 가진다. 사용자는 하나의 테스트를 실행하든 100개의 테스트를 묶어 실행하든 **같은 인터페이스**를 사용한다.
 
 ---
@@ -91,6 +105,29 @@ all_tests.add(integration_suite)
 result = all_tests.run()  # 모든 테스트 실행
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 단위 테스트 스위트
+const unitSuite = new TestSuite();
+unitSuite.add(new MoneyTest("testMultiplication"));
+unitSuite.add(new MoneyTest("testEquality"));
+
+// 통합 테스트 스위트
+const integrationSuite = new TestSuite();
+integrationSuite.add(new DatabaseTest("testConnection"));
+
+// 전체 스위트 (스위트의 스위트!)
+const allTests = new TestSuite();
+allTests.add(unitSuite);
+allTests.add(integrationSuite);
+
+const result = allTests.run();  // 모든 테스트 실행
+```
+
+</details>
+
 ---
 
 ## 3. TDD 사이클
@@ -108,6 +145,23 @@ class TestCaseTest(TestCase):
         result = suite.run()
         assert("2 run, 1 failed" == result.summary())
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testSuite(): void {
+        const suite = new TestSuite();
+        suite.add(new WasRun("testMethod"));
+        suite.add(new WasRun("testBrokenMethod"));
+        const result = suite.run();
+        expect(result.summary()).toBe("2 run, 1 failed");
+    }
+}
+```
+
+</details>
 
 이 테스트의 의미:
 - 2개의 테스트를 스위트에 추가한다: 하나는 성공(`testMethod`), 하나는 실패(`testBrokenMethod`)
@@ -134,6 +188,29 @@ class TestSuite:
             test.run(result)
         return result
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestSuite {
+    tests: Array<TestCase | TestSuite> = [];
+
+    add(test: TestCase | TestSuite): void {
+        this.tests.push(test);
+    }
+
+    run(): TestResult {
+        const result = new TestResult();
+        for (const test of this.tests) {
+            test.run(result);
+        }
+        return result;
+    }
+}
+```
+
+</details>
 
 구조:
 - `tests`: 테스트 객체들을 담는 리스트
@@ -165,6 +242,37 @@ class TestCase:
             result.testFailed()
         self.tearDown()
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(result: TestResult): void {
+        result.testStarted();
+        this.setUp();
+        try {
+            const method = (this as any)[this.name];
+            method.call(this);
+        } catch (e) {
+            result.testFailed();
+        }
+        this.tearDown();
+    }
+}
+```
+
+</details>
 
 변경 사항:
 1. `run(self)` → `run(self, result)`: `TestResult`를 매개변수로 받는다
@@ -206,6 +314,45 @@ class TestCaseTest(TestCase):
         assert("2 run, 1 failed" == result.summary())
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+
+    testFailedResult(): void {
+        const test = new WasRun("testBrokenMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(result.summary()).toBe("1 run, 1 failed");
+    }
+
+    testSuite(): void {
+        const suite = new TestSuite();
+        suite.add(new WasRun("testMethod"));
+        suite.add(new WasRun("testBrokenMethod"));
+        const result = new TestResult();
+        suite.run(result);
+        expect(result.summary()).toBe("2 run, 1 failed");
+    }
+}
+```
+
+</details>
+
 모든 테스트에서 `TestResult`를 먼저 생성하고 `run()`에 전달하는 패턴으로 바뀌었다.
 
 > 참고: `TestSuite.run()`도 매개변수 방식으로 수정한다:
@@ -223,6 +370,27 @@ class TestSuite:
             test.run(result)
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestSuite {
+    tests: Array<TestCase | TestSuite> = [];
+
+    add(test: TestCase | TestSuite): void {
+        this.tests.push(test);
+    }
+
+    run(result: TestResult): void {
+        for (const test of this.tests) {
+            test.run(result);
+        }
+    }
+}
+```
+
+</details>
+
 `TestSuite.run(result)`는 받은 `result`를 각 `test.run(result)`에 그대로 전달한다. 모든 테스트의 결과가 하나의 `TestResult`에 누적된다.
 
 테스트를 실행한다:
@@ -237,6 +405,22 @@ result = TestResult()
 suite.run(result)
 print(result.summary())  # "4 run, 0 failed"
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const suite = new TestSuite();
+suite.add(new TestCaseTest("testTemplateMethod"));
+suite.add(new TestCaseTest("testResult"));
+suite.add(new TestCaseTest("testFailedResult"));
+suite.add(new TestCaseTest("testSuite"));
+const result = new TestResult();
+suite.run(result);
+console.log(result.summary());  // "4 run, 0 failed"
+```
+
+</details>
 
 통과! **TestSuite가 자기 자신을 테스트하는 데 사용되고 있다.** 부트스트래핑의 아름다움이다. Green Bar!
 
@@ -393,6 +577,129 @@ result = TestResult()
 suite.run(result)
 print(result.summary())
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestResult {
+    runCount: number = 0;
+    failureCount: number = 0;
+
+    testStarted(): void {
+        this.runCount += 1;
+    }
+
+    testFailed(): void {
+        this.failureCount += 1;
+    }
+
+    summary(): string {
+        return `${this.runCount} run, ${this.failureCount} failed`;
+    }
+}
+
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(result: TestResult): void {
+        result.testStarted();
+        this.setUp();
+        try {
+            const method = (this as any)[this.name];
+            method.call(this);
+        } catch (e) {
+            result.testFailed();
+        }
+        this.tearDown();
+    }
+}
+
+class TestSuite {
+    tests: Array<TestCase | TestSuite> = [];
+
+    add(test: TestCase | TestSuite): void {
+        this.tests.push(test);
+    }
+
+    run(result: TestResult): void {
+        for (const test of this.tests) {
+            test.run(result);
+        }
+    }
+}
+
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    testBrokenMethod(): void {
+        throw new Error();
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+
+    testFailedResult(): void {
+        const test = new WasRun("testBrokenMethod");
+        const result = new TestResult();
+        test.run(result);
+        expect(result.summary()).toBe("1 run, 1 failed");
+    }
+
+    testSuite(): void {
+        const suite = new TestSuite();
+        suite.add(new WasRun("testMethod"));
+        suite.add(new WasRun("testBrokenMethod"));
+        const result = new TestResult();
+        suite.run(result);
+        expect(result.summary()).toBe("2 run, 1 failed");
+    }
+}
+
+const suite = new TestSuite();
+suite.add(new TestCaseTest("testTemplateMethod"));
+suite.add(new TestCaseTest("testResult"));
+suite.add(new TestCaseTest("testFailedResult"));
+suite.add(new TestCaseTest("testSuite"));
+const result = new TestResult();
+suite.run(result);
+console.log(result.summary());
+```
+
+</details>
 
 실행 결과:
 

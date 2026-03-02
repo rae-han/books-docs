@@ -57,6 +57,33 @@ class WasRun(TestCase):
         self.log = self.log + "tearDown "
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    testBrokenMethod(): void {
+        throw new Error();  // 항상 예외를 던지는 테스트
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+```
+
+</details>
+
 `testBrokenMethod`는 의도적으로 예외를 발생시킨다. 이것을 사용하여 실패 보고를 테스트한다:
 
 ```python
@@ -66,6 +93,21 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert("1 run, 1 failed" == result.summary())
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testFailedResult(): void {
+        const test = new WasRun("testBrokenMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 1 failed");
+    }
+}
+```
+
+</details>
 
 이 테스트를 실행하면:
 
@@ -98,6 +140,30 @@ class TestResult:
         return "%d run, %d failed" % (self.runCount, self.failureCount)
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestResult {
+    runCount: number = 0;
+    failureCount: number = 0;  // 실패 카운터 추가
+
+    testStarted(): void {
+        this.runCount += 1;
+    }
+
+    testFailed(): void {
+        this.failureCount += 1;  // 실패 시 호출
+    }
+
+    summary(): string {
+        return `${this.runCount} run, ${this.failureCount} failed`;
+    }
+}
+```
+
+</details>
+
 변경 사항:
 - `failureCount` 필드 추가
 - `testFailed()` 메서드 추가 — 테스트가 실패할 때 호출
@@ -128,6 +194,39 @@ class TestCase:
         self.tearDown()
         return result
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(): TestResult {
+        const result = new TestResult();
+        result.testStarted();
+        this.setUp();
+        try {
+            const method = (this as any)[this.name];
+            method.call(this);
+        } catch (e) {
+            result.testFailed();
+        }
+        this.tearDown();
+        return result;
+    }
+}
+```
+
+</details>
 
 핵심: `method()` 호출을 `try/except`로 감쌌다. 예외가 발생하면 `result.testFailed()`를 호출하여 실패를 기록하고, 프로그램은 **계속 실행**된다. `tearDown()`도 실행되며, 결과가 정상적으로 반환된다.
 
@@ -314,6 +413,100 @@ TestCaseTest("testTemplateMethod").run()
 TestCaseTest("testResult").run()
 TestCaseTest("testFailedResult").run()
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestResult {
+    runCount: number = 0;
+    failureCount: number = 0;
+
+    testStarted(): void {
+        this.runCount += 1;
+    }
+
+    testFailed(): void {
+        this.failureCount += 1;
+    }
+
+    summary(): string {
+        return `${this.runCount} run, ${this.failureCount} failed`;
+    }
+}
+
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    setUp(): void {}
+
+    tearDown(): void {}
+
+    run(): TestResult {
+        const result = new TestResult();
+        result.testStarted();
+        this.setUp();
+        try {
+            const method = (this as any)[this.name];
+            method.call(this);
+        } catch (e) {
+            result.testFailed();
+        }
+        this.tearDown();
+        return result;
+    }
+}
+
+class WasRun extends TestCase {
+    log: string = "";
+
+    setUp(): void {
+        this.log = "setUp ";
+    }
+
+    testMethod(): void {
+        this.log = this.log + "testMethod ";
+    }
+
+    testBrokenMethod(): void {
+        throw new Error();
+    }
+
+    tearDown(): void {
+        this.log = this.log + "tearDown ";
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testTemplateMethod(): void {
+        const test = new WasRun("testMethod");
+        test.run();
+        expect(test.log).toBe("setUp testMethod tearDown ");
+    }
+
+    testResult(): void {
+        const test = new WasRun("testMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 0 failed");
+    }
+
+    testFailedResult(): void {
+        const test = new WasRun("testBrokenMethod");
+        const result = test.run();
+        expect(result.summary()).toBe("1 run, 1 failed");
+    }
+}
+
+new TestCaseTest("testTemplateMethod").run();
+new TestCaseTest("testResult").run();
+new TestCaseTest("testFailedResult").run();
+```
+
+</details>
 
 ---
 

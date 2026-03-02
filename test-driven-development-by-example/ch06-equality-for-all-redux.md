@@ -26,6 +26,23 @@ public boolean equals(Object object) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.equals()
+equals(object: Dollar): boolean {
+    return this.amount === object.amount;
+}
+
+// Franc.equals()
+equals(object: Franc): boolean {
+    return this.amount === object.amount;
+}
+```
+
+</details>
+
 차이점은 **캐스팅 타입**뿐이다: `Dollar` vs `Franc`. 나머지 로직은 완전히 동일하다.
 
 ### 1.2 중복 제거 전략
@@ -49,6 +66,16 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+}
+```
+
+</details>
+
 그리고 Dollar가 Money를 상속하도록 변경한다:
 
 ```java
@@ -70,6 +97,30 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    private amount: number;
+
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
+
 **테스트 실행 → 모든 테스트 통과!** 아직 아무 동작도 바뀌지 않았으니 당연하다. 하지만 확인하는 것이 중요하다.
 
 ### 2.2 Step 2: amount 필드를 Money로 이동
@@ -81,6 +132,17 @@ class Money {
     protected int amount;
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+}
+```
+
+</details>
 
 `protected`를 사용하는 이유: 하위 클래스(Dollar, Franc)에서 접근할 수 있어야 하기 때문이다. 원래 `private`이었지만, 상위 클래스로 올리면서 `protected`로 변경한다.
 
@@ -105,6 +167,30 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    // private amount: number;  ← 제거! Money에서 상속받음
+
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
+
 **테스트 실행 → 모든 테스트 통과!**
 
 ### 2.3 Step 3: equals()를 Money로 이동
@@ -118,6 +204,18 @@ public boolean equals(Object object) {
     return amount == money.amount;
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts — equals()의 파라미터 타입 변경
+equals(object: Money): boolean {          // Dollar → Money
+    return this.amount === object.amount;
+}
+```
+
+</details>
 
 이것이 가능한 이유: `amount`가 이제 Money 클래스에 있으므로, `Money` 타입으로 캐스팅해도 `amount`에 접근할 수 있다.
 
@@ -136,6 +234,21 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+
+    equals(object: Money): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
+
 Dollar에서 `equals()`를 제거한다:
 
 ```java
@@ -151,6 +264,26 @@ class Dollar extends Money {
     // equals() 제거 — Money에서 상속받음
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    // equals() 제거 — Money에서 상속받음
+}
+```
+
+</details>
 
 **테스트 실행 → 모든 테스트 통과!**
 
@@ -173,6 +306,27 @@ class Franc extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Franc extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+
+    // equals() 제거 — Money에서 상속받음
+    // amount 필드도 제거 — Money에서 상속받음
+}
+```
+
+</details>
+
 **테스트 실행 → 모든 테스트 통과!**
 
 ### 2.5 Franc의 동등성 테스트 추가
@@ -189,6 +343,20 @@ public void testEquality() {
     assertFalse(new Franc(5).equals(new Franc(6)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+});
+```
+
+</details>
 
 **테스트 실행 → 모든 테스트 통과!**
 
@@ -267,6 +435,47 @@ class Franc {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+class Dollar {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+
+    equals(object: Dollar): boolean {
+        return this.amount === object.amount;
+    }
+}
+
+// Franc.ts
+class Franc {
+    private amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+
+    equals(object: Franc): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+</details>
+
 **After (Chapter 6 종료 시점)**:
 
 ```java
@@ -302,6 +511,46 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts (새로 추가)
+class Money {
+    protected amount: number;
+
+    equals(object: Money): boolean {
+        return this.amount === object.amount;
+    }
+}
+
+// Dollar.ts (간소화)
+class Dollar extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+
+// Franc.ts (간소화)
+class Franc extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 변화를 정리하면:
 
@@ -375,6 +624,72 @@ public void testEquality() {
     assertFalse(new Franc(5).equals(new Franc(6)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+
+    equals(object: Money): boolean {
+        return this.amount === object.amount;
+    }
+}
+```
+
+```typescript
+// Dollar.ts
+class Dollar extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+```
+
+```typescript
+// Franc.ts
+class Franc extends Money {
+    constructor(amount: number) {
+        super();
+        this.amount = amount;
+    }
+
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+}
+```
+
+```typescript
+// Money.test.ts
+test('multiplication', () => {
+    const five = new Dollar(5);
+    expect(five.times(2).equals(new Dollar(10))).toBe(true);
+    expect(five.times(3).equals(new Dollar(15))).toBe(true);
+});
+
+test('franc multiplication', () => {
+    const five = new Franc(5);
+    expect(five.times(2).equals(new Franc(10))).toBe(true);
+    expect(five.times(3).equals(new Franc(15))).toBe(true);
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+});
+```
+
+</details>
 
 ---
 

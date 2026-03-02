@@ -26,6 +26,25 @@ class Franc extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+```
+
+</details>
+
 이 서브클래스들은:
 - `equals()`? → Money에 있다
 - `times()`? → Money에 있다
@@ -63,6 +82,21 @@ static Money franc(int amount) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+static dollar(amount: number): Money {
+    return new Dollar(amount, "USD");
+}
+
+static franc(amount: number): Money {
+    return new Franc(amount, "CHF");
+}
+```
+
+</details>
+
 이 팩토리 메서드에서 `new Dollar(...)` 대신 `new Money(...)`를 사용하면, Dollar 클래스에 대한 참조가 사라진다. Franc도 마찬가지다.
 
 ### 2.2 테스트에서의 참조 확인
@@ -91,6 +125,23 @@ static Money dollar(int amount) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 변경 전
+static dollar(amount: number): Money {
+    return new Dollar(amount, "USD");
+}
+
+// 변경 후
+static dollar(amount: number): Money {
+    return new Money(amount, "USD");
+}
+```
+
+</details>
+
 테스트 실행 — **Green Bar!**
 
 Chapter 10에서 `equals()`를 통화 비교로 변경했기 때문에, `new Money(10, "USD")`와 `new Dollar(10, "USD")`는 동등하다. 기존 테스트가 모두 통과한다.
@@ -108,6 +159,23 @@ static Money franc(int amount) {
     return new Money(amount, "CHF");
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 변경 전
+static franc(amount: number): Money {
+    return new Franc(amount, "CHF");
+}
+
+// 변경 후
+static franc(amount: number): Money {
+    return new Money(amount, "CHF");
+}
+```
+
+</details>
 
 테스트 실행 — **Green Bar!**
 
@@ -132,6 +200,17 @@ public void testDifferentClassEquality() {
     assertTrue(new Money(10, "USD").equals(new Dollar(10, "USD")));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('different class equality', () => {
+    expect(new Money(10, "USD").equals(new Dollar(10, "USD"))).toBe(true);
+});
+```
+
+</details>
 
 이 테스트는 `Dollar` 클래스가 더 이상 존재하지 않으므로 **삭제**한다. 이 테스트는 서브클래스에서 슈퍼클래스로 전환하는 과정에서 필요했던 것이지, 영구적으로 필요한 테스트가 아니었다.
 
@@ -182,6 +261,50 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts — 이것이 전부다!
+class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Money(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Money(amount, "CHF");
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+
+    toString(): string {
+        return `${this.amount} ${this._currency}`;
+    }
+}
+```
+
+</details>
+
 ### 4.2 파일 구조의 변화
 
 ```
@@ -213,6 +336,68 @@ public void testCurrency() {
     assertEquals("CHF", Money.franc(1).currency());
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Money(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Money(amount, "CHF");
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+
+    toString(): string {
+        return `${this.amount} ${this._currency}`;
+    }
+}
+
+// 테스트
+test('multiplication', () => {
+    const five: Money = Money.dollar(5);
+    expect(five.times(2)).toEqual(Money.dollar(10));
+    expect(five.times(3)).toEqual(Money.dollar(15));
+});
+
+test('equality', () => {
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
+});
+
+test('currency', () => {
+    expect(Money.dollar(1).currency()).toBe("USD");
+    expect(Money.franc(1).currency()).toBe("CHF");
+});
+```
+
+</details>
 
 테스트 코드에서 `Dollar`와 `Franc`라는 단어가 완전히 사라졌다. 모든 것이 `Money.dollar()`, `Money.franc()`이라는 팩토리 메서드를 통해 표현된다.
 

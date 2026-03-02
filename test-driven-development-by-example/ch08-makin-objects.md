@@ -34,6 +34,33 @@ public void testEquality() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five = new Dollar(5);           // Dollar를 직접 참조
+    expect(five.times(2)).toEqual(new Dollar(10));
+    expect(five.times(3)).toEqual(new Dollar(15));
+});
+
+test('franc multiplication', () => {
+    const five = new Franc(5);             // Franc을 직접 참조
+    expect(five.times(2)).toEqual(new Franc(10));
+    expect(five.times(3)).toEqual(new Franc(15));
+});
+
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);   // Dollar 직접 참조
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);     // Franc 직접 참조
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(new Dollar(5).equals(new Franc(5))).toBe(false);
+});
+```
+
+</details>
+
 ### 1.2 이것이 왜 문제인가?
 
 테스트가 구체 클래스에 의존하면:
@@ -58,6 +85,19 @@ Dollar five = new Dollar(5);
 Money five = Money.dollar(5);
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 현재: 테스트가 Dollar를 직접 안다
+const five: Dollar = new Dollar(5);
+
+// 목표: 테스트는 Money만 안다
+const five: Money = Money.dollar(5);
+```
+
+</details>
+
 ---
 
 ## 2. TDD 사이클
@@ -79,6 +119,24 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+class Dollar extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Money {         // Dollar → Money
+        return new Dollar(this.amount * multiplier);
+    }
+}
+```
+
+</details>
+
 Franc에도 동일하게 적용한다:
 
 ```java
@@ -93,6 +151,24 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Franc.ts
+class Franc extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Money {         // Franc → Money
+        return new Franc(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 **테스트 실행 → 모든 테스트 통과!**
 
@@ -119,6 +195,28 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+```
+
+</details>
+
 이제 테스트에서 `new Dollar(5)` 대신 `Money.dollar(5)`를 사용할 수 있다.
 
 ### 2.3 Step 3: 테스트에서 Dollar 참조를 Money로 교체
@@ -140,6 +238,27 @@ public void testMultiplication() {
     assertEquals(Money.dollar(15), five.times(3));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Before
+test('multiplication', () => {
+    const five: Dollar = new Dollar(5);
+    expect(five.times(2)).toEqual(new Dollar(10));
+    expect(five.times(3)).toEqual(new Dollar(15));
+});
+
+// After
+test('multiplication', () => {
+    const five: Money = Money.dollar(5);
+    expect(five.times(2)).toEqual(Money.dollar(10));
+    expect(five.times(3)).toEqual(Money.dollar(15));
+});
+```
+
+</details>
 
 핵심 변경점:
 - `Dollar five` → `Money five` — 변수 타입을 상위 타입으로 변경
@@ -172,6 +291,32 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+```
+
+</details>
+
 ### 2.5 Step 5: 나머지 테스트도 변경
 
 Franc 곱하기 테스트:
@@ -191,6 +336,27 @@ public void testFrancMultiplication() {
     assertEquals(Money.franc(15), five.times(3));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Before
+test('franc multiplication', () => {
+    const five: Franc = new Franc(5);
+    expect(five.times(2)).toEqual(new Franc(10));
+    expect(five.times(3)).toEqual(new Franc(15));
+});
+
+// After
+test('franc multiplication', () => {
+    const five: Money = Money.franc(5);
+    expect(five.times(2)).toEqual(Money.franc(10));
+    expect(five.times(3)).toEqual(Money.franc(15));
+});
+```
+
+</details>
 
 동등성 테스트:
 
@@ -213,6 +379,31 @@ public void testEquality() {
     assertFalse(Money.dollar(5).equals(Money.franc(5)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Before
+test('equality', () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+    expect(new Franc(5).equals(new Franc(5))).toBe(true);
+    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(new Dollar(5).equals(new Franc(5))).toBe(false);
+});
+
+// After
+test('equality', () => {
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
+    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
+    expect(Money.dollar(5).equals(Money.franc(5))).toBe(false);
+});
+```
+
+</details>
 
 **모든 테스트 통과! Green Bar!**
 
@@ -269,6 +460,33 @@ abstract class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+abstract class Money {
+    protected amount: number;
+
+    abstract times(multiplier: number): Money;
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+```
+
+</details>
+
 Money를 `abstract`로 선언하고, `times()`를 추상 메서드로 선언한다. Dollar와 Franc이 이를 구현한다.
 
 **모든 테스트 통과!**
@@ -294,6 +512,25 @@ public void testFrancMultiplication() {
     assertEquals(Money.franc(15), five.times(3));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication', () => {
+    const five: Money = Money.dollar(5);
+    expect(five.times(2)).toEqual(Money.dollar(10));
+    expect(five.times(3)).toEqual(Money.dollar(15));
+});
+
+test('franc multiplication', () => {
+    const five: Money = Money.franc(5);
+    expect(five.times(2)).toEqual(Money.franc(10));
+    expect(five.times(3)).toEqual(Money.franc(15));
+});
+```
+
+</details>
 
 이 두 테스트는 **거의 동일하다**. 유일한 차이는 `dollar` vs `franc`뿐이다. Dollar와 Franc의 `times()` 구현이 동일하므로(둘 다 `new X(amount * multiplier)` 패턴), 하나를 제거해도 테스트 커버리지에 큰 영향이 없다.
 
@@ -330,6 +567,37 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+
+class Dollar extends Money {
+    constructor(amount: number) { super(); this.amount = amount; }
+    times(multiplier: number): Dollar {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+
+class Franc extends Money {
+    constructor(amount: number) { super(); this.amount = amount; }
+    times(multiplier: number): Franc {
+        return new Franc(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 **After (Chapter 8 종료 시점)**:
 
@@ -368,6 +636,47 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+abstract class Money {
+    protected amount: number;
+
+    abstract times(multiplier: number): Money;
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+
+class Dollar extends Money {
+    constructor(amount: number) { super(); this.amount = amount; }
+    times(multiplier: number): Money {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+
+class Franc extends Money {
+    constructor(amount: number) { super(); this.amount = amount; }
+    times(multiplier: number): Money {
+        return new Franc(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 주요 변경점 요약:
 
@@ -453,6 +762,81 @@ public void testEquality() {
     assertFalse(Money.dollar(5).equals(Money.franc(5)));
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+abstract class Money {
+    protected amount: number;
+
+    constructor(amount: number) {
+        this.amount = amount;
+    }
+
+    abstract times(multiplier: number): Money;
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount);
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+}
+
+// Dollar.ts
+class Dollar extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Money {
+        return new Dollar(this.amount * multiplier);
+    }
+}
+
+// Franc.ts
+class Franc extends Money {
+    constructor(amount: number) {
+        super(amount);
+    }
+
+    times(multiplier: number): Money {
+        return new Franc(this.amount * multiplier);
+    }
+}
+
+// 테스트
+test('multiplication', () => {
+    const five: Money = Money.dollar(5);
+    expect(five.times(2)).toEqual(Money.dollar(10));
+    expect(five.times(3)).toEqual(Money.dollar(15));
+});
+
+test('franc multiplication', () => {
+    const five: Money = Money.franc(5);
+    expect(five.times(2)).toEqual(Money.franc(10));
+    expect(five.times(3)).toEqual(Money.franc(15));
+});
+
+test('equality', () => {
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
+    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
+    expect(Money.dollar(5).equals(Money.franc(5))).toBe(false);
+});
+```
+
+</details>
 
 ---
 

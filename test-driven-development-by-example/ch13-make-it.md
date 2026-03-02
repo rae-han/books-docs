@@ -22,6 +22,21 @@ class Bank {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        const sum = source as Sum;                             // 문제 1: 캐스팅
+        const amount = sum.augend.amount + sum.addend.amount;  // 문제 2: Sum의 내부 접근
+        return new Money(amount, to);                          // 문제 3: 환율 미적용
+    }
+}
+```
+
+</details>
+
 **문제 1**: `(Sum) source` — source가 Money일 수도 있는데, 무조건 Sum으로 캐스팅한다.
 
 **문제 2**: Bank가 Sum의 내부 구조(`augend`, `addend`)를 직접 접근한다. 이것은 **캡슐화 위반**이다.
@@ -63,6 +78,20 @@ public void testReduceSum() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('reduce sum', () => {
+    const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+    const bank = new Bank();
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(7));
+});
+```
+
+</details>
+
 기존 `testSimpleAddition`과 비슷하지만, Sum을 직접 생성하여 reduce하는 것에 초점을 맞춘다.
 
 현재 구현으로도 이 테스트는 통과한다 — Bank.reduce()가 이미 Sum을 처리하기 때문이다. 하지만 **구조를 개선**하기 위해 리팩토링을 진행한다.
@@ -88,6 +117,28 @@ class Sum implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Sum implements Expression {
+    augend: Money;
+    addend: Money;
+
+    constructor(augend: Money, addend: Money) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+
+    reduce(to: string): Money {
+        const amount = this.augend.amount + this.addend.amount;
+        return new Money(amount, to);
+    }
+}
+```
+
+</details>
+
 **Step 2**: Bank.reduce()에서 Sum.reduce()를 호출하도록 변경:
 
 ```java
@@ -98,6 +149,20 @@ class Bank {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        const sum = source as Sum;
+        return sum.reduce(to);
+    }
+}
+```
+
+</details>
 
 테스트 실행 — **Green Bar!**
 
@@ -127,6 +192,19 @@ public void testReduceMoney() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('reduce money', () => {
+    const bank = new Bank();
+    const result = bank.reduce(Money.dollar(1), "USD");
+    expect(result).toEqual(Money.dollar(1));
+});
+```
+
+</details>
+
 이 테스트는 실패한다 — `Bank.reduce()`에서 `(Sum) source` 캐스팅 시 ClassCastException이 발생한다.
 
 #### Green — Money에도 reduce() 추가
@@ -142,6 +220,21 @@ class Money implements Expression {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money implements Expression {
+    // ... 기존 코드
+
+    reduce(to: string): Money {
+        return this;
+    }
+}
+```
+
+</details>
 
 Money는 이미 단일 통화의 금액이므로, reduce의 결과는 자기 자신이다. (통화 변환은 아직 다루지 않는다.)
 
@@ -159,6 +252,23 @@ class Bank {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        if (source instanceof Money) {
+            return (source as Money).reduce(to);
+        }
+        const sum = source as Sum;
+        return sum.reduce(to);
+    }
+}
+```
+
+</details>
+
 테스트 실행 — **Green Bar!**
 
 하지만 이 코드에는 문제가 있다 — `instanceof`를 사용한 타입 체크는 좋지 않은 패턴이다. 다형성을 제대로 활용하면 `instanceof`가 필요 없어진다.
@@ -175,6 +285,17 @@ interface Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+interface Expression {
+    reduce(to: string): Money;
+}
+```
+
+</details>
+
 이미 Money와 Sum 모두에 `reduce(String to)` 메서드가 있으므로, 이 인터페이스를 선언해도 컴파일 에러가 발생하지 않는다.
 
 **Step 2**: Bank.reduce()를 다형성으로 단순화:
@@ -186,6 +307,19 @@ class Bank {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        return source.reduce(to);
+    }
+}
+```
+
+</details>
 
 **테스트 실행 — Green Bar!**
 
@@ -254,6 +388,44 @@ Money reduce(Expression source, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Version 1 (Chapter 12) — 하드코딩
+reduce(source: Expression, to: string): Money {
+    return Money.dollar(10);
+}
+
+// Version 2 (Chapter 12) — Sum만 처리, 내부 접근
+reduce(source: Expression, to: string): Money {
+    const sum = source as Sum;
+    const amount = sum.augend.amount + sum.addend.amount;
+    return new Money(amount, to);
+}
+
+// Version 3 (이 챕터) — Sum에 위임, 하지만 캐스팅
+reduce(source: Expression, to: string): Money {
+    const sum = source as Sum;
+    return sum.reduce(to);
+}
+
+// Version 4 (이 챕터) — instanceof 사용
+reduce(source: Expression, to: string): Money {
+    if (source instanceof Money)
+        return (source as Money).reduce(to);
+    const sum = source as Sum;
+    return sum.reduce(to);
+}
+
+// Version 5 (이 챕터, 최종) — 다형성
+reduce(source: Expression, to: string): Money {
+    return source.reduce(to);
+}
+```
+
+</details>
+
 5단계에 걸쳐 진화했다. 각 단계는 테스트를 통과하는 상태를 유지하면서 진행되었다.
 
 ### 5.2 핵심 리팩토링 기법
@@ -275,6 +447,17 @@ interface Expression {
     Money reduce(String to);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+interface Expression {
+    reduce(to: string): Money;
+}
+```
+
+</details>
 
 ### 6.2 Money 클래스
 
@@ -324,6 +507,57 @@ class Money implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Money implements Expression {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Money(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Money(amount, "CHF");
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    plus(addend: Money): Expression {
+        return new Sum(this, addend);
+    }
+
+    reduce(to: string): Money {
+        return this;
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+
+    toString(): string {
+        return `${this.amount} ${this._currency}`;
+    }
+}
+```
+
+</details>
+
 ### 6.3 Sum 클래스
 
 ```java
@@ -343,6 +577,28 @@ class Sum implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Sum implements Expression {
+    augend: Money;
+    addend: Money;
+
+    constructor(augend: Money, addend: Money) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+
+    reduce(to: string): Money {
+        const amount = this.augend.amount + this.addend.amount;
+        return new Money(amount, to);
+    }
+}
+```
+
+</details>
+
 ### 6.4 Bank 클래스
 
 ```java
@@ -352,6 +608,19 @@ class Bank {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        return source.reduce(to);
+    }
+}
+```
+
+</details>
 
 ### 6.5 테스트
 
@@ -377,6 +646,34 @@ public void testReduceMoney() {
     assertEquals(Money.dollar(1), result);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+test('simple addition', () => {
+    const five = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank = new Bank();
+    const reduced = bank.reduce(sum, "USD");
+    expect(reduced).toEqual(Money.dollar(10));
+});
+
+test('reduce sum', () => {
+    const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+    const bank = new Bank();
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(7));
+});
+
+test('reduce money', () => {
+    const bank = new Bank();
+    const result = bank.reduce(Money.dollar(1), "USD");
+    expect(result).toEqual(Money.dollar(1));
+});
+```
+
+</details>
 
 ---
 

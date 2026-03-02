@@ -58,6 +58,20 @@ public void testReduceMoneyDifferentCurrency() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('reduce money different currency', () => {
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(Money.franc(2), "USD");
+    expect(result).toEqual(Money.dollar(1));
+});
+```
+
+</details>
+
 이 테스트는 여러 가지를 한꺼번에 요구한다:
 
 - `bank.addRate("CHF", "USD", 2)` — Bank에 "2 CHF = 1 USD"라는 환율을 등록
@@ -89,6 +103,21 @@ public Money reduce(Bank bank, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts - 변경 후
+reduce(bank: Bank, to: string): Money {
+    const rate = (this._currency === "CHF" && to === "USD")
+        ? 2
+        : 1;
+    return new Money(Math.floor(this.amount / rate), to);
+}
+```
+
+</details>
+
 이것은 명백히 **Fake It** 이다. 환율 2가 하드코딩되어 있고, CHF→USD만 처리한다. 하지만 테스트는 통과한다! Green Bar.
 
 > **핵심 통찰**: `reduce()` 메서드에 `Bank`를 매개변수로 전달하는 것은 중요한 설계 결정이다. 환율 정보는 Bank가 관리해야 하는 책임이므로, Money가 Bank에게 환율을 물어보는 것이 자연스럽다. 이것은 **정보 전문가(Information Expert)** 패턴이다 — 정보를 가진 객체에게 해당 정보를 사용하는 책임을 부여한다.
@@ -111,6 +140,29 @@ public Money reduce(Expression source, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Expression.ts
+interface Expression {
+    reduce(bank: Bank, to: string): Money;
+}
+
+// Sum.ts
+reduce(bank: Bank, to: string): Money {
+    const amount = this.augend.amount + this.addend.amount;
+    return new Money(amount, to);
+}
+
+// Bank.ts
+reduce(source: Expression, to: string): Money {
+    return source.reduce(this, to);
+}
+```
+
+</details>
+
 `Bank.reduce()`에서 `this`를 전달함으로써, Expression이 환율 변환에 필요한 Bank 참조를 받을 수 있게 되었다.
 
 #### Refactor — 환율 하드코딩 제거
@@ -125,6 +177,19 @@ public Money reduce(Bank bank, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts - 리팩토링 후
+reduce(bank: Bank, to: string): Money {
+    const rate = bank.rate(this._currency, to);
+    return new Money(Math.floor(this.amount / rate), to);
+}
+```
+
+</details>
+
 이제 `bank.rate("CHF", "USD")`가 2를 반환해야 한다. 하드코딩을 Money에서 Bank로 옮긴 셈이다:
 
 ```java
@@ -135,6 +200,20 @@ int rate(String from, String to) {
         : 1;
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Bank.ts - 일단 하드코딩으로
+rate(from: string, to: string): number {
+    return (from === "CHF" && to === "USD")
+        ? 2
+        : 1;
+}
+```
+
+</details>
 
 테스트 여전히 통과. 하지만 아직 하드코딩이 남아 있다. 이것을 해시테이블로 일반화해야 한다.
 
@@ -168,6 +247,35 @@ private class Pair {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Pair — Bank 내부에서 사용하는 클래스
+// TypeScript에서는 해시 키로 객체를 직접 사용할 수 없으므로
+// 문자열 키로 변환하는 방식을 사용한다
+class Pair {
+    private from: string;
+    private to: string;
+
+    constructor(from: string, to: string) {
+        this.from = from;
+        this.to = to;
+    }
+
+    equals(other: Pair): boolean {
+        return this.from === other.from && this.to === other.to;
+    }
+
+    // 해시 키로 사용하기 위한 문자열 변환
+    hashKey(): string {
+        return `${this.from}->${this.to}`;
+    }
+}
+```
+
+</details>
+
 **주목할 점:**
 - `Pair`는 `private` 클래스다 — Bank 내부에서만 사용하는 구현 세부사항이다
 - `hashCode()`가 `0`을 반환한다! 이것은 의도적인 것이다
@@ -190,6 +298,24 @@ int rate(String from, String to) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Bank.ts
+private rates: Map<string, number> = new Map();
+
+addRate(from: string, to: string, rate: number): void {
+    this.rates.set(new Pair(from, to).hashKey(), rate);
+}
+
+rate(from: string, to: string): number {
+    return this.rates.get(new Pair(from, to).hashKey())!;
+}
+```
+
+</details>
+
 이제 `bank.addRate("CHF", "USD", 2)` 호출 시 해시테이블에 환율이 저장되고, `bank.rate("CHF", "USD")`로 조회할 수 있다.
 
 ---
@@ -206,6 +332,17 @@ public void testIdentityRate() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('identity rate', () => {
+    expect(new Bank().rate("USD", "USD")).toBe(1);
+});
+```
+
+</details>
+
 이 테스트는 **실패**한다. `rates.get(new Pair("USD", "USD"))`가 `null`을 반환하고, `null.intValue()`에서 NullPointerException이 발생한다.
 
 #### Green — 동일 통화 처리
@@ -218,6 +355,19 @@ int rate(String from, String to) {
     return rate.intValue();
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Bank.ts
+rate(from: string, to: string): number {
+    if (from === to) return 1;
+    return this.rates.get(new Pair(from, to).hashKey())!;
+}
+```
+
+</details>
 
 `from`과 `to`가 같은 통화면 환율 1을 반환한다. **테스트 통과!**
 
@@ -304,6 +454,30 @@ class Bank {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Bank {
+    private rates: Map<string, number> = new Map();
+
+    reduce(source: Expression, to: string): Money {
+        return source.reduce(this, to);
+    }
+
+    addRate(from: string, to: string, rate: number): void {
+        this.rates.set(new Pair(from, to).hashKey(), rate);
+    }
+
+    rate(from: string, to: string): number {
+        if (from === to) return 1;
+        return this.rates.get(new Pair(from, to).hashKey())!;
+    }
+}
+```
+
+</details>
+
 ### 3.5 Pair 클래스 (Bank 내부)
 
 ```java
@@ -326,6 +500,32 @@ private class Pair {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Pair {
+    private from: string;
+    private to: string;
+
+    constructor(from: string, to: string) {
+        this.from = from;
+        this.to = to;
+    }
+
+    equals(other: Pair): boolean {
+        return this.from === other.from && this.to === other.to;
+    }
+
+    // TypeScript에서는 Map 키로 문자열을 사용
+    hashKey(): string {
+        return `${this.from}->${this.to}`;
+    }
+}
+```
+
+</details>
 
 ---
 

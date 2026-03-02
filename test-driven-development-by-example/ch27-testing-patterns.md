@@ -60,6 +60,24 @@ public void testOrderTotal() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 원래의 큰 테스트 — 이것을 한 번에 통과시키기 어렵다
+test('order total', () => {
+    const order = new Order();
+    order.addItem(new Item('Widget', 25.00, 3));    // 25 × 3 = 75
+    order.addItem(new Item('Gadget', 10.00, 2));    // 10 × 2 = 20
+    order.setTaxRate(0.1);                            // 세금 10%
+    order.setDiscount(0.05);                          // 할인 5%
+    expect(order.getTotal()).toBeCloseTo(99.275, 3);
+    // (75 + 20) × (1 - 0.05) × (1 + 0.1) = 95 × 0.95 × 1.1 = ...
+});
+```
+
+</details>
+
 이 테스트를 통과시키려면 Item 클래스, 소계 계산, 할인 적용, 세금 계산이 모두 한꺼번에 필요하다. Child Test로 분해한다:
 
 ```java
@@ -93,6 +111,43 @@ public void testOrderWithTax() {
     assertEquals(110.00, order.getTotal(), 0.001);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 자식 테스트 1: 아이템의 소계 계산
+test('item subtotal', () => {
+    const item = new Item('Widget', 25.00, 3);
+    expect(item.getSubtotal()).toBeCloseTo(75.00, 3);
+});
+
+// 자식 테스트 2: 주문의 소계 (여러 아이템의 합)
+test('order subtotal', () => {
+    const order = new Order();
+    order.addItem(new Item('Widget', 25.00, 3));  // 75
+    order.addItem(new Item('Gadget', 10.00, 2));  // 20
+    expect(order.getSubtotal()).toBeCloseTo(95.00, 3);
+});
+
+// 자식 테스트 3: 할인 적용
+test('order with discount', () => {
+    const order = new Order();
+    order.addItem(new Item('Widget', 100.00, 1));
+    order.setDiscount(0.1);  // 10% 할인
+    expect(order.getDiscountedTotal()).toBeCloseTo(90.00, 3);
+});
+
+// 자식 테스트 4: 세금 적용
+test('order with tax', () => {
+    const order = new Order();
+    order.addItem(new Item('Widget', 100.00, 1));
+    order.setTaxRate(0.1);  // 10% 세금
+    expect(order.getTotal()).toBeCloseTo(110.00, 3);
+});
+```
+
+</details>
 
 각 자식 테스트는 한 가지 기능만 검증하며, 한 번에 통과시킬 수 있다.
 
@@ -139,6 +194,27 @@ public class OrderService {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 실제 DB를 사용하는 코드
+class OrderService {
+    private db: Database;
+
+    constructor(db: Database) {
+        this.db = db;
+    }
+
+    findOrder(id: string): Order {
+        const rs = this.db.query('SELECT * FROM orders WHERE id = ?', id);
+        return new Order(rs.getString('name'), rs.getDouble('total'));
+    }
+}
+```
+
+</details>
+
 ```java
 // Mock을 사용한 테스트
 public void testFindOrder() {
@@ -154,6 +230,27 @@ public void testFindOrder() {
     assertEquals(99.95, order.getTotal(), 0.001);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Mock을 사용한 테스트
+test('find order', () => {
+    // Mock DB 생성 — 실제 DB 없이 동작
+    const mockDb = new MockDatabase();
+    mockDb.setupResult('SELECT * FROM orders WHERE id = ?',
+        new MockResultSet('Widget Order', 99.95));
+
+    const service = new OrderService(mockDb);
+    const order = service.findOrder('123');
+
+    expect(order.getName()).toBe('Widget Order');
+    expect(order.getTotal()).toBeCloseTo(99.95, 3);
+});
+```
+
+</details>
 
 Mock Object의 핵심 구조:
 
@@ -215,6 +312,32 @@ public class Button {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트 대상: 이벤트를 리스너에게 알려주는 컴포넌트
+interface ActionListener {
+    actionPerformed(action: string): void;
+}
+
+class Button {
+    private listener: ActionListener | null = null;
+
+    setListener(listener: ActionListener): void {
+        this.listener = listener;
+    }
+
+    click(): void {
+        if (this.listener !== null) {
+            this.listener.actionPerformed('clicked');
+        }
+    }
+}
+```
+
+</details>
+
 별도의 목 클래스를 만드는 방법:
 
 ```java
@@ -235,6 +358,29 @@ public void testButtonClick() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 방법 1: 별도의 Mock 클래스 생성
+class MockListener implements ActionListener {
+    lastAction: string = '';
+    actionPerformed(action: string): void {
+        this.lastAction = action;
+    }
+}
+
+test('button click', () => {
+    const button = new Button();
+    const mock = new MockListener();
+    button.setListener(mock);
+    button.click();
+    expect(mock.lastAction).toBe('clicked');
+});
+```
+
+</details>
+
 Self Shunt를 사용하는 방법:
 
 ```java
@@ -254,6 +400,28 @@ public class ButtonTest extends TestCase implements ActionListener {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 방법 2: Self Shunt — 테스트 자체가 리스너 역할
+test('button click (self shunt)', () => {
+    let lastAction = '';
+    const listener: ActionListener = {
+        actionPerformed(action: string): void {
+            lastAction = action;  // 테스트 스코프에서 직접 기록
+        }
+    };
+
+    const button = new Button();
+    button.setListener(listener);  // 인라인 객체가 목 역할
+    button.click();
+    expect(lastAction).toBe('clicked');
+});
+```
+
+</details>
 
 Self Shunt의 장점:
 
@@ -303,6 +471,33 @@ class WasRun(TestCase):
         self.log = self.log + "tearDown "     # 로그에 추가
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    log: string = '';
+
+    constructor(name: string) {
+        super(name);
+    }
+
+    setUp(): void {
+        this.log = 'setUp ';        // 로그 시작
+    }
+
+    testMethod(): void {
+        this.log = this.log + 'testMethod ';   // 로그에 추가
+    }
+
+    tearDown(): void {
+        this.log = this.log + 'tearDown ';     // 로그에 추가
+    }
+}
+```
+
+</details>
+
 ```python
 # 테스트: 호출 순서 검증
 class TestCaseTest(TestCase):
@@ -314,6 +509,23 @@ class TestCaseTest(TestCase):
         # log가 "setUp testMethod tearDown " 이면
         # 세 메서드가 올바른 순서로 호출된 것이다
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트: 호출 순서 검증
+test('template method', () => {
+    const testCase = new WasRun('testMethod');
+    const result = new TestResult();
+    testCase.run(result);
+    expect(testCase.log).toBe('setUp testMethod tearDown ');
+    // log가 "setUp testMethod tearDown " 이면
+    // 세 메서드가 올바른 순서로 호출된 것이다
+});
+```
+
+</details>
 
 ### 일반적인 예시
 
@@ -337,6 +549,27 @@ public class ProcessorTest extends TestCase {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// TypeScript에서의 Log String 패턴
+test('processing order', () => {
+    let log = '';
+
+    const processor = new (class extends Processor {
+        validate(): void { log += 'validate '; }
+        transform(): void { log += 'transform '; }
+        save(): void { log += 'save '; }
+    })();
+
+    processor.process();
+    expect(log).toBe('validate transform save ');
+});
+```
+
+</details>
 
 ### Log String vs 다른 방법들
 
@@ -389,6 +622,35 @@ public class Logger {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 테스트 대상: 파일에 로그를 기록하는 Logger
+interface Writer {
+    write(message: string): void;
+}
+
+class Logger {
+    private writer: Writer;
+
+    constructor(writer: Writer) {
+        this.writer = writer;
+    }
+
+    log(message: string): boolean {
+        try {
+            this.writer.write(message);
+            return true;
+        } catch (e) {
+            return false;  // 에러 처리: false 반환
+        }
+    }
+}
+```
+
+</details>
+
 ```java
 // Crash Test Dummy: 항상 IOException을 던지는 FileWriter
 class FailingWriter extends FileWriter {
@@ -408,6 +670,26 @@ public void testLogFailure() throws IOException {
     assertFalse(logger.log("test message"));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Crash Test Dummy: 항상 에러를 던지는 Writer
+class FailingWriter implements Writer {
+    write(message: string): void {
+        throw new Error('디스크 풀!');  // 항상 실패
+    }
+}
+
+// 테스트: 쓰기 실패 시 false를 반환하는지 검증
+test('log failure', () => {
+    const logger = new Logger(new FailingWriter());
+    expect(logger.log('test message')).toBe(false);
+});
+```
+
+</details>
 
 실제 디스크 풀을 만들지 않아도, `FailingWriter`가 `IOException`을 던지므로 `Logger`의 에러 처리 경로가 실행된다.
 

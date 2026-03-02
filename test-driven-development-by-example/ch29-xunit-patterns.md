@@ -48,6 +48,21 @@ class TestCase:
             raise AssertionError
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+  assertTrue(condition: boolean): void {
+    if (!condition) {
+      throw new Error("AssertionError");
+    }
+  }
+}
+```
+
+</details>
+
 ### 2.5 작성 원칙
 
 Assertion을 작성할 때 중요한 원칙이 있다:
@@ -92,6 +107,29 @@ public void testToString() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 중복이 있는 테스트 코드
+test('multiplication', () => {
+  const five = new Dollar(5);
+  expect(five.times(2)).toEqual(new Dollar(10));
+});
+
+test('equality', () => {
+  const five = new Dollar(5);
+  expect(five.equals(new Dollar(5))).toBe(true);
+});
+
+test('toString', () => {
+  const five = new Dollar(5);
+  expect(five.toString()).toBe("5 USD");
+});
+```
+
+</details>
+
 `Dollar five = new Dollar(5)`가 세 번 반복된다. Fixture 패턴을 적용하면:
 
 ```java
@@ -117,6 +155,34 @@ public class DollarTest extends TestCase {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Fixture를 사용한 테스트 코드
+describe('DollarTest', () => {
+  let five: Dollar;
+
+  beforeEach(() => {
+    five = new Dollar(5);
+  });
+
+  test('multiplication', () => {
+    expect(five.times(2)).toEqual(new Dollar(10));
+  });
+
+  test('equality', () => {
+    expect(five.equals(new Dollar(5))).toBe(true);
+  });
+
+  test('toString', () => {
+    expect(five.toString()).toBe("5 USD");
+  });
+});
+```
+
+</details>
+
 ### 3.4 Part II와의 연결
 
 Part II(Chapter 19, "Set the Table")에서 `setUp()` 메서드를 xUnit에 추가했다. `TestCase.run()`에서 `setUp()`을 먼저 호출하고 나서 테스트 메서드를 실행하는 구조였다:
@@ -137,6 +203,37 @@ class TestCase:
     def setUp(self):
         pass  # 서브클래스에서 오버라이드
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+  private name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  run(result: TestResult): TestResult {
+    result.testStarted();
+    this.setUp();
+    try {
+      (this as any)[this.name]();
+    } catch {
+      result.testFailed();
+    }
+    this.tearDown();
+    return result;
+  }
+
+  setUp(): void {
+    // 서브클래스에서 오버라이드
+  }
+}
+```
+
+</details>
 
 ### 3.5 Fixture 사용 시 주의점
 
@@ -178,6 +275,33 @@ class DatabaseTest(TestCase):
         self.connection.close()
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class DatabaseTest extends TestCase {
+  private connection!: DatabaseConnection;
+
+  setUp(): void {
+    this.connection = Database.connect("test_db");
+    this.connection.beginTransaction();
+  }
+
+  testInsert(): void {
+    this.connection.execute("INSERT INTO users (name) VALUES ('Kent')");
+    const result = this.connection.execute("SELECT * FROM users WHERE name='Kent'");
+    this.assertTrue(result.length === 1);
+  }
+
+  tearDown(): void {
+    this.connection.rollback();
+    this.connection.close();
+  }
+}
+```
+
+</details>
+
 파일을 사용하는 예시:
 
 ```python
@@ -197,6 +321,35 @@ class FileTest(TestCase):
             os.remove("/tmp/test_output.txt")
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+import * as fs from "fs";
+
+class FileTest extends TestCase {
+  private filePath = "/tmp/test_output.txt";
+
+  setUp(): void {
+    fs.writeFileSync(this.filePath, "");
+  }
+
+  testWrite(): void {
+    fs.writeFileSync(this.filePath, "hello");
+    const content = fs.readFileSync(this.filePath, "utf-8");
+    this.assertTrue(content === "hello");
+  }
+
+  tearDown(): void {
+    if (fs.existsSync(this.filePath)) {
+      fs.unlinkSync(this.filePath);
+    }
+  }
+}
+```
+
+</details>
+
 ### 4.4 Part II와의 연결
 
 Part II(Chapter 20, "Cleaning Up After")에서 정확히 이 패턴을 구현했다. `tearDown()` 호출을 `try-finally` 블록 안에 넣어 테스트 실패 여부와 관계없이 정리 코드가 실행되도록 보장했다:
@@ -214,6 +367,36 @@ class TestCase:
         self.tearDown()  # 항상 실행됨
         return result
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+  private name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  run(result: TestResult): TestResult {
+    result.testStarted();
+    this.setUp();
+    try {
+      (this as any)[this.name]();
+    } catch {
+      result.testFailed();
+    }
+    this.tearDown(); // 항상 실행됨
+    return result;
+  }
+
+  setUp(): void {}
+  tearDown(): void {}
+}
+```
+
+</details>
 
 ### 4.5 왜 중요한가
 
@@ -270,6 +453,24 @@ public void testMultiplicationByTwo() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('multiplication by two', () => {
+  // Arrange (준비)
+  const five = new Dollar(5);
+
+  // Act (실행)
+  const result = five.times(2);
+
+  // Assert (검증)
+  expect(result).toEqual(new Dollar(10));
+});
+```
+
+</details>
+
 | 단계 | 역할 | 주의점 |
 |------|------|--------|
 | **Arrange** | 테스트에 필요한 객체와 상태 준비 | Fixture로 추출할 수 있다 |
@@ -308,6 +509,39 @@ public void testInequality() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 나쁜 예: 너무 많은 시나리오
+test('dollar operations', () => {
+  const five = new Dollar(5);
+  expect(five.times(2)).toEqual(new Dollar(10));    // 곱하기
+  expect(five.times(3)).toEqual(new Dollar(15));    // 또 다른 곱하기
+  expect(five.equals(new Dollar(5))).toBe(true);    // 동등성
+  expect(five.equals(new Dollar(6))).toBe(false);   // 비동등성
+});
+
+// 좋은 예: 각각 분리
+test('multiplication by two', () => {
+  expect(new Dollar(5).times(2)).toEqual(new Dollar(10));
+});
+
+test('multiplication by three', () => {
+  expect(new Dollar(5).times(3)).toEqual(new Dollar(15));
+});
+
+test('equality', () => {
+  expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+});
+
+test('inequality', () => {
+  expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+});
+```
+
+</details>
+
 분리하면 어떤 시나리오가 실패했는지 즉시 알 수 있고, 실패한 테스트의 이름이 곧 문제의 설명이 된다.
 
 > **핵심 통찰**: 테스트 메서드의 이름은 **실행 가능한 명세(executable specification)**다. `testMultiplicationByTwo`가 실패하면 "2를 곱하는 기능에 문제가 있다"는 것을 이름만으로 알 수 있다. 이것이 하나의 테스트에 하나의 시나리오를 넣는 이유다.
@@ -339,6 +573,19 @@ public void testDivisionByZero() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('division by zero', () => {
+  expect(() => {
+    new Dollar(10).divideBy(0);
+  }).toThrow();
+});
+```
+
+</details>
+
 핵심은 `fail()` 호출이다. 예외가 발생하지 않고 이 줄에 도달하면 테스트가 실패한다.
 
 **방법 2: 프레임워크 지원 (현대적 방식)**
@@ -365,6 +612,18 @@ def test_division_by_zero():
         Dollar(10).divide_by(0)
 ```
 
+<details>
+<summary>TypeScript 버전 (Jest)</summary>
+
+```typescript
+// Jest
+test('division by zero', () => {
+  expect(() => new Dollar(10).divideBy(0)).toThrow();
+});
+```
+
+</details>
+
 ### 6.4 예외 메시지 검증
 
 단순히 예외 타입뿐 아니라, 예외 메시지까지 검증하면 더 정확한 테스트가 된다:
@@ -375,6 +634,17 @@ def testNegativeAmount(self):
         Dollar(-5)
     self.assertEqual("금액은 0 이상이어야 합니다", str(context.exception))
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('negative amount', () => {
+  expect(() => new Dollar(-5)).toThrow("금액은 0 이상이어야 합니다");
+});
+```
+
+</details>
 
 > **핵심 통찰**: 예외도 코드의 행위(behavior)다. "이 상황에서 예외가 발생해야 한다"는 요구사항은 "이 상황에서 10을 반환해야 한다"와 동일한 수준의 중요성을 가진다. Exception Test는 에러 경로도 TDD로 다룰 수 있게 해준다.
 
@@ -424,6 +694,28 @@ class TestSuite:
         return result
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestSuite {
+  private tests: TestCase[] = [];
+
+  add(test: TestCase): void {
+    this.tests.push(test);
+  }
+
+  run(result: TestResult): TestResult {
+    for (const test of this.tests) {
+      test.run(result);
+    }
+    return result;
+  }
+}
+```
+
+</details>
+
 모든 테스트를 조합하는 코드:
 
 ```python
@@ -444,6 +736,30 @@ result = TestResult()
 suite.run(result)
 print(result.summary())  # "5 run, 0 failed"
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const suite = new TestSuite();
+
+// 개별 테스트 추가
+suite.add(new TestMultiplication("testMultiply"));
+suite.add(new TestMultiplication("testMultiplyByZero"));
+
+// 하위 스위트 추가 (Composite)
+const bankSuite = new TestSuite();
+bankSuite.add(new TestBank("testReduce"));
+bankSuite.add(new TestBank("testExchangeRate"));
+suite.add(bankSuite);
+
+// 모든 테스트 실행
+const result = new TestResult();
+suite.run(result);
+console.log(result.summary()); // "5 run, 0 failed"
+```
+
+</details>
 
 ### 7.5 Part II와의 연결
 

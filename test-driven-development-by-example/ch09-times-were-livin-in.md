@@ -40,6 +40,23 @@ Franc times(int multiplier) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar
+times(multiplier: number): Money {
+    return Money.dollar(this.amount * multiplier);
+}
+
+// Franc
+times(multiplier: number): Money {
+    return Money.franc(this.amount * multiplier);
+}
+```
+
+</details>
+
 두 서브클래스의 차이는 이제 `times()`에서 `Money.dollar()`를 호출하느냐, `Money.franc()`를 호출하느냐뿐이다. 이 차이를 제거하려면 **통화(currency)** 라는 개념이 필요하다.
 
 ### 1.2 현재 TODO 리스트
@@ -98,6 +115,18 @@ public void testCurrency() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('currency', () => {
+    expect(Money.dollar(1).currency()).toBe("USD");
+    expect(Money.franc(1).currency()).toBe("CHF");
+});
+```
+
+</details>
+
 이 테스트는 컴파일 에러를 발생시킨다 — `currency()` 메서드가 아직 존재하지 않기 때문이다.
 
 ### 3.2 Green — currency() 메서드 구현
@@ -117,6 +146,22 @@ abstract class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+abstract class Money {
+    protected amount: number;
+
+    abstract currency(): string;
+
+    // ... equals(), dollar(), franc() 등
+}
+```
+
+</details>
+
 **Step 2**: 각 서브클래스에서 구현한다:
 
 ```java
@@ -130,6 +175,22 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+class Dollar extends Money {
+    currency(): string {
+        return "USD";
+    }
+
+    // ... times() 등
+}
+```
+
+</details>
+
 ```java
 // Franc.java
 class Franc extends Money {
@@ -140,6 +201,22 @@ class Franc extends Money {
     // ... times() 등
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Franc.ts
+class Franc extends Money {
+    currency(): string {
+        return "CHF";
+    }
+
+    // ... times() 등
+}
+```
+
+</details>
 
 **테스트 통과! Green Bar!**
 
@@ -171,6 +248,26 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    private _currency: string;
+
+    constructor(amount: number) {
+        super(amount);
+        this._currency = "USD";
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+}
+```
+
+</details>
+
 테스트 실행 — 여전히 Green Bar.
 
 **Step 2**: Franc에도 동일하게 적용:
@@ -189,6 +286,26 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Franc extends Money {
+    private _currency: string;
+
+    constructor(amount: number) {
+        super(amount);
+        this._currency = "CHF";
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+}
+```
+
+</details>
 
 테스트 실행 — Green Bar.
 
@@ -214,6 +331,24 @@ abstract class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+abstract class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    currency(): string {
+        return this._currency;
+    }
+
+    // ...
+}
+```
+
+</details>
+
 테스트 실행 — Green Bar.
 
 ---
@@ -235,6 +370,19 @@ class Dollar extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+```
+
+</details>
+
 이렇게 하면 `Money.dollar()` 팩토리 메서드도 수정해야 한다:
 
 ```java
@@ -242,6 +390,17 @@ static Money dollar(int amount) {
     return new Dollar(amount, "USD");
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+static dollar(amount: number): Money {
+    return new Dollar(amount, "USD");
+}
+```
+
+</details>
 
 **Step 2**: Franc에도 동일하게 적용:
 
@@ -257,6 +416,23 @@ static Money franc(int amount) {
     return new Franc(amount, "CHF");
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+
+static franc(amount: number): Money {
+    return new Franc(amount, "CHF");
+}
+```
+
+</details>
 
 테스트 실행 — Green Bar.
 
@@ -298,6 +474,29 @@ abstract class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+abstract class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    // ...
+}
+```
+
+</details>
+
 서브클래스는 슈퍼클래스 생성자를 호출한다:
 
 ```java
@@ -315,6 +514,27 @@ class Franc extends Money {
     // ...
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+    // ...
+}
+
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+    // ...
+}
+```
+
+</details>
 
 테스트 실행 — Green Bar.
 
@@ -394,6 +614,66 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+abstract class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount, "CHF");
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.constructor === money.constructor;
+    }
+
+    abstract times(multiplier: number): Money;
+}
+
+// Dollar.ts
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+
+    times(multiplier: number): Money {
+        return Money.dollar(this.amount * multiplier);
+    }
+}
+
+// Franc.ts
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+
+    times(multiplier: number): Money {
+        return Money.franc(this.amount * multiplier);
+    }
+}
+```
+
+</details>
 
 > **핵심 통찰**: 이 챕터의 리팩토링은 **작은 단계들의 연속**이었다. 각 단계마다 테스트를 실행하여 Green Bar를 확인했다. 한 번에 "통화 필드 추가 + 생성자 변경 + 메서드 올리기"를 했다면 중간에 실수를 발견하기 어려웠을 것이다. 작은 단계가 안전망 역할을 한다.
 

@@ -53,6 +53,32 @@ class Franc extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 1단계: 차이를 확인한다
+class Dollar extends Money {
+  constructor(amount: number, currency: string) {
+    super(amount, currency);
+  }
+  times(multiplier: number): Money {
+    return Money.dollar(this.amount * multiplier);
+  }
+}
+
+class Franc extends Money {
+  constructor(amount: number, currency: string) {
+    super(amount, currency);
+  }
+  times(multiplier: number): Money {
+    return Money.franc(this.amount * multiplier);
+  }
+}
+```
+
+</details>
+
 두 클래스의 차이점은 `Money.dollar()` vs `Money.franc()` 뿐이다.
 
 ```java
@@ -70,6 +96,26 @@ class Franc extends Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 2단계: 차이를 제거하여 동일하게 만든다
+class Dollar extends Money {
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this.currency);
+  }
+}
+
+class Franc extends Money {
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this.currency);
+  }
+}
+```
+
+</details>
+
 이제 두 `times()` 메서드가 완전히 동일하다.
 
 ```java
@@ -81,6 +127,26 @@ class Money {
 }
 // Dollar와 Franc 하위 클래스 제거 가능
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 3단계: 상위 클래스로 올린다
+class Money {
+  constructor(
+    protected amount: number,
+    protected currency: string
+  ) {}
+
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this.currency);
+  }
+}
+// Dollar와 Franc 하위 클래스 제거 가능
+```
+
+</details>
 
 ### 2.4 단계
 
@@ -119,6 +185,25 @@ public Money calculateTotal(Order order) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 이 메서드의 세금 계산 로직을 바꾸고 싶다
+calculateTotal(order: Order): Money {
+  let subtotal = Money.zero();
+  for (const item of order.getItems()) {
+    subtotal = subtotal.plus(item.price().times(item.quantity()));
+  }
+  // 세금 계산 (변경하고 싶은 부분)
+  const tax = subtotal.times(0.08);
+  const shipping = this.calculateShipping(order);
+  return subtotal.plus(tax).plus(shipping);
+}
+```
+
+</details>
+
 먼저 변경 대상을 격리한다:
 
 ```java
@@ -134,6 +219,25 @@ private Money calculateTax(Money subtotal) {
     return subtotal.times(0.08);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 1단계: Extract Method로 격리
+calculateTotal(order: Order): Money {
+  const subtotal = this.calculateSubtotal(order);
+  const tax = this.calculateTax(subtotal);         // 격리됨!
+  const shipping = this.calculateShipping(order);
+  return subtotal.plus(tax).plus(shipping);
+}
+
+private calculateTax(subtotal: Money): Money {
+  return subtotal.times(0.08);
+}
+```
+
+</details>
 
 이제 `calculateTax()`만 독립적으로 변경하고 테스트할 수 있다:
 
@@ -195,6 +299,36 @@ class Money {
 // 4단계: 기존 표현 제거 (Dollar, Franc 클래스 제거)
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 1단계: 새 표현 추가 (기존 표현 유지)
+class Dollar extends Money {
+  private currency: string; // 새 표현 추가
+
+  constructor(amount: number) {
+    super(amount);
+    this.currency = "USD"; // 새 표현에 값 설정
+  }
+}
+
+// 2단계: 새 표현을 사용하는 코드 추가
+class Money {
+  getCurrency(): string {
+    return this.currency;
+  }
+}
+
+// 3단계: 기존 표현(instanceof)에 의존하는 코드를 새 표현(currency)으로 교체
+// 기존: if (money instanceof Dollar)
+// 변경: if (money.getCurrency() === "USD")
+
+// 4단계: 기존 표현 제거 (Dollar, Franc 클래스 제거)
+```
+
+</details>
+
 ### 4.4 단계
 
 1. 새로운 표현을 추가한다 (기존 표현은 그대로 둔다)
@@ -244,6 +378,34 @@ public void printReport(Order order) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 추출 전
+printReport(order: Order): void {
+  // 헤더 출력
+  console.log("===================");
+  console.log("주문 보고서");
+  console.log(`날짜: ${order.getDate()}`);
+  console.log("===================");
+
+  // 항목 출력
+  for (const item of order.getItems()) {
+    console.log(`${item.name()}: ${item.price()}`);
+  }
+
+  // 합계 출력
+  let total = Money.zero();
+  for (const item of order.getItems()) {
+    total = total.plus(item.price());
+  }
+  console.log(`합계: ${total}`);
+}
+```
+
+</details>
+
 ```java
 // 추출 후
 public void printReport(Order order) {
@@ -277,6 +439,45 @@ private void printTotal(Order order) {
     System.out.println("합계: " + calculateTotal(order));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 추출 후
+printReport(order: Order): void {
+  this.printHeader(order);
+  this.printItems(order);
+  this.printTotal(order);
+}
+
+private printHeader(order: Order): void {
+  console.log("===================");
+  console.log("주문 보고서");
+  console.log(`날짜: ${order.getDate()}`);
+  console.log("===================");
+}
+
+private printItems(order: Order): void {
+  for (const item of order.getItems()) {
+    console.log(`${item.name()}: ${item.price()}`);
+  }
+}
+
+private calculateTotal(order: Order): Money {
+  let total = Money.zero();
+  for (const item of order.getItems()) {
+    total = total.plus(item.price());
+  }
+  return total;
+}
+
+private printTotal(order: Order): void {
+  console.log(`합계: ${this.calculateTotal(order)}`);
+}
+```
+
+</details>
 
 ### 5.4 TDD에서의 빈도
 
@@ -319,6 +520,31 @@ class Account {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 인라인 전 — 메서드가 오히려 가독성을 해친다
+class Account {
+  isOverdrawn(): boolean {
+    return !this.isPositiveBalance();
+  }
+
+  isPositiveBalance(): boolean {
+    return this.balance > 0;
+  }
+}
+
+// 인라인 후 — 더 명확하다
+class Account {
+  isOverdrawn(): boolean {
+    return this.balance <= 0;
+  }
+}
+```
+
+</details>
 
 ### 6.4 TDD에서의 맥락
 
@@ -367,6 +593,30 @@ class Money implements Expression { ... }
 class Sum implements Expression { ... }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 추출 전: Money만 있는 상태
+class Money {
+  reduce(bank: Bank, to: string): Money { /* ... */ }
+  plus(addend: Money): Expression { /* ... */ }
+  times(multiplier: number): Money { /* ... */ }
+}
+
+// Sum이 필요해짐 → 공통 인터페이스 추출
+interface Expression {
+  reduce(bank: Bank, to: string): Money;
+  plus(addend: Expression): Expression;
+  times(multiplier: number): Expression;
+}
+
+class Money implements Expression { /* ... */ }
+class Sum implements Expression { /* ... */ }
+```
+
+</details>
+
 ### 7.4 단계
 
 1. 구체 클래스의 메서드 중 공개해야 할 메서드를 식별한다
@@ -399,6 +649,22 @@ class Printer {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Feature Envy — Printer가 Order의 내부를 너무 많이 들여다본다
+class Printer {
+  formatOrder(order: Order): string {
+    return `${order.getCustomerName()}: `
+        + `${order.getItems().length} items, `
+        + `${order.getTotal()} total`;
+  }
+}
+```
+
+</details>
+
 이 메서드는 `Order`의 데이터만 사용한다. `Order`로 이동하는 것이 자연스럽다:
 
 ```java
@@ -411,6 +677,22 @@ class Order {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Move Method 후
+class Order {
+  format(): string {
+    return `${this.customerName}: `
+        + `${this.items.length} items, `
+        + `${this.total} total`;
+  }
+}
+```
+
+</details>
 
 ### 8.3 TDD에서의 맥락
 
@@ -447,6 +729,28 @@ class Order {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 복잡한 메서드 — 많은 지역 변수와 매개변수
+class Order {
+  calculatePrice(
+    items: Item[], customer: Customer,
+    discount: DiscountPolicy, tax: TaxPolicy
+  ): Money {
+    let basePrice = Money.zero();
+    let itemDiscount = Money.zero();
+    let memberDiscount = Money.zero();
+    // ... 수십 줄의 복잡한 계산 로직
+    // basePrice, itemDiscount, memberDiscount가
+    // 서로 의존하여 Extract Method가 어렵다
+  }
+}
+```
+
+</details>
 
 ```java
 // Method Object로 전환
@@ -494,6 +798,52 @@ class Order {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Method Object로 전환
+class PriceCalculator {
+  // 지역 변수 → 필드
+  private basePrice!: Money;
+  private itemDiscount!: Money;
+  private memberDiscount!: Money;
+
+  constructor(
+    private items: Item[],
+    private customer: Customer,
+    private discount: DiscountPolicy,
+    private tax: TaxPolicy
+  ) {}
+
+  calculate(): Money {
+    this.computeBasePrice();
+    this.computeItemDiscount();
+    this.computeMemberDiscount();
+    return this.applyTax();
+  }
+
+  // 이제 Extract Method가 쉽다 — 지역 변수가 필드이므로
+  private computeBasePrice(): void { /* ... */ }
+  private computeItemDiscount(): void { /* ... */ }
+  private computeMemberDiscount(): void { /* ... */ }
+  private applyTax(): Money { /* ... */ return Money.zero(); }
+}
+
+// 원래 클래스에서는 위임
+class Order {
+  calculatePrice(
+    items: Item[], customer: Customer,
+    discount: DiscountPolicy, tax: TaxPolicy
+  ): Money {
+    return new PriceCalculator(items, customer, discount, tax)
+      .calculate();
+  }
+}
+```
+
+</details>
+
 ### 9.4 TDD에서의 단계
 
 1. 새 클래스를 만든다
@@ -530,6 +880,25 @@ public void testMultiplicationWithCurrency() {
     assertEquals(new Money(10, "USD"), five.times(2));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 기존 테스트와 코드
+test('multiplication', () => {
+  const five = new Dollar(5);
+  expect(five.times(2)).toEqual(new Dollar(10));
+});
+
+// 새 요구사항: 통화 정보가 필요해짐
+test('multiplication with currency', () => {
+  const five = new Money(5, "USD"); // 매개변수 추가
+  expect(five.times(2)).toEqual(new Money(10, "USD"));
+});
+```
+
+</details>
 
 ### 10.3 주의사항
 
@@ -578,6 +947,31 @@ converter.convert(fiveDollars, "CHF", bank);
 converter.convertAll(portfolio, "CHF", bank);
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 리팩토링 전: 같은 매개변수가 반복된다
+class Converter {
+  convert(amount: Money, targetCurrency: string, bank: Bank): Money {
+    const rate = bank.getRate(amount.currency(), targetCurrency);
+    return new Money(amount.amount() * rate, targetCurrency);
+  }
+
+  convertAll(amounts: Money[], targetCurrency: string, bank: Bank): Money[] {
+    return amounts.map(amount =>
+      this.convert(amount, targetCurrency, bank)
+    );
+  }
+}
+
+// 사용
+converter.convert(fiveDollars, "CHF", bank);
+converter.convertAll(portfolio, "CHF", bank);
+```
+
+</details>
+
 `targetCurrency`와 `bank`가 매번 반복된다.
 
 ```java
@@ -610,6 +1004,35 @@ Converter converter = new Converter("CHF", bank);
 converter.convert(fiveDollars);
 converter.convertAll(portfolio);
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 리팩토링 후: 생성자로 이동
+class Converter {
+  constructor(
+    private targetCurrency: string,
+    private bank: Bank
+  ) {}
+
+  convert(amount: Money): Money {
+    const rate = this.bank.getRate(amount.currency(), this.targetCurrency);
+    return new Money(amount.amount() * rate, this.targetCurrency);
+  }
+
+  convertAll(amounts: Money[]): Money[] {
+    return amounts.map(amount => this.convert(amount));
+  }
+}
+
+// 사용 — 훨씬 깔끔하다
+const converter = new Converter("CHF", bank);
+converter.convert(fiveDollars);
+converter.convertAll(portfolio);
+```
+
+</details>
 
 ### 11.3 TDD에서의 등장
 

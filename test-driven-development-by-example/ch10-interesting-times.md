@@ -24,6 +24,23 @@ Money times(int multiplier) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar.ts
+times(multiplier: number): Money {
+    return Money.dollar(this.amount * multiplier);
+}
+
+// Franc.ts
+times(multiplier: number): Money {
+    return Money.franc(this.amount * multiplier);
+}
+```
+
+</details>
+
 두 메서드의 차이는 단 하나 — `Money.dollar()`를 호출하느냐, `Money.franc()`를 호출하느냐뿐이다.
 
 ### 1.2 목표
@@ -50,6 +67,23 @@ Money times(int multiplier) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar
+times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, "USD");
+}
+
+// Franc
+times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, "CHF");
+}
+```
+
+</details>
+
 아직 `"USD"` vs `"CHF"` 차이가 있다. 하지만 이 통화 문자열은 **자기 자신의 currency 필드**와 같다! 따라서:
 
 ```java
@@ -63,6 +97,23 @@ Money times(int multiplier) {
     return new Money(amount * multiplier, currency);
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Dollar
+times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this._currency);
+}
+
+// Franc
+times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this._currency);
+}
+```
+
+</details>
 
 이제 두 메서드가 **완전히 동일**하다!
 
@@ -88,6 +139,19 @@ public boolean equals(Object object) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+equals(object: Object): boolean {
+    const money = object as Money;
+    return this.amount === money.amount
+        && this.constructor === money.constructor;
+}
+```
+
+</details>
+
 `times()`에서 `new Money(10, "USD")`를 반환하면, 이 객체의 클래스는 `Money`이다. 그런데 `Money.dollar(10)`은 `new Dollar(10, "USD")`를 반환하므로 클래스가 `Dollar`이다. 이 둘을 `equals()`로 비교하면 **클래스가 다르므로 같지 않다고 판단**한다.
 
 이것은 문제다. `new Money(10, "USD")`와 `Money.dollar(10)`은 같은 10 USD를 나타내므로 동등해야 한다.
@@ -104,6 +168,19 @@ public boolean equals(Object object) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+equals(object: Object): boolean {
+    const money = object as Money;
+    return this.amount === money.amount
+        && this.currency() === money.currency();
+}
+```
+
+</details>
+
 하지만 이 변경이 기존 테스트를 깨뜨리지 않는지 확인해야 한다. Kent Beck은 **먼저 테스트를 작성**한다:
 
 ```java
@@ -111,6 +188,17 @@ public void testDifferentClassEquality() {
     assertTrue(new Money(10, "USD").equals(new Dollar(10, "USD")));
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('different class equality', () => {
+    expect(new Money(10, "USD").equals(new Dollar(10, "USD"))).toBe(true);
+});
+```
+
+</details>
 
 이 테스트를 실행하려면 Money가 구체 클래스여야 한다.
 
@@ -136,6 +224,29 @@ class Money {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    // ...
+}
+```
+
+</details>
+
 **Step 2**: `equals()`에서 클래스 비교를 통화 비교로 변경:
 
 ```java
@@ -145,6 +256,19 @@ public boolean equals(Object object) {
         && currency().equals(money.currency());
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+equals(object: Object): boolean {
+    const money = object as Money;
+    return this.amount === money.amount
+        && this.currency() === money.currency();
+}
+```
+
+</details>
 
 **테스트 실행 — Green Bar!**
 
@@ -214,6 +338,36 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts — times()가 여기에만 존재
+class Money {
+    // ...
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+}
+
+// Dollar.ts — times() 삭제됨
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+
+// Franc.ts — times() 삭제됨
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+```
+
+</details>
 
 테스트 실행 — **Green Bar!**
 
@@ -303,6 +457,60 @@ class Franc extends Money {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+// Money.ts
+class Money {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount, "CHF");
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+}
+
+// Dollar.ts — times()가 없다!
+class Dollar extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+
+// Franc.ts — times()가 없다!
+class Franc extends Money {
+    constructor(amount: number, currency: string) {
+        super(amount, currency);
+    }
+}
+```
+
+</details>
 
 Dollar와 Franc에는 이제 **생성자밖에 남지 않았다**. 이 빈 껍데기 서브클래스들은 다음 챕터에서 제거될 운명이다.
 

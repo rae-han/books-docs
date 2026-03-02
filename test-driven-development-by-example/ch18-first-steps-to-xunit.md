@@ -84,6 +84,18 @@ test.testMethod()
 print(test.wasRun)    # 1 — 실행되었다
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const test = new WasRun("testMethod");
+console.log(test.wasRun);    // null — 아직 실행되지 않았다
+test.testMethod();
+console.log(test.wasRun);    // 1 — 실행되었다
+```
+
+</details>
+
 이것이 우리의 첫 번째 "테스트"다. 아직 프레임워크가 없으므로 `print`문으로 결과를 확인한다. 이것은 다소 원시적이지만, 부트스트래핑의 첫 발걸음으로는 충분하다.
 
 `WasRun` 클래스를 구현한다:
@@ -97,6 +109,26 @@ class WasRun:
     def testMethod(self):
         self.wasRun = 1
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun {
+    wasRun: number | null = null;
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+```
+
+</details>
 
 실행하면:
 
@@ -123,6 +155,25 @@ result = method()              # 가져온 메서드를 호출한다
 print(result)                  # "hello"
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// TypeScript에서는 bracket notation으로 동적 메서드 접근
+class Foo {
+    bar(): string {
+        return "hello";
+    }
+}
+
+const foo = new Foo();
+const method = (foo as any)["bar"];  // foo 객체에서 "bar"라는 이름의 메서드를 가져온다
+const result = method.call(foo);     // 가져온 메서드를 호출한다
+console.log(result);                 // "hello"
+```
+
+</details>
+
 이것을 활용하여 `WasRun`에 `run()` 메서드를 추가한다:
 
 ```python
@@ -139,6 +190,31 @@ class WasRun:
         method()
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun {
+    wasRun: number | null = null;
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+
+    run(): void {
+        const method = (this as any)[this.name];
+        method.call(this);
+    }
+}
+```
+
+</details>
+
 이제 테스트를 수정한다:
 
 ```python
@@ -147,6 +223,18 @@ print(test.wasRun)    # None
 test.run()            # testMethod() 대신 run() 호출!
 print(test.wasRun)    # 1
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const test = new WasRun("testMethod");
+console.log(test.wasRun);    // null
+test.run();                  // testMethod() 대신 run() 호출!
+console.log(test.wasRun);    // 1
+```
+
+</details>
 
 실행 결과:
 
@@ -173,6 +261,26 @@ class TestCase:
         method()
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    run(): void {
+        const method = (this as any)[this.name];
+        method.call(this);
+    }
+}
+```
+
+</details>
+
 `WasRun`은 이제 `TestCase`를 상속받는다:
 
 ```python
@@ -185,6 +293,25 @@ class WasRun(TestCase):
         self.wasRun = 1
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class WasRun extends TestCase {
+    wasRun: number | null = null;
+
+    constructor(name: string) {
+        super(name);
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+```
+
+</details>
+
 테스트를 다시 실행한다:
 
 ```python
@@ -193,6 +320,18 @@ print(test.wasRun)    # None
 test.run()
 print(test.wasRun)    # 1
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const test = new WasRun("testMethod");
+console.log(test.wasRun);    // null
+test.run();
+console.log(test.wasRun);    // 1
+```
+
+</details>
 
 여전히 동작한다. `run()`은 이제 `TestCase`에 있고, `WasRun`은 `TestCase`를 상속받아 자동으로 `run()`을 사용한다. `TestCase`를 상속받는 **어떤 클래스든** `run()`을 호출하면 생성자에서 지정한 이름의 메서드가 실행된다.
 
@@ -214,6 +353,24 @@ class TestCaseTest(TestCase):
 
 TestCaseTest("testRunning").run()
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class TestCaseTest extends TestCase {
+    testRunning(): void {
+        const test = new WasRun("testMethod");
+        expect(test.wasRun).toBeFalsy();
+        test.run();
+        expect(test.wasRun).toBeTruthy();
+    }
+}
+
+new TestCaseTest("testRunning").run();
+```
+
+</details>
 
 `TestCaseTest`는 `TestCase`를 상속받는다. 즉, **우리가 방금 만든 프레임워크를 사용하여 프레임워크 자체를 테스트**하고 있다!
 
@@ -272,6 +429,49 @@ class TestCaseTest(TestCase):
 
 TestCaseTest("testRunning").run()
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class TestCase {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    run(): void {
+        const method = (this as any)[this.name];
+        method.call(this);
+    }
+}
+
+class WasRun extends TestCase {
+    wasRun: number | null = null;
+
+    constructor(name: string) {
+        super(name);
+    }
+
+    testMethod(): void {
+        this.wasRun = 1;
+    }
+}
+
+class TestCaseTest extends TestCase {
+    testRunning(): void {
+        const test = new WasRun("testMethod");
+        expect(test.wasRun).toBeFalsy();
+        test.run();
+        expect(test.wasRun).toBeTruthy();
+    }
+}
+
+new TestCaseTest("testRunning").run();
+```
+
+</details>
 
 이 코드의 실행 흐름:
 

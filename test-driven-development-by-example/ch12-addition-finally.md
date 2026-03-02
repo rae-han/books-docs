@@ -42,6 +42,18 @@ Money plus(Money addend) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// 순진한 접근 — Money에 plus 메서드 추가
+plus(addend: Money): Money {
+    return new Money(this.amount + addend.amount, this.currency);
+}
+```
+
+</details>
+
 이 방법은 같은 통화끼리의 덧셈에는 동작한다. 하지만 **다중 통화 덧셈**을 처리할 수 없다. `$5 + 10 CHF`의 결과는 환율에 따라 달라지므로, **단순히 amount를 더하는 것으로는 해결할 수 없다.**
 
 ### 2.2 핵심 통찰: 덧셈은 즉시 수행하지 않는다
@@ -99,6 +111,21 @@ public void testSimpleAddition() {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+test('simple addition', () => {
+    const five = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank = new Bank();
+    const reduced = bank.reduce(sum, "USD");
+    expect(reduced).toEqual(Money.dollar(10));
+});
+```
+
+</details>
+
 이 테스트가 표현하는 의도:
 1. 5 USD + 5 USD를 수행한다 → 결과는 Expression(수식)이다
 2. Bank에게 이 Expression을 "USD"로 환산하라고 요청한다
@@ -121,6 +148,16 @@ interface Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+interface Expression {
+}
+```
+
+</details>
+
 빈 인터페이스다. 아직 어떤 메서드가 필요한지 알지 못하므로 비워둔다.
 
 **Step 2**: Money에 plus() 메서드 추가:
@@ -132,6 +169,18 @@ Expression plus(Money addend) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+// Money.ts
+plus(addend: Money): Expression {
+    return new Money(this.amount + addend.amount, this.currency);
+}
+```
+
+</details>
+
 그리고 Money가 Expression을 구현하도록 선언한다:
 
 ```java
@@ -139,6 +188,17 @@ class Money implements Expression {
     // ... 기존 코드
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Money implements Expression {
+    // ... 기존 코드
+}
+```
+
+</details>
 
 여기서 `plus()`는 단순히 amount를 더한 새 Money를 반환한다. 이것은 **Fake It** 전략이다 — 실제로는 Sum 객체를 반환해야 하지만, 지금은 테스트를 통과시키는 것이 우선이다.
 
@@ -151,6 +211,19 @@ class Bank {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        return Money.dollar(10);  // Fake It!
+    }
+}
+```
+
+</details>
 
 `reduce()`도 하드코딩된 값을 반환한다. 역시 Fake It이다.
 
@@ -173,6 +246,17 @@ Expression plus(Money addend) {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+plus(addend: Money): Expression {
+    return new Sum(this, addend);
+}
+```
+
+</details>
+
 **Step 5**: Sum 클래스 생성:
 
 ```java
@@ -186,6 +270,23 @@ class Sum implements Expression {
     }
 }
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Sum implements Expression {
+    augend: Money;  // 피가산수 (더해지는 수)
+    addend: Money;  // 가산수 (더하는 수)
+
+    constructor(augend: Money, addend: Money) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+}
+```
+
+</details>
 
 > **용어 설명**: `augend`와 `addend`는 덧셈의 수학적 용어다.
 > - augend: 피가산수 (더해지는 수, 왼쪽)
@@ -204,6 +305,21 @@ class Bank {
 }
 ```
 
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        const sum = source as Sum;  // 지금은 Sum만 처리
+        const amount = sum.augend.amount + sum.addend.amount;
+        return new Money(amount, to);
+    }
+}
+```
+
+</details>
+
 여기서 `(Sum) source`라는 캐스팅은 분명히 문제가 있다 — source가 항상 Sum인 것은 아니다. 하지만 **지금은** 테스트를 통과시키는 것이 우선이다. 이 문제는 TODO 리스트에 적어둔다.
 
 **테스트 실행 — Green Bar!**
@@ -218,6 +334,16 @@ class Bank {
 interface Expression {
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+interface Expression {
+}
+```
+
+</details>
 
 ### 4.2 Money 클래스
 
@@ -263,6 +389,53 @@ class Money implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Money implements Expression {
+    protected amount: number;
+    protected _currency: string;
+
+    constructor(amount: number, currency: string) {
+        this.amount = amount;
+        this._currency = currency;
+    }
+
+    static dollar(amount: number): Money {
+        return new Money(amount, "USD");
+    }
+
+    static franc(amount: number): Money {
+        return new Money(amount, "CHF");
+    }
+
+    times(multiplier: number): Money {
+        return new Money(this.amount * multiplier, this._currency);
+    }
+
+    plus(addend: Money): Expression {
+        return new Sum(this, addend);
+    }
+
+    currency(): string {
+        return this._currency;
+    }
+
+    equals(object: Object): boolean {
+        const money = object as Money;
+        return this.amount === money.amount
+            && this.currency() === money.currency();
+    }
+
+    toString(): string {
+        return `${this.amount} ${this._currency}`;
+    }
+}
+```
+
+</details>
+
 ### 4.3 Sum 클래스
 
 ```java
@@ -277,6 +450,23 @@ class Sum implements Expression {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Sum implements Expression {
+    augend: Money;
+    addend: Money;
+
+    constructor(augend: Money, addend: Money) {
+        this.augend = augend;
+        this.addend = addend;
+    }
+}
+```
+
+</details>
+
 ### 4.4 Bank 클래스
 
 ```java
@@ -289,6 +479,21 @@ class Bank {
 }
 ```
 
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+class Bank {
+    reduce(source: Expression, to: string): Money {
+        const sum = source as Sum;
+        const amount = sum.augend.amount + sum.addend.amount;
+        return new Money(amount, to);
+    }
+}
+```
+
+</details>
+
 ### 4.5 테스트
 
 ```java
@@ -300,6 +505,21 @@ public void testSimpleAddition() {
     assertEquals(Money.dollar(10), reduced);
 }
 ```
+
+<details>
+<summary>TypeScript 버전 (완성 코드)</summary>
+
+```typescript
+test('simple addition', () => {
+    const five = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank = new Bank();
+    const reduced = bank.reduce(sum, "USD");
+    expect(reduced).toEqual(Money.dollar(10));
+});
+```
+
+</details>
 
 ---
 
@@ -333,6 +553,21 @@ bank.reduce(a, "USD");  // → 5 USD
 bank.reduce(b, "USD");  // → 5 + (10 ÷ 환율) USD
 bank.reduce(c, "USD");  // → 5 + 5 + (10 ÷ 환율) USD
 ```
+
+<details>
+<summary>TypeScript 버전</summary>
+
+```typescript
+const a: Expression = Money.dollar(5);                        // 단순 금액
+const b: Expression = new Sum(Money.dollar(5), Money.franc(10));  // 덧셈
+const c: Expression = new Sum(a, b);                          // 중첩된 수식
+
+bank.reduce(a, "USD");  // → 5 USD
+bank.reduce(b, "USD");  // → 5 + (10 ÷ 환율) USD
+bank.reduce(c, "USD");  // → 5 + 5 + (10 ÷ 환율) USD
+```
+
+</details>
 
 Expression은 **재귀적 구조(Composite Pattern)** 를 가능하게 한다. 수식 안에 수식이 들어갈 수 있다. 이것은 미래의 복잡한 금융 계산을 위한 유연한 기반이다.
 
