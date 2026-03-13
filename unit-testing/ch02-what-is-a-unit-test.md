@@ -262,12 +262,3 @@ Khorikov는 이 책 전체에서 Classical 학파의 접근법을 채택한다. 
 - Khorikov는 Classical 학파를 기본 접근법으로 권장하며, 이 책 전체가 이 관점을 따른다.
 - 단위 테스트의 세 가지 속성 중 하나라도 충족하지 못하면 **통합 테스트**로 분류된다.
 
----
-
-## 다른 챕터와의 관계
-
-- **Chapter 1 (The Goal of Unit Testing)**: "좋은 테스트란 무엇인가?"라는 질문을 던졌다면, 이 챕터는 그 전제 조건인 "단위 테스트란 무엇인가?"를 정의한다.
-- **Chapter 3 (The Anatomy of a Unit Test)**: 단위 테스트의 정의를 확립한 후, 실제 테스트의 구조(AAA 패턴, 네이밍 등)를 다룬다.
-- **Chapter 4 (The Four Pillars of a Good Unit Test)**: 이 챕터에서 예고한 "리팩터링 내성"이 네 가지 기둥 중 하나로 등장한다. London 학파의 문제점이 이 프레임워크로 체계적으로 설명된다.
-- **Chapter 5 (Mocks and Test Fragility)**: Mock의 올바른 사용법을 다룬다. London 학파의 무분별한 Mock 사용이 왜 테스트를 취약하게 만드는지, 어떤 경우에 Mock이 적절한지를 깊이 파고든다.
-- **Chapter 8 (Why Integration Testing?)**: 단위 테스트만으로 충분하지 않은 영역을 통합 테스트가 어떻게 보완하는지를 다룬다.
