@@ -563,4 +563,4 @@ Kent Beck의 xUnit에서 사용한 전략과 다른 접근법을 비교한다:
 - **Chapter 20 (Cleaning Up After)**: `tearDown()`이 실패 시에도 호출되는 문제가 이 챕터에서 (부분적으로) 해결되었다. `try/except` 이후에 `tearDown()`이 실행되므로, 테스트 메서드 예외가 `tearDown()`을 건너뛰지 않는다.
 - **Chapter 23 (How Suite It Is)**: `TestSuite`에서 여러 테스트를 실행할 때, 하나의 `TestResult`에 모든 결과를 누적한다. 실패한 테스트가 있어도 나머지 테스트는 계속 실행된다.
 - **Chapter 27 (Testing Patterns)**: Part III에서 "어떤 테스트가 어떻게 실패했는가"를 더 상세히 보고하는 패턴이 논의된다. 여기서는 단순히 카운트만 했지만, 실제 프레임워크는 실패 메시지와 스택 트레이스도 제공한다.
-- **Chapter 28 (Green Bar Patterns)**: 실패를 다루는 이 챕터의 접근법 — 가장 단순한 것부터 시작하여 점진적으로 견고하게 만드는 것 — 이 Green Bar 패턴의 실례다.
+- **Chapter 28 (Green Bar Patterns)**: 실패를 다루는 이 챕터의 접근법 (가장 단순한 것부터 시작하여 점진적으로 견고하게 만드는 것)이 Green Bar 패턴의 실례다.

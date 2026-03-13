@@ -230,7 +230,7 @@ def run(self):
     self.tearDown()
 ```
 
-만약 `method()` — 즉, 테스트 메서드 — 에서 **예외가 발생**하면 어떻게 되는가?
+만약 `method()` (즉, 테스트 메서드)에서 **예외가 발생**하면 어떻게 되는가?
 
 ```python
 class BrokenTest(TestCase):
