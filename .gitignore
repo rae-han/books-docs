@@ -1,3 +1,4 @@
 .DS_Store
 origin.md
 *.origin.md
+.inspection/
