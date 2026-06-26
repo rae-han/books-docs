@@ -244,6 +244,61 @@ docker rm ticker           # 삭제 (멈춘 뒤)
 
 ---
 
+## 세션 4 — ch04: Dockerfile (내 이미지를 직접 build)
+
+### 교재 핵심 (이것만 알면 됨)
+
+지금까지 남이 만든 이미지(`node:22-alpine`)를 `pull`해 썼다. 이제 **Dockerfile**(이미지 굽는 레시피)로 그 위에 내 코드를 얹어 **내 이미지를 `build`**한다. 세션 1의 "이미지 두 방향(pull/build)" 중 `build`이고, `FROM`이 "어떤 베이스 위에 쌓을지"를 정한다.
+
+**Dockerfile 인스트럭션** (각각 레이어 하나가 됨 — ch02 레이어의 역방향):
+
+| 인스트럭션 | 의미 |
+|---|---|
+| `FROM node:22-alpine` | 베이스 이미지 (이 위에 쌓는다) |
+| `WORKDIR /app` | 컨테이너 안 작업 디렉토리(`cd`+`mkdir`). 이후 상대경로의 기준 |
+| `COPY <출처> <목적지>` | 호스트 파일/폴더를 이미지로 복사. 목적지 `.`은 WORKDIR 기준 |
+| `RUN <명령>` | 빌드 중 명령 실행(예: `npm ci`). 결과가 레이어로 남음 |
+| `EXPOSE 3000` | "이 포트 쓴다" 문서화 (실제 연결은 `run -p`) |
+| `CMD ["node","server.js"]` | 컨테이너 시작 시 기본 실행 명령 (0B 메모 레이어) |
+
+**빌드**: `docker build -t <이름> .` (`-t`=이름, `.`=빌드 컨텍스트=현재 폴더).
+
+**레이어 캐시**: 안 바뀐 레이어는 `CACHED`로 재사용 → 빌드 빨라짐. **한 레이어가 바뀌면 그 아래 전부 다시 빌드** → 자주 바뀌는 건 뒤에, 무거운 건(`npm ci`) 앞에 둔다.
+
+**이미지 ≠ 컨테이너 갱신**: `build`로 새 이미지를 만들어도 돌고 있는 컨테이너는 옛 이미지 그대로. 반영하려면 컨테이너를 새 이미지로 갈아끼운다(`rm` → `run`).
+
+### 이 세션에서 한 일
+
+```bash
+# server.js + Dockerfile + .dockerignore 작성 후
+docker build -t hello-docker .       # 내 이미지 빌드 ([1/3] FROM → [2/3] WORKDIR → [3/3] COPY)
+docker images hello-docker           # 만든 이미지 확인 (TAG=latest 자동, 161MB)
+
+docker run -d -p 3000:3000 --name myweb hello-docker   # 띄우기 (포트 연결)
+curl localhost:3000                  # → "Hello from my Docker image! 🐳"
+
+docker build -t hello-docker .       # 또 빌드 → 전부 CACHED (0.0s)
+# server.js 수정 후
+docker build -t hello-docker .       # [3/3] COPY부터 캐시 깸, 새 이미지 ID
+
+docker rm -f myweb                   # 옛 컨테이너 제거
+docker run -d -p 3000:3000 --name myweb hello-docker   # 새 이미지로 갈아끼우기
+curl localhost:3000                  # → v2 반영!
+```
+
+### 그때 깨달은 것
+
+- `docker run`은 `build`를 하지 않는다. 내 이미지는 **`build`로 먼저 만들어야** `run` 가능(남의 이미지는 `run`이 자동 `pull`). (→ B-21)
+- `EXPOSE`는 문서일 뿐, 실제 포트 연결은 `-p`가 한다. (→ B-22)
+- 레이어 캐시: 안 바뀌면 `CACHED`, 바뀐 레이어부터 다시. 그래서 Dockerfile **순서**가 빌드 속도를 좌우. (→ B-23)
+- `build`로 새 이미지를 만들어도 **돌고 있는 컨테이너는 안 바뀐다** → `rm`+`run`으로 갈아끼워야 반영. (→ B-24)
+- `--name` 생략 시 도커가 랜덤 이름(`형용사_과학자`)을 부여. (→ B-25)
+- `COPY`는 파일·폴더·전체(`COPY . .`) 다 되고, 목적지 `.`은 WORKDIR 기준.
+
+> 더 깊이: [ch04 — Dockerfile 완전 정복](ch04-dockerfile-deep-dive.md)
+
+---
+
 # Part B. vs 비교 모음 (헷갈린 개념 쌍)
 
 > 입문에서 헷갈리는 건 대부분 "비슷해 보이는 짝"이다. 막히면 여기부터 본다.
@@ -468,6 +523,49 @@ docker run --rm -it node:22-alpine sh
 
 > docker 명령은 `docker <대상> <동작>` 구조(`container`/`image`...)다. 옛 Unix식 단축형(`ps`, `rm`)이 호환을 위해 함께 남아있다. (`ps` = process status)
 
+## B-21. docker build vs run vs pull
+
+| 명령 | 하는 일 | 이미지를 *만드나* |
+|---|---|---|
+| `docker build` | Dockerfile → **내 이미지 생성** | ✅ 만듦 |
+| `docker pull` | 레지스트리 → **남의 이미지 다운로드** | ❌ 받아옴 |
+| `docker run` | 이미지 → **컨테이너 실행** | ❌ (없으면 `pull`, `build`는 안 함) |
+
+> 내 이미지는 `build`로만 생긴다(레지스트리에 없으니 `pull`로도 못 가져옴). 남의 이미지는 `run`이 자동 `pull`.
+
+## B-22. EXPOSE vs -p
+
+| | `EXPOSE 3000` (Dockerfile) | `-p 3000:3000` (run) |
+|---|---|---|
+| 역할 | "이 포트 쓴다" 문서화 | 호스트↔컨테이너 **실제 연결** |
+| 포트 여나 | ❌ | ✅ |
+| 없으면 | 동작 지장 없음 | **외부 접속 안 됨** |
+
+## B-23. 캐시: CACHED vs 재빌드
+
+| | CACHED (재사용) | 재빌드 |
+|---|---|---|
+| 언제 | 레이어 입력(명령·파일)이 이전과 같음 | 바뀐 레이어 + 그 아래 전부 |
+| 속도 | 즉시 | 다시 실행 |
+
+> 규칙: 위→아래로 확인, 한 레이어 바뀌면 그 아래 전부 깸. → 자주 바뀌는 건 뒤에, 무거운 건(`npm ci`) 앞에.
+
+## B-24. 이미지 빌드 vs 컨테이너 갱신
+
+| | `docker build` | 돌고 있는 컨테이너 |
+|---|---|---|
+| 효과 | 새 이미지 생성 | 그대로 (옛 이미지로 계속 돎) |
+| 반영하려면 | — | `rm` → 새 이미지로 `run` (갈아끼우기) |
+
+> 붕어빵 틀을 새로 만들어도 이미 구운 붕어빵은 안 바뀐다. 실무 배포 = 새 이미지 빌드 → 컨테이너 교체.
+
+## B-25. --name 지정 vs 생략
+
+| | `--name myweb` | 생략 |
+|---|---|---|
+| 이름 | 내가 정함 | 랜덤 (`형용사_과학자`, 예: `jolly_jackson`) |
+| 관리 | `docker stop myweb` 편함 | 랜덤 이름/ID로 (`docker ps` 확인) |
+
 ---
 
 # Part C. Q&A 모음 (실제로 물어본 질문)
@@ -538,11 +636,26 @@ A. `exec`는 **COMMAND가 필수**(`docker exec <컨테이너> <명령>`)인데 
 **Q22. `Exited (137)`이 뭐야?**
 A. `128 + 9`(9=SIGKILL)로, **강제 종료당함**을 뜻한다. `docker stop`이 SIGTERM을 보냈는데 앱이 처리 안 해서 10초 후 SIGKILL로 죽인 것. (→ B-16, B-17)
 
+**Q23. `COPY`로 폴더도 복사되나?**
+A. 된다. 파일·폴더·여러 개·전체(`COPY . .`) 다 가능. 실무에선 `COPY package*.json ./` → `RUN npm ci` → `COPY . .` 순서로 캐시를 최적화한다. (→ B-23)
+
+**Q24. `COPY server.js .`의 `.`이 `/app` 기준인가?**
+A. 맞다. 목적지가 상대경로면 `WORKDIR` 기준이다. `WORKDIR /app`이라 `.`=`/app` → `/app/server.js`. `COPY server.js /app/server.js`와 동일.
+
+**Q25. `EXPOSE`는 의미 없나? 어차피 `-p`가 하는데?**
+A. 실제 포트는 안 연다(문서화일 뿐). 하지만 ① "이 포트 쓴다" 문서 ② `docker run -P`(대문자) 자동 매핑에 쓰인다. 실제 접속 연결은 `-p`가 한다. (→ B-22)
+
+**Q26. `docker run`이 build도 하나? (빌드 안 한 것 같은데)**
+A. `run`은 `build`를 절대 안 한다. `run` = (없으면 `pull`) + create + start. 우리는 직전에 `docker build -t hello-docker .`로 이미지를 이미 만들었고, `run`은 그 이미지로 컨테이너만 띄운 것. (→ B-21)
+
+**Q27. `--name`을 생략하면?**
+A. 도커가 `형용사_과학자` 형식의 랜덤 이름을 자동 부여한다(예: `jolly_jackson`). 세션 3에서 본 그 잔재 이름들이 `--name` 없이 띄운 결과였다. (→ B-25)
+
 ---
 
 # Part D. 누적 명령어 치트시트
 
-> 지금까지(세션 0~3) 실제로 쓴 명령. 새 세션마다 아래에 추가된다.
+> 지금까지(세션 0~4) 실제로 쓴 명령. 새 세션마다 아래에 추가된다.
 
 ## 환경 / 정보
 
@@ -607,6 +720,17 @@ docker rm -f <컨테이너>         # 강제 삭제 (stop + rm 한방)
 docker container prune          # 멈춘 컨테이너 일괄 청소
 ```
 
+## 이미지 빌드 (Dockerfile → 내 이미지, 세션 4)
+
+```bash
+docker build -t <이름>[:태그] <컨텍스트>       # 예: docker build -t hello-docker .
+docker build -t <이름> -f <경로>/Dockerfile .  # Dockerfile 경로 지정 (-f)
+#   -t          이미지 이름:태그 (태그 생략 시 :latest 자동)
+#   <컨텍스트>   보통 . (Dockerfile과 COPY 대상이 있는 폴더)
+# Dockerfile 주요 인스트럭션:
+#   FROM(베이스) WORKDIR(작업폴더) COPY(복사) RUN(빌드 중 명령) EXPOSE(포트 문서) CMD(기본 실행)
+```
+
 ---
 
-> **다음 세션 예고**: 세션 4 = [ch04 Dockerfile](ch04-dockerfile-deep-dive.md) — 지금까진 남이 만든 이미지(`node:22-alpine`)만 썼지만, 이번엔 **내 코드를 담은 이미지를 직접 `build`**한다. (`FROM`/`COPY`/`RUN`/`CMD`, `.dockerignore`, 레이어 캐시 — 드디어 "내 앱 이미지" 만들기!)
+> **다음 세션 예고**: 세션 5 = [ch05 볼륨과 바인드 마운트](ch05-volumes-and-bind-mounts.md) — 컨테이너를 지우면 안의 데이터도 함께 사라진다. 이번엔 **데이터를 컨테이너 바깥에 영속**시키는 법(볼륨 vs 바인드 마운트)과, 코드를 고치면 즉시 반영되는 개발 환경(HMR)을 배운다.
