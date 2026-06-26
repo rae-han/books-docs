@@ -186,6 +186,64 @@ docker rmi my-node:test                # 라벨만 제거 (본체는 node:22가 
 
 ---
 
+## 세션 3 — ch03: 컨테이너 (살아있는 컨테이너 다루기)
+
+### 교재 핵심 (이것만 알면 됨)
+
+세션 1의 컨테이너는 명령이 끝나면 금방 죽었다(`node -e`는 1초, `sh`는 `exit` 시). 이번엔 **안 죽고 계속 사는 컨테이너**(서버처럼)를 다룬다. 그래야 "실행 중인 걸 들여다보고·멈추고·들어가는" 관리가 의미를 갖는다.
+
+**컨테이너 생명주기**:
+
+```
+docker create    docker start          docker stop       docker rm
+ (이미지)──────→ Created ──────→ Running ──────→ Stopped ──────→ Removed
+                                   ↑                 │
+                                   └── docker start ─┘ (멈춘 것 재실행)
+★ docker run = create + start (한 방에 Running까지). --rm이면 종료 시 rm까지 자동.
+```
+
+- **`-d`(detached)**: 백그라운드 실행. 터미널을 안 잡아먹고 뒤에서 돎.
+- **`docker ps`** = 실행 중(`Up`)만, **`docker ps -a`** = 멈춘 것(`Exited`)까지 전부(`-a`=all).
+- **`docker logs`**: 컨테이너 출력 보기. `-f`는 실시간(Ctrl+C로 빠져나와도 컨테이너는 안 죽음). **컨테이너가 죽었을 때 사인(*死因 - 죽은 원인*)을 보는 핵심 도구.**
+- **`docker exec`**: 이미 도는 컨테이너에 명령을 추가 실행. `run`과 달리 `exit`해도 컨테이너는 안 죽는다(메인 프로세스는 따로 돌고 셸은 곁다리). **COMMAND 필수.**
+- **exit code**: `Exited (0)`=정상, `(1)`=에러 크래시, `(137)`=SIGKILL 강제 종료(`128+9`).
+- **`docker stop`**: SIGTERM(정중히)→10초 대기→SIGKILL(강제). 앱이 SIGTERM을 처리 안 하면 10초 후 강제 종료(137).
+- **`docker rm`**: 멈춘 컨테이너 삭제. 실행 중은 안 됨(안전장치) → `stop` 먼저 또는 `rm -f`.
+- 컨테이너는 호스트와 **격리** → 시간대도 기본 UTC(호스트 KST와 9시간 차이).
+
+### 이 세션에서 한 일
+
+```bash
+# 오래 사는 컨테이너를 백그라운드로 띄우기
+docker run -d --name ticker node:22-alpine node -e "setInterval(() => console.log('live', new Date().toLocaleTimeString()), 1000)"
+docker ps                  # 드디어 살아있는 컨테이너! (Up X seconds)
+docker ps -a               # 멈춘 잔재까지 전부
+
+docker container prune     # 멈춘 컨테이너 일괄 청소
+
+docker logs ticker         # 쌓인 로그 (크래시 시 사인 확인)
+docker logs -f ticker      # 실시간 (Ctrl+C로 빠져나옴)
+
+docker exec -it ticker sh  # 도는 컨테이너에 진입 → date, ps -ef
+docker exec ticker ls      # 단발 명령 (-it 불필요)
+
+docker stop ticker         # 멈춤 (~10초, SIGTERM→SIGKILL)
+docker start ticker        # 되살리기 (CONTAINER ID 그대로!)
+docker rm ticker           # 삭제 (멈춘 뒤)
+```
+
+### 그때 깨달은 것 (실전 디버깅 포함)
+
+- `docker run -d`가 ID를 출력해도 **안의 코드가 크래시하면 컨테이너는 즉시 죽는다** → `ps`에 안 보이면 `ps -a`로 찾고 `logs`로 사인 확인. (이번엔 따옴표 줄바꿈으로 `SyntaxError` → `Exited (1)`)
+- `--rm` 없이 띄운 죽은 컨테이너가 **이름을 계속 점유** → 같은 이름 재사용 시 `Conflict ... already in use` → `rm`으로 제거.
+- `exit code`로 사인 구분: `0`(정상) / `1`(에러) / `137`(SIGKILL 강제 종료).
+- `exec`로 들어가 `exit`해도 컨테이너는 **안 죽는다**(곁다리 셸만 종료, 메인 `node`는 계속) — `run -it sh`와의 결정적 차이.
+- 컨테이너 안 시각이 UTC라 호스트(KST)와 9시간 차이 — **격리된 환경**의 증거.
+
+> 더 깊이: [ch03 — 컨테이너](ch03-containers.md)
+
+---
+
 # Part B. vs 비교 모음 (헷갈린 개념 쌍)
 
 > 입문에서 헷갈리는 건 대부분 "비슷해 보이는 짝"이다. 막히면 여기부터 본다.
@@ -357,6 +415,59 @@ docker run --rm -it node:22-alpine sh
 
 > 셋은 한 몸이다. CLI로 띄운 컨테이너가 GUI에 즉시 뜨고, GUI에서 멈추면 `docker ps`에서도 사라진다 — 같은 daemon을 보기 때문.
 
+## B-15. docker run vs docker exec
+
+| 구분 | `docker run <이미지> [명령]` | `docker exec <컨테이너> <명령>` |
+|---|---|---|
+| 대상 | 이미지로 **새 컨테이너 생성+실행** | **이미 도는** 컨테이너에 명령 추가 |
+| COMMAND | **생략 가능** (이미지의 기본 `CMD` 사용) | **필수** (기본값 없음) |
+| `exit`하면 | (셸이 메인이면) 컨테이너 종료 | 곁다리만 종료, **컨테이너는 안 죽음** |
+| 쓰임 | 컨테이너 시작 | 도는 컨테이너 들여다보기/디버깅 |
+
+## B-16. stop vs kill vs rm
+
+| 명령 | 동작 |
+|---|---|
+| `docker stop` | 정중히 종료: SIGTERM → 10초 대기 → SIGKILL |
+| `docker kill` | 즉시 강제 종료(SIGKILL), 대기 없음 |
+| `docker rm` | **멈춘** 컨테이너 삭제 (실행 중은 `-f` 필요) |
+
+## B-17. exit code (`Exited (N)` 의 숫자)
+
+| 코드 | 의미 |
+|---|---|
+| `0` | 정상 종료 |
+| `1` 등 0이 아닌 값 | 에러로 크래시 |
+| `137` | `128 + 9` → SIGKILL(강제 종료)당함 |
+| `143` | `128 + 15` → SIGTERM으로 종료됨 |
+
+> 컨테이너가 자꾸 죽을 때 exit code가 `0`인지 아닌지로 "정상 종료 vs 크래시"를 즉시 구분. `0`이 아니면 → `docker logs`로 사인 확인.
+
+## B-18. docker ps vs docker ps -a
+
+| | `docker ps` | `docker ps -a` |
+|---|---|---|
+| 보여주는 것 | 실행 중(`Up`)만 | 멈춘 것(`Exited`)까지 전부 |
+| `-a` | (없음) | `--all` |
+| 용도 | "지금 도는 게 뭐냐" | 잔재 찾기/정리 |
+
+## B-19. container prune vs image prune
+
+| | `docker container prune` | `docker image prune` |
+|---|---|---|
+| 대상 | **멈춘 컨테이너** | **dangling 이미지**(`<none>`) |
+| 비유 | 식은 붕어빵 치우기 | 안 쓰는 틀 치우기 |
+
+## B-20. 짧은 명령(단축형) vs 구조화된 명령
+
+| 단축형 (자주 씀) | 구조화된 신형 | 동작 |
+|---|---|---|
+| `docker ps` | `docker container ls` | 컨테이너 목록 |
+| `docker images` | `docker image ls` | 이미지 목록 |
+| `docker rmi` | `docker image rm` | 이미지 삭제 |
+
+> docker 명령은 `docker <대상> <동작>` 구조(`container`/`image`...)다. 옛 Unix식 단축형(`ps`, `rm`)이 호환을 위해 함께 남아있다. (`ps` = process status)
+
 ---
 
 # Part C. Q&A 모음 (실제로 물어본 질문)
@@ -397,11 +508,41 @@ A. 맞다. 단 기존 이미지가 업그레이드되는 게 아니라(이미지
 **Q12. "라벨(메모)과 실물이 같다"는 게 무슨 뜻?**
 A. `docker history`에 적힌 `ENV NODE_VERSION=22.x`(빌드 시 기록한 메모)와, 컨테이너 안에서 `node -v`로 확인한 실제 버전이 일치한다는 뜻. 이미지가 **불변(봉인된 통조림)**이라 누가 언제 어디서 실행해도 똑같다 — 이게 도커가 "내 컴퓨터에선 되는데" 문제를 해결하는 원리다.
 
+**Q13. `stop`/`rm`은 `run`이 자동으로 하나, 별도 명령인가?**
+A. 별도 명령이다. `docker run`은 Running까지만 데려다놓는다. 멈추기(`stop`)·삭제(`rm`)는 직접 쳐야 한다. 단 `--rm` 옵션을 붙이면 "종료 시 자동 `rm`"까지 해준다. (→ B-16)
+
+**Q14. `docker images`와 `docker ps`의 차이는?**
+A. `images`=이미지(틀) 목록, `ps`=컨테이너(실행체) 목록. B-1(이미지 vs 컨테이너)의 명령어 버전이다. 틀이 있다고 자동으로 도는 게 아니라 `run`해야 컨테이너가 생긴다. (→ B-1)
+
+**Q15. 이미지 삭제인데 왜 `docker container prune`을 쓰나?**
+A. `container prune`은 이미지가 아니라 **멈춘 컨테이너**를 지운다(이미지는 그대로). docker 명령은 대상별(`container`/`image`)이라, 멈춘 컨테이너를 지우니 `container`를 쓴다. 이미지는 `image prune`/`rmi`. (→ B-19, B-20)
+
+**Q16. `ps -a`의 `-a`가 all? 없으면 멈춘 게 왜 안 보이나?**
+A. `-a`=`--all`. 기본 `docker ps`는 "지금 도는 것"만 보여준다(일상 관심사). 멈춘 컨테이너는 대부분 잔재라 평소엔 숨기고 `-a`로만 꺼내 본다. (→ B-18)
+
+**Q17. `ps`는 무슨 약자? `docker container ls`로 안 한 이유는?**
+A. `ps`=**process status**(Unix 전통 명령). 도커는 "컨테이너=프로세스" 관점이라 차용. 신형 `docker container ls`도 있지만, 기존 `docker ps`가 너무 널리 쓰여 호환을 위해 둘 다 남겼다. (→ B-20)
+
+**Q18. 컨테이너가 떴는데(ID 출력) 왜 `ps`에 없나?**
+A. 안의 코드가 크래시해 **즉시 죽었기** 때문. `run -d`의 ID 출력은 "생성·시작"까지의 성공일 뿐, 안의 프로그램이 사는지는 별개. `ps -a`엔 `Exited`로 있고, `docker logs`로 사인을 본다. (→ B-17)
+
+**Q19. `Conflict ... name already in use` 이름 충돌은?**
+A. `--rm` 없이 띄운 컨테이너가 죽어도 안 지워지고 이름을 **계속 점유**해서다. `docker rm <이름>`으로 제거하면 그 이름을 다시 쓸 수 있다. (→ B-4)
+
+**Q20. `-it`가 뭐야?**
+A. `-i`(`--interactive`, 키보드 입력 전달) + `-t`(`--tty`, 가짜 터미널 할당)의 합. 셸·REPL처럼 대화가 필요한 프로그램에 붙인다. 둘 다 있어야 프롬프트가 뜨고 타이핑이 먹는다. (→ B-3)
+
+**Q21. `docker exec -i ticker`는 왜 안 되나? `sh`가 핵심인가?**
+A. `exec`는 **COMMAND가 필수**(`docker exec <컨테이너> <명령>`)인데 명령을 안 줘서다. `sh`가 특별한 게 아니라 COMMAND 자리에 뭔가 있어야 한다(`date`, `ls`도 가능). `run`은 이미지의 기본 `CMD`가 있어 생략 가능하지만, `exec`는 기본값이 없어 필수. (→ B-15)
+
+**Q22. `Exited (137)`이 뭐야?**
+A. `128 + 9`(9=SIGKILL)로, **강제 종료당함**을 뜻한다. `docker stop`이 SIGTERM을 보냈는데 앱이 처리 안 해서 10초 후 SIGKILL로 죽인 것. (→ B-16, B-17)
+
 ---
 
 # Part D. 누적 명령어 치트시트
 
-> 지금까지(세션 0~2) 실제로 쓴 명령. 새 세션마다 아래에 추가된다.
+> 지금까지(세션 0~3) 실제로 쓴 명령. 새 세션마다 아래에 추가된다.
 
 ## 환경 / 정보
 
@@ -441,13 +582,31 @@ docker run --rm <이미지> node -e "코드"    # 한 줄 코드 실행
 #   -e KEY=V 환경변수 주입(--env)  ※ node -e 의 -e(코드 평가)와 다름!
 ```
 
-## 컨테이너 조회 (세션 3에서 본격적으로)
+## 컨테이너 — 조회·로그·진입·생명주기 (세션 3)
 
 ```bash
+# 조회
 docker ps                      # 실행 중인 컨테이너
-docker ps -a                   # 종료된 것까지 전체
+docker ps -a                   # 멈춘 것까지 전체 (-a = all)
+
+# 실행 (오래 사는 컨테이너)
+docker run -d --name <이름> <이미지> <명령>   # -d: 백그라운드(detached)
+
+# 들여다보기
+docker logs <컨테이너>          # 로그 출력 (크래시 사인 확인)
+docker logs -f <컨테이너>       # 실시간 (Ctrl+C로 빠져나옴, 컨테이너는 안 죽음)
+docker exec -it <컨테이너> sh   # 도는 컨테이너에 진입 (COMMAND 필수!)
+docker exec <컨테이너> <명령>   # 단발 명령 (예: date, ls — -it 불필요)
+
+# 생명주기 제어
+docker stop <컨테이너>          # 멈춤 (SIGTERM→10초→SIGKILL)
+docker start <컨테이너>         # 멈춘 것 되살리기 (CONTAINER ID 그대로)
+docker restart <컨테이너>       # stop + start
+docker rm <컨테이너>            # 삭제 (실행 중은 안 됨 → stop 먼저 or -f)
+docker rm -f <컨테이너>         # 강제 삭제 (stop + rm 한방)
+docker container prune          # 멈춘 컨테이너 일괄 청소
 ```
 
 ---
 
-> **다음 세션 예고**: 세션 3 = [ch03 컨테이너](ch03-containers.md) — 지금까진 `node -e`로 한 줄만 실행했지만, 이번엔 브라우저로 접속되는 **HTTP 서버를 컨테이너에 띄운다**. (생명주기 `run`/`stop`/`rm`, `exec`/`logs`/`stats`, GUI Containers 탭 매칭)
+> **다음 세션 예고**: 세션 4 = [ch04 Dockerfile](ch04-dockerfile-deep-dive.md) — 지금까진 남이 만든 이미지(`node:22-alpine`)만 썼지만, 이번엔 **내 코드를 담은 이미지를 직접 `build`**한다. (`FROM`/`COPY`/`RUN`/`CMD`, `.dockerignore`, 레이어 캐시 — 드디어 "내 앱 이미지" 만들기!)
