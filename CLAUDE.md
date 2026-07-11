@@ -89,13 +89,22 @@
 - **코드 표기**: 원서 JS를 `<details>`로 접고 **TypeScript 병기**(good-code-bad-code와 동일 패턴)
 - **두 가지 챕터 유형**: (1) 서사형(Ch1~5) — 핵심 질문→번호 섹션→핵심 통찰→요약, (2) **카탈로그형(Ch6~12)** — 기법마다 `스케치 · 배경 · 절차` 틀 + 카탈로그 절 번호 연결
 - **인용 처리**: 파울러 원칙 강조 → `> **핵심 통찰**:`, 켄트 벡·제시카 커 등 외부 인용 → 레이블 없는 `>`(+`<br>— 이름`)
-- 상태: **진행 중** (Ch1·2·6 완료 / Ch3·4·5·7~12·부록 예정)
+- 상태: **완료** (Ch1~12 + 부록 A(66개 기법)·B(24개 악취) + README)
 
 ### 17. functional-programming-complete-guide/ — 함수형 프로그래밍 완전 가이드 (자체 구성)
 - 5부 19장 + README. `fp/`(Notion 함수형 JS 노트 이관본: FP with ES6+ 10편·Functional JS 11편·실전 1편)와 `multi-paradigm-programming/`을 주제별 커리큘럼으로 병합한 자체 구성 가이드
 - **중복 우선순위**: 멀티패러다임 > ES6+(`fp/fp-with-es6-plus/`) > ES5(`fp/functional-js/`). 원본 두 폴더는 그대로 유지
 - Part 1 기초(개념·커링·컬렉션) / Part 2 이터러블·제너레이터·지연 평가 / Part 3 타입·FxIterable·LISP·하스켈 / Part 4 비동기(모나드·Kleisli·nop·C.*·toAsync) / Part 5 실전(패턴 9종·멀티패러다임 설계·OOP 프런트엔드·Result/Effect-TS)
 - ch16~18은 멀티파 ch05~07 이관본(`[코드 N-M]` 원본 번호 유지 + 장 서두 참고 문구), 병합 장은 코드 번호 제거. README에 장별 **소스 매핑 표**
+- 상태: **완료**
+
+### 18. fundamentals-of-software-architecture-2nd-edition/ — Fundamentals of Software Architecture: The Basics (2nd Edition) (Mark Richards & Neal Ford, O'Reilly, 2025)
+- 27개 챕터 + 부록 A(토론용 질문) + README. 한국어판 『소프트웨어 아키텍처 The Basics』. 1판(fundamentals-1st, 24장)의 개정판
+- 제1부 기초(Ch1-8) + 제2부 아키텍처 스타일(Ch9-20) + 제3부 기법과 소프트 스킬(Ch21-27)
+- **1판→2판 확장**: 제3법칙(대부분 결정은 스펙트럼) 신규 + 4개 신규 장(Ch11 모듈형 모놀리스·Ch20 아키텍처 패턴·Ch26 아키텍처 교차점·Ch27 법칙 재검토) + 생성형 AI 반영(Ch21·26)
+- **시그니처**: `> **소프트웨어 아키텍처 제N법칙**<br>내용`, 스타일 장(Ch10·12-18)마다 **아키텍처 특성 등급표(별점 ★, 13개 특성)** + ASCII 토폴로지. **1판은 `:::` 콜아웃, 2판은 `>` blockquote 스타일 사용**(good-code-bad-code·refactoring-2nd와 동일)
+- ⚠️ **별점 재구성**: 원본 OCR의 별점 격자표가 훼손되어 각 스타일 장 등급표는 **본문 서술 근거로 재구성**(각 표 아래 `> **참고**` 주석 명시)
+- 작성 방식: 서브에이전트 없이 직접 순차 작성 + 샘플(Ch1·11) 먼저 확인. 커밋은 파트 경계(1부/2부/3부+부록+README)로 분할
 - 상태: **완료**
 
 ## 공통 작성 스타일
