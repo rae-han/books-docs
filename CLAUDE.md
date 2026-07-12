@@ -186,6 +186,13 @@
 - **각주 변환**: `<sub>` 태그 각주는 Notion에서 렌더링되지 않으므로, 업로드 시 본문의 `용어¹` → `용어(*Term - 설명*)` 인라인 이탤릭 형태로 변환하고 `<sub>...</sub><br>` 각주 블록은 제거한다
 - **한글은 리터럴 그대로 (유니코드 이스케이프 절대 금지)**: `notion-create-pages`/`notion-update-page`의 `content`에 한국어를 넣을 때 `\uXXXX` 유니코드 이스케이프로 손수 변환하지 말고 **한글 문자를 그대로** 넣는다. 수동 이스케이프 변환은 음절 손상("캡슐화"→"캐슸화", "말썽꾼"→"말썰꾼" 등)을 일으켜 원본과 다른 내용이 올라간다(head-first-design-patterns 15개 챕터 전량 재업로드 사례). 또한 `__unparsedToolInput`으로 raw JSON을 조립하지 말고 정상 파라미터(`parent`/`pages` 등)로 전달한다 — JSON 인코딩은 harness가 처리하며, raw JSON은 `InputValidationError`/hex escape 파싱 에러를 반복 유발한다. **업로드 후 반드시 1~2개 페이지를 `notion-fetch`로 열어 한글 손상 여부를 눈으로 확인**하고, 손상 발견 시 `replace_content`로 한글 리터럴 재업로드한다.
 
+### DB 구조(파트·챕터·딱지) 정책
+
+- **파트/챕터/딱지 구성**: 챕터를 Notion 인라인 DB에 올릴 때, 책에 **파트 구분이 있으면** `Part`(select 색상 딱지) + `Chapter`(number) + `Title` 속성으로 구성한다(예: legacy-code — Part 1/2/3/부록을 파랑·초록·보라·회색 딱지로). **파트가 없어도** 챕터를 묶을 좋은 분류 기준이 있으면(예: head-first의 GoF `패턴 범주` = 생성/구조/행동/복합/정리) 파트 대신 그 기준으로 select/multi-select 색상 딱지를 붙인다 — 기준 이름은 책에 맞게 정하고(꼭 `Part`일 필요 없음), 한 챕터가 여러 범주에 걸치면 multi-select를 쓴다. 파트도 없고 마땅한 분류 기준도 없으면 `Name` 하나로만 둔다.
+- **책별 DB 구조는 그 책 README에 기록**: 각 책 README에 `## Notion DB 구조` 절을 두어 위치·속성·딱지 매핑·정렬을 적어두고, 업로드/재업로드 시 이 절을 참조한다. 책마다 분류 기준이 달라(파트 vs 패턴 범주 등) 공통 CLAUDE.md가 아니라 각 README에 두는 것이 맞다.
+- **정렬**: `Name`에 `ChNN.`(두 자리) 접두어를 붙이고 이름 오름차순 정렬하면 챕터 순서가 유지된다. 파트가 있으면 뷰에서 `Part`로 그룹핑하거나 `Chapter` 오름차순 정렬을 쓴다.
+- ⚠️ **스키마 편집 API 제약**: 현재 Notion 통합은 `update-data-source`(속성 추가 등 스키마 DDL)가 404로 막혀 있고 `update-page`도 스키마에 없는 속성은 거부한다. 따라서 **딱지 속성(select/multi-select)은 Notion UI에서 사람이 먼저 만들고**, 각 챕터 값 채우기(`update-page`)만 API로 한다.
+
 ## origin.md 파일 분리 작업
 
 PDF에서 추출한 `origin.md` 원본 파일을 챕터별로 분리하는 작업. 내용 수정 없이 라인 기반으로 분할한다.
