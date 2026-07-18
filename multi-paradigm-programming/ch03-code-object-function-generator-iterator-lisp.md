@@ -600,6 +600,16 @@ safeDiv x y = Right (div x y)
 
 `safeDiv` 함수는 두 번째 인자가 0일 경우 `Left "0으로 나눌 수 없습니다."`를 반환한다. 이를 통해 런타임 예외 발생 대신 명시적으로 에러 상황을 표현할 수 있다.
 
+```haskell
+-- [코드 3-30] safeDiv 함수 사용 예제
+main :: IO ()
+main = do
+  print (safeDiv 10 2)  -- 출력: Right 5
+  print (safeDiv 10 0)  -- 출력: Left "0으로 나눌 수 없습니다."
+```
+
+결과가 `Right 5`, `Left "..."` 형태의 `Either` 값 그대로 출력되는 것을 볼 수 있다.
+
 ### 2.9 패턴 매칭
 
 `safeDiv` 함수는 하스켈의 패턴 매칭 문법을 사용하여 인자 패턴에 따라 함수 실행을 분기한다. `safeDiv _ 0`에서 `_`는 와일드카드 패턴으로 어떤 값이든 상관없음을 의미하고, `0`은 두 번째 인자가 0일 때를 나타낸다.
@@ -800,7 +810,7 @@ taked.next();
 type Find = <A>(f: (a: A) => boolean, iterable: Iterable<A>) => A | undefined;
 ```
 
-이 시그니처는 `find` 함수가 `(a: A) => boolean` 타입의 함수와 `Iterable<A>` 타입의 이터러블을 인자로 받아, 이터러블의 요소 중 하나인 `A` 타입의 값 또는 `undefined`를 반환함을 나타낸다. 이런 함수 시그니처를 익숙하게 읽을 수 있으면 함수형 프로그래밍을 할 때 큰 도움이 되므로 꾸준한 연습이 필요하다.
+이 시그니처는 `find` 함수가 `(a: A) => boolean` 타입의 함수와 `Iterable<A>` 타입의 이터러블을 인자로 받아, 이터러블의 요소 중 하나인 `A` 타입의 값 또는 `undefined`를 반환함을 나타낸다.
 
 하스켈의 `find` 함수 시그니처도 살펴보자.
 
@@ -809,7 +819,7 @@ type Find = <A>(f: (a: A) => boolean, iterable: Iterable<A>) => A | undefined;
 find :: (a -> Bool) -> [a] -> Maybe a
 ```
 
-이 시그니처는 `find`가 `(a -> Bool)` 타입의 함수와 `[a]` 타입의 리스트를 받아 `Maybe a` 타입의 값을 반환함을 나타낸다. 제네릭 타입 `a`를 간결하게 표현하는 표기가 아름답고, 커링이 기본인 언어 특성 덕분에 인자 개수에 따른 함수 오버로드 같은 표기법이 필요하지 않아 더욱 간결하다.
+이 시그니처는 `find`가 `(a -> Bool)` 타입의 함수와 `[a]` 타입의 리스트를 받아 `Maybe a` 타입의 값을 반환함을 나타낸다.
 
 최종 반환값인 `Maybe a`는 찾는 조건을 만족하는 첫 번째 요소가 있을 경우 `Just a`를, 없을 경우 `Nothing`을 반환하는 타입이다. 하스켈에서는 안전한 함수 합성을 위해 `A | undefined`와 같은 상황을 `Maybe` 타입의 값으로 다룬다.
 
@@ -825,13 +835,6 @@ main = do
   let result = fromMaybe 0 (find even [1, 3, 5])
   print result  -- 출력: 0
 ```
-
-이 코드는 다음 순서로 동작한다.
-
-1. `main` 함수는 하스켈 프로그램의 진입점이다. `IO ()` 타입이므로 입출력 작업을 수행할 수 있다.
-2. `fromMaybe` 함수는 두 개의 인자를 받는다. 첫 번째 인자로 기본값 0을 전달했고, 커링으로 한 번 더 인자를 전달받는다. 두 번째 인자는 괄호로 묶어 괄호 안에서 평가되는 값을 전달한다.
-3. `find` 함수는 첫 번째 인자로 짝수인지 검사하는 `(a -> Bool)` 타입의 함수 `even`을, 두 번째 인자로 `[1, 3, 5]`를 전달받아 평가한다. `find even [1, 3, 5]`의 결과는 `Maybe` 타입인데, 리스트에 짝수가 없기 때문에 `Nothing`을 반환한다.
-4. `fromMaybe`는 `Nothing`일 경우 기본값으로 전달한 0을 반환하고, 마지막으로 `print` 함수가 `result` 값을 출력한다.
 
 이 예제는 `find` 함수와 `Maybe` 타입으로 리스트에서 조건을 만족하는 요소를 찾고 이를 안전하게 처리하는 방법을 보여 준다.
 
@@ -857,14 +860,6 @@ const result = find(a => a > 2, [1, 2, 3, 4]);
 console.log(result);
 // 3
 ```
-
-이 코드의 작동 방식은 다음과 같다.
-
-1. `iterator` 객체를 생성하여 `iterable`을 순회할 준비를 한다.
-2. 무한 루프 `while (true)` 안에서 이터레이터의 `next()`를 호출하고, 반환된 객체에서 `done`과 `value`를 추출한다.
-3. `done`이 `true`인 경우 순회를 종료한다.
-4. `f(value)`가 `true`인 경우 해당 값을 반환한다. 이때 반복문과 함수가 동시에 종료된다.
-5. 루프가 끝날 때까지 조건을 만족하는 값을 찾지 못하면 `undefined`를 반환한다.
 
 이제 `find`를 함수형 방식으로 구현해 보겠다. 기존에 작성했던 `map`, `filter`, `take` 등은 제너레이터를 활용한 명령형 코드이거나, 이터레이터 객체가 다른 이터레이터 객체의 메서드를 호출하는 객체지향적 구조를 따랐다. `map`·`filter`·`take`는 오히려 그런 명령형 코드가 더 이해하기 쉬운 결과물을 만든다. 그에 반해 `find`, `every`, `some`은 이미 `map`, `filter`, `take`, `reduce` 같은 함수들이 마련되어 있다면 이들을 조합해 함수형 패러다임으로 구현할 수 있으며, 이런 접근은 코드 이해도와 표현력을 높이는 데도 유리하다.
 
@@ -1022,7 +1017,7 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {}
 // 3. (true && true && true)
 ```
 
-`every`를 구현하는 방법은 여러 가지가 있지만 이 방식은 거의 모든 언어에 적용할 수 있는 로직이라는 점이 매력적이다. 특정 언어나 자료구조에 특화된 메서드나 문법에 의존하지 않고, 대부분의 언어에서 지원하는 AND 연산자(`&&`)만 활용한다. 이로써 언어에 종속되지 않으면서도 간결하고 이해하기 쉬운 코드로 `every`를 구현할 수 있다. [코드 3-50]을 보면 [코드 3-49]의 계획이 정말 그대로 옮겨진 것을 확인할 수 있다.
+[코드 3-50]을 보면 [코드 3-49]의 계획이 정말 그대로 옮겨진 것을 확인할 수 있다.
 
 ```typescript
 // [코드 3-50] every 함수 구현
@@ -1039,7 +1034,7 @@ console.log(every(isOdd, [1, 2, 5]));
 // false
 ```
 
-`every`는 `map(f)`와 `reduce((a, b) => a && b, true)`를 체이닝으로 합성하여 만들었다. 첫 번째 `map`에는 `every`가 받은 `f`를 그대로 전달하고, `reduce`에서는 누적 함수 `a && b`를 통해 `(boolean && boolean && boolean)`과 같은 효과를 낸다. 주로 `reduce`의 누적 함수로는 두 값을 더하거나(`+`) 빼거나(`-`) 병합하는(`{...a, ...b}`, `[...a, ...b]`) 유형의 함수를 전달하지만, 이번에는 두 값을 `&&`로 논리적 AND 연산하여 누적했다. 이렇게 `reduce`는 마치 더하기나 빼기처럼 어떠한 연산자로든 모든 요소를 누적할 수 있다.
+`every`는 `map(f)`와 `reduce((a, b) => a && b, true)`를 체이닝으로 합성하여 만들었다. 첫 번째 `map`에는 `every`가 받은 `f`를 그대로 전달하고, `reduce`에서는 누적 함수 `a && b`를 통해 `(boolean && boolean && boolean)`과 같은 효과를 낸다.
 
 참고로 "한 번의 `reduce`에서 `f(b)`와 같이 구현하지 않고 왜 `map`과 `reduce`로 나누어 순회하는 거지?"라는 의문이 생길 수도 있다. 하지만 두 코드의 시간 복잡도는 동일하다. `fx(list).reduce((a, b) => a && f(b), true)`는 각 요소를 순회하며 `f(b)`를 바로 평가하므로 한 번의 순회로 O(n)이 걸린다. 한편 `fx(list).map(f).reduce((a, b) => a && b, true)`는 표면적으로는 'map 후 reduce'로 보이지만, 지연 이터레이터의 특성상 각 요소가 `map`을 통과한 직후 즉시 `reduce`에 소비되므로 실제로는 한 번만 순회하면서 O(n)이 걸린다.
 
@@ -1097,11 +1092,6 @@ function some<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
     .take(1)
     .reduce((a, b) => a || b, false);
 }
-
-console.log(some(isOdd, [2, 5, 6]));
-// true
-console.log(some(isOdd, [2, 4, 6]));
-// false
 ```
 
 앞서 구현한 `some`에 `.filter(a => a).take(1)`을 추가하여 최적화했다. 이제 이 코드는 `.filter(a => a).take(1)`을 통해 `true`를 하나라도 만나면 더 이상 순회하지 않고, 요소가 최대 하나인 이터레이터를 만들어 `reduce`에 전달한다. 만일 `true`가 하나도 없다면 요소가 없는 이터레이터가 `reduce`에 전달된다. `reduce`는 요소가 없으면 기본값으로 받은 `false`를 반환하고, 요소가 있으면 `false || true`로 한 번 누적하여 `true`를 반환한다.
@@ -1117,11 +1107,6 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
     .take(1)
     .reduce((a, b) => a && b, true);
 }
-
-console.log(every(isOdd, [1, 3, 5]));
-// true
-console.log(every(isOdd, [1, 2, 5]));
-// false
 ```
 
 이번에는 `every`에 `.filter(a => !a).take(1)`을 추가하여 최적화했다. 이 코드는 `false`를 하나라도 만나면 더 이상 순회하지 않고 요소가 최대 하나인 이터레이터를 만들어 `reduce`에 전달한다. 만일 `false`가 하나도 없다면 요소가 없는 이터레이터가 `reduce`에 전달되고, `reduce`는 요소가 없으면 기본값으로 받은 `true`를 반환하며 요소가 있으면 `true && false`로 한 번 누적하여 `false`를 반환한다.
@@ -1155,15 +1140,6 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
 function some<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
   return accumulateWith((a, b) => a || b, false, a => a, f, iterable);
 }
-
-console.log(every(isOdd, [1, 3, 5]));
-// true
-console.log(every(isOdd, [1, 2, 5]));
-// false
-console.log(some(isOdd, [2, 5, 6]));
-// true
-console.log(some(isOdd, [2, 4, 6]));
-// false
 ```
 
 `accumulateWith` 함수를 사용하여 `every`와 `some` 함수의 공통 로직을 추상화했다. 서로 다른 로직을 인자로 전달하는데, 특히 논리가 담긴 코드를 함수로 전달하여 조립하는 면이 특별하다.
@@ -1219,97 +1195,14 @@ console.log(acc2); // 28
 
 배열의 `concat` 메서드로 큰 배열이 복사되면 메모리 사용량이 증가한다. 새로 만들어진 배열이 모든 요소를 담을 커다란 인덱스 테이블을 생성하고 그 슬롯들을 전부 재할당해야 하기 때문이다. [코드 3-58]에서 배열 `concat`을 사용한 예제는 `acc` 값을 구하는 데만 목적이 있음에도 불구하고 `arr2`라는 새 배열을 만들게 된다. 반면 제너레이터 `concat`을 사용한 예제에서는 배열이 복사되지 않고 필요한 연산만 수행하여 `acc2`를 계산한다.
 
-#### push 대신 concat을 사용하며 생각해 보기
+#### push·unshift 대신 concat을 사용하며 생각해 보기
 
-`push`는 배열 끝에 새로운 요소를 추가하는 메서드로 원본 배열을 변경한다. 제너레이터 `concat`을 사용하면 원본 배열을 변경하지 않고도 같은 작업을 수행할 수 있으며 지연 평가를 활용해 더 효율적으로 처리할 수 있다.
+`push`(뒤에 추가)와 `unshift`(앞에 추가)는 원본 배열을 변경하는 메서드다. 원서는 [코드 3-59]~[코드 3-60a]에서 이 둘을 제너레이터 `concat`으로 대체해 보는데, 요지는 다음과 같다.
 
-```typescript
-// [코드 3-59] push 사용 예제
-const arr = [1, 2, 3, 4, 5];
+- **`push` 대신 `concat(arr, [6, 7])`**: 원본이 변경되지 않으므로, `push`로 추가했다가 `pop`으로 되돌리는 복원 작업 없이 같은 원본으로 여러 조합을 만들 수 있다.
+- **`unshift` 대신 `concat(['1'], arr)`**: `unshift`는 기존 모든 요소의 인덱스를 하나씩 뒤로 이동시키므로(요소가 100개면 100개 모두 이동) 큰 배열일수록 비용이 커진다. `concat`은 인덱스 이동 없이 앞에 연결해 순차적으로 생성한다.
 
-// push를 사용하여 요소를 추가하고 합계를 구하는 예제
-arr.push(6, 7);
-let acc1 = 0;
-for (const a of arr) {
-  acc1 += a;
-}
-console.log(acc1); // 28
-console.log(arr); // [1, 2, 3, 4, 5, 6, 7]
-
-// push로 추가한 요소를 다시 제거 (원본 배열 복원)
-arr.pop();
-arr.pop();
-
-// push를 사용하여 요소를 추가한 후 다시 합계를 구하는 예제
-arr.push(8, 9);
-let acc2 = 0;
-for (const a of arr) {
-  acc2 += a;
-}
-console.log(acc2); // 32
-console.log(arr); // [1, 2, 3, 4, 5, 8, 9]
-
-// push로 추가한 요소를 다시 제거 (원본 배열 복원)
-arr.pop();
-arr.pop();
-```
-
-```typescript
-// [코드 3-59a] concat 사용 예제
-const arr = [1, 2, 3, 4, 5];
-
-// 제너레이터 concat으로 순회를 이어서 할 이터레이터를 만들고 합계를 구하는 예제
-const iter1 = concat(arr, [6, 7]);
-let acc3 = 0;
-for (const a of iter1) {
-  acc3 += a;
-}
-console.log(acc3); // 28
-console.log(arr); // [1, 2, 3, 4, 5]
-
-// 제너레이터 concat으로 다른 요소를 더해 다시 합계를 구하는 예제
-const iter2 = concat(arr, [8, 9]);
-let acc4 = 0;
-for (const a of iter2) {
-  acc4 += a;
-}
-console.log(acc4); // 32
-console.log(arr); // [1, 2, 3, 4, 5]
-```
-
-`push`를 사용한 예제는 원본 배열이 변경되므로, 원본을 다시 사용하려면 `pop`으로 추가한 요소를 되돌려야 하는 번거로움이 있다. 반면 제너레이터 `concat`은 원본 배열을 변경하지 않고 필요한 시점에만 요소를 생성하므로, 프로그램에서 원본 배열을 여러 번 사용해야 하는 상황에 특히 유용하다. 물론 모든 상황에서 제너레이터 `concat`을 사용해야 하는 것은 아니며 `push`가 더 적합한 경우도 있다. 상황에 맞게 적절한 방법을 선택하는 것이 중요하다.
-
-#### unshift 대신 concat을 사용하며 생각해 보기
-
-`unshift`는 배열의 앞부분에 새로운 요소를 추가하는 메서드로 원본 배열을 변경한다. 제너레이터 `concat`을 사용하면 원본 배열을 변경하지 않고 필요한 요소를 앞에 추가하는 작업을 효율적으로 처리할 수 있다.
-
-```typescript
-// [코드 3-60] unshift를 사용하여 요소를 앞에 추가하고 문자열로 합치는 예제
-const arr = ['2', '3', '4', '5'];
-arr.unshift('1');
-console.log(arr); // ['1', '2', '3', '4', '5']
-let result1 = '';
-for (const str of arr) {
-  result1 += str;
-}
-console.log(result1); // '12345'
-```
-
-`unshift` 메서드는 배열의 앞부분에 요소를 추가할 때 기존 모든 요소들의 인덱스를 하나씩 뒤로 이동시켜야 한다. 예를 들어 배열에 100개의 요소가 있다면 새로운 요소를 앞에 추가할 때마다 100개의 요소를 모두 이동시켜야 한다. 따라서 큰 배열일수록 시간 복잡도가 증가한다.
-
-```typescript
-// [코드 3-60a] 제너레이터 concat으로 요소를 앞에 추가하고 문자열로 합치는 예제
-const arr = ['2', '3', '4', '5'];
-const iter = concat(['1'], arr);
-console.log(arr); // ['2', '3', '4', '5']
-let result2 = '';
-for (const str of iter) {
-  result2 += str;
-}
-console.log(result2); // '12345'
-```
-
-반면 제너레이터 `concat`을 사용하면 이러한 인덱스 이동이 필요하지 않다. 대신 새로운 요소를 앞에 연결하는 방식으로 순차적으로 생성하므로 메모리와 성능 면에서 효율적이다.
+물론 모든 상황에서 제너레이터 `concat`을 사용해야 하는 것은 아니며 `push`가 더 적합한 경우도 있다. 상황에 맞게 적절한 방법을 선택하는 것이 중요하다.
 
 #### take와 함께 사용하기
 
