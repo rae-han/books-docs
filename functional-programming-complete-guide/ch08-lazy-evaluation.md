@@ -533,6 +533,8 @@ console.log(result);
 // 3
 ```
 
+동작은 단순하다 — ① 이터레이터를 생성해 순회를 준비하고, ② `while (true)` 안에서 `next()`로 `done`·`value`를 꺼내고, ③ `done`이면 종료, ④ `f(value)`가 참이면 그 값을 `return`(반복문과 함수가 동시에 종료), ⑤ 끝까지 못 찾으면 `undefined`를 반환한다.
+
 이 명령형 find를, 앞서 만든 지연 filter와 나란히 놓고 비교해 보자.
 
 ```typescript
@@ -693,7 +695,7 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {}
 // 3. (true && true && true)
 ```
 
-아래 구현을 보면 위 계획이 그대로 코드로 옮겨진 것을 확인할 수 있다.
+이 전략의 매력은 거의 모든 언어에 적용할 수 있다는 점이다. 특정 언어나 자료구조에 특화된 메서드·문법에 의존하지 않고 대부분의 언어가 지원하는 AND 연산자(`&&`)만 활용하므로, 언어에 종속되지 않으면서도 간결하고 이해하기 쉽다. 아래 구현을 보면 위 계획이 그대로 코드로 옮겨진 것을 확인할 수 있다.
 
 ```typescript
 // every 함수 구현
