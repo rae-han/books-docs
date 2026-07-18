@@ -533,8 +533,6 @@ console.log(result);
 // 3
 ```
 
-동작은 단순하다 — ① 이터레이터를 생성해 순회를 준비하고, ② `while (true)` 안에서 `next()`로 `done`·`value`를 꺼내고, ③ `done`이면 종료, ④ `f(value)`가 참이면 그 값을 `return`(반복문과 함수가 동시에 종료), ⑤ 끝까지 못 찾으면 `undefined`를 반환한다.
-
 이 명령형 find를, 앞서 만든 지연 filter와 나란히 놓고 비교해 보자.
 
 ```typescript
@@ -695,7 +693,7 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {}
 // 3. (true && true && true)
 ```
 
-이 전략의 매력은 거의 모든 언어에 적용할 수 있다는 점이다. 특정 언어나 자료구조에 특화된 메서드·문법에 의존하지 않고 대부분의 언어가 지원하는 AND 연산자(`&&`)만 활용하므로, 언어에 종속되지 않으면서도 간결하고 이해하기 쉽다. 아래 구현을 보면 위 계획이 그대로 코드로 옮겨진 것을 확인할 수 있다.
+아래 구현을 보면 위 계획이 그대로 코드로 옮겨진 것을 확인할 수 있다.
 
 ```typescript
 // every 함수 구현
@@ -712,7 +710,7 @@ console.log(every(isOdd, [1, 2, 5]));
 // false
 ```
 
-`reduce`의 누적 함수로 `a && b`를 전달하여 `(boolean && boolean && boolean)`과 동일한 효과를 냈다. 주로 reduce의 누적 함수로는 더하기(`+`)·빼기(`-`)·병합(`{...a, ...b}`) 유형을 전달하지만, 이렇게 reduce는 어떠한 연산자로든 모든 요소를 누적할 수 있다.
+`reduce`의 누적 함수로 `a && b`를 전달하여 `(boolean && boolean && boolean)`과 동일한 효과를 냈다.
 
 "한 번의 reduce에서 `f(b)`처럼 구현하지 않고 왜 map과 reduce로 나누어 순회하지?"라는 의문이 생길 수 있지만 두 코드의 시간 복잡도는 동일하다. `fx(list).reduce((a, b) => a && f(b), true)`는 순회하며 `f(b)`를 바로 평가하므로 O(n)이고, `fx(list).map(f).reduce(...)`도 지연 이터레이터의 특성상 각 요소가 map을 통과한 직후 즉시 reduce에 소비되므로 한 번만 순회하며 O(n)이다. 반면 지연이 아닌 **일반 배열**의 `array.map(f).reduce(...)`는 map으로 새 배열을 전부 만든 뒤 다시 reduce하므로 두 번 순회한다 — 최종 복잡도는 여전히 O(n)이지만, 중간 배열을 만들지 않는 지연 이터레이터 방식이 메모리 면에서 더 효율적이다.
 
