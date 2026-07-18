@@ -533,15 +533,34 @@ console.log(result);
 // 3
 ```
 
-함수형 방식으로는, 지연 평가를 지원하는 filter에서 `next()`를 한 번만 평가하면 find와 동일한 로직·효율이 된다. 한 번만 평가한다면 `yield`는 사실상 `return`과 같기 때문이다.
+동작은 단순하다 — ① 이터레이터를 생성해 순회를 준비하고, ② `while (true)` 안에서 `next()`로 `done`·`value`를 꺼내고, ③ `done`이면 종료, ④ `f(value)`가 참이면 그 값을 `return`(반복문과 함수가 동시에 종료), ⑤ 끝까지 못 찾으면 `undefined`를 반환한다.
+
+이 명령형 find를, 앞서 만든 지연 filter와 나란히 놓고 비교해 보자.
+
+```typescript
+// 지연 평가를 지원하는 filter 함수
+function* filter<A>(f: (a: A) => boolean, iterable: Iterable<A>): IterableIterator<A> {
+  const iterator = iterable[Symbol.iterator]();
+  while (true) {
+    const { value, done } = iterator.next();
+    if (done) break;
+    if (f(value)) yield value;
+  }
+}
+```
+
+두 함수는 딱 두 군데만 다르다 — `*`와 `yield`다. filter는 제너레이터라 `f(value)`가 참일 때 `yield`로 값을 내보내고 이터레이터가 끝날 때까지 계속 순회할 수 있는 반면, find는 일반 함수라 `return`으로 값을 반환하며 즉시 종료한다. `Array.prototype.filter` 같은 즉시 평가 filter는 모든 요소를 순회해 배열을 만들지만, 지연 filter는 사용하는 쪽에서 원하는 만큼만 실행시킬 수 있다. 즉 지연 filter의 `next()`를 **한 번만** 평가하면 find와 동일한 로직·효율이 된다. 한 번만 평가한다면 `yield`는 사실상 `return`과 같기 때문이다.
 
 ```typescript
 // 함수형 코드로 작성한 find (1)
 function find<A>(f: (a: A) => boolean, iterable: Iterable<A>): A | undefined {
   return filter(f, iterable).next().value;
+  // 구조 분해 할당으로 구현할 수도 있다 — 이터러블 프로토콜에 따라 next()가 한 번만 실행된다.
+  // const [head] = filter(f, iterable);
+  // return head;
 }
 
-// 함수형 코드로 작성한 find (2)
+// 함수형 코드로 작성한 find (2) — head 헬퍼를 분리해 모듈성·재사용성을 높인 버전
 const head = <A>(
   iterable: Iterable<A>
 ): A | undefined => iterable[Symbol.iterator]().next().value;
@@ -551,14 +570,16 @@ const find = <A>(
   iterable: Iterable<A>
 ): A | undefined => head(filter(f, iterable));
 
-// 함수형 코드로 작성한 find (3)
+// 함수형 코드로 작성한 find (3) — FxIterable 체이닝 (to는 이터러블을 변환 함수에 넘긴다. 10장 참조)
 const find = <A>(f: (a: A) => boolean, iterable: Iterable<A>): A | undefined =>
   fx(iterable)
     .filter(f)
     .to(head);
 ```
 
-세 가지 방식 모두 명령형 find와 동일한 효율을 제공하면서도 코드가 간결하다. 각 패러다임으로 작성한 코드는 서로를 완전히 대체할 수 있으며, 필요하다면 섞어서 사용할 수도 있다.
+(1)은 filter로 준비만 해 둔 이터레이터의 `next()`를 한 번만 실행해 첫 요소를 찾는 즉시 filter의 반복문과 함수를 종료한다. (2)는 첫 요소를 반환하는 `head`를 분리해 함수의 역할을 나눴고, (3)은 `fx` 체이닝으로 같은 일을 표현한다(`FxIterable`의 정의는 10장에서 다룬다).
+
+세 가지 방식 모두 명령형 find와 동일한 효율을 제공하면서도 코드가 간결하다. map·filter·take는 제너레이터(명령형)나 이터레이터 객체(OOP)로 만드는 것이 이해하기 쉽지만, find·every·some처럼 **결과를 만드는 함수**는 이미 마련된 리스트 프로세싱 함수의 조합(FP)만으로 만들 수 있다 — 명령형(IP)·객체지향(OOP)·함수형(FP) 세 방식이 서로를 1:1:1로 대체할 수 있고, 필요하다면 하나의 함수 안에서도 섞어서 사용할 수 있다.
 
 ### 8.3 로그로 확인하는 효율 차이 — filter vs L.filter
 
@@ -645,9 +666,13 @@ console.log(dessert2.name);
 // Chocolate
 ```
 
-①번 방식(옵셔널 체이닝)은 값이 실제로 없을 때도 런타임 에러 없이 `undefined` 처리된다. 반면 ②번 방식(Non-null 단언)은 값이 없는데도 존재한다고 단언하므로 실제로 값이 없다면 런타임 에러가 발생할 수 있다.
+**①**은 `dessert`가 없을 수 있음을 알고 안전하게 접근하는 방식이다. `dessert?.name`은 `dessert`가 `undefined`면 `undefined`를, 아니면 `dessert.name`을 반환하고, `??`가 그 결과가 `undefined`일 때 기본값 `'TAT'`를 제공한다 — "못 찾으면 `'TAT'`로 대체하는 것이 의도한 동작"임을 코드로 표현한 것이다. **②**는 반대로 "`dessert2`가 없는 상황은 프로그램 설계상 있을 수 없으니, 만약 없다면 에러가 숨지 말고 전파되어야 한다"고 언어와 소통하는 방식이다.
 
-②번 방식은 개발자가 '이 로직에서는 값이 반드시 존재하도록 설계했다'는 의도를 언어에 전달하는 수단이다. '이곳에서는 `null`이나 `undefined`가 나타나지 않는 상황이며, 만약 실제로 값이 없다면 그것은 설계가 어긋난 상황이므로 런타임 에러가 발생해야만 한다'는 의도의 표현이다. 따라서 에러가 발생한다면 `!`를 없앨 것이 아니라 런타임에서 값을 찾지 못하는 이유를 찾아 해결해야 한다.
+①번 방식(옵셔널 체이닝)은 값이 실제로 없을 때도 런타임 에러 없이 `undefined` 처리된다. 반면 ②번 방식(Non-null 단언)은 값이 없는데도 존재한다고 단언하므로 실제로 값이 없다면 런타임 에러가 발생할 수 있다. 그렇다면 ②는 피해야 하는 방법일까? 그저 컴파일을 통과하기 위한 기법일까?
+
+②번 방식은 개발자가 '이 로직에서는 값이 반드시 존재하도록 설계했다'는 의도를 언어에 전달하는 수단이다. '이곳에서는 `null`이나 `undefined`가 나타나지 않는 상황이며, 만약 실제로 값이 없다면 그것은 설계가 어긋난 상황이므로 런타임 에러가 발생해야만 한다'는 의도의 표현이다. 따라서 에러가 발생한다면 `!`를 없앨 것이 아니라 런타임에서 값을 찾지 못하는 이유를 찾아 해결해야 한다(예: API의 문제인지, DB에 값이 잘못 저장되는지, 어떤 경우에 DOM에 해당 엘리먼트가 없는지 등).
+
+타입스크립트는 이러한 연산자들과 함께 `try...catch` 구문으로 안전한 합성·에러 전파·정확한 에러 처리를 지원하며, IDE는 타입 시스템을 바탕으로 '옵셔널 체이닝으로 안전하게 접근해야 하는지' 아니면 'Non-null 단언이 필요한 상황인지' 판단하도록 돕는다. 이를 활용하면 런타임 에러가 될 수 있는 부분을 코드 작성 단계에서 미리 감지하고, 원하는 상황(안전한 합성 또는 예외 발생)에 맞춰 명확히 표현할 수 있다.
 
 ## 9. every와 some
 
@@ -664,6 +689,15 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {}
 함수형 프로그래밍에서는 리스트를 단계별로 변환하며 최종 결과를 도출하는 방식으로 사고한다. 먼저 모든 요소를 `boolean`으로 변환한 뒤 `&&`로 모두 연결하면 원하는 결과를 얻을 수 있다.
 
 ```typescript
+// every 함수 구현 전략
+// 1. [1, 3, 5]
+// 2. [isOdd(1), isOdd(3), isOdd(5)]
+// 3. (true && true && true)
+```
+
+이 전략의 매력은 거의 모든 언어에 적용할 수 있다는 점이다. 특정 언어나 자료구조에 특화된 메서드·문법에 의존하지 않고 대부분의 언어가 지원하는 AND 연산자(`&&`)만 활용하므로, 언어에 종속되지 않으면서도 간결하고 이해하기 쉽다. 아래 구현을 보면 위 계획이 그대로 코드로 옮겨진 것을 확인할 수 있다.
+
+```typescript
 // every 함수 구현
 function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
   return fx(iterable)
@@ -678,9 +712,18 @@ console.log(every(isOdd, [1, 2, 5]));
 // false
 ```
 
-`reduce`의 누적 함수로 `a && b`를 전달하여 `(boolean && boolean && boolean)`과 동일한 효과를 냈다. "한 번의 reduce에서 `f(b)`처럼 구현하지 않고 왜 map과 reduce로 나누어 순회하지?"라는 의문이 생길 수 있지만, 지연 이터레이터의 특성상 각 요소가 map을 통과한 직후 즉시 reduce에 소비되므로 실제로는 한 번만 순회하며 O(n) 시간이 걸린다.
+`reduce`의 누적 함수로 `a && b`를 전달하여 `(boolean && boolean && boolean)`과 동일한 효과를 냈다. 주로 reduce의 누적 함수로는 더하기(`+`)·빼기(`-`)·병합(`{...a, ...b}`) 유형을 전달하지만, 이렇게 reduce는 어떠한 연산자로든 모든 요소를 누적할 수 있다.
 
-`some`도 같은 방식이다. 모든 값을 `boolean`으로 만든 후 `||`로 묶으면 된다.
+"한 번의 reduce에서 `f(b)`처럼 구현하지 않고 왜 map과 reduce로 나누어 순회하지?"라는 의문이 생길 수 있지만 두 코드의 시간 복잡도는 동일하다. `fx(list).reduce((a, b) => a && f(b), true)`는 순회하며 `f(b)`를 바로 평가하므로 O(n)이고, `fx(list).map(f).reduce(...)`도 지연 이터레이터의 특성상 각 요소가 map을 통과한 직후 즉시 reduce에 소비되므로 한 번만 순회하며 O(n)이다. 반면 지연이 아닌 **일반 배열**의 `array.map(f).reduce(...)`는 map으로 새 배열을 전부 만든 뒤 다시 reduce하므로 두 번 순회한다 — 최종 복잡도는 여전히 O(n)이지만, 중간 배열을 만들지 않는 지연 이터레이터 방식이 메모리 면에서 더 효율적이다.
+
+`some`도 같은 방식이다. `some`은 `f`가 하나라도 `true`를 반환하면 `true`를, 모든 요소가 `false`면 `false`를 반환해야 한다(하스켈의 `any :: (a -> Bool) -> [a] -> Bool`에 해당). 모든 값을 `boolean`으로 만든 후 `||`로 묶으면 된다.
+
+```typescript
+// some 함수 구현 전략
+// 1. [2, 3, 4]
+// 2. [isOdd(2), isOdd(3), isOdd(4)]
+// 3. (false || true || false)
+```
 
 ```typescript
 // some 함수 구현
@@ -695,6 +738,8 @@ console.log(some(isOdd, [2, 5, 6]));
 console.log(some(isOdd, [2, 4, 6]));
 // false
 ```
+
+some이나 every는 더 간결하게 구현할 수도 있다 — 조건과 일치하는 값의 index를 구해 -1과 비교하거나, 길이 1짜리 배열을 만들어 `length === 0`을 비교하는 식이다. 하지만 그런 방법은 고차 함수를 쓰더라도 언어의 문법·표준 라이브러리에 의존적이고, '어떻게' 동작할 것인가를 쓰는 명령형 느낌이 남는다. 반면 위 구현은 '모든(어떤) 요소가 조건에 맞는지 검사해 만족 여부를 확인'한다는 **'무엇'**이 코드 문맥에 그대로 표현되어, 읽기 좋고 나중에 다시 읽어도 쉽게 이해된다.
 
 ### 9.2 지연 평가에 기반한 break 로직 끼워 넣기
 
@@ -720,7 +765,9 @@ function every<A>(f: (a: A) => boolean, iterable: Iterable<A>): boolean {
 }
 ```
 
-some에서는 `.filter(a => a).take(1)`을 통해 `true`를 하나라도 만나면 더 이상 순회하지 않는다. every에서는 `.filter(a => !a).take(1)`을 통해 `false`를 하나라도 만나면 순회를 종료한다. 반복문을 `if () break;`로 종료한 것과 같은 효율이 됐다 — 지연 평가 위에서는 **break조차 함수(filter + take)의 조합으로 끼워 넣을 수 있다.**
+some에서는 `.filter(a => a).take(1)`이 `true`를 하나라도 만나면 더 이상 순회하지 않고 **요소가 최대 하나인 이터레이터**를 만들어 reduce에 전달한다. `true`가 하나도 없으면 빈 이터레이터가 전달되고, reduce는 요소가 없으면 기본값 `false`를, 있으면 `false || true`로 한 번 누적해 `true`를 반환한다. every도 같은 원리다 — `.filter(a => !a).take(1)`이 `false`를 만나는 즉시 순회를 멈추고, reduce는 빈 이터레이터면 기본값 `true`를, 아니면 `true && false`로 한 번 누적해 `false`를 반환한다.
+
+반복문을 `if () break;`로 종료한 것과 같은 효율이 됐다 — 지연 평가 위에서는 **break조차 함수(filter + take)의 조합으로 끼워 넣을 수 있다.** find처럼 every와 some도 명령형 없이 리스트 프로세싱 함수만의 합성으로 만들 수 있음을 확인했다.
 
 ### 9.3 공통 로직을 함수형으로 추상화하기
 
@@ -879,7 +926,60 @@ console.log([...iter]);
 // [1, 2, 3, 4, 5]
 ```
 
-제너레이터 concat은 원본 배열을 변경하지 않고 필요한 시점에만 요소를 생성하므로, 원본 배열을 여러 번 사용해야 하는 상황에 특히 유용하다. take나 some과 함께 사용하면 필요한 만큼만 처리할 수 있어 효율적이다.
+concat은 여러 이터러블을 받아 각 요소를 순차적으로 생성한다 — 실제로 배열을 합치는 것이 아니라 **순회를 이어서 수행**하는 것이다. 배열 메서드와의 차이를 직접 비교해 보자.
+
+```typescript
+// 배열 concat vs 제너레이터 concat
+const arr = [1, 2, 3, 4, 5];
+
+// 배열 concat: 새로운 배열을 실제로 생성한다
+const arr2 = arr.concat([6, 7, 8, 9, 10]);
+console.log(arr2); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let acc = 0;
+for (const a of take(7, arr2)) {
+  acc += a;
+}
+console.log(acc); // 28
+
+// 제너레이터 concat: 아무 일도 일어나지 않은 상태로 대기
+const iter = concat(arr, [6, 7, 8, 9, 10]);
+console.log(iter); // concat {<suspended>}
+let acc2 = 0;
+for (const a of take(7, iter)) {
+  acc2 += a;
+}
+console.log(acc2); // 28
+```
+
+배열 concat은 모든 요소를 담을 인덱스 테이블을 새로 만들고 슬롯을 전부 재할당한다 — 위 예제는 `acc`를 구하는 것이 목적일 뿐인데도 `arr2`라는 새 배열이 생긴다. 제너레이터 concat은 배열을 복사하지 않고 필요한 연산만 수행해 `acc2`를 계산한다.
+
+같은 발상으로 **push·unshift 같은 원본 변경 메서드도 concat으로 대체**할 수 있다.
+
+```typescript
+// push 대신 concat — 원본을 변경하지 않으므로 pop으로 복원할 필요가 없다
+const arr = [1, 2, 3, 4, 5];
+const iter1 = concat(arr, [6, 7]);   // arr.push(6, 7) 대신
+let acc3 = 0;
+for (const a of iter1) {
+  acc3 += a;
+}
+console.log(acc3); // 28
+console.log(arr); // [1, 2, 3, 4, 5] — 원본 그대로
+
+// unshift 대신 concat — 기존 요소들의 인덱스를 뒤로 밀지 않는다
+const strs = ['2', '3', '4', '5'];
+const iter2 = concat(['1'], strs);   // strs.unshift('1') 대신
+let result = '';
+for (const str of iter2) {
+  result += str;
+}
+console.log(result); // '12345'
+console.log(strs); // ['2', '3', '4', '5'] — 원본 그대로
+```
+
+push는 원본을 변경하므로 원본을 다시 쓰려면 pop으로 되돌려야 하는 번거로움이 있고, unshift는 앞에 추가할 때마다 기존 모든 요소의 인덱스를 하나씩 뒤로 이동시켜 배열이 클수록 비용이 커진다. 제너레이터 concat은 원본을 그대로 두고 필요한 시점에만 요소를 생성하므로, 원본 배열을 여러 번 사용해야 하는 상황에 특히 유용하다. 물론 모든 상황에서 concat이 정답인 것은 아니며 push가 더 적합한 경우도 있다 — 상황에 맞게 선택하면 된다.
+
+take나 some과 함께 사용하면 필요한 만큼만 처리할 수 있어 더욱 효율적이다. some은 조건을 만족하는 첫 요소를 찾는 즉시 순회를 중지하므로 불필요한 계산을 하지 않는다.
 
 ```typescript
 // take와 concat
@@ -887,7 +987,7 @@ const arr1 = [1, 2, 3, 4, 5];
 const arr2 = [6, 7, 8, 9, 10];
 const iter = take(3, concat(arr1, arr2));
 console.log([...iter]); // [1, 2, 3]
-// arr2는 순회하지도 않고 종료
+// arr2는 순회하지도 않고 종료 — concat을 하지 않은 것이나 다름없다
 
 // some과 concat
 const arr = [3, 4, 5];
@@ -897,6 +997,8 @@ const iter2 = concat([1, 2], arr);
 console.log(some(n => n < 3, iter2));
 // true
 ```
+
+값 변화를 직접 적용하는 대신 지연 평가로 리스트를 처리하는 이런 접근은 프로세싱을 효율적이고 유연하게 만들며 다양한 아이디어로 확장할 수 있다.
 
 ## 요약
 
