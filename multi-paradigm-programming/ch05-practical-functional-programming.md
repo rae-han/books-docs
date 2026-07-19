@@ -271,6 +271,8 @@ console.log(calcTotalPrice(products));     // 모든 상품 총 가격: 561500
 console.log(calcSelectedPrices(products)); // 선택된 상품의 총 가격: 214500
 ```
 
+같은 로직을 명령형으로 작성하면(원서 [코드 5-12]) 중첩 `for`문과 조건문, 임시 변수 선언과 `push` 누적이 하나의 긴 흐름으로 이어져 각 단계의 의도가 드러나지 않고, 일부만 수정·재사용·테스트하기도 어렵다. 리스트 프로세싱은 `filter`·`map`·`reduce`로 각 작업이 분리되어 있어 이런 문제를 자연스럽게 피한다.
+
 ### 1.5 일관된 접근 방식으로 문제 해결하기
 
 지금까지 함수형 프로그래밍을 활용하여 다양한 데이터 구조를 처리하는 방법을 살펴보았다. 함수형 프로그래밍의 이점을 정리하면 다음과 같다.
@@ -522,6 +524,8 @@ console.log(collatzCount(5)); // 5
 
 이 코드는 '콜라츠 작업을 1이 될 때까지 수행하고 횟수를 반환한다'는 문제 정의를 거의 그대로 표현하고 있다. 또한 시간 복잡도 측면에서도 효율적으로 작성되었다. 지연 평가되는 이터레이터를 `find`로 필요한 만큼만 소비하여 처리하기 때문이다.
 
+검증 관점에서도 이점이 있다. `count`, `repeatApply`, `nextCollatzValue`, `zip`, `find`, `head` 같은 구성 요소는 각각 하는 일이 단순해서 개별적으로 테스트하고 검증하기 쉽다. 그리고 `collatzCount`는 이 함수들을 상태 변화나 추가 조건문 없이 순차적으로 조합한 하나의 표현식일 뿐이므로, 각 함수가 검증되어 있다면 조합이 실패할 가능성은 매우 낮다. 이처럼 코드 동작에 대한 신뢰를 빠르게 확보할 수 있다는 점은 함수형 프로그래밍이 개발 생산성을 높이는 중요한 요소다.
+
 ### 2.6 break를 대신하는 take, takeWhile, takeUntilInclusive
 
 `break`는 명령형 코드에서 반복문의 불필요한 반복을 줄이고 시간 복잡도를 낮추기 위해 사용된다. 함수형 프로그래밍에서도 이와 비슷한 역할을 하는 `take`, `find`, `some`, `every`, `head` 등의 함수들이 존재한다.
@@ -617,7 +621,7 @@ const StoreDB = {
 };
 ```
 
-결제 내역을 가져오는 코드를 단계적으로 발전시켜 보자. 먼저 언제 끝날지 모르는 작업을 무한 이터러블(`range(Infinity)`)로 표현하고 `takeUntilInclusive`로 효율적으로 중단한다.
+원서는 이 코드를 단계적으로 발전시킨다(원서 [코드 5-31]~[코드 5-35]). 먼저 주석으로 '1. 결제 내역 가져오기 → 2. 주문 데이터와 매칭 → 3. 누락 결제 취소'라는 전체 계획을 세우고, 언제 끝날지 모르는 반복 작업을 무한 이터러블 `range(1, Infinity)`로 표현한 뒤 임시 `take(5)`와 가짜 데이터로 뼈대부터 검증한다. 이후 `PgApi.getPayments`를 연결하고 `takeWhile(({ length }) => length > 0)`을 적용하는데, `takeWhile`은 조건이 거짓이 되는 요소까지 소비하므로 데이터가 없는 페이지에 한 번 더 요청이 발생한다(4번 요청). 한 페이지의 최대 결제 내역이 3개라는 사실을 이용해 `takeUntilInclusive(({ length }) => length < 3)`으로 바꾸면 처음으로 3건 미만이 반환되는 순간 즉시 멈춘다(3번 요청). 완성된 코드는 다음과 같다.
 
 ```typescript
 // [코드 5-36] takeUntilInclusive 적용
@@ -724,7 +728,7 @@ const payments = await
 
 ### 3.7 병렬성으로 효율 높이기
 
-총 몇 페이지를 요청해야 하는지 알면 병렬 처리를 활용하여 요청 시간을 단축할 수 있다. `concurrent` 메서드를 추가하면 인자로 전달받은 수만큼 동시에 이터레이터를 소비한다.
+총 몇 페이지를 요청해야 하는지 알면 병렬 처리를 활용하여 요청 시간을 단축할 수 있다. `concurrent` 메서드를 추가하면 인자로 전달받은 수만큼 동시에 이터레이터를 소비한다. 예를 들어 1초씩 걸리는 비동기 작업 6개를 순차로 소비하면 6초가 걸리지만, `concurrent(2)`를 추가하면 3초, `concurrent(4)`면 2초로 줄어든다(원서 [코드 5-46]~[코드 5-47]).
 
 ```typescript
 // [코드 5-48] 병렬 요청
@@ -736,6 +740,8 @@ const payments = await
     .flat()
     .toArray();
 ```
+
+[코드 5-36]에서는 `getPayments` 3회를 순차 수행해 총 1500ms 정도가 걸렸지만, [코드 5-48]은 50ms가 걸리는 `getPageCount` 1회 후 `getPayments` 3회를 동시에 실행해 약 550ms에 끝난다. 순차 처리는 각 응답 시간의 합이 전체 시간이 되고, 병렬 처리는 가장 오래 걸리는 요청 하나가 전체 시간을 결정하기 때문이다.
 
 요청 제한에 의해 동시에 최대 2개의 요청으로 제한해야 한다면 `concurrent(2)`를 전달하면 된다.
 
@@ -787,39 +793,52 @@ console.log(queryObject);
 // {name: "Marty Yoo", age: "41", city: "Seoul"}
 ```
 
+`join`이나 `Object.fromEntries`, `Array.fromAsync` 같은 헬퍼 함수들도 본질적으로는 `reduce`로 구현할 수 있는 동작을 추상화한 함수다. 변형-누적은 그만큼 근본적인 패턴이다.
+
 ### 4.2 중첩-변형 패턴
 
 중첩-변형(*nested-map*) 패턴은 중첩된 데이터 구조를 처리하거나 데이터의 계층을 따라 각 수준에서 변형을 수행할 때 사용하는 패턴이다. `map(map(f))`처럼 `map` 안에서 다시 `map`을 호출하는 경우에 적합하다.
 
 ```typescript
-// [코드 5-56] 달력 생성 (중첩-변형 패턴 활용)
-import { pipe, flat, range, chunk, toArray, map, join } from "@fxts/core";
-
-const generateCalendar = (prevMonthEnd: Date, currentMonthEnd: Date) =>
-  pipe(
-    flat([
-      getMonthEndDates(prevMonthEnd),                       // 지난달 마지막 날짜들
-      range(1, currentMonthEnd.getDate() + 1),              // 이번달 1일~마지막날
-      range(1, 6 - currentMonthEnd.getDay() + 1)            // 다음달 채우기
-    ]),
-    chunk(7),
-    toArray,
-  );
+// [코드 5-56] 달력 출력 포맷팅 (원서 달력 생성 예제에서 발췌)
+import { pipe, map, join } from "@fxts/core";
 
 const formatCalendar = (calendarWeeks: number[][]) =>
   pipe(
     calendarWeeks,
-    map(map(day => (day < 10 ? ` ${day}` : `${day}`))),   // 중첩-변형
-    map(join(' ')),                                         // 각 주를 문자열로
-    join('\n'),                                             // 줄바꿈으로 연결
+    map(map(day => (day < 10 ? ` ${day}` : `${day}`))),   // 중첩-변형: 안쪽 요소(날짜)를 두 자리 문자열로
+    map(join(' ')),                                         // 각 주(안쪽 배열)를 하나의 문자열로 누적
+    join('\n'),                                             // 주 단위 문자열들을 줄바꿈으로 누적
   );
+
+console.log(formatCalendar([
+  [29, 30, 1, 2, 3, 4, 5],
+  [6, 7, 8, 9, 10, 11, 12],
+]));
+// 29 30  1  2  3  4  5
+//  6  7  8  9 10 11 12
 ```
+
+원서 [코드 5-56]은 여기에 `range`로 지난달·이번달·다음달 날짜를 만들고 `flat`으로 평탄화한 뒤 `chunk(7)`로 주 단위로 재분할하는 `generateCalendar`를 합성하여 완전한 달력을 생성한다. 2차원 배열의 안쪽 요소를 `map(map(f))`으로 변형하고 `map(join(' '))`과 `join('\n')`으로 레벨마다 차례로 누적해 올라오는 구조가 중첩-변형 패턴의 전형이다.
 
 ### 4.3 반복자-효과 패턴
 
 반복자-효과(*iterator-forEach*) 패턴은 이터레이터를 만들어 둔 후 지연 평가를 통해 데이터를 소비하며 부수적인 효과(`forEach`)를 발생시키는 패턴이다. 작업 자체가 목적이 되는 경우에 적합하다.
 
 `forEach`는 반환 값이 없는 메서드로 명시적으로 부수 효과를 수반하는 동작을 수행하기 위해 설계되었다. 데이터의 순수한 변환은 `map`, `filter`, `reduce`에서 처리되고 DOM 삭제, 파일 저장, 로그 작성, API 호출 등의 부수 효과는 `forEach` 내에서 처리된다.
+
+때로는 부수 효과를 일으키면서도 실행 결과를 반환해야 하는 경우가 있다. 이때는 `mapEffect` 같은 함수명을 사용하여, `map`과 유사하게 동작하지만 부수 효과를 포함한 동작임을 이름으로 명확히 표현할 수 있다.
+
+```typescript
+// [코드 5-59a] 결제 취소 — 부수 효과 구간을 이름으로 드러내기
+await fx(payments)
+  .toAsync()
+  .reject(p => ordersMapById.has(p.store_order_id))  // ordersMapById: orders를 Map 해시로 변환(3.3절)
+  .mapEffect(p => PgApi.cancelPayment(p.pg_uid))     // 부수 효과 + 결과 반환
+  .forEach(res => console.log(res.message));         // 부수 효과만
+```
+
+이렇게 순수한 변환(`map`·`filter`·`reduce`)과 부수 효과(`forEach`·`mapEffect`)를 구분하면 어떤 코드 블록에서 어떤 변화가 일어나는지 예측하기 쉬워 디버깅과 유지보수가 용이해진다. 부수 효과를 의도적으로 허용하되 그 구간을 이름으로 명확히 구분하는 것 — 순수 함수와 부수 효과의 격리라는 함수형 프로그래밍의 철학을 실현하는 실용적인 도구다.
 
 ### 4.4 필터-중단 패턴
 
