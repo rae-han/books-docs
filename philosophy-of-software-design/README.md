@@ -1,127 +1,106 @@
-# A Philosophy of Software Design
+# A Philosophy of Software Design (소프트웨어 설계의 철학)
 
-**저자**: John Ousterhout (Stanford University)
-**출판**: 2nd Edition, 2021, Yaknyam Press
+> *A Philosophy of Software Design* (2nd Edition, John Ousterhout, Yaknyam Press, 2021)
 
----
+스탠퍼드 CS190 소프트웨어 설계 수업을 기반으로 한 설계 철학서. 단 하나의 전제 — **소프트웨어 설계의 가장 근본적인 문제는 복잡성(complexity) 관리다** — 에서 출발해, 언어·프레임워크가 아니라 "좋은 설계란 무엇인가"라는 근본 질문에 집중한다.
 
-## 책 소개
+## 책 정보
 
-"A Philosophy of Software Design"은 스탠포드 대학교 CS190 소프트웨어 설계 수업을 기반으로 한 소프트웨어 설계 철학서이다. 이 책의 핵심 전제는 단순하다:
+| 항목 | 내용 |
+|------|------|
+| **저자** | 존 아우스터하우트(John Ousterhout) — Tcl 창시자, Raft 합의 알고리즘 공동 개발자 |
+| **출판** | Yaknyam Press, 2nd Edition 2021 (한국어판 없음 — 원서 학습) |
+| **분량** | 200쪽 미만, 22개 챕터 |
+| **대상 독자** | 설계 판단 기준을 세우고 싶은 모든 개발자. 코드 리뷰어에게 특히 유용 |
 
-> **소프트웨어 설계의 가장 근본적인 문제는 복잡성(complexity)을 관리하는 것이다.**
+## 개요
 
-대부분의 프로그래밍 서적이 특정 언어, 프레임워크, 패턴을 다루는 반면, 이 책은 **"좋은 설계란 무엇인가?"** 라는 근본적인 질문에 집중한다. 저자 John Ousterhout는 Tcl 언어 창시자이자 Raft 합의 알고리즘의 공동 개발자로, 수십 년간의 소프트웨어 개발 경험과 교육 경험에서 추출한 설계 원칙들을 제시한다.
+각 챕터가 하나의 명확한 원칙을 다루는 짧은 책이다. 챕터마다 원칙을 위반하는 징후인 **Red Flag**를 명시해 코드 리뷰·설계 검토의 체크리스트로 쓸 수 있게 했다.
 
-### 이 책의 특징
-
-- **짧고 명확하다**: 200페이지 미만으로, 각 챕터가 하나의 명확한 원칙을 다룬다.
-- **Red Flag를 제시한다**: 각 원칙을 위반하는 징후(Red Flag)를 구체적으로 명시하여, 코드 리뷰나 설계 검토 시 실용적인 체크리스트로 활용할 수 있다.
-- **논쟁적이다**: 일부 주장(예: Clean Code의 짧은 메서드 철학에 대한 반론)은 소프트웨어 커뮤니티에서 활발한 논쟁을 불러일으켰다. 동의 여부를 떠나 설계에 대해 깊이 생각하게 만든다.
-
----
-
-## 이 저장소의 목적
-
-이 저장소는 "A Philosophy of Software Design"의 내용을 챕터별로 상세하게 정리한 학습 자료이다. 각 챕터의 핵심 원칙, Red Flag, 예시를 책을 대체할 수 있을 정도로 충실하게 담고 있으며, 다음과 같은 용도로 활용할 수 있다:
-
-- 소프트웨어 설계 원칙을 체계적으로 학습하는 교재
-- 코드 리뷰 시 설계 판단의 기준으로 참조하는 가이드
-- 팀 내 설계 토론과 스터디 자료
-
----
+일부 주장은 논쟁적이다 — 클린 코드의 "짧은 메서드" 철학에 대한 반론(깊은 모듈이 우선), "주석을 먼저 쓰라"는 강한 입장, TDD·애자일에 대한 비평 등. 동의 여부와 무관하게 설계에 대해 깊이 생각하게 만드는 것이 이 책의 가치다.
 
 ## 목차
 
-### Part I: 복잡성의 본질
-- [Chapter 1: Introduction (모든 것은 복잡성에 관한 것이다)](ch01-introduction.md)
-- [Chapter 2: The Nature of Complexity (복잡성의 본질)](ch02-the-nature-of-complexity.md)
+### Part I: 복잡성의 본질 (Ch 1-2)
 
-### Part II: 설계 원칙
-- [Chapter 3: Working Code Isn't Enough (동작하는 코드만으로는 부족하다)](ch03-working-code-isnt-enough.md)
-- [Chapter 4: Modules Should Be Deep (모듈은 깊어야 한다)](ch04-modules-should-be-deep.md)
-- [Chapter 5: Information Hiding and Leakage (정보 은닉과 정보 누출)](ch05-information-hiding-and-leakage.md)
-- [Chapter 6: General-Purpose Modules are Deeper (범용 모듈이 더 깊다)](ch06-general-purpose-modules-are-deeper.md)
-- [Chapter 7: Different Layer, Different Abstraction (계층이 다르면 추상화도 달라야 한다)](ch07-different-layer-different-abstraction.md)
-- [Chapter 8: Pull Complexity Downwards (복잡성을 아래로 끌어내려라)](ch08-pull-complexity-downwards.md)
-- [Chapter 9: Better Together Or Better Apart? (합치는 게 나은가, 분리하는 게 나은가?)](ch09-better-together-or-better-apart.md)
-- [Chapter 10: Define Errors Out Of Existence (에러를 정의 밖으로 내보내라)](ch10-define-errors-out-of-existence.md)
-- [Chapter 11: Design it Twice (두 번 설계하라)](ch11-design-it-twice.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [Introduction](ch01-introduction.md) | 복잡성 · 점진적 설계 | 설계의 근본 문제는 복잡성 — 책 전체의 문제 제기 |
+| 2 | [The Nature of Complexity](ch02-the-nature-of-complexity.md) | 복잡성 정의 · 변경 증폭 · 인지 부하 · 알려지지 않은 미지 | 복잡성의 3가지 증상과 2가지 원인(의존성·모호성) — 복잡성은 조금씩 쌓인다 |
 
-### Part III: 주석과 이름
-- [Chapter 12: Why Write Comments? The Four Excuses (왜 주석을 써야 하는가)](ch12-why-write-comments.md)
-- [Chapter 13: Comments Should Describe Things That Aren't Obvious (주석은 명확하지 않은 것을 설명해야 한다)](ch13-comments-should-describe-things-that-arent-obvious.md)
-- [Chapter 14: Choosing Names (이름 짓기)](ch14-choosing-names.md)
-- [Chapter 15: Write The Comments First (주석을 먼저 작성하라)](ch15-write-the-comments-first.md)
+### Part II: 설계 원칙 (Ch 3-11)
 
-### Part IV: 기존 코드와 일관성
-- [Chapter 16: Modifying Existing Code (기존 코드 수정하기)](ch16-modifying-existing-code.md)
-- [Chapter 17: Consistency (일관성)](ch17-consistency.md)
-- [Chapter 18: Code Should be Obvious (코드는 명확해야 한다)](ch18-code-should-be-obvious.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 3 | [Working Code Isn't Enough](ch03-working-code-isnt-enough.md) | 전략적 프로그래밍 · 전술적 프로그래밍 | '일단 돌아가게'(전술)가 아니라 좋은 설계(전략)에 10~20%를 투자하라 |
+| 4 | [Modules Should Be Deep](ch04-modules-should-be-deep.md) | 깊은 모듈 · 얕은 모듈 · 인터페이스와 구현 | 이 책의 중심 개념 — 최고의 모듈은 단순한 인터페이스 뒤에 강력한 기능을 숨긴다 |
+| 5 | [Information Hiding and Leakage](ch05-information-hiding-and-leakage.md) | 정보 은닉 · 정보 누출 · 시간적 분해 | 설계 결정을 모듈 안에 가두어라 — 실행 순서로 모듈을 나누면 정보가 샌다 |
+| 6 | [General-Purpose Modules are Deeper](ch06-general-purpose-modules-are-deeper.md) | 범용 모듈 · 다소 범용적 설계 | 지금 필요보다 '다소 범용'으로 만들면 인터페이스가 오히려 단순해진다 |
+| 7 | [Different Layer, Different Abstraction](ch07-different-layer-different-abstraction.md) | 계층별 추상화 · 통과 메서드 · 데코레이터 | 인접 계층의 추상화가 같다면 설계 문제의 신호 |
+| 8 | [Pull Complexity Downwards](ch08-pull-complexity-downwards.md) | 복잡성 하향 · 설정 매개변수 | 사용자를 편하게, 복잡성은 구현(아래)이 흡수하게 |
+| 9 | [Better Together Or Better Apart?](ch09-better-together-or-better-apart.md) | 결합과 분리 · 특수-범용 혼합 | 무조건 잘게 나누는 게 답이 아니다 — 합칠지 나눌지의 판단 기준 |
+| 10 | [Define Errors Out Of Existence](ch10-define-errors-out-of-existence.md) | 오류 정의 제거 · 예외 마스킹 · 예외 통합 | 예외 처리보다 예외가 아예 생기지 않는 의미론을 정의하라 (unset 예제) |
+| 11 | [Design it Twice](ch11-design-it-twice.md) | 두 번 설계하기 | 첫 아이디어에 만족하지 말고 근본적으로 다른 대안을 만들어 비교하라 |
 
-### Part V: 더 넓은 시각
-- [Chapter 19: Software Trends (소프트웨어 트렌드)](ch19-software-trends.md)
-- [Chapter 20: Designing for Performance (성능을 위한 설계)](ch20-designing-for-performance.md)
-- [Chapter 21: Decide What Matters (무엇이 중요한지 결정하라)](ch21-decide-what-matters.md)
-- [Chapter 22: Conclusion (결론)](ch22-conclusion.md)
+### Part III: 주석과 이름 (Ch 12-15)
 
----
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 12 | [Why Write Comments? The Four Excuses](ch12-why-write-comments.md) | 주석의 네 가지 변명 | "좋은 코드는 자기 문서화된다"는 신화에 대한 반박 |
+| 13 | [Comments Should Describe Things That Aren't Obvious](ch13-comments-should-describe-things-that-arent-obvious.md) | 인터페이스 주석 · 구현 주석 · 낮은 수준/높은 수준 주석 | 코드로 표현할 수 없는 것(왜, 전제, 추상화)을 주석으로 |
+| 14 | [Choosing Names](ch14-choosing-names.md) | 이름 짓기 · 모호한 이름 | 정확하고 일관된 이름 — 이름 짓기가 어렵다면 설계가 불명확하다는 신호 |
+| 15 | [Write The Comments First](ch15-write-the-comments-first.md) | 주석 우선 작성 · 설계 도구로서의 주석 | 주석을 먼저 쓰면 설계 검증 도구가 된다 |
+
+### Part IV: 기존 코드와 일관성 (Ch 16-18)
+
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 16 | [Modifying Existing Code](ch16-modifying-existing-code.md) | 전략적 수정 · 주석 최신화 | 수정도 설계 활동 — 떠날 때는 찾았을 때보다 깨끗하게 |
+| 17 | [Consistency](ch17-consistency.md) | 일관성 · 컨벤션 | 일관성은 인지 부하를 줄인다 — 더 나은 아이디어라도 일관성을 깨려면 신중히 |
+| 18 | [Code Should be Obvious](ch18-code-should-be-obvious.md) | 명확한 코드 · 가독성 | 명확성은 작성자가 아니라 읽는 사람이 판단한다 |
+
+### Part V: 더 넓은 시각 (Ch 19-22)
+
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 19 | [Software Trends](ch19-software-trends.md) | 객체지향 · 애자일 · 테스트 주도 개발 · 디자인 패턴 비평 | 유행하는 방법론들을 '복잡성 관점'으로 재평가 |
+| 20 | [Designing for Performance](ch20-designing-for-performance.md) | 성능 설계 · 임계 경로 단순화 | 성능과 단순성은 대립하지 않는다 — 임계 경로를 근본적으로 단순하게 |
+| 21 | [Decide What Matters](ch21-decide-what-matters.md) | 중요한 것 가려내기 | 무엇이 중요하고 무엇이 아닌지의 구분이 설계 판단의 핵심 (2판 신규) |
+| 22 | [Conclusion](ch22-conclusion.md) | 복잡성과의 싸움 | 책 전체 요약 — 설계는 복잡성과의 지속적인 싸움 |
 
 ## 학습 가이드
 
-### 추천 읽기 순서
+1. **Ch1~2 필독** — 복잡성의 정의(증상 3가지·원인 2가지)가 이후 모든 원칙의 근거
+2. **Ch3~11이 본론** — 특히 **Ch4(깊은 모듈)**가 가장 중심 개념. 순서대로 읽되, Ch4·5·8은 세트로
+3. **Ch12~15(주석)는 기존 관점과 비교하며** — 저자의 입장이 강해서(주석 먼저!) 클린 코드류와 대조하면 유익
+4. **Ch19(트렌드 비평)는 다른 책들과 함께** — TDD·애자일 비평은 실용주의 프로그래머·클린 코더와 교차 검토
 
-이 책은 앞에서 뒤로 순서대로 읽는 것을 권장한다. 각 챕터의 개념이 이전 챕터 위에 쌓이기 때문이다. 하지만 이미 설계 경험이 있는 개발자라면 관심 분야부터 읽어도 무방하다.
+## 핵심 개념 맵
 
-**1단계: 문제 정의 (Chapter 1~2)**
+- **설계의 목표 = 복잡성 최소화** — 복잡성은 크기가 아니라 "이해하고 수정하기 어려운 정도"
+- **복잡성의 증상 3가지**: 변경 증폭, 인지 부하, 알려지지 않은 미지 — 원인은 의존성과 모호성
+- **깊은 모듈**: 인터페이스(비용) 대비 기능(이득)이 큰 모듈 — 작게 쪼개기 자체는 미덕이 아니다
+- **복잡성을 아래로**: 모듈 사용자가 아니라 구현이 복잡성을 흡수해야 한다 (정보 은닉·오류 정의 제거와 한 몸)
+- **전략적 프로그래밍**: 좋은 설계는 공짜가 아니다 — 지속적인 소규모 투자(10~20%)로 산다
+- **주석과 이름은 설계 도구** — 짓기 어려움과 쓰기 어려움 자체가 설계 문제의 신호(Red Flag)
 
-소프트웨어 설계가 왜 어려운지, 복잡성이란 정확히 무엇인지를 이해한다. 이후 모든 원칙의 근거가 되므로 반드시 먼저 읽는다.
+## Red Flags (경고 신호) — 이 책의 시그니처
 
-**2단계: 핵심 설계 원칙 (Chapter 3~11)**
-
-이 책의 가장 중요한 부분이다. "깊은 모듈", "정보 은닉", "복잡성을 아래로 끌어내리기" 등 Ousterhout의 핵심 설계 철학을 다룬다. 특히 Chapter 4(깊은 모듈)는 이 책의 가장 중심적인 개념이다.
-
-**3단계: 주석과 이름 (Chapter 12~15)**
-
-코드의 가독성과 유지보수성에 직결되는 주석, 이름 짓기에 대한 원칙을 다룬다. 저자는 주석에 대해 상당히 강한 입장(주석을 먼저 쓰라!)을 취하므로, 기존 관점과 비교하며 읽으면 유익하다.
-
-**4단계: 실무 적용과 트렌드 (Chapter 16~22)**
-
-기존 코드 수정, 일관성, 소프트웨어 트렌드(애자일, 디자인 패턴, TDD 등)에 대한 저자의 시각을 다룬다.
-
----
-
-## 핵심 개념 요약
-
-이 책의 모든 내용은 하나의 중심 명제로 수렴한다:
-
-> **소프트웨어 설계의 목표는 복잡성을 최소화하는 것이다.**
-
-복잡성은 시스템의 크기가 아니라 **개발자가 시스템을 이해하고 수정하는 것이 얼마나 어려운가**로 정의된다. 복잡성을 관리하는 두 가지 핵심 전략은 (1) **복잡성을 제거하여 코드를 단순하고 명확하게 만드는 것**과 (2) **복잡성을 캡슐화하여 한 번에 다뤄야 하는 양을 줄이는 것**이다.
-
-이를 위해 Ousterhout가 제시하는 핵심 원칙들:
-
-- **깊은 모듈(Deep Module)**: 단순한 인터페이스 뒤에 강력한 기능을 숨겨라
-- **정보 은닉(Information Hiding)**: 설계 결정을 모듈 내부에 가두어라
-- **전략적 프로그래밍(Strategic Programming)**: "빨리 동작하게"가 아니라 "좋은 설계"를 목표로 하라
-- **복잡성을 아래로(Pull Complexity Downwards)**: 사용하기 쉽게 만들고, 구현이 복잡성을 흡수하게 하라
-- **두 번 설계하라(Design it Twice)**: 첫 번째 아이디어에 만족하지 말고 대안을 비교하라
-
----
-
-## Red Flags (경고 신호)
-
-이 책의 특징적인 요소로, 각 챕터에서 설계 문제를 알려주는 Red Flag를 제시한다. 주요 Red Flag들:
+각 챕터가 제시하는 설계 문제의 징후. 코드 리뷰 체크리스트로 활용.
 
 - **Shallow Module**: 인터페이스가 복잡한데 기능은 단순한 모듈
-- **Information Leakage**: 같은 설계 결정이 여러 모듈에 분산되어 있음
-- **Temporal Decomposition**: 실행 순서에 따라 모듈을 나누어 정보가 분산됨
-- **Overexposure**: 드물게 사용되는 기능이 일반적인 API에 노출됨
-- **Pass-Through Method**: 거의 아무 일도 하지 않고 다른 메서드를 호출하기만 하는 메서드
-- **Repetition**: 같은 코드 패턴이 반복됨
-- **Special-General Mixture**: 범용 메커니즘에 특수 목적 코드가 섞여 있음
-- **Conjoined Methods**: 두 메서드를 함께 읽어야만 하나의 메서드를 이해할 수 있음
-- **Comment Repeats Code**: 주석이 코드를 그대로 반복함
-- **Vague Name**: 이름이 모호하여 여러 의미로 해석 가능함
-- **Hard to Pick Name**: 정확한 이름을 짓기 어려운 것은 설계가 명확하지 않다는 신호
-- **Nonobvious Code**: 코드를 읽어도 동작을 쉽게 이해할 수 없음
+- **Information Leakage**: 같은 설계 결정이 여러 모듈에 분산
+- **Temporal Decomposition**: 실행 순서 기준으로 모듈을 나눠 정보가 분산됨
+- **Overexposure**: 드물게 쓰는 기능이 일반 API에 노출됨
+- **Pass-Through Method**: 다른 메서드 호출만 하고 아무 일도 안 하는 메서드
+- **Repetition**: 같은 코드 패턴의 반복
+- **Special-General Mixture**: 범용 메커니즘에 특수 목적 코드가 섞임
+- **Conjoined Methods**: 두 메서드를 함께 읽어야만 이해 가능
+- **Comment Repeats Code**: 코드를 그대로 반복하는 주석
+- **Vague Name / Hard to Pick Name**: 모호한 이름, 이름 짓기 어려움 = 설계 불명확 신호
+- **Nonobvious Code**: 읽어도 동작을 쉽게 이해할 수 없는 코드
+
+## 시그니처 요소와 표기 규칙
+
+- 각 챕터 노트에 `## Red Flags` 절 — 그 장의 경고 신호 정리
+- `> **핵심 통찰**:` 콜아웃, 원칙 정의는 `>` 인용 블록
