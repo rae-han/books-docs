@@ -1,85 +1,113 @@
 # 그림으로 배우는 도커 (開発系エンジニアのためのDocker絵とき入門)
 
-> 원서: 『開発系エンジニアのためのDocker絵とき入門』 (스즈키 료/鈴木亮, 슈와시스템/秀和システム, 2022)
-> 한국어판: 『그림으로 배우는 도커』 (서수환 옮김, 한빛미디어, 2025) · 404쪽
+> 원서: 『開発系エンジニアのためのDocker絵とき入門』 (스즈키 료/鈴木亮, 슈와시스템, 2022)
+> 한국어판: 『그림으로 배우는 도커』 (서수환 옮김, 한빛미디어, 2025)
 
-개발자를 위한 **도커 그림 입문서**. 도커의 기본 개념부터 명령어·Dockerfile·볼륨/네트워크, 그리고 여러 컨테이너로 웹 서비스 개발 환경을 구축하기까지를 **그림과 단계별 실습**으로 익힌다. 명령어를 실행했을 때 시스템 내부에서 무슨 일이 일어나는지를 그림으로 풀어내는 것이 특징인 초·중급 입문서다.
+개발자를 위한 **도커 그림 입문서**. 명령어를 실행했을 때 시스템 내부에서 무슨 일이 일어나는지를 그림으로 풀어내는 것이 특징인 초·중급 입문서다.
 
-> ⚠️ 현재 이 폴더에는 원문(`origin.md`)만 있고 챕터 노트는 미작성 상태다. 아래 목차는 뼈대이며, 챕터 링크는 노트 작성 후 연결된다.
+## 책 정보
 
----
+| 항목 | 내용 |
+|------|------|
+| **저자** | 스즈키 료(鈴木亮) |
+| **역자** | 서수환 |
+| **출판** | 한빛미디어, 2025 (원서: 슈와시스템, 2022) · 404쪽 |
+| **구성** | 7부 32장 — 실습 시나리오 단위의 짧은 장 |
+| **대상 독자** | 도커를 처음 접하는 개발자, 명령어 암기가 아니라 동작 원리를 그림으로 이해하고 싶은 사람 |
 
-## 전체 목차 (7부 32장)
+## 개요
 
-### 1부 — 가상화와 도커 기본 지식
+도커의 기본 개념부터 명령어·Dockerfile·볼륨/네트워크, 여러 컨테이너로 웹 서비스 개발 환경을 구축하기까지를 **그림과 단계별 실습**으로 익힌다. 각 장이 "루비 컨테이너 인라인 실행", "MySQL 데이터 영속화"처럼 하나의 실습 시나리오라서 손을 움직이며 따라가기 좋다.
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 1 | 가상화 | [ch01-virtualization.md](ch01-virtualization.md) |
-| 2 | 도커와 주변 요소 살펴보기 | [ch02-docker-components.md](ch02-docker-components.md) |
-| 3 | 도커 설치 | [ch03-installing-docker.md](ch03-installing-docker.md) |
-| 4 | 도커 기본과 대원칙 | [ch04-docker-basics-and-principles.md](ch04-docker-basics-and-principles.md) |
+[docker-complete-guide/](../docker-complete-guide/)(자체 구성 종합 가이드, Node.js/Next.js 예제)와 상보적이다 — 본서가 그림 기반 입문서라면, 그쪽은 운영·심화까지 다루는 종합 가이드다.
 
-### 2부 — 도커 컨테이너 활용법
+> ⚠️ 현재 이 폴더에는 원문(`*.origin.md`)만 있고 챕터 노트는 미작성 상태다. 아래 목차의 제목에 링크가 없는 것이 미작성 신호이며, 노트 작성 시 링크를 연결한다.
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 5 | 컨테이너 기초 지식 | [ch05-container-basics.md](ch05-container-basics.md) |
-| 6 | 컨테이너 기본 조작 | [ch06-basic-container-operations.md](ch06-basic-container-operations.md) |
-| 7 | 루비 컨테이너로 인라인 실행하기 | [ch07-ruby-container-inline-execution.md](ch07-ruby-container-inline-execution.md) |
-| 8 | 파이썬 대화형 셸로 컨테이너와 소통하기 | [ch08-python-interactive-shell.md](ch08-python-interactive-shell.md) |
-| 9 | Nginx 서버를 가동해 브라우저에서 접속하기 | [ch09-nginx-server-browser-access.md](ch09-nginx-server-browser-access.md) |
-| 10 | MySQL 서버를 백그라운드로 가동하기 | [ch10-mysql-server-background.md](ch10-mysql-server-background.md) |
-| 11 | PostgreSQL 서버 가동해 확인하기 | [ch11-postgresql-server.md](ch11-postgresql-server.md) |
+## 목차
 
-### 3부 — 도커 이미지 활용법
+### 1부: 가상화와 도커 기본 지식 (Ch 1-4)
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 12 | 이미지의 기본 내용 | [ch12-image-basics.md](ch12-image-basics.md) |
-| 13 | 이미지 기본 조작 | [ch13-basic-image-operations.md](ch13-basic-image-operations.md) |
-| 14 | 다른 버전의 MySQL 서버 가동하기 | [ch14-different-mysql-versions.md](ch14-different-mysql-versions.md) |
-| 15 | vi 설치 우분투 이미지 작성·공유하기 | [ch15-ubuntu-image-with-vi.md](ch15-ubuntu-image-with-vi.md) |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | 가상화 | 가상화 · 호스트/게스트 | 도커 이전에 가상화부터 — VM과의 차이 |
+| 2 | 도커와 주변 요소 살펴보기 | 도커 엔진 · 이미지 · 컨테이너 · 레지스트리 | 도커 생태계의 등장인물 소개 |
+| 3 | 도커 설치 | 도커 데스크톱 | OS별 설치와 초기 설정 |
+| 4 | 도커 기본과 대원칙 | 1컨테이너 1역할 · 불변 이미지 | 도커를 관통하는 대원칙들 |
 
-### 4부 — 도커파일 활용법
+### 2부: 도커 컨테이너 활용법 (Ch 5-11)
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 16 | 도커파일 기초 | [ch16-dockerfile-basics.md](ch16-dockerfile-basics.md) |
-| 17 | vi를 쓸 수 있는 우분투 이미지 만들기 | [ch17-building-ubuntu-image-with-vi.md](ch17-building-ubuntu-image-with-vi.md) |
-| 18 | 시간대·로그 설정된 MySQL 이미지 만들기 | [ch18-mysql-image-with-timezone-logs.md](ch18-mysql-image-with-timezone-logs.md) |
-| 19 | 가동 시 웹서버를 실행하는 파이썬 이미지 만들기 | [ch19-python-image-running-webserver.md](ch19-python-image-running-webserver.md) |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 5 | 컨테이너 기초 지식 | 컨테이너 생명주기 | 컨테이너의 상태와 수명 |
+| 6 | 컨테이너 기본 조작 | run/stop/rm · ps | 컨테이너 조작 기본 명령어 |
+| 7 | 루비 컨테이너로 인라인 실행하기 | 인라인 실행 | 일회성 명령 실행 패턴 |
+| 8 | 파이썬 대화형 셸로 컨테이너와 소통하기 | -it · 대화형 셸 | 컨테이너 안에서 대화형 작업 |
+| 9 | Nginx 서버를 가동해 브라우저에서 접속하기 | 포트 매핑 · -p | 웹 서버 컨테이너와 포트 공개 |
+| 10 | MySQL 서버를 백그라운드로 가동하기 | -d · 환경 변수 | 백그라운드 실행과 환경 변수 설정 |
+| 11 | PostgreSQL 서버 가동해 확인하기 | 실습 종합 | DB 컨테이너 가동 실습 반복 |
 
-### 5부 — 고급 도커 컨테이너 활용법
+### 3부: 도커 이미지 활용법 (Ch 12-15)
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 20 | 볼륨과 네트워크 기초 | [ch20-volumes-and-networks.md](ch20-volumes-and-networks.md) |
-| 21 | MySQL 컨테이너 데이터가 사라지지 않게 만들기 | [ch21-persisting-mysql-data-with-volumes.md](ch21-persisting-mysql-data-with-volumes.md) |
-| 22 | 호스트에서 편집한 파일을 루비 컨테이너에서 실행하기 | [ch22-bind-mount-ruby-container.md](ch22-bind-mount-ruby-container.md) |
-| 23 | PHP 컨테이너에서 MySQL 컨테이너와 통신하기 | [ch23-php-mysql-container-networking.md](ch23-php-mysql-container-networking.md) |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 12 | 이미지의 기본 내용 | 이미지 · 태그 · 레이어 | 이미지란 무엇인가 |
+| 13 | 이미지 기본 조작 | pull/images/rmi | 이미지 조작 명령어 |
+| 14 | 다른 버전의 MySQL 서버 가동하기 | 태그 지정 | 버전(태그)을 골라 쓰는 법 |
+| 15 | vi 설치 우분투 이미지 작성·공유하기 | commit · 이미지 공유 | 컨테이너를 이미지로 저장·공유 |
 
-### 6부 — 웹 서비스 개발 환경 구축
+### 4부: 도커파일 활용법 (Ch 16-19)
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 24 | 구성 정리하기 | [ch24-planning-the-architecture.md](ch24-planning-the-architecture.md) |
-| 25 | 필요한 이미지 준비하기 | [ch25-preparing-images.md](ch25-preparing-images.md) |
-| 26 | 컨테이너 이외의 리소스 준비하기 | [ch26-preparing-non-container-resources.md](ch26-preparing-non-container-resources.md) |
-| 27 | 컨테이너 가동 | [ch27-launching-containers.md](ch27-launching-containers.md) |
-| 28 | 도커 컴포즈 이용 | [ch28-using-docker-compose.md](ch28-using-docker-compose.md) |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 16 | 도커파일 기초 | Dockerfile · build | 이미지를 코드로 정의하기 |
+| 17 | vi를 쓸 수 있는 우분투 이미지 만들기 | FROM/RUN | 첫 Dockerfile 실습 |
+| 18 | 시간대·로그 설정된 MySQL 이미지 만들기 | COPY · 설정 파일 | 설정을 구운 커스텀 DB 이미지 |
+| 19 | 가동 시 웹서버를 실행하는 파이썬 이미지 만들기 | CMD | 시작 명령이 있는 이미지 |
 
-### 7부 — 운영 시 주의할 점과 트러블슈팅
+### 5부: 고급 도커 컨테이너 활용법 (Ch 20-23)
 
-| 장 | 제목 | 파일 |
-|---|---|---|
-| 29 | 도커 데스크톱 유료 플랜과 도커 계정 | [ch29-docker-desktop-paid-plans-and-accounts.md](ch29-docker-desktop-paid-plans-and-accounts.md) |
-| 30 | 프로젝트에서 도커 사용하기 | [ch30-using-docker-in-projects.md](ch30-using-docker-in-projects.md) |
-| 31 | 애플 실리콘 맥에서 도커 사용하기 | [ch31-docker-on-apple-silicon.md](ch31-docker-on-apple-silicon.md) |
-| 32 | 디버깅 방법 | [ch32-debugging.md](ch32-debugging.md) |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 20 | 볼륨과 네트워크 기초 | 볼륨 · 바인드 마운트 · 네트워크 | 데이터 영속화와 컨테이너 간 통신의 기초 |
+| 21 | MySQL 컨테이너 데이터가 사라지지 않게 만들기 | 볼륨 영속화 | 볼륨으로 DB 데이터 지키기 |
+| 22 | 호스트에서 편집한 파일을 루비 컨테이너에서 실행하기 | 바인드 마운트 | 호스트 파일을 컨테이너에서 |
+| 23 | PHP 컨테이너에서 MySQL 컨테이너와 통신하기 | 사용자 정의 네트워크 | 컨테이너 간 이름으로 통신 |
 
----
+### 6부: 웹 서비스 개발 환경 구축 (Ch 24-28)
 
-## 관련 책
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 24 | 구성 정리하기 | 아키텍처 설계 | 만들 환경의 전체 그림 정리 |
+| 25 | 필요한 이미지 준비하기 | 이미지 준비 | 서비스별 이미지 선정·제작 |
+| 26 | 컨테이너 이외의 리소스 준비하기 | 볼륨/네트워크 준비 | 컨테이너 밖 리소스 세팅 |
+| 27 | 컨테이너 가동 | 다중 컨테이너 실행 | 손으로 전체 스택 가동 |
+| 28 | 도커 컴포즈 이용 | Docker Compose | 27장의 수작업을 compose.yaml로 |
 
-- [docker-complete-guide/](../docker-complete-guide/) — 자체 구성 Docker 완전 가이드 (Deep Dive 범위, Node.js/Next.js 예제). 본서가 그림 기반 **입문서**라면, 이쪽은 운영·심화까지 다루는 종합 가이드다.
+### 7부: 운영 시 주의할 점과 트러블슈팅 (Ch 29-32)
+
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 29 | 도커 데스크톱 유료 플랜과 도커 계정 | 라이선스 | 조직에서 쓸 때의 라이선스 문제 |
+| 30 | 프로젝트에서 도커 사용하기 | 실무 도입 | 팀 프로젝트에 도커를 들일 때 |
+| 31 | 애플 실리콘 맥에서 도커 사용하기 | ARM · 플랫폼 | M시리즈 맥의 플랫폼 이슈 |
+| 32 | 디버깅 방법 | logs · exec · 트러블슈팅 | 안 될 때 들여다보는 법 |
+
+## 학습 가이드
+
+1. **1~2부는 순서대로** — 개념(1부)과 컨테이너 조작(2부)이 이후 모든 실습의 전제
+2. **3~4부가 핵심 전환점** — 이미지를 쓰는 쪽(3부)에서 만드는 쪽(4부)으로
+3. **5부(볼륨·네트워크) → 6부(종합 구축)** — 6부는 24~28장이 하나의 프로젝트로 이어지므로 끊지 말고
+4. [docker-complete-guide/](../docker-complete-guide/)와 병행 시: 본서로 그림 감각을 잡고, 같은 주제의 심화(레이어·BuildKit·Compose 고급)를 그쪽에서
+
+## 핵심 개념 맵
+
+- **이미지 = 불변의 청사진, 컨테이너 = 실행 인스턴스** — 컨테이너를 고치지 말고 이미지를 다시 만든다 (3~4부)
+- **1컨테이너 1역할** — 웹·DB를 한 컨테이너에 넣지 않는 대원칙 (Ch4 → 6부 구축에서 실현)
+- **데이터는 컨테이너 밖에** — 볼륨(도커 관리)과 바인드 마운트(호스트 디렉터리)의 구분 (5부)
+- **컨테이너 간 통신은 사용자 정의 네트워크에서 이름으로** (Ch23)
+- **수작업 → Compose**: 27장의 명령 나열이 28장에서 선언적 파일로 — IaC 감각의 입문 (6부)
+
+## origin 분리
+
+- `0~32, 99` = 34개 파일 (0=서문/목차, 1~32=1장~32장 — 부 표지는 각 부 첫 챕터 파일 맨 앞, 99=찾아보기). 원본 9,140줄 = 합계 일치
+- 페이지 번호: 안정적 캡처, 순차 검증 완료(짝수 페이지 푸터 92%)
