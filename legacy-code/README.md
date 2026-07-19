@@ -1,109 +1,97 @@
-# Working Effectively with Legacy Code
+# 레거시 코드 활용 전략 (Working Effectively with Legacy Code)
 
-**저자**: Michael C. Feathers
-**출판**: 2004, Prentice Hall (Robert C. Martin Series)
+> *Working Effectively with Legacy Code* (Michael C. Feathers, Prentice Hall, 2004. Robert C. Martin Series)
+> 한국어판: 『레거시 코드 활용 전략 — 손대기 두려운 낡은 코드, 안전한 변경과 테스트 기법』 (심윤보·이정문 옮김, 에이콘출판사)
 
----
+기존 코드베이스를 안전하고 효과적으로 변경하기 위한 전략과 기법을 체계적으로 정리한 실무 지침서. 저자의 유명한 정의 — **"레거시 코드란 단순히 테스트가 없는 코드다(Legacy code is simply code without tests)"** — 위에서, 테스트 없는 코드에 안전망을 만들어 점진적으로 개선하는 법을 다룬다.
 
-## 책 소개
+## 책 정보
 
-"Working Effectively with Legacy Code"는 기존 코드베이스를 안전하고 효과적으로 변경하기 위한 전략과 기법을 체계적으로 정리한 실무 지침서이다. 소프트웨어 개발 현장에서 대부분의 시간은 새로운 코드를 작성하는 것이 아니라 기존 코드를 이해하고 수정하는 데 소비된다. 이 책은 그 과정에서 마주치는 현실적인 문제들에 대한 구체적인 해결책을 제시한다.
+| 항목 | 내용 |
+|------|------|
+| **저자** | 마이클 페더스(Michael C. Feathers) |
+| **역자** | 심윤보·이정문 |
+| **출판** | 에이콘출판사 (원서: Prentice Hall, 2004) |
+| **예제 언어** | Java·C++·C 혼용 |
+| **대상 독자** | 테스트 없는 기존 코드를 변경해야 하는 모든 개발자 |
 
-### 레거시 코드의 정의
+## 개요
 
-Michael Feathers는 레거시 코드를 다음과 같이 정의한다:
+소프트웨어 개발 시간의 대부분은 새 코드 작성이 아니라 기존 코드의 이해와 수정에 쓰인다. 이 책은 그 현실에서 출발한다 — 테스트 없는 코드는 어제 작성했어도 레거시이고, 10년 된 코드도 테스트가 충분하면 레거시가 아니다.
 
-> Legacy code is simply code without tests.
-
-이 정의에 따르면 레거시 코드란 단순히 오래된 코드가 아니라, **테스트가 없는 코드**이다. 테스트가 없으면 코드를 변경할 때 기존 동작이 보존되는지 확인할 방법이 없고, 따라서 모든 변경이 위험을 수반한다. 어제 작성한 코드라도 테스트가 없다면 레거시 코드이며, 10년 전에 작성된 코드라도 충분한 테스트가 있다면 레거시 코드가 아니다.
-
----
-
-## 이 저장소의 목적
-
-이 저장소는 "Working Effectively with Legacy Code"의 내용을 챕터별로 상세하게 정리한 학습 자료이다. 각 챕터의 핵심 개념, 기법, 예제를 책을 대체할 수 있을 정도로 충실하게 담고 있으며, 다음과 같은 용도로 활용할 수 있다:
-
-- 책의 내용을 빠르게 복습하고 참조하는 레퍼런스
-- 레거시 코드 작업 시 특정 상황에 맞는 기법을 찾는 가이드
-- 팀 내 학습 및 스터디 자료
-
----
+핵심 역설은 **레거시 코드 딜레마**다: 테스트를 추가하려면 코드를 변경해야 하고, 코드를 안전하게 변경하려면 테스트가 필요하다. 책은 이 딜레마를 **봉합(Seam)**을 찾아 최소한의 변경으로 의존 관계를 깨고, **특성화 테스트**로 기존 동작을 포착한 뒤, 안전망 위에서 점진적으로 개선하는 절차로 푼다. 1부가 개념(변경·피드백·봉합), 2부가 상황별 처방전(챕터 제목이 개발자의 실제 질문), 3부가 의존 관계 제거 기법 카탈로그다.
 
 ## 목차
 
-### 1부: 코드 변경의 메커니즘 (The Mechanics of Change)
-- [Chapter 1: 소프트웨어 변경 (Changing Software)](ch01-changing-software.md)
-- [Chapter 2: 피드백 활용 (Working with Feedback)](ch02-working-with-feedback.md)
-- [Chapter 3: 감지와 분리 (Sensing and Separation)](ch03-sensing-and-separation.md)
-- [Chapter 4: 봉합 모델 (The Seam Model)](ch04-the-seam-model.md)
-- [Chapter 5: 도구 (Tools)](ch05-tools.md)
+### 1부: 코드 변경의 메커니즘 (Ch 1-5)
 
-### 2부: 소프트웨어 변경 (Changing Software)
-- [Chapter 6: 고칠 것은 많고 시간은 없고 (I Don't Have Much Time and I Have to Change It)](ch06-i-dont-have-much-time.md)
-- [Chapter 7: 코드 하나 바꾸는 데 왜 이리 오래 걸리지? (It Takes Forever to Make a Change)](ch07-it-takes-forever-to-make.md)
-- [Chapter 8: 어떻게 기능을 추가할까? (How Do I Add a Feature?)](ch08-how-do-i-add-a-feature.md)
-- [Chapter 9: 뚝딱! 테스트 하네스에 클래스 제대로 넣기 (I Can't Get This Class into a Test Harness)](ch09-i-cant-get-this-class-into-a-test-harness.md)
-- [Chapter 10: 테스트 하네스에서 이 메소드를 실행할 수 없다 (I Can't Run This Method in a Test Harness)](ch10-i-cant-run-this-method-in-a-test-harness.md)
-- [Chapter 11: 코드를 변경해야 한다 (I Need to Make a Change. What Methods Should I Test?)](ch11-what-methods-should-i-test.md)
-- [Chapter 12: 클래스 의존 관계, 반드시 없애야 할까? (I Need to Make Many Changes in One Area)](ch12-many-changes-in-one-area.md)
-- [Chapter 13: 변경해야 하는데, 어떤 테스트를 작성해야 할지 모르겠다 (I Need to Make a Change, but I Don't Know What Tests to Write)](ch13-i-dont-know-what-tests-to-write.md)
-- [Chapter 14: 나를 미치게 하는 라이브러리 의존 관계 (Dependencies on Libraries Are Killing Me)](ch14-dependencies-on-libraries.md)
-- [Chapter 15: 애플리케이션에 API 호출이 너무 많다 (My Application Is All API Calls)](ch15-my-application-is-all-api-calls.md)
-- [Chapter 16: 변경이 가능할 만큼 코드를 이해하지 못하는 경우 (I Don't Understand the Code Well Enough to Change It)](ch16-i-dont-understand-the-code.md)
-- [Chapter 17: 내 애플리케이션은 뼈대가 약하다 (My Application Has No Structure)](ch17-my-application-has-no-structure.md)
-- [Chapter 18: 테스트 코드가 방해를 한다 (My Test Code Is in the Way)](ch18-my-test-code-is-in-the-way.md)
-- [Chapter 19: 내 프로젝트는 객체 지향이 아니다 (My Project Is Not Object Oriented)](ch19-my-project-is-not-object-oriented.md)
-- [Chapter 20: 이 클래스는 너무 비대해서 더 이상 확장하고 싶지 않다 (This Class Is Too Big and I Don't Want It to Get Any Bigger)](ch20-this-class-is-too-big.md)
-- [Chapter 21: 반복되는 동일한 수정, 그만할 수는 없을까? (I'm Changing the Same Code All Over the Place)](ch21-changing-the-same-code-all-over.md)
-- [Chapter 22: '괴물 메소드'를 변경해야 하는데 테스트 코드를 작성하지 못하겠다 (I Need to Change a Monster Method and I Can't Write Tests for It)](ch22-monster-method.md)
-- [Chapter 23: 기존 동작을 건드리지 않았음을 어떻게 확인할 수 있을까? (How Do I Know That I'm Not Breaking Anything?)](ch23-how-do-i-know-im-not-breaking-anything.md)
-- [Chapter 24: 어찌해야 할지 모르겠다. 나아질 것 같지 않아 (We Feel Overwhelmed. It Isn't Going to Get Any Better)](ch24-we-feel-overwhelmed.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [소프트웨어 변경](ch01-changing-software.md) | 변경의 네 가지 이유 · 동작 보존 | 기능 추가·버그 수정·설계 개선·최적화 — 변경 유형별로 무엇을 보존해야 하는가 |
+| 2 | [피드백 활용](ch02-working-with-feedback.md) | 편집-컴파일-테스트 주기 · 단위 테스트 · 회귀 테스트 | 변경의 안전은 빠른 피드백에서 나온다 — 테스트로 주기를 초 단위로 줄이기 |
+| 3 | [감지와 분리](ch03-sensing-and-separation.md) | 감지 · 분리 · 협력 클래스 · 가짜 객체 | 테스트를 막는 의존 관계를 '감지'와 '분리' 두 목적으로 나눠 공략 |
+| 4 | [봉합 모델](ch04-the-seam-model.md) | 봉합 · 활성화 지점 · 객체 봉합 | 코드를 직접 고치지 않고도 동작을 바꿔 끼울 수 있는 지점(봉합)을 찾는 법 |
+| 5 | [도구](ch05-tools.md) | 리팩터링 도구 · 테스트 하네스 · xUnit | 자동 리팩터링 도구와 테스트 프레임워크라는 무기 점검 |
 
-### 3부: 의존 관계 제거 기법 (Dependency-Breaking Techniques)
-- [Chapter 25: 의존 관계 제거 기법 (Dependency-Breaking Techniques)](ch25-dependency-breaking-techniques.md)
+### 2부: 소프트웨어 변경 (Ch 6-24) — 상황별 처방전
+
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 6 | [고칠 것은 많고 시간은 없고](ch06-i-dont-have-much-time.md) | 발아 메서드 · 발아 클래스 · 포장 메서드 | 테스트를 못 만드는 상황에서도 새 코드만은 안전하게 추가하는 기법 |
+| 7 | [코드 하나 바꾸는 데 왜 이리 오래 걸리지?](ch07-it-takes-forever-to-make.md) | 지연 시간 · 빌드 의존성 · 의존 관계 역전 | 변경-빌드-테스트 주기를 늘어뜨리는 의존 구조를 끊는 법 |
+| 8 | [어떻게 기능을 추가할까?](ch08-how-do-i-add-a-feature.md) | 테스트 주도 개발 · 차이에 의한 프로그래밍 | 안전망이 생겼다면 기능 추가는 TDD로 |
+| 9 | [뚝딱! 테스트 하네스에 클래스 제대로 넣기](ch09-i-cant-get-this-class-into-a-test-harness.md) | 생성자 매개변수 · 인터페이스 추출 · 가짜 객체 | 객체 생성부터 막힐 때 — 성가신 매개변수·숨은 의존성 공략 |
+| 10 | [테스트 하네스에서 이 메소드를 실행할 수 없다](ch10-i-cant-run-this-method-in-a-test-harness.md) | 숨은 메서드 · 정적 메서드 · 검출 변수 | private/정적 메서드와 부수 효과 때문에 실행이 안 될 때 |
+| 11 | [코드를 변경해야 한다](ch11-what-methods-should-i-test.md) | 영향 분석 · 영향 스케치 | 변경의 파급 효과를 추적해 어디를 테스트할지 결정 |
+| 12 | [클래스 의존 관계, 반드시 없애야 할까?](ch12-many-changes-in-one-area.md) | 교차 지점 · 조임 지점 | 여러 변경을 한 번에 커버하는 상위 테스트 지점 찾기 |
+| 13 | [변경해야 하는데, 어떤 테스트를 작성해야 할지 모르겠다](ch13-i-dont-know-what-tests-to-write.md) | 특성화 테스트 | 기존 동작을 '옳다/그르다' 판단 없이 있는 그대로 포착하는 테스트 |
+| 14 | [나를 미치게 하는 라이브러리 의존 관계](ch14-dependencies-on-libraries.md) | 라이브러리 의존 · 래핑 | 라이브러리 직접 호출을 감싸 교체 가능하게 만들기 |
+| 15 | [애플리케이션에 API 호출이 너무 많다](ch15-my-application-is-all-api-calls.md) | 스키닝과 래핑 · 책임 기반 추출 | API 위주 코드에 구조를 부여하는 두 전략 |
+| 16 | [변경이 가능할 만큼 코드를 이해하지 못하는 경우](ch16-i-dont-understand-the-code.md) | 스크래치 리팩터링 · 메모와 스케치 | 버릴 셈치고 리팩터링하며 코드를 이해하는 법 |
+| 17 | [내 애플리케이션은 뼈대가 약하다](ch17-my-application-has-no-structure.md) | 아키텍처 스토리텔링 · 시스템 이야기 | 시스템의 이야기를 말하며 잃어버린 구조 감각 되찾기 |
+| 18 | [테스트 코드가 방해를 한다](ch18-my-test-code-is-in-the-way.md) | 테스트 명명 규칙 · 테스트 배치 | 테스트 코드의 이름·위치 컨벤션 정리 |
+| 19 | [내 프로젝트는 객체 지향이 아니다](ch19-my-project-is-not-object-oriented.md) | 절차적 코드 · 링크 봉합 | 절차형 언어(C 등)에서 봉합을 만드는 법 |
+| 20 | [이 클래스는 너무 비대해서 더 이상 확장하고 싶지 않다](ch20-this-class-is-too-big.md) | 단일 책임 원칙 · 책임 식별 · 인터페이스 분리 원칙 | 거대 클래스의 책임을 식별해 나누는 7가지 단서 |
+| 21 | [반복되는 동일한 수정, 그만할 수는 없을까?](ch21-changing-the-same-code-all-over.md) | 중복 제거 · 추상화 | 중복을 제거하면 같은 수정을 반복할 일이 사라진다 |
+| 22 | ['괴물 메소드'를 변경해야 하는데 테스트 코드를 작성하지 못하겠다](ch22-monster-method.md) | 괴물 메서드 · 검출 변수 · 자동 리팩터링 | 거대 메서드를 도구와 검출 변수로 안전하게 분해 |
+| 23 | [기존 동작을 건드리지 않았음을 어떻게 확인할 수 있을까?](ch23-how-do-i-know-im-not-breaking-anything.md) | 초집중 편집 · 단일 목적 편집 | 실수를 줄이는 편집 습관 — 한 번에 한 가지만 |
+| 24 | [어찌해야 할지 모르겠다. 나아질 것 같지 않아](ch24-we-feel-overwhelmed.md) | 사기 · 작은 승리 | 압도당한 팀을 위한 조언 — 매일 조금씩 나아지게 |
+
+### 3부: 의존 관계 제거 기법 (Ch 25)
+
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 25 | [의존 관계 제거 기법](ch25-dependency-breaking-techniques.md) | 매개변수 적응 · 메서드 객체 추출 · 정적 setter 도입 · 서브클래스화와 메서드 재정의 | 본문에서 참조되는 의존 관계 제거 기법 카탈로그 (24가지) |
 
 ### 부록
-- [Refactoring](appendix-refactoring.md)
 
----
+| 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| - | [Refactoring](appendix-refactoring.md) | 메서드 추출 | 리팩터링 정의와 메서드 추출 예시 |
 
 ## 학습 가이드
 
-### 추천 읽기 순서
+1. **1부(Ch1~5)를 먼저 통독** — 변경·피드백·감지와 분리·봉합·도구는 이후 모든 챕터의 토대다
+2. **2부는 지금 겪는 문제의 챕터부터** — 챕터 제목이 곧 개발자의 질문이다:
+   - 시간이 없다 → Ch6 / 변경이 오래 걸린다 → Ch7 / 기능 추가 → Ch8
+   - 테스트 하네스에 못 넣겠다 → Ch9·10·13 / 어디를 테스트할지 모르겠다 → Ch11
+   - 코드가 이해 안 된다 → Ch16 / 클래스가 너무 크다 → Ch20 / 괴물 메서드 → Ch22
+3. **3부(Ch25)는 레퍼런스** — 2부를 읽다가 참조되는 기법이 나올 때마다 찾아본다
 
-이 책은 순서대로 읽을 수도 있지만, 필요에 따라 특정 챕터를 선택적으로 참조하는 방식으로도 활용할 수 있다. 아래는 체계적인 학습을 위한 추천 순서이다.
+## 핵심 개념 맵
 
-**1단계: 기초 개념 (Part I - Chapter 1~5)**
+- **레거시 코드 = 테스트 없는 코드** — 나이가 아니라 안전망의 유무가 기준
+- **레거시 코드 딜레마**: 테스트를 넣으려면 변경해야 하고, 안전한 변경엔 테스트가 필요하다 → 최소 변경(봉합·의존 관계 제거)으로 탈출
+- **봉합(Seam)**: 코드를 직접 수정하지 않고 동작을 바꿔 끼울 수 있는 지점 — 객체 봉합이 가장 유용
+- **감지와 분리**: 의존 관계를 깨는 두 가지 이유 — 값을 확인하려고(감지), 테스트 하네스에 넣으려고(분리)
+- **특성화 테스트**: 기존 동작을 명세가 아니라 사실로서 포착 — "지금 이렇게 동작한다"를 고정
+- **점진주의**: 한 번의 대개편이 아니라 변경이 필요한 부분부터 조금씩, 매일 개선
 
-소프트웨어 변경의 본질, 피드백 루프, 감지와 분리, 이음새(Seam) 모델, 도구 등 레거시 코드 작업의 기본 개념을 다룬다. 이후 모든 챕터의 토대가 되므로 반드시 먼저 읽는다.
+## 시그니처 요소와 표기 규칙
 
-- Chapter 1: 소프트웨어를 변경하는 네 가지 이유를 이해한다
-- Chapter 2: 편집-컴파일-테스트 주기와 피드백의 중요성을 학습한다
-- Chapter 3: 감지(Sensing)와 분리(Separation)의 개념을 익힌다
-- Chapter 4: 이음새(Seam)의 개념과 유형을 파악한다
-- Chapter 5: 자동화된 리팩토링 도구와 테스트 프레임워크를 알아본다
+- 기법별 **단계(Step)** 정리 — 각 기법의 적용 절차를 번호 목록으로
+- 상황(챕터 제목의 질문) → 전략 → 기법 참조의 처방전 구조
 
-**2단계: 실전 문제 해결 (Part II - Chapter 6~24)**
+## Notion DB 구조
 
-실무에서 자주 마주치는 구체적인 상황별 해결 전략을 다룬다. 각 챕터의 제목이 개발자가 실제로 하는 질문이나 불만의 형태로 되어 있으므로, 현재 직면한 문제에 해당하는 챕터부터 읽어도 좋다.
-
-- 시간이 부족할 때: Chapter 6
-- 변경이 너무 오래 걸릴 때: Chapter 7
-- 기능을 추가해야 할 때: Chapter 8
-- 테스트를 작성하기 어려울 때: Chapter 9, 10, 13
-- 어떤 메서드를 테스트해야 할지 모를 때: Chapter 11
-- 한 영역에 많은 변경이 필요할 때: Chapter 12
-- 코드를 이해하기 어려울 때: Chapter 16
-- 클래스가 너무 클 때: Chapter 20
-- 같은 변경을 여러 곳에서 해야 할 때: Chapter 21
-- 거대한 메서드를 다뤄야 할 때: Chapter 22
-
-**3단계: 기법 카탈로그 (Part III - Chapter 25 + 부록)**
-
-Chapter 25의 의존성 깨기 기법들과 부록의 리팩토링 기법들은 레퍼런스로 활용한다. Part II를 읽으면서 참조되는 기법이 나올 때마다 해당 기법을 찾아보는 방식이 효과적이다.
-
----
-
-## 핵심 개념 요약
-
-레거시 코드를 효과적으로 다루는 핵심은 **변경의 안전망을 확보하는 것**이다. 테스트가 없는 코드에 테스트를 추가하려면 코드를 변경해야 하고, 코드를 안전하게 변경하려면 테스트가 필요하다는 역설(Legacy Code Dilemma)이 존재한다. 이 역설을 해결하기 위해 Feathers는 **이음새(Seam)**를 찾아 최소한의 변경으로 의존성을 깨고, **특성화 테스트(Characterization Test)**로 기존 동작을 포착한 후, 안전망 위에서 점진적으로 설계를 개선해 나가는 체계적인 접근법을 제시한다. 완벽한 설계를 한 번에 달성하려는 것이 아니라, 변경이 필요한 부분을 중심으로 조금씩 개선하는 것이 레거시 코드 작업의 현실적이고 효과적인 전략이다.
+- 위치: Raehan's Must reads 하위 — Part 1/2/3/부록을 파랑·초록·보라·회색 `Part` 딱지로 구분한 챕터 DB (콜아웃 마이그레이션 완료)
