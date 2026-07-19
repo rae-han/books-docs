@@ -1,131 +1,93 @@
-# The Software Craftsman: Professionalism, Pragmatism, Pride
+# 소프트웨어 장인 (The Software Craftsman: Professionalism, Pragmatism, Pride)
 
-> *The Software Craftsman: Professionalism, Pragmatism, Pride* (Sandro Mancuso, 2015)
+> *The Software Craftsman: Professionalism, Pragmatism, Pride* (Sandro Mancuso, Prentice Hall, 2015. Robert C. Martin Series)
 > 한국어판: 『소프트웨어 장인 — 프로페셔널리즘, 실용주의, 자부심』 (권오인 옮김, 길벗, 2015)
-> **로버트 C. 마틴 시리즈**
 
-산드로 만쿠소(*Sandro Mancuso - 런던 소프트웨어 장인 협회 LSCC 창립자, Codurance 공동 설립자*)의 소프트웨어 장인정신 선언서. 브라질 시골 출신 개발자가 대서양을 건너 런던에서 소프트웨어 장인 운동을 이끌기까지의 경험을 바탕으로, **프로페셔널리즘·실용주의·자부심**이라는 세 가지 축을 개인·팀·조직 차원에서 어떻게 실현할 것인지 풀어낸다.
+산드로 만쿠소(*Sandro Mancuso - 런던 소프트웨어 장인 협회 LSCC 창립자, Codurance 공동 설립자*)의 소프트웨어 장인정신 선언서. 브라질 시골 출신 개발자가 대서양을 건너 런던에서 소프트웨어 장인 운동을 이끌기까지의 경험을 바탕으로, **프로페셔널리즘·실용주의·자부심**을 개인·팀·조직 차원에서 어떻게 실현할 것인지 풀어낸다.
 
----
+## 책 정보
 
-## 책의 핵심 메시지
+| 항목 | 내용 |
+|------|------|
+| **저자** | 산드로 만쿠소(Sandro Mancuso) |
+| **역자** | 권오인 |
+| **출판** | 길벗, 2015 (원서: Prentice Hall, 2015. 로버트 C. 마틴 시리즈) |
+| **형식** | 저자 경험담(브라질→런던, LSCC, Codurance) 중심의 에세이형 |
+| **대상 독자** | 커리어의 주도권을 쥐고 싶은 개발자, 개발 문화를 만드는 리더 |
 
-> **일을 끝냈다는 말에는 제대로 동작한다는 것이 당연히 포함되어 있죠. 일을 하는 것도 중요하지만 그에 못지않게, 일을 어떻게 하느냐도 중요합니다.**
-> — 저자의 첫 멘토 에두아르도 나무르
+## 개요
 
-- **애자일만으로는 부족하다**: 애자일은 프로세스와 조직 구조를 바꾸었지만 개발자의 기술적 역량과 프로페셔널리즘의 공백은 채우지 못했다
-- **소프트웨어 장인정신은 이 공백을 채우는 이념**: 방법론이 아니라 프로페셔널리즘의 태도이며, XP·린과 결합해 시너지를 낸다
-- **개발자의 커리어는 스스로의 것**: 회사·상사·산업에 커리어를 위임하지 말고, 열정과 학습·훈련·투자로 스스로 만든다
-- **"아니오"라고 말할 줄 알아야 프로페셔널**: 대안 없는 "노력해보겠다"는 결국 재앙을 부른다
+핵심 논지는 "애자일만으로는 부족하다"이다. 애자일은 프로세스와 조직 구조를 바꿨지만 개발자의 기술적 역량과 프로페셔널리즘의 공백은 채우지 못했고, 소프트웨어 장인정신은 그 공백을 채우는 이념 — 방법론이 아니라 태도 — 이며 XP·린과 결합해 시너지를 낸다.
 
----
+Part 1은 개인(이념·태도·커리어), Part 2는 조직(채용·면접·사기·배움의 문화·변화 실행)을 다룬다. 개발자의 커리어는 회사가 아니라 스스로의 것이며, 열정과 학습·훈련·투자로 만들어 간다는 관점이 전체를 관통한다. 같은 시리즈의 『클린 코더』(로버트 마틴)가 다진 프로페셔널리즘 논의를 장인 운동·조직 문화의 관점으로 확장한 책이다.
 
-## 학습 가이드
+## 목차
 
-### 처음 읽는 경우
+### Part 1: 이념과 태도 (Ch 1-8)
 
-**전체 순서대로 읽는 것을 권장**한다. Part 1(Ch1-8)에서 개인의 이념과 태도를 다지고, Part 2(Ch9-16)에서 조직/팀의 문화·채용·변화 실행을 읽으면 개인과 조직의 관점이 자연스럽게 이어진다.
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [Software Development in the 21st Century](ch01-software-development-in-the-21st-century.md) | 시니어의 기준 · 아키텍트/개발자 이분법 | 연차가 아니라 역량 — 21세기 개발자의 확장된 책임 |
+| 2 | [Agile](ch02-agile.md) | 애자일 매니페스토 · 애자일 행오버 · XP | 애자일이 바꾼 것과 남긴 공백 — 절차만 남고 기술이 빠진 도입의 후유증 |
+| 3 | [Software Craftsmanship](ch03-software-craftsmanship.md) | 장인정신 정의 · 장인정신 매니페스토 · 보이스카웃 규칙 | 1992 잭 리브스에서 2009 매니페스토까지 — 장인정신의 정의와 4가지 가치 |
+| 4 | [The Attitude of a Software Craftsman](ch04-the-attitude-of-a-software-craftsman.md) | 자기 계발 · 카타 · 펫 프로젝트 · 의도한 발견 | 장인의 태도 = 자기 시간을 들이는 학습·훈련 루틴 |
+| 5 | [Heroes, Goodwill, and Professionalism](ch05-heroes-goodwill-and-professionalism.md) | 거절 · 대안 제시 · 영웅 심리 | "노력해보겠다"는 실패의 완곡어 — 프로는 대안 있는 "아니오"를 말한다 |
+| 6 | [Working Software](ch06-working-software.md) | 동작하는 소프트웨어 · 정원 돌보기 · 기술 부채 | 동작만 하는 코드는 충분하지 않다 — 코드는 정원처럼 돌봐야 한다 |
+| 7 | [Technical Practices](ch07-technical-practices.md) | XP 실행 관례 · 테스트 주도 개발 · 지속적 통합 · 짝 프로그래밍 | 가치를 모르는 관례는 버려진다 — XP 관례가 주는 진짜 효용 |
+| 8 | [The Long Road](ch08-the-long-road.md) | 커리어 투자 · 자율성/통달/목적의식 · 피터의 원리 | 브라질에서 런던까지 — 커리어는 긴 여정이며 투자다 |
 
-### 개인 성장에 초점을 둔다면
+### Part 2: 조직과 문화 (Ch 9-16)
 
-- Ch1 (21세기 개발자의 새로운 현실)
-- Ch4 (소프트웨어 장인의 태도) — 자기 계발 방법
-- Ch5 (영웅, 선의, 프로페셔널리즘) — "아니오"라고 말하기
-- Ch8 (길고 긴 여정) — 커리어를 투자로 보기
-- Ch16 (소프트웨어 장인 커리어)
-
-### 관리자/팀 리더가 읽는다면
-
-- Ch9 (인재 채용) — 채용 공고와 리쿠르팅
-- Ch10-11 (면접 방식과 안티패턴)
-- Ch12 (낮은 사기의 대가)
-- Ch13 (배움의 문화) — 학습 조직 만들기
-- Ch14 (기술적 변화 실행) — 회의론 극복
-
-### 소프트웨어 장인정신이 궁금하다면
-
-- Ch3 (소프트웨어 장인정신) — 정의와 역사
-- Ch7 (기술적 실행 관례) — XP와의 관계
-- Ch15 (실용주의 장인정신) — 고품질=고비용 편견 반박
-- Appendix A (오해와 설명) — 자주 나오는 반박에 대한 답
-
----
-
-## 전체 목차
-
-### Part 1 — 이념과 태도 (Ideology & Attitude)
-
-개인 개발자의 이념·태도·커리어를 다룬다. 소프트웨어 장인정신이 무엇이며, 개인은 어떤 태도로 일해야 하는지에 대한 답이다.
-
-| Ch | 제목 | 핵심 |
-|---|---|---|
-| [1](ch01-software-development-in-the-21st-century.md) | **Software Development in the 21st Century (21세기의 소프트웨어 개발)** | 아키텍트/개발자 이분법의 해체, 고참의 진정한 기준, 21세기 개발자의 확장된 책임 |
-| [2](ch02-agile.md) | **Agile (애자일)** | 2001년 애자일 매니페스토, 12원칙, 애자일 행오버(*hangover - 도입 후 남은 잔재*), XP 실행 관례 |
-| [3](ch03-software-craftsmanship.md) | **Software Craftsmanship (소프트웨어 장인정신)** | 정의와 역사(1992 잭 리브스→2009 매니페스토), 4가지 가치, 보이스카웃 규칙 |
-| [4](ch04-the-attitude-of-a-software-craftsman.md) | **The Attitude of a Software Craftsman (소프트웨어 장인의 태도)** | 자기 계발(책·블로그·리더), 훈련(카타·펫 프로젝트·오픈소스), 의도한 발견, 뽀모도로 |
-| [5](ch05-heroes-goodwill-and-professionalism.md) | **Heroes, Goodwill, and Professionalism (영웅, 선의 그리고 프로페셔널리즘)** | "아니오"라고 말하기, 오렌지 주스 이야기, 대안 있는 거절 |
-| [6](ch06-working-software.md) | **Working Software (동작하는 소프트웨어)** | 정원 돌보기 비유, 로컬 실행 불가능 팀, 레거시 코드 태도 변화, 단위 테스트는 별개 업무가 아님 |
-| [7](ch07-technical-practices.md) | **Technical Practices (기술적 실행 관례)** | XP 역사(크라이슬러 C3), TDD·CI·페어 프로그래밍·리팩터링, 관례와 가치 |
-| [8](ch08-the-long-road.md) | **The Long Road (길고 긴 여정)** | 브라질에서 런던까지, 커리어를 투자로 보기, 자율성·통달·목적의식, 피터의 원리 |
-
-### Part 2 — 조직과 문화 (Organizations & Culture)
-
-팀·조직·문화 차원에서 소프트웨어 장인정신을 어떻게 실현할지 다룬다. 채용에서 시작해 배움의 문화, 기술적 변화 실행, 실용주의, 커리어까지 이어진다.
-
-| Ch | 제목 | 핵심 |
-|---|---|---|
-| [9](ch09-recruitment.md) | **Recruitment (인재 채용)** | 잘못된 채용 공고 패턴, "인터뷰할 시간 없다" 변명, 추천 채용, 커뮤니티(LSCC), Codurance 사례 |
-| [10](ch10-interviewing-software-craftsmen.md) | **Interviewing Software Craftsmen (소프트웨어 장인 면접하기)** | 비즈니스 협상 관점, 자유토론/페어 프로그래밍/사전 코딩 시험, 잠재성 발굴 |
-| [11](ch11-wrong-interview-approaches.md) | **Wrong Interview Approaches (잘못된 면접 방식)** | 8가지 안티패턴(수수께끼·인터넷 차단·종이 코딩·알고리즘 문제 등), 좋은 vs 나쁜 면접 |
-| [12](ch12-the-cost-of-low-morale.md) | **The Cost of Low Morale (낮은 사기의 대가)** | 애자일 행오버 이후, 다국적 미디어사 7년/1000만 파운드 낭비, 장인 수혈로 문화 반전 |
-| [13](ch13-the-culture-of-learning.md) | **The Culture of Learning (배움의 문화)** | 북 클럽·테크 런치·업무 교환·그룹 코드 리뷰·펫 프로젝트, "아무도 참여하지 않을 때" 8가지 조언 |
-| [14](ch14-driving-technical-changes.md) | **Driving Technical Changes (기술적 변화의 실행)** | 회의론 유형 분류(라이언 7 + 저자 6), 신뢰 쌓기·전문성·모범·점진적 접근, 상아탑 아키텍트 대화 |
-| [15](ch15-pragmatic-craftsmanship.md) | **Pragmatic Craftsmanship (실용주의 장인정신)** | "고품질=고비용" 편견 반박, TDD가 병목이 아닌 이유, 켄트 벡/레인스버거 단순 설계 |
-| [16](ch16-a-career-as-a-software-craftsman.md) | **A Career as a Software Craftsman (소프트웨어 장인으로서의 커리어)** | 열정·겸손·정직·용기, 커리어를 투자로, 정체 시 이동, 컨설팅 vs 스페셜리스트 |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 9 | [Recruitment](ch09-recruitment.md) | 채용 공고 안티패턴 · 추천 채용 · 커뮤니티 | 스펙 나열식 공고의 실패 — 태도와 커뮤니티로 채용하라 |
+| 10 | [Interviewing Software Craftsmen](ch10-interviewing-software-craftsmen.md) | 면접 = 비즈니스 협상 · 페어 프로그래밍 면접 | 면접은 쌍방향 협상 — 코드로 대화하는 면접 설계 |
+| 11 | [Wrong Interview Approaches](ch11-wrong-interview-approaches.md) | 면접 안티패턴 · 수수께끼 문제 | 8가지 잘못된 면접 방식 — 좋은 개발자를 쫓아내는 법 |
+| 12 | [The Cost of Low Morale](ch12-the-cost-of-low-morale.md) | 낮은 사기 · 문화 반전 · 장인 수혈 | 사기 저하의 비용은 눈에 보이지 않게 크다 — 열정은 전염된다 |
+| 13 | [The Culture of Learning](ch13-the-culture-of-learning.md) | 북 클럽 · 테크 런치 · 그룹 코드 리뷰 | 배움의 문화 만들기 — 아무도 참여하지 않을 때의 처방까지 |
+| 14 | [Driving Technical Changes](ch14-driving-technical-changes.md) | 회의론 유형 · 신뢰 쌓기 · 점진적 변화 | 회의론자 유형별 설득 전략 — 신뢰·전문성·모범으로 변화를 이끈다 |
+| 15 | [Pragmatic Craftsmanship](ch15-pragmatic-craftsmanship.md) | 품질 비용 편견 · 단순 설계 4원칙 | "고품질=고비용"은 편견이다 — 잘 짜는 것이 결국 빠르다 |
+| 16 | [A Career as a Software Craftsman](ch16-a-career-as-a-software-craftsman.md) | 열정 · 커리어 전략 · 정체와 이동 | 장인으로 사는 커리어 — 열정·겸손·정직·용기 |
 
 ### 부록
 
-| Appendix | 제목 | 핵심 |
-|---|---|---|
-| [A](appendix-a-misconceptions-about-software-craftsmanship.md) | **Misconceptions About Software Craftsmanship (소프트웨어 장인정신에 대한 오해와 설명)** | 장인 vs 개발자, 엘리트주의 반박, 견습생·숙련공·마스터 비유의 한계, TDD 근시안 오해 |
+| 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| A | [Misconceptions About Software Craftsmanship](appendix-a-misconceptions-about-software-craftsmanship.md) | 엘리트주의 반박 · 오해와 답변 | 장인정신에 대한 흔한 오해(엘리트주의·TDD 근시안 등)와 저자의 답 |
 
----
+## 학습 가이드
 
-## 노트의 구성 요소
+1. **처음이라면 순서대로** — Part 1(개인의 이념·태도) → Part 2(조직의 문화·채용·변화)로 관점이 자연스럽게 확장된다
+2. **개인 성장 초점**: Ch1 → Ch4(자기 계발 루틴) → Ch5(거절하기) → Ch8·16(커리어 전략)
+3. **관리자/팀 리더**: Ch9~11(채용·면접) → Ch12(사기) → Ch13(배움의 문화) → Ch14(변화 실행)
+4. **장인정신 자체가 궁금하면**: Ch3(정의와 역사) → Ch7(XP와의 관계) → Ch15(실용주의) → 부록 A(오해 반박)
 
-각 챕터는 다음 요소로 구성되어 있다:
+## 핵심 개념 맵
 
-- `## 핵심 질문` — 챕터가 답하려는 물음 (인라인 텍스트)
-- 번호가 매겨진 주요 섹션 (`## 1.`, `## 2.`, ...)
-- `> **핵심 통찰**:` 콜아웃 — 챕터의 핵심 인사이트 (💡 gray_bg)
-- 레이블 없는 `>` 인용문 — 산드로 만쿠소의 개인 경험담과 명언
-- `(*Term - 설명*)` 인라인 이탤릭 — 처음 등장하는 용어 설명
-- 비교/카테고리를 정리하는 마크다운 표
-- `## 요약` — 챕터 마지막 불릿 정리
+- **애자일 행오버 → 장인정신**: 절차만 도입하고 기술 관례를 빠뜨린 애자일의 공백을 장인정신이 채운다 (Ch2~3)
+- **장인정신 = 방법론이 아니라 태도**: 동작하는 소프트웨어를 넘어 정교하게 만들어진 소프트웨어로 (Ch3·6)
+- **커리어의 주인은 나**: 회사·상사에게 위임하지 않고 자기 시간의 학습·훈련(카타·펫 프로젝트)으로 투자한다 (Ch4·8·16)
+- **프로페셔널리즘 = 정직한 거절**: 대안 없는 "노력해보겠다"는 거짓말이다 (Ch5)
+- **기술 관례는 가치로 정당화**: TDD·CI·페어는 그 자체가 목적이 아니라 빠른 피드백·낮은 결함의 수단 (Ch7·15)
+- **문화는 채용에서 시작**: 스펙이 아니라 태도·열정 기준의 채용 → 배움의 문화 → 점진적 기술 변화 (Ch9~14)
 
----
+## 인용문
 
-## 책의 인상적인 인용
+전 책 통합 모음은 [루트 QUOTES.md](../QUOTES.md) 참조.
 
-> 코딩이 직업인 사람이 동작하는 코드를 만드는 건 기본이에요. 일을 끝냈다는 말에는 제대로 동작한다는 것이 당연히 포함되어 있죠.
-> — 에두아르도 나무르(저자의 첫 멘토)
+> 코딩이 직업인 사람이 동작하는 코드를 만드는 건 기본이에요. 일을 끝냈다는 말에는 제대로 동작한다는 것이 당연히 포함되어 있죠.<br>— 에두아르도 나무르, 저자의 첫 멘토 (위치: 저자의 회고)
 
-> 일을 하는 것도 중요하지만 그에 못지않게, 일을 어떻게 하느냐도 중요합니다.
-> — 에두아르도 나무르
+> 일을 하는 것도 중요하지만 그에 못지않게, 일을 어떻게 하느냐도 중요합니다.<br>— 에두아르도 나무르 (위치: 저자의 회고)
 
-> 스스로 커리어에 책임을 진다는 것은 스스로 성장해야 함을 뜻한다. 오늘의 자신이 어제의 자신보다 나아지는 것, 그것이 프로페셔널의 조건이다.
+> "노력해보겠다"는 대부분의 경우 "실패하겠다"의 완곡한 표현이다. 프로페셔널은 대안이 있는 "아니오"를 말할 줄 안다.<br>— 산드로 만쿠소 (위치: Ch5)
 
-> "노력해보겠다"는 대부분의 경우 "실패하겠다"의 완곡한 표현이다. 프로페셔널은 대안이 있는 "아니오"를 말할 줄 안다.
+## 시그니처 요소와 표기 규칙
 
-> 좋은 개발자는 회사를 옮기지 않아도 스스로의 커리어를 발전시킨다. 좋은 회사는 그런 개발자를 붙잡기 위해 노력한다.
+- 레이블 없는 `>` 인용문 — 산드로 만쿠소의 개인 경험담(브라질→런던, LSCC, Codurance)과 명언
+- `> **핵심 통찰**:` 콜아웃 (Notion 변환: 💡 gray_bg)
+- `(*Term - 설명*)` 인라인 이탤릭 용어 설명
+- 비교 테이블(좋은/나쁜 실행 관례, 채용 안티패턴 등), 개인·조직 두 축의 커리어 서술
 
----
+## origin 분리
 
-## 관련 책
-
-- [the-clean-coder/](../the-clean-coder/) — 로버트 C. 마틴의 **프로페셔널리즘** 원조 (같은 시리즈)
-- [clean-software/](../clean-software/) — 로버트 C. 마틴의 **애자일 원칙, 패턴, 실천 방법**
-- [test-driven-development-by-example/](../test-driven-development-by-example/) — 켄트 벡의 **TDD** 원전
-- [philosophy-of-software-design/](../philosophy-of-software-design/) — John Ousterhout의 **소프트웨어 설계 철학**
-- [code-that-fits-in-your-head/](../code-that-fits-in-your-head/) — 마크 시먼의 **읽기 쉬운 코드**
-- [design-it-from-programmer-to-software-architect/](../design-it-from-programmer-to-software-architect/) — 마이클 킬링의 **개발자에서 아키텍트로**
+- `0~17` = 18개 파일 (0=서문, 1~16=Ch1~Ch16, 17=Appendix A)
