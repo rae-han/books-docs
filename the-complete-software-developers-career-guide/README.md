@@ -1,122 +1,132 @@
-# The Complete Software Developer's Career Guide (커리어 스킬)
+# 커리어 스킬 (The Complete Software Developer's Career Guide)
 
-- **한글 제목**: 커리어 스킬: 완벽한 개발자 인생 로드맵
-- **영어 제목**: The Complete Software Developer's Career Guide: How to Learn Programming Languages Quickly, Ace Your Programming Interview, and Land Your Software Developer Dream Job
-- **저자**: John Sonmez (존 손메즈, Simple Programmer 창립자)
-- **출판사**: Simple Programmer (원서) / 길벗 (한국어판)
+> *The Complete Software Developer's Career Guide* (John Sonmez, Simple Programmer, 2017)
+> 한국어판: 『커리어 스킬 — 완벽한 개발자 인생 로드맵』 (이미령 옮김, 길벗)
+
+존 손메즈(Simple Programmer 창립자)가 개발자의 **경력 전 주기**(입문 → 취업 → 개발 지식 → 조직 생활 → 경력 발전)를 다룬 실용 안내서. 코드 작성법이 아니라 **커리어 전략과 소프트 스킬**에 초점을 맞춘다.
+
+## 책 정보
+
+| 항목 | 내용 |
+|------|------|
+| **저자** | 존 손메즈(John Sonmez) |
+| **출판** | 길벗 (원서: Simple Programmer, 2017) |
+| **구성** | Ch1(활용법) + 5부 60장 + 부록(한국 기여자 칼럼) = 62개 파일 |
+| **대상 독자** | 입문 준비생부터 경력 전환·발전을 고민하는 개발자까지 |
 
 ## 개요
 
-소프트웨어 개발자의 **경력 전 주기**(입문 → 취업 → 개발 실무 → 조직 생활 → 경력 발전)를 다루는 실용 안내서다. 코드 작성법이 아니라 **개발자로 성공하기 위한 커리어 전략과 소프트 스킬**에 초점을 맞춘다. 저자 존 손메즈의 개인적 경험(무명 개발자 → 블로그 '심플 프로그래머' → 조기 은퇴)이 전권을 관통한다.
+저자의 개인 경험(무명 개발자 → 블로그 '심플 프로그래머' → 33세 조기 은퇴)이 전권을 관통하며, 핵심 메시지는 **"실천하라(Take Action)"**다 — 기술(하드 스킬)만이 아니라 평판·인맥·소통·꾸준함(소프트 스킬)이 경력을 결정한다.
 
-- **구성**: Ch1(이 책의 활용법) + 5부 60장 + 부록(한국 기여자 칼럼)
-- **핵심 메시지**: **"실천하라"** — 기술(하드 스킬)만이 아니라 평판·인맥·소통·꾸준함(소프트 스킬)이 경력을 결정한다.
-
-## 학습 노트 고유 요소
-
-각 장 노트는 프로젝트 공통 구조(`## 핵심 질문` → 번호 섹션 → `## 요약`)에 더해 이 책의 특성을 반영한 요소를 담았다.
-
-- **`> **존의 조언**:`** — 저자의 핵심 조언 콜아웃
-- **레이블 없는 `>` 인용문** — 저자의 개인 경험담·일화
-- **`### 대화: 〈잠깐만요, 존!〉`** — 원서의 가상 독자 Q&A(독자의 반론에 저자가 답하는 형식)
-- **`> **핵심 통찰**:`** — 핵심 인사이트 콜아웃
-- **`## 실천 항목`** — 각 장 끝 실행 체크리스트
+한국어판 부록(Ch61)은 한국 기여자 4인의 칼럼으로, SI vs 서비스 회사·국비 학원·비전공 전향·블로그의 힘 등 한국 개발 생태계의 현실을 보완한다.
 
 ## 목차
 
 ### 시작하며
 
-- [Chapter 1: 이 책의 활용법 (How to Use This Book)](ch01-how-to-use-this-book.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [이 책의 활용법](ch01-how-to-use-this-book.md) | 책 사용법 | 처음부터 다 읽지 않아도 된다 — 지금 필요한 부(部)부터 |
 
-### Part 1. 소프트웨어 개발자로 입문하기 (Getting Started as a Software Developer)
+### Part 1: 소프트웨어 개발자로 입문하기 (Ch 2-9)
 
-> 꿈을 위해 공부하고 계획하고 준비하느라 평생을 보낼 수도 있다. 하지만 일단은 시작해야 한다.<br>— 드루 하우스턴(Drew Houston, 드롭박스 창업자)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 2 | [입문하기](ch02-getting-started.md) | 입문 로드맵 · 계획 | 막연한 동경 대신 계획 — 개발자가 되는 큰 그림 |
+| 3 | [당신이 배워야 하는 기술](ch03-what-skills-you-need.md) | 필수 기술 지도 | 언어 하나·구조화·소스 제어·디버깅 등 기본기 목록 |
+| 4 | [기술을 발전시키는 방법](ch04-how-to-improve-your-skills.md) | 학습 사이클 · 실천 | 배우면 바로 써먹어라 — 가르치면 완성된다 |
+| 5 | [프로그래밍 언어 고르기](ch05-choosing-a-programming-language.md) | 언어 선택 기준 | 첫 언어는 생각보다 덜 중요하다 — 시장·흥미 기준으로 |
+| 6 | [첫 번째 프로그래밍 언어 배우기](ch06-learning-your-first-language.md) | 첫 언어 학습법 | 동작하는 코드를 만지며 배워라 — 문법 암기가 아니라 |
+| 7 | [대학 진학하기](ch07-going-to-college.md) | 학위 장단점 | 학위는 유리하지만 필수는 아니다 |
+| 8 | [코딩 부트캠프](ch08-coding-bootcamps.md) | 부트캠프 | 압축 성장의 장단점과 고르는 기준 |
+| 9 | [독학](ch09-self-study.md) | 독학 전략 | 자기 주도 학습의 설계 — 커리큘럼을 스스로 만든다 |
 
-- [Chapter 2: 입문하기 (Getting Started)](ch02-getting-started.md)
-- [Chapter 3: 당신이 배워야 하는 기술 (The Skills You Need to Know)](ch03-what-skills-you-need.md)
-- [Chapter 4: 기술을 발전시키는 방법 (How to Improve Your Skills)](ch04-how-to-improve-your-skills.md)
-- [Chapter 5: 프로그래밍 언어 고르기 (Choosing a Programming Language)](ch05-choosing-a-programming-language.md)
-- [Chapter 6: 첫 번째 프로그래밍 언어 배우기 (Learning Your First Programming Language)](ch06-learning-your-first-language.md)
-- [Chapter 7: 대학 진학하기 (Going to College)](ch07-going-to-college.md)
-- [Chapter 8: 코딩 부트캠프 (Coding Bootcamps)](ch08-coding-bootcamps.md)
-- [Chapter 9: 독학 (Self-Study)](ch09-self-study.md)
+### Part 2: 일자리 구하기 (Ch 10-20)
 
-### Part 2. 일자리 구하기 (Getting a Job)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 10 | [인턴십](ch10-internships.md) | 인턴십 | 경력의 첫 단추 — 무급이라도 가치가 있다 |
+| 11 | [경력 없이 일자리 구하기](ch11-getting-a-job-without-experience.md) | 무경력 취업 · 포트폴리오 | 경력이 없으면 증거(사이드 프로젝트·오픈소스)를 만들어라 |
+| 12 | [일자리를 구하는 방법](ch12-how-to-find-a-job.md) | 구직 채널 · 인맥 | 공고 지원은 최악의 채널 — 인맥과 직접 접촉이 낫다 |
+| 13 | [이력서 만들기](ch13-creating-a-resume.md) | 이력서 | 이력서는 마케팅 문서 — 전문가의 도움도 방법 |
+| 14 | [면접 절차](ch14-the-interview-process.md) | 면접 유형 · 준비 | 면접의 본질은 "함께 일하고 싶은 사람인가" |
+| 15 | [연봉과 협상](ch15-salary-and-negotiation.md) | 연봉 협상 | 먼저 숫자를 부르지 마라 — 협상의 기본기 |
+| 16 | [퇴사하는 법](ch16-how-to-quit-a-job.md) | 퇴사 매너 | 다리를 불태우지 말고 프로답게 떠나라 |
+| 17 | [소프트웨어 개발자로 전향하기](ch17-changing-careers-to-software.md) | 커리어 전향 | 비전공·타업계에서 개발자로 — 전환 전략 |
+| 18 | [타 기술직에서 개발직으로 옮겨오기](ch18-moving-from-another-tech-field.md) | 직군 이동 | QA·운영 등 인접 직군에서 개발로 옮기는 경로 |
+| 19 | [계약직 vs. 정규직](ch19-contractor-vs-employee.md) | 고용 형태 | 계약직과 정규직의 손익 계산 |
+| 20 | [헤드헌팅 업계의 작동 방식](ch20-how-recruiting-works.md) | 리크루터 인센티브 | 헤드헌터가 움직이는 원리를 알면 협상이 보인다 |
 
-> 좋아하는 일을 업으로 삼으면 평생 동안 단 하루도 일하지 않아도 된다.<br>— 공자(孔子)
+### Part 3: 소프트웨어 개발에 대해 알아야 할 것 (Ch 21-35)
 
-- [Chapter 10: 인턴십 (Internships)](ch10-internships.md)
-- [Chapter 11: 경력 없이 일자리 구하기 (Getting a Job Without Experience)](ch11-getting-a-job-without-experience.md)
-- [Chapter 12: 일자리를 구하는 방법 (How to Find a Job)](ch12-how-to-find-a-job.md)
-- [Chapter 13: 이력서 만들기 (Creating a Resume)](ch13-creating-a-resume.md)
-- [Chapter 14: 면접 절차 (The Interview Process)](ch14-the-interview-process.md)
-- [Chapter 15: 연봉과 협상 (Salary and Negotiation)](ch15-salary-and-negotiation.md)
-- [Chapter 16: 퇴사하는 법 (How to Quit a Job)](ch16-how-to-quit-a-job.md)
-- [Chapter 17: 소프트웨어 개발자로 전향하기 (Changing Careers to Become a Software Developer)](ch17-changing-careers-to-software.md)
-- [Chapter 18: 타 기술직에서 개발직으로 옮겨오기 (Moving from Another Technical Field into Development)](ch18-moving-from-another-tech-field.md)
-- [Chapter 19: 계약직 vs. 정규직 (Contractor vs. Employee)](ch19-contractor-vs-employee.md)
-- [Chapter 20: 헤드헌팅 업계의 작동 방식 (How the Recruiting Industry Works)](ch20-how-recruiting-works.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 21 | [프로그래밍 언어 개요](ch21-overview-of-programming-languages.md) | 언어 지형도 | 주요 언어들의 특징과 쓰임새 한눈에 |
+| 22 | [웹 개발이란 무엇인가?](ch22-what-is-web-development.md) | 웹 개발 구조 | 웹의 동작 원리와 프런트/백 구분 |
+| 23 | [모바일 개발](ch23-mobile-development.md) | 모바일 · 네이티브/크로스 | 모바일 개발의 선택지들 |
+| 24 | [백엔드 개발](ch24-backend-development.md) | 백엔드 · 서버 로직 | 화면 뒤에서 벌어지는 일 |
+| 25 | [비디오 게임 개발](ch25-video-game-development.md) | 게임 개발 | 낭만과 현실 — 게임 업계의 실제 |
+| 26 | [DBA와 데브옵스](ch26-dba-and-devops.md) | DBA · 데브옵스 | 데이터와 인프라를 다루는 직군 이해 |
+| 27 | [소프트웨어 개발 방법론](ch27-software-development-methodologies.md) | 워터폴 · 애자일 · 스크럼 | 방법론의 계보와 실제 |
+| 28 | [테스트와 QA 기초](ch28-testing-and-qa-basics.md) | 테스트 유형 · QA | 테스트의 종류와 QA와 일하는 법 |
+| 29 | [테스트 주도 개발과 단위 테스트](ch29-tdd-and-unit-testing.md) | 테스트 주도 개발 · 단위 테스트 | TDD의 사이클과 단위 테스트의 가치 |
+| 30 | [소스 제어](ch30-source-control.md) | 버전 관리 · Git | 소스 제어는 선택이 아니라 기본 소양 |
+| 31 | [지속적 통합](ch31-continuous-integration.md) | 지속적 통합 · 빌드 자동화 | 코드를 항상 배포 가능한 상태로 |
+| 32 | [디버깅](ch32-debugging.md) | 디버깅 접근법 | 찍기 전에 재현하고 가설을 세워라 |
+| 33 | [코드 유지보수](ch33-code-maintenance.md) | 유지보수 · 보이스카웃 규칙 | 개발자의 시간 대부분은 유지보수 — 잘하는 법 |
+| 34 | [직업과 직함](ch34-jobs-and-titles.md) | 직함 체계 | 주니어부터 아키텍트까지 직함의 실제 의미 |
+| 35 | [업무 유형](ch35-types-of-work.md) | 업무 유형 | 스타트업/대기업/에이전시 등 일터별 특성 |
 
-### Part 3. 소프트웨어 개발에 대해 알아야 할 것 (What You Need to Know About Software Development)
+### Part 4: 개발자로 일하기 (Ch 36-47)
 
-> 내가 안다는 걸 안다. 내가 모른다는 걸 안다. 하지만 모른다는 걸 모를 수도 있다.<br>— 도널드 럼즈펠드(Donald Rumsfeld)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 36 | [동료 대하기](ch36-dealing-with-coworkers.md) | 동료 관계 | 까다로운 동료 유형별 대처법 |
+| 37 | [상사 대하기](ch37-dealing-with-your-boss.md) | 상사 관리 | 상사를 이해하고 관리하라 — 관계의 기술 |
+| 38 | [QA 대하기](ch38-dealing-with-qa.md) | QA 협업 | QA는 적이 아니라 같은 편 |
+| 39 | [일과 삶의 균형](ch39-work-life-balance.md) | 워라밸 · 우선순위 | 균형은 시간이 아니라 우선순위의 문제 |
+| 40 | [팀에서 일하기](ch40-working-on-a-team.md) | 팀워크 | 팀의 목표가 내 목표 — 팀 플레이어 되기 |
+| 41 | [설득하기](ch41-being-persuasive.md) | 설득 기술 | 논쟁이 아니라 설득 — 사람을 움직이는 법 |
+| 42 | [적절한 복장 갖추기](ch42-dressing-for-success.md) | 복장 전략 | 옷차림도 커리어 전략이다 — 두 단계 위로 입어라 |
+| 43 | [좋은 평가받기](ch43-getting-a-good-review.md) | 성과 평가 | 평가는 평소의 가시성이 결정한다 |
+| 44 | [편견에 대처하기](ch44-dealing-with-prejudice.md) | 편견 대응 | 부당함에 대처하는 현실적 전략 |
+| 45 | [좋은 리더 되기](ch45-being-a-good-leader.md) | 리더십 | 리더는 직함이 아니라 행동 — 모범으로 이끈다 |
+| 46 | [연봉 인상과 승진](ch46-raises-and-promotions.md) | 인상 · 승진 전략 | 가치를 올리고, 그 가치를 증명하라 |
+| 47 | [기술 분야에 종사하는 여성](ch47-women-in-tech.md) | 여성 개발자 | 기술 업계의 성별 문제에 대한 저자의 관점 |
 
-- [Chapter 21: 프로그래밍 언어 개요 (A Brief Overview of Programming Languages)](ch21-overview-of-programming-languages.md)
-- [Chapter 22: 웹 개발이란 무엇인가? (What Is Web Development?)](ch22-what-is-web-development.md)
-- [Chapter 23: 모바일 개발 (Mobile Development)](ch23-mobile-development.md)
-- [Chapter 24: 백엔드 개발 (Backend Development)](ch24-backend-development.md)
-- [Chapter 25: 비디오 게임 개발 (Video Game Development)](ch25-video-game-development.md)
-- [Chapter 26: DBA와 데브옵스 (DBAs and DevOps)](ch26-dba-and-devops.md)
-- [Chapter 27: 소프트웨어 개발 방법론 (Software Development Methodologies)](ch27-software-development-methodologies.md)
-- [Chapter 28: 테스트와 QA 기초 (Testing and QA Basics)](ch28-testing-and-qa-basics.md)
-- [Chapter 29: 테스트 주도 개발과 단위 테스트 (TDD and Unit Testing)](ch29-tdd-and-unit-testing.md)
-- [Chapter 30: 소스 제어 (Source Control)](ch30-source-control.md)
-- [Chapter 31: 지속적 통합 (Continuous Integration)](ch31-continuous-integration.md)
-- [Chapter 32: 디버깅 (Debugging)](ch32-debugging.md)
-- [Chapter 33: 코드 유지보수 (Maintaining Code)](ch33-code-maintenance.md)
-- [Chapter 34: 직업과 직함 (Jobs and Titles)](ch34-jobs-and-titles.md)
-- [Chapter 35: 업무 유형 (Types of Work)](ch35-types-of-work.md)
+### Part 5: 경력 발전시키기 (Ch 48-60)
 
-### Part 4. 개발자로 일하기 (Working as a Software Developer)
-
-> 직업일 뿐이다. 풀은 자라고 새는 날고 파도는 모래를 두드린다. 그리고 나는 사람을 두들겨 팬다.<br>— 무하마드 알리(Muhammad Ali)
-
-- [Chapter 36: 동료 대하기 (Dealing with Coworkers)](ch36-dealing-with-coworkers.md)
-- [Chapter 37: 상사 대하기 (Dealing with Your Boss)](ch37-dealing-with-your-boss.md)
-- [Chapter 38: QA 대하기 (Dealing with QA)](ch38-dealing-with-qa.md)
-- [Chapter 39: 일과 삶의 균형 (Work-Life Balance)](ch39-work-life-balance.md)
-- [Chapter 40: 팀에서 일하기 (Working on a Team)](ch40-working-on-a-team.md)
-- [Chapter 41: 설득하기 (Being Persuasive)](ch41-being-persuasive.md)
-- [Chapter 42: 적절한 복장 갖추기 (Dressing for Success)](ch42-dressing-for-success.md)
-- [Chapter 43: 좋은 평가받기 (Getting a Good Review)](ch43-getting-a-good-review.md)
-- [Chapter 44: 편견에 대처하기 (Dealing with Prejudice)](ch44-dealing-with-prejudice.md)
-- [Chapter 45: 좋은 리더 되기 (Being a Good Leader)](ch45-being-a-good-leader.md)
-- [Chapter 46: 연봉 인상과 승진 (Raises and Promotions)](ch46-raises-and-promotions.md)
-- [Chapter 47: 기술 분야에 종사하는 여성 (Women in Tech)](ch47-women-in-tech.md)
-
-### Part 5. 경력 발전시키기 (Advancing Your Career)
-
-> 자신에게 요구된 것 이상을 습관적으로 더 많이 해야만 발전할 수 있다.<br>— 게리 라이언 블레어(Gary Ryan Blair)
-
-- [Chapter 48: 좋은 평판 쌓기 (Building Your Reputation)](ch48-building-your-reputation.md)
-- [Chapter 49: 인맥과 커뮤니티 (Networking and Community)](ch49-networking.md)
-- [Chapter 50: 최신 기술 따라잡기 (Staying Relevant)](ch50-staying-relevant.md)
-- [Chapter 51: 제너럴리스트 vs. 스페셜리스트 (Generalist vs. Specialist)](ch51-generalist-vs-specialist.md)
-- [Chapter 52: 강연과 콘퍼런스 (Speaking and Conferences)](ch52-speaking-at-conferences.md)
-- [Chapter 53: 블로그 만들기 (Creating a Blog)](ch53-blogging.md)
-- [Chapter 54: 프리랜서와 창업 (Freelancing and Entrepreneurship)](ch54-freelancing-and-entrepreneurship.md)
-- [Chapter 55: 진로 (Career Paths)](ch55-career-paths.md)
-- [Chapter 56: 고용의 안정성과 보장 (Job Security)](ch56-job-security.md)
-- [Chapter 57: 교육과 자격증 (Education and Certifications)](ch57-education-and-certifications.md)
-- [Chapter 58: 사이드 프로젝트 (Side Projects)](ch58-side-projects.md)
-- [Chapter 59: 추천 도서 (Recommended Reading)](ch59-recommended-reading.md)
-- [Chapter 60: 마치며 (Conclusion)](ch60-conclusion.md)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 48 | [좋은 평판 쌓기](ch48-building-your-reputation.md) | 평판 · 개인 브랜드 | 평판은 복리로 쌓인다 — 이름을 알려라 |
+| 49 | [인맥과 커뮤니티](ch49-networking.md) | 인맥 · 커뮤니티 | 기브 앤 테이크 — 먼저 주는 네트워킹 |
+| 50 | [최신 기술 따라잡기](ch50-staying-relevant.md) | 기술 트렌드 · 학습 습관 | 도태되지 않는 법 — 매일 조금씩 |
+| 51 | [제너럴리스트 vs. 스페셜리스트](ch51-generalist-vs-specialist.md) | 전문화 | 니치를 정하라 — 전문화가 몸값을 만든다 |
+| 52 | [강연과 콘퍼런스](ch52-speaking-at-conferences.md) | 강연 · 콘퍼런스 | 무대에 서면 커리어가 가속된다 |
+| 53 | [블로그 만들기](ch53-blogging.md) | 블로그 · 콘텐츠 | 저자 인생을 바꾼 도구 — 꾸준한 블로깅 |
+| 54 | [프리랜서와 창업](ch54-freelancing-and-entrepreneurship.md) | 프리랜싱 · 창업 | 월급 밖의 선택지 — 준비된 독립 |
+| 55 | [진로](ch55-career-paths.md) | 커리어 패스 | 관리자·전문가·독립 — 세 갈래 길 |
+| 56 | [고용의 안정성과 보장](ch56-job-security.md) | 고용 안정 | 안정은 회사가 아니라 내 실력에서 나온다 |
+| 57 | [교육과 자격증](ch57-education-and-certifications.md) | 자격증 · 재교육 | 자격증의 실제 가치 판단법 |
+| 58 | [사이드 프로젝트](ch58-side-projects.md) | 사이드 프로젝트 | 퇴근 후의 작은 프로젝트가 기회가 된다 |
+| 59 | [추천 도서](ch59-recommended-reading.md) | 추천 도서 | 저자의 인생 책 목록 |
+| 60 | [마치며](ch60-conclusion.md) | 실천 | 아는 것과 하는 것은 다르다 — 지금 실천하라 |
 
 ### 부록
 
-- [부록: 개발자로 살아가기 (한국 기여자 칼럼)](ch61-living-as-a-developer.md) — 김요한('좋은 개발자'의 정의)·이동욱(SI에서 서비스 회사로의 이직)·이승민(5년 차 개발자의 첫 이직)·한정수(체대생이 개발자가 되기까지)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 61 | [개발자로 살아가기 (한국 기여자 칼럼)](ch61-living-as-a-developer.md) | SI vs 서비스 · 국비 학원 · 비전공 · 블로그 | 김요한·이동욱·이승민·한정수 — 한국 개발 생태계 보완 칼럼 |
 
-## 부별 핵심 요지
+## 학습 가이드
+
+1. **Ch1(활용법)대로, 지금 단계의 부(部)부터** — 전 주기 안내서라 통독보다 필요한 부를 골라 읽는 것이 저자의 의도
+2. **입문·취준생**: Part 1 → Part 2 → 부록(Ch61 한국 현실)
+3. **주니어~중니어**: Part 3(기본 소양 점검) → Part 4(조직 생활)
+4. **경력 발전 고민**: Part 5 — 특히 Ch48(평판)·Ch51(전문화)·Ch53(블로그)이 저자 전략의 핵심
+5. 각 장 끝 **`## 실천 항목`** 체크리스트를 실제로 하나씩 실행하는 것이 이 책의 사용법
+
+## 핵심 개념 맵
 
 | 부 | 주제 | 핵심 메시지 |
 |----|------|-------------|
@@ -124,10 +134,34 @@
 | Part 2 | 취업 | **인맥과 자기 마케팅**으로 일자리를 구하고, 연봉은 **먼저 숫자를 부르지 말고** 협상하라 |
 | Part 3 | 개발 지식 | 웹·모바일·백엔드부터 방법론·테스트·소스 제어·디버깅까지 **기본 소양**을 갖춰라 |
 | Part 4 | 조직 생활 | 코드 실력보다 **동료·상사와의 관계, 소통, 소프트 스킬**이 성공을 좌우한다 |
-| Part 5 | 경력 발전 | **평판·개인 브랜드(블로그)**를 구축하고 꾸준함으로 유리천장을 돌파하라 |
+| Part 5 | 경력 발전 | **평판·개인 브랜드(블로그)**를 구축하고 꾸준함으로 돌파하라 |
 
-## 시그니처 — "실천하라(Take Action)"
+- 전권을 관통하는 실행 원리: **실천하라(Take Action)** — 실천이 따르지 않는 지식은 종이에 적힌 글자에 지나지 않는다
 
-> 소원과 열망을 결심으로 바꾸는 짧은 순간, 모든 것이 바뀐다. 지금이 바로 그 순간이다.
+## 인용문
 
-이 책의 마지막 당부는 단 하나, **"실천하라"**이다. 아는 것과 하는 것은 다르며, **실천이 따르지 않는 지식은 종이에 적힌 글자에 지나지 않는다.**
+각 부를 여는 에피그래프. 전 책 통합 모음은 [루트 QUOTES.md](../QUOTES.md) 참조.
+
+> 꿈을 위해 공부하고 계획하고 준비하느라 평생을 보낼 수도 있다. 하지만 일단은 시작해야 한다.<br>— 드루 하우스턴(Drew Houston, 드롭박스 창업자) (위치: Part 1 에피그래프)
+
+> 좋아하는 일을 업으로 삼으면 평생 동안 단 하루도 일하지 않아도 된다.<br>— 공자(孔子) (위치: Part 2 에피그래프)
+
+> 내가 안다는 걸 안다. 내가 모른다는 걸 안다. 하지만 모른다는 걸 모를 수도 있다.<br>— 도널드 럼즈펠드(Donald Rumsfeld) (위치: Part 3 에피그래프)
+
+> 직업일 뿐이다. 풀은 자라고 새는 날고 파도는 모래를 두드린다. 그리고 나는 사람을 두들겨 팬다.<br>— 무하마드 알리(Muhammad Ali) (위치: Part 4 에피그래프)
+
+> 자신에게 요구된 것 이상을 습관적으로 더 많이 해야만 발전할 수 있다.<br>— 게리 라이언 블레어(Gary Ryan Blair) (위치: Part 5 에피그래프)
+
+> 소원과 열망을 결심으로 바꾸는 짧은 순간, 모든 것이 바뀐다. 지금이 바로 그 순간이다.<br>— 존 손메즈 (위치: Ch60 마치며)
+
+## 시그니처 요소와 표기 규칙
+
+- `> **존의 조언**:` — 저자의 핵심 조언 콜아웃 / `> **핵심 통찰**:` 콜아웃
+- 레이블 없는 `>` 인용문 — 저자의 개인 경험담·일화
+- `### 대화: 〈잠깐만요, 존!〉` — 가상 독자 Q&A(독자의 반론에 저자가 답)
+- **`## 실천 항목`** — 각 장 끝 실행 체크리스트 (이 책의 시그니처)
+
+## origin 분리
+
+- `0~61` = 62개 파일 (0=서문/판권/책 사용법 앞부분, 1~60=Ch1~Ch60, 61=한국 기여자 칼럼)
+- 페이지 번호 없음(ePub 리플로우) → `Chapter` 마커 1~60 완전 연속으로 무결성 검증. ⚠️ OCR 한글 자모 분리(`커 리 어`)는 노트 작성 시 정리
