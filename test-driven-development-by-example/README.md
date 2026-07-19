@@ -1,134 +1,95 @@
-# Test-Driven Development: By Example (테스트 주도 개발)
+# 테스트 주도 개발 (Test-Driven Development: By Example)
 
-**저자**: Kent Beck
-**출판**: 2002, Addison-Wesley Professional
-**한국어판**: 테스트 주도 개발, 인사이트(Insight) 출판
+> *Test-Driven Development: By Example* (Kent Beck, Addison-Wesley, 2002)
+> 한국어판: 『테스트 주도 개발』 (김창준·강규영 옮김, 인사이트, 2014)
 
----
+TDD 창시자 켄트 벡이 TDD의 철학과 실천법을 **직접 시연**하는 책. 이론 설명이 아니라 실제 코딩 세션을 따라가며 TDD를 체험하게 만드는 구조로, **Red(실패하는 테스트) → Green(최소한의 코드로 통과) → Refactor(중복 제거)**의 리듬이 책 전체를 관통한다.
 
-## 책 소개
+## 책 정보
 
-"Test-Driven Development: By Example"은 TDD(테스트 주도 개발)의 창시자 Kent Beck이 TDD의 철학과 실천법을 직접 시연하는 책이다. 이 책의 독특한 점은 **이론을 설명하는 것이 아니라, 실제 코딩 세션을 통해 TDD를 체험하게 만드는 구조**라는 것이다.
+| 항목 | 내용 |
+|------|------|
+| **저자** | 켄트 벡(Kent Beck) |
+| **역자** | 김창준·강규영 |
+| **출판** | 인사이트, 2014 (원서: Addison-Wesley, 2002) |
+| **예제 언어** | Part I: Java (Money) / Part II: Python (xUnit) |
+| **대상 독자** | TDD를 처음 배우거나, 알지만 리듬을 체득하지 못한 개발자 |
 
-> **TDD의 두 가지 단순한 규칙:**
-> 1. 자동화된 테스트가 실패할 때만 새 코드를 작성한다.
-> 2. 중복을 제거한다.
+## 개요
 
-이 두 규칙에서 TDD의 모든 실천법이 파생된다. Red(실패하는 테스트 작성) → Green(최소한의 코드로 테스트 통과) → Refactor(중복 제거 및 설계 개선)의 리듬이 이 책 전체를 관통한다.
+TDD의 모든 실천법은 두 가지 단순한 규칙에서 파생된다 — ① 자동화된 테스트가 실패할 때만 새 코드를 작성한다 ② 중복을 제거한다.
 
-### 이 책의 특징
-
-- **시연 중심(By Example)**: Part I과 Part II는 각각 하나의 완전한 프로젝트를 TDD로 처음부터 끝까지 구현하는 과정을 보여준다. 독자는 Kent Beck의 사고 과정을 실시간으로 따라갈 수 있다.
-- **TODO 리스트**: Kent Beck은 각 챕터에서 해야 할 일(TODO)과 완료한 일을 명시적으로 추적한다. 이것은 TDD의 핵심 습관 중 하나다.
-- **의도적으로 작은 단계**: 때로는 놀라울 정도로 작은 단계로 진행한다. 이것이 TDD의 리듬이다 — 자신감이 있을 때는 큰 단계로, 불확실할 때는 작은 단계로 진행한다.
-- **실용적 패턴**: Part III에서는 TDD를 실무에 적용하기 위한 구체적인 패턴들을 정리한다.
-
----
-
-## 이 저장소의 목적
-
-이 저장소는 "Test-Driven Development: By Example"의 내용을 챕터별로 상세하게 정리한 학습 자료이다. 각 챕터의 TDD 사이클, 코드 변화 과정, 설계 결정을 책을 대체할 수 있을 정도로 충실하게 담고 있으며, 다음과 같은 용도로 활용할 수 있다:
-
-- TDD를 처음 배우는 개발자를 위한 단계별 학습 가이드
-- TDD의 사고 과정과 리듬을 체험하는 실습 자료
-- 팀 내 TDD 도입을 위한 스터디 교재
-
----
+Part I·II는 각각 하나의 완전한 프로젝트(다중 통화 Money, 테스트 프레임워크 xUnit)를 TDD로 처음부터 끝까지 구현하며 켄트 벡의 사고 과정을 실시간으로 보여준다. 때로는 놀라울 정도로 작은 단계로 진행하는데, 이것이 TDD의 리듬이다 — 자신감이 있으면 큰 단계로, 불확실하면 작은 단계로. 각 챕터는 **TODO 리스트**로 해야 할 일과 완료한 일을 명시적으로 추적한다. Part III는 이 기법들을 실무 적용 가능한 패턴으로 정리한다.
 
 ## 목차
 
-### Part I: The Money Example (다중 통화 예제)
+### Part I: The Money Example (Ch 1-17) — 다중 통화 Money를 TDD로
 
-Part I은 다중 통화를 지원하는 Money 객체를 TDD로 구현하는 과정을 17개 챕터에 걸쳐 보여준다. Java를 사용하며, 점진적으로 설계가 진화하는 모습을 관찰할 수 있다.
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [Multi-Currency Money](ch01-multi-currency-money.md) | 첫 테스트 · TODO 리스트 · 가짜 구현 | 컴파일도 안 되는 `$5 × 2 = $10` 테스트에서 시작 — TDD의 첫 리듬 |
+| 2 | [Degenerate Objects](ch02-degenerate-objects.md) | 값 객체 · 명백한 구현 | `times()`가 새 객체를 반환하게 — 부작용 제거 |
+| 3 | [Equality for All](ch03-equality-for-all.md) | 동등성 · 삼각측량 | 삼각측량(예제 2개)으로 `equals()` 일반화 |
+| 4 | [Privacy](ch04-privacy.md) | 캡슐화 · 테스트 의존 | amount를 private으로 — 테스트가 구현이 아닌 인터페이스에 묻게 |
+| 5 | [Franc-ly Speaking](ch05-franc-ly-speaking.md) | 복사-붙여넣기 부채 | 죄를 지으며(복붙) Franc을 만들고 TODO에 부채를 기록 |
+| 6 | [Equality for All, Redux](ch06-equality-for-all-redux.md) | 상위 클래스 · 중복 제거 | Money 상위 클래스로 `equals()` 끌어올리기 |
+| 7 | [Apples and Oranges](ch07-apples-and-oranges.md) | 클래스 비교 | Franc ≠ Dollar — getClass 비교라는 찜찜한 임시 해법 |
+| 8 | [Makin' Objects](ch08-makin-objects.md) | 팩토리 메서드 | `Money.dollar()` 팩토리로 하위 클래스의 존재를 숨기기 |
+| 9 | [Times We're Livin' In](ch09-times-were-livin-in.md) | 통화 개념 | currency 도입 — 하위 클래스 제거를 향한 포석 |
+| 10 | [Interesting Times](ch10-interesting-times.md) | 구현 통일 · 과감한 실험 | 두 `times()`를 동일하게 — 확인하며 전진 |
+| 11 | [The Root of All Evil](ch11-the-root-of-all-evil.md) | 하위 클래스 제거 | Dollar·Franc 삭제 — Money 단일 클래스로 |
+| 12 | [Addition, Finally](ch12-addition-finally.md) | Expression · Bank 은유 | `$5 + $5` — 수식(Expression)과 은행이라는 은유 도입 |
+| 13 | [Make It](ch13-make-it.md) | Sum · reduce | 가짜 구현을 Sum.reduce의 진짜 구현으로 |
+| 14 | [Change](ch14-change.md) | 환율 · 환전 | 2CHF → 1USD — Bank에 환율 테이블 |
+| 15 | [Mixed Currencies](ch15-mixed-currencies.md) | 혼합 통화 연산 | `$5 + 10CHF` — 서로 다른 통화의 덧셈 완성 |
+| 16 | [Abstraction, Finally](ch16-abstraction-finally.md) | Expression 추상화 완성 | Sum.times·plus까지 — Expression 인터페이스로 마무리 |
+| 17 | [Money Retrospective](ch17-money-retrospective.md) | 회고 · 테스트 품질 · 메트릭 | Money 전체 회고 — 리듬·은유·테스트 품질 점검 |
 
-- [Chapter 1: Multi-Currency Money (다중 통화 Money)](ch01-multi-currency-money.md)
-- [Chapter 2: Degenerate Objects (퇴화 객체)](ch02-degenerate-objects.md)
-- [Chapter 3: Equality for All (모두를 위한 동등성)](ch03-equality-for-all.md)
-- [Chapter 4: Privacy (프라이버시)](ch04-privacy.md)
-- [Chapter 5: Franc-ly Speaking (프랑에 대해 말하자면)](ch05-franc-ly-speaking.md)
-- [Chapter 6: Equality for All, Redux (동등성 재검토)](ch06-equality-for-all-redux.md)
-- [Chapter 7: Apples and Oranges (사과와 오렌지)](ch07-apples-and-oranges.md)
-- [Chapter 8: Makin' Objects (객체 만들기)](ch08-makin-objects.md)
-- [Chapter 9: Times We're Livin' In (우리가 사는 시대)](ch09-times-were-livin-in.md)
-- [Chapter 10: Interesting Times (흥미로운 시간들)](ch10-interesting-times.md)
-- [Chapter 11: The Root of All Evil (모든 악의 근원)](ch11-the-root-of-all-evil.md)
-- [Chapter 12: Addition, Finally (드디어 더하기)](ch12-addition-finally.md)
-- [Chapter 13: Make It (만들어 보자)](ch13-make-it.md)
-- [Chapter 14: Change (변경)](ch14-change.md)
-- [Chapter 15: Mixed Currencies (혼합 통화)](ch15-mixed-currencies.md)
-- [Chapter 16: Abstraction, Finally (드디어 추상화)](ch16-abstraction-finally.md)
-- [Chapter 17: Money Retrospective (Money 회고)](ch17-money-retrospective.md)
+### Part II: The xUnit Example (Ch 18-24) — 테스트 프레임워크를 TDD로
 
-### Part II: The xUnit Example (xUnit 예제)
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 18 | [First Steps to xUnit](ch18-first-steps-to-xunit.md) | 부트스트래핑 · 자기 참조 | 테스트 프레임워크를 그 자신으로 테스트하는 첫 걸음 (Python) |
+| 19 | [Set the Table](ch19-set-the-table.md) | setUp · 템플릿 메서드 | 테스트 전 준비 단계 — 준비(Arrange)의 자리 만들기 |
+| 20 | [Cleaning Up After](ch20-cleaning-up-after.md) | tearDown · 로그 문자열 | 뒷정리 tearDown — 플래그 대신 로그 문자열로 호출 순서 검증 |
+| 21 | [Counting](ch21-counting.md) | TestResult | 실행 결과 집계 — "1 run, 0 failed" |
+| 22 | [Dealing with Failure](ch22-dealing-with-failure.md) | 실패 격리 · 예외 포착 | 한 테스트가 실패해도 나머지는 계속 — 예외를 잡아 결과에 기록 |
+| 23 | [How Suite It Is](ch23-how-suite-it-is.md) | TestSuite · 컴포지트 패턴 | 여러 테스트를 묶어 한 번에 — Composite로 테스트 스위트 |
+| 24 | [xUnit Retrospective](ch24-xunit-retrospective.md) | 회고 · 프레임워크 학습법 | xUnit 회고 — 자기 프레임워크 구현이 주는 학습 효과 |
 
-Part II는 TDD를 사용하여 테스트 프레임워크 자체를 구현한다. Python을 사용하며, "테스트로 테스트를 만드는" 부트스트래핑 과정이 핵심이다.
+### Part III: Patterns for Test-Driven Development (Ch 25-32) — 패턴 카탈로그
 
-- [Chapter 18: First Steps to xUnit (xUnit의 첫 걸음)](ch18-first-steps-to-xunit.md)
-- [Chapter 19: Set the Table (테이블 차리기)](ch19-set-the-table.md)
-- [Chapter 20: Cleaning Up After (뒷정리)](ch20-cleaning-up-after.md)
-- [Chapter 21: Counting (세기)](ch21-counting.md)
-- [Chapter 22: Dealing with Failure (실패 다루기)](ch22-dealing-with-failure.md)
-- [Chapter 23: How Suite It Is (스위트의 멋)](ch23-how-suite-it-is.md)
-- [Chapter 24: xUnit Retrospective (xUnit 회고)](ch24-xunit-retrospective.md)
-
-### Part III: Patterns for Test-Driven Development (TDD 패턴)
-
-Part III는 Part I, II에서 사용한 기법들을 패턴으로 정리한다. TDD를 실무에 적용하기 위한 실질적인 가이드다.
-
-- Chapter 25: Test-Driven Development Patterns (TDD 패턴)
-- Chapter 26: Red Bar Patterns (Red Bar 패턴)
-- Chapter 27: Testing Patterns (테스팅 패턴)
-- Chapter 28: Green Bar Patterns (Green Bar 패턴)
-- [Chapter 29: xUnit Patterns (xUnit 패턴)](ch29-xunit-patterns.md)
-- [Chapter 30: Design Patterns (설계 패턴)](ch30-design-patterns.md)
-- [Chapter 31: Refactoring (리팩토링)](ch31-refactoring.md)
-- [Chapter 32: Mastering TDD (TDD 마스터하기)](ch32-mastering-tdd.md)
-
----
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 25 | [Test-Driven Development Patterns](ch25-test-driven-development-patterns.md) | 격리된 테스트 · TODO 리스트 · 단언 우선 | 기본 패턴 — 왜 테스트를 먼저, 어디까지 격리하나 |
+| 26 | [Red Bar Patterns](ch26-red-bar-patterns.md) | 시작 테스트 · 학습 테스트 · 회귀 테스트 | 다음 테스트를 고르는 법 — 언제 어떤 테스트를 쓰나 |
+| 27 | [Testing Patterns](ch27-testing-patterns.md) | 목 객체 · 자식 테스트 · 깨진 테스트 | 테스트 작성의 세부 기법 — 혼자/팀으로 코딩 마칠 때의 습관 |
+| 28 | [Green Bar Patterns](ch28-green-bar-patterns.md) | 가짜로 만들기 · 삼각측량 · 명백한 구현 | 테스트를 통과시키는 세 가지 방법 |
+| 29 | [xUnit Patterns](ch29-xunit-patterns.md) | 단언 · 픽스처 · 외부 픽스처 | xUnit 계열 프레임워크를 쓰는 패턴 |
+| 30 | [Design Patterns](ch30-design-patterns.md) | 커맨드 · 값 객체 · 널 객체 · 임포스터 | TDD 관점에서 다시 보는 디자인 패턴 |
+| 31 | [Refactoring](ch31-refactoring.md) | 차이 일치시키기 · 메서드 추출 | TDD에서의 리팩터링 — 관찰된 사실에 근거해 변경 |
+| 32 | [Mastering TDD](ch32-mastering-tdd.md) | 단계 크기 · 피드백 · 열린 질문 | 얼마나 큰 단계로? 무엇을 테스트하나? — TDD 숙련의 질문들 |
 
 ## 학습 가이드
 
-### 추천 읽기 순서
+1. **Part I(Ch1~17)은 반드시 순서대로** — 각 챕터가 이전 챕터의 코드 위에 쌓이므로 건너뛰면 맥락을 잃는다. Ch1~5에서 기본 리듬을 잡는 것이 중요하고, Ch17 회고가 전체를 정리해 준다
+2. **Part II(Ch18~24)로 심화** — 테스트 프레임워크로 테스트 프레임워크를 만드는 부트스트래핑. 다른 언어(Python)에서의 TDD 경험을 겸한다
+3. **Part III(Ch25~32)는 레퍼런스** — 앞에서 암묵적으로 쓴 기법들의 명시적 패턴화. Ch25(기본 패턴)와 Ch32(마스터하기)에 켄트 벡의 철학이 응축되어 있다
 
-이 책은 순서대로 읽는 것을 강력히 권장한다. 특히 Part I은 각 챕터가 이전 챕터의 코드 위에 쌓이기 때문에 건너뛰면 맥락을 잃게 된다.
+## 핵심 개념 맵
 
-**1단계: Money Example로 TDD 체험 (Chapter 1~17)**
+- **Red → Green → Refactor**: 실패하는 테스트 작성 → 최소한의 코드로 통과(아름다움보다 동작 먼저) → 중복 제거. 이 리듬이 전부다
+- **두 가지 규칙**: 테스트가 실패할 때만 새 코드를 쓴다 + 중복을 제거한다 — 모든 실천법의 뿌리
+- **Green Bar 3전략**: 가짜로 만들기(상수 반환→점진 대체) / 명백한 구현(확신 있을 때 바로) / 삼각측량(예제 2개로 일반화 유도)
+- **작은 단계**: 자신감이 낮으면 작게, 높으면 크게 — 문제가 생기면 언제든 작은 단계로 복귀
+- **TODO 리스트**: 떠오르는 일을 즉시 적고 지금 일에 집중 — 한 번에 한 가지만
+- **테스트는 두려움을 지루함으로 바꾼다** — TDD의 목적은 확신(자신감)의 관리다
 
-TDD의 리듬을 처음 경험하는 단계이다. 첫 테스트에서 시작하여 완전한 다중 통화 시스템을 만들어가는 과정을 따라가며, Red → Green → Refactor 사이클에 익숙해진다. 특히 Chapter 1~5에서 TDD의 기본 리듬을 잡는 것이 중요하다. Chapter 17의 회고에서는 전체 과정을 돌아보며 TDD의 핵심 원칙을 정리한다.
+## 시그니처 요소와 표기 규칙
 
-**2단계: xUnit 구현으로 심화 (Chapter 18~24)**
+- `## TDD 사이클` — Red → Green → Refactor 단계별 코드 진행
+- `## TODO 리스트` — 켄트 벡 스타일 할 일 목록 추적 (완료 항목 취소선)
 
-Part I에서 배운 TDD를 더 어려운 문제에 적용한다. 테스트 프레임워크로 테스트 프레임워크를 만드는 "부트스트래핑"은 TDD의 힘을 실감하게 해준다. Python으로 작성되어 다른 언어에서의 TDD도 경험할 수 있다.
+## Notion DB 구조
 
-**3단계: 패턴으로 체계화 (Chapter 25~32)**
-
-Part I, II에서 암묵적으로 사용한 기법들을 명시적인 패턴으로 정리한다. TDD를 실무에 적용할 때 참조할 수 있는 실용적인 가이드다. 특히 Chapter 25(TDD 패턴)와 Chapter 32(TDD 마스터하기)는 TDD 실천에 대한 Kent Beck의 철학이 담겨 있다.
-
----
-
-## 핵심 개념 요약
-
-이 책의 모든 내용은 하나의 중심 리듬으로 수렴한다:
-
-> **Red → Green → Refactor**
-
-1. **Red**: 실패하는 테스트를 작성한다. 아직 존재하지 않는 코드에 대한 테스트를 먼저 쓴다.
-2. **Green**: 테스트를 통과시키는 **최소한의** 코드를 작성한다. 여기서 "최소한"이 핵심이다 — 아름다운 코드가 아니라 동작하는 코드를 먼저 만든다.
-3. **Refactor**: 중복을 제거하고 설계를 개선한다. 테스트가 통과하는 상태를 유지하면서 코드를 깨끗하게 만든다.
-
-이 사이클에서 Kent Beck이 강조하는 핵심 원칙들:
-
-- **작은 단계(Small Steps)**: 자신감이 낮을 때는 아주 작은 단계로, 자신감이 높을 때는 큰 단계로 진행한다. 하지만 문제가 생기면 언제든 작은 단계로 돌아간다.
-- **삼각측량(Triangulation)**: 두 개 이상의 예제가 있어야 올바른 일반화를 할 수 있다. 하나의 테스트만으로 일반적인 해결책을 만들지 않는다.
-- **명백한 구현(Obvious Implementation)**: 구현이 명백할 때는 바로 작성한다. 하지만 확신이 없으면 Fake It(가짜로 만들기)부터 시작한다.
-- **TODO 리스트 관리**: 떠오르는 아이디어를 즉시 TODO 리스트에 적고, 현재 작업에 집중한다. 한 번에 한 가지만 한다.
-
----
-
-## TDD의 핵심 전략: Green Bar를 만드는 세 가지 방법
-
-| 전략 | 설명 | 사용 시점 |
-|------|------|----------|
-| **Fake It (가짜로 만들기)** | 상수를 반환하여 테스트를 통과시키고, 점진적으로 변수로 대체 | 어떻게 구현할지 불확실할 때 |
-| **Obvious Implementation (명백한 구현)** | 올바른 구현을 바로 작성 | 구현 방법이 명확할 때 |
-| **Triangulation (삼각측량)** | 두 개 이상의 테스트로 일반화를 유도 | 올바른 추상화가 불분명할 때 |
+- 위치: Raehan's Must reads 하위 챕터 DB (콜아웃 마이그레이션·재업로드 완료, 전체 32파일)
