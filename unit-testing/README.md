@@ -1,58 +1,67 @@
-# Unit Testing: Principles, Practices, and Patterns
+# 단위 테스트 (Unit Testing: Principles, Practices, and Patterns)
 
-**Vladimir Khorikov** 저 | Manning Publications, 2020
+> *Unit Testing: Principles, Practices, and Patterns* (Vladimir Khorikov, Manning, 2020)
+> 한국어판: 『단위 테스트 — 생산성과 품질을 위한 단위 테스트 원칙과 패턴』 (에이콘출판사, 2021)
 
----
+단위 테스트의 **"왜"와 "어떻게"**를 체계적으로 다루는 책. 단순한 작성 기법이 아니라 **좋은 테스트와 나쁜 테스트를 구분하는 원칙**을 제시한다.
+
+## 책 정보
+
+| 항목 | 내용 |
+|------|------|
+| **저자** | 블라디미르 코리코프(Vladimir Khorikov) |
+| **출판** | 에이콘출판사, 2021 (원서: Manning, 2020) |
+| **예제 언어** | C# (CRM·환율 예제) |
+| **대상 독자** | 테스트를 짜고는 있지만 "이 테스트가 좋은가"에 답하기 어려운 개발자 |
 
 ## 개요
 
-이 책은 단위 테스트의 **"왜"와 "어떻게"**를 체계적으로 다룬다. 단순히 테스트를 작성하는 기법이 아니라, **좋은 테스트와 나쁜 테스트를 구분하는 원칙**을 제시한다. Khorikov는 좋은 단위 테스트의 네 가지 기둥(회귀 방지, 리팩터링 내성, 빠른 피드백, 유지보수성)이라는 프레임워크를 통해, 테스트의 모든 의사결정 — Mock 사용 여부, 테스트 스타일 선택, 통합 테스트 범위 등 — 을 일관된 원칙으로 평가한다.
+좋은 단위 테스트의 **네 가지 기둥**(회귀 방지·리팩터링 내성·빠른 피드백·유지보수성) 프레임워크로 테스트의 모든 의사결정 — Mock 사용 여부, 테스트 스타일 선택, 통합 테스트 범위 — 을 일관되게 평가한다.
 
-### 핵심 메시지
-
-- 테스트의 목표는 버그를 잡는 것이 아니라 **소프트웨어의 지속 가능한 성장**을 가능하게 하는 것이다
-- **리팩터링 내성**은 타협 불가능한 기둥이다 — 구현 세부사항이 아닌 동작을 검증하라
-- Mock은 **비관리 의존성**(외부 시스템이 관찰하는 의존성)에만 사용하라
-- 코드를 테스트하기 어렵다면, 그것은 **설계를 개선하라**는 신호다
-
----
+핵심 메시지: 테스트의 목표는 버그 잡기가 아니라 **소프트웨어의 지속 가능한 성장**이다. **리팩터링 내성은 타협 불가능한 기둥**이며(구현이 아닌 동작을 검증), Mock은 **비관리 의존성**에만 쓰고, 코드가 테스트하기 어렵다면 그것은 설계를 개선하라는 신호다.
 
 ## 목차
 
 ### Part 1: 단위 테스트의 기초 (Ch 1-3)
 
-| 챕터 | 제목 | 핵심 주제 |
-|------|------|----------|
-| [Chapter 1](ch01-the-goal-of-unit-testing.md) | The Goal of Unit Testing | 단위 테스트의 목표: 지속 가능한 성장, 커버리지 지표의 함정 |
-| [Chapter 2](ch02-what-is-a-unit-test.md) | What is a Unit Test? | Classical vs London 학파, 단위 테스트 vs 통합 테스트 |
-| [Chapter 3](ch03-the-anatomy-of-a-unit-test.md) | The Anatomy of a Unit Test | AAA 패턴, 테스트 네이밍, 매개변수화 테스트 |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [The Goal of Unit Testing](ch01-the-goal-of-unit-testing.md) | 지속 가능한 성장 · 커버리지 함정 | 테스트의 목표는 성장 — 커버리지는 좋은 부정 지표일 뿐 |
+| 2 | [What is a Unit Test?](ch02-what-is-a-unit-test.md) | 고전파 vs 런던파 · 격리 | 무엇을 격리하는가 — 두 학파의 차이와 선택 |
+| 3 | [The Anatomy of a Unit Test](ch03-the-anatomy-of-a-unit-test.md) | AAA 패턴 · 테스트 네이밍 · 매개변수화 | 테스트의 해부학 — 준비/실행/검증과 이름 짓기 |
 
 ### Part 2: 좋은 테스트의 기준 (Ch 4-7)
 
-| 챕터 | 제목 | 핵심 주제 |
-|------|------|----------|
-| [Chapter 4](ch04-the-four-pillars-of-a-good-unit-test.md) | The Four Pillars of a Good Unit Test | 네 가지 기둥, 리팩터링 내성의 중요성, 테스트 피라미드 |
-| [Chapter 5](ch05-mocks-and-test-fragility.md) | Mocks and Test Fragility | Mock vs Stub, 관찰 가능한 동작 vs 구현 세부사항, 육각형 아키텍처 |
-| [Chapter 6](ch06-styles-of-unit-testing.md) | Styles of Unit Testing | 출력/상태/커뮤니케이션 기반 테스트, 함수형 아키텍처 |
-| [Chapter 7](ch07-refactoring-toward-valuable-tests.md) | Refactoring Toward Valuable Tests | 코드의 네 가지 유형, 험블 객체 패턴, 도메인 이벤트 |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 4 | [The Four Pillars of a Good Unit Test](ch04-the-four-pillars-of-a-good-unit-test.md) | 네 가지 기둥 · 테스트 피라미드 | 회귀 방지·리팩터링 내성·빠른 피드백·유지보수성 — 내성은 타협 불가 |
+| 5 | [Mocks and Test Fragility](ch05-mocks-and-test-fragility.md) | 목 vs 스텁 · 관찰 가능한 동작 · 포트와 어댑터 | 취약한 테스트의 뿌리 — 구현 세부사항 검증 |
+| 6 | [Styles of Unit Testing](ch06-styles-of-unit-testing.md) | 출력/상태/커뮤니케이션 기반 · 함수형 아키텍처 | 세 가지 스타일 — 출력 기반이 최고 품질 |
+| 7 | [Refactoring Toward Valuable Tests](ch07-refactoring-toward-valuable-tests.md) | 코드 4유형 · 험블 객체 · 도메인 이벤트 | 복잡한 코드를 테스트 가능한 구조로 리팩터링 |
 
 ### Part 3: 통합 테스트 (Ch 8-10)
 
-| 챕터 | 제목 | 핵심 주제 |
-|------|------|----------|
-| [Chapter 8](ch08-why-integration-testing.md) | Why Integration Testing? | 통합 테스트의 역할, 관리 vs 비관리 의존성 처리 |
-| [Chapter 9](ch09-mocking-best-practices.md) | Mocking Best Practices | Mock vs Spy, 시스템 경계에 Mock 배치, CanExecute/Execute |
-| [Chapter 10](ch10-testing-the-database.md) | Testing the Database | DB 형상 관리, 테스트 데이터 생명주기, ORM 주의사항 |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 8 | [Why Integration Testing?](ch08-why-integration-testing.md) | 통합 테스트 · 관리/비관리 의존성 | 단위 테스트가 못 지키는 것 — 통합 테스트의 역할과 범위 |
+| 9 | [Mocking Best Practices](ch09-mocking-best-practices.md) | 목 모범 사례 · 시스템 경계 | Mock은 시스템 경계에, 비관리 의존성에만 |
+| 10 | [Testing the Database](ch10-testing-the-database.md) | DB 형상 관리 · 테스트 데이터 생명주기 | 데이터베이스 테스트 — 마이그레이션·트랜잭션·정리 전략 |
 
 ### Part 4: 안티패턴 (Ch 11)
 
-| 챕터 | 제목 | 핵심 주제 |
-|------|------|----------|
-| [Chapter 11](ch11-unit-testing-anti-patterns.md) | Unit Testing Anti-patterns | 프라이빗 메서드 테스트, 도메인 지식 유출, 코드 오염, 시간 처리 |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 11 | [Unit Testing Anti-patterns](ch11-unit-testing-anti-patterns.md) | 프라이빗 메서드 테스트 · 코드 오염 · 시간 처리 | 흔한 안티패턴 모음 — 왜 나쁘고 어떻게 피하나 |
 
----
+## 학습 가이드
 
-## 핵심 프레임워크
+1. **Ch1~4는 순서대로 필수** — 특히 Ch4(네 기둥)가 책 전체의 평가 프레임워크
+2. **Ch5(Mock과 취약성)가 전환점** — 관찰 가능한 동작 vs 구현 세부사항 구분이 이후 전부의 기준
+3. **Ch6~7은 설계와 테스트의 접점** — 함수형 아키텍처·험블 객체로 "테스트하기 좋은 구조" 만들기
+4. **Ch8~10은 통합 테스트 실무** — 관리/비관리 의존성 구분 → Mock 배치 → DB 전략
+5. **Ch11은 체크리스트** — 코드 리뷰 시 상시 참조
+
+## 핵심 개념 맵
 
 ### 좋은 단위 테스트의 네 가지 기둥
 
@@ -88,3 +97,8 @@
 Trivial 코드        → 테스트 없음
 과도하게 복잡한 코드  → 험블 객체 패턴으로 분해 후 위 전략 적용
 ```
+
+## 시그니처 요소와 표기 규칙
+
+- 네 기둥 프레임워크 기준의 평가 표(각 기법을 기둥별로 채점)
+- 고전파/런던파 대비, 나쁜 테스트 → 좋은 테스트 리팩터링 예제
