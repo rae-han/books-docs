@@ -46,3 +46,9 @@
 | B | **악취 제거 기법 (Smells to Refactorings)** | [appendix-b-smells-to-refactorings.md](appendix-b-smells-to-refactorings.md) | ✅ |
 
 > ✅ = 작성 완료. **전 장(Ch1~12) + 부록 A·B 완성** — 리팩터링 기법 66가지를 모두 다룬다.
+
+## 인용문
+
+전 책 통합 모음은 [루트 QUOTES.md](../QUOTES.md) 참조.
+
+> 컴퓨터가 이해하는 코드는 바보도 작성할 수 있다. 사람이 이해하도록 작성하는 프로그래머가 진정한 실력자다.<br>— 마틴 파울러 (Ch1 리팩터링: 첫 번째 예시)
