@@ -108,6 +108,8 @@ const executeWithLimit = <T>(fs: (() => Promise<T>)[], limit: number): Promise<T
     .then(arr => arr.flat());   // P<[T, T, T, T, ...]> - 평탄화
 ```
 
+위 계획에서는 '그룹화 후 함수 실행' 순서였지만 코드는 `map(f => f())`를 먼저 두었다. `map`과 `chunk`가 모두 지연 평가되므로 순서를 바꿔도 실제 실행 시점은 동일하고(소비 시점에 청크 단위로 함수가 실행된다) 이 순서가 더 간결하다.
+
 `i++` 같은 상태 변화, `j < limit && (i + j) < fs.length` 같은 조건절이 없다. `push` 대신 `fromAsync`, `arr.flat()` 같은 선언적 표현을 쓴다.
 
 ## 3. 지연성 — 효과적인 비동기 핸들링의 계단
@@ -907,6 +909,28 @@ function map<A, B>(
     : mapAsync(f, iterable);
 }
 ```
+
+오버로드된 시그니처가 컴파일 타임에 어떻게 추론되는지 대표 사례로 보면 이렇다.
+
+```typescript
+// 컴파일 타임 타입 추론
+const iter1: IterableIterator<string> = map(
+  (a: number) => a.toFixed(),
+  [1, 2]
+); // 동기 이터러블 → mapSync로 추론
+
+const iter2: IterableIterator<Promise<string>> = map(
+  (a: number) => Promise.resolve(a.toFixed()),
+  [1, 2]
+); // 동기 이터러블 + Promise 반환 보조 함수 → Promise가 풀리지 않은 채 요소 타입이 된다
+
+const iter3: AsyncIterableIterator<string> = map(
+  (a: number) => Promise.resolve(a.toFixed()),
+  toAsync([1, 2])
+); // toAsync를 거치면 mapAsync로 동작 → Awaited<B>가 적용되어 풀린 string으로 추론
+```
+
+동기 이터러블에서는 보조 함수가 Promise를 반환해도 요소 타입이 `Promise<string>` 그대로지만, `toAsync`로 비동기 이터러블임을 선언하면 `Awaited<B>`가 적용되어 풀린 타입으로 추론된다. 타입 시스템이 함수의 동작이 동기일지 비동기일지를 결정하고 이를 컴파일 타임에 보증하는 것이다.
 
 ```typescript
 // 동기적 배열 처리: mapSync
