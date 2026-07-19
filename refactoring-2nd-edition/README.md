@@ -1,54 +1,88 @@
-# Refactoring: Improving the Design of Existing Code (2nd Edition)
+# 리팩터링 2판 (Refactoring: Improving the Design of Existing Code, 2nd Edition)
 
 > *Refactoring: Improving the Design of Existing Code* (2nd Edition, Martin Fowler, Addison-Wesley, 2018)
-> 한국어판: 『리팩터링 2판 — 코드 구조를 체계적으로 개선하여 효율적인 리팩터링 구현하기』 (마틴 파울러 지음, 개앞맵시·남기혁 옮김, 한빛미디어)
+> 한국어판: 『리팩터링 2판 — 코드 구조를 체계적으로 개선하여 효율적인 리팩터링 구현하기』 (마틴 파울러 지음, 개앞맵시·남기혁 옮김, 한빛미디어, 2020)
 
-리팩터링의 고전. **겉보기 동작을 보존한 채 내부 구조를 개선하는** 작은 단계들의 기법을 정의하고, 코드에서 나는 **악취(bad smells)**를 감지해 **카탈로그의 기법**으로 치유하는 법을 다룬다. 2판은 예제를 **JavaScript**로 새로 썼다.
+리팩터링의 고전. **겉보기 동작을 보존한 채 내부 구조를 개선하는** 작은 단계들의 기법을 정의하고, 코드에서 나는 **악취(bad smells)**를 감지해 **카탈로그의 기법**으로 치유하는 법을 다룬다.
 
-- **코드 예제**: 원서 JavaScript를 `<details>`로 접어 두고 **TypeScript 변환본**을 펼쳐 병기한다.
-- **서사형 챕터(Ch1~5)**: `핵심 질문` → 번호 섹션 → `핵심 통찰` → `요약`.
-- **카탈로그 챕터(Ch6~12)**: 각 기법을 **스케치 · 배경(Motivation) · 절차(Mechanics)** 틀로 서술하고, 말미에 카탈로그 절 번호로 연결.
-- **인용 처리**: 파울러의 원칙 강조는 `> **핵심 통찰**:`, 켄트 벡·제시카 커 등 외부 인용은 레이블 없는 `>`.
+## 책 정보
 
-카탈로그편(Ch6~12)에서 다루는 리팩터링은 **총 66가지**다.
+| 항목 | 내용 |
+|------|------|
+| **저자** | 마틴 파울러(Martin Fowler) |
+| **역자** | 개앞맵시(이복연)·남기혁 |
+| **출판** | 한빛미디어, 2020 (원서: Addison-Wesley, 2018) |
+| **원서 예제 언어** | JavaScript (2판에서 Java → JS로 전면 개정) |
+| **대상 독자** | 기존 코드를 개선하고 싶은 모든 개발자. 테스트 경험이 있으면 더 좋다 |
 
----
+## 개요
 
-## 전체 목차
+1999년 초판이 정의한 '리팩터링'이라는 실천법을 20년 만에 전면 개정한 책. 앞부분(원칙편)은 리팩터링이 무엇이고 왜·언제 하는지, 악취를 어떻게 알아채는지, 테스트라는 안전망을 어떻게 갖추는지를 서사적으로 설명하고, 뒷부분(카탈로그편)은 **66가지 리팩터링 기법**을 사전처럼 정리한다.
+
+이 책의 방법론은 일관된다 — 컴파일·테스트가 가능한 상태를 유지하며 **아주 작은 단계**를 밟고, 각 단계 후 테스트한다. 기법 하나하나는 시시해 보일 만큼 작지만, 이 작은 단계들의 연쇄가 큰 설계 변경을 안전하게 만든다.
+
+## 목차
 
 ### 원칙편 (Ch1~5) — 서사·개념형
 
-| Ch | 제목 | 파일 | 상태 |
-|---|---|---|---|
-| 1 | **Refactoring: A First Example (리팩터링: 첫 번째 예시)** | [ch01-refactoring-a-first-example.md](ch01-refactoring-a-first-example.md) | ✅ |
-| 2 | **Principles in Refactoring (리팩터링 원칙)** | [ch02-principles-in-refactoring.md](ch02-principles-in-refactoring.md) | ✅ |
-| 3 | **Bad Smells in Code (코드에서 나는 악취)** | [ch03-bad-smells-in-code.md](ch03-bad-smells-in-code.md) | ✅ |
-| 4 | **Building Tests (테스트 구축하기)** | [ch04-building-tests.md](ch04-building-tests.md) | ✅ |
-| 5 | **Introducing the Catalog (리팩터링 카탈로그 보는 법)** | [ch05-introducing-the-catalog.md](ch05-introducing-the-catalog.md) | ✅ |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 1 | [리팩터링: 첫 번째 예시](ch01-refactoring-a-first-example.md) | 공연료 청구서 예제 · 함수 추출하기 · 단계 쪼개기 · 다형성 | 청구서 출력 예제를 작은 단계로 리팩터링하며 책 전체의 리듬(수정→테스트→커밋)을 시연 |
+| 2 | [리팩터링 원칙](ch02-principles-in-refactoring.md) | 리팩터링 정의 · 두 개의 모자 · 3의 법칙 · 성능 | 겉보기 동작을 보존하는 작은 변경이라는 정의와, 왜·언제 하는지(그리고 언제 하지 말아야 하는지) |
+| 3 | [코드에서 나는 악취](ch03-bad-smells-in-code.md) | 코드 악취 · 중복 코드 · 긴 함수 · 기능 편애 · 산탄총 수술 | 리팩터링이 필요하다는 신호인 악취 24가지 — 각 악취는 부록 B로 치유 기법과 연결 |
+| 4 | [테스트 구축하기](ch04-building-tests.md) | 자가 테스트 코드 · 회귀 테스트 · 경계 조건 | 리팩터링의 안전망인 자가 테스트 코드를 지역 생산 계획 예제로 구축 |
+| 5 | [리팩터링 카탈로그 보는 법](ch05-introducing-the-catalog.md) | 카탈로그 형식 · 스케치 · 배경 · 절차 | 이후 기법들이 따르는 서술 틀(이름·스케치·배경·절차·예시) 안내 |
 
-### 카탈로그편 (Ch6~12) — 기법 카탈로그
+### 카탈로그편 (Ch6~12) — 기법 카탈로그 (총 66가지)
 
-| Ch | 제목 | 기법 수 | 파일 | 상태 |
-|---|---|---|---|---|
-| 6 | **A First Set of Refactorings (기본적인 리팩터링)** | 11 | [ch06-a-first-set-of-refactorings.md](ch06-a-first-set-of-refactorings.md) | ✅ |
-| 7 | **Encapsulation (캡슐화)** | 9 | [ch07-encapsulation.md](ch07-encapsulation.md) | ✅ |
-| 8 | **Moving Features (기능 이동)** | 9 | [ch08-moving-features.md](ch08-moving-features.md) | ✅ |
-| 9 | **Organizing Data (데이터 조직화)** | 6 | [ch09-organizing-data.md](ch09-organizing-data.md) | ✅ |
-| 10 | **Simplifying Conditional Logic (조건부 로직 간소화)** | 7 | [ch10-simplifying-conditional-logic.md](ch10-simplifying-conditional-logic.md) | ✅ |
-| 11 | **Refactoring APIs (API 리팩터링)** | 13 | [ch11-refactoring-apis.md](ch11-refactoring-apis.md) | ✅ |
-| 12 | **Dealing with Inheritance (상속 다루기)** | 11 | [ch12-dealing-with-inheritance.md](ch12-dealing-with-inheritance.md) | ✅ |
+| Ch | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| 6 | [기본적인 리팩터링](ch06-a-first-set-of-refactorings.md) | 함수 추출하기 · 변수 추출하기 · 함수 선언 바꾸기 · 단계 쪼개기 | 가장 자주 쓰는 기본기 11가지 — 추출·인라인·이름 바꾸기·캡슐화의 출발점 |
+| 7 | [캡슐화](ch07-encapsulation.md) | 레코드 캡슐화 · 컬렉션 캡슐화 · 클래스 추출 · 위임 숨기기 | 데이터와 모듈의 비밀을 지키는 9가지 — 임시 변수를 질의 함수로 등 |
+| 8 | [기능 이동](ch08-moving-features.md) | 함수 옮기기 · 문장 슬라이드하기 · 반복문 쪼개기 · 반복문을 파이프라인으로 | 요소를 맞는 자리로 옮기는 9가지 — 반복문을 filter/map 파이프라인으로 전환 포함 |
+| 9 | [데이터 조직화](ch09-organizing-data.md) | 변수 쪼개기 · 참조를 값으로 바꾸기 · 매직 리터럴 | 데이터 구조를 다듬는 6가지 — 역할 하나당 변수 하나 원칙 |
+| 10 | [조건부 로직 간소화](ch10-simplifying-conditional-logic.md) | 조건문 분해 · 조건부 로직을 다형성으로 · 특이 케이스 · 어서션 | 복잡한 조건문을 길들이는 7가지 — 널 객체(특이 케이스) 패턴 포함 |
+| 11 | [API 리팩터링](ch11-refactoring-apis.md) | 질의 함수와 변경 함수 분리 · 매개변수 객체 · 생성자를 팩터리 함수로 · 명령을 함수로 | 이해하기 쉽고 조합하기 좋은 API를 만드는 13가지 — 명령-쿼리 분리가 첫 원칙 |
+| 12 | [상속 다루기](ch12-dealing-with-inheritance.md) | 메서드 올리기 · 타입 코드를 서브클래스로 · 서브클래스를 위임으로 · 슈퍼클래스를 위임으로 | 상속을 제대로 쓰고, 잘못 쓰였으면 위임으로 바꾸는 11가지 |
 
 ### 부록
 
-| 부록 | 제목 | 파일 | 상태 |
-|---|---|---|---|
-| A | **리팩터링 목록 (List of Refactorings)** | [appendix-a-list-of-refactorings.md](appendix-a-list-of-refactorings.md) | ✅ |
-| B | **악취 제거 기법 (Smells to Refactorings)** | [appendix-b-smells-to-refactorings.md](appendix-b-smells-to-refactorings.md) | ✅ |
+| 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
+|----|------|-----------|-----------|
+| A | [리팩터링 목록](appendix-a-list-of-refactorings.md) | 기법 색인 | 66가지 기법 전체 색인 (이름·챕터 참조) |
+| B | [악취 제거 기법](appendix-b-smells-to-refactorings.md) | 악취-기법 매핑 | 악취 24가지 → 치유 기법 역인덱스 |
 
-> ✅ = 작성 완료. **전 장(Ch1~12) + 부록 A·B 완성** — 리팩터링 기법 66가지를 모두 다룬다.
+## 학습 가이드
+
+파울러 본인의 권장 독법을 따른다.
+
+1. **Ch1~4는 순서대로 통독** — Ch1(전체 리듬 체험) → Ch2(원칙) → Ch3(악취 감지) → Ch4(테스트 안전망)
+2. **카탈로그(Ch6~12)는 사전처럼** — 통독보다는 실무에서 악취를 만났을 때 찾아 읽는 용도. 단 Ch6(기본기 11가지)만은 한 번 훑어둘 가치가 있다
+3. **역인덱스 활용** — 코드에서 악취를 발견하면 Ch3에서 이름을 확인하고 부록 B에서 치유 기법을 찾아 해당 챕터로
+
+## 핵심 개념 맵
+
+- **리팩터링 = 겉보기 동작을 보존하는 작은 구조 개선** — 기능 추가와 리팩터링은 "두 개의 모자"처럼 한 번에 하나만 쓴다
+- **악취 → 기법**: 리팩터링은 감(느낌)이 아니라 신호(악취 24가지)와 처방(기법 66가지)의 매핑이다
+- **테스트가 전제 조건** — 자가 테스트 코드 없이 하는 리팩터링은 도박이다
+- **작은 단계일수록 빠르다** — 단계가 작으면 되돌리기 쉽고, 컴파일·테스트 가능한 상태가 유지되어 오히려 전체 속도가 빨라진다
+- **좋은 설계 판단 기준은 변경 용이성** — "컴퓨터가 이해하는 코드는 바보도 작성할 수 있다. 사람이 이해하도록 작성하는 프로그래머가 진정한 실력자다"
+- 반복문→파이프라인, 조건부 로직→다형성 등 **명령형을 선언적 구조로 바꾸는 방향성**이 카탈로그 전반에 흐른다
 
 ## 인용문
 
 전 책 통합 모음은 [루트 QUOTES.md](../QUOTES.md) 참조.
 
 > 컴퓨터가 이해하는 코드는 바보도 작성할 수 있다. 사람이 이해하도록 작성하는 프로그래머가 진정한 실력자다.<br>— 마틴 파울러 (Ch1 리팩터링: 첫 번째 예시)
+
+## 시그니처 요소와 표기 규칙
+
+- **코드 예제**: 원서 JavaScript를 `<details>`로 접어 두고 **TypeScript 변환본**을 펼쳐 병기한다
+- **서사형 챕터(Ch1~5)**: `핵심 질문` → 번호 섹션 → `핵심 통찰` → `요약`
+- **카탈로그 챕터(Ch6~12)**: 각 기법을 **스케치 · 배경(Motivation) · 절차(Mechanics)** 틀로 서술하고, 말미에 카탈로그 절 번호로 연결
+- **인용 처리**: 파울러의 원칙 강조는 `> **핵심 통찰**:`, 켄트 벡·제시카 커 등 외부 인용은 레이블 없는 `>`
+
+## origin 분리
+
+- `0~14, 99` = 16개 파일. `0`=서문/목차, `1~12`=Ch1~12, `13`=부록 A, `14`=부록 B, `99`=색인
+- ⚠️ 기존 분할은 글자 사이 공백이 낀 noisy OCR(`origin.md`) 기반이었으나, 깨끗한 `ocr.origin.md`(16,139줄)로 **전체 재분할** — 재결합본이 byte 단위 완전 일치(cksum 60556805) 검증. 부록 A(참조 63개)·B(악취 23개)는 `ocr.origin.md` 쪽이 더 완전
