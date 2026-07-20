@@ -180,6 +180,14 @@ Ch5(인터페이스 vs 상속) → Ch10(FxIterable) → Ch17(구조=OOP·로직=
 
 ---
 
+## Notion DB 구조
+
+- **위치**: Raehan's Must reads → Develop → "함수형 프로그래밍 완전 가이드" 페이지(`3a3de498-6fe3-8162-896d-d655d2d07456`) → 인라인 DB "챕터"(`collection://4132bc2b-330c-4f80-b73c-25ffda696925`)
+- **속성**: `Done`(checkbox, 맨 앞) · `Name`(`ChNN. 영문 (한글)`) · `Part`(select 5색 — Part 1 기초=파랑 / Part 2 이터러블=초록 / Part 3 타입·LISP=주황 / Part 4 비동기=보라 / Part 5 실전=분홍) · `Chapter`(number) · `핵심 단어`(multi-select, README 목차 기준) · `핵심 요약`(text)
+- **정렬**: `Chapter` 오름차순(또는 `Name` 오름차순 — `ChNN` 두 자리 접두어)
+- **업로드(2026-07-20)**: 19장 전체를 로컬 마크다운 원본 그대로(H1 제거, `> **핵심 통찰/참고**`→콜아웃, 파이프 표→`<table>`). 30KB 초과 장(Ch8·10·14·16·17·18 등)은 `## `/`### ` 경계로 분할해 `insert_content`로 이어 붙임 — **결과는 각 장당 단일 페이지**
+- ⚠️ **업로드 함정**: (1) `핵심 단어` multi-select는 **옵션을 먼저 등록**해야 값 지정 가능(자동 생성 안 됨). `ALTER COLUMN SET`은 **전체 교체**라 병렬 업로드 시 경쟁 조건 발생 → 옵션 등록은 **단일 프로세스가 기존+신규 union으로 한 번에** 처리할 것. (2) `create-pages`의 `content`는 `\n` 이스케이프 정상 처리하지만, `update-page`의 `insert_content`/`replace_content`는 **실제 개행 문자**가 필요(`\n` 리터럴로 들어감). (3) create 시 한글 음절 손상(뿌리→뾌리 등)이 간헐 발생 → 업로드 후 `fetch`로 반드시 눈으로 확인, 손상 시 `update_content`로 정확 치환
+
 ## 관련 폴더
 
 - [multi-paradigm-programming/](../multi-paradigm-programming/) — 원본 책 노트 (ch00~07)
