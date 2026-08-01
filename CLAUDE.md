@@ -229,7 +229,13 @@
 - **챕터 DB 표준 속성**: ① `Done`(checkbox, **맨 앞 열** — 읽음 표시) ② `Title` ③ `Part`(select 색상 딱지) ④ `Chapter`(number) ⑤ `핵심 단어`(multi-select, 챕터당 3~6개 — 검색·필터용. 기준형에서는 text였으나 필터링을 위해 multi-select 권장) ⑥ `핵심 요약`(text, 한 줄 ~80자). 선택: `난이도`·`중요도`(★~★★★ select). **핵심 단어 표기는 루트 `KEYWORDS.md` 용어 사전을 따르고**, 핵심 단어·핵심 요약 **값의 소스는 그 책 README의 목차 표**(`| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`)다 — 업로드·재업로드 시 README 기준으로 채운다. 새 DB는 `create-database` 시점에 속성 전체를 한 번에 만들 수 있지만, **기존 DB에 속성 추가는 API 404**이므로 UI에서 수동 생성 후 값 채우기만 API로 한다. **파트가 없어도** 챕터를 묶을 좋은 분류 기준이 있으면(예: head-first의 GoF `패턴 범주` = 생성/구조/행동/복합/정리) 파트 대신 그 기준으로 select/multi-select 색상 딱지를 붙인다 — 기준 이름은 책에 맞게 정하고(꼭 `Part`일 필요 없음), 한 챕터가 여러 범주에 걸치면 multi-select를 쓴다. 파트도 없고 마땅한 분류 기준도 없으면 `Name` 하나로만 둔다.
 - **책별 DB 구조는 그 책 README에 기록**: 각 책 README에 `## Notion DB 구조` 절을 두어 위치·속성·딱지 매핑·정렬을 적어두고, 업로드/재업로드 시 이 절을 참조한다. 책마다 분류 기준이 달라(파트 vs 패턴 범주 등) 공통 CLAUDE.md가 아니라 각 README에 두는 것이 맞다.
 - **정렬**: `Name`에 `ChNN.`(두 자리) 접두어를 붙이고 이름 오름차순 정렬하면 챕터 순서가 유지된다. 파트가 있으면 뷰에서 `Part`로 그룹핑하거나 `Chapter` 오름차순 정렬을 쓴다.
-- ⚠️ **스키마 편집 API 제약**: 현재 Notion 통합은 `update-data-source`(속성 추가 등 스키마 DDL)가 404로 막혀 있고 `update-page`도 스키마에 없는 속성은 거부한다. 따라서 **딱지 속성(select/multi-select)은 Notion UI에서 사람이 먼저 만들고**, 각 챕터 값 채우기(`update-page`)만 API로 한다.
+- ✅ **스키마 편집 API 사용 가능(2026-08-02 확인)**: 과거 404로 막혀 있던 `update-data-source`가 지금은 정상 동작한다. 기존 DB에도 SQL DDL로 속성을 추가할 수 있으므로 **UI 수동 생성 없이 속성 추가 → 값 채우기를 모두 API로** 끝낼 수 있다.
+  ```
+  ADD COLUMN "핵심 단어" RICH_TEXT; ADD COLUMN "핵심 요약" RICH_TEXT;
+  ADD COLUMN "Chapter" NUMBER; ADD COLUMN "Done" CHECKBOX;
+  ADD COLUMN "구분" SELECT('본문':blue, '부록':gray)
+  ```
+  `update-page`는 여전히 스키마에 없는 속성을 거부하므로 **속성 추가가 먼저**다. 값 채우기는 `update-page`(command: `update_properties`)로 한 페이지씩 처리한다.
 
 ## origin.md 파일 분리 작업
 
