@@ -120,7 +120,7 @@ spec:
 
 #### Deployment
 
-디플로이먼트(*Deployment — Pod의 원하는 상태(레플리카 수, 이미지 버전 등)를 선언적으로 관리하는 K8s 리소스*)는 Pod을 몇 개 실행할지, 어떤 이미지를 사용할지 등을 정의한다.
+디플로이먼트(*Deployment - Pod의 원하는 상태(레플리카 수, 이미지 버전 등)를 선언적으로 관리하는 K8s 리소스*)는 Pod을 몇 개 실행할지, 어떤 이미지를 사용할지 등을 정의한다.
 
 ```yaml
 apiVersion: apps/v1
@@ -195,7 +195,7 @@ spec:
 
 #### Ingress
 
-인그레스(*Ingress — 외부 HTTP(S) 트래픽을 클러스터 내부의 Service로 라우팅하는 K8s 리소스*)는 도메인 기반 라우팅과 TLS 종료를 처리한다. Nginx의 리버스 프록시와 비슷한 역할이다.
+인그레스(*Ingress - 외부 HTTP(S) 트래픽을 클러스터 내부의 Service로 라우팅하는 K8s 리소스*)는 도메인 기반 라우팅과 TLS 종료를 처리한다. Nginx의 리버스 프록시와 비슷한 역할이다.
 
 ```yaml
 apiVersion: networking.k8s.io/v1

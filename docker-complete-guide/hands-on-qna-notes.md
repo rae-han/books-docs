@@ -5,8 +5,9 @@
 Docker를 **직접 터미널에 명령어를 치고 Docker Desktop GUI로 확인하며** 한 챕터씩 배우는 실습 과정에서, 실제로 **막혔던 지점과 던졌던 질문**을 정리한 복습 노트다.
 
 - **자립형 노트**다. 교재의 핵심 개념을 압축 요약해 함께 담았으므로, **이 노트 하나만 봐도 학습·복습이 완결**된다.
-- 더 깊은 디테일(모든 예제, 세부 설명)은 교재 [ch01](ch01-what-is-docker.md), [ch02](ch02-images.md)를 참고한다.
+- 더 깊은 디테일(모든 예제, 세부 설명)은 교재 해당 챕터를 참고한다 — 각 세션 끝의 "더 깊이" 링크로 연결된다. (현재 세션 0~4 = [ch01](ch01-what-is-docker.md)~[ch04](ch04-dockerfile-deep-dive.md))
 - 구성: **Part A**(세션별 흐름 + 교재 핵심) → **Part B**(vs 비교 모음) → **Part C**(Q&A 모음) → **Part D**(명령어 치트시트).
+- 실습 코드(server.js, Dockerfile, .dockerignore 등)는 이 레포 밖 `~/Documents/personal/docker-practice/hello-docker/`에 있다.
 
 > **핵심 통찰**: 입문할 때 가장 헷갈리는 건 "비슷해 보이지만 다른 것들"이다(이미지 vs 컨테이너, run vs start, --rm 즉시 vs 종료 시). 그래서 이 노트는 **vs 비교**를 중심에 둔다. 헷갈리면 Part B부터 펴라.
 
