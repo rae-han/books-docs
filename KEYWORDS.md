@@ -15,20 +15,28 @@ README 목차 표와 Notion 챕터 DB의 `핵심 단어`에 쓰는 **대표 표�
 - 결합도: coupling, 커플링 (반대 축: 응집도)
 - 고차 함수: higher-order function, HOF
 - 깊은 모듈: deep module (반대: 얕은 모듈 shallow module)
+- 깊이 우선 탐색: DFS, depth-first search
+- 너비 우선 탐색: BFS, breadth-first search
 - 단일 책임 원칙: SRP
+- 동적 프로그래밍: DP, 동적 계획법, dynamic programming
 - 디미터 법칙: Law of Demeter, 데메테르 법칙, 최소 지식 원칙
 - 리스코프 치환 원칙: LSP, 리스코프 치환
 - 리팩터링: 리팩토링, refactoring
+- 메모이제이션: memoization, 메모화
 - 목 객체: mock object, 모의 객체, 목
 - 봉합: Seam, 이음새, 심
 - 불변성: immutability, 이뮤터블
+- 빅 오 표기법: Big O, 빅오, 점근 표기법
 - 삼각측량: triangulation
 - 아키텍처 결정 레코드: ADR, architecture decision record
 - 아키텍처 특성: architecture characteristics, 품질 속성, quality attributes, -ilities
+- 연결 리스트: linked list, 링크드 리스트
 - 옵저버 패턴: 관찰자 패턴, Observer 패턴
 - 응집도: cohesion (반대 축: 결합도)
 - 의존성 역전: DIP, 의존관계 역전
 - 의존성 주입: DI, 의존관계 주입
+- 이진 검색: binary search, 이진 탐색, 이분 탐색
+- 이진 탐색 트리: BST, binary search tree, 이진 검색 트리
 - 이터레이터: 반복자, iterator
 - 인수 테스트: acceptance test, 인수 검사
 - 인터페이스 분리 원칙: ISP
@@ -41,10 +49,13 @@ README 목차 표와 Notion 챕터 DB의 `핵심 단어`에 쓰는 **대표 표�
 - 캡슐화: encapsulation
 - 커링: currying
 - 코드 악취: bad smell, 나쁜 냄새, 코드 스멜
+- 퀵 정렬: quicksort, 퀵소트
 - 클로저: closure (SICP의 '닫힘 성질 closure property'와는 다른 개념)
 - 테스트 주도 개발: TDD
+- 트라이: trie, 접두사 트리, prefix tree
 - 특성화 테스트: characterization test, 문서화 테스트
 - 포트와 어댑터: 헥사고날 아키텍처, ports and adapters
 - 피트니스 함수: fitness function, 적합도 함수
 - 함수 추출하기: Extract Function, 메서드 추출, Extract Method
 - 합성: composition, 컴포지션, 객체 합성
+- 해시 테이블: hash table, 해시맵, 해시 맵
