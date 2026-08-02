@@ -236,6 +236,31 @@
   ADD COLUMN "구분" SELECT('본문':blue, '부록':gray)
   ```
   `update-page`는 여전히 스키마에 없는 속성을 거부하므로 **속성 추가가 먼저**다. 값 채우기는 `update-page`(command: `update_properties`)로 한 페이지씩 처리한다.
+  - ⚠️ **예외 — 특정 DB만 404**: 읽기(`query-database-view`)는 되는데 `update-data-source`만 404를 반환하는 DB가 있다(head-first-design-patterns의 옛 인라인 DB 사례). 이때는 **같은 페이지에 속성을 갖춘 새 DB를 `create-database`로 만들고, 기존 챕터 페이지를 `move-pages`로 통째 이동**하면 본문 손실 없이 우회된다. 이동 후 빈 옛 DB 블록은 UI에서 삭제.
+
+### 뷰 레이아웃 표준 (2026-08-02 확립)
+
+챕터 DB 뷰는 `notion-update-view`의 DSL로 아래처럼 통일한다.
+
+```
+SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter" ASC
+```
+
+- **`Done`은 항상 맨 앞** — `SHOW`에 나열한 순서가 곧 열 순서다.
+- **`Chapter` 열은 숨긴다** — 제목이 `Chapter N: …`/`ChNN. …` 형식이면 번호가 이미 제목에 있어 중복이다. **숨겨도 `SORT BY "Chapter"`는 정상 동작**하므로 순서는 유지된다. 제목에 번호가 없는 DB(예: CODE — `Best Friends (가장 친한 친구)`)만 `Chapter` 열을 남긴다.
+- **정렬은 `Chapter` 오름차순**을 명시한다. 정렬이 없으면 생성 순서대로 뒤죽박죽 보인다.
+
+### 빈 값 점검 요령 (전수 조사용)
+
+챕터가 수십 개인 DB에서 "값이 비었는지"를 확인하려고 전량 조회하면 응답이 매우 커진다. 대신 **뷰에 필터를 걸었다가 푸는** 방식이 빠르고 저렴하다.
+
+1. `SORT BY "Chapter" ASC; FILTER "핵심 단어" IS EMPTY` 로 뷰 설정
+2. `query-database-view` 조회 → 결과가 `[]`면 전부 채워진 것, 나오면 그 행만 채우면 된다
+3. `CLEAR FILTER` 로 원복
+
+`Query Data Source`(SQL)는 워크스페이스 사용량 한도가 따로 있어 쉽게 소진되지만, `query-database-view`는 별도 쿼터라 이 방법이 안전하다.
+
+> **주의**: "DB가 비어 보인다"는 신고의 실제 원인은 세 가지로 갈린다 — ① 속성 자체가 없음(스키마에 `핵심 단어`가 없음) ② 속성은 있는데 값이 없음 ③ **값은 다 있는데 뷰에서 그 열이 숨겨져 있음**(philosophy-of-software-design 사례). 채우기 전에 스키마 → 값 → 뷰 순으로 확인한다.
 
 ## origin.md 파일 분리 작업
 
