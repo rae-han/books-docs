@@ -54,18 +54,20 @@ docs/
 | [함수형 프로그래밍 완전 가이드](functional-programming-complete-guide/) | 자체 구성 | 5부 19장 | ✓ | [🔗](https://app.notion.com/p/3a3de4986fe38162896dd655d2d07456) |
 | [Docker 완전 가이드](docker-complete-guide/) | 자체 구성 | 6부 15장 | — | [🔗](https://app.notion.com/p/31cde4986fe3819483b9c30ae57764c8) |
 | [AWS 완전 가이드](aws-complete-guide/) | 자체 구성 | 7부 16장 | — | [🔗](https://app.notion.com/p/325de4986fe381d4a71bd4eb9073188b) |
+| [자바스크립트 + 리액트 디자인 패턴](javascript-react-pattern/) | 애디 오스마니 | 16장 | — | [🔗](https://app.notion.com/p/31cde4986fe381cfb282cdbabe55db08) |
+| [미니멀리즘 프로그래머](minimalism-programmer/) | 데이비드 토머스 | 9장 | ✓ | [🔗](https://app.notion.com/p/35cde4986fe380b88921dc601eb5c917) |
+| [함수형 자바스크립트 (fp)](fp/) | Notion 이관본 | 22편 | — | [🔗](https://app.notion.com/p/f5344f83755c4de68f96732af6eb21f9) |
+
+> **Notion 페이지 위치 주의**: 대부분은 `Must reads` → `Dev` DB 항목 안에 있지만, **자바스크립트+리액트 디자인 패턴**은 `Front-End & JavaScript & Typescript` DB 아래, **미니멀리즘 프로그래머**는 Dev DB 밖의 별도 페이지 트리에, **fp**는 이관 원본(`Functional Javascript with ES6+` / `FP with ES6+` DB / `Functional JS`)으로 각각 다른 위치에 있다. Dev DB만 훑으면 누락된다.
 
 ### 노트 완료 · Notion 미업로드
 
 | 책 | 저자 | 노트 | 비고 |
 |----|------|------|------|
 | [프런트엔드 성능 최적화 Deep Dive](frontend-performance-optimization-deep-dive/) | 김용찬 | 26장+부록 | 최근 작성 |
-| [자바스크립트 + 리액트 디자인 패턴](javascript-react-pattern/) | 애디 오스마니 | 16장 | 코드 전부 TypeScript |
-| [미니멀리즘 프로그래머](minimalism-programmer/) | 데이비드 토머스 | 9장 | 인용문 절 있음 |
 | [이것이 취업을 위한 코딩 테스트다](this-is-coding-test/) | 나동빈 | 19장 | 파이썬 → TypeScript 변환 |
 | [코딩 테스트 합격자 되기 (JS편)](programmers-coding-test/) | 이선협·박경록 | 17장+부록 | |
 | [하면 된다! 퀀트 투자](quant/) | 강환국 | 6장 | Part 4~5 발췌본 |
-| [함수형 자바스크립트 (fp)](fp/) | Notion 이관본 | 22편 | 원본이 Notion 노트 |
 
 ### origin 분리만 완료 (노트 미작성)
 
