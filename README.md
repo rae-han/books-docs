@@ -75,6 +75,7 @@ docs/
 |----|------|------|
 | [그림으로 배우는 도커](docker-illustrated-introduction/) | 스즈키 료 | origin 32장 분리 완료 |
 | [만들면서 배우는 헥사고날 아키텍처](hex/) | 다비 비에이라 | origin 15장 분리 완료 · 인용문 절만 작성 |
+| [모던 API 아키텍처 설계 전략](mastering-api-architecture/) | 제임스 고프 외 | origin 0~10장 분리 완료 · README 목차 작성 |
 
 ## 공통 자산
 
@@ -117,6 +118,7 @@ SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter
 
 ## 작업 순서 (새 책 추가 시)
 
+0. 책 폴더 스캐폴딩 — `origin.md`(빈 파일)와 `README.md`(표준 뼈대)만 먼저 만든다 (챕터 파일은 노트 작성 시점에)
 1. PDF/OCR 원본을 `origin.md` → 챕터별 `N.origin.md`로 분리 (라인 합계·byte 검증)
 2. 1~2개 챕터를 샘플로 작성해 확인받은 뒤 전체 진행
 3. 책 README 작성 — 목차 표의 `핵심 단어`는 KEYWORDS.md 표기를 따를 것
