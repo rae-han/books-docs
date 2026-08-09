@@ -11,6 +11,8 @@
 - **위치**는 챕터/Topic 단위로 기록 (페이지는 판이 바뀌면 어긋나지만 챕터 표기는 개정판에서도 대체로 유지됨). 챕터를 확정할 수 없으면 한국어판 쪽수로 기록
 - 책 섹션 헤더는 `## 『책 제목』 — 저자` 형식, 항목은 책 내 등장 순서대로
 - **저장소에 노트가 없는 책**의 인용도 하단 구역에 수집한다 — 섹션 제목에 `(노트 없음)` 표기. 출처가 책이 아닌 명언은 맨 아래 `개발 명언 모음`에 두며, 이 구역은 위치 표기를 생략할 수 있다
+- **1차 출처를 확인했으면 화자 뒤에 적는다**: `— 화자, 출처`. 강연은 콘퍼런스 이름과 연도(`QCon London 2009`), 논문·표준은 매체와 연도(`Datamation 1968년 4월호`, `RFC 761`), 메일링 리스트·트윗은 날짜(`2000-08-25`)까지 적는다. 확인하지 못했으면 화자만 적고 출처를 지어내지 않는다
+- **영문 원문 병기**: 영어로 더 널리 인용되는 문장은 한국어 뒤에 이탤릭으로 원문을 덧붙인다 — `> 한국어<br>*English original*<br>— 화자, 출처`. 한국어가 기본이고 원문은 참고용이므로 **순서를 뒤집지 않는다**. 짧은 문구는 한국어 안에 괄호로 넣어도 된다(`빨리 가는 유일한 방법은 제대로 가는 것이다(The only way to go fast, is to go well)`). 원문 문구를 확실히 아는 것만 적고, 확실하지 않으면 비워 둔다
 
 ---
 
@@ -36,11 +38,11 @@
 
 ## 『컴퓨터 프로그램의 구조와 해석 (SICP)』 — 에이블슨·서스먼
 
-> 프로그램은 오직 사람이 읽기 위해서 작성되어야 한다. 컴퓨터가 그것을 실행하는 것은 부차적인 일이다.<br>— 해럴드 에이블슨·제럴드 제이 서스먼 (서문)
+> 프로그램은 오직 사람이 읽기 위해서 작성되어야 한다. 컴퓨터가 그것을 실행하는 것은 부차적인 일이다.<br>*Programs must be written for people to read, and only incidentally for machines to execute.*<br>— 해럴드 에이블슨·제럴드 제이 서스먼 (서문)
 
 ## 『리팩터링 2판』 — 마틴 파울러
 
-> 컴퓨터가 이해하는 코드는 바보도 작성할 수 있다. 사람이 이해하도록 작성하는 프로그래머가 진정한 실력자다.<br>— 마틴 파울러 (Ch1 리팩터링: 첫 번째 예시. ⚠️ 위키인용집은 1판 기여자인 켄트 벡 귀속으로 등재 — 벡·파울러 공동 귀속으로 통용)
+> 컴퓨터가 이해하는 코드는 바보도 작성할 수 있다. 사람이 이해하도록 작성하는 프로그래머가 진정한 실력자다.<br>*Any fool can write code that a computer can understand. Good programmers write code that humans can understand.*<br>— 마틴 파울러 (Ch1 리팩터링: 첫 번째 예시. ⚠️ 위키인용집은 1판 기여자인 켄트 벡 귀속으로 등재 — 벡·파울러 공동 귀속으로 통용)
 
 > 코드가 무슨 일을 하는지 이해하려고 머리를 써야 한다면, 그 이해가 즉시 드러나도록 리팩터링할 수 없는지 자문한다.<br>— 마틴 파울러 (Ch3)
 
@@ -50,7 +52,7 @@
 
 > 지금 위치에서 동쪽으로 100km를 가려는데 숲이 가로막고 있다면, 20km 북쪽 고속도로로 둘러가는 편이 세 배 빠를 수 있다. "직진!"을 외치는 대신 "지도를 보고 가장 빠른 길을 찾자"고 말할 줄 알아야 한다. 준비를 위한 리팩터링이 그 역할이다.<br>— 제시카 커(Jessica Kerr) (Ch2)
 
-> 무언가 수정하려 할 때는 먼저 수정하기 쉽게 정돈하고(단, 만만치 않을 수 있다) 그런 다음 쉽게 수정하자.<br>— 켄트 벡(Kent Beck) (Ch2)
+> 무언가 수정하려 할 때는 먼저 수정하기 쉽게 정돈하고(단, 만만치 않을 수 있다) 그런 다음 쉽게 수정하자.<br>*For each desired change, make the change easy (warning: this may be hard), then make the easy change.*<br>— 켄트 벡(Kent Beck) (Ch2. 원출처는 2012-09-25 벡의 트윗)
 
 > 냄새 나면 당장 갈아라.<br>— 켄트 벡 할머니의 육아 원칙 (Ch3 코드에서 나는 악취)
 
@@ -66,7 +68,7 @@
 
 ## 『A Philosophy of Software Design』 — 존 아우스터하우트
 
-> 소프트웨어 작성의 가장 큰 한계는 우리가 만들고 있는 시스템을 이해하는 능력이다.<br>— 존 아우스터하우트 (Ch2 복잡성의 본질)
+> 소프트웨어 작성의 가장 큰 한계는 우리가 만들고 있는 시스템을 이해하는 능력이다.<br>*The greatest limitation in writing software is our ability to understand the systems we are creating.*<br>— 존 아우스터하우트 (Ch2 복잡성의 본질)
 
 > 복잡성은 한 번에 하나씩 쌓인다. 그래서 복잡성에는 무관용이어야 한다.<br>— 존 아우스터하우트 (Ch2)
 
@@ -190,7 +192,7 @@
 
 > 코드를 읽는 시간 대 코드를 짜는 시간 비율은 10:1을 훌쩍 넘는다. 읽기 쉽게 만들면 사실은 짜기도 쉬워진다.<br>— 로버트 C. 마틴 (Ch1 깨끗한 코드)
 
-> 캠프장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라.<br>— 보이스카우트 규칙 (Ch1)
+> 캠프장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라.<br>*Leave the campground cleaner than you found it.*<br>— 보이스카우트 규칙 (Ch1)
 
 > 나중은 결코 오지 않는다(Later equals never).<br>— 르블랑의 법칙(LeBlanc's Law) (Ch1)
 
@@ -203,6 +205,8 @@
 > 함수의 첫째 규칙은 작아야 한다는 것이다. 둘째 규칙은 그보다 더 작아야 한다는 것이다.<br>— 로버트 C. 마틴 (Ch3 함수)
 
 > 진실은 단 한 곳에만 존재한다. 바로 코드다.<br>— 로버트 C. 마틴 (Ch4 주석)
+
+> 첫째, 실패하는 단위 테스트를 작성할 때까지 실제 코드를 작성하지 않는다.<br>둘째, 컴파일은 되지만 실행이 실패하는 정도로만 단위 테스트를 작성한다.<br>셋째, 현재 실패하는 테스트를 통과할 정도로만 실제 코드를 작성한다.<br>*You may not write production code until you have written a failing unit test. / You may not write more of a unit test than is sufficient to fail, and not compiling is failing. / You may not write more production code than is sufficient to pass the currently failing test.*<br>— 로버트 C. 마틴, TDD 3법칙 (Ch9 단위 테스트)
 
 > 코드가 동작하는 것만으로는 부족하다.<br>— 로버트 C. 마틴 (Ch14 점진적인 개선)
 
@@ -283,6 +287,8 @@
 ## 『레거시 코드 활용 전략』 — 마이클 페더스
 
 > 레거시 코드란 단순히 테스트가 없는 코드다(Legacy code is simply code without tests).<br>— 마이클 페더스 (서문)
+
+> 요구사항은 변한다. 변하는 요구사항을 견디지 못하는 설계는 애초에 나쁜 설계다. 변화를 견디는 설계를 만드는 것이 유능한 개발자 모두의 목표다.<br>*Requirements change. Designs that cannot tolerate changing requirements are poor designs to begin with.*<br>— 마이클 페더스 (본문)
 
 > 테스트 루틴이 없는 코드는 나쁜 코드다. 코드가 얼마나 훌륭하게 작성돼 있는지 여부와는 상관없다. 아무리 깔끔하고 객체지향적이며 캡슐화가 잘돼 있어도 소용없다. 테스트 루틴이 있으면 코드의 동작을 빠르게 검증하며 수정할 수 있다. 테스트 루틴이 없으면 우리가 작성하고 있는 코드가 좋아지고 있는지 나빠지고 있는지 제대로 알 수 없다.<br>— 마이클 페더스 (서문)
 
@@ -436,12 +442,6 @@
 
 > 빅 오에서 내 알고리즘이 "느린" 카테고리에 속한다면, 한 발짝 물러나 **더 빠른 빅 오 카테고리로 들어갈 수 있는지** 고민해 보라.<br>— 제이 웬그로우 (Ch4)
 
----
-
-**아래는 저장소에 노트가 없는 출처들이다** — 발표 자료·인터넷에서 수집. 책이면 `(노트 없음)` 섹션, 책이 아니면 맨 아래 `개발 명언 모음`에 둔다.
-
-## 『만들면서 배우는 헥사고날 아키텍처 설계와 구현』 — 다비 비에이라 (노트 없음)
-
 ## 『모던 API 아키텍처 설계 전략』 — 제임스 고프·대니얼 브라이언트·매튜 어번
 
 > 아키텍처는 미래를 위해 전략적으로 계획할 수 있을 것 같지만, 소프트웨어 개발 생태계는 지속적으로 변화하기 때문에 계획을 세우기가 어렵다. 변화를 피해갈 수는 없고 오히려 이용해야 한다.<br>— 닐 포드 외, 『진화적 아키텍처』 (Ch0, 저자가 재인용)
@@ -471,6 +471,12 @@
 > 조직의 (넓은 범위의) 시스템 설계는 조직의 의사소통 구조를 반영하는 시스템을 설계하게 된다.<br>*Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.*<br>— 멜빈 콘웨이(Melvin Conway), 「위원회는 어떻게 발명하는가(How Do Committees Invent?)」(Datamation 1968년 4월호) (Ch10)
 
 > 우리는 아키텍트라면 실용적인 소프트웨어 엔지니어로 머물러 있어야 한다고 믿는다. (…) 이런 작업을 정기적으로 하지 않으면 아키텍트로서 개발자에 대한 공감을 잃기가 쉽다.<br>— 제임스 고프·대니얼 브라이언트·매튜 어번 (Ch10)
+
+---
+
+**아래는 저장소에 노트가 없는 출처들이다** — 발표 자료·인터넷에서 수집. 책이면 `(노트 없음)` 섹션, 책이 아니면 맨 아래 `개발 명언 모음`에 둔다.
+
+## 『만들면서 배우는 헥사고날 아키텍처 설계와 구현』 — 다비 비에이라 (노트 없음)
 
 > 여러분의 애플리케이션을 UI나 데이터베이스 없이 동작하도록 만드십시오. 그러면 애플리케이션에 대해 자동화된 회귀 테스트를 실행할 수 있고, 데이터베이스를 사용할 수 없을 때도 동작합니다. 그리고 어떤 사용자의 개입 없이도 애플리케이션을 함께 연결할 수 있습니다.<br>— 앨리스터 코크번(Alistair Cockburn) (Ch1, 저자가 헥사고날 아키텍처의 토대로 재인용)
 
@@ -502,7 +508,7 @@
 
 > 프로그래밍은 왜 즐거운가. 첫째, 무엇을 만든다는 순수한 즐거움. 둘째, 다른 사람에게 쓸모 있는 뭔가를 만드는 데서 오는 즐거움. 셋째, 서로 맞물려 돌아가는 퍼즐 같은 복잡한 객체를 멋지게 만들어내고 실제로 어떤 결과를 낳는지 지켜보는 즐거움. 넷째, 항상 새로운 뭔가를 배운다는 기쁨. 다섯째, 다루기 쉬운 매체를 갖고 작업한다는 즐거움.<br>— 프레더릭 브룩스 (Ch1 타르 구덩이)
 
-> 지연되는 소프트웨어 프로젝트에 인력을 더 투입하면 오히려 더 늦어진다.<br>— 프레더릭 브룩스, 브룩스의 법칙 (Ch2 맨먼스 미신)
+> 지연되는 소프트웨어 프로젝트에 인력을 더 투입하면 오히려 더 늦어진다.<br>*Adding manpower to a late software project makes it later.*<br>— 프레더릭 브룩스, 브룩스의 법칙 (Ch2 맨먼스 미신)
 
 > 아홉 명의 여자가 투입된다고 해서 아기를 한 달 만에 낳을 수는 없다.<br>— 프레더릭 브룩스 (Ch2)
 
@@ -514,7 +520,7 @@
 
 > 하나는 버릴 계획을 하라. 어차피 버리게 된다(Plan to throw one away; you will, anyhow).<br>— 프레더릭 브룩스 (Ch11)
 
-> 어떤 단일한 기법이나 기술도, 10년 안에 생산성·신뢰성·단순성을 10배 높여주지 못한다 — 은총알은 없다.<br>— 프레더릭 브룩스, 「No Silver Bullet」(1986, 20주년 기념판 수록)
+> 어떤 단일한 기법이나 기술도, 10년 안에 생산성·신뢰성·단순성을 10배 높여주지 못한다 — 은총알은 없다.<br>*There is no single development, in either technology or management technique, which by itself promises even one order of magnitude improvement in productivity, in reliability, in simplicity.*<br>— 프레더릭 브룩스, 「No Silver Bullet」(IFIP 제10차 세계컴퓨터회의, 1986 / 20주년 기념판 Ch16 수록)
 
 ## 『프로그래머의 길, 멘토에게 묻다』 — 데이브 후버·아데웨일 오시나이 (노트 없음)
 
@@ -560,105 +566,123 @@
 
 ## 개발 명언 모음
 
-출처가 특정 책이 아니거나 확인되지 않은, 인터넷에서 수집한 명언들. 위치 표기는 생략한다.
+출처가 특정 책이 아닌 명언들 — 논문·표준 문서·강연·메일링 리스트·블로그에서 나온 말들을 모았다.
+
+- **1차 출처를 확인한 것**은 화자 뒤에 출처를 적었다. 강연은 콘퍼런스 이름과 연도까지 적는다
+- **확인하지 못한 것**은 화자만 적는다. 널리 인용되지만 원문을 특정할 수 없는 것들이다
+- 출처가 흔히 **잘못** 알려진 인용은 맨 아래 「출처 주의」에 따로 모았다
 
 ### 설계와 복잡성
 
-> 복잡성을 통제하는 것이 컴퓨터 프로그래밍의 본질이다.<br>— 브라이언 커니핸(Brian Kernighan)
+> 복잡성을 통제하는 것이 컴퓨터 프로그래밍의 본질이다.<br>*Controlling complexity is the essence of computer programming.*<br>— 브라이언 커니핸(Brian Kernighan), 『Software Tools』(1976, P. J. 플라우거 공저)
 
-> 소프트웨어 설계를 하는 데는 두 가지 방법이 있다. 하나는 결함이 없음이 명백할 만큼 단순하게 만드는 것이고, 다른 하나는 명백한 결함이 없을 만큼 복잡하게 만드는 것이다.<br>— 토니 호어(Tony Hoare), 튜링상 수상 강연
+> 소프트웨어 설계를 하는 데는 두 가지 방법이 있다. 하나는 결함이 없음이 명백할 만큼 단순하게 만드는 것이고, 다른 하나는 명백한 결함이 없을 만큼 복잡하게 만드는 것이다.<br>*There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies, and the other way is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.*<br>— 토니 호어(Tony Hoare), 1980 튜링상 수상 강연 「The Emperor's Old Clothes」(CACM 1981년 2월호 수록) — 뒤에 "첫 번째 방법이 훨씬 어렵다"가 이어진다
 
 > 완벽함은 더할 것이 없을 때가 아니라, 더 이상 뺄 것이 없을 때 달성된다.<br>— 앙투안 드 생텍쥐페리(Antoine de Saint-Exupéry)
 
-> 좋은 소프트웨어의 역할은 복잡한 것을 간단해 보이게 만드는 것이다.<br>— 그래디 부치(Grady Booch)
+> 좋은 소프트웨어의 역할은 복잡한 것을 간단해 보이게 만드는 것이다.<br>*The function of good software is to make the complex appear to be simple.*<br>— 그래디 부치(Grady Booch)
 
-> 복잡성은 개발자들의 생명을 갉아먹는다. 그것은 제품을 기획하고 만들고 테스트하기 어렵게 하고, 보안을 위협하며, 사용자와 운영자를 좌절하게 만든다.<br>— 레이 오지(Ray Ozzie)
+> 복잡성은 개발자들의 생명을 갉아먹는다. 그것은 제품을 기획하고 만들고 테스트하기 어렵게 하고, 보안을 위협하며, 사용자와 운영자를 좌절하게 만든다.<br>*Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test, it introduces security challenges, and it causes end-user and administrator frustration.*<br>— 레이 오지(Ray Ozzie)
 
-> 바보는 복잡한 것을 무시하고, 현실주의자는 복잡한 것에 괴로워하며, 어떤 이는 복잡한 것을 피한다. 천재는 복잡한 것을 없애버린다.<br>— 앨런 펄리스(Alan J. Perlis)
+> 바보는 복잡한 것을 무시하고, 현실주의자는 복잡한 것에 괴로워하며, 어떤 이는 복잡한 것을 피한다. 천재는 복잡한 것을 없애버린다.<br>*Fools ignore complexity. Pragmatists suffer it. Some can avoid it. Geniuses remove it.*<br>— 앨런 펄리스(Alan J. Perlis), 「Epigrams on Programming」(ACM SIGPLAN Notices, 1982) 58번
 
-> 아무리 구조가 잘 되어 있더라도, 프로그래머가 나쁜 프로그램을 만드는 걸 막아주는 프로그래밍 언어는 없다.<br>— 래리 플론(Larry Flon)
+> 아무리 구조가 잘 되어 있더라도, 프로그래머가 나쁜 프로그램을 만드는 걸 막아주는 프로그래밍 언어는 없다.<br>*There does not now, nor will there ever, exist a programming language in which it is the least bit difficult to write bad programs.*<br>— 래리 플론(Larry Flon)
 
-> 객체지향 판 '스파게티 코드'는 당연히 '라자냐 코드'다(계층이 과하게 많다).<br>— 로베르토 왈트만(Roberto Waltman)
+> 객체지향 판 '스파게티 코드'는 당연히 '라자냐 코드'다(계층이 과하게 많다).<br>*In the OO world, spaghetti code is of course lasagna code (too many layers).*<br>— 로베르토 왈트만(Roberto Waltman)
 
-> 나는 '객체 지향'이란 용어를 만들었다. 그리고 분명히 말할 수 있는 건, C++를 염두에 두지 않았다는 것이다.<br>— 앨런 케이(Alan Kay)
+> 나는 '객체 지향'이란 용어를 만들었다. 그리고 분명히 말할 수 있는 건, C++를 염두에 두지 않았다는 것이다.<br>*Actually I made up the term 'object-oriented', and I can tell you I did not have C++ in mind.*<br>— 앨런 케이(Alan Kay), OOPSLA 1997 기조연설 「The Computer Revolution Hasn't Happened Yet」
 
-> 세상에는 딱 두 가지 프로그래밍 언어가 있다. 사람들이 욕하는 언어와 아무도 사용하지 않는 언어.<br>— 비야네 스트로스트룹(Bjarne Stroustrup)
+> 세상에는 딱 두 가지 프로그래밍 언어가 있다. 사람들이 욕하는 언어와 아무도 사용하지 않는 언어.<br>*There are only two kinds of languages: the ones people complain about and the ones nobody uses.*<br>— 비야네 스트로스트룹(Bjarne Stroustrup)
 
-> C++에서 스스로 발을 쏘는 일은 잘 일어나지 않는다. 하지만 일단 일어나면 다리 전체가 날아간다.<br>— 비야네 스트로스트룹(Bjarne Stroustrup)
+> C++에서 스스로 발을 쏘는 일은 잘 일어나지 않는다. 하지만 일단 일어나면 다리 전체가 날아간다.<br>*C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do, it blows your whole leg off.*<br>— 비야네 스트로스트룹(Bjarne Stroustrup)
 
-> C는 유별나고, 결함 있고, 엄청나게 성공했다.<br>— 데니스 리치(Dennis Ritchie)
+> C는 유별나고, 결함 있고, 엄청나게 성공했다.<br>*C is quirky, flawed, and an enormous success.*<br>— 데니스 리치(Dennis Ritchie)
 
 > 중복은 잘못된 추상화보다 훨씬 싸다(Duplication is far cheaper than the wrong abstraction).<br>— 샌디 메츠(Sandi Metz), RailsConf 2014 "All the Little Things"
 
-> 나쁜 프로그래머는 코드를 걱정하고, 좋은 프로그래머는 자료구조와 그 관계를 걱정한다.<br>— 리누스 토르발스(Linus Torvalds), Git 메일링리스트 (2006)
+> 나쁜 프로그래머는 코드를 걱정하고, 좋은 프로그래머는 자료구조와 그 관계를 걱정한다.<br>*Bad programmers worry about the code. Good programmers worry about data structures and their relationships.*<br>— 리누스 토르발스(Linus Torvalds), 메일링 리스트 (2006-06-27) — git의 설계 철학을 설명하며. 이어지는 문장은 "나쁜 프로그래머와 좋은 프로그래머의 차이는 코드와 자료구조 중 무엇을 더 중요하게 여기느냐다"
 
-> 동작하는 복잡한 시스템은 예외 없이, 동작하는 단순한 시스템에서 진화한 것이다.<br>— 존 골(John Gall), 골의 법칙 (『Systemantics』)
+> 동작하는 복잡한 시스템은 예외 없이, 동작하는 단순한 시스템에서 진화한 것이다.<br>*A complex system that works is invariably found to have evolved from a simple system that worked.*<br>— 존 골(John Gall), 골의 법칙 (『Systemantics』)
 
-> 때로는 우아한 구현이 그냥 함수 하나다. 메서드도, 클래스도, 프레임워크도 아닌, 그냥 함수.<br>— 존 카맥(John Carmack)
+> 때로는 우아한 구현이 그냥 함수 하나다. 메서드도, 클래스도, 프레임워크도 아닌, 그냥 함수.<br>*Sometimes, the elegant implementation is just a function. Not a method. Not a class. Not a framework. Just a function.*<br>— 존 카맥(John Carmack)
 
-> 최고의 코드는 코드가 없는 것이다(The best code is no code at all).<br>— 제프 애트우드(Jeff Atwood)
+> 최고의 코드는 코드가 없는 것이다(The best code is no code at all).<br>— 제프 애트우드(Jeff Atwood), 「The Best Code is No Code At All」(Coding Horror, 2007)
 
-> 소프트웨어 설계는 인간관계 연습이다.<br>— 켄트 벡(Kent Beck), Tidy First? 시절의 모토
+> 소프트웨어 설계는 인간관계 연습이다.<br>*Software design is an exercise in human relationships.*<br>— 켄트 벡(Kent Beck), Tidy First? 시절의 모토
+
+### 객체지향과 패러다임
+
+> 내게 객체지향이란 오직 메시징, 상태-처리의 지역적 보존과 보호와 은닉, 그리고 모든 것의 극단적 지연 바인딩을 뜻한다. 스몰토크로도 리스프로도 할 수 있다.<br>*OOP to me means only messaging, local retention and protection and hiding of state-process, and extreme late-binding of all things. It can be done in Smalltalk and in LISP.*<br>— 앨런 케이(Alan Kay), Squeak 메일링 리스트 (1998-10) — 뒤에 슈테판 람에게 보낸 이메일(2003)로 다시 정리된 형태가 널리 인용된다
+
+> 객체지향 언어에서 재사용성이 떨어지는 이유는 암묵적인 환경을 통째로 끌고 다니기 때문이다. 바나나를 원했을 뿐인데, 손에 들어온 것은 바나나를 쥔 고릴라와 정글 전체였다.<br>*The problem with object-oriented languages is they've got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle.*<br>— 조 암스트롱(Joe Armstrong, 얼랭 창시자), 『Coders at Work』(피터 사이벨, 2009) 인터뷰
+
+> 타입 S의 객체 o₁마다, T로 정의된 모든 프로그램 P의 동작이 o₂ 대신 o₁을 넣어도 변하지 않는 타입 T의 객체 o₂가 존재한다면, S는 T의 서브타입이다.<br>*If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2, then S is a subtype of T.*<br>— 바버라 리스코프(Barbara Liskov), OOPSLA 1987 기조연설 「Data Abstraction and Hierarchy」 — 리스코프 치환 원칙(LSP)의 원문. 1994년 잔넷 윙과의 공동 논문에서 더 엄밀하게 다듬어졌다
+
+> 프로그래밍에 대한 당신의 사고방식을 바꾸지 못하는 언어는 알 가치가 없다.<br>*A language that doesn't affect the way you think about programming, is not worth knowing.*<br>— 앨런 펄리스(Alan J. Perlis), 「Epigrams on Programming」(1982) 19번
+
+> 올바른 프로그램을 이해하는 것보다 틀린 프로그램을 작성하는 것이 더 쉽다.<br>*It is easier to write an incorrect program than understand a correct one.*<br>— 앨런 펄리스(Alan J. Perlis), 「Epigrams on Programming」(1982) 7번
+
+> 한 가지 일을 잘 하는 프로그램을 작성하라. 함께 잘 동작하는 프로그램을 작성하라. 텍스트 스트림을 다루는 프로그램을 작성하라. 그것이 보편적인 인터페이스이기 때문이다.<br>*Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.*<br>— 더그 매클로이(Doug McIlroy), Bell System Technical Journal 유닉스 특집호 서문(1978) — 유닉스 철학의 표준 진술
 
 ### 프로그래밍이라는 일
 
-> "컴퓨터가 생각할 수 있는가"라는 질문은 "잠수함이 헤엄칠 수 있는가"라는 질문과 같다.<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra)
+> "컴퓨터가 생각할 수 있는가"라는 질문은 "잠수함이 헤엄칠 수 있는가"라는 질문과 같다.<br>*The question of whether Machines Can Think... is about as relevant as the question of whether Submarines Can Swim.*<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra), 「The threats to computing science」(EWD898, 1984)
 
-> 디버깅이 벌레를 잡는 과정이라면, 프로그래밍은 그 벌레를 집어넣는 과정이다.<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra)
+> 디버깅이 벌레를 잡는 과정이라면, 프로그래밍은 그 벌레를 집어넣는 과정이다.<br>*If debugging is the process of removing software bugs, then programming must be the process of putting them in.*<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra)
 
-> 유능한 프로그래머는 자신의 두뇌가 가진 한계를 또렷이 의식하는 사람이다. 그래서 그는 프로그래밍을 언제나 겸허한 자세로 대한다.<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra)
+> 유능한 프로그래머는 자기 두개골의 크기가 엄격하게 제한돼 있음을 온전히 자각하는 사람이다. 그래서 그는 프로그래밍이라는 일을 온전히 겸손한 자세로 대한다.<br>*The competent programmer is fully aware of the strictly limited size of his own skull; therefore he approaches the programming task in full humility.*<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra), 1972 튜링상 수상 강연 「The Humble Programmer」(EWD340)
 
-> 사람은 반복문을 쓰고, 신은 재귀 함수를 쓴다.<br>— L. 피터 도이치(L. Peter Deutsch)
+> 사람은 반복문을 쓰고, 신은 재귀 함수를 쓴다.<br>*To iterate is human, to recurse divine.*<br>— L. 피터 도이치(L. Peter Deutsch)
 
-> 프로그래머의 3대 미덕: 게으름, 조급함, 그리고 자만심.<br>— 래리 월(Larry Wall), 『Programming Perl』
+> 프로그래머의 3대 미덕: 게으름, 조급함, 그리고 자만심.<br>*The three chief virtues of a programmer are: Laziness, Impatience and Hubris.*<br>— 래리 월(Larry Wall), 『Programming Perl』(1991)
 
-> 배열이 꼭 0이나 1에서 시작해야 하나? 0.5에서 시작하자는 내 절충안은 충분한 검토 없이 기각된 것 같다.<br>— 스탠 켈리-부틀(Stan Kelly-Bootle)
+> 배열이 꼭 0이나 1에서 시작해야 하나? 0.5에서 시작하자는 내 절충안은 충분한 검토 없이 기각된 것 같다.<br>*Should array indices start at 0 or 1? My compromise of 0.5 was rejected without, I thought, proper consideration.*<br>— 스탠 켈리-부틀(Stan Kelly-Bootle)
 
 > 어떤 면에서 프로그래밍은 그림 그리기와 같다. 기본 재료들과 하얀 캔버스에서 시작해, 무엇을 할지 결정하기 위해 과학과 기술과 기예의 조합을 사용한다.<br>— 앤드류 헌트(Andrew Hunt)
 
 > 손으로 10초면 할 수 있는 일을 하루 종일 프로그래밍해서 자동으로 수행하게 만들 때, 나는 더할 나위 없이 큰 행복을 느낀다.<br>— 더글러스 애덤스(Douglas Adams)
 
-> 컴퓨터 과학에는 어려운 문제가 딱 두 개 있다: 캐시 무효화와 이름 짓기.<br>— 필 칼튼(Phil Karlton) — 변주: "…그리고 하나 차이(off-by-one) 오류" (레온 뱀브릭)
+> 컴퓨터 과학에는 어려운 문제가 딱 두 개 있다: 캐시 무효화와 이름 짓기.<br>*There are only two hard things in Computer Science: cache invalidation and naming things.*<br>— 필 칼튼(Phil Karlton) — 변주: "…그리고 하나 차이(off-by-one) 오류" (레온 뱀브릭)
 
-> 문제를 만나 "정규식을 쓰면 되겠군"이라고 생각하는 사람들이 있다. 이제 그들에게는 문제가 두 개다.<br>— 제이미 자윈스키(Jamie Zawinski)
+> 문제를 만나 "정규식을 쓰면 되겠군"이라고 생각하는 사람들이 있다. 이제 그들에게는 문제가 두 개다.<br>*Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems.*<br>— 제이미 자윈스키(Jamie Zawinski), alt.religion.emacs 게시물 (1997-08-12)
 
-> 프로그래밍은 한 번에 한 가지만 하는 기술이다.<br>— 마이클 페더스(Michael Feathers)
+> 프로그래밍은 한 번에 한 가지만 하는 기술이다.<br>*Programming is the art of doing one thing at a time.*<br>— 마이클 페더스(Michael Feathers), 『Working Effectively with Legacy Code』(2004)
 
 > 동작하게 만들고, 옳게 만들고, 빠르게 만들어라(Make it work, make it right, make it fast).<br>— 켄트 벡(Kent Beck), C2 위키 전승
 
-> 스몰토크가 언젠가 자바를 대체할 줄은 알았다. 그 이름이 루비라고 불릴 줄은 몰랐지만.<br>— 켄트 벡(Kent Beck), 2007 인터뷰
+> 스몰토크가 언젠가 자바를 대체할 줄은 알았다. 그 이름이 루비라고 불릴 줄은 몰랐지만.<br>*I always knew that one day Smalltalk would replace Java. I just didn't know it would be called Ruby.*<br>— 켄트 벡(Kent Beck), 2007 인터뷰
 
-> JavaScript로 작성될 수 있는 모든 애플리케이션은 결국 JavaScript로 작성된다.<br>— 제프 애트우드(Jeff Atwood), 애트우드의 법칙
+> JavaScript로 작성될 수 있는 모든 애플리케이션은 결국 JavaScript로 작성된다.<br>*Any application that can be written in JavaScript, will eventually be written in JavaScript.*<br>— 제프 애트우드(Jeff Atwood), 애트우드의 법칙
 
 ### 디버깅과 품질
 
-> 애초에 디버깅은 코드를 작성하는 것보다 두 배는 힘들다. 그러니 코드를 최대한 영리하게 작성하는 사람은, 당연히, 그것을 디버깅할 만큼 똑똑하지 않다.<br>— 브라이언 커니핸(Brian Kernighan)
+> 애초에 디버깅은 코드를 작성하는 것보다 두 배는 힘들다. 그러니 코드를 최대한 영리하게 작성하는 사람은, 당연히, 그것을 디버깅할 만큼 똑똑하지 않다.<br>*Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?*<br>— 브라이언 커니핸(Brian Kernighan), 『The Elements of Programming Style』 2판(1978, P. J. 플라우거 공저) 2장 — '커니핸의 법칙'
 
-> 우리는 사소한 효율성은 잊어야 한다. 대략 97%의 경우, 이른 최적화는 모든 악의 근원이다.<br>— 도널드 커누스(Donald Knuth)
+> 우리는 사소한 효율성은 잊어야 한다. 대략 97%의 경우, 이른 최적화는 모든 악의 근원이다. 그러나 나머지 결정적인 3%에서 기회를 놓쳐서도 안 된다.<br>*We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. Yet we should not pass up our opportunities in that critical 3%.*<br>— 도널드 커누스(Donald Knuth), 「Structured Programming with go to Statements」(ACM Computing Surveys, 1974)
 
-> 위 코드의 버그를 조심하라. 올바르다고 증명하기만 했을 뿐 실행해 보지는 않았다.<br>— 도널드 커누스(Donald Knuth)
+> 위 코드의 버그를 조심하라. 올바르다고 증명하기만 했을 뿐 실행해 보지는 않았다.<br>*Beware of bugs in the above code; I have only proved it correct, not tried it.*<br>— 도널드 커누스(Donald Knuth), 페터르 판 엠데 보아스에게 보낸 메모(1977-03-22)의 마지막 문장
 
-> 코드의 첫 90%가 개발 시간의 90%를 차지한다. 나머지 10%의 코드가 또 다른 90%의 개발 시간을 차지한다.<br>— 톰 카길(Tom Cargill), 90-90 법칙
+> 코드의 첫 90%가 개발 시간의 90%를 차지한다. 나머지 10%의 코드가 또 다른 90%의 개발 시간을 차지한다.<br>*The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.*<br>— 톰 카길(Tom Cargill, 벨 연구소), 90-90 법칙 — 존 벤틀리의 「Bumper-Sticker Computer Science」(CACM 1985년 9월호 'Programming Pearls' 칼럼)로 널리 알려졌다
 
 > 프로그래밍을 시작하자마자 우리는 프로그램을 생각대로 만들기가 쉽지 않다는 것에 놀라게 된다. 내 인생의 대부분이 내 프로그램의 실수를 찾아내는 데 쓰이리라는 것을 깨달은 순간을 정확히 기억한다.<br>— 모리스 윌크스(Maurice Wilkes)
 
-> 두 차례나, 그것도 국회의원들에게 이런 질문을 받았다. "배비지 씨, 기계에 틀린 수치를 입력해도 올바른 답이 나옵니까?" 어떤 개념의 혼란에 빠져야 그런 질문이 나오는지 나는 도무지 이해할 수 없다.<br>— 찰스 배비지(Charles Babbage)
+> 두 차례나, 그것도 국회의원들에게 이런 질문을 받았다. "배비지 씨, 기계에 틀린 수치를 입력해도 올바른 답이 나옵니까?" 어떤 개념의 혼란에 빠져야 그런 질문이 나오는지 나는 도무지 이해할 수 없다.<br>*On two occasions I have been asked, 'Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?' I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.*<br>— 찰스 배비지(Charles Babbage)
 
 > 실수는 사람의 것이다. 그러나 일을 정말 엉망으로 만들고 싶다면 컴퓨터가 필요하다.<br>— 폴 에를리히(Paul Ehrlich)
 
-> 결국 당신의 코드를 유지보수하게 될 사람이 당신이 어디 사는지 아는 난폭한 사이코패스라고 생각하고 코드를 작성하라.<br>— 마틴 골딩(Martin Golding)
+> 결국 당신의 코드를 유지보수하게 될 사람이 당신이 어디 사는지 아는 난폭한 사이코패스라고 생각하고 코드를 작성하라.<br>*Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.*<br>— 마틴 골딩(Martin Golding)
 
-> 당신의 컴퓨터에서 돌아가는 건 중요하지 않다. 당신의 컴퓨터로 서비스하는 게 아니기 때문이다.<br>— 비디우 플라톤(Vidiu Platon)
+> 당신의 컴퓨터에서 돌아가는 건 중요하지 않다. 당신의 컴퓨터로 서비스하는 게 아니기 때문이다.<br>*I don't care if it works on your machine! We are not shipping your machine!*<br>— 비디우 플라톤(Vidiu Platon)
 
-> 6개월 이상 한 번도 보지 않은 코드는 다른 사람이 다시 만드는 게 훨씬 나을 수 있다.<br>— 이글슨의 법칙(Eagleson's Law)
+> 6개월 이상 한 번도 보지 않은 코드는 다른 사람이 다시 만드는 게 훨씬 나을 수 있다.<br>*Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.*<br>— 이글슨의 법칙(Eagleson's Law)
 
 > 좋은 코드는 그 자체가 최고의 문서다.<br>— 스티브 매코널(Steve McConnell)
 
 > 품질이란 아무도 보지 않을 때에도 제대로 돌아가는 것을 뜻한다.<br>— 헨리 포드(Henry Ford)
 
-> 눈이 많으면 찾지 못할 버그는 없다.<br>— 에릭 레이먼드(Eric S. Raymond), 리누스의 법칙
+> 눈이 많으면 찾지 못할 버그는 없다.<br>— 에릭 레이먼드(Eric S. Raymond), 『The Cathedral and the Bazaar』(1997) — 본인이 '리누스의 법칙'이라 이름 붙였다
 
-> 기술이 보안 문제를 해결할 수 있다고 생각한다면, 문제도 기술도 이해하지 못한 것이다.<br>— 브루스 슈나이어(Bruce Schneier)
+> 기술이 보안 문제를 해결할 수 있다고 생각한다면, 문제도 기술도 이해하지 못한 것이다.<br>*If you think technology can solve your security problems, then you don't understand the problems and you don't understand the technology.*<br>— 브루스 슈나이어(Bruce Schneier)
 
 > 테스트될 수 없다면, 요구하지도 마라.<br>— 켄 퓨(Ken Pugh)
 
@@ -666,47 +690,71 @@
 
 > 유닛테스트 코드를 작성하는 것이 습관이 된 사람들은 유닛테스트의 옷을 입지 않은 벌거숭이 코드를 작성하는 것이 불안하게 느껴진다. 건강하고 유용한 중독이다.<br>— 임백준, 『프로그래밍은 상상이다』
 
-> 테스트는 버그의 존재는 보여줄 수 있어도, 부재는 결코 보여줄 수 없다.<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra)
+> 테스트는 버그의 존재는 보여줄 수 있어도, 부재는 결코 보여줄 수 없다.<br>*Program testing can be used to show the presence of bugs, but never to show their absence!*<br>— 에츠허르 데이크스트라(Edsger W. Dijkstra), 1969 NATO 소프트웨어 공학 콘퍼런스(로마) 발언 — 이듬해 「Notes on Structured Programming」(EWD249, 1970)에 활자화됐다
 
-> 나는 테스트가 아니라 동작하는 코드로 돈을 받는다. 그래서 내 철학은 주어진 확신 수준에 도달하는 데 필요한 만큼만 최소한으로 테스트하는 것이다.<br>— 켄트 벡(Kent Beck), Stack Overflow 답변 (2008)
+> 나는 테스트가 아니라 동작하는 코드로 돈을 받는다. 그래서 내 철학은 주어진 확신 수준에 도달하는 데 필요한 만큼만 최소한으로 테스트하는 것이다.<br>*I get paid for code that works, not for tests, so my philosophy is to test as little as possible to reach a given confidence level.*<br>— 켄트 벡(Kent Beck), Stack Overflow 답변 (2008)
+
+### 아키텍처와 분산 시스템
+
+> 시스템을 설계하는 조직은, 그 조직의 의사소통 구조를 그대로 본뜬 설계를 내놓을 수밖에 없다.<br>*Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.*<br>— 멜빈 콘웨이(Melvin E. Conway), 「How Do Committees Invent?」(『Datamation』 1968년 4월호) — 하버드 비즈니스 리뷰에 거절당한 뒤 실린 글이다. '콘웨이의 법칙'이라 이름 붙인 사람은 프레더릭 브룩스
+
+> 분산 시스템이란, 존재하는 줄도 몰랐던 컴퓨터가 고장 나서 내 컴퓨터를 못 쓰게 만드는 시스템이다.<br>*A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable.*<br>— 레슬리 램포트(Leslie Lamport), DEC 시스템연구센터(SRC) 사내 게시판 이메일 (1987-05-28)
+
+> 보낼 때는 보수적으로, 받을 때는 관대하게.<br>*Be conservative in what you do, be liberal in what you accept from others.*<br>— 존 포스텔(Jon Postel), RFC 761 (1980) 「Robustness Principle」 — 포스텔의 법칙
+
+> 서비스마다 팀이 하나씩 붙는다. 그 팀이 기능 정의부터 설계·구현·운영까지 전부 책임진다. 만든 사람이 운영한다(You build it, you run it). 그러면 개발자가 자기 소프트웨어의 운영과 고객을 매일 직접 마주하게 된다.<br>*Each service has a team associated with it, and that team is completely responsible for the service. You build it, you run it. This brings developers into contact with the day-to-day operation of their software. It also brings them into day-to-day contact with the customer.*<br>— 베르너 포겔스(Werner Vogels, 아마존 CTO), ACM Queue 짐 그레이와의 대담 (2006)
+
+> 모든 것은 항상 고장 난다(Everything fails all the time).<br>— 베르너 포겔스(Werner Vogels), 2008 — 실패를 예외가 아니라 상수로 놓고 설계하라는 클라우드 아키텍처의 출발점
+
+> 모든 팀은 앞으로 데이터와 기능을 서비스 인터페이스를 통해 공개한다. 팀 간 통신은 그 인터페이스로만 한다. 다른 어떤 형태의 프로세스 간 통신도 허용하지 않는다. … 따르지 않는 사람은 해고된다.<br>*All teams will henceforth expose their data and functionality through service interfaces. Teams must communicate with each other through these interfaces. There will be no other form of interprocess communication allowed. ... Anyone who doesn't do this will be fired.*<br>— 제프 베조스(Jeff Bezos), 2002년 아마존 사내 지시 — 원문이 공개된 적은 없고, 스티브 예게가 2011년 사내 글에서 회고한 것이 사실상 유일한 출처다
+
+### 웹과 프런트엔드
+
+> 최종 사용자 응답 시간의 80~90%는 프런트엔드에서 소비된다. 그러니 거기서부터 개선하라.<br>*80-90% of the end-user response time is spent on the frontend. Start there.*<br>— 스티브 사우더스(Steve Souders), 『High Performance Web Sites』(2007) '성능의 황금률' — 2012년 HTTP Archive의 5만 개 사이트로 재측정했을 때도 87% 대 13%였다
+
+> 성능은 기능이다(Performance is a Feature).<br>— 제프 애트우드(Jeff Atwood), Coding Horror (2011) — 빠른 사이트를 쓰는 편이 그냥 더 좋다는, 성능을 품질이 아니라 제품 기능으로 보는 관점
+
+> 좋은 개발자는 무엇이 어떻게 동작하는지 안다. 위대한 개발자는 왜 그렇게 동작하는지 안다.<br>*Good developers know how things work. Great developers know why things work.*<br>— 일리야 그리고릭(Ilya Grigorik), 『High Performance Browser Networking』(2013)
+
+> 언제나 JS에 걸어라(Always bet on JS).<br>— 브렌던 아이크(Brendan Eich, 자바스크립트 창시자), 2011 CapitolJS 이후 여러 강연의 마무리 문구
 
 ### 배움과 태도
 
 > 붓과 색을 공부한다고 훌륭한 화가가 되지 않듯, 컴퓨터 과학을 공부한다고 훌륭한 프로그래머가 되지는 않는다.<br>— 에릭 레이먼드(Eric S. Raymond)
 
-> 새로운 프로그래밍 언어를 배우는 유일한 방법은 그 언어로 프로그램을 만들어 보는 것이다.<br>— 데니스 리치(Dennis Ritchie)
+> 새로운 프로그래밍 언어를 배우는 유일한 방법은 그 언어로 프로그램을 만들어 보는 것이다.<br>*The only way to learn a new programming language is by writing programs in it.*<br>— 데니스 리치(Dennis Ritchie)
 
-> 프로그래밍은 무엇을 알고 있는가에 대한 것이 아니다. 무엇을 알아낼 수 있는가에 대한 것이다.<br>— 크리스 파인(Chris Pine)
+> 프로그래밍은 무엇을 알고 있는가에 대한 것이 아니다. 무엇을 알아낼 수 있는가에 대한 것이다.<br>*Programming isn't about what you know; it's about what you can figure out.*<br>— 크리스 파인(Chris Pine)
 
-> 먼저 문제를 풀어라. 그다음에 코드를 작성하라.<br>— 존 존슨(John Johnson)
+> 먼저 문제를 풀어라. 그다음에 코드를 작성하라.<br>*First, solve the problem. Then, write the code.*<br>— 존 존슨(John Johnson)
 
-> 낙관은 프로그래밍이라는 직업의 위험 요소다. 피드백이 그 치료제다.<br>— 켄트 벡(Kent Beck), 『Extreme Programming Explained』
+> 낙관은 프로그래밍이라는 직업의 위험 요소다. 피드백이 그 치료제다.<br>*Optimism is an occupational hazard of programming; feedback is the treatment.*<br>— 켄트 벡(Kent Beck), 『Extreme Programming Explained』
 
 > 소프트웨어 개발은 예술, 과학, 그리고 공학을 정교하게 섞는 기술, 즉 장인정신이다. 그것은 단지 일이 아니다. 일에 대한 열정이다.<br>— 피트 맥브린(Pete McBreen), 『Software Craftsmanship』
 
 > 좋은 디자인은 자연을 닮았다. 자연은 이미 오랜 세월 동안 문제를 해결하기 위해 노력해 왔기 때문이다. 어떤 답이 자연을 닮았다면 그것은 항상 좋은 신호다.<br>— 폴 그레이엄(Paul Graham), 『해커와 화가』
 
-> 말은 쉽지. 코드를 보여줘(Talk is cheap. Show me the code.)<br>— 리누스 토르발스(Linus Torvalds)
+> 말은 쉽지. 코드를 보여줘(Talk is cheap. Show me the code.)<br>— 리누스 토르발스(Linus Torvalds), linux-kernel 메일링 리스트 (2000-08-25) — 구현 없이 제안만 올라온 논의에 남긴 답장
 
-> 좋은 프로그래머 대부분은 돈이나 찬사를 기대해서가 아니라 프로그래밍이 재미있어서 프로그래밍을 한다.<br>— 리누스 토르발스(Linus Torvalds)
+> 좋은 프로그래머 대부분은 돈이나 찬사를 기대해서가 아니라 프로그래밍이 재미있어서 프로그래밍을 한다.<br>*Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.*<br>— 리누스 토르발스(Linus Torvalds), First Monday 인터뷰 (1998-03-02)
 
-> 모든 사람은 코딩하는 법을 배워야 한다. 코딩은 생각하는 법을 가르쳐 주기 때문이다.<br>— 스티브 잡스(Steve Jobs)
+> 모든 사람은 코딩하는 법을 배워야 한다. 코딩은 생각하는 법을 가르쳐 주기 때문이다.<br>*Everybody should learn to program a computer, because it teaches you how to think.*<br>— 스티브 잡스(Steve Jobs)
 
-> 소프트웨어 산업의 가장 놀라운 성과는, 하드웨어 산업이 꾸준히 이루어 온 성과들을 착실하게 갉아먹고 있다는 것이다.<br>— 헨리 페트로스키(Henry Petroski)
+> 소프트웨어 산업의 가장 놀라운 성과는, 하드웨어 산업이 꾸준히 이루어 온 성과들을 착실하게 갉아먹고 있다는 것이다.<br>*The most amazing achievement of the computer software industry is its continuing cancellation of the steady and staggering gains made by the computer hardware industry.*<br>— 헨리 페트로스키(Henry Petroski)
 
-> 창밖으로 집어던질 수 없는 컴퓨터는 절대 믿지 마라.<br>— 스티브 워즈니악(Steve Wozniak)
+> 창밖으로 집어던질 수 없는 컴퓨터는 절대 믿지 마라.<br>*Never trust a computer you can't throw out a window.*<br>— 스티브 워즈니악(Steve Wozniak)
 
 > 사람들은 컴퓨터 과학이 천재들의 기예라고 생각하지만 현실은 반대다. 단지 많은 사람이, 작은 돌로 쌓은 담처럼, 다른 사람의 작업 위에 쌓아 올릴 뿐이다.<br>— 도널드 커누스(Donald Knuth)
 
 > 자신이 컴퓨터를 싫어한다고 생각하는 사람들이 진짜로 싫어하는 것은 형편없는 프로그래머다.<br>— 래리 니븐(Larry Niven)
 
-> 미래를 예측하는 가장 좋은 방법은 미래를 발명하는 것이다.<br>— 앨런 케이(Alan Kay), 1971 제록스 PARC
+> 미래를 예측하는 가장 좋은 방법은 미래를 발명하는 것이다.<br>*The best way to predict the future is to invent it.*<br>— 앨런 케이(Alan Kay), 1971 제록스 PARC 회의 — "미래가 어떻게 되겠냐"고 캐묻는 경영진에게 발끈해 내뱉은 말이라고 본인이 1998년 이메일로 확인했다
 
 > 가장 단순한, 동작할 수 있는 것을 하라(Do the simplest thing that could possibly work).<br>— 켄트 벡(Kent Beck), XP 슬로건
 
 ### 팀과 프로젝트
 
-> 만약 건축가가 프로그래머처럼 건물을 짓는다면, 처음 나타난 딱따구리 한 마리가 문명을 무너뜨릴 것이다.<br>— 제럴드 와인버그(Gerald Weinberg), 와인버그의 제2법칙
+> 만약 건축가가 프로그래머처럼 건물을 짓는다면, 처음 나타난 딱따구리 한 마리가 문명을 무너뜨릴 것이다.<br>*If builders built buildings the way programmers wrote programs, then the first woodpecker that came along would destroy civilization.*<br>— 제럴드 와인버그(Gerald Weinberg), 와인버그의 제2법칙
 
 > 초과근무는 생산성 감소 기법이다. 스트레스를 받는 사람들은 머리가 빨리 돌아가지 않는다.<br>— 톰 드마르코(Tom DeMarco), 『피플웨어』
 
@@ -720,37 +768,63 @@
 
 > 훌륭한 기계공은 일반 기계공보다 몇 배의 급여를 더 받는다. 그러나 훌륭한 코드를 만들어내는 개발자는 평범한 개발자보다 1만 배 이상의 가치가 있다.<br>— 빌 게이츠(Bill Gates)
 
-> 코드 줄 수로 프로그래밍 진척을 측정하는 것은 비행기 제작 진척도를 무게로 측정하는 것과 같다.<br>— 빌 게이츠(Bill Gates)
+> 코드 줄 수로 프로그래밍 진척을 측정하는 것은 비행기 제작 진척도를 무게로 측정하는 것과 같다.<br>*Measuring programming progress by lines of code is like measuring aircraft building progress by weight.*<br>— 빌 게이츠(Bill Gates)
 
-> 아프면 더 자주 하라(If it hurts, do it more often).<br>— 마틴 파울러(Martin Fowler), 지속적 통합/배포의 표어
+> 아프면 더 자주 하라(If it hurts, do it more often).<br>— 제즈 험블(Jez Humble), 『Continuous Delivery』(2010)의 표어 — 마틴 파울러가 「FrequencyReducesDifficulty」(2011)로 널리 알려 흔히 그의 말로 인용된다
 
 > 마이크로서비스를 타려면 이만큼 키가 커야 합니다(You must be this tall to use microservices).<br>— 마틴 파울러(Martin Fowler), 블로그
 
-> 처음 코드를 내보내는 것은 빚을 지는 것과 같다. 약간의 빚은 개발을 가속하지만, 제때 갚지 않으면 이자가 붙는다.<br>— 워드 커닝햄(Ward Cunningham), OOPSLA 1992 경험 보고서 — '기술 부채'라는 말이 태어난 곳
+> 처음 코드를 내보내는 것은 빚을 지는 것과 같다. 약간의 빚은 개발을 가속하지만, 제때 갚지 않으면 이자가 붙는다.<br>*Shipping first time code is like going into debt. A little debt speeds development so long as it is paid back promptly with a rewrite. The danger occurs when the debt is not repaid. Every minute spent on not-quite-right code counts as interest on that debt.*<br>— 워드 커닝햄(Ward Cunningham), OOPSLA '92 경험 보고서 「The WyCash Portfolio Management System」 — '기술 부채'라는 말이 태어난 곳. 원문은 "제대로 되지 않은 코드에 쓰는 1분 1분이 그 빚의 이자로 계산된다"로 이어진다
 
-> 일은 언제나 예상보다 오래 걸린다. 호프스태터의 법칙을 감안하더라도.<br>— 더글러스 호프스태터(Douglas Hofstadter), 호프스태터의 법칙
+> 일은 언제나 예상보다 오래 걸린다. 호프스태터의 법칙을 감안하더라도.<br>*It always takes longer than you expect, even when you take into account Hofstadter's Law.*<br>— 더글러스 호프스태터(Douglas Hofstadter), 호프스태터의 법칙
 
-> 소프트웨어가 세상을 먹어치우고 있다(Software is eating the world).<br>— 마크 안드레센(Marc Andreessen), WSJ 에세이 (2011)
+> 소프트웨어가 세상을 먹어치우고 있다(Software is eating the world).<br>— 마크 안드레센(Marc Andreessen), 「Why Software Is Eating the World」(월스트리트저널, 2011-08-20)
 
 ### 강연과 일화
 
-발표에서 나온 유명한 발언과 이야기들.
+강연·발표에서 나온 유명한 발언과, 두고두고 회자되는 이야기들.
 
-> 나는 그것을 10억 달러짜리 실수라 부른다. 1965년, 널 참조(null reference)의 발명이다.<br>— 토니 호어(Tony Hoare), QCon London 2009 — 자신의 발명을 공개 사과한 강연
+> 나는 그것을 10억 달러짜리 실수라 부른다. 1965년, 널 참조(null reference)의 발명이다.<br>*I call it my billion-dollar mistake. It was the invention of the null reference in 1965.*<br>— 토니 호어(Tony Hoare), QCon London 2009 — 자신의 발명을 공개 사과한 강연
 
-> 나노초를 낭비하지 마라.<br>— 그레이스 호퍼(Grace Hopper) — 강연마다 빛이 1나노초 동안 가는 거리인 30cm 전선을 나눠주며 시간의 물리적 크기를 체감시킨 일화
+> 나노초를 낭비하지 마라.<br>— 그레이스 호퍼(Grace Hopper), 1960년대 후반부터 강연마다 — 빛이 1나노초 동안 가는 거리인 30cm 전선을 청중에게 나눠주며 시간의 물리적 크기를 체감시켰다. 1986년 「60 Minutes」 인터뷰에서도 같은 시연을 했다
 
-> 언어에서 가장 위험한 말은 "우리는 늘 이렇게 해왔어"다.<br>— 그레이스 호퍼(Grace Hopper)
+> 언어에서 가장 위험한 말은 "우리는 늘 이렇게 해왔어"다.<br>*The most dangerous phrase in the language is: 'We've always done it this way.'*<br>— 그레이스 호퍼(Grace Hopper)
 
-> 허락을 구하는 것보다 용서를 구하는 것이 더 쉽다.<br>— 그레이스 호퍼(Grace Hopper)
+> 허락을 구하는 것보다 용서를 구하는 것이 더 쉽다.<br>*It's easier to ask forgiveness than it is to get permission.*<br>— 그레이스 호퍼(Grace Hopper), 미 해군 『Chips Ahoy』 (1986년 7월호) — 그가 입버릇처럼 쓴 말이지만 원조는 아니다
 
-> 프로그래머 수는 5년마다 두 배가 된다. 따라서 언제나 전체 프로그래머의 절반은 경력 5년 미만이다. 우리 업계는 영원한 초보 상태에 머문다.<br>— 로버트 C. 마틴, "The Future of Programming" 강연 (2016)
+> 프로그래머 수는 5년마다 두 배가 된다. 따라서 언제나 전체 프로그래머의 절반은 경력 5년 미만이다. 우리 업계는 영원한 초보 상태에 머문다.<br>— 로버트 C. 마틴, 「The Future of Programming」 강연 (2016)
 
 > 애자일은 죽었다. 애자일리티 만세(Agile is dead — long live agility).<br>— 데이브 토머스(Dave Thomas), GOTO 2015 강연 — 애자일 산업화 비판
 
-> 단순함(simple)과 쉬움(easy)은 다르다. 단순함은 얽혀 있지 않음이다.<br>— 리치 히키(Rich Hickey), "Simple Made Easy" 강연 (2011)
+> 단순함(simple)과 쉬움(easy)은 다르다. 단순함은 얽혀 있지 않음이다.<br>— 리치 히키(Rich Hickey), Strange Loop 2011 기조연설 「Simple Made Easy」
+
+> 저는 (무료) 운영체제를 만들고 있습니다. 그냥 취미고, gnu처럼 크고 전문적이진 않을 겁니다.<br>*I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu).*<br>— 리누스 토르발스(Linus Torvalds), comp.os.minix 게시물 (1991-08-25) — 헬싱키대 2학년생이 올린 이 글이 리눅스가 세상에 알려진 첫 순간이다. "won't be big and professional"은 지금 티셔츠에 박혀 팔린다
+
+> 때로는 문제를 다르게 바라보고, 특수한 경우가 사라져 평범한 경우가 되도록 다시 쓸 수 있다. 그것이 좋은 코드다.<br>*Sometimes you can see a problem in a different way and rewrite it so that a special case goes away and becomes the normal case, and that's good code.*<br>— 리누스 토르발스(Linus Torvalds), TED 2016 「The mind behind Linux」 — 연결 리스트에서 노드를 지우는 두 구현을 놓고 '취향(taste)'을 설명한 대목. 이중 포인터를 쓰면 첫 노드라는 특수 케이스와 `if` 문이 통째로 사라진다
+
+> 스몰토크를 죽인 것이 루비도 죽일 수 있다.<br>— 로버트 C. 마틴, RailsConf 2009 기조연설 제목 — 엉망을 만들기 너무 쉬운 언어는 그 엉망이 프로젝트 후반에야 드러나 죽는다는 경고. 처방으로 TDD와 리팩터링 지원 IDE를 들었다
+
+> 하루에 10회 이상 배포한다.<br>— 존 올스포(John Allspaw)·폴 해먼드(Paul Hammond), Velocity 2009 「10+ Deploys Per Day: Dev and Ops Cooperation at Flickr」 — 분기·연 단위 배포가 보통이던 시절에 나와, 데브옵스 운동의 출발점으로 꼽히는 발표
+
+> 코드를 테스트하기 어렵다면, 그것은 좋은 설계가 아니다. 테스트는 어려운 일이 아니다. 좋은 설계 앞에서 테스트는 쉬워진다.<br>*If your code isn't testable, then that isn't a good design. Testing isn't hard; testing is easy in the presence of good design.*<br>— 마이클 페더스(Michael Feathers), 「The Deep Synergy Between Testability and Good Design」 강연 (NDC 2010 등)
 
 > (일화) 도널드 커누스는 『The Art of Computer Programming』의 오류를 찾아낸 독자에게 2.56달러(16진수 1달러) 수표를 보낸다. 받은 사람들은 현금화하지 않고 액자에 걸어 두는 것이 개발자들의 훈장이 됐다.<br>— 도널드 커누스(Donald Knuth)의 보상 수표 전통
+
+### 출처 주의 — 널리 잘못 알려진 인용
+
+인용은 널리 퍼졌는데 출처가 통설과 다른 것들. 인용할 때 화자를 잘못 적기 쉬운 항목만 모았다.
+
+- **"컴퓨터 과학이 컴퓨터에 관한 학문인 정도는, 천문학이 망원경에 관한 학문인 정도와 같다"**: 데이크스트라의 말로 돌아다니지만 그의 EWD 문서 전체에 'telescope'라는 단어가 없다. 1968년 앨런 펄리스가 같은 취지로 먼저 말했고, 지금 형태에 가장 가까운 활자는 마이클 펠로스(Michael R. Fellows, 1991)의 글이다
+- **"이른 최적화는 모든 악의 근원"**: 활자화한 사람은 커누스(1974)가 맞지만, 정작 커누스는 토니 호어의 말이라 했고 호어는 데이크스트라를 지목했다. 세 사람 중 누구도 자기 것이라 하지 않는다
+- **"최고의 코드는 코드가 없는 것이다"**: 제프 애트우드의 2007년 글 제목으로 유명하나, 같은 취지의 "no code faster than no code"는 『Taligent's Guide to Designing Programs』가 앞선다
+- **"코드 줄 수로 프로그래밍 진척을 재는 것은 비행기 제작 진척을 무게로 재는 것과 같다"**: 빌 게이츠 어록으로 널리 인용되지만 1차 출처가 확인되지 않는다. 스티브 발머 쪽 일화에서 나왔다는 설도 있다
+- **"동작하게 만들고, 옳게 만들고, 빠르게 만들어라"**: 켄트 벡의 말로 굳었지만 원출처는 C2 위키의 공동 전승이다
+- **"컴퓨터 과학에는 어려운 문제가 딱 두 개 있다"**: 필 칼튼이 넷스케이프 시절 한 말로 전해지나 본인이 남긴 글이 없다
+- **"허락을 구하는 것보다 용서를 구하는 것이 쉽다"**: 그레이스 호퍼가 즐겨 쓰고 퍼뜨린 것은 맞지만, 표현 자체는 그보다 앞선다
+- **"정규식을 쓰면 되겠군… 이제 문제가 두 개다"**: 자윈스키의 1997년 게시물이 원본으로 통하나, 같은 구조의 농담이 1988년 awk를 겨냥해 이미 돌고 있었다
+- **"아프면 더 자주 하라"**: 마틴 파울러 어록으로 인용되지만 원출처는 제즈 험블의 『Continuous Delivery』(2010)다. 파울러는 이 말을 널리 알린 쪽이다
+- **제프 베조스의 2002년 API 지시**: 사내 메모 원본이 공개된 적이 없다. 스티브 예게가 2011년에 회고한 글이 사실상 유일한 근거이며, 아마존이 부인한 적도 없다
+- **"프로그래머는 모든 것의 장점은 알고 트레이드오프는 모른다"**: 리치 히키의 말로 널리 인용되나 「Simple Made Easy」 원문에는 이 문장이 그대로 나오지 않는다. 취지는 분명히 그의 것이되 압축된 의역이다
 
 ## 부록: 저장소 책들의 상호 인용 지도
 
