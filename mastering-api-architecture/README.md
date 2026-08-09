@@ -170,4 +170,17 @@ API를 "설계 대상"이 아니라 **시스템의 아키텍처 그 자체**로 
 - [x] 개요·학습 가이드·핵심 개념 맵·시그니처 요소·인용문 작성
 - [x] Notion 업로드 규칙 자체 점검(인용문 `<br>` 병합·리스트 넘버링·백틱 짝) 통과
 - [x] 인용문을 루트 `QUOTES.md`에 반영, 새 핵심 단어를 `KEYWORDS.md`에 등록
-- [ ] Notion 업로드 (별도 요청 시 진행)
+- [x] Notion 업로드 (Ch0~10, 11개 페이지)
+
+## Notion DB 구조
+
+- **위치**: `Raehan's Must reads` → `Dev` DB → [모던 API 아키텍처 설계 전략](https://app.notion.com/p/3b7de4986fe38155ad7eca0fe2c8d81e) 페이지 안의 인라인 DB **챕터**
+  - database `dfab8274e87048aeb57373a244e9261f` / data source `collection://13a823c9-2360-41bf-b49d-11c18b22f59a`
+- **속성**: `Done`(checkbox) · `Name`(title, `Chapter N: 영문 제목 (한글 제목)`) · `Part`(select) · `Chapter`(number) · `핵심 단어`(multi-select) · `핵심 요약`(text)
+- **Part 딱지**: 들어가며(gray) / 1부 설계·구현·테스트(blue) / 2부 트래픽 관리(green) / 3부 운영과 보안(orange) / 4부 진화적 아키텍처(purple)
+- **뷰 설정**: `SHOW "Done", "Name", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter" ASC` - 제목에 장 번호가 있으므로 `Chapter` 열은 숨긴다(정렬은 정상 동작)
+- **핵심 단어·핵심 요약의 소스**: 위 `## 목차` 표. 재업로드 시 항상 이 표를 기준으로 채운다
+- ⚠️ **업로드 시 한글은 반드시 리터럴 그대로**: 1차 업로드에서 본문을 유니코드 이스케이프로 넣었다가 전 챕터에 음절 손상(`끄집어내는`→`끔지버내는`, `악몽`→`악몣`, `뼈대`→`뾼대` 등)이 생겨 11개를 `replace_content`로 전량 재업로드했다
+- **콜아웃 변환**: `> **핵심 통찰**:` → 💡 / `> **실무 팁**:` → 🛠️ / `> **참고**:` → ℹ️ (모두 `<callout icon="…" color="gray_bg">`). 레이블 없는 `>` 인용문은 인용 블록으로 유지
+- **코드 펜스**: 언어 표기가 없는 ASCII 다이어그램 블록은 ```` ```plain text ````로 넣는다(빈 펜스는 Notion이 `javascript`로 자동 태깅한다)
+- **URL 표기**: 본문 괄호 안의 맨 URL(`(https://c4model.com)은`)은 Notion이 마크다운 링크로 오해석하므로 백틱으로 감싼다

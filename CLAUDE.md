@@ -149,7 +149,8 @@
 - **시그니처**: `### ADR 가이드라인: 제목`(결정사항·논의사항·권장사항 3불릿 - 원서 표를 리스트로 변환), `### ADR-00N`(상태·컨텍스트·결정사항·결론), `## N. 사례 연구: …`(장마다 아키텍처 변화 추적), C4/DFD/토폴로지 **ASCII 다이어그램 재구성**, 콜아웃 3종(`> **핵심 통찰**:`·`> **실무 팁**:`·`> **참고**:`)
 - **코드 병기**: 원서 Java는 `<details>`로 접고 **TypeScript 병기**(supertest·Pact JS·@grpc/grpc-js·express-openapi-validator 등으로 대응). HTTP·YAML·proto·CLI 예제는 언어 중립이라 원문 유지
 - origin 분리 완료(0~10, 99 = 12개 파일, byte 일치 검증) - 상세는 아래 "완료된 분리 작업" 참조
-- 상태: **완료** (Ch0~10 노트 11개 + README + QUOTES 14건·KEYWORDS 12항목 반영. Notion 미업로드)
+- Notion 업로드 완료(2026-08-09): 책 페이지 `3b7de4986fe38155ad7eca0fe2c8d81e` + 인라인 챕터 DB `dfab8274e87048aeb57373a244e9261f`(data source `13a823c9-2360-41bf-b49d-11c18b22f59a`). 속성은 Done·Name·Part(5개 색상 딱지)·Chapter·핵심 단어(multi-select 54개)·핵심 요약. ⚠️ **1차 업로드 시 본문을 유니코드 이스케이프(`\uXXXX`)로 넣어 전 챕터에 한글 음절 손상**(바꾼다→바꿈다, 끄집어내는→끔지버내는, 악몽→악몣, 끊고→끕고, 뼈대→뾼대 등) 발생 → **11개 전량을 리터럴 한글로 `replace_content` 재업로드**해 해결. CLAUDE.md "한글은 리터럴 그대로" 규칙을 처음부터 지킬 것
+- 상태: **완료** (Ch0~10 노트 11개 + README + QUOTES 14건·KEYWORDS 12항목 반영 + Notion 업로드)
 
 ## 책 폴더 표준 구조
 
@@ -261,7 +262,7 @@
 - 파일 용량이 커서 sub-agent 업로드 실패 시, 메인 에이전트가 직접 `replace_content`로 원본을 업로드
 - **원본 그대로 업로드 필수**: Notion에 업로드할 때 내용을 요약하거나 압축하지 않는다. 반드시 로컬 마크다운 파일의 원본 내용을 그대로 업로드해야 한다. 파일이 커서 한 번에 올릴 수 없으면 여러 번에 나눠서라도 원본 전체를 올린다. 사용자가 작성한 내용과 다른 것이 Notion에 올라가면 안 된다.
 - **각주 변환**: `<sub>` 태그 각주는 Notion에서 렌더링되지 않으므로, 업로드 시 본문의 `용어¹` → `용어(*Term - 설명*)` 인라인 이탤릭 형태로 변환하고 `<sub>...</sub><br>` 각주 블록은 제거한다
-- **한글은 리터럴 그대로 (유니코드 이스케이프 절대 금지)**: `notion-create-pages`/`notion-update-page`의 `content`에 한국어를 넣을 때 `\uXXXX` 유니코드 이스케이프로 손수 변환하지 말고 **한글 문자를 그대로** 넣는다. 수동 이스케이프 변환은 음절 손상("캡슐화"→"캐슸화", "말썽꾼"→"말썰꾼" 등)을 일으켜 원본과 다른 내용이 올라간다(head-first-design-patterns 15개 챕터 전량 재업로드 사례, a-common-sense-guide 20개 챕터 전량 재업로드 사례 - 돈다→돌다·잰다→잴다·옮겨야→옆겨야·썼다면→쎜다면·뺀→뻐·붓는다→부는다·숟가락→숨가락 등 챕터당 3~10곳 손상. `update_content` 개별 치환으로 고치려 해도 치환 문자열 자체가 또 깨지므로, **본문 전체를 리터럴 한글로 `replace_content`** 하는 것이 유일하게 확실한 해법). 또한 `__unparsedToolInput`으로 raw JSON을 조립하지 말고 정상 파라미터(`parent`/`pages` 등)로 전달한다 - JSON 인코딩은 harness가 처리하며, raw JSON은 `InputValidationError`/hex escape 파싱 에러를 반복 유발한다. **업로드 후 반드시 1~2개 페이지를 `notion-fetch`로 열어 한글 손상 여부를 눈으로 확인**하고, 손상 발견 시 `replace_content`로 한글 리터럴 재업로드한다.
+- **한글은 리터럴 그대로 (유니코드 이스케이프 절대 금지)**: `notion-create-pages`/`notion-update-page`의 `content`에 한국어를 넣을 때 `\uXXXX` 유니코드 이스케이프로 손수 변환하지 말고 **한글 문자를 그대로** 넣는다. 수동 이스케이프 변환은 음절 손상("캡슐화"→"캐슸화", "말썽꾼"→"말썰꾼" 등)을 일으켜 원본과 다른 내용이 올라간다(head-first-design-patterns 15개 챕터 전량 재업로드 사례, a-common-sense-guide 20개 챕터 전량 재업로드 사례 - 돈다→돌다·잰다→잴다·옮겨야→옆겨야·썼다면→쎜다면·뺀→뻐·붓는다→부는다·숟가락→숨가락 등 챕터당 3~10곳 손상. mastering-api-architecture 11개 챕터 전량 재업로드 사례(2026-08-09) - 바꾼다→바꿈다·끄집어내는→끔지버내는·악몽→악몣·끊고→끕고·곧바로→곷바로·뼈대→뾼대. `update_content` 개별 치환으로 고치려 해도 치환 문자열 자체가 또 깨지므로, **본문 전체를 리터럴 한글로 `replace_content`** 하는 것이 유일하게 확실한 해법). 또한 `__unparsedToolInput`으로 raw JSON을 조립하지 말고 정상 파라미터(`parent`/`pages` 등)로 전달한다 - JSON 인코딩은 harness가 처리하며, raw JSON은 `InputValidationError`/hex escape 파싱 에러를 반복 유발한다. **업로드 후 반드시 1~2개 페이지를 `notion-fetch`로 열어 한글 손상 여부를 눈으로 확인**하고, 손상 발견 시 `replace_content`로 한글 리터럴 재업로드한다.
 
 ### DB 구조(파트·챕터·딱지) 정책
 
