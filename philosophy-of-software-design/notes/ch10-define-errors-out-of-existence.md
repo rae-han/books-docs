@@ -80,7 +80,7 @@ def ensure_removed(path):
     try:
         os.remove(path)
     except FileNotFoundError:
-        pass  # 이미 원하는 상태 — 에러가 아님
+        pass  # 이미 원하는 상태 - 에러가 아님
 
 # 호출자는 에러를 신경 쓸 필요가 없다
 ensure_removed("temp.conf")
@@ -236,7 +236,7 @@ class OrderHandler:
 # 복구 불가능한 에러: 그냥 크래시
 def verify_invariant(data):
     if data.checksum != compute_checksum(data.payload):
-        # 데이터가 손상됨 — 복구할 방법이 없음
+        # 데이터가 손상됨 - 복구할 방법이 없음
         # 잘못된 데이터로 계속 실행하는 것이 더 위험
         raise SystemExit("FATAL: Data corruption detected")
 ```

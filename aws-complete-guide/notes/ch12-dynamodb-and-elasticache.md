@@ -1340,7 +1340,7 @@ export const handler = async (event: DynamoDBStreamEvent) => {
 
 완전한 ACID 트랜잭션이 필요한가?
   ├── YES → RDS
-  └── NO → DynamoDB (단순) 또는 RDS (복잡) — 상황에 따라 판단
+  └── NO → DynamoDB (단순) 또는 RDS (복잡) - 상황에 따라 판단
 ```
 
 ### 14.2 사용 사례별 권장

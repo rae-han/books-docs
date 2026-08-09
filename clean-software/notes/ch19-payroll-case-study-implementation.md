@@ -1,10 +1,10 @@
-# Chapter 19: Payroll Case Study — Implementation (급여 관리 사례 연구: 구현)
+# Chapter 19: Payroll Case Study - Implementation (급여 관리 사례 연구: 구현)
 
 ## 핵심 질문
 
-18장에서 도출한 설계를 어떻게 실제로 동작하는 코드로 옮길 것인가? 트랜잭션 패턴을 어떻게 클래스 계층으로 구현하면 새로운 트랜잭션을 추가할 때 기존 코드를 건드리지 않을 수 있는가? 그리고 — 18장의 다이어그램이 완벽해 보였더라도, 실제 코드를 작성하다 보면 왜 설계는 끊임없이 진화하는가?
+18장에서 도출한 설계를 어떻게 실제로 동작하는 코드로 옮길 것인가? 트랜잭션 패턴을 어떻게 클래스 계층으로 구현하면 새로운 트랜잭션을 추가할 때 기존 코드를 건드리지 않을 수 있는가? 그리고 - 18장의 다이어그램이 완벽해 보였더라도, 실제 코드를 작성하다 보면 왜 설계는 끊임없이 진화하는가?
 
-> 사실 여러분이 보게 될 코드 묶음은 작성하는 사이에 수십 번의 수정과 컴파일 및 테스트로 아주 조금씩 코드를 발전시켰다.<br>— Robert C. Martin
+> 사실 여러분이 보게 될 코드 묶음은 작성하는 사이에 수십 번의 수정과 컴파일 및 테스트로 아주 조금씩 코드를 발전시켰다.<br>- Robert C. Martin
 
 ---
 
@@ -54,7 +54,7 @@ interface Transaction {
 
 ---
 
-## 2. AddEmployee 트랜잭션 — 템플릿 메소드 패턴
+## 2. AddEmployee 트랜잭션 - 템플릿 메소드 패턴
 
 직원을 추가하는 트랜잭션은 세 가지 종류가 있다: 시급제(Hourly), 월급제(Salaried), 수당제(Commissioned). 세 트랜잭션은 공통 골격(직원을 만들고, 분류·일정·지급 방법을 붙이고, DB에 저장)을 공유하지만 어떤 `PaymentClassification`과 `PaymentSchedule`을 만드는지는 다르다.
 
@@ -201,11 +201,11 @@ class AddSalariedEmployee extends AddEmployeeTransaction {
 }
 ```
 
-> **Uncle Bob의 경험**: 기본 지급 방법은 `HoldMethod` — 급여를 담당자에게 맡겨두는 방식 — 이다. 이 결정은 트랜잭션 안에 묻혀 있지만 핵심 모델은 이를 모른다. 트랜잭션은 "기교(*technique*)"의 영역이고, 모델은 도메인의 영역이다. 두 영역을 섞지 말자.
+> **Uncle Bob의 경험**: 기본 지급 방법은 `HoldMethod` - 급여를 담당자에게 맡겨두는 방식 - 이다. 이 결정은 트랜잭션 안에 묻혀 있지만 핵심 모델은 이를 모른다. 트랜잭션은 "기교(*technique*)"의 영역이고, 모델은 도메인의 영역이다. 두 영역을 섞지 말자.
 
 ---
 
-## 3. PayrollDatabase — 퍼사드(*Facade Pattern - 복잡한 서브시스템에 단순한 인터페이스를 제공하는 패턴*)로 영속성 미루기
+## 3. PayrollDatabase - 퍼사드(*Facade Pattern - 복잡한 서브시스템에 단순한 인터페이스를 제공하는 패턴*)로 영속성 미루기
 
 `PayrollDatabase`는 `empId`를 키로 `Employee` 객체를 보관하는 단순한 사전(Dictionary)이다. 의도적으로 인메모리 구현으로 시작한다.
 
@@ -279,7 +279,7 @@ export const payrollDatabase = new PayrollDatabase();
 
 ---
 
-## 4. TimeCard, SalesReceipt 트랜잭션 — 데이터를 분류에 추가하기
+## 4. TimeCard, SalesReceipt 트랜잭션 - 데이터를 분류에 추가하기
 
 시급제 직원은 출퇴근 시간을 `TimeCard`로 기록하고, 수당제 직원은 판매 영수증을 `SalesReceipt`로 기록한다. 두 트랜잭션은 닮은꼴이다.
 
@@ -339,11 +339,11 @@ class TimeCardTransaction implements Transaction {
 | `SalesReceiptTransaction` | `CommissionedClassification` | `SalesReceipt(date, amount)` |
 | `ServiceChargeTransaction` | (조합원의) `UnionAffiliation` | `ServiceCharge(date, amount)` |
 
-> **핵심 통찰**: 트랜잭션이 `dynamic_cast`로 분류를 확인하는 것은 일종의 LSP(*Liskov Substitution Principle*) 위반의 냄새다. 하지만 이 케이스에서는 정당하다 — 시급 직원이 아닌 사람에게 타임카드를 추가하라는 요청은 **의미적으로 잘못된 요청**이므로 런타임에 거부해야 한다.
+> **핵심 통찰**: 트랜잭션이 `dynamic_cast`로 분류를 확인하는 것은 일종의 LSP(*Liskov Substitution Principle*) 위반의 냄새다. 하지만 이 케이스에서는 정당하다 - 시급 직원이 아닌 사람에게 타임카드를 추가하라는 요청은 **의미적으로 잘못된 요청**이므로 런타임에 거부해야 한다.
 
 ---
 
-## 5. ChangeEmployee 트랜잭션 — 다양한 변경의 추상화
+## 5. ChangeEmployee 트랜잭션 - 다양한 변경의 추상화
 
 직원의 무엇이든 바꿀 수 있어야 한다: 이름, 주소, 분류(시급→월급), 일정, 지급 방법, 조합 가입/탈퇴. 이를 모두 별개 트랜잭션으로 만들면 수가 폭발한다. 이때 **추상화 계층**을 한 단계 더 둔다.
 
@@ -419,7 +419,7 @@ class ChangeAddressTransaction extends ChangeEmployeeTransaction {
 }
 ```
 
-### 5.2 ChangeClassification — 또 한 단계의 템플릿 메소드
+### 5.2 ChangeClassification - 또 한 단계의 템플릿 메소드
 
 분류 변경(시급→월급 등)은 분류뿐 아니라 **일정(Schedule)** 도 함께 바꿔야 한다. 그래서 한 단계 더 추상화한다.
 
@@ -461,7 +461,7 @@ class ChangeHourlyTransaction extends ChangeClassificationTransaction {
 }
 ```
 
-### 5.3 ChangeAffiliation — 조합 가입/탈퇴
+### 5.3 ChangeAffiliation - 조합 가입/탈퇴
 
 조합 관련 변경도 같은 패턴이다. `ChangeAffiliationTransaction`을 추상 기반으로 두고, `ChangeMember`(가입), `ChangeUnaffiliated`(탈퇴)가 이를 구현한다.
 
@@ -482,7 +482,7 @@ class ChangeHourlyTransaction extends ChangeClassificationTransaction {
 
 ---
 
-## 6. PaydayTransaction — 가장 복잡한 로직
+## 6. PaydayTransaction - 가장 복잡한 로직
 
 매일 실행되는 `PaydayTransaction`은 다음을 수행한다:
 
@@ -683,7 +683,7 @@ class CommissionedClassification implements PaymentClassification {
 }
 ```
 
-### 6.4 Affiliation — 공제 계산
+### 6.4 Affiliation - 공제 계산
 
 조합비 차감은 `UnionAffiliation`의 책임이다.
 
@@ -776,7 +776,7 @@ class HoldMethod implements PaymentMethod {
 
 ---
 
-## 8. 메인 프로그램 — 모든 조각을 잇다
+## 8. 메인 프로그램 - 모든 조각을 잇다
 
 메인 프로그램은 작다. 입력에서 트랜잭션 문자열을 읽고, 파서에게 `Transaction` 객체를 만들어 달라고 한 뒤, `Execute()`를 호출한다.
 
@@ -798,7 +798,7 @@ class TransactionApplication {
 }
 ```
 
-> **핵심 통찰**: 메인은 트랜잭션의 구체 종류를 전혀 모른다. 파서가 `Transaction` 인터페이스 뒤로 다양성을 숨기기 때문이다. 새 트랜잭션을 추가해도 메인은 손대지 않는다 — 이것이 OCP의 약속이다.
+> **핵심 통찰**: 메인은 트랜잭션의 구체 종류를 전혀 모른다. 파서가 `Transaction` 인터페이스 뒤로 다양성을 숨기기 때문이다. 새 트랜잭션을 추가해도 메인은 손대지 않는다 - 이것이 OCP의 약속이다.
 
 전체 구조를 한눈에 보면:
 
@@ -863,9 +863,9 @@ class TransactionApplication {
 ## 요약
 
 - **Transaction 인터페이스 + 커맨드 패턴**: 모든 트랜잭션을 `Execute()` 하나로 통일하여 메인 프로그램을 OCP 준수 상태로 유지한다.
-- **AddEmployee — 템플릿 메소드 패턴**: 공통 골격은 기반 클래스에, 분류/일정 생성은 하위 클래스에 위임한다.
-- **ChangeEmployee — 다단계 추상화**: `ChangeEmployee` → `ChangeClassification` → 구체 변경의 계층은 변경 축을 따라 자라난다.
-- **PayrollDatabase — 퍼사드로 영속성 미루기**: 인메모리로 시작하여 데이터베이스 결정을 끝까지 미룬다.
-- **PaydayTransaction — 다형성의 종합**: 분류, 일정, 지급 방법, 가입 정보 모두 다형성으로 변경에 닫혀 있다.
+- **AddEmployee - 템플릿 메소드 패턴**: 공통 골격은 기반 클래스에, 분류/일정 생성은 하위 클래스에 위임한다.
+- **ChangeEmployee - 다단계 추상화**: `ChangeEmployee` → `ChangeClassification` → 구체 변경의 계층은 변경 축을 따라 자라난다.
+- **PayrollDatabase - 퍼사드로 영속성 미루기**: 인메모리로 시작하여 데이터베이스 결정을 끝까지 미룬다.
+- **PaydayTransaction - 다형성의 종합**: 분류, 일정, 지급 방법, 가입 정보 모두 다형성으로 변경에 닫혀 있다.
 - **TDD가 설계를 만든다**: 18장의 다이어그램은 출발점일 뿐, 테스트 사이클이 실제 구조를 발견하고 다듬는다.
 - **자주 하는 실수**: 비즈니스 규칙을 트랜잭션에, 분류 변경에서 일정 변경 누락, 영속성 결정의 조기 확정, 분류 분기를 if/else로 처리 등은 SOLID 원칙으로 모두 회피 가능하다.

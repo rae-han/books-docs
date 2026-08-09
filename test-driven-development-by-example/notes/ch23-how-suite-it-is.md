@@ -70,7 +70,7 @@ Composite 패턴은 **개별 객체와 객체의 컬렉션을 동일하게 취�
 │ TestCase │    │  TestSuite  │
 │ (잎)     │    │ (컴포지트)  │
 │ run()    │    │ run()       │
-│ — 자신을 │    │ — 포함된    │
+│ - 자신을 │    │ - 포함된    │
 │   실행   │    │   모든 것을 │
 │          │    │   실행      │
 └──────────┘    └─────────────┘
@@ -83,7 +83,7 @@ Composite 패턴은 **개별 객체와 객체의 컬렉션을 동일하게 취�
                └─────────────┘
 ```
 
-핵심: `TestSuite`의 `tests` 리스트에는 `TestCase`뿐만 아니라 **다른 `TestSuite`도 넣을 수 있다**. 이것이 Composite의 진정한 힘이다 — 트리 구조로 테스트를 조직할 수 있다.
+핵심: `TestSuite`의 `tests` 리스트에는 `TestCase`뿐만 아니라 **다른 `TestSuite`도 넣을 수 있다**. 이것이 Composite의 진정한 힘이다 - 트리 구조로 테스트를 조직할 수 있다.
 
 ### 2.2 실제 사례
 
@@ -132,7 +132,7 @@ const result = allTests.run();  // 모든 테스트 실행
 
 ## 3. TDD 사이클
 
-### 3.1 Red — TestSuite 테스트
+### 3.1 Red - TestSuite 테스트
 
 `TestSuite`를 사용하여 여러 테스트를 실행하고, 결과가 올바른지 확인하는 테스트를 작성한다:
 
@@ -168,9 +168,9 @@ class TestCaseTest extends TestCase {
 - 스위트를 실행한다
 - 결과가 `"2 run, 1 failed"`여야 한다
 
-이 테스트는 실패한다 — `TestSuite` 클래스가 아직 없기 때문이다. Red Bar!
+이 테스트는 실패한다 - `TestSuite` 클래스가 아직 없기 때문이다. Red Bar!
 
-### 3.2 Green — TestSuite 구현
+### 3.2 Green - TestSuite 구현
 
 **Step 1**: `TestSuite` 클래스 생성
 
@@ -217,9 +217,9 @@ class TestSuite {
 - `add(test)`: 리스트에 테스트 추가
 - `run()`: 하나의 `TestResult`를 만들고, 각 테스트에 전달하여 실행
 
-**주의**: `test.run(result)` — 이전에는 `test.run()`이 `TestResult`를 **내부에서 생성**했는데, 이제는 `TestResult`를 **외부에서 받아야** 한다. 왜? 여러 테스트가 **같은 `TestResult` 객체에 결과를 누적**해야 하기 때문이다.
+**주의**: `test.run(result)` - 이전에는 `test.run()`이 `TestResult`를 **내부에서 생성**했는데, 이제는 `TestResult`를 **외부에서 받아야** 한다. 왜? 여러 테스트가 **같은 `TestResult` 객체에 결과를 누적**해야 하기 때문이다.
 
-**Step 2**: `TestCase.run()` 수정 — `TestResult`를 매개변수로 받기
+**Step 2**: `TestCase.run()` 수정 - `TestResult`를 매개변수로 받기
 
 ```python
 class TestCase:
@@ -424,7 +424,7 @@ console.log(result.summary());  // "4 run, 0 failed"
 
 통과! **TestSuite가 자기 자신을 테스트하는 데 사용되고 있다.** 부트스트래핑의 아름다움이다. Green Bar!
 
-### 3.3 Refactor — 인터페이스의 통일
+### 3.3 Refactor - 인터페이스의 통일
 
 `TestCase.run(result)`와 `TestSuite.run(result)` 모두 같은 시그니처를 가진다. 이것이 Composite 패턴의 핵심이다:
 

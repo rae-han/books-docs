@@ -22,9 +22,9 @@ Khorikov는 단위 테스트를 다음 세 가지 속성으로 정의한다:
 
 | | **London 학파** (Mockist) | **Classical 학파** (Detroit) |
 |---|---|---|
-| **격리 대상** | 테스트 대상 시스템(SUT(*System Under Test — 테스트 대상 시스템. 테스트에서 검증하려는 대상 클래스 또는 메서드를 가리킨다.*))을 **협력자(collaborator)로부터** 격리 | 테스트 **케이스들을 서로** 격리 |
+| **격리 대상** | 테스트 대상 시스템(SUT(*System Under Test - 테스트 대상 시스템. 테스트에서 검증하려는 대상 클래스 또는 메서드를 가리킨다.*))을 **협력자(collaborator)로부터** 격리 | 테스트 **케이스들을 서로** 격리 |
 | **Mock 사용** | 불변 의존성을 제외한 모든 의존성을 Mock으로 대체 | 공유 의존성만 Mock으로 대체 |
-| **"단위"의 범위** | 하나의 클래스 | 하나의 동작(behavior) — 여러 클래스에 걸칠 수 있음 |
+| **"단위"의 범위** | 하나의 클래스 | 하나의 동작(behavior) - 여러 클래스에 걸칠 수 있음 |
 | **대표 인물** | Steve Freeman, Nat Pryce (GOOS 저자) | Kent Beck, Martin Fowler |
 
 > **핵심 통찰**: "단위 테스트"라는 같은 용어를 사용하면서도 두 학파의 실천법은 매우 다르다. London 학파는 클래스를 격리하여 테스트하고, Classical 학파는 동작을 격리하여 테스트한다. 이 차이가 테스트 설계 전체에 영향을 미친다.
@@ -100,7 +100,7 @@ Khorikov는 London 학파의 접근법에 중요한 문제가 있다고 지적�
 
 **문제 1: 구현 세부사항에 결합된다**
 
-위 테스트에서 `storeMock.Verify(x => x.RemoveInventory(...))`는 Customer가 Store의 `RemoveInventory` 메서드를 호출하는지를 검증한다. 이것은 **구현 세부사항(implementation detail)**이다. Customer가 재고를 줄이는 방법이 바뀌면 — 예를 들어 다른 메서드를 호출하게 되면 — 동작은 올바른데도 테스트가 깨진다.
+위 테스트에서 `storeMock.Verify(x => x.RemoveInventory(...))`는 Customer가 Store의 `RemoveInventory` 메서드를 호출하는지를 검증한다. 이것은 **구현 세부사항(implementation detail)**이다. Customer가 재고를 줄이는 방법이 바뀌면 - 예를 들어 다른 메서드를 호출하게 되면 - 동작은 올바른데도 테스트가 깨진다.
 
 **문제 2: 과도한 명세(overspecification)**
 
@@ -116,7 +116,7 @@ Mock을 많이 사용할수록, 테스트는 "무엇을 하는가(what)"가 아�
 
 Classical 학파에서 "격리"란, **테스트 케이스들이 서로 영향을 주지 않도록** 하는 것이다. 클래스를 격리하는 것이 아니라, 테스트 실행이 다른 테스트의 결과에 영향을 미치지 않도록 한다.
 
-따라서 **공유 의존성(shared dependency)**만 격리하면 된다. 공유 의존성이란 테스트 간에 상태를 공유하는 의존성이다 — 예를 들어 데이터베이스, 파일 시스템, 정적 필드 등.
+따라서 **공유 의존성(shared dependency)**만 격리하면 된다. 공유 의존성이란 테스트 간에 상태를 공유하는 의존성이다 - 예를 들어 데이터베이스, 파일 시스템, 정적 필드 등.
 
 같은 예제를 Classical 학파로 작성하면:
 
@@ -160,12 +160,12 @@ Classical 학파에서 어떤 의존성을 Mock으로 대체하고 어떤 것은
 
 ```
 의존성(Dependency)
-├── 공유 의존성(Shared) — 테스트 간에 상태를 공유
+├── 공유 의존성(Shared) - 테스트 간에 상태를 공유
 │   ├── 데이터베이스
 │   ├── 파일 시스템
 │   └── 정적 가변 필드(static mutable field)
 │
-└── 비공개 의존성(Private) — 테스트마다 새로 생성
+└── 비공개 의존성(Private) - 테스트마다 새로 생성
     ├── 값 객체 (예: new Store())
     └── 불변 의존성 (예: 설정 값)
 ```
@@ -233,7 +233,7 @@ Khorikov는 이 책 전체에서 Classical 학파의 접근법을 채택한다. 
 
 그러나 London 학파의 Mock 사용이 적절한 경우도 있다:
 
-- **프로세스 외부 의존성(*Out-of-process dependency — 애플리케이션과 별도의 프로세스에서 실행되는 의존성. 데이터베이스, 메시지 버스, SMTP 서버 등이 해당한다.*)**과의 상호작용을 검증할 때 (예: 이메일 전송, 메시지 큐)
+- **프로세스 외부 의존성(*Out-of-process dependency - 애플리케이션과 별도의 프로세스에서 실행되는 의존성. 데이터베이스, 메시지 버스, SMTP 서버 등이 해당한다.*)**과의 상호작용을 검증할 때 (예: 이메일 전송, 메시지 큐)
 - 이러한 경우는 Chapter 5(Mocks and Test Fragility)와 Chapter 8(Why Integration Testing?)에서 자세히 다룬다
 
 ---

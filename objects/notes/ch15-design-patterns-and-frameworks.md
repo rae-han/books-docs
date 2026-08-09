@@ -73,9 +73,9 @@ COMPOSITE 패턴을 예로 들어 보자. 《GoF의 디자인 패턴》에 수�
 
 역할이라는 사실은 패턴 템플릿을 구현할 수 있는 다양한 방법이 존재함을 암시한다:
 
-**방법 1: 하나의 클래스가 여러 역할 수행** — 하나의 `TagNode` 클래스가 Component, Composite, Leaf 역할 모두를 수행할 수 있다.
+**방법 1: 하나의 클래스가 여러 역할 수행** - 하나의 `TagNode` 클래스가 Component, Composite, Leaf 역할 모두를 수행할 수 있다.
 
-**방법 2: 다수의 클래스가 동일한 역할 수행** — 8장에서 살펴본 중복 할인 정책에서, `OverlappedDiscountPolicy`는 Composite 역할을, `AmountDiscountPolicy`와 `PercentDiscountPolicy`가 Leaf 역할을 수행한다. 서로 다른 두 클래스가 동일한 Leaf라는 역할을 수행한다.
+**방법 2: 다수의 클래스가 동일한 역할 수행** - 8장에서 살펴본 중복 할인 정책에서, `OverlappedDiscountPolicy`는 Composite 역할을, `AmountDiscountPolicy`와 `PercentDiscountPolicy`가 Leaf 역할을 수행한다. 서로 다른 두 클래스가 동일한 Leaf라는 역할을 수행한다.
 
 ```
                   영화 예매 시스템의 COMPOSITE 패턴

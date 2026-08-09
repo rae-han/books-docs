@@ -20,7 +20,7 @@
 ## 2. 이진 탐색 구현
 
 ```python
-# Python (책 원본) — 반복문 버전
+# Python (책 원본) - 반복문 버전
 def binary_search(array, target, start, end):
     while start <= end:
         mid = (start + end) // 2
@@ -34,7 +34,7 @@ def binary_search(array, target, start, end):
 ```
 
 ```ts
-// TypeScript — 반복문 버전
+// TypeScript - 반복문 버전
 function binarySearch(array: number[], target: number, start: number, end: number): number {
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
@@ -80,7 +80,7 @@ function binarySearchRec(array: number[], target: number, start: number, end: nu
 
 > **실무 팁**: 파이썬은 입력이 많으면 `input()` 대신 `sys.stdin.readline()`으로 시간 초과를 피한다. Node.js(TS)에서는 `require("fs").readFileSync(0, "utf8")`로 입력 전체를 한 번에 읽어 줄 단위로 쪼개는 방식이 표준이다 (한 줄씩 `readline` 이벤트보다 빠르다).
 
-## 4. 파라메트릭 서치 — 최적화를 결정 문제로
+## 4. 파라메트릭 서치 - 최적화를 결정 문제로
 
 파라메트릭 서치(*Parametric Search*)는 **최적화 문제("조건을 만족하는 가장 큰/작은 값은?")를 결정 문제("이 값으로 조건을 만족하는가? 예/아니오")로 바꿔** 푸는 기법이다. 답의 후보 범위에 대해 이진 탐색을 돌리며, 각 중간점에서 "예/아니오"를 판정해 범위를 좁힌다.
 
@@ -88,7 +88,7 @@ function binarySearchRec(array: number[], target: number, start: number, end: nu
 
 ---
 
-## 5. 실전 문제 1 — 부품 찾기
+## 5. 실전 문제 1 - 부품 찾기
 
 | 항목 | 값 |
 |------|-----|
@@ -141,7 +141,7 @@ console.log(result.join(" ")); // no yes yes
 
 > **핵심 통찰**: 파이썬의 `x in array`(리스트)는 사실 O(N) 순차 탐색이다. TS의 `array.includes(x)`도 마찬가지. **존재 여부만** 필요하면 `new Set(array)`로 만들어 `set.has(x)`(O(1))를 쓰는 게 정답이다. 이 문제는 이진 탐색·계수 배열·집합 세 가지로 모두 풀린다.
 
-## 6. 실전 문제 2 — 떡볶이 떡 만들기
+## 6. 실전 문제 2 - 떡볶이 떡 만들기
 
 | 항목 | 값 |
 |------|-----|
@@ -201,7 +201,7 @@ while (start <= end) {
 console.log(result); // 15
 ```
 
-**시간복잡도**: O(N log(max H)) — 약 100만 × 30 ≈ 3,000만 연산.
+**시간복잡도**: O(N log(max H)) - 약 100만 × 30 ≈ 3,000만 연산.
 
 > **함정**: "최대한 덜 잘랐을 때(H가 클 때)가 정답"이므로 조건 만족 시 `result = mid`로 **기록한 뒤** 오른쪽으로 더 탐색한다. 단순히 같음(`==`)을 찾는 게 아니라 **"조건을 만족하는 경계"** 를 찾는 변형임에 주의.
 
@@ -228,7 +228,7 @@ console.log(result); // 15
 ## 요약
 
 - 이진 탐색 = **정렬 전제**, 범위를 절반씩 → O(log N). 시작·끝·중간점 세 변수로 구현.
-- TS 중간점은 **`Math.floor((s+e)/2)`** — `>>`는 20억 넘으면 오버플로, `/2`만으론 실수.
+- TS 중간점은 **`Math.floor((s+e)/2)`** - `>>`는 20억 넘으면 오버플로, `/2`만으론 실수.
 - **파라메트릭 서치**: 최적화("최대 H?")를 결정 문제("H면 조건 만족?")로 바꿔 이진 탐색 (떡볶이 떡).
 - 단순 존재 검사는 `Set.has()`(O(1))가 `includes`(O(N))보다 우수 (부품 찾기).
-- 정렬(Ch 06)이 이진 탐색의 전제 — 두 챕터는 짝을 이룬다.
+- 정렬(Ch 06)이 이진 탐색의 전제 - 두 챕터는 짝을 이룬다.

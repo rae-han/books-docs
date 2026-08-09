@@ -4,7 +4,7 @@
 
 `new` 키워드 한 번을 쓰는 것만으로도 의존관계 역전 원칙(DIP)을 어기게 된다는 말은 무엇을 의미하는가? 그렇다면 객체의 인스턴스는 누가, 어떻게 생성해야 하는가? 그리고 팩토리(*Factory - 다른 객체의 인스턴스를 생성하는 책임만을 가진 객체*)가 그렇게 강력한 도구라면, 왜 항상 기본으로 사용하지는 않는가?
 
-> 공장을 짓는 사람은 사원(寺院)을 짓고 있는 셈이다.<br>— 캘빈 쿨리지(Calvin Coolidge), 1872~1933
+> 공장을 짓는 사람은 사원(寺院)을 짓고 있는 셈이다.<br>- 캘빈 쿨리지(Calvin Coolidge), 1872~1933
 
 ---
 
@@ -38,7 +38,7 @@ DIP 위반이 거의 해롭지 않은 경우도 있다. 상당히 많은 경우�
 |-----------|-------------|------------------|
 | `String` | 매우 낮음 | 무시 가능 |
 | 표준 라이브러리의 안정된 타입 | 낮음 | 낮음 |
-| 한창 개발 중인 도메인 클래스 | 높음 | 높음 — 팩토리 도입 검토 |
+| 한창 개발 중인 도메인 클래스 | 높음 | 높음 - 팩토리 도입 검토 |
 
 예를 들어, `String`의 인스턴스를 만드는 것 정도는 그렇게 신경 쓸 필요가 없다. `String`이 조만간 변경될 가능성은 거의 없기 때문에 `String`에 의존하는 것은 매우 안전하다. 반면, 애플리케이션을 한창 개발하는 중이라면, 매우 변경되기 쉬운 구체 클래스들이 많이 생긴다. 이 구체 클래스들에 의존하는 것은 문제가 있으며, 대부분의 변경에 영향을 받지 않도록 추상 인터페이스에 의존하는 편이 낫다.
 
@@ -46,7 +46,7 @@ DIP 위반이 거의 해롭지 않은 경우도 있다. 상당히 많은 경우�
 
 ---
 
-## 2. 문제 상황 — `SomeApp` 의 DIP 위반
+## 2. 문제 상황 - `SomeApp` 의 DIP 위반
 
 그림 21-1에서 문제가 되는 시나리오를 볼 수 있다. `Shape` 인터페이스에 의존하는 `SomeApp`이라는 이름의 클래스가 있는데, 이 `SomeApp`은 오직 `Shape` 인터페이스를 통해서만 여러 `Shape` 인스턴스들을 사용한다. 불행하게도, `SomeApp`은 `Square`와 `Circle`의 인스턴스를 직접 생성하기 때문에, 구체 클래스인 `Square`와 `Circle`에게 의존하게 된다.
 
@@ -113,7 +113,7 @@ DIP 위반이 거의 해롭지 않은 경우도 있다. 상당히 많은 경우�
 목록 21-1에 `ShapeFactory`의 한 예가 나와 있다.
 
 <details>
-<summary>원문 Java 코드 — 목록 21-1 ShapeFactory.java</summary>
+<summary>원문 Java 코드 - 목록 21-1 ShapeFactory.java</summary>
 
 ```java
 public interface ShapeFactory {
@@ -137,7 +137,7 @@ interface ShapeFactory {
 목록 21-2에 `ShapeFactoryImplementation`의 예가 나와 있다.
 
 <details>
-<summary>원문 Java 코드 — 목록 21-2 ShapeFactoryImplementation.java</summary>
+<summary>원문 Java 코드 - 목록 21-2 ShapeFactoryImplementation.java</summary>
 
 ```java
 public class ShapeFactoryImplementation implements ShapeFactory {
@@ -180,12 +180,12 @@ class ShapeFactoryImplementation implements ShapeFactory {
 
 새로운 `Shape` 파생형을 추가할 때마다 `ShapeFactory`에 새로운 메소드를 추가해야 하는데, 대부분의 경우 이것은 모든 `ShapeFactory` 사용자의 `ShapeFactory` 클래스를 재컴파일하고 재배포해야 한다는 의미가 되어버린다.
 
-### 4.1 해결책 — 문자열 인자를 받는 `make` 메소드
+### 4.1 해결책 - 문자열 인자를 받는 `make` 메소드
 
 타입 안정성을 조금 희생하면 이 의존관계 순환을 막을 수 있다. `ShapeFactory`에 `Shape` 파생형마다 메소드를 하나씩 만드는 대신, `String`을 받는 `make` 함수 하나만 만들면 된다. 이 기법을 사용하려면 `ShapeFactoryImplementation`이 들어오는 인자를 가지고 어떤 `Shape` 파생형을 인스턴스화해야 할지 결정하기 위해 연쇄적으로 `if/else` 문을 사용해야 한다.
 
 <details>
-<summary>원문 Java 코드 — 목록 21-3 원을 생성하는 코드 조각</summary>
+<summary>원문 Java 코드 - 목록 21-3 원을 생성하는 코드 조각</summary>
 
 ```java
 public void testCreateCircle() throws Exception {
@@ -205,7 +205,7 @@ test("createCircle", () => {
 ```
 
 <details>
-<summary>원문 Java 코드 — 목록 21-4 ShapeFactory.java</summary>
+<summary>원문 Java 코드 - 목록 21-4 ShapeFactory.java</summary>
 
 ```java
 public interface ShapeFactory {
@@ -223,7 +223,7 @@ interface ShapeFactory {
 ```
 
 <details>
-<summary>원문 Java 코드 — 목록 21-5 ShapeFactoryImplementation.java</summary>
+<summary>원문 Java 코드 - 목록 21-5 ShapeFactoryImplementation.java</summary>
 
 ```java
 public class ShapeFactoryImplementation implements ShapeFactory {
@@ -263,8 +263,8 @@ class ShapeFactoryImplementation implements ShapeFactory {
 
 | 방식 | 타입 안정성 | 의존관계 순환 |
 |------|-------------|----------------|
-| 파생형마다 메소드 (`makeCircle`, `makeSquare`) | 강함 (컴파일 타임 보장) | **있음** — 새 파생형 추가 시 재컴파일 |
-| 문자열 인자 받는 `make(name)` | 약함 (런타임 검증) | **없음** — 인터페이스 변경 없음 |
+| 파생형마다 메소드 (`makeCircle`, `makeSquare`) | 강함 (컴파일 타임 보장) | **있음** - 새 파생형 추가 시 재컴파일 |
+| 문자열 인자 받는 `make(name)` | 약함 (런타임 검증) | **없음** - 인터페이스 변경 없음 |
 
 ---
 
@@ -272,7 +272,7 @@ class ShapeFactoryImplementation implements ShapeFactory {
 
 팩토리를 사용해서 생기는 큰 장점 중 하나는, **어떤 팩토리의 구현을 다른 구현으로 대체할 수 있다는 점이다.** 그럼으로써 애플리케이션 안에 있는 객체들의 집합 하나를 다른 집합으로 통째로 대체할 수 있다.
 
-### 5.1 예제 — 다양한 DB 백엔드 지원
+### 5.1 예제 - 다양한 DB 백엔드 지원
 
 다양한 데이터베이스 구현에 모두 잘 적응해야 하는 애플리케이션을 하나 예로 들어 보자. 사용자가 일반 파일을 사용할 수도 있고, Oracle™ 어댑터를 구매할 수도 있다고 가정해 보자. 프록시(*Proxy - 다른 객체에 대한 접근을 제어하기 위해 그 객체를 대리하는 객체. 26장에서 다룸*) 패턴을 써서 애플리케이션과 데이터베이스 구현을 분리할 수도 있을 것이다. 그리고 이 프록시들을 인스턴스화하기 위해 팩토리들을 사용할 수도 있을 것이다.
 

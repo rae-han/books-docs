@@ -14,7 +14,7 @@
 
 소프트웨어 팀도 도시처럼 구성한다. 하지만 막상 팀이 제작하는 시스템은 비슷한 수준으로 관심사를 분리하지 못한다. 이 장에서는 **높은 추상화 수준, 즉 시스템 수준에서 깨끗함을 유지하는 방법**을 살펴본다.
 
-> **핵심 통찰**: "복잡성은 죽음이다. 개발자에게서 생기를 앗아가며, 제품을 계획하고 제작하고 테스트하기 어렵게 만든다." — 레이 오지(Ray Ozzie), 마이크로소프트 CTO
+> **핵심 통찰**: "복잡성은 죽음이다. 개발자에게서 생기를 앗아가며, 제품을 계획하고 제작하고 테스트하기 어렵게 만든다." - 레이 오지(Ray Ozzie), 마이크로소프트 CTO
 
 ---
 
@@ -31,7 +31,7 @@
 ### 초기화 지연의 문제
 
 ```java
-// 나쁜 예 — 초기화 지연 (Lazy Initialization)
+// 나쁜 예 - 초기화 지연 (Lazy Initialization)
 public Service getService() {
     if (service == null)
         service = new MyServiceImpl(...); // 모든 상황에 적합한 기본값일까?
@@ -106,7 +106,7 @@ main ──→ OrderProcessing ──→ «인터페이스» LineItemFactory
 
 한 객체가 맡은 보조 책임을 새로운 객체에게 전적으로 떠넘긴다. 새로운 객체는 넘겨받은 책임만 맡으므로 **SRP를 지키게 된다**. 의존성 관리 맥락에서 객체는 의존성 자체를 인스턴스로 만드는 책임은 지지 않는다.
 
-### JNDI 검색 — 부분적 DI
+### JNDI 검색 - 부분적 DI
 
 ```java
 MyService myService = (MyService)(jndiContext.lookup("NameOfMyService"));
@@ -142,7 +142,7 @@ DI 컨테이너는:
 3. **XML 배포 기술자**를 작성해야 한다 (영속 저장소 매핑, 트랜잭션, 보안)
 
 ```java
-// 나쁜 예 — EJB2 엔티티 빈 구현
+// 나쁜 예 - EJB2 엔티티 빈 구현
 public abstract class Bank implements javax.ejb.EntityBean {
     // 비즈니스 논리...
     public abstract String getStreetAddr1();
@@ -158,7 +158,7 @@ public abstract class Bank implements javax.ejb.EntityBean {
         accounts.add(account);
     }
 
-    // EJB 컨테이너 논리 — 나머지도 구현해야 하지만 일반적으로 비어있다
+    // EJB 컨테이너 논리 - 나머지도 구현해야 하지만 일반적으로 비어있다
     public abstract void setId(Integer id);
     public abstract Integer getId();
     public Integer ejbCreate(Integer id) { ... }
@@ -279,7 +279,7 @@ Bank bank = (Bank) Proxy.newProxyInstance(
 </beans>
 ```
 
-각 '빈'은 중첩된 '러시아 인형'(*Matryoshka — 통통한 인형 안에 똑같은 인형이 중첩되어 들어있는 러시아 전통 목각 인형. DECORATOR 패턴의 중첩 구조를 비유한다.*)의 일부분과 같다. 클라이언트는 `Bank` 객체에서 `getAccounts()`를 호출한다고 믿지만, 실제로는 Bank POJO의 기본 동작을 확장한 **중첩 DECORATOR 객체 집합**의 가장 외곽과 통신한다.
+각 '빈'은 중첩된 '러시아 인형'(*Matryoshka - 통통한 인형 안에 똑같은 인형이 중첩되어 들어있는 러시아 전통 목각 인형. DECORATOR 패턴의 중첩 구조를 비유한다.*)의 일부분과 같다. 클라이언트는 `Bank` 객체에서 `getAccounts()`를 호출한다고 믿지만, 실제로는 Bank POJO의 기본 동작을 확장한 **중첩 DECORATOR 객체 집합**의 가장 외곽과 통신한다.
 
 ```java
 // 애플리케이션에서 DI 컨테이너에게 최상위 객체를 요청
@@ -295,7 +295,7 @@ Bank bank = (Bank) bf.getBean("bank");
 스프링 프레임워크의 영향으로 EJB3는 완전히 뜯어고쳐졌다:
 
 ```java
-// 좋은 예 — EJB3 Bank 엔티티
+// 좋은 예 - EJB3 Bank 엔티티
 @Entity
 @Table(name = "BANKS")
 public class Bank implements java.io.Serializable {
@@ -351,7 +351,7 @@ public class Bank implements java.io.Serializable {
 
 관점으로 관심사를 분리하는 방식은 그 위력이 막강하다. 애플리케이션 도메인 논리를 POJO로 작성할 수 있다면, 즉 코드 수준에서 아키텍처 관심사를 분리할 수 있다면, 진정한 **테스트 주도 아키텍처 구축**이 가능해진다.
 
-BDUF(Big Design Up Front)(*Big Design Up Front — 구현을 시작하기 전에 앞으로 벌어질 모든 사항을 설계하는 기법. 선행 설계(up-front design)라는 우수한 설계 기법과 혼동하지 않도록 주의한다.*)를 추구할 필요가 없다. 실제로 BDUF는 해롭기까지 하다:
+BDUF(Big Design Up Front)(*Big Design Up Front - 구현을 시작하기 전에 앞으로 벌어질 모든 사항을 설계하는 기법. 선행 설계(up-front design)라는 우수한 설계 기법과 혼동하지 않도록 주의한다.*)를 추구할 필요가 없다. 실제로 BDUF는 해롭기까지 하다:
 - 처음에 쏟아 부은 노력을 버리지 않으려는 **심리적 저항**
 - 처음 선택한 아키텍처가 향후 사고 방식에 미치는 **영향**
 - 변경을 쉽사리 수용하지 못하는 결과
@@ -404,13 +404,13 @@ EJB2는 **단지 표준이라는 이유만으로** 많은 팀이 사용했다. �
 
 ## 요약
 
-- **시스템 제작과 사용을 분리하라** — 준비 과정과 런타임 로직을 섞지 마라
-- **Main 분리, 팩토리, 의존성 주입** — 생성 관심사를 애플리케이션에서 격리하는 세 가지 방법
-- **관심사를 적절히 분리하면** 소프트웨어 아키텍처는 점진적으로 발전할 수 있다 — 물리적 시스템과 달리
-- **AOP**로 횡단 관심사를 모듈화하라 — 자바 프록시, 순수 자바 AOP 프레임워크(스프링), AspectJ
+- **시스템 제작과 사용을 분리하라** - 준비 과정과 런타임 로직을 섞지 마라
+- **Main 분리, 팩토리, 의존성 주입** - 생성 관심사를 애플리케이션에서 격리하는 세 가지 방법
+- **관심사를 적절히 분리하면** 소프트웨어 아키텍처는 점진적으로 발전할 수 있다 - 물리적 시스템과 달리
+- **AOP**로 횡단 관심사를 모듈화하라 - 자바 프록시, 순수 자바 AOP 프레임워크(스프링), AspectJ
 - **POJO로 비즈니스 논리를 구현**하면 테스트가 쉽고 사용자 스토리를 올바로 구현하기 쉽다
-- **BDUF를 피하라** — '아주 단순하면서도' 멋지게 분리된 아키텍처로 시작해 조금씩 확장해 나가라
-- **의사 결정은 가능한 늦추라** — 최대한 정보를 모아 최선의 결정을 내려라
+- **BDUF를 피하라** - '아주 단순하면서도' 멋지게 분리된 아키텍처로 시작해 조금씩 확장해 나가라
+- **의사 결정은 가능한 늦추라** - 최대한 정보를 모아 최선의 결정을 내려라
 - **표준은 명백한 가치가 있을 때만** 사용하라
 - **DSL**로 도메인 개념과 구현 코드 사이의 간극을 줄여라
 

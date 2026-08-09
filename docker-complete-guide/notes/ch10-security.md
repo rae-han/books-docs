@@ -24,7 +24,7 @@
 `ARG`로 전달한 값은 이미지 히스토리에 남는다. `docker history` 명령어로 누구나 확인할 수 있다.
 
 ```dockerfile
-# 나쁜 예: ARG로 비밀 전달 — 이미지 히스토리에 노출
+# 나쁜 예: ARG로 비밀 전달 - 이미지 히스토리에 노출
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
 
@@ -288,7 +288,7 @@ COPY package.json package-lock.json ./
 RUN --mount=type=secret,id=npmrc,target=/app/.npmrc \
     npm ci --omit=dev
 
-# .npmrc는 이 RUN이 끝나면 사라진다 — 이미지에 남지 않음
+# .npmrc는 이 RUN이 끝나면 사라진다 - 이미지에 남지 않음
 ```
 
 ```bash
@@ -506,7 +506,7 @@ export async function GET() {
 ```
 
 ```typescript
-// lib/config.ts — 클라이언트에서 API로 설정값 조회
+// lib/config.ts - 클라이언트에서 API로 설정값 조회
 let cachedConfig: AppConfig | null = null;
 
 export async function getConfig(): Promise<AppConfig> {
@@ -784,7 +784,7 @@ volumes:
 
 | 챕터 | 관계 |
 |------|------|
-| **Ch 4 (Dockerfile 심화)** | `USER` 인스트럭션, `--mount=type=secret`의 기본 사용법을 다룸 — 본 챕터에서 보안 관점으로 재조명 |
+| **Ch 4 (Dockerfile 심화)** | `USER` 인스트럭션, `--mount=type=secret`의 기본 사용법을 다룸 - 본 챕터에서 보안 관점으로 재조명 |
 | **Ch 9 (이미지 최적화)** | 취약점 스캔(`docker scout`), 경량 베이스 이미지 선택이 보안에도 직결됨 |
 | **Ch 11 (로깅과 모니터링)** | 보안 이벤트(비정상 접근, 권한 에스컬레이션 시도)를 로그로 추적하는 방법 |
 | **Ch 14 (CI/CD)** | 보안 스캔을 CI 파이프라인에 통합하여 취약한 이미지가 배포되지 않도록 자동화 |

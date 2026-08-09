@@ -25,7 +25,7 @@ Java에서 `==` 연산자는 **참조 비교**(같은 메모리 주소인지)를
 Dollar a = new Dollar(5);
 Dollar b = new Dollar(5);
 
-a == b;       // false — 서로 다른 객체이므로
+a == b;       // false - 서로 다른 객체이므로
 a.equals(b);  // Object의 기본 equals()는 == 과 동일하므로 역시 false
 ```
 
@@ -36,7 +36,7 @@ a.equals(b);  // Object의 기본 equals()는 == 과 동일하므로 역시 fals
 const a = new Dollar(5);
 const b = new Dollar(5);
 
-a === b;       // false — 서로 다른 객체이므로
+a === b;       // false - 서로 다른 객체이므로
 a.equals(b);   // equals()를 구현하지 않으면 메서드 자체가 존재하지 않음
 ```
 
@@ -64,7 +64,7 @@ Chapter 2 종료 시점의 TODO 리스트에서 `equals()`가 대기 중이었�
 
 ## 2. TDD 사이클
 
-### 2.1 Red — 동등성 테스트 작성
+### 2.1 Red - 동등성 테스트 작성
 
 같은 값을 가진 두 Dollar 객체가 동등한지 테스트한다:
 
@@ -89,7 +89,7 @@ test('equality', () => {
 
 **Red Bar!**
 
-### 2.2 Green — Fake It으로 시작
+### 2.2 Green - Fake It으로 시작
 
 가장 빠르게 테스트를 통과시키는 방법은 무엇인가? 무조건 `true`를 반환하면 된다:
 
@@ -118,7 +118,7 @@ equals(object: object): boolean {
 
 > **핵심 통찰**: "무조건 true를 반환"하는 것은 터무니없어 보이지만, 이것이 바로 TDD의 Fake It 전략이다. 핵심은 **다음 테스트가 이 가짜 구현을 깨뜨릴 것**이라는 점이다. 테스트를 하나 더 추가하면 일반화가 강제된다.
 
-### 2.3 삼각측량(Triangulation) — 두 번째 테스트 추가
+### 2.3 삼각측량(Triangulation) - 두 번째 테스트 추가
 
 Kent Beck은 여기서 **삼각측량(Triangulation)** 전략을 사용한다. 삼각측량이란 **두 개 이상의 예제를 사용하여 올바른 일반화를 이끌어내는 기법**이다.
 
@@ -147,7 +147,7 @@ test('equality', () => {
 
 **Red Bar!**
 
-### 2.4 Green — 진짜 구현
+### 2.4 Green - 진짜 구현
 
 이제 `return true`로는 두 테스트를 모두 통과시킬 수 없다. 실제로 금액을 비교해야 한다:
 
@@ -177,7 +177,7 @@ equals(object: Dollar): boolean {
 
 **두 테스트 모두 통과! Green Bar!**
 
-### 2.5 Refactor — 정리할 것이 있는가?
+### 2.5 Refactor - 정리할 것이 있는가?
 
 이 코드에는 몇 가지 개선 여지가 있다:
 
@@ -196,8 +196,8 @@ equals(object: Dollar): boolean {
 삼각측량은 측량학에서 온 비유다. 하나의 관측점만으로는 위치를 특정할 수 없지만, **두 개 이상의 관측점**이 있으면 정확한 위치를 계산할 수 있다.
 
 TDD에서의 삼각측량:
-- **관측점 1**: `assertTrue(new Dollar(5).equals(new Dollar(5)))` — 같은 금액은 동등해야 한다
-- **관측점 2**: `assertFalse(new Dollar(5).equals(new Dollar(6)))` — 다른 금액은 동등하지 않아야 한다
+- **관측점 1**: `assertTrue(new Dollar(5).equals(new Dollar(5)))` - 같은 금액은 동등해야 한다
+- **관측점 2**: `assertFalse(new Dollar(5).equals(new Dollar(6)))` - 다른 금액은 동등하지 않아야 한다
 
 하나의 테스트만으로는 `return true`라는 퇴화된(degenerate) 구현이 가능하다. 두 번째 테스트를 추가하면 **일반화를 강제**한다.
 
@@ -263,7 +263,7 @@ class Dollar {
 
 </details>
 
-**Step 2**: Fake It — `equals()` 추가 (무조건 true)
+**Step 2**: Fake It - `equals()` 추가 (무조건 true)
 
 ```java
 class Dollar {
@@ -306,7 +306,7 @@ class Dollar {
 
 </details>
 
-**Step 3**: 삼각측량 후 — `equals()` 진짜 구현
+**Step 3**: 삼각측량 후 - `equals()` 진짜 구현
 
 ```java
 class Dollar {
@@ -453,7 +453,7 @@ test('equality', () => {
 - **값 객체**는 같은 값을 가진 두 객체가 동등해야 한다. 이를 위해 `equals()` 메서드를 구현해야 한다.
 - **삼각측량(Triangulation)**: 두 개 이상의 테스트 케이스를 사용하여 일반적인 구현을 이끌어내는 전략이다. 하나의 테스트만으로는 가짜 구현이 가능하지만, 두 번째 테스트가 일반화를 강제한다.
 - `$5 == $5` (같은 값은 동등)과 `$5 != $6` (다른 값은 비동등) 두 테스트로 `equals()` 구현을 완성했다.
-- `equals()` 구현은 아직 불완전하다 — null 처리, 다른 타입 처리, hashCode()가 남아 있다. 하지만 **지금 필요한 만큼만 구현**하고 나머지는 TODO 리스트에 남긴다.
+- `equals()` 구현은 아직 불완전하다 - null 처리, 다른 타입 처리, hashCode()가 남아 있다. 하지만 **지금 필요한 만큼만 구현**하고 나머지는 TODO 리스트에 남긴다.
 - TDD에서는 완벽을 추구하지 않는다. **동작하는 코드를 먼저 만들고**, 필요에 따라 개선한다.
 
 ---
@@ -464,5 +464,5 @@ test('equality', () => {
 - **Chapter 4 (Privacy)**: `equals()`가 존재하므로, 테스트에서 `product.amount` 대신 `assertEquals(new Dollar(10), product)`로 비교할 수 있게 된다. 이것이 `amount`를 private으로 만드는 열쇠가 된다.
 - **Chapter 5 (Franc-ly Speaking)**: Franc 클래스를 만들 때 Dollar를 복사하는데, `equals()` 역시 복사된다. 이 중복은 Chapter 6에서 해결된다.
 - **Chapter 6 (Equality for All, Redux)**: Dollar와 Franc의 `equals()` 중복을 공통 상위 클래스 Money로 올린다.
-- **Chapter 7 (Apples and Oranges)**: `equals()`에 클래스 비교를 추가한다 — `Dollar(5).equals(Franc(5))`가 `false`를 반환하도록 한다.
+- **Chapter 7 (Apples and Oranges)**: `equals()`에 클래스 비교를 추가한다 - `Dollar(5).equals(Franc(5))`가 `false`를 반환하도록 한다.
 - **Chapter 25 (TDD Patterns)**: 삼각측량이 TDD의 공식적인 패턴으로 정리된다.

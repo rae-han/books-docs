@@ -42,7 +42,7 @@ Chapter 20까지 만든 프레임워크는 테스트를 실행할 수 있지만,
 
 ## 2. TDD 사이클
 
-### 2.1 Red — 첫 번째 테스트: 결과 요약
+### 2.1 Red - 첫 번째 테스트: 결과 요약
 
 우리가 원하는 동작을 먼저 테스트로 표현한다. 하나의 테스트를 실행하면 결과가 `"1 run, 0 failed"`여야 한다:
 
@@ -73,9 +73,9 @@ class TestCaseTest extends TestCase {
 1. `run()`이 **`TestResult` 객체를 반환**한다
 2. `TestResult`에 `summary()` 메서드가 있다
 
-이 테스트는 실패한다 — `run()`이 아무것도 반환하지 않으며, `TestResult` 클래스도 존재하지 않는다. Red Bar!
+이 테스트는 실패한다 - `run()`이 아무것도 반환하지 않으며, `TestResult` 클래스도 존재하지 않는다. Red Bar!
 
-### 2.2 Green — TestResult 구현
+### 2.2 Green - TestResult 구현
 
 **Step 1**: `TestResult` 클래스 생성
 
@@ -183,7 +183,7 @@ TestCaseTest("testResult").run()
 
 통과! `result.summary()`가 `"1 run, 0 failed"`를 반환한다. Green Bar!
 
-### 2.3 Refactor — 실패 횟수의 하드코딩
+### 2.3 Refactor - 실패 횟수의 하드코딩
 
 현재 `summary()`에서 실패 횟수가 `0`으로 하드코딩되어 있다:
 
@@ -436,7 +436,7 @@ new TestCaseTest("testResult").run();
 | `TestCase.run()` 수정 | `TestResult` 생성, `testStarted()` 호출, `result` 반환 |
 | `testResult` 테스트 추가 | `run()`이 올바른 `TestResult`를 반환하는지 검증 |
 
-변경의 크기가 여전히 작다는 점에 주목하라. `TestResult`라는 새 클래스를 도입했지만, 그 내부는 매우 단순하다 — 카운터 하나와 포매팅 메서드 하나가 전부다.
+변경의 크기가 여전히 작다는 점에 주목하라. `TestResult`라는 새 클래스를 도입했지만, 그 내부는 매우 단순하다 - 카운터 하나와 포매팅 메서드 하나가 전부다.
 
 ---
 
@@ -461,7 +461,7 @@ new TestCaseTest("testResult").run();
 
 - **TestResult** 클래스를 도입하여 테스트 실행 결과를 수집한다. `runCount`로 실행 횟수를 추적하고, `summary()`로 `"N run, M failed"` 형식의 요약을 반환한다.
 - `TestCase.run()`이 **`TestResult`를 생성하고 반환**하도록 변경되었다. 호출자는 반환된 결과를 통해 테스트 실행 상황을 파악할 수 있다.
-- `summary()`에서 실패 횟수가 `0`으로 **하드코딩**되어 있다. 이것은 다음 챕터에서 해결할 문제다 — 한 번에 하나씩 해결하는 TDD의 원칙을 따른다.
+- `summary()`에서 실패 횟수가 `0`으로 **하드코딩**되어 있다. 이것은 다음 챕터에서 해결할 문제다 - 한 번에 하나씩 해결하는 TDD의 원칙을 따른다.
 - **Collecting Parameter 패턴**: `TestResult`는 여러 테스트의 결과를 하나의 객체에 누적한다. 나중에 `TestSuite`와 결합하면 더욱 강력해진다.
 - 기존 테스트(`testTemplateMethod`)를 깨뜨리지 않으면서 새 기능(`testResult`)을 추가했다. 이것이 TDD가 보장하는 **회귀 안전성(regression safety)** 이다.
 

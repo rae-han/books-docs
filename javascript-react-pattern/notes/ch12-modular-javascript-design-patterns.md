@@ -52,7 +52,7 @@ AMD(*Asynchronous Module Definition*)는 모듈과 의존성 모두를 **비동�
 AMD의 핵심은 `define` 메서드(모듈 정의)와 `require` 메서드(의존성 로딩)다.
 
 ```typescript
-// AMD 모듈 정의 — define(id?, dependencies?, factory)
+// AMD 모듈 정의 - define(id?, dependencies?, factory)
 define("userModule", ["jquery", "lodash"], function ($, _) {
   // 의존성(jquery, lodash)이 함수 파라미터로 주입된다
   var users = [];
@@ -77,7 +77,7 @@ CommonJS는 **서버 사이드**에서 모듈을 선언하는 간단한 API를 �
 CommonJS의 핵심은 `require` 함수(모듈 가져오기)와 `exports` 객체(모듈 내보내기)다. AMD와 달리 모듈을 함수로 감싸는 작업이 필요하지 않다.
 
 ```typescript
-// CommonJS 모듈 — require()와 module.exports
+// CommonJS 모듈 - require()와 module.exports
 const path = require("path");
 const fs = require("fs");
 
@@ -122,7 +122,7 @@ Ch05에서 `import`/`export`의 기본 문법을 다루었다. 이 장에서는 
 두 내보내기 방식은 각각 명확한 용도가 있다.
 
 ```typescript
-// ✅ Named Exports — 여러 기능을 내보내는 유틸리티 모듈에 적합
+// ✅ Named Exports - 여러 기능을 내보내는 유틸리티 모듈에 적합
 // validators.ts
 export function validateEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -138,7 +138,7 @@ export function validateAge(age: number): boolean {
 ```
 
 ```typescript
-// ✅ Default Export — 모듈의 주요 기능이 하나일 때 적합
+// ✅ Default Export - 모듈의 주요 기능이 하나일 때 적합
 // UserService.ts
 export default class UserService {
   async findById(id: string): Promise<User> { /* ... */ }
@@ -185,14 +185,14 @@ export interface Order {
 ```
 
 ```typescript
-// models/index.ts — 배럴 파일
+// models/index.ts - 배럴 파일
 export { User } from "./User";
 export { Product } from "./Product";
 export { Order } from "./Order";
 ```
 
 ```typescript
-// 사용처 — 깔끔한 import 경로
+// 사용처 - 깔끔한 import 경로
 import { User, Product, Order } from "./models";
 ```
 
@@ -200,9 +200,9 @@ import { User, Product, Order } from "./models";
 
 | 장점 | 단점 |
 |------|------|
-| import 경로가 깔끔해진다 | **번들 크기 증가** 위험 — 하나만 필요해도 전체가 로드될 수 있다 |
+| import 경로가 깔끔해진다 | **번들 크기 증가** 위험 - 하나만 필요해도 전체가 로드될 수 있다 |
 | 모듈의 공개 API를 중앙 관리 | 순환 의존성 발생 가능성 증가 |
-| 내부 구조 변경 시 외부 영향 최소화 | **개발 서버 성능 저하** — Vite 등에서 HMR이 느려질 수 있다 |
+| 내부 구조 변경 시 외부 영향 최소화 | **개발 서버 성능 저하** - Vite 등에서 HMR이 느려질 수 있다 |
 
 ```typescript
 // ⚠️ 안티패턴: 깊은 중첩 배럴
@@ -240,7 +240,7 @@ async function loadPage(route: string): Promise<void> {
 ```
 
 ```typescript
-// 조건부 로딩 — 기능 플래그 기반
+// 조건부 로딩 - 기능 플래그 기반
 async function initAnalytics(config: AppConfig): Promise<void> {
   if (config.features.analytics) {
     const { AnalyticsService } = await import("./services/analytics");
@@ -251,7 +251,7 @@ async function initAnalytics(config: AppConfig): Promise<void> {
 ```
 
 ```typescript
-// React에서의 동적 가져오기 — React.lazy
+// React에서의 동적 가져오기 - React.lazy
 import { lazy, Suspense } from "react";
 
 const AdminPanel = lazy(() => import("./components/AdminPanel"));
@@ -270,7 +270,7 @@ function App() {
 Import Attributes(*이전 이름: Import Assertions*)는 모듈을 가져올 때 추가 메타데이터를 제공하는 문법이다. TC39 Stage 3 제안으로 시작되어, JSON 모듈 가져오기가 대표적인 사용 사례다.
 
 ```typescript
-// JSON 모듈 가져오기 — Import Attributes
+// JSON 모듈 가져오기 - Import Attributes
 import config from "./config.json" with { type: "json" };
 // config는 JSON 파일의 default export로 사용 가능
 
@@ -286,7 +286,7 @@ document.adoptedStyleSheets = [...document.adoptedStyleSheets, styles];
 Top-level Await(*최상위 await*)는 ES2022에서 표준화된 기능으로, 모듈의 최상위 스코프에서 `async` 함수 없이도 `await`를 사용할 수 있다.
 
 ```typescript
-// database.ts — Top-level Await로 모듈 초기화
+// database.ts - Top-level Await로 모듈 초기화
 const connection = await createDatabaseConnection({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -298,7 +298,7 @@ export const db = connection.getDatabase("myapp");
 ```
 
 ```typescript
-// config.ts — 환경별 설정 동적 로딩
+// config.ts - 환경별 설정 동적 로딩
 const env = process.env.NODE_ENV ?? "development";
 const { default: config } = await import(`./configs/${env}.json`, {
   with: { type: "json" },
@@ -343,7 +343,7 @@ export function createOrder(user: User): Order {
 **해결 방법 1: 공통 모듈 추출**
 
 ```typescript
-// ✅ types.ts — 공유 타입을 별도 모듈로 추출
+// ✅ types.ts - 공유 타입을 별도 모듈로 추출
 export interface User {
   id: string;
   name: string;
@@ -354,11 +354,11 @@ export interface Order {
   user: User;
 }
 
-// user.ts — types만 import
+// user.ts - types만 import
 import type { User } from "./types";
 export function createUser(name: string): User { /* ... */ }
 
-// order.ts — types만 import
+// order.ts - types만 import
 import type { User, Order } from "./types";
 export function createOrder(user: User): Order { /* ... */ }
 ```
@@ -366,13 +366,13 @@ export function createOrder(user: User): Order { /* ... */ }
 **해결 방법 2: 의존성 역전**
 
 ```typescript
-// ✅ 의존성 역전 — 인터페이스에 의존하게 만들기
+// ✅ 의존성 역전 - 인터페이스에 의존하게 만들기
 // interfaces/OrderCreator.ts
 export interface OrderCreator {
   create(userId: string): Promise<Order>;
 }
 
-// user.ts — 구체적인 order 모듈 대신 인터페이스에 의존
+// user.ts - 구체적인 order 모듈 대신 인터페이스에 의존
 import type { OrderCreator } from "./interfaces/OrderCreator";
 
 export class UserService {
@@ -402,7 +402,7 @@ export class AuthService {
   async logout(): Promise<void> { /* ... */ }
   async refreshToken(token: string): Promise<AuthToken> { /* ... */ }
 
-  // 내부용 메서드 — 배럴에서 export하지 않음
+  // 내부용 메서드 - 배럴에서 export하지 않음
   private async validateCredentials(email: string, password: string): Promise<boolean> { /* ... */ }
 }
 
@@ -412,7 +412,7 @@ export function useAuth() { /* ... */ }
 // features/auth/components/LoginForm.tsx
 export function LoginForm() { /* ... */ }
 
-// features/auth/index.ts — 배럴: 공개 API만 노출
+// features/auth/index.ts - 배럴: 공개 API만 노출
 export { AuthService } from "./services/AuthService";
 export { useAuth } from "./hooks/useAuth";
 export { LoginForm } from "./components/LoginForm";
@@ -437,7 +437,7 @@ export async function putRecord<T>(store: string, key: string, value: T): Promis
 export function getCookie(name: string): string | null { /* ... */ }
 export function setCookie(name: string, value: string, days: number): void { /* ... */ }
 
-// services/storage/index.ts — 퍼사드: 저장소 복잡성을 숨김
+// services/storage/index.ts - 퍼사드: 저장소 복잡성을 숨김
 import * as local from "./localStorage";
 import * as idb from "./indexedDB";
 import * as cookie from "./cookie";
@@ -488,7 +488,7 @@ export async function load<T>(
 핵심 모듈에 기능을 **동적으로 추가**할 수 있는 확장 가능한 아키텍처를 구성하는 패턴이다.
 
 ```typescript
-// core/plugin.ts — 플러그인 인터페이스 정의
+// core/plugin.ts - 플러그인 인터페이스 정의
 export interface Plugin<TContext = unknown> {
   name: string;
   version: string;
@@ -496,7 +496,7 @@ export interface Plugin<TContext = unknown> {
   uninstall?(context: TContext): void | Promise<void>;
 }
 
-// core/app.ts — 플러그인을 받아들이는 코어
+// core/app.ts - 플러그인을 받아들이는 코어
 export class App {
   private plugins = new Map<string, Plugin<App>>();
   private config: Record<string, unknown> = {};
@@ -519,7 +519,7 @@ export class App {
   }
 }
 
-// plugins/logger.ts — 플러그인 구현
+// plugins/logger.ts - 플러그인 구현
 import type { Plugin } from "../core/plugin";
 import type { App } from "../core/app";
 
@@ -532,7 +532,7 @@ export const LoggerPlugin: Plugin<App> = {
   },
 };
 
-// main.ts — 사용
+// main.ts - 사용
 const app = new App();
 await app.use(LoggerPlugin);
 ```
@@ -575,14 +575,14 @@ src/
 ```
 
 ```typescript
-// features/auth/index.ts — 기능 모듈의 공개 API
+// features/auth/index.ts - 기능 모듈의 공개 API
 export { LoginForm } from "./components/LoginForm";
 export { RegisterForm } from "./components/RegisterForm";
 export { useAuth } from "./hooks/useAuth";
 export { AuthService } from "./services/AuthService";
 export type { AuthToken, AuthUser, LoginCredentials } from "./types";
 
-// features/orders/services/OrderService.ts — 다른 기능 모듈 사용
+// features/orders/services/OrderService.ts - 다른 기능 모듈 사용
 import { AuthService } from "@/features/auth"; // 배럴을 통해 import
 ```
 
@@ -593,7 +593,7 @@ import { AuthService } from "@/features/auth"; // 배럴을 통해 import
 특정 값을 내보내지 않고, **import되는 것 자체가 목적**인 모듈이다. 폴리필, 전역 설정, CSS 파일 등이 해당된다.
 
 ```typescript
-// polyfills.ts — 부수 효과 모듈
+// polyfills.ts - 부수 효과 모듈
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
@@ -603,10 +603,10 @@ window.addEventListener("unhandledrejection", (event) => {
   reportError(event.reason);
 });
 
-// global.css — CSS 부수 효과 모듈
+// global.css - CSS 부수 효과 모듈
 import "./styles/global.css";
 
-// main.ts — 부수 효과 모듈은 값 없이 import만 한다
+// main.ts - 부수 효과 모듈은 값 없이 import만 한다
 import "./polyfills";
 import "./styles/global.css";
 
@@ -624,7 +624,7 @@ import { App } from "./App";
 
 ### Tree Shaking (트리 쉐이킹)
 
-트리 쉐이킹(*Tree Shaking — 사용하지 않는 코드를 최종 번들에서 제거하는 기법*)은 ES Modules의 **정적 구조**를 활용한다. `import`/`export`가 정적이므로 빌드 타임에 어떤 export가 실제로 사용되는지 분석할 수 있다.
+트리 쉐이킹(*Tree Shaking - 사용하지 않는 코드를 최종 번들에서 제거하는 기법*)은 ES Modules의 **정적 구조**를 활용한다. `import`/`export`가 정적이므로 빌드 타임에 어떤 export가 실제로 사용되는지 분석할 수 있다.
 
 ```typescript
 // math.ts
@@ -640,7 +640,7 @@ export function multiply(a: number, b: number): number {
   return a * b;
 }
 
-// app.ts — add만 import
+// app.ts - add만 import
 import { add } from "./math";
 console.log(add(1, 2));
 // → subtract, multiply는 최종 번들에서 제거된다
@@ -671,7 +671,7 @@ console.log(add(1, 2));
 
 코드 분할(*Code Splitting*)은 애플리케이션을 여러 청크(*Chunk*)로 나누어, 필요한 시점에 필요한 코드만 로드하는 기법이다.
 
-**라우트 기반 분할** — 가장 일반적이고 효과적인 방식이다.
+**라우트 기반 분할** - 가장 일반적이고 효과적인 방식이다.
 
 ```typescript
 // React Router + lazy를 활용한 라우트 기반 코드 분할
@@ -697,7 +697,7 @@ function App() {
 }
 ```
 
-**컴포넌트 기반 분할** — 무거운 컴포넌트를 별도 청크로 분리한다.
+**컴포넌트 기반 분할** - 무거운 컴포넌트를 별도 청크로 분리한다.
 
 ```typescript
 // 무거운 차트 라이브러리를 필요할 때만 로드
@@ -730,11 +730,11 @@ function AnalyticsPage() {
 | **단점** | 파일 수만큼 HTTP 요청 | 빌드 시간 소요 |
 | **대표 도구** | Vite dev server | Vite build (Rollup), webpack |
 
-Vite(*비트 — 프랑스어로 "빠르다"*)는 이 이중 전략의 대표적 도구다. 개발 시에는 ESM을 네이티브로 제공하고, 프로덕션 빌드에서만 Rollup으로 번들링한다.
+Vite(*비트 - 프랑스어로 "빠르다"*)는 이 이중 전략의 대표적 도구다. 개발 시에는 ESM을 네이티브로 제공하고, 프로덕션 빌드에서만 Rollup으로 번들링한다.
 
 ### Import Maps (브라우저 네이티브)
 
-Import Maps(*임포트 맵*)는 브라우저에서 **모듈 식별자를 URL로 매핑**하는 기능이다. 번들러 없이도 `import lodash from "lodash"`처럼 베어 스펙파이어(*Bare Specifier — 경로 없이 패키지 이름만 사용하는 import*)를 사용할 수 있다.
+Import Maps(*임포트 맵*)는 브라우저에서 **모듈 식별자를 URL로 매핑**하는 기능이다. 번들러 없이도 `import lodash from "lodash"`처럼 베어 스펙파이어(*Bare Specifier - 경로 없이 패키지 이름만 사용하는 import*)를 사용할 수 있다.
 
 ```html
 <!-- index.html -->
@@ -808,16 +808,16 @@ Node.js는 CommonJS를 기본 모듈 시스템으로 시작했지만, v13.2.0부
 
 `"type"` 설정과 관계없이 모듈 시스템을 **파일 단위**로 명시할 수 있다.
 
-- `.mjs` — 항상 ES Modules로 해석
-- `.cjs` — 항상 CommonJS로 해석
+- `.mjs` - 항상 ES Modules로 해석
+- `.cjs` - 항상 CommonJS로 해석
 
 ```typescript
-// utils.mjs — package.json의 "type"과 무관하게 항상 ESM
+// utils.mjs - package.json의 "type"과 무관하게 항상 ESM
 export function greet(name) {
   return `Hello, ${name}!`;
 }
 
-// legacy.cjs — 항상 CJS
+// legacy.cjs - 항상 CJS
 const path = require("path");
 module.exports = { resolve: path.resolve };
 ```
@@ -864,10 +864,10 @@ module.exports = { resolve: path.resolve };
 
 ```typescript
 // ⚠️ 이중 패키지 위험 시나리오
-// consumer-a.mjs — ESM 버전 로드
+// consumer-a.mjs - ESM 버전 로드
 import { singleton } from "my-lib"; // → dist/index.mjs의 singleton
 
-// consumer-b.cjs — CJS 버전 로드
+// consumer-b.cjs - CJS 버전 로드
 const { singleton } = require("my-lib"); // → dist/index.cjs의 다른 singleton!
 
 // 두 singleton은 서로 다른 인스턴스!
@@ -876,14 +876,14 @@ const { singleton } = require("my-lib"); // → dist/index.cjs의 다른 singlet
 **해결 방법**: 상태를 갖는 모듈은 **하나의 구현**(보통 CJS)을 두고, ESM 래퍼가 이를 재내보내기하는 방식을 사용한다.
 
 ```javascript
-// dist/index.cjs — 실제 구현
+// dist/index.cjs - 실제 구현
 const state = { count: 0 };
 module.exports = {
   increment() { return ++state.count; },
   getCount() { return state.count; },
 };
 
-// dist/index.mjs — ESM 래퍼 (CJS 구현을 재내보내기)
+// dist/index.mjs - ESM 래퍼 (CJS 구현을 재내보내기)
 import cjs from "./index.cjs";
 export const increment = cjs.increment;
 export const getCount = cjs.getCount;
@@ -899,7 +899,7 @@ export const getCount = cjs.getCount;
 |------|------|
 | **Import Maps** | 모든 주요 브라우저에서 지원 (Chrome, Firefox, Safari, Edge). Deno에서도 네이티브 지원 |
 | **Deno / Bun** | ESM-first 런타임으로 CJS 호환 레이어가 아닌 ESM을 기본으로 사용. Bun은 CJS와 ESM을 동일 파일에서 혼용 가능 |
-| **TypeScript moduleResolution** | `"bundler"` 모드 도입 — 번들러의 실제 모듈 해석 방식에 맞춤. `"node16"`/`"nodenext"` 대비 더 유연 |
+| **TypeScript moduleResolution** | `"bundler"` 모드 도입 - 번들러의 실제 모듈 해석 방식에 맞춤. `"node16"`/`"nodenext"` 대비 더 유연 |
 | **Node.js** | `require(esm)` 실험적 지원 (v22+). CJS에서 ESM 모듈을 동기적으로 require 가능 |
 | **Vite 6 / Rolldown** | Rolldown(Rust 기반 번들러)이 Vite의 Rollup을 대체 예정. 개발/프로덕션 빌드 통합 |
 | **Import Attributes** | `with` 문법 표준화 진행. JSON, CSS 모듈 가져오기 안정화 |
@@ -911,11 +911,11 @@ export const getCount = cjs.getCount;
 
 ### 새 프로젝트 시작 체크리스트
 
-1. **`package.json`에 `"type": "module"` 설정** — ESM을 기본으로 사용
-2. **TypeScript `moduleResolution: "bundler"` 설정** — 번들러 환경에 최적화
-3. **`sideEffects` 필드 설정** — 트리 쉐이킹 최적화
-4. **기능 단위 디렉터리 구조 채택** — Feature Module Pattern 적용
-5. **배럴 파일은 기능 경계에서만 사용** — 과도한 중첩 방지
+1. **`package.json`에 `"type": "module"` 설정** - ESM을 기본으로 사용
+2. **TypeScript `moduleResolution: "bundler"` 설정** - 번들러 환경에 최적화
+3. **`sideEffects` 필드 설정** - 트리 쉐이킹 최적화
+4. **기능 단위 디렉터리 구조 채택** - Feature Module Pattern 적용
+5. **배럴 파일은 기능 경계에서만 사용** - 과도한 중첩 방지
 
 ### tsconfig.json 모듈 관련 권장 설정
 
@@ -971,8 +971,8 @@ export const getCount = cjs.getCount;
 
 - **모듈의 핵심 가치**는 느슨한 결합, 명시적 의존성 관리, 캡슐화를 통해 **변경의 영향 범위를 통제**하는 것이다
 - **AMD, CommonJS, UMD**는 ES Modules 이전 시대의 커뮤니티 솔루션이며, 현재는 역사적 맥락으로만 의미가 있다. 다만 Node.js에서는 CommonJS가 여전히 광범위하게 사용된다
-- **ES Modules 심화 기법** — Dynamic Import(코드 분할), Import Attributes(JSON/CSS 가져오기), Top-level Await(모듈 초기화), 순환 의존성 해결 — 을 숙지해야 대규모 애플리케이션을 효과적으로 구성할 수 있다
-- **모듈 디자인 패턴** — Barrel, Facade, Plugin, Feature Module, Side-effect — 을 통해 프로젝트의 모듈 구조를 체계화할 수 있다
+- **ES Modules 심화 기법** - Dynamic Import(코드 분할), Import Attributes(JSON/CSS 가져오기), Top-level Await(모듈 초기화), 순환 의존성 해결 - 을 숙지해야 대규모 애플리케이션을 효과적으로 구성할 수 있다
+- **모듈 디자인 패턴** - Barrel, Facade, Plugin, Feature Module, Side-effect - 을 통해 프로젝트의 모듈 구조를 체계화할 수 있다
 - **트리 쉐이킹과 코드 분할**은 ESM의 정적 구조를 기반으로 작동하며, `sideEffects` 플래그와 `import()` 함수가 핵심 도구다
 - **Node.js의 이중 체제**(CJS/ESM)를 이해하고, `"exports"` 필드를 활용하여 다양한 환경의 소비자에게 올바른 모듈을 제공해야 한다
 - 새 프로젝트는 **`"type": "module"` + ESM + TypeScript `moduleResolution: "bundler"`** 조합으로 시작하는 것이 권장된다

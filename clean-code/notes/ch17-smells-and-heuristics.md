@@ -32,7 +32,7 @@
 
 - 쓸모 없어질 주석은 **아예 달지 않는 편**이 가장 좋다
 - 쓸모 없어진 주석은 **재빨리 삭제하는 편**이 가장 좋다
-- 쓸모 없는 주석은 일단 들어가면 코드에서 쉽게 멀어진다 — 코드와 무관하게 혼자서 따로 놀며 코드를 그릇된 방향으로 이끈다
+- 쓸모 없는 주석은 일단 들어가면 코드에서 쉽게 멀어진다 - 코드와 무관하게 혼자서 따로 놀며 코드를 그릇된 방향으로 이끈다
 
 ### C3: 중복된 주석
 
@@ -70,7 +70,7 @@ public SellResponse beginSellItem(SellRequest sellRequest)
 
 ### C5: 주석 처리된 코드
 
-코드를 읽다가 주석으로 처리된 코드가 줄줄이 나오면 신경이 아주 거슬린다. 얼마나 오래된 코드인지, 중요한 코드인지 아닌지, 알 길이 없다. 그럼에도 아무도 삭제하지 않는다 — 누군가에게 필요하거나 다른 사람이 사용할 코드라 생각하기 때문이다.
+코드를 읽다가 주석으로 처리된 코드가 줄줄이 나오면 신경이 아주 거슬린다. 얼마나 오래된 코드인지, 중요한 코드인지 아닌지, 알 길이 없다. 그럼에도 아무도 삭제하지 않는다 - 누군가에게 필요하거나 다른 사람이 사용할 코드라 생각하기 때문이다.
 
 - 주석으로 처리된 코드는 매일매일 낡아간다
 - 더 이상 존재하지 않는 함수를 호출하고, 이름이 바뀐 변수를 사용한다
@@ -166,7 +166,7 @@ ant all
 
 ### G2: 당연한 동작을 구현하지 않는다
 
-**최소 놀람의 원칙**(The Principle of Least Surprise)(*The Principle of Least Surprise — "The Principle of Least Astonishment"라고도 한다. 소프트웨어가 사용자를 놀라게 하지 않도록 가장 예측 가능한 방식으로 동작해야 한다는 원칙.*)에 의거해 함수나 클래스는 다른 프로그래머가 당연하게 여길 만한 동작과 기능을 제공해야 한다.
+**최소 놀람의 원칙**(The Principle of Least Surprise)(*The Principle of Least Surprise - "The Principle of Least Astonishment"라고도 한다. 소프트웨어가 사용자를 놀라게 하지 않도록 가장 예측 가능한 방식으로 동작해야 한다는 원칙.*)에 의거해 함수나 클래스는 다른 프로그래머가 당연하게 여길 만한 동작과 기능을 제공해야 한다.
 
 ```java
 Day day = DayDate.StringToDay(String dayName);
@@ -202,7 +202,7 @@ Day day = DayDate.StringToDay(String dayName);
 
 소프트웨어 설계를 거론하는 저자라면 거의 모두가 이 규칙을 언급한다:
 - 데이비드 토머스와 앤디 헌트는 이를 **DRY**(Don't Repeat Yourself) 원칙이라 부른다
-- 켄트 벡은 익스트림 프로그래밍의 핵심 규칙 중 하나로 **"한 번, 단 한 번만(Once, and only once)"**(*Once And Only Once — "모든 것은 오직 한 번만 말해야 한다"라는 표현도 사용한다.*)이라 명명했다
+- 켄트 벡은 익스트림 프로그래밍의 핵심 규칙 중 하나로 **"한 번, 단 한 번만(Once, and only once)"**(*Once And Only Once - "모든 것은 오직 한 번만 말해야 한다"라는 표현도 사용한다.*)이라 명명했다
 - 론 제프리스는 이 규칙을 "모든 테스트를 통과한다"는 규칙 다음으로 중요하게 꼽았다
 
 코드에서 중복을 발견할 때마다 **추상화할 기회**로 간주하라.
@@ -225,7 +225,7 @@ Day day = DayDate.StringToDay(String dayName);
 - 기초 클래스는 **구현 정보에 무지해야** 마땅하다
 
 ```java
-// 나쁜 예 — 추상화 수준이 올바르지 못하다
+// 나쁜 예 - 추상화 수준이 올바르지 못하다
 public interface Stack {
     Object pop() throws EmptyException;
     void push(Object o) throws FullException;
@@ -293,7 +293,7 @@ public interface Stack {
 
 ### G12: 잡동사니
 
-비어 있는 기본 생성자, 아무도 사용하지 않는 변수, 아무도 호출하지 않는 함수, 정보를 제공하지 못하는 주석 — 모두 코드만 복잡하게 만들 뿐이므로 **제거해야 마땅하다.** 소스 파일은 언제나 깔끔하게 정리하라!
+비어 있는 기본 생성자, 아무도 사용하지 않는 변수, 아무도 호출하지 않는 함수, 정보를 제공하지 못하는 주석 - 모두 코드만 복잡하게 만들 뿐이므로 **제거해야 마땅하다.** 소스 파일은 언제나 깔끔하게 정리하라!
 
 ### G13: 인위적 결합
 
@@ -310,7 +310,7 @@ public interface Stack {
 마틴 파울러가 말하는 코드 냄새 중 하나다. 클래스 메서드는 자기 클래스의 변수와 함수에 관심을 가져야지 **다른 클래스의 변수와 함수에 관심을 가져서는 안 된다.**
 
 ```java
-// 나쁜 예 — 기능 욕심
+// 나쁜 예 - 기능 욕심
 public class HourlyPayCalculator {
     public Money calculateWeeklyPay(HourlyEmployee e) {
         int tenthRate = e.getTenthRate().getPennies();
@@ -329,7 +329,7 @@ public class HourlyPayCalculator {
 하지만 때로는 어쩔 수 없는 경우도 있다:
 
 ```java
-// 허용 가능한 기능 욕심 — 보고서 형식은 Employee가 알 필요 없다
+// 허용 가능한 기능 욕심 - 보고서 형식은 Employee가 알 필요 없다
 public class HourlyEmployeeReport {
     private HourlyEmployee employee;
 
@@ -349,7 +349,7 @@ public class HourlyEmployeeReport {
 함수 호출 끝에 달리는 `false` 인수만큼이나 밉살스런 코드도 없다. 선택자(selector) 인수는 목적을 기억하기 어려울 뿐 아니라 여러 함수를 하나로 조합한다.
 
 ```java
-// 나쁜 예 — 선택자 인수
+// 나쁜 예 - 선택자 인수
 public int calculateWeeklyPay(boolean overtime) {
     int tenthRate = getTenthRate();
     int tenthsWorked = getTenthsWorked();
@@ -363,7 +363,7 @@ public int calculateWeeklyPay(boolean overtime) {
 ```
 
 ```java
-// 좋은 예 — 함수를 분리
+// 좋은 예 - 함수를 분리
 public int straightPay() {
     return getTenthsWorked() * getTenthRate();
 }
@@ -387,7 +387,7 @@ private int overTimeBonus(int overTimeTenths) {
 코드를 짤 때는 의도를 최대한 분명히 밝힌다.
 
 ```java
-// 나쁜 예 — 모호한 의도
+// 나쁜 예 - 모호한 의도
 public int m_otCalc() {
     return iThsWkd * iThsRte +
         (int) Math.round(0.5 * iThsRte *
@@ -400,7 +400,7 @@ public int m_otCalc() {
 
 ### G17: 잘못 지운 책임
 
-소프트웨어 개발자가 내리는 가장 중요한 결정 중 하나가 코드를 배치하는 위치다. **'최소 놀람의 원칙'**을 적용한다 — 코드는 독자가 자연스럽게 기대할 위치에 배치한다.
+소프트웨어 개발자가 내리는 가장 중요한 결정 중 하나가 코드를 배치하는 위치다. **'최소 놀람의 원칙'**을 적용한다 - 코드는 독자가 자연스럽게 기대할 위치에 배치한다.
 
 - `PI` 상수는 삼각함수를 선언한 클래스에 넣어야 맞다
 - `OVERTIME_RATE` 상수는 `HourlyPayCalculator` 클래스에 선언해야 맞다
@@ -408,7 +408,7 @@ public int m_otCalc() {
 
 ### G18: 부적절한 static 함수
 
-`Math.max(double a, double b)`는 좋은 `static` 메서드다 — 특정 인스턴스와 관련된 기능이 아니며, 재정의(override)할 가능성이 거의 없다.
+`Math.max(double a, double b)`는 좋은 `static` 메서드다 - 특정 인스턴스와 관련된 기능이 아니며, 재정의(override)할 가능성이 거의 없다.
 
 ```java
 // static으로 정의하면 안 되는 함수
@@ -466,7 +466,7 @@ Date newDate = date.add(5);
 한 모듈이 다른 모듈에 의존한다면 물리적인 의존성도 있어야 한다. 의존하는 모듈이 상대 모듈에 대해 뭔가를 **가정하면(논리적으로 의존하면) 안 된다.**
 
 ```java
-// 나쁜 예 — 논리적 의존성
+// 나쁜 예 - 논리적 의존성
 public class HourlyReporter {
     private HourlyReportFormatter formatter;
     private List<LineItem> page;
@@ -485,14 +485,14 @@ public class HourlyReporter {
 }
 ```
 
-`PAGE_SIZE`라는 상수가 문제다. 페이지 크기는 `HourlyReportFormatter`가 책임질 정보다. `HourlyReporter`는 `HourlyReportFormatter`가 페이지 크기 55를 처리할 줄 안다는 사실에 의존한다 — 바로 이 가정이 논리적 의존성이다.
+`PAGE_SIZE`라는 상수가 문제다. 페이지 크기는 `HourlyReportFormatter`가 책임질 정보다. `HourlyReporter`는 `HourlyReportFormatter`가 페이지 크기 55를 처리할 줄 안다는 사실에 의존한다 - 바로 이 가정이 논리적 의존성이다.
 
 **해결**: `HourlyReportFormatter`에 `getMaxPageSize()` 메서드를 추가하면 논리적 의존성이 물리적 의존성으로 변한다.
 
 ### G23: If/Else 혹은 Switch/Case 문보다 다형성을 사용하라
 
 - 대다수 개발자가 `switch` 문을 사용하는 이유는 **가장 올바른 선택이기보다는 당장 손쉬운 선택**이기 때문이다
-- 유형보다 함수가 더 쉽게 변하는 경우는 극히 드물다 — 그러므로 **모든 switch 문을 의심**해야 한다
+- 유형보다 함수가 더 쉽게 변하는 경우는 극히 드물다 - 그러므로 **모든 switch 문을 의심**해야 한다
 - **'switch 문 하나' 규칙**: 선택 유형 하나에는 `switch` 문을 한 번만 사용한다. 같은 선택을 수행하는 다른 코드에서는 다형성 객체를 생성해 `switch` 문을 대신한다
 
 ### G24: 표준 표기법을 따르라
@@ -526,7 +526,7 @@ double circumference = radius * Math.PI * 2;
 **'매직 숫자'라는 용어는 단지 숫자만 의미하지 않는다.** 의미가 분명하지 않은 토큰을 모두 가리킨다:
 
 ```java
-// 나쁜 예 — 매직 숫자가 두 개
+// 나쁜 예 - 매직 숫자가 두 개
 assertEquals(7777, Employee.find("John Doe").employeeNumber());
 
 // 좋은 예
@@ -590,7 +590,7 @@ if (!buffer.shouldNotCompact())
 한 함수 안에 여러 단락을 이어 일련의 작업을 수행하면 안 된다.
 
 ```java
-// 나쁜 예 — 세 가지 임무를 수행
+// 나쁜 예 - 세 가지 임무를 수행
 public void pay() {
     for (Employee e : employees) {
         if (e.isPayday()) {
@@ -600,7 +600,7 @@ public void pay() {
     }
 }
 
-// 좋은 예 — 각 함수가 한 가지 임무만 수행
+// 좋은 예 - 각 함수가 한 가지 임무만 수행
 public void pay() {
     for (Employee e : employees)
         payIfNecessary(e);
@@ -622,7 +622,7 @@ private void calculateAndDeliverPay(Employee e) {
 때로는 시간적인 결합(temporal coupling)이 필요하다. 하지만 시간적인 결합을 **숨겨서는 안 된다.** 함수를 짤 때는 함수 인수를 적절히 배치해 함수가 호출되는 순서를 명백히 드러낸다.
 
 ```java
-// 나쁜 예 — 시간적인 결합이 숨겨져 있다
+// 나쁜 예 - 시간적인 결합이 숨겨져 있다
 public class MoogDiver {
     Gradient gradient;
     List<Spline> splines;
@@ -634,7 +634,7 @@ public class MoogDiver {
     }
 }
 
-// 좋은 예 — 시간적인 결합이 드러난다
+// 좋은 예 - 시간적인 결합이 드러난다
 public class MoogDiver {
     Gradient gradient;
     List<Spline> splines;
@@ -681,7 +681,7 @@ if (nextLevel < tags.length) {
 함수 내 모든 문장은 추상화 수준이 동일해야 한다. 그리고 그 추상화 수준은 함수 이름이 의미하는 작업보다 **한 단계만 낮아야 한다.**
 
 ```java
-// 나쁜 예 — 추상화 수준이 뒤섞임
+// 나쁜 예 - 추상화 수준이 뒤섞임
 public String render() throws Exception {
     StringBuffer html = new StringBuffer("<hr");
     if (size > 0)
@@ -690,7 +690,7 @@ public String render() throws Exception {
     return html.toString();
 }
 
-// 좋은 예 — 추상화 수준 분리
+// 좋은 예 - 추상화 수준 분리
 public String render() throws Exception {
     HtmlTag hr = new HtmlTag("hr");
     if (extraDashes > 0)
@@ -734,7 +734,7 @@ public class Arguments {
 한 모듈은 주변 모듈을 모를수록 좋다. A가 B를 사용하고 B가 C를 사용한다 하더라도 A가 C를 알아야 할 필요는 없다.
 
 ```java
-// 나쁜 예 — 추이적 탐색 (디미터의 법칙 위반)
+// 나쁜 예 - 추이적 탐색 (디미터의 법칙 위반)
 a.getB().getC().doSomething();
 
 // 좋은 예
@@ -755,7 +755,7 @@ myCollaborator.doSomething();
 | **G2** | 당연한 동작 미구현 | 최소 놀람의 원칙을 따르라 |
 | **G3** | 경계 미처리 | 모든 경계 조건을 테스트하라 |
 | **G4** | 안전 절차 무시 | 컴파일러 경고, 실패 테스트를 무시하지 마라 |
-| **G5** | 중복 | DRY — 가장 중요한 규칙 |
+| **G5** | 중복 | DRY - 가장 중요한 규칙 |
 | **G6** | 추상화 수준 오류 | 고차원/저차원 개념을 철저히 분리하라 |
 | **G7** | 기초 클래스의 파생 의존 | 기초 클래스는 파생 클래스를 모르게 하라 |
 | **G8** | 과도한 정보 | 인터페이스를 작게 만들어 결합도를 낮춰라 |
@@ -810,7 +810,7 @@ import package.*;
 상수를 인터페이스에 넣은 다음 그 인터페이스를 상속해 해당 상수를 사용하는 관행은 끔직하다. 언어의 범위 규칙을 속이는 행위다.
 
 ```java
-// 나쁜 예 — 상수를 상속으로 접근
+// 나쁜 예 - 상수를 상속으로 접근
 public interface PayrollConstants {
     public static final int TENTHS_PER_WEEK = 400;
     public static final double OVERTIME_RATE = 1.5;
@@ -820,7 +820,7 @@ public abstract class Employee implements PayrollConstants {
     // TENTHS_PER_WEEK, OVERTIME_RATE를 상속으로 사용
 }
 
-// 좋은 예 — static import 사용
+// 좋은 예 - static import 사용
 import static PayrollConstants.*;
 
 public class HourlyEmployee extends Employee {
@@ -880,7 +880,7 @@ public enum HourlyPayGrade {
 **소프트웨어 가독성의 90%는 이름이 결정한다.**
 
 ```java
-// 나쁜 예 — 무엇을 하는 함수인가?
+// 나쁜 예 - 무엇을 하는 함수인가?
 public int x() {
     int q = 0;
     int z = 0;
@@ -899,7 +899,7 @@ public int x() {
     return q;
 }
 
-// 좋은 예 — 볼링 게임 점수 계산임이 드러난다
+// 좋은 예 - 볼링 게임 점수 계산임이 드러난다
 public int score() {
     int score = 0;
     int frame = 0;
@@ -926,7 +926,7 @@ public int score() {
 구현을 드러내는 이름은 피하라. 작업 대상 클래스나 함수가 위치하는 **추상화 수준을 반영하는 이름**을 선택하라.
 
 ```java
-// 나쁜 예 — 추상화 수준이 낮다 (전화번호에 종속)
+// 나쁜 예 - 추상화 수준이 낮다 (전화번호에 종속)
 public interface Modem {
     boolean dial(String phoneNumber);
     boolean disconnect();
@@ -935,7 +935,7 @@ public interface Modem {
     String getConnectedPhoneNumber();
 }
 
-// 좋은 예 — 추상화 수준이 적절하다
+// 좋은 예 - 추상화 수준이 적절하다
 public interface Modem {
     boolean connect(String connectionLocator);
     boolean disconnect();
@@ -953,7 +953,7 @@ public interface Modem {
 
 - **DECORATOR** 패턴 → 클래스 이름에 `Decorator` 포함 (예: `AutoHangupModemDecorator`)
 - **객체를 문자열로 변환** → 자바의 `toString` 관례를 따르기
-- 팀이 고안한 **유비쿼터스 언어**(ubiquitous language)(*ubiquitous language — 에릭 에반스(Eric Evans)가 『Domain Driven Design』에서 제안한 개념. 프로젝트 전반에서 개발자와 도메인 전문가가 공유하는 일관된 용어 체계.*) 사용하기
+- 팀이 고안한 **유비쿼터스 언어**(ubiquitous language)(*ubiquitous language - 에릭 에반스(Eric Evans)가 『Domain Driven Design』에서 제안한 개념. 프로젝트 전반에서 개발자와 도메인 전문가가 공유하는 일관된 용어 체계.*) 사용하기
 
 > **핵심 통찰**: 프로젝트에 유효한 의미가 담긴 이름을 많이 사용할수록 독자가 코드를 이해하기 쉬워진다.
 
@@ -962,7 +962,7 @@ public interface Modem {
 함수나 변수의 목적을 명확히 밝히는 이름을 선택한다.
 
 ```java
-// 나쁜 예 — 모호한 이름
+// 나쁜 예 - 모호한 이름
 private String doRename() throws Exception {
     if (refactorReferences)
         renameReferences();
@@ -1000,7 +1000,7 @@ private void rollMany(int n, int pins) {
 함수, 변수, 클래스가 하는 일을 **모두** 기술하는 이름을 사용한다. 이름에 부수 효과를 숨기지 않는다.
 
 ```java
-// 나쁜 예 — 부수 효과가 숨겨져 있다
+// 나쁜 예 - 부수 효과가 숨겨져 있다
 public ObjectOutputStream getOos() throws IOException {
     if (m_oos == null) {
         m_oos = new ObjectOutputStream(m_socket.getOutputStream());
@@ -1109,7 +1109,7 @@ public ObjectOutputStream getOos() throws IOException {
 | 일반 | G2 | 당연한 동작 미구현 | 최소 놀람의 원칙 |
 | 일반 | G3 | 경계 미처리 | 모든 경계를 테스트하라 |
 | 일반 | G4 | 안전 절차 무시 | 경고와 실패를 무시하지 마라 |
-| 일반 | G5 | 중복 | DRY — 추상화할 기회로 간주하라 |
+| 일반 | G5 | 중복 | DRY - 추상화할 기회로 간주하라 |
 | 일반 | G6 | 추상화 수준 오류 | 고차원/저차원을 철저히 분리하라 |
 | 일반 | G7 | 기초→파생 의존 | 기초 클래스는 파생을 몰라야 한다 |
 | 일반 | G8 | 과도한 정보 | 인터페이스를 작게, 결합도를 낮게 |
@@ -1173,14 +1173,14 @@ public ObjectOutputStream getOos() throws IOException {
 
 ## 요약
 
-- **주석(C1~C5)**: 부적절한 정보, 쓸모없는 주석, 중복된 주석, 성의 없는 주석, 주석 처리된 코드 — 주석은 코드가 다하지 못하는 설명을 부언하는 수단이다
+- **주석(C1~C5)**: 부적절한 정보, 쓸모없는 주석, 중복된 주석, 성의 없는 주석, 주석 처리된 코드 - 주석은 코드가 다하지 못하는 설명을 부언하는 수단이다
 - **환경(E1~E2)**: 빌드와 테스트는 각각 한 명령으로 끝나야 한다
 - **함수(F1~F4)**: 인수는 적게, 출력 인수와 플래그 인수는 피하고, 죽은 함수는 삭제한다
 - **일반(G1~G36)**: 중복 제거(G5)가 가장 중요한 규칙이며, 추상화 수준 분리(G6, G34), 최소 놀람의 원칙(G2, G17), 디미터의 법칙(G36) 등이 핵심이다
 - **자바(J1~J3)**: 와일드카드 import, static import, enum 활용
 - **이름(N1~N7)**: 서술적이고 명확한 이름이 가독성의 90%를 결정한다. 추상화 수준을 반영하고, 부수 효과를 숨기지 마라
 - **테스트(T1~T9)**: 깨질 만한 부분을 모두 테스트하고, 커버리지 도구를 사용하며, 테스트는 빨라야 한다
-- **완전한 목록이 목표가 아니다** — 이 목록이 피력하는 것은 깨끗한 코드를 향한 **가치 체계**다
+- **완전한 목록이 목표가 아니다** - 이 목록이 피력하는 것은 깨끗한 코드를 향한 **가치 체계**다
 
 ---
 

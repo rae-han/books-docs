@@ -10,7 +10,7 @@
 
 ### 1.1 Part I에서 Part II로
 
-Part I에서는 다중 통화 Money 객체를 Java로 구현하면서 TDD의 기본 리듬을 경험했다. Part II에서는 **완전히 다른 종류의 문제**에 TDD를 적용한다 — 바로 **테스트 프레임워크 자체**를 만드는 것이다.
+Part I에서는 다중 통화 Money 객체를 Java로 구현하면서 TDD의 기본 리듬을 경험했다. Part II에서는 **완전히 다른 종류의 문제**에 TDD를 적용한다 - 바로 **테스트 프레임워크 자체**를 만드는 것이다.
 
 Part II의 언어는 **Python**이다. Kent Beck은 의도적으로 다른 언어를 선택했다. TDD는 특정 언어나 도구에 종속되지 않는 **보편적인 개발 방법론**임을 보여주기 위해서다.
 
@@ -69,19 +69,19 @@ Part I의 Money 예제와 마찬가지로, 해야 할 일의 목록을 먼저 �
 
 ## 3. TDD 사이클
 
-### 3.1 Red — 첫 번째 테스트: 테스트 메서드를 호출할 수 있는가?
+### 3.1 Red - 첫 번째 테스트: 테스트 메서드를 호출할 수 있는가?
 
 가장 기본적인 질문에서 시작한다: **테스트 메서드를 이름으로 호출할 수 있는가?**
 
-아직 테스트 프레임워크가 없으므로, 수동으로 확인해야 한다. Kent Beck은 `WasRun`이라는 작은 클래스를 만드는 것에서 시작한다. 이 클래스의 역할은 단순하다 — **테스트 메서드가 실제로 호출되었는지를 기록**하는 것이다.
+아직 테스트 프레임워크가 없으므로, 수동으로 확인해야 한다. Kent Beck은 `WasRun`이라는 작은 클래스를 만드는 것에서 시작한다. 이 클래스의 역할은 단순하다 - **테스트 메서드가 실제로 호출되었는지를 기록**하는 것이다.
 
 먼저 우리가 원하는 동작을 코드로 표현해 보자:
 
 ```python
 test = WasRun("testMethod")
-print(test.wasRun)    # None — 아직 실행되지 않았다
+print(test.wasRun)    # None - 아직 실행되지 않았다
 test.testMethod()
-print(test.wasRun)    # 1 — 실행되었다
+print(test.wasRun)    # 1 - 실행되었다
 ```
 
 <details>
@@ -89,9 +89,9 @@ print(test.wasRun)    # 1 — 실행되었다
 
 ```typescript
 const test = new WasRun("testMethod");
-console.log(test.wasRun);    // null — 아직 실행되지 않았다
+console.log(test.wasRun);    // null - 아직 실행되지 않았다
 test.testMethod();
-console.log(test.wasRun);    // 1 — 실행되었다
+console.log(test.wasRun);    // 1 - 실행되었다
 ```
 
 </details>
@@ -139,7 +139,7 @@ None
 
 좋다! 테스트 메서드를 직접 호출하면 `wasRun`이 `1`로 변한다. 하지만 이것은 우리가 원하는 것이 아니다. **메서드 이름을 문자열로 받아서 동적으로 호출**하고 싶다. 즉, `test.testMethod()`가 아니라 `test.run()`을 호출하면 생성자에서 받은 이름(`"testMethod"`)에 해당하는 메서드가 실행되어야 한다.
 
-### 3.2 Green — Python의 리플렉션으로 동적 호출
+### 3.2 Green - Python의 리플렉션으로 동적 호출
 
 Python에는 `getattr()`이라는 강력한 내장 함수가 있다. 이 함수는 **객체에서 이름(문자열)으로 속성이나 메서드를 찾아 반환**한다.
 
@@ -247,7 +247,7 @@ None
 
 > **핵심 통찰**: `getattr()`은 Python의 리플렉션(reflection) 기능이다. 이것은 xUnit 프레임워크의 핵심 메커니즘이다. Java의 JUnit도 내부적으로 `Method.invoke()`라는 리플렉션을 사용하여 같은 일을 한다. 리플렉션이 없었다면 각 테스트를 호출하기 위해 거대한 if-else 체인이 필요했을 것이다.
 
-### 3.3 Refactor — TestCase 추출
+### 3.3 Refactor - TestCase 추출
 
 지금 `WasRun`의 `run()` 메서드를 보면, 이 메서드는 `WasRun` 고유의 로직이 아니다. **어떤 테스트든 이름으로 메서드를 호출하는 것**은 보편적인 기능이다. 따라서 이것을 상위 클래스 `TestCase`로 추출한다.
 
@@ -382,19 +382,19 @@ new TestCaseTest("testRunning").run();
 
 ```
 TestCase (상위 클래스)
-├── WasRun (테스트 대상이자 헬퍼 — "테스트 메서드가 호출되었나?"를 추적)
-│   └── testMethod() — 실행되면 wasRun = 1로 설정
-└── TestCaseTest (테스트 코드 — WasRun을 사용하여 TestCase의 동작을 검증)
-    └── testRunning() — WasRun.run()이 testMethod를 호출하는지 확인
+├── WasRun (테스트 대상이자 헬퍼 - "테스트 메서드가 호출되었나?"를 추적)
+│   └── testMethod() - 실행되면 wasRun = 1로 설정
+└── TestCaseTest (테스트 코드 - WasRun을 사용하여 TestCase의 동작을 검증)
+    └── testRunning() - WasRun.run()이 testMethod를 호출하는지 확인
 ```
 
 | 클래스 | 역할 |
 |--------|------|
-| `TestCase` | 프레임워크의 핵심 — 메서드 이름으로 테스트를 실행 |
-| `WasRun` | 테스트 더블(test double) — 메서드 호출 여부를 기록 |
-| `TestCaseTest` | 프레임워크의 테스트 — TestCase의 동작이 올바른지 검증 |
+| `TestCase` | 프레임워크의 핵심 - 메서드 이름으로 테스트를 실행 |
+| `WasRun` | 테스트 더블(test double) - 메서드 호출 여부를 기록 |
+| `TestCaseTest` | 프레임워크의 테스트 - TestCase의 동작이 올바른지 검증 |
 
-> **핵심 통찰**: `WasRun`은 일종의 **Self-Shunt** 패턴이다. 테스트 대상(`TestCase`)의 하위 클래스로서, 특정 메서드가 호출되었는지 스스로 기록한다. 별도의 mock 라이브러리가 필요 없다 — 프레임워크가 아직 없으니 당연하다.
+> **핵심 통찰**: `WasRun`은 일종의 **Self-Shunt** 패턴이다. 테스트 대상(`TestCase`)의 하위 클래스로서, 특정 메서드가 호출되었는지 스스로 기록한다. 별도의 mock 라이브러리가 필요 없다 - 프레임워크가 아직 없으니 당연하다.
 
 ---
 
@@ -475,14 +475,14 @@ new TestCaseTest("testRunning").run();
 
 이 코드의 실행 흐름:
 
-1. `TestCaseTest("testRunning")` — `TestCaseTest` 객체 생성, `name = "testRunning"`
-2. `.run()` — `TestCase.run()` 호출
-3. `getattr(self, "testRunning")` — `testRunning` 메서드를 동적으로 찾음
-4. `method()` — `testRunning()` 실행
+1. `TestCaseTest("testRunning")` - `TestCaseTest` 객체 생성, `name = "testRunning"`
+2. `.run()` - `TestCase.run()` 호출
+3. `getattr(self, "testRunning")` - `testRunning` 메서드를 동적으로 찾음
+4. `method()` - `testRunning()` 실행
 5. `testRunning()` 내부에서 `WasRun("testMethod")` 생성 및 `run()` 호출
 6. `WasRun.run()`이 `getattr(self, "testMethod")`로 `testMethod()` 호출
 7. `testMethod()`가 `self.wasRun = 1` 설정
-8. `assert(test.wasRun)` 통과 — 테스트 성공!
+8. `assert(test.wasRun)` 통과 - 테스트 성공!
 
 ---
 

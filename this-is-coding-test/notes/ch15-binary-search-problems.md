@@ -57,7 +57,7 @@ function upperBound(arr: string[] | number[], target: string | number): number {
 
 ### 핵심 아이디어
 
-`upperBound(x) − lowerBound(x)`가 x의 개수다.
+`upperBound(x) - lowerBound(x)`가 x의 개수다.
 
 ```ts
 function countByValue(arr: number[], x: number): number {
@@ -218,13 +218,13 @@ console.log(solutionLyrics(
 )); // [3, 2, 4, 1, 0]
 ```
 
-> **핵심 통찰**: `?`를 `a`~`z`로 치환해 **탐색 범위의 양 끝**을 만들고, 그 사이 개수를 `upperBound − lowerBound`로 센다. 접두사 `?`는 문자열을 뒤집어 접미사 문제로 환원하는 게 정석 기법이다.
+> **핵심 통찰**: `?`를 `a`~`z`로 치환해 **탐색 범위의 양 끝**을 만들고, 그 사이 개수를 `upperBound - lowerBound`로 센다. 접두사 `?`는 문자열을 뒤집어 접미사 문제로 환원하는 게 정석 기법이다.
 
 ---
 
 ## 요약
 
-- **특정 수 개수**: `upperBound(x) − lowerBound(x)`.
+- **특정 수 개수**: `upperBound(x) - lowerBound(x)`.
 - **고정점**: `a[mid]` vs `mid` 비교로 방향 결정 (서로 다른 원소라 단조성 보장).
 - **공유기 설치**: "거리 D로 C개 가능?"의 **파라메트릭 서치** + 그리디 배치.
 - **가사 검색**: **길이별 정렬 + 이진 탐색**, `?`는 `a`/`z` 치환으로 범위화, 접두사 `?`는 뒤집기.

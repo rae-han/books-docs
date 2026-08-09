@@ -1364,15 +1364,15 @@ Part II (xUnit Example)에서의 패턴 맵:
 
 | 패턴 | Part I 예시 | Part II 예시 |
 |------|------------|-------------|
-| Value Object | Dollar, Franc, Money | — |
-| Null Object | — | (테스트 결과 기본값) |
-| Template Method | — | TestCase.run() |
-| Pluggable Object | Expression (Money, Sum) | — |
-| Pluggable Selector | — | TestCase(name) |
-| Factory Method | Money.dollar(), Money.franc() | — |
+| Value Object | Dollar, Franc, Money | - |
+| Null Object | - | (테스트 결과 기본값) |
+| Template Method | - | TestCase.run() |
+| Pluggable Object | Expression (Money, Sum) | - |
+| Pluggable Selector | - | TestCase(name) |
+| Factory Method | Money.dollar(), Money.franc() | - |
 | Imposter | Franc → Money 통합, Sum | Mock objects |
 | Composite | Sum (Expression 트리) | TestSuite |
-| Collecting Parameter | — | TestResult |
+| Collecting Parameter | - | TestResult |
 
 ---
 

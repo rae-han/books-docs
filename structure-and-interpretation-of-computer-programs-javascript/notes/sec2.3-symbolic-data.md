@@ -10,7 +10,7 @@
 
 | 개념 | 정의 |
 |------|------|
-| **기호(Symbol)** | 문자열로 표현되는 원자적 데이터 — `"x"`, `"+"`, `"deriv"` |
+| **기호(Symbol)** | 문자열로 표현되는 원자적 데이터 - `"x"`, `"+"`, `"deriv"` |
 | **인용(Quotation)** | 표현식 자체를 데이터로 취급하는 메커니즘 |
 | **기호 미분(Symbolic differentiation)** | 수학적 표현식의 도함수를 기호적으로 계산 |
 | **집합 표현(Set representation)** | 동일한 추상 데이터를 다양한 방식으로 표현하는 예제 |
@@ -29,8 +29,8 @@ SICP JavaScript Edition에서는 문자열을 기호로 사용한다:
 ```javascript
 const a = 1;
 const b = 2;
-list("a", "b");           // list("a", "b") — 기호 "a"와 "b"의 리스트
-list(a, b);                // list(1, 2) — 변수 a와 b의 값의 리스트
+list("a", "b");           // list("a", "b") - 기호 "a"와 "b"의 리스트
+list(a, b);                // list(1, 2) - 변수 a와 b의 값의 리스트
 ```
 
 기호의 동등성 비교:
@@ -193,7 +193,7 @@ function is_element_of_set(x, set) {
 | `is_element_of_set` | Θ(log n) (균형 트리) |
 | `adjoin_set` | Θ(log n) (균형 트리) |
 
-> **핵심 통찰**: 동일한 추상 인터페이스(`is_element_of_set`, `adjoin_set`, ...)를 유지하면서 내부 표현만 바꾸면 성능이 극적으로 변한다. 이것이 추상화 장벽의 실질적 이점이다 — 사용하는 코드를 수정하지 않고 성능을 개선할 수 있다.
+> **핵심 통찰**: 동일한 추상 인터페이스(`is_element_of_set`, `adjoin_set`, ...)를 유지하면서 내부 표현만 바꾸면 성능이 극적으로 변한다. 이것이 추상화 장벽의 실질적 이점이다 - 사용하는 코드를 수정하지 않고 성능을 개선할 수 있다.
 
 ---
 
@@ -257,5 +257,5 @@ function decode(bits, tree) {
 - **Section 2.1 (Data Abstraction)**: 기호 미분에서 추상화 장벽의 위력이 실증된다. 단순화를 추가할 때 `deriv`를 수정하지 않는다.
 - **Section 2.4 (Multiple Representations)**: 집합의 다중 표현이 더 일반적인 "동일한 데이터에 대한 다중 표현"으로 확장된다.
 - **Section 2.5 (Generic Operations)**: 기호 데이터와 수치 데이터를 통합하는 제네릭 산술 시스템이 구축된다.
-- **Section 4.1 (Metacircular Evaluator)**: 기호 미분의 `deriv`와 메타순환 평가기의 `evaluate`는 놀랍도록 유사한 구조를 가진다 — 둘 다 표현식의 유형에 따라 분기하여 재귀적으로 처리한다.
+- **Section 4.1 (Metacircular Evaluator)**: 기호 미분의 `deriv`와 메타순환 평가기의 `evaluate`는 놀랍도록 유사한 구조를 가진다 - 둘 다 표현식의 유형에 따라 분기하여 재귀적으로 처리한다.
 - **Section 4.4 (Logic Programming)**: 기호 데이터 조작이 논리 프로그래밍의 기초가 된다. 패턴 매칭과 통일(unification)은 기호 처리의 정점이다.

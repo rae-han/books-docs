@@ -7,7 +7,7 @@
 - **팩토리 메서드 패턴**과 **추상 팩토리 패턴**은 무엇이 다른가?
 - "추상화된 것에 의존하라"는 DIP는 "인터페이스에 맞춰 프로그래밍하라"와 무엇이 다른가?
 
-> **참고**: 이 장은 세 가지 "팩토리"를 다룬다 — **간단한 팩토리**(관용구), **팩토리 메서드 패턴**, **추상 팩토리 패턴**. 셋을 헷갈리기 쉬우니 각각의 차이에 주목하자.
+> **참고**: 이 장은 세 가지 "팩토리"를 다룬다 - **간단한 팩토리**(관용구), **팩토리 메서드 패턴**, **추상 팩토리 패턴**. 셋을 헷갈리기 쉬우니 각각의 차이에 주목하자.
 
 ---
 
@@ -16,7 +16,7 @@
 `new`는 죄가 없다. 진짜 말썽꾼은 **변화**다.
 
 ```typescript
-// 구상 클래스에 의존하는 코드 — 변화에 취약하다
+// 구상 클래스에 의존하는 코드 - 변화에 취약하다
 let duck: Duck;
 if (picnic) {
   duck = new MallardDuck();
@@ -113,7 +113,7 @@ public class PizzaStore {
 지점(뉴욕·시카고)마다 스타일이 다른 피자를 만들되, **주문 절차(준비·굽기·자르기·포장)는 모든 지점이 동일**하게 따르게 하고 싶다. 해법: `createPizza()`를 `PizzaStore`의 **추상 메서드**로 두고, 지점별 서브클래스가 구현한다.
 
 ```typescript
-/** 피자 가게 — 팩토리 메서드 패턴의 추상 생산자(Creator). */
+/** 피자 가게 - 팩토리 메서드 패턴의 추상 생산자(Creator). */
 abstract class PizzaStore {
   // 주문 절차는 고정. 어떤 피자가 오는지는 알지 못한다.
   orderPizza(type: PizzaType): Pizza {
@@ -125,7 +125,7 @@ abstract class PizzaStore {
     return pizza;
   }
 
-  /** 팩토리 메서드 — 어떤 구상 피자를 만들지는 서브클래스가 결정한다. */
+  /** 팩토리 메서드 - 어떤 구상 피자를 만들지는 서브클래스가 결정한다. */
   protected abstract createPizza(type: PizzaType): Pizza;
 }
 
@@ -187,15 +187,15 @@ NYPizzaStore  ChicagoPizzaStore
  createPizza()   createPizza()
 ```
 
-> **패턴 정의 — 팩토리 메서드 패턴 (Factory Method Pattern)**<br>객체를 생성할 때 필요한 인터페이스를 만들되, 어떤 클래스의 인스턴스를 만들지는 서브클래스에서 결정하게 한다. 팩토리 메서드 패턴을 사용하면 클래스 인스턴스를 만드는 일을 서브클래스에 맡길 수 있다.
+> **패턴 정의 - 팩토리 메서드 패턴 (Factory Method Pattern)**<br>객체를 생성할 때 필요한 인터페이스를 만들되, 어떤 클래스의 인스턴스를 만들지는 서브클래스에서 결정하게 한다. 팩토리 메서드 패턴을 사용하면 클래스 인스턴스를 만드는 일을 서브클래스에 맡길 수 있다.
 
 ---
 
-## 4. DIP — 의존성 뒤집기 원칙 (디자인 원칙 6)
+## 4. DIP - 의존성 뒤집기 원칙 (디자인 원칙 6)
 
 팩토리 없이 모든 피자를 직접 `new`하는 `PizzaStore`는 **모든 구상 피자 클래스에 의존**한다(뉴욕 4종 + 시카고 4종 = 8개, 캘리포니아 추가 시 12개). 이 의존을 뒤집는 원칙이 DIP다.
 
-> **디자인 원칙 6 — DIP (Dependency Inversion Principle)**<br>추상화된 것에 의존하게 만들고, 구상 클래스에 의존하지 않게 만든다.
+> **디자인 원칙 6 - DIP (Dependency Inversion Principle)**<br>추상화된 것에 의존하게 만들고, 구상 클래스에 의존하지 않게 만든다.
 
 - **고수준 구성 요소**(`PizzaStore`): 다른 저수준 구성 요소에 의해 행동이 정의되는 것.
 - **저수준 구성 요소**(각 피자): 실제 구현.
@@ -236,7 +236,7 @@ interface PizzaIngredientFactory {
   createClam(): Clams;
 }
 
-/** 뉴욕 지역 원재료 팩토리 — 뉴욕식 재료를 생산한다. */
+/** 뉴욕 지역 원재료 팩토리 - 뉴욕식 재료를 생산한다. */
 class NYPizzaIngredientFactory implements PizzaIngredientFactory {
   createDough(): Dough {
     return new ThinCrustDough();
@@ -312,20 +312,20 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
 ```
 </details>
 
-> **패턴 정의 — 추상 팩토리 패턴 (Abstract Factory Pattern)**<br>구상 클래스에 의존하지 않고, 서로 연관되거나 의존적인 객체로 이루어진 **제품군**을 생성하는 인터페이스를 제공한다. 구상 클래스는 서브클래스에서 만든다.
+> **패턴 정의 - 추상 팩토리 패턴 (Abstract Factory Pattern)**<br>구상 클래스에 의존하지 않고, 서로 연관되거나 의존적인 객체로 이루어진 **제품군**을 생성하는 인터페이스를 제공한다. 구상 클래스는 서브클래스에서 만든다.
 
 ---
 
 ## 6. 팩토리 메서드 vs 추상 팩토리
 
-> 패턴 집중 인터뷰 — 두 팩토리의 신경전<br><br>**팩토리 메서드**: 저는 **상속**으로 객체를 만들어요. 클래스를 확장하고 팩토리 메서드를 오버라이드하죠. 제품은 딱 하나만 만들면 되고요.<br>**추상 팩토리**: 저는 **구성(composition)** 으로 만들어요. 제품군 전체를 만드는 인터페이스를 제공하죠. 대신 제품군에 새 제품을 추가하려면 **인터페이스를 바꿔야** 하는 게 아프네요.<br>**팩토리 메서드**: <큭큭> 인터페이스를 바꾸면 모든 서브클래스를 고쳐야 하잖아요!<br>**추상 팩토리**: 대신 구상 팩토리를 구현할 때 종종 **당신(팩토리 메서드)** 을 쓰죠.
+> 패턴 집중 인터뷰 - 두 팩토리의 신경전<br><br>**팩토리 메서드**: 저는 **상속**으로 객체를 만들어요. 클래스를 확장하고 팩토리 메서드를 오버라이드하죠. 제품은 딱 하나만 만들면 되고요.<br>**추상 팩토리**: 저는 **구성(composition)** 으로 만들어요. 제품군 전체를 만드는 인터페이스를 제공하죠. 대신 제품군에 새 제품을 추가하려면 **인터페이스를 바꿔야** 하는 게 아프네요.<br>**팩토리 메서드**: <큭큭> 인터페이스를 바꾸면 모든 서브클래스를 고쳐야 하잖아요!<br>**추상 팩토리**: 대신 구상 팩토리를 구현할 때 종종 **당신(팩토리 메서드)** 을 쓰죠.
 
 | 구분 | 팩토리 메서드 | 추상 팩토리 |
 |------|--------------|-------------|
 | 객체 생성 방식 | **상속** (서브클래스가 팩토리 메서드 오버라이드) | **구성** (팩토리 인스턴스를 주입받아 사용) |
 | 만드는 것 | **한 종류**의 제품 | 서로 연관된 **제품군(family)** |
 | 확장 시 | 서브클래스만 추가 | 제품 추가 시 **인터페이스 변경** 필요(단점) |
-| 관계 | — | 구상 팩토리 내부를 **팩토리 메서드로 구현**하는 경우가 많다 |
+| 관계 | - | 구상 팩토리 내부를 **팩토리 메서드로 구현**하는 경우가 많다 |
 
 > **핵심 통찰**: 두 패턴 모두 **객체 생성을 캡슐화**하여 클라이언트와 구상 클래스를 분리한다. 차이는 "**상속 vs 구성**"과 "**단일 제품 vs 제품군**"이다.
 
@@ -333,13 +333,13 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
 
 ## 연습 문제 (해답 예시)
 
-**1. 심하게 의존적인 `PizzaStore`의 구상 클래스 의존 개수** — 뉴욕 4종 + 시카고 4종 = **8개**. 캘리포니아 4종을 추가하면 **12개**로 늘어난다. 이것이 DIP가 해결하려는 문제다.
+**1. 심하게 의존적인 `PizzaStore`의 구상 클래스 의존 개수** - 뉴욕 4종 + 시카고 4종 = **8개**. 캘리포니아 4종을 추가하면 **12개**로 늘어난다. 이것이 DIP가 해결하려는 문제다.
 
-**2. `ChicagoPizzaStore`·`CaliforniaPizzaStore` 만들기** — `PizzaStore`를 확장하고 `createPizza()`에서 각각 시카고/캘리포니아 스타일 피자를 반환하면 된다. 주문 절차(`orderPizza()`)는 상속받아 그대로 쓴다.
+**2. `ChicagoPizzaStore`·`CaliforniaPizzaStore` 만들기** - `PizzaStore`를 확장하고 `createPizza()`에서 각각 시카고/캘리포니아 스타일 피자를 반환하면 된다. 주문 절차(`orderPizza()`)는 상속받아 그대로 쓴다.
 
-**3. `ChicagoPizzaIngredientFactory` 만들기** — `PizzaIngredientFactory`를 구현하고, `createDough()`→`ThickCrustDough`, `createSauce()`→`PlumTomatoSauce`, `createCheese()`→`MozzarellaCheese`, `createClam()`→`FrozenClams`(내륙이라 냉동)를 반환한다.
+**3. `ChicagoPizzaIngredientFactory` 만들기** - `PizzaIngredientFactory`를 구현하고, `createDough()`→`ThickCrustDough`, `createSauce()`→`PlumTomatoSauce`, `createCheese()`→`MozzarellaCheese`, `createClam()`→`FrozenClams`(내륙이라 냉동)를 반환한다.
 
-**4. 팩토리 메서드가 추상 팩토리 안에 숨어 있나?** — 그렇다. 추상 팩토리의 각 메서드(`createDough()` 등)는 **팩토리 메서드로 구현되는 경우가 많다**. 두 패턴은 대립이 아니라 종종 함께 쓰인다.
+**4. 팩토리 메서드가 추상 팩토리 안에 숨어 있나?** - 그렇다. 추상 팩토리의 각 메서드(`createDough()` 등)는 **팩토리 메서드로 구현되는 경우가 많다**. 두 패턴은 대립이 아니라 종종 함께 쓰인다.
 
 ---
 
@@ -381,9 +381,9 @@ public class NYPizzaIngredientFactory implements PizzaIngredientFactory {
 2. `PizzaStore`에서도 구성을 활용해 실행 중에 행동(만드는 피자 스타일)을 바꿀 수 있을까? (→ 다른 팩토리 주입)
 3. 추상 팩토리(원재료)의 `createPizza()`와 팩토리 메서드 버전을 비교해 보라.
 
-### 🧩 디자인 퍼즐 — 캘리포니아 지점
+### 🧩 디자인 퍼즐 - 캘리포니아 지점
 
-`PizzaStore`를 확장한 `CaliforniaPizzaStore`와, `Pizza`를 확장한 `CaliforniaStyle***Pizza` 4종을 추가하면 된다. (재미있는 토핑 예시: 구운 마늘 으깬 감자, 바베큐 소스, 미나리, 초콜릿, 땅콩 — 마음대로!)
+`PizzaStore`를 확장한 `CaliforniaPizzaStore`와, `Pizza`를 확장한 `CaliforniaStyle***Pizza` 4종을 추가하면 된다. (재미있는 토핑 예시: 구운 마늘 으깬 감자, 바베큐 소스, 미나리, 초콜릿, 땅콩 - 마음대로!)
 
 ### 🎤 패턴 집중 인터뷰 정리
 

@@ -10,7 +10,7 @@
 
 ### 분리된 프레젠테이션
 
-MV* 패턴의 근원은 **분리된 프레젠테이션**(*Separated Presentation — 도메인 객체와 프레젠테이션 객체를 명확히 구분하는 설계 원칙*)이라는 개념에 있다. 1970년대에는 GUI라는 것이 거의 존재하지 않았다. 실세계의 아이디어(사진, 사람 등)를 모델링하는 **도메인 객체**와 사용자 화면에 렌더링되는 **프레젠테이션 객체** 사이를 명확하게 구분하기 위한 수단으로 이 개념이 등장했다.
+MV* 패턴의 근원은 **분리된 프레젠테이션**(*Separated Presentation - 도메인 객체와 프레젠테이션 객체를 명확히 구분하는 설계 원칙*)이라는 개념에 있다. 1970년대에는 GUI라는 것이 거의 존재하지 않았다. 실세계의 아이디어(사진, 사람 등)를 모델링하는 **도메인 객체**와 사용자 화면에 렌더링되는 **프레젠테이션 객체** 사이를 명확하게 구분하기 위한 수단으로 이 개념이 등장했다.
 
 ### Smalltalk-80에서의 탄생
 
@@ -43,7 +43,7 @@ MVC(*Model-View-Controller*)는 애플리케이션의 구조를 개선하기 위
 | **다중 뷰 지원** | 하나의 모델을 여러 뷰가 관찰할 수 있다 |
 | **컬렉션 그룹화** | MV* 프레임워크에서는 모델을 컬렉션으로 그룹화하여 관리할 수 있다 |
 
-자바스크립트 애플리케이션에서 '상태(*state*)'라는 용어는 전통적 MVC와 다르게 해석된다. SPA(*Single Page Application — 페이지 전환 없이 동작하는 단일 페이지 웹 애플리케이션*)에서의 상태는 사용자의 화면에 특정 시점에 나타나는 데이터를 의미하며, 이 상태를 시뮬레이션할 필요가 있다. 그러나 모델 자체는 **비즈니스 데이터**와 주로 관련이 있다.
+자바스크립트 애플리케이션에서 '상태(*state*)'라는 용어는 전통적 MVC와 다르게 해석된다. SPA(*Single Page Application - 페이지 전환 없이 동작하는 단일 페이지 웹 애플리케이션*)에서의 상태는 사용자의 화면에 특정 시점에 나타나는 데이터를 의미하며, 이 상태를 시뮬레이션할 필요가 있다. 그러나 모델 자체는 **비즈니스 데이터**와 주로 관련이 있다.
 
 ### 2.2 뷰 (View)
 
@@ -422,7 +422,7 @@ MVP의 변형인 **감독 컨트롤러**(*Supervising Controller*) 패턴은 마
 MVP 패턴은 **Android 개발**에서 한때 사실상의 표준 아키텍처였다(Google이 MVVM 기반의 Architecture Components를 발표하기 전까지). MVP가 특히 테스트에 유리한 이유는 프리젠터를 **UI의 완전한 모킹**으로 사용하여 다른 구성 요소와 독립적으로 단위 테스트를 할 수 있기 때문이다.
 
 ```typescript
-// MVP의 테스트 이점 — 프리젠터를 DOM 없이 테스트
+// MVP의 테스트 이점 - 프리젠터를 DOM 없이 테스트
 class MockTodoView implements ITodoListView {
   public displayedItems: ReadonlyArray<TodoItem> = [];
   public inputText = "테스트 할 일";
@@ -512,7 +512,7 @@ MVVM의 핵심 메커니즘은 **데이터 바인딩**(*Data Binding*)이다.
 
 type Listener = () => void;
 
-/** 간단한 반응형 상태 — 뷰모델의 속성으로 사용 */
+/** 간단한 반응형 상태 - 뷰모델의 속성으로 사용 */
 class Observable<T> {
   private listeners: Listener[] = [];
 
@@ -638,7 +638,7 @@ class UserService {
 @Component({
   selector: "app-user-profile",
   template: `
-    <!-- View — 양방향 바인딩 -->
+    <!-- View - 양방향 바인딩 -->
     <input [(ngModel)]="userName" />
     <p>안녕하세요, {{ userName }}님!</p>
     <button (click)="save()" [disabled]="!isValid">저장</button>
@@ -669,7 +669,7 @@ class UserProfileComponent implements OnInit {
 Vue.js는 공식적으로 **뷰모델을 사용하는 MVVM 패턴**이라고 주장한다. Vue 인스턴스/컴포넌트가 뷰모델 역할을 한다. Composition API의 도입으로 구조가 더욱 유연해졌다:
 
 ```typescript
-// Vue 3 Composition API — ViewModel 역할의 composable
+// Vue 3 Composition API - ViewModel 역할의 composable
 import { ref, computed, watch } from "vue";
 
 function useUserProfile(userId: string) {
@@ -706,7 +706,7 @@ function useUserProfile(userId: string) {
 ```
 
 ```html
-<!-- Vue 템플릿 = View — v-model로 양방향 바인딩 -->
+<!-- Vue 템플릿 = View - v-model로 양방향 바인딩 -->
 <template>
   <input v-model="firstName" />
   <input v-model="lastName" />
@@ -876,7 +876,7 @@ Angular는 MV* 패턴 중 MVVM에 가장 가까운 구조를 공식적으로 제
 - **Service** = Model (비즈니스 데이터, API 통신)
 - **양방향 바인딩** = `[(ngModel)]`
 
-Angular의 Change Detection(*변경 감지 — 컴포넌트 트리를 순회하며 바인딩된 값의 변경을 감지하는 메커니즘*)이 MVVM의 데이터 바인딩 역할을 수행한다.
+Angular의 Change Detection(*변경 감지 - 컴포넌트 트리를 순회하며 바인딩된 값의 변경을 감지하는 메커니즘*)이 MVVM의 데이터 바인딩 역할을 수행한다.
 
 ### 6.3 Vue.js: MVVM에서 Composition으로
 
@@ -889,7 +889,7 @@ Composition API에서 `composable` 함수는 리액트의 커스텀 Hooks와 유
 Svelte와 SolidJS는 **컴파일러 기반 접근 방식**으로 전통적인 MV* 패턴의 경계를 허물었다:
 
 ```typescript
-// SolidJS — 세밀한 반응성(Fine-grained Reactivity)
+// SolidJS - 세밀한 반응성(Fine-grained Reactivity)
 import { createSignal, createMemo } from "solid-js";
 
 function UserProfile() {
@@ -916,7 +916,7 @@ function UserProfile() {
 React Server Components(RSC)와 Next.js의 App Router는 MV* 패턴의 전제 자체를 흔든다. Next.js가 백엔드 역할을 수행하여 데이터베이스와 상호작용하고 뷰를 사전 렌더링하면, 이후부터는 리액트의 반응형 기능을 통해 뷰를 동적으로 업데이트함으로써 전통적인 MVC 형태로 동작한다.
 
 ```typescript
-// Server Component — 서버에서 실행, 클라이언트로 HTML 전송
+// Server Component - 서버에서 실행, 클라이언트로 HTML 전송
 // MVC의 "서버가 뷰를 직접 제공"하는 전통으로 회귀
 async function UserProfile({ userId }: { userId: string }) {
   // Model: 서버에서 직접 DB 접근 (API 계층 불필요)
@@ -933,7 +933,7 @@ async function UserProfile({ userId }: { userId: string }) {
   );
 }
 
-// Client Component — 브라우저에서 실행
+// Client Component - 브라우저에서 실행
 "use client";
 function EditProfileButton({ userId }: { userId: string }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -1002,7 +1002,7 @@ Server Components에서의 MV* 구조:
 │(데이터)  │  │  (UI)   │  │ (로직)  │
 └─────────┘  └─────────┘  └─────────┘
 
-React (수직 분리 — 컴포넌트 단위):
+React (수직 분리 - 컴포넌트 단위):
 ┌──────────────────────────────────────┐
 │ Component A    Component B           │
 │ ┌──────────┐  ┌──────────┐          │

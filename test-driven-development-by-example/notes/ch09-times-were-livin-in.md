@@ -16,8 +16,8 @@ Chapter 8까지의 작업으로 다음과 같은 구조가 형성되어 있다:
 Money (추상 클래스)
 ├── amount (protected 필드)
 ├── equals(Object)
-├── static dollar(int amount) — 팩토리 메서드
-├── static franc(int amount)  — 팩토리 메서드
+├── static dollar(int amount) - 팩토리 메서드
+├── static franc(int amount)  - 팩토리 메서드
 │
 ├── Dollar extends Money
 │   └── times(int multiplier)
@@ -104,7 +104,7 @@ Kent Beck은 큰 그림을 먼저 그리지 않는다. "통화 필드를 도입�
 
 ## 3. TDD 사이클
 
-### 3.1 Red — 통화를 반환하는 테스트 작성
+### 3.1 Red - 통화를 반환하는 테스트 작성
 
 먼저 각 Money 객체가 자신의 통화를 알고 있는지 테스트한다:
 
@@ -127,9 +127,9 @@ test('currency', () => {
 
 </details>
 
-이 테스트는 컴파일 에러를 발생시킨다 — `currency()` 메서드가 아직 존재하지 않기 때문이다.
+이 테스트는 컴파일 에러를 발생시킨다 - `currency()` 메서드가 아직 존재하지 않기 때문이다.
 
-### 3.2 Green — currency() 메서드 구현
+### 3.2 Green - currency() 메서드 구현
 
 Kent Beck은 단계적으로 접근한다.
 
@@ -220,7 +220,7 @@ class Franc extends Money {
 
 **테스트 통과! Green Bar!**
 
-### 3.3 Refactor — 통화를 인스턴스 변수로 옮기기
+### 3.3 Refactor - 통화를 인스턴스 변수로 옮기기
 
 두 서브클래스의 `currency()` 메서드를 보자:
 
@@ -268,7 +268,7 @@ class Dollar extends Money {
 
 </details>
 
-테스트 실행 — 여전히 Green Bar.
+테스트 실행 - 여전히 Green Bar.
 
 **Step 2**: Franc에도 동일하게 적용:
 
@@ -307,7 +307,7 @@ class Franc extends Money {
 
 </details>
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 **Step 3**: 이제 두 서브클래스의 `currency()` 구현이 완전히 동일하다:
 
@@ -349,7 +349,7 @@ abstract class Money {
 
 </details>
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 ---
 
@@ -434,7 +434,7 @@ static franc(amount: number): Money {
 
 </details>
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 ### 4.2 생성자를 슈퍼클래스로 올리기
 
@@ -536,7 +536,7 @@ class Franc extends Money {
 
 </details>
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 ---
 

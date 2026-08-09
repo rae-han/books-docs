@@ -13,7 +13,7 @@
 Robert C. Martin은 지난 40여 년 동안 온갖 크기로 함수를 구현해 본 경험을 바탕으로 작은 함수가 좋다고 확신한다. 다음 예제를 보자.
 
 ```java
-// 나쁜 예 — 목록 3-1: 너무 길고 추상화 수준이 뒤섞인 함수
+// 나쁜 예 - 목록 3-1: 너무 길고 추상화 수준이 뒤섞인 함수
 public static String testableHtml(
     PageData pageData,
     boolean includeSuiteSetup
@@ -34,7 +34,7 @@ public static String testableHtml(
                     .append("\n");
             }
         }
-        // ... (생략) — 비슷한 패턴이 4번 반복
+        // ... (생략) - 비슷한 패턴이 4번 반복
     }
     pageData.setContent(buffer.toString());
     return pageData.getHtml();
@@ -42,7 +42,7 @@ public static String testableHtml(
 ```
 
 ```java
-// 좋은 예 — 목록 3-3: 리팩터링 완료
+// 좋은 예 - 목록 3-3: 리팩터링 완료
 public static String renderPageWithSetupsAndTeardowns(
     PageData pageData, boolean isSuite) throws Exception {
     if (isTestPage(pageData))
@@ -71,7 +71,7 @@ public static String renderPageWithSetupsAndTeardowns(
 2. 그렇다면 설정 페이지와 해제 페이지를 넣는다.
 3. 페이지를 HTML로 렌더링한다.
 
-하지만 위 세 단계는 지정된 함수 이름 아래에서 **추상화 수준이 하나**다. 함수는 간단한 **TO 문단**(*TO — LOGO 언어에서 사용하는 키워드로, 루비나 파이썬의 `def`와 같다. '~하려면'이라는 의미.*)으로 기술할 수 있다:
+하지만 위 세 단계는 지정된 함수 이름 아래에서 **추상화 수준이 하나**다. 함수는 간단한 **TO 문단**(*TO - LOGO 언어에서 사용하는 키워드로, 루비나 파이썬의 `def`와 같다. '~하려면'이라는 의미.*)으로 기술할 수 있다:
 
 > TO RenderPageWithSetupsAndTeardowns, 페이지가 테스트 페이지인지 확인한 후 테스트 페이지라면 설정 페이지와 해제 페이지를 넣는다. 테스트 페이지든 아니든 페이지를 HTML로 렌더링한다.
 
@@ -113,7 +113,7 @@ TO 설정 페이지와 해제 페이지를 포함하려면,
 `switch` 문은 작게 만들기 어렵다. 본질적으로 `switch` 문은 N가지를 처리한다. 하지만 각 `switch` 문을 **저차원 클래스에 숨기고 절대로 반복하지 않는 방법**은 있다. **다형성(polymorphism)** 을 이용한다.
 
 ```java
-// 나쁜 예 — 직원 유형에 따라 다른 값을 계산
+// 나쁜 예 - 직원 유형에 따라 다른 값을 계산
 public Money calculatePay(Employee e) throws InvalidEmployeeType {
     switch (e.type) {
         case COMMISSIONED:
@@ -139,7 +139,7 @@ public Money calculatePay(Employee e) throws InvalidEmployeeType {
 | 5 | 동일 구조 무한 반복 | `isPayday(Employee e)`, `deliverPay(Employee e, Money pay)` 등 |
 
 ```java
-// 좋은 예 — 추상 팩토리로 switch 문을 숨김
+// 좋은 예 - 추상 팩토리로 switch 문을 숨김
 public abstract class Employee {
     public abstract boolean isPayday();
     public abstract Money calculatePay();
@@ -168,7 +168,7 @@ public class EmployeeFactoryImpl implements EmployeeFactory {
 
 `switch` 문을 **추상 팩토리(ABSTRACT FACTORY)** 에 꽁꽁 숨긴다. 팩토리는 `switch` 문을 사용해 적절한 `Employee` 파생 클래스의 인스턴스를 생성하고, `calculatePay`, `isPayday`, `deliverPay` 등은 `Employee` 인터페이스를 거쳐 호출된다. 다형성으로 인해 실제 파생 클래스의 함수가 실행된다.
 
-> **핵심 통찰**: `switch` 문은 단 한 번만 참아준다 — 다형적 객체를 생성하는 코드 안에서. 이렇게 상속 관계로 숨긴 후에는 절대로 다른 코드에 노출하지 않는다.
+> **핵심 통찰**: `switch` 문은 단 한 번만 참아준다 - 다형적 객체를 생성하는 코드 안에서. 이렇게 상속 관계로 숨긴 후에는 절대로 다른 코드에 노출하지 않는다.
 
 ---
 
@@ -215,15 +215,15 @@ includeSetupPage
 1. **인수에 질문을 던지는 경우**: `boolean fileExists("MyFile")`
 2. **인수를 변환해 결과를 반환하는 경우**: `InputStream fileOpen("MyFile")`
 
-드물지만 유용한 형식으로 **이벤트**가 있다: `passwordAttemptFailedNtimes(int attempts)` — 입력 인수만 있고 출력 인수는 없다.
+드물지만 유용한 형식으로 **이벤트**가 있다: `passwordAttemptFailedNtimes(int attempts)` - 입력 인수만 있고 출력 인수는 없다.
 
 변환 함수에서 출력 인수를 사용하면 혼란을 일으킨다:
 
 ```java
-// 나쁜 예 — 변환인데 반환값 없음
+// 나쁜 예 - 변환인데 반환값 없음
 void includeSetupPageInto(StringBuffer pageText)
 
-// 좋은 예 — 변환 형태 유지
+// 좋은 예 - 변환 형태 유지
 StringBuffer transform(StringBuffer in)
 ```
 
@@ -235,7 +235,7 @@ StringBuffer transform(StringBuffer in)
 // 나쁜 예
 render(true)
 
-// 좋은 예 — 함수를 나눔
+// 좋은 예 - 함수를 나눔
 renderForSuite()
 renderForSingleTest()
 ```
@@ -244,10 +244,10 @@ renderForSingleTest()
 
 인수가 2개인 함수는 1개인 함수보다 이해하기 어렵다. `writeField(name)`은 `writeField(outputStream, name)`보다 쉽게 읽힌다.
 
-이항 함수가 적절한 경우: `Point p = new Point(0, 0)` — 인수 2개가 한 값을 표현하는 두 요소이며, 자연적인 순서가 있다.
+이항 함수가 적절한 경우: `Point p = new Point(0, 0)` - 인수 2개가 한 값을 표현하는 두 요소이며, 자연적인 순서가 있다.
 
 이항 함수를 단항 함수로 바꾸는 방법:
-- `outputStream.writeField(name)` — 메서드를 클래스 구성원으로
+- `outputStream.writeField(name)` - 메서드를 클래스 구성원으로
 - `outputStream`을 현재 클래스 구성원 변수로 만들어 인수 제거
 - `FieldWriter` 새 클래스를 만들어 구성자에서 `outputStream`을 받음
 
@@ -259,7 +259,7 @@ renderForSingleTest()
 // 인수 3개
 Circle makeCircle(double x, double y, double radius);
 
-// 인수 2개 — 개념을 표현하는 객체 사용
+// 인수 2개 - 개념을 표현하는 객체 사용
 Circle makeCircle(Point center, double radius);
 ```
 
@@ -269,7 +269,7 @@ Circle makeCircle(Point center, double radius);
 
 ```java
 write(name)            // 이해 가능하지만...
-writeField(name)       // 더 좋다 — name이 field라는 사실이 드러남
+writeField(name)       // 더 좋다 - name이 field라는 사실이 드러남
 
 assertEquals(expected, actual)              // 인수 순서 기억 필요
 assertExpectedEqualsActual(expected, actual) // 인수 순서가 이름에 포함
@@ -282,7 +282,7 @@ assertExpectedEqualsActual(expected, actual) // 인수 순서가 이름에 포�
 부수 효과는 거짓말이다. 함수에서 한 가지를 하겠다고 약속하고선 남몰래 다른 짓도 하니까.
 
 ```java
-// 나쁜 예 — 숨겨진 부수 효과
+// 나쁜 예 - 숨겨진 부수 효과
 public class UserValidator {
     private Cryptographer cryptographer;
 
@@ -301,7 +301,7 @@ public class UserValidator {
 }
 ```
 
-`checkPassword` 함수는 이름 그대로 암호를 확인한다. 이름만 봐서는 세션을 초기화한다는 사실이 드러나지 않는다. 이런 부수 효과는 **시간적인 결합(temporal coupling)** 을 초래한다 — `checkPassword`는 세션을 초기화해도 괜찮은 경우에만 호출이 가능하다.
+`checkPassword` 함수는 이름 그대로 암호를 확인한다. 이름만 봐서는 세션을 초기화한다는 사실이 드러나지 않는다. 이런 부수 효과는 **시간적인 결합(temporal coupling)** 을 초래한다 - `checkPassword`는 세션을 초기화해도 괜찮은 경우에만 호출이 가능하다.
 
 만약 시간적인 결합이 필요하다면 함수 이름에 분명히 명시한다: `checkPasswordAndInitializeSession` (물론 '한 가지'만 한다는 규칙을 위반하지만).
 
@@ -310,10 +310,10 @@ public class UserValidator {
 일반적으로 출력 인수는 피해야 한다:
 
 ```java
-// 혼란스러운 코드 — s는 입력인가 출력인가?
+// 혼란스러운 코드 - s는 입력인가 출력인가?
 appendFooter(s);
 
-// 좋은 예 — this를 출력 인수로 사용
+// 좋은 예 - this를 출력 인수로 사용
 report.appendFooter()
 ```
 
@@ -326,7 +326,7 @@ report.appendFooter()
 함수는 뭔가를 **수행하거나** 뭔가에 **답하거나** 둘 중 하나만 해야 한다. 둘 다 하면 혼란을 초래한다.
 
 ```java
-// 나쁜 예 — 명령과 조회가 혼합됨
+// 나쁜 예 - 명령과 조회가 혼합됨
 public boolean set(String attribute, String value);
 
 // 호출 시 혼란
@@ -335,7 +335,7 @@ if (set("username", "unclebob"))...
 ```
 
 ```java
-// 좋은 예 — 명령과 조회 분리
+// 좋은 예 - 명령과 조회 분리
 if (attributeExists("username")) {
     setAttribute("username", "unclebob");
     ...
@@ -349,7 +349,7 @@ if (attributeExists("username")) {
 명령 함수에서 오류 코드를 반환하면 여러 단계로 중첩되는 코드를 야기한다:
 
 ```java
-// 나쁜 예 — 오류 코드 반환 → 중첩된 if 문
+// 나쁜 예 - 오류 코드 반환 → 중첩된 if 문
 if (deletePage(page) == E_OK) {
     if (registry.deleteReference(page.name) == E_OK) {
         if (configKeys.deleteKey(page.name.makeKey()) == E_OK) {
@@ -367,7 +367,7 @@ if (deletePage(page) == E_OK) {
 ```
 
 ```java
-// 좋은 예 — 예외 사용 → 깔끔한 코드
+// 좋은 예 - 예외 사용 → 깔끔한 코드
 try {
     deletePage(page);
     registry.deleteReference(page.name);
@@ -439,7 +439,7 @@ public enum Error {
 
 ## 11. 구조적 프로그래밍
 
-데이크스트라의 구조적 프로그래밍 원칙에 따르면, 모든 함수와 함수 내 모든 블록에 입구와 출구가 하나만 존재해야 한다 — 함수는 `return` 문이 하나여야 하며, 루프 안에서 `break`나 `continue`를 사용해선 안 되고, `goto`는 절대로 안 된다.
+데이크스트라의 구조적 프로그래밍 원칙에 따르면, 모든 함수와 함수 내 모든 블록에 입구와 출구가 하나만 존재해야 한다 - 함수는 `return` 문이 하나여야 하며, 루프 안에서 `break`나 `continue`를 사용해선 안 되고, `goto`는 절대로 안 된다.
 
 하지만 **함수가 작다면** 위 규칙은 별 이익을 제공하지 못한다. 함수를 작게 만든다면 간혹 `return`, `break`, `continue`를 여러 차례 사용해도 괜찮다. 오히려 때로는 단일 입/출구 규칙보다 의도를 표현하기 쉬워진다. 반면, `goto` 문은 큰 함수에서만 의미가 있으므로 작은 함수에서는 피해야 한다.
 
@@ -488,17 +488,17 @@ public enum Error {
 
 ## 요약
 
-- **함수는 작아야 한다** — 20줄도 길다. 들여쓰기는 1~2단까지만
-- **함수는 한 가지만 해야 한다** — 추상화 수준이 하나인 단계만 수행
-- **위에서 아래로 읽혀야 한다** — 내려가기 규칙을 따라 추상화 수준을 순차적으로 낮춤
-- **switch 문은 다형성 뒤에 숨겨라** — 추상 팩토리에 단 한 번만 허용
-- **서술적인 이름을 사용하라** — 길고 서술적인 이름이 짧고 어려운 이름보다 좋다
-- **인수는 가능한 줄여라** — 0개가 최선, 플래그 인수는 금지
-- **부수 효과를 일으키지 마라** — 이름에 드러나지 않는 동작은 거짓말
-- **명령과 조회를 분리하라** — 뭔가를 수행하거나 답하거나 둘 중 하나
-- **오류 코드 대신 예외를 사용하라** — try/catch 블록은 별도 함수로 분리
-- **중복을 없애라** — DRY 원칙은 소프트웨어 발전의 원동력
-- **처음부터 완벽한 함수를 짜는 사람은 없다** — 초안을 쓰고, 테스트하고, 다듬어라
+- **함수는 작아야 한다** - 20줄도 길다. 들여쓰기는 1~2단까지만
+- **함수는 한 가지만 해야 한다** - 추상화 수준이 하나인 단계만 수행
+- **위에서 아래로 읽혀야 한다** - 내려가기 규칙을 따라 추상화 수준을 순차적으로 낮춤
+- **switch 문은 다형성 뒤에 숨겨라** - 추상 팩토리에 단 한 번만 허용
+- **서술적인 이름을 사용하라** - 길고 서술적인 이름이 짧고 어려운 이름보다 좋다
+- **인수는 가능한 줄여라** - 0개가 최선, 플래그 인수는 금지
+- **부수 효과를 일으키지 마라** - 이름에 드러나지 않는 동작은 거짓말
+- **명령과 조회를 분리하라** - 뭔가를 수행하거나 답하거나 둘 중 하나
+- **오류 코드 대신 예외를 사용하라** - try/catch 블록은 별도 함수로 분리
+- **중복을 없애라** - DRY 원칙은 소프트웨어 발전의 원동력
+- **처음부터 완벽한 함수를 짜는 사람은 없다** - 초안을 쓰고, 테스트하고, 다듬어라
 
 ---
 

@@ -205,13 +205,13 @@ HTML 파싱  ──▶ DOM 트리 생성   ┐
 CSS 파싱   ──▶ CSSOM 트리 생성 ┘
                                      │
                                      ▼
-                          레이아웃(Reflow) — 각 요소의 위치와 크기 계산
+                          레이아웃(Reflow) - 각 요소의 위치와 크기 계산
                                      │
                                      ▼
-                          페인트(Repaint) — 각 요소를 픽셀로 그리기
+                          페인트(Repaint) - 각 요소를 픽셀로 그리기
                                      │
                                      ▼
-                          합성(Composite) — 레이어를 합쳐 최종 화면 생성
+                          합성(Composite) - 레이어를 합쳐 최종 화면 생성
 ```
 
 ### 6.2 크리티컬 렌더링 패스
@@ -248,7 +248,7 @@ function blockMainThread(): void {
 
 button.addEventListener('click', () => {
   blockMainThread();
-  // 이 3초 동안 화면이 멈춤 — 스크롤, 클릭, 입력 모두 반응 없음
+  // 이 3초 동안 화면이 멈춤 - 스크롤, 클릭, 입력 모두 반응 없음
 });
 ```
 

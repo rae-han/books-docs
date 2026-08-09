@@ -4,7 +4,7 @@
 
 복잡한 시스템의 행위를 어떻게 간결하고 명쾌하게 표현할 수 있는가? 유한 상태 기계(*FSM - Finite State Machine, 유한한 상태들과 그 사이의 전이로 시스템을 정의하는 추상 모델*)는 어떤 방식으로 구현할 수 있으며, 각 구현 기법은 어떤 비용과 장점을 가지는가? 스테이트 패턴은 다른 구현 방식들과 어떻게 다른가?
 
-> 변화의 수단이 없는 국가는 자기 보전의 수단이 없는 국가다.<br>— 에드먼드 버크(Edmund Burke), 1729~1797
+> 변화의 수단이 없는 국가는 자기 보전의 수단이 없는 국가다.<br>- 에드먼드 버크(Edmund Burke), 1729~1797
 
 ---
 
@@ -91,12 +91,12 @@ STD와 STT는 단순히 행위를 기술하는 표기법이 아니다. 매우 �
 
 ---
 
-## 2. 구현 기법 1 — 중첩 switch/case
+## 2. 구현 기법 1 - 중첩 switch/case
 
 FSM을 구현하는 가장 직접적인 전략은 **중첩 switch/case**(*nested switch/case - 두 단계 이상으로 중첩된 switch 문*)를 사용하는 것이다.
 
 <details>
-<summary>원문 Java 코드 — Turnstile.java (중첩 switch/case)</summary>
+<summary>원문 Java 코드 - Turnstile.java (중첩 switch/case)</summary>
 
 ```java
 public class Turnstile {
@@ -199,7 +199,7 @@ class Turnstile {
 위 코드에서 `TurnstileController` 인터페이스는 단순히 코드를 깔끔하게 정리하기 위한 장치가 아니다. **테스트가 설계에 미치는 영향**을 보여주는 사례다.
 
 <details>
-<summary>원문 Java 코드 — TurnstileController.java</summary>
+<summary>원문 Java 코드 - TurnstileController.java</summary>
 
 ```java
 public interface TurnstileController {
@@ -250,7 +250,7 @@ describe("Turnstile", () => {
 });
 ```
 
-> **Uncle Bob의 경험**: 테스트가 `state` 변수에 직접 접근하려면 이 변수가 전용(private)이면 안 된다. 그래서 변수를 패키지 스코프로 만들고 "원래는 전용으로 만들고 싶다"고 주석을 달았다. 자바에는 C++의 friend 같은 개념이 없어 테스트 가시성을 따로 표현하기 어렵다. 테스트할 생각을 하지 않았다면 아마 `TurnstileController` 인터페이스를 만들지도 않았을 것이다. 하지만 그랬다면 유감스러웠을 것이다 — 이 인터페이스는 **FSM의 논리와 행동 사이의 결합을 깔끔히 끊어준다**.
+> **Uncle Bob의 경험**: 테스트가 `state` 변수에 직접 접근하려면 이 변수가 전용(private)이면 안 된다. 그래서 변수를 패키지 스코프로 만들고 "원래는 전용으로 만들고 싶다"고 주석을 달았다. 자바에는 C++의 friend 같은 개념이 없어 테스트 가시성을 따로 표현하기 어렵다. 테스트할 생각을 하지 않았다면 아마 `TurnstileController` 인터페이스를 만들지도 않았을 것이다. 하지만 그랬다면 유감스러웠을 것이다 - 이 인터페이스는 **FSM의 논리와 행동 사이의 결합을 깔끔히 끊어준다**.
 
 > **핵심 통찰**: 각 단위를 독립적으로 검증하는 테스트 코드를 만들어야 한다는 필요성 때문에, 우리는 테스트할 필요가 없었더라면 사용하지 않았을 방법들로 코드 사이의 결합을 끊게 된다. **테스트 용이성은 결합이 적은 설계를 이끄는 힘**으로 작용한다.
 
@@ -265,14 +265,14 @@ describe("Turnstile", () => {
 
 ---
 
-## 3. 구현 기법 2 — 전이 테이블 해석
+## 3. 구현 기법 2 - 전이 테이블 해석
 
 전이를 설명하는 **데이터 테이블**을 만드는 것도 FSM을 구현하는 매우 흔한 방법이다. 이벤트를 처리하는 일종의 엔진이 이 테이블을 해석하는데, 엔진은 발생한 이벤트와 들어맞는 전이를 찾아서 적절한 동작을 호출하고 상태를 변경한다.
 
 ### 3.1 전이 테이블 구축과 엔진
 
 <details>
-<summary>원문 Java 코드 — Turnstile.java (전이 테이블 방식)</summary>
+<summary>원문 Java 코드 - Turnstile.java (전이 테이블 방식)</summary>
 
 ```java
 public class Turnstile {
@@ -387,7 +387,7 @@ class Turnstile {
 
 ---
 
-## 4. 구현 기법 3 — 스테이트 패턴 (State Pattern)
+## 4. 구현 기법 3 - 스테이트 패턴 (State Pattern)
 
 **스테이트 패턴**(*State Pattern - GoF가 정의한 23개 디자인 패턴 중 하나*)은 중첩 switch/case의 효율성과 상태 테이블 해석의 유연성을 **결합**한 패턴이다.
 
@@ -420,7 +420,7 @@ class Turnstile {
 ### 4.2 구현
 
 <details>
-<summary>원문 Java 코드 — TurnstileState.java</summary>
+<summary>원문 Java 코드 - TurnstileState.java</summary>
 
 ```java
 interface TurnstileState {
@@ -548,7 +548,7 @@ class Turnstile {
 
 ---
 
-## 5. 구현 기법 4 — SMC (State Machine Compiler)
+## 5. 구현 기법 4 - SMC (State Machine Compiler)
 
 State 파생형 작성의 지루함과 상태 기계 논리를 한 장소에 표현할 필요성 때문에, Uncle Bob은 **텍스트로 작성된 상태 전이 테이블을 스테이트 패턴 구현 클래스들로 변환하는 도구**인 SMC(*State Machine Compiler - 상태 기계 컴파일러, Uncle Bob이 작성한 무료 오픈소스 도구*)를 만들었다.
 
@@ -625,7 +625,7 @@ Exception FSMError
 사용자가 작성해야 할 코드는 `TurnstileActions` 추상 클래스와 `TurnstileFSM` 구상 클래스뿐이다.
 
 <details>
-<summary>원문 Java 코드 — 사용자 작성분 (TurnstileActions, TurnstileFSM)</summary>
+<summary>원문 Java 코드 - 사용자 작성분 (TurnstileActions, TurnstileFSM)</summary>
 
 ```java
 public abstract class TurnstileActions {
@@ -701,7 +701,7 @@ Uncle Bob은 상태 기계(와 SMC)를 다양한 종류의 애플리케이션에
 
 ### 7.1 GUI에 대한 상위 수준 애플리케이션 정책
 
-> **Uncle Bob의 경험**: "무상태(stateless)" GUI를 구현하는 코드 자체는 아이러니하게도 **상태와 밀접하다**. 어떤 메뉴 항목과 버튼을 비활성화할지, 어떤 하위 창을 보여줄지, 어떤 탭을 활성화할지, 초점을 어디에 맞출지 — 이 모든 결정은 인터페이스의 상태와 관련 있다. 이런 요소들을 단일 제어 구조에 조직해놓지 않으면 제어가 악몽이 된다는 사실을 오래전에 배웠다. 그 이후로 내가 작성하는 거의 모든 GUI에서는 SMC가 생성하는 FSM을 사용한다.
+> **Uncle Bob의 경험**: "무상태(stateless)" GUI를 구현하는 코드 자체는 아이러니하게도 **상태와 밀접하다**. 어떤 메뉴 항목과 버튼을 비활성화할지, 어떤 하위 창을 보여줄지, 어떤 탭을 활성화할지, 초점을 어디에 맞출지 - 이 모든 결정은 인터페이스의 상태와 관련 있다. 이런 요소들을 단일 제어 구조에 조직해놓지 않으면 제어가 악몽이 된다는 사실을 오래전에 배웠다. 그 이후로 내가 작성하는 거의 모든 GUI에서는 SMC가 생성하는 FSM을 사용한다.
 
 **로그인 화면 FSM 예시** (`login.sm`):
 
@@ -804,10 +804,10 @@ GUI 상호작용은 유한 상태 기계로 가득 차 있다. 사용자에게�
 - FSM의 4요소: **상태(state) / 전이(transition) / 이벤트(event) / 행동(action)**
 - STD/STT는 **누락된 전이**(어느 상태에서 어떤 이벤트를 처리하지 않는가)를 쉽게 발견하게 해주는 설계 도구다
 - **네 가지 구현 기법**:
-  1. **중첩 switch/case** — 단순·효율적이지만 대규모에 취약
-  2. **전이 테이블 해석** — 데이터로 표현해 런타임 교체 가능, 그러나 선형 검색 비용
-  3. **스테이트 패턴** — 다형성으로 분기를 대체. 효율적이고 명확하지만 파생형 작성이 지루하고 논리 분산
-  4. **SMC** — 텍스트 STT를 스테이트 패턴 코드로 자동 생성. 모든 장점을 결합하지만 도구 의존
+  1. **중첩 switch/case** - 단순·효율적이지만 대규모에 취약
+  2. **전이 테이블 해석** - 데이터로 표현해 런타임 교체 가능, 그러나 선형 검색 비용
+  3. **스테이트 패턴** - 다형성으로 분기를 대체. 효율적이고 명확하지만 파생형 작성이 지루하고 논리 분산
+  4. **SMC** - 텍스트 STT를 스테이트 패턴 코드로 자동 생성. 모든 장점을 결합하지만 도구 의존
 - **스테이트 vs 스트래터지**: 둘 다 위임 기반이지만, 스테이트 파생형은 **컨텍스트 참조를 갖고 컨텍스트 메소드를 호출**한다는 점이 핵심 차이
-- **테스트 용이성은 좋은 설계를 이끄는 힘** — `TurnstileController` 인터페이스는 테스트 때문에 도입되었지만, 결과적으로 FSM 논리와 행동을 결합 해제했다
-- FSM이 자연스럽게 들어맞는 영역: **GUI 상위 정책 / GUI 상호작용 / 분산 통신 프로토콜** — 이벤트에 의해 상태가 변하는 모든 곳
+- **테스트 용이성은 좋은 설계를 이끄는 힘** - `TurnstileController` 인터페이스는 테스트 때문에 도입되었지만, 결과적으로 FSM 논리와 행동을 결합 해제했다
+- FSM이 자연스럽게 들어맞는 영역: **GUI 상위 정책 / GUI 상호작용 / 분산 통신 프로토콜** - 이벤트에 의해 상태가 변하는 모든 곳

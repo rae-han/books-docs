@@ -8,7 +8,7 @@
 
 ---
 
-## 1. 문제 — 홈오토메이션 리모컨
+## 1. 문제 - 홈오토메이션 리모컨
 
 7개의 슬롯(각 ON/OFF 버튼) + UNDO 버튼을 가진 리모컨 API를 만들어야 한다. 문제는 제어할 협력 업체 클래스들이 **공통 인터페이스가 없다**는 것이다: `Light.on()/off()`, `Stereo.on()/setCd()/setVolume()`, `Hottub.jetsOn()/setTemperature()`, `GarageDoor.up()/down()`... 게다가 앞으로 기기가 더 추가된다.
 
@@ -51,7 +51,7 @@ interface Command {
   execute(): void;
 }
 
-/** 조명을 켜는 커맨드 — 리시버(Light)와 행동(on)을 묶는다. */
+/** 조명을 켜는 커맨드 - 리시버(Light)와 행동(on)을 묶는다. */
 class LightOnCommand implements Command {
   constructor(private light: Light) {}
 
@@ -113,7 +113,7 @@ public class SimpleRemoteControl {
 ```
 </details>
 
-> **패턴 정의 — 커맨드 패턴 (Command Pattern)**<br>요청 내역을 객체로 캡슐화해서, 서로 다른 요청 내역에 따라 클라이언트를 매개변수화한다. 이로써 요청을 큐에 저장하거나, 로그로 기록하거나, 작업 취소 기능을 사용할 수 있다.
+> **패턴 정의 - 커맨드 패턴 (Command Pattern)**<br>요청 내역을 객체로 캡슐화해서, 서로 다른 요청 내역에 따라 클라이언트를 매개변수화한다. 이로써 요청을 큐에 저장하거나, 로그로 기록하거나, 작업 취소 기능을 사용할 수 있다.
 
 ```
  Client ──▶ Invoker ──execute()──▶ Command ──action()──▶ Receiver
@@ -152,7 +152,7 @@ class RemoteControl {
   }
 }
 
-/** 널 객체(Null Object) — 아무 일도 하지 않는 커맨드. */
+/** 널 객체(Null Object) - 아무 일도 하지 않는 커맨드. */
 class NoCommand implements Command {
   execute(): void {}
 }
@@ -162,7 +162,7 @@ class NoCommand implements Command {
 
 ---
 
-## 5. TS/JS 관점 — 함수가 곧 커맨드
+## 5. TS/JS 관점 - 함수가 곧 커맨드
 
 > **핵심 통찰**: 자바스크립트는 **함수가 일급 객체**라, 커맨드가 하나의 연산(`execute`)만 필요하면 **함수 자체가 커맨드**가 된다. 자바 8의 람다도 같은 이유로 구상 커맨드 클래스를 없앨 수 있다.
 
@@ -231,7 +231,7 @@ class RemoteControlWithUndo {
 }
 ```
 
-### 상태를 저장하는 undo — CeilingFan
+### 상태를 저장하는 undo - CeilingFan
 
 선풍기처럼 **이전 상태로 되돌려야** 하는 경우, 커맨드가 **직전 속도를 저장**한다.
 
@@ -262,7 +262,7 @@ class CeilingFanHighCommand implements Command {
 
 ---
 
-## 7. 매크로 커맨드 — 여러 명령을 한 번에
+## 7. 매크로 커맨드 - 여러 명령을 한 번에
 
 파티 모드(조명↓ + 오디오 ON + TV ON + 욕조 물 채우기)를 버튼 하나로. **다른 커맨드들을 담는 커맨드**를 만든다.
 
@@ -293,7 +293,7 @@ remoteControl.setCommand(0, partyOn, partyOff);
 
 ---
 
-## 8. 더 넓은 활용 — 큐·로그·트랜잭션
+## 8. 더 넓은 활용 - 큐·로그·트랜잭션
 
 커맨드는 "리시버 + 일련의 행동"을 **일급 객체로 포장**한 것이라, 만든 뒤 오랜 시간이 지나거나 다른 스레드에서도 실행할 수 있다.
 
@@ -307,13 +307,13 @@ remoteControl.setCommand(0, partyOn, partyOff);
 
 ## 연습 문제 (해답 예시)
 
-**1. `GarageDoorOpenCommand`** — `Command`를 구현하고 `execute()`에서 `garageDoor.up()`을 호출한다. 리모컨에 로드해 버튼을 누르면 "차고 문이 열렸습니다".
+**1. `GarageDoorOpenCommand`** - `Command`를 구현하고 `execute()`에서 `garageDoor.up()`을 호출한다. 리모컨에 로드해 버튼을 누르면 "차고 문이 열렸습니다".
 
-**2. OFF 커맨드들** — `LightOffCommand`, `StereoOffCommand`, `TVOffCommand`, `HottubOffCommand`를 각 리시버의 off 계열 메서드와 묶어 만든다.
+**2. OFF 커맨드들** - `LightOffCommand`, `StereoOffCommand`, `TVOffCommand`, `HottubOffCommand`를 각 리시버의 off 계열 메서드와 묶어 만든다.
 
-**3. `MacroCommand.undo()`** — `execute()`가 순방향이면 `undo()`는 **역방향**으로 각 커맨드의 `undo()`를 호출한다(§7 코드).
+**3. `MacroCommand.undo()`** - `execute()`가 순방향이면 `undo()`는 **역방향**으로 각 커맨드의 `undo()`를 호출한다(§7 코드).
 
-**4. 스윙 앱에서 역할 구분** — 버튼 = **인보커**, `ActionListener` = **커맨드 인터페이스**(`actionPerformed`=`execute`), `AngelListener`/`DevilListener` = **구상 커맨드**, `System.out` = **리시버**, 셋업 클래스 = **클라이언트**.
+**4. 스윙 앱에서 역할 구분** - 버튼 = **인보커**, `ActionListener` = **커맨드 인터페이스**(`actionPerformed`=`execute`), `AngelListener`/`DevilListener` = **구상 커맨드**, `System.out` = **리시버**, 셋업 클래스 = **클라이언트**.
 
 ---
 
@@ -323,7 +323,7 @@ remoteControl.setCommand(0, partyOn, partyOff);
 
 1. 바뀌는 부분을 캡슐화한다. 2. 인터페이스에 맞춰 프로그래밍한다. 3. 상속보다 구성. 4. 느슨한 결합. 5. OCP. 6. DIP.
 
-커맨드 패턴은 특히 **원칙 4(느슨한 결합)** 를 강하게 실현한다 — 인보커와 리시버가 커맨드를 통해 완전히 분리된다.
+커맨드 패턴은 특히 **원칙 4(느슨한 결합)** 를 강하게 실현한다 - 인보커와 리시버가 커맨드를 통해 완전히 분리된다.
 
 ---
 
@@ -341,7 +341,7 @@ remoteControl.setCommand(0, partyOn, partyOff);
 
 ## 다른 챕터와의 관계
 
-- **2장 옵저버**: 스윙 `ActionListener`는 옵저버이자 커맨드 — 두 패턴이 함께 쓰인다.
+- **2장 옵저버**: 스윙 `ActionListener`는 옵저버이자 커맨드 - 두 패턴이 함께 쓰인다.
 - **1장 전략 vs 커맨드**: 둘 다 "행동을 객체로 캡슐화"하지만, 전략은 **알고리즘 교체**, 커맨드는 **요청 캡슐화(+실행 취소·큐)** 에 초점.
 - **14장 (기타 패턴)**: 커맨드의 큐/로그 활용은 트랜잭션·메멘토(상태 저장) 등과 연결된다.
 
@@ -355,7 +355,7 @@ remoteControl.setCommand(0, partyOn, partyOff);
 2. `CeilingFan`의 LOW/MEDIUM/OFF 커맨드도 만들어 보라(HIGH와 동일 구조, 이전 속도 저장).
 3. 웹 서버의 요청 처리에 작업 큐를 어떻게 쓸까? (→ 요청을 커맨드로 큐잉, 워커 풀이 소비)
 
-### 🏅 널 객체 (NoCommand) — 패턴 장려상
+### 🏅 널 객체 (NoCommand) - 패턴 장려상
 
 리턴할 객체가 없고 클라이언트가 `null`을 처리하지 않게 하고 싶을 때, "아무 일도 안 하는 객체"를 기본값으로 둔다.
 

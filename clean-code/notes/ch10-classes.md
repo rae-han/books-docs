@@ -30,12 +30,12 @@
 
 ## 2. 클래스는 작아야 한다!
 
-클래스를 만들 때 **첫 번째 규칙도 크기, 두 번째 규칙도 크기**다. 더 작아야 한다. 하지만 함수는 물리적인 행 수로 크기를 측정하는 반면, 클래스는 **맡은 책임(*Responsibility — Rebecca Wirfs-Brock 등의 [RDD]에서 정의한 개념으로, 클래스가 변경되어야 할 이유를 의미한다.*)의 수**로 크기를 측정한다.
+클래스를 만들 때 **첫 번째 규칙도 크기, 두 번째 규칙도 크기**다. 더 작아야 한다. 하지만 함수는 물리적인 행 수로 크기를 측정하는 반면, 클래스는 **맡은 책임(*Responsibility - Rebecca Wirfs-Brock 등의 [RDD]에서 정의한 개념으로, 클래스가 변경되어야 할 이유를 의미한다.*)의 수**로 크기를 측정한다.
 
 다음은 공개 메서드가 약 70개인 `SuperDashboard` 클래스다:
 
 ```java
-// 나쁜 예 — 너무 많은 책임 (메서드 70개 이상)
+// 나쁜 예 - 너무 많은 책임 (메서드 70개 이상)
 public class SuperDashboard extends JFrame implements MetaDataUser {
     public String getCustomizerLanguagePath()
     public void setSystemConfigPath(String systemConfigPath)
@@ -56,7 +56,7 @@ public class SuperDashboard extends JFrame implements MetaDataUser {
 메서드 수를 다섯 개로 줄여도 여전히 문제가 될 수 있다:
 
 ```java
-// 여전히 나쁜 예 — 메서드 수는 적지만 책임이 둘
+// 여전히 나쁜 예 - 메서드 수는 적지만 책임이 둘
 public class SuperDashboard extends JFrame implements MetaDataUser {
     public Component getLastFocusedComponent()
     public void setLastFocused(Component lastFocused)
@@ -91,7 +91,7 @@ public class SuperDashboard extends JFrame implements MetaDataUser {
 `SuperDashboard`에서 버전 정보를 추출하면:
 
 ```java
-// 좋은 예 — 단일 책임 클래스
+// 좋은 예 - 단일 책임 클래스
 public class Version {
     public int getMajorVersionNumber()
     public int getMinorVersionNumber()
@@ -105,8 +105,8 @@ public class Version {
 
 SRP는 이해하고 지키기 수월한 개념이지만, 클래스 설계자가 **가장 무시하는 규칙** 중 하나다. 이유는 다음과 같다:
 
-1. **'돌아가는 소프트웨어'에만 초점** — 프로그램이 돌아가면 일이 끝났다고 여기고, 다음 관심사인 '깨끗하고 체계적인 소프트웨어'로 전환하지 않는다
-2. **큰 그림 우려** — 많은 개발자가 "자잘한 단일 책임 클래스가 많아지면 큰 그림을 이해하기 어려워진다"고 걱정한다
+1. **'돌아가는 소프트웨어'에만 초점** - 프로그램이 돌아가면 일이 끝났다고 여기고, 다음 관심사인 '깨끗하고 체계적인 소프트웨어'로 전환하지 않는다
+2. **큰 그림 우려** - 많은 개발자가 "자잘한 단일 책임 클래스가 많아지면 큰 그림을 이해하기 어려워진다"고 걱정한다
 
 하지만 작은 클래스가 많은 시스템이든 큰 클래스가 몇 개뿐인 시스템이든, **돌아가는 부품 수와 익힐 내용의 양은 비슷하다**.
 
@@ -121,7 +121,7 @@ SRP는 이해하고 지키기 수월한 개념이지만, 클래스 설계자가 
 클래스는 인스턴스 변수 수가 작아야 한다. 각 클래스 메서드는 클래스 인스턴스 변수를 **하나 이상** 사용해야 한다. 메서드가 변수를 더 많이 사용할수록 응집도가 더 높다.
 
 ```java
-// 좋은 예 — 응집도가 아주 높은 클래스
+// 좋은 예 - 응집도가 아주 높은 클래스
 public class Stack {
     private int topOfStack = 0;
     List<Integer> elements = new LinkedList<Integer>();
@@ -160,14 +160,14 @@ public class Stack {
 1. 큰 함수 일부를 작은 함수로 빼내려 하는데, 빼내려는 코드가 변수 네 개를 사용한다
 2. 네 변수를 새 함수에 인수로 넘기는 대신, **클래스 인스턴스 변수로 승격**하면 함수를 쪼개기 쉬워진다
 3. 그러면 몇몇 함수만 사용하는 인스턴스 변수가 늘어나 **응집력이 낮아진다**
-4. 응집력을 잃는다면 **쪼개라!** — 몇몇 함수가 몇몇 변수만 사용한다면 독자적인 클래스로 분리
+4. 응집력을 잃는다면 **쪼개라!** - 몇몇 함수가 몇몇 변수만 사용한다면 독자적인 클래스로 분리
 
 ### PrintPrimes 리팩터링 예제
 
 커누스 교수의 `PrintPrimes` 프로그램을 리팩터링한 사례를 보자.
 
 ```java
-// 나쁜 예 — 하나의 거대한 함수
+// 나쁜 예 - 하나의 거대한 함수
 public class PrintPrimes {
     public static void main(String[] args) {
         final int M = 1000;
@@ -186,7 +186,7 @@ public class PrintPrimes {
 리팩터링 후에는 **세 가지 책임**으로 분리된다:
 
 ```java
-// 좋은 예 — 책임 1: 실행 환경
+// 좋은 예 - 책임 1: 실행 환경
 public class PrimePrinter {
     public static void main(String[] args) {
         final int NUMBER_OF_PRIMES = 1000;
@@ -201,7 +201,7 @@ public class PrimePrinter {
     }
 }
 
-// 좋은 예 — 책임 2: 출력 형식
+// 좋은 예 - 책임 2: 출력 형식
 public class RowColumnPagePrinter {
     private int rowsPerPage;
     private int columnsPerPage;
@@ -211,7 +211,7 @@ public class RowColumnPagePrinter {
     // ... 출력 관련 메서드
 }
 
-// 좋은 예 — 책임 3: 소수 생성 알고리즘
+// 좋은 예 - 책임 3: 소수 생성 알고리즘
 public class PrimeGenerator {
     private static int[] primes;
     private static ArrayList<Integer> multiplesOfPrimeFactors;
@@ -244,7 +244,7 @@ public class PrimeGenerator {
 ### SQL 클래스 리팩터링
 
 ```java
-// 나쁜 예 — 변경이 필요해 '손대야' 하는 클래스
+// 나쁜 예 - 변경이 필요해 '손대야' 하는 클래스
 public class Sql {
     public Sql(String table, Column[] columns)
     public String create()
@@ -264,10 +264,10 @@ public class Sql {
 이 클래스는 **SRP를 위반**한다:
 - 새로운 SQL 문을 지원하려면 반드시 `Sql` 클래스에 손대야 한다
 - 기존 SQL 문 하나를 수정할 때도 반드시 `Sql` 클래스에 손대야 한다
-- `selectWithCriteria`라는 비공개 메서드는 `select` 문을 처리할 때만 사용한다 — **클래스 일부에서만 사용되는 비공개 메서드는 코드 개선의 잠재적 여지를 시사**한다
+- `selectWithCriteria`라는 비공개 메서드는 `select` 문을 처리할 때만 사용한다 - **클래스 일부에서만 사용되는 비공개 메서드는 코드 개선의 잠재적 여지를 시사**한다
 
 ```java
-// 좋은 예 — 닫힌 클래스 집합
+// 좋은 예 - 닫힌 클래스 집합
 abstract public class Sql {
     public Sql(String table, Column[] columns)
     abstract public String generate();
@@ -342,7 +342,7 @@ public class ColumnList {
 `Portfolio` 클래스가 외부 `TokyoStockExchange` API를 직접 사용해 포트폴리오 값을 계산한다면, 5분마다 값이 달라지는 API로 테스트 코드를 짜기란 쉽지 않다.
 
 ```java
-// 좋은 예 — 인터페이스로 격리
+// 좋은 예 - 인터페이스로 격리
 public interface StockExchange {
     Money currentPrice(String symbol);
 }
@@ -360,7 +360,7 @@ public class Portfolio {
 이제 테스트용 클래스를 만들 수 있다:
 
 ```java
-// 테스트 코드 — 고정된 주가를 반환하는 Stub
+// 테스트 코드 - 고정된 주가를 반환하는 Stub
 public class PortfolioTest {
     private FixedStockExchangeStub exchange;
     private Portfolio portfolio;
@@ -388,9 +388,9 @@ public class PortfolioTest {
 
 ## 요약
 
-- **클래스는 작아야 한다** — 크기의 척도는 행 수가 아니라 **맡은 책임의 수**다
-- **SRP(단일 책임 원칙)**: 클래스를 변경할 이유는 단 하나여야 한다 — 25단어 테스트로 확인하라
-- **응집도**: 메서드가 인스턴스 변수를 많이 사용할수록 응집도가 높다 — 응집도가 낮아지면 클래스를 쪼개라
+- **클래스는 작아야 한다** - 크기의 척도는 행 수가 아니라 **맡은 책임의 수**다
+- **SRP(단일 책임 원칙)**: 클래스를 변경할 이유는 단 하나여야 한다 - 25단어 테스트로 확인하라
+- **응집도**: 메서드가 인스턴스 변수를 많이 사용할수록 응집도가 높다 - 응집도가 낮아지면 클래스를 쪼개라
 - **큰 함수를 작은 함수로 나누다 보면** 자연스럽게 **작은 클래스 여럿으로 쪼갤 기회**가 생긴다
 - **변경하기 쉬운 클래스**: OCP를 따라 확장에 개방적이고 수정에 폐쇄적인 구조를 만들어라
 - **변경으로부터 격리**: 인터페이스와 추상 클래스를 사용해 결합도를 낮추고 DIP를 따르라

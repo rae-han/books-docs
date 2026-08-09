@@ -21,12 +21,12 @@
 
 ---
 
-## 1. 함수 추출하기 (6.1) — Extract Function
+## 1. 함수 추출하기 (6.1) - Extract Function
 
 코드 조각을 **목적을 드러내는 이름의 함수**로 뽑아낸다. (반대: 함수 인라인하기 6.2)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -52,7 +52,7 @@ function printOwing(invoice) {
 </details>
 
 ```typescript
-// before — "세부 사항 출력"이 주석으로만 표시돼 있다
+// before - "세부 사항 출력"이 주석으로만 표시돼 있다
 function printOwing(invoice: Invoice): void {
   printBanner();
   const outstanding = calculateOutstanding();
@@ -60,7 +60,7 @@ function printOwing(invoice: Invoice): void {
   console.log(`고객명: ${invoice.customer}`);
   console.log(`채무액: ${outstanding}`);
 }
-// after — 목적을 이름(printDetails)으로 승격 (중첩 함수라 invoice에 접근 가능)
+// after - 목적을 이름(printDetails)으로 승격 (중첩 함수라 invoice에 접근 가능)
 function printOwing(invoice: Invoice): void {
   printBanner();
   const outstanding = calculateOutstanding();
@@ -72,7 +72,7 @@ function printOwing(invoice: Invoice): void {
 }
 ```
 
-**배경**: 파울러가 가장 많이 쓰는 리팩터링. 기준은 길이·재사용성이 아니라 **"목적과 구현의 분리"**다 — 파악에 시간이 걸리는 코드를 빼서 **'무엇을' 하는지**로 이름 짓는다. 이름이 구현보다 길어도 좋다(강조=`highlight()`가 반전=`reverse()`만 호출하듯).
+**배경**: 파울러가 가장 많이 쓰는 리팩터링. 기준은 길이·재사용성이 아니라 **"목적과 구현의 분리"**다 - 파악에 시간이 걸리는 코드를 빼서 **'무엇을' 하는지**로 이름 짓는다. 이름이 구현보다 길어도 좋다(강조=`highlight()`가 반전=`reverse()`만 호출하듯).
 
 **절차**:
 1. 함수를 새로 만들고 **'무엇을'** 하는지 드러나는 이름을 붙인다.
@@ -87,12 +87,12 @@ function printOwing(invoice: Invoice): void {
 
 ---
 
-## 2. 함수 인라인하기 (6.2) — Inline Function
+## 2. 함수 인라인하기 (6.2) - Inline Function
 
 함수 호출을 **본문으로 대체**하고 그 함수를 제거한다. (반대: 함수 추출하기 6.1)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -111,7 +111,7 @@ function getRating(driver) {
 </details>
 
 ```typescript
-// before — 본문이 이름만큼 명확해 간접 호출이 군더더기
+// before - 본문이 이름만큼 명확해 간접 호출이 군더더기
 function getRating(driver: Driver): number {
   return moreThanFiveLateDeliveries(driver) ? 2 : 1;
 }
@@ -137,12 +137,12 @@ function getRating(driver: Driver): number {
 
 ---
 
-## 3. 변수 추출하기 (6.3) — Extract Variable
+## 3. 변수 추출하기 (6.3) - Extract Variable
 
 복잡한 표현식의 일부에 **이름 붙인 지역 변수**를 도입한다. (반대: 변수 인라인하기 6.4)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -159,7 +159,7 @@ return basePrice - quantityDiscount + shipping;
 </details>
 
 ```typescript
-// before — 기본가·수량할인·배송비가 한 표현식에 뭉쳐 의미가 안 보인다
+// before - 기본가·수량할인·배송비가 한 표현식에 뭉쳐 의미가 안 보인다
 function price(order: Order): number {
   return (
     order.quantity * order.itemPrice -
@@ -167,7 +167,7 @@ function price(order: Order): number {
     Math.min(order.quantity * order.itemPrice * 0.1, 100)
   );
 }
-// after — 각 단계에 이름을 붙여 "기본가 - 수량할인 + 배송비"가 드러난다
+// after - 각 단계에 이름을 붙여 "기본가 - 수량할인 + 배송비"가 드러난다
 function price(order: Order): number {
   const basePrice = order.quantity * order.itemPrice;
   const quantityDiscount = Math.max(0, order.quantity - 500) * order.itemPrice * 0.05;
@@ -184,16 +184,16 @@ function price(order: Order): number {
 3. 원본 표현식을 새 변수로 교체한다.
 4. 테스트한다(여러 곳이면 각각 교체하며 매번 테스트).
 
-> **핵심 통찰**: 클래스 안이라면 같은 추출을 **게터 메서드**로 하는 편이 낫다 — `get basePrice()` 등으로 만들면 클래스 전체에서 쓸 수 있다. 객체는 "로직·데이터를 공유할 적당한 문맥"을 제공한다.
+> **핵심 통찰**: 클래스 안이라면 같은 추출을 **게터 메서드**로 하는 편이 낫다 - `get basePrice()` 등으로 만들면 클래스 전체에서 쓸 수 있다. 객체는 "로직·데이터를 공유할 적당한 문맥"을 제공한다.
 
 ---
 
-## 4. 변수 인라인하기 (6.4) — Inline Variable
+## 4. 변수 인라인하기 (6.4) - Inline Variable
 
 이름이 표현식만큼 명확한 변수를 없애고 **표현식으로 되돌린다**. (반대: 변수 추출하기 6.3)
 
 ```typescript
-// before — baseprice는 anOrder.basePrice와 다를 바 없다
+// before - baseprice는 anOrder.basePrice와 다를 바 없다
 const basePrice = anOrder.basePrice;
 return basePrice > 1000;
 // after
@@ -211,7 +211,7 @@ return anOrder.basePrice > 1000;
 
 ---
 
-## 5. 함수 선언 바꾸기 (6.5) — Change Function Declaration
+## 5. 함수 선언 바꾸기 (6.5) - Change Function Declaration
 
 함수의 **이름·매개변수**를 바꾼다("함수 이름 바꾸기", "시그니처 바꾸기"로도 불림).
 
@@ -221,15 +221,15 @@ function circum(radius: number): number { return 2 * Math.PI * radius; }
 function circumference(radius: number): number { return 2 * Math.PI * radius; }
 ```
 
-**배경**: 함수 선언은 시스템 구성 요소를 잇는 **연결부**다. 그중 가장 중요한 것이 **이름** — 좋으면 구현을 안 봐도 호출문만으로 목적을 안다. **매개변수**는 함수의 활용 문맥을 정한다(전화번호 포매터가 '사람'이 아니라 '전화번호'를 받으면 결합이 줄고 재사용 범위가 넓어진다). 잘못된 이름을 보면 **더 나은 이름이 떠오르는 즉시 바꾸라**는 명령으로 받아들여라.
+**배경**: 함수 선언은 시스템 구성 요소를 잇는 **연결부**다. 그중 가장 중요한 것이 **이름** - 좋으면 구현을 안 봐도 호출문만으로 목적을 안다. **매개변수**는 함수의 활용 문맥을 정한다(전화번호 포매터가 '사람'이 아니라 '전화번호'를 받으면 결합이 줄고 재사용 범위가 넓어진다). 잘못된 이름을 보면 **더 나은 이름이 떠오르는 즉시 바꾸라**는 명령으로 받아들여라.
 
-**절차 — 간단한 절차** (호출처를 단번에 고칠 수 있을 때):
+**절차 - 간단한 절차** (호출처를 단번에 고칠 수 있을 때):
 1. (매개변수 제거 시) 본문에서 그 매개변수를 참조하는 곳이 없는지 확인한다.
 2. 선언을 원하는 형태로 바꾼다.
 3. 기존 선언을 참조하는 곳을 모두 찾아 수정한다.
 4. 테스트한다. (이름 변경 + 매개변수 추가는 각각 독립적으로 처리)
 
-**절차 — 마이그레이션 절차** (호출처가 많거나 복잡·다형·공개 API일 때, 점진적 수정):
+**절차 - 마이그레이션 절차** (호출처가 많거나 복잡·다형·공개 API일 때, 점진적 수정):
 1. (필요시) 본문을 미리 리팩터링한다.
 2. 본문을 **새 함수로 추출**한다(이름이 겹치면 임시 이름).
 3. 추출한 함수에 매개변수를 추가한다(간단한 절차).
@@ -238,16 +238,16 @@ function circumference(radius: number): number { return 2 * Math.PI * radius; }
 6. 임시 이름이었다면 다시 원래 이름으로 바꾼다.
 7. 테스트한다.
 
-> **핵심 통찰**: 함수 선언 바꾸기는 **직접 못 고치는 공개 API**에도 좋다 — 새 함수를 추가하고 기존 함수를 **폐기 대상(deprecated)**으로 표시한 뒤, 모든 클라이언트가 이전하면 삭제한다.
+> **핵심 통찰**: 함수 선언 바꾸기는 **직접 못 고치는 공개 API**에도 좋다 - 새 함수를 추가하고 기존 함수를 **폐기 대상(deprecated)**으로 표시한 뒤, 모든 클라이언트가 이전하면 삭제한다.
 
 ---
 
-## 6. 변수 캡슐화하기 (6.6) — Encapsulate Variable
+## 6. 변수 캡슐화하기 (6.6) - Encapsulate Variable
 
 접근 범위가 넓은 데이터로의 접근을 **게터·세터 함수**로 감싼다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -261,7 +261,7 @@ export function setDefaultOwner(arg) { defaultOwnerData = arg; }
 </details>
 
 ```typescript
-// after — 데이터 접근을 함수로 독점 (파일 밖에는 접근자만 노출)
+// after - 데이터 접근을 함수로 독점 (파일 밖에는 접근자만 노출)
 let defaultOwnerData = { firstName: "마틴", lastName: "파울러" };
 export function defaultOwner(): Person {
   return defaultOwnerData;
@@ -271,7 +271,7 @@ export function setDefaultOwner(arg: Person): void {
 }
 ```
 
-**배경**: 함수는 다루기 쉽지만(전달 함수로 우회 가능) **데이터는 참조하는 모든 곳을 한 번에 바꿔야** 해서 까다롭다. 특히 유효범위가 넓은 데이터(전역 데이터)가 골칫거리다. 접근을 **함수로 독점**하면 "데이터 재구성"이라는 어려운 작업을 "함수 재구성"이라는 쉬운 작업으로 바꾸고, 검증·로깅을 끼울 통로도 생긴다. **유효범위가 함수보다 넓은 가변 데이터는 모두 캡슐화**하라(불변 데이터는 캡슐화 이유가 적다 — "불변성은 강력한 방부제").
+**배경**: 함수는 다루기 쉽지만(전달 함수로 우회 가능) **데이터는 참조하는 모든 곳을 한 번에 바꿔야** 해서 까다롭다. 특히 유효범위가 넓은 데이터(전역 데이터)가 골칫거리다. 접근을 **함수로 독점**하면 "데이터 재구성"이라는 어려운 작업을 "함수 재구성"이라는 쉬운 작업으로 바꾸고, 검증·로깅을 끼울 통로도 생긴다. **유효범위가 함수보다 넓은 가변 데이터는 모두 캡슐화**하라(불변 데이터는 캡슐화 이유가 적다 - "불변성은 강력한 방부제").
 
 **절차**:
 1. 변수의 접근·갱신을 전담하는 캡슐화 함수를 만든다.
@@ -281,11 +281,11 @@ export function setDefaultOwner(arg: Person): void {
 5. 테스트한다.
 6. (값이 레코드라면) `레코드 캡슐화하기(7.1)`를 고려한다.
 
-> **핵심 통찰**: 게터가 **데이터 값 자체의 변경**까지 막지는 못한다 — 필요하면 게터가 **복제본**을 반환하거나, 값을 불변 클래스(`레코드 캡슐화하기`)로 감싼다.
+> **핵심 통찰**: 게터가 **데이터 값 자체의 변경**까지 막지는 못한다 - 필요하면 게터가 **복제본**을 반환하거나, 값을 불변 클래스(`레코드 캡슐화하기`)로 감싼다.
 
 ---
 
-## 7. 변수 이름 바꾸기 (6.7) — Rename Variable
+## 7. 변수 이름 바꾸기 (6.7) - Rename Variable
 
 변수 이름을 **의미가 드러나게** 바꾼다.
 
@@ -295,7 +295,7 @@ let a = height * width;
 let area = height * width;
 ```
 
-**배경**: 명확한 프로그래밍의 핵심은 이름짓기다. 이름의 중요성은 **사용 범위**에 비례한다 — 한 줄 람다의 변수는 한 글자여도 되지만, 값이 오래 지속되는 **필드**일수록 신중해야 한다.
+**배경**: 명확한 프로그래밍의 핵심은 이름짓기다. 이름의 중요성은 **사용 범위**에 비례한다 - 한 줄 람다의 변수는 한 글자여도 되지만, 값이 오래 지속되는 **필드**일수록 신중해야 한다.
 
 **절차**:
 1. (폭넓게 쓰이면) `변수 캡슐화하기(6.6)`를 먼저 고려한다.
@@ -304,12 +304,12 @@ let area = height * width;
 
 ---
 
-## 8. 매개변수 객체 만들기 (6.8) — Introduce Parameter Object
+## 8. 매개변수 객체 만들기 (6.8) - Introduce Parameter Object
 
 함께 몰려다니는 인수들을 **객체 하나로 묶는다**.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -343,7 +343,7 @@ function readingsOutsideRange(station: Station, range: NumberRange): Reading[] {
 }
 ```
 
-**배경**: 데이터 뭉치를 구조로 묶으면 (1) 관계가 명확해지고, (2) 매개변수 수가 줄고, (3) 이름이 일관돼진다. 진짜 힘은 그 다음 — 데이터에 공통으로 적용되는 **동작을 이 구조(클래스)로 옮겨** 새로운 추상 개념(예: `Range`)으로 격상시키는 것이다.
+**배경**: 데이터 뭉치를 구조로 묶으면 (1) 관계가 명확해지고, (2) 매개변수 수가 줄고, (3) 이름이 일관돼진다. 진짜 힘은 그 다음 - 데이터에 공통으로 적용되는 **동작을 이 구조(클래스)로 옮겨** 새로운 추상 개념(예: `Range`)으로 격상시키는 것이다.
 
 **절차**:
 1. 적당한 데이터 구조가 없으면 만든다(주로 **값 객체** 클래스).
@@ -354,16 +354,16 @@ function readingsOutsideRange(station: Station, range: NumberRange): Reading[] {
 6. 기존 매개변수를 쓰던 코드를 새 구조의 원소를 쓰도록 바꾼다.
 7. 기존 매개변수를 제거하고 테스트한다.
 
-> **핵심 통찰**: 이 리팩터링은 대개 더 큰 작업의 **첫 단계**다 — 매개변수 그룹을 객체로 바꾼 뒤 동작을 옮기고, 값 기반 동치성까지 더하면 **진정한 값 객체**로 거듭난다.
+> **핵심 통찰**: 이 리팩터링은 대개 더 큰 작업의 **첫 단계**다 - 매개변수 그룹을 객체로 바꾼 뒤 동작을 옮기고, 값 기반 동치성까지 더하면 **진정한 값 객체**로 거듭난다.
 
 ---
 
-## 9. 여러 함수를 클래스로 묶기 (6.9) — Combine Functions into Class
+## 9. 여러 함수를 클래스로 묶기 (6.9) - Combine Functions into Class
 
 공통 데이터에 작용하는 함수들을 **하나의 클래스**로 묶는다. (대안: 6.10)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -400,7 +400,7 @@ class Reading {
 
 ---
 
-## 10. 여러 함수를 변환 함수로 묶기 (6.10) — Combine Functions into Transform
+## 10. 여러 함수를 변환 함수로 묶기 (6.10) - Combine Functions into Transform
 
 파생 데이터 계산 함수들을 **하나의 변환 함수**로 모은다(읽기전용 데이터에 적합). (대안: 6.9)
 
@@ -424,7 +424,7 @@ function enrichReading(original: ReadingData): EnrichedReading {
 
 ---
 
-## 11. 단계 쪼개기 (6.11) — Split Phase
+## 11. 단계 쪼개기 (6.11) - Split Phase
 
 서로 다른 두 대상을 다루는 코드를 **순차적인 두 단계**로 분리한다. (Ch1에서 사용)
 
@@ -446,7 +446,7 @@ function statement(invoice: Invoice, plays: Plays): string {
 5. 추출한 두 번째 단계 함수의 매개변수를 검토해, 첫 단계에서 쓰이면 중간 데이터 구조로 옮긴다(매번 테스트).
 6. 첫 단계 코드를 함수로 추출하면서 **중간 데이터 구조를 반환**하게 한다.
 
-> **핵심 통찰**: 6.9·6.10·6.11은 저수준 함수를 다시 **고수준 구조**로 조직하는 세 방법이다 — 갱신되는 데이터는 클래스(6.9), 읽기전용은 변환 함수(6.10), 성격이 다른 두 작업은 단계(6.11)로.
+> **핵심 통찰**: 6.9·6.10·6.11은 저수준 함수를 다시 **고수준 구조**로 조직하는 세 방법이다 - 갱신되는 데이터는 클래스(6.9), 읽기전용은 변환 함수(6.10), 성격이 다른 두 작업은 단계(6.11)로.
 
 ---
 

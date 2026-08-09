@@ -30,7 +30,7 @@
 
 ## 1. 퍼사드 패턴 (Facade Pattern)
 
-퍼사드(*Facade — "겉모습"이라는 뜻으로, 복잡한 내부를 숨기고 단순한 외부 인터페이스를 제공*)란 실제 모습을 숨기고 꾸며낸 겉모습만을 세상에 드러내는 것을 뜻한다. 퍼사드 패턴은 심층적인 복잡성을 숨기고, 사용하기 편리한 높은 수준의 인터페이스를 제공하는 패턴이다.
+퍼사드(*Facade - "겉모습"이라는 뜻으로, 복잡한 내부를 숨기고 단순한 외부 인터페이스를 제공*)란 실제 모습을 숨기고 꾸며낸 겉모습만을 세상에 드러내는 것을 뜻한다. 퍼사드 패턴은 심층적인 복잡성을 숨기고, 사용하기 편리한 높은 수준의 인터페이스를 제공하는 패턴이다.
 
 ### 패턴 카드: Facade
 
@@ -42,12 +42,12 @@
 | **장점** | 사용 용이성, 결합도 감소, 코드 가독성 향상 |
 | **단점** | 과도한 추상화로 유연성 감소, 퍼사드 자체가 "신 객체"(*God Object*)가 될 위험 |
 
-### 1.1 기본 퍼사드 — jQuery의 사례
+### 1.1 기본 퍼사드 - jQuery의 사례
 
 퍼사드는 jQuery 같은 자바스크립트 라이브러리에서 흔히 볼 수 있는 구조 패턴이다. `$(el).css()`나 `$(el).animate()` 같은 메서드를 사용할 때마다 퍼사드를 사용하는 것이다. jQuery 코어의 많은 내부 메서드를 직접 찾아 실행하는 대신 쉽게 공개된 인터페이스를 사용한다.
 
 ```typescript
-// 퍼사드 없이 — 브라우저마다 다른 이벤트 API를 직접 다뤄야 함
+// 퍼사드 없이 - 브라우저마다 다른 이벤트 API를 직접 다뤄야 함
 function addEventLegacy(
   el: HTMLElement,
   ev: string,
@@ -62,7 +62,7 @@ function addEventLegacy(
   }
 }
 
-// 퍼사드 적용 — 단일 인터페이스로 통합
+// 퍼사드 적용 - 단일 인터페이스로 통합
 class EventFacade {
   static on(el: HTMLElement, event: string, handler: EventListener): void {
     el.addEventListener(event, handler, false);
@@ -87,7 +87,7 @@ EventFacade.on(button, "click", () => console.log("clicked"));
 퍼사드 패턴을 단독으로 사용해야만 하는 것은 아니다. 모듈 패턴 같은 다른 패턴과도 어울릴 수 있다. 여러 비공개 메서드를 가진 모듈에 대해 퍼사드가 간단한 API를 제공한다:
 
 ```typescript
-// analyticsInternal.ts — 비공개 모듈
+// analyticsInternal.ts - 비공개 모듈
 const queue: Array<{ event: string; data: Record<string, unknown> }> = [];
 let isInitialized = false;
 
@@ -107,7 +107,7 @@ function enqueue(event: string, data: Record<string, unknown>): void {
   if (queue.length >= 10) flush();
 }
 
-// analyticsFacade.ts — 퍼사드
+// analyticsFacade.ts - 퍼사드
 export const analytics = {
   trackPageView(page: string): void {
     enqueue("page_view", { page, timestamp: Date.now() });
@@ -124,7 +124,7 @@ export const analytics = {
 ```
 
 ```typescript
-// 사용 — 내부 큐잉, 초기화, 플러시 로직을 전혀 몰라도 됨
+// 사용 - 내부 큐잉, 초기화, 플러시 로직을 전혀 몰라도 됨
 import { analytics } from "./analyticsFacade";
 
 analytics.trackPageView("/home");
@@ -162,7 +162,7 @@ class EqualizerEngine {
   applyPreset(name: string): void { /* ... */ }
 }
 
-// 퍼사드 — 세 하위 시스템을 단일 인터페이스로
+// 퍼사드 - 세 하위 시스템을 단일 인터페이스로
 interface MusicPlayerFacade {
   play(url?: string): void;
   stop(): void;
@@ -215,7 +215,7 @@ class MusicPlayer implements MusicPlayerFacade {
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 퍼사드가 어떤 메서드를 노출하는지 코드를 읽어야 앎
+// JavaScript - 퍼사드가 어떤 메서드를 노출하는지 코드를 읽어야 앎
 class MusicPlayer {
   constructor() {
     this.audio = new AudioEngine();    // 내부 의존성이 public
@@ -227,7 +227,7 @@ class MusicPlayer {
 ```
 
 ```typescript
-// TypeScript — 인터페이스 + #private으로 퍼사드 계약 강제
+// TypeScript - 인터페이스 + #private으로 퍼사드 계약 강제
 interface MusicPlayerFacade {
   play(url?: string): void;
   stop(): void;
@@ -246,7 +246,7 @@ class MusicPlayer implements MusicPlayerFacade {
 
 ## 2. 믹스인 패턴 (Mixin Pattern)
 
-C++나 Lisp 같은 전통적인 프로그래밍 언어에서 믹스인(*Mixin — 서브클래스가 쉽게 상속받아 기능을 재사용할 수 있도록 하는 클래스*)은 클래스의 기능을 확장하는 데 사용된다. 자바스크립트의 클래스는 부모 클래스를 하나만 가질 수 있지만, 여러 클래스의 기능을 **섞는 것**으로 문제를 해결할 수 있다.
+C++나 Lisp 같은 전통적인 프로그래밍 언어에서 믹스인(*Mixin - 서브클래스가 쉽게 상속받아 기능을 재사용할 수 있도록 하는 클래스*)은 클래스의 기능을 확장하는 데 사용된다. 자바스크립트의 클래스는 부모 클래스를 하나만 가질 수 있지만, 여러 클래스의 기능을 **섞는 것**으로 문제를 해결할 수 있다.
 
 ### 패턴 카드: Mixin
 
@@ -283,7 +283,7 @@ class Superhero extends Person {
 
 const superman = new Superhero("Clark", "Kent", ["flight", "heat-vision"]);
 console.log(superman.powers); // ["flight", "heat-vision"]
-console.log(superman.firstName); // "Clark" — Person에서 상속
+console.log(superman.firstName); // "Clark" - Person에서 상속
 ```
 
 ### 2.2 믹스인 함수
@@ -325,17 +325,17 @@ class CarAnimator {
   }
 }
 
-// 믹스인 적용 — 여러 기능을 합성
+// 믹스인 적용 - 여러 기능을 합성
 class MyAnimator extends Movable(Serializable(CarAnimator)) {}
 
 const myAnimator = new MyAnimator();
-myAnimator.moveLeft();  // "move left"  — CarAnimator에서
-myAnimator.moveDown();  // "move down"  — Movable에서
-myAnimator.stop();      // "stop! in the name of love!" — Movable에서
-console.log(myAnimator.serialize()); // JSON 직렬화 — Serializable에서
+myAnimator.moveLeft();  // "move left"  - CarAnimator에서
+myAnimator.moveDown();  // "move down"  - Movable에서
+myAnimator.stop();      // "stop! in the name of love!" - Movable에서
+console.log(myAnimator.serialize()); // JSON 직렬화 - Serializable에서
 ```
 
-### 2.3 실전 예제 — 자동차 클래스 확장
+### 2.3 실전 예제 - 자동차 클래스 확장
 
 ```typescript
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -384,12 +384,12 @@ mySportsCar.driveSideways(); // "drive sideways"
 
 믹스인은 함수의 중복을 줄이고 재사용성을 높인다. 그러나 몇몇 개발자들은 클래스나 객체의 프로토타입에 기능을 주입하는 것을 나쁜 방법이라고 여긴다. 프로토타입 오염과 함수의 출처에 대한 불확실성을 초래하기 때문이다.
 
-**리액트에서의 믹스인**: 리액트에서도 ES6 클래스 도입 이전에는 컴포넌트에 기능을 추가하기 위해 믹스인을 사용하곤 했다. 그러나 리액트 개발팀은 컴포넌트의 유지보수와 재사용을 복잡하게 만든다는 이유로 믹스인을 반대했다. 그 대신 **고차 컴포넌트**(*HOC — Higher-Order Component*)나 **Hooks**의 사용을 장려했다.
+**리액트에서의 믹스인**: 리액트에서도 ES6 클래스 도입 이전에는 컴포넌트에 기능을 추가하기 위해 믹스인을 사용하곤 했다. 그러나 리액트 개발팀은 컴포넌트의 유지보수와 재사용을 복잡하게 만든다는 이유로 믹스인을 반대했다. 그 대신 **고차 컴포넌트**(*HOC - Higher-Order Component*)나 **Hooks**의 사용을 장려했다.
 
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 믹스인 반환 타입을 알 수 없음
+// JavaScript - 믹스인 반환 타입을 알 수 없음
 const Movable = (Base) => class extends Base {
   moveUp() { console.log("up"); }
 };
@@ -397,7 +397,7 @@ const Movable = (Base) => class extends Base {
 ```
 
 ```typescript
-// TypeScript — 제네릭 Constructor 타입으로 믹스인 체인 추론
+// TypeScript - 제네릭 Constructor 타입으로 믹스인 체인 추론
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 function Movable<TBase extends Constructor>(Base: TBase) {
@@ -419,7 +419,7 @@ TypeScript의 `Constructor<T>` 제네릭 타입을 사용하면 믹스인 체인
 
 ## 3. 데코레이터 패턴 (Decorator Pattern)
 
-데코레이터(*Decorator*) 패턴은 코드 재사용을 목표로 하는 구조 패턴이다. 기존 클래스에 **동적으로 기능을 추가**하기 위해 사용되며, 서브클래싱의 대안이라고 생각하면 된다. 데코레이터 자체는 클래스의 기본 기능에 필수적이지 않다 — 필수적이었다면 부모 클래스에 이미 구현되었을 것이다.
+데코레이터(*Decorator*) 패턴은 코드 재사용을 목표로 하는 구조 패턴이다. 기존 클래스에 **동적으로 기능을 추가**하기 위해 사용되며, 서브클래싱의 대안이라고 생각하면 된다. 데코레이터 자체는 클래스의 기본 기능에 필수적이지 않다 - 필수적이었다면 부모 클래스에 이미 구현되었을 것이다.
 
 ### 패턴 카드: Decorator
 
@@ -431,7 +431,7 @@ TypeScript의 `Constructor<T>` 제네릭 타입을 사용하면 믹스인 체인
 | **장점** | 유연한 기능 확장, Open-Closed 원칙 준수, 서브클래스 폭발 방지 |
 | **단점** | 작고 비슷한 객체가 많아지면 구조 파악이 어려움, 디버깅 복잡도 증가 |
 
-### 3.1 기본 데코레이터 — 객체에 직접 속성 추가
+### 3.1 기본 데코레이터 - 객체에 직접 속성 추가
 
 자바스크립트 클래스 인스턴스 객체에 새로운 속성이나 메서드를 추가하는 것은 간단하다:
 
@@ -469,7 +469,7 @@ const car = new Vehicle("car");
 
 이러한 단순 구현은 유용하지만 데코레이터의 이점을 모두 보여주기엔 부족하다.
 
-### 3.2 MacBook 데코레이터 — 클래스 기반
+### 3.2 MacBook 데코레이터 - 클래스 기반
 
 맥북 구매 상황을 예로 들어보자. 추가 옵션(메모리, 각인, 보험)의 조합에 따라 서브클래스를 만들면 비실용적이다. 데코레이터 패턴으로 해결한다:
 
@@ -491,7 +491,7 @@ class MacBook implements MacBookComponent {
   }
 }
 
-// 데코레이터 베이스 — 컴포넌트를 감싸고 같은 인터페이스를 구현
+// 데코레이터 베이스 - 컴포넌트를 감싸고 같은 인터페이스를 구현
 abstract class MacBookDecorator implements MacBookComponent {
   constructor(protected macBook: MacBookComponent) {}
 
@@ -537,7 +537,7 @@ class Insurance extends MacBookDecorator {
   }
 }
 
-// 사용 — 데코레이터를 점진적으로 추가
+// 사용 - 데코레이터를 점진적으로 추가
 let mb: MacBookComponent = new MacBook();
 mb = new MemoryUpgrade(mb);
 mb = new Engraving(mb);
@@ -554,7 +554,7 @@ console.log(mb.getDescription()); // 'MacBook 11.6", Memory Upgrade, Engraving, 
 TypeScript에서는 함수를 감싸는 방식으로도 데코레이터를 구현할 수 있다:
 
 ```typescript
-// 함수형 데코레이터 — 로깅
+// 함수형 데코레이터 - 로깅
 function withLogging<T extends (...args: any[]) => any>(
   fn: T,
   label: string,
@@ -595,7 +595,7 @@ timedLoggedTotal([10, 20, 30]);
 
 ### 3.4 TC39 데코레이터 (Stage 3 → 표준)
 
-TC39 데코레이터(*TC39 Decorator — ECMAScript 표준으로 진행 중인 메타프로그래밍 문법*)는 `@` 구문으로 클래스와 메서드를 장식한다:
+TC39 데코레이터(*TC39 Decorator - ECMAScript 표준으로 진행 중인 메타프로그래밍 문법*)는 `@` 구문으로 클래스와 메서드를 장식한다:
 
 ```typescript
 // TC39 표준 데코레이터 (Stage 3)
@@ -641,7 +641,7 @@ calc.add(2, 3);
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 데코레이터 인터페이스 충족을 보장할 수 없음
+// JavaScript - 데코레이터 인터페이스 충족을 보장할 수 없음
 class MemoryUpgrade {
   constructor(macBook) {
     this.macBook = macBook;
@@ -654,7 +654,7 @@ class MemoryUpgrade {
 ```
 
 ```typescript
-// TypeScript — 인터페이스로 데코레이터 계약 강제
+// TypeScript - 인터페이스로 데코레이터 계약 강제
 interface MacBookComponent {
   getCost(): number;
   getDescription(): string;
@@ -674,7 +674,7 @@ class MemoryUpgrade implements MacBookComponent {
 
 ## 4. 플라이웨이트 패턴 (Flyweight Pattern)
 
-플라이웨이트(*Flyweight — 복싱 체급에서 이름을 따왔으며, 메모리 공간의 경량화를 목표로 함*) 패턴은 반복되고 비효율적으로 데이터를 공유하는 코드를 최적화하는 전통적인 구조 패턴이다. 연관된 객체끼리 데이터를 공유하게 하면서 애플리케이션의 메모리를 최소화한다.
+플라이웨이트(*Flyweight - 복싱 체급에서 이름을 따왔으며, 메모리 공간의 경량화를 목표로 함*) 패턴은 반복되고 비효율적으로 데이터를 공유하는 코드를 최적화하는 전통적인 구조 패턴이다. 연관된 객체끼리 데이터를 공유하게 하면서 애플리케이션의 메모리를 최소화한다.
 
 ### 패턴 카드: Flyweight
 
@@ -697,10 +697,10 @@ class MemoryUpgrade implements MacBookComponent {
 | **변경** | 불변 | 변경 가능 |
 | **예시** | 책의 제목, 저자, ISBN | 대출일, 반납일, 대출자 |
 
-### 4.2 도서관 시스템 — 최적화 전
+### 4.2 도서관 시스템 - 최적화 전
 
 ```typescript
-// 최적화 전 — 모든 속성을 각 Book 인스턴스에 저장
+// 최적화 전 - 모든 속성을 각 Book 인스턴스에 저장
 class BookUnoptimized {
   constructor(
     public id: string,
@@ -739,12 +739,12 @@ class BookUnoptimized {
 
 처음에 책이 조금만 있을 때는 잘 작동하겠지만, 수천 개의 책 객체를 다루면 메모리에 부담이 된다.
 
-### 4.3 도서관 시스템 — 플라이웨이트 적용
+### 4.3 도서관 시스템 - 플라이웨이트 적용
 
 내재적 상태(책의 메타데이터)와 외재적 상태(대출 정보)를 분리한다:
 
 ```typescript
-// 플라이웨이트 객체 — 내재적 상태만 보유 (공유됨)
+// 플라이웨이트 객체 - 내재적 상태만 보유 (공유됨)
 class Book {
   constructor(
     public readonly title: string,
@@ -756,7 +756,7 @@ class Book {
   ) {}
 }
 
-// 플라이웨이트 팩토리 — 같은 ISBN의 Book은 하나만 생성
+// 플라이웨이트 팩토리 - 같은 ISBN의 Book은 하나만 생성
 class BookFactory {
   static #existingBooks = new Map<string, Book>();
 
@@ -849,19 +849,19 @@ class BookRecordManager {
 
 같은 책에 대해 30권의 사본이 있다고 해도 `Book` 객체는 단 한 번만 생성된다. 대출 관련 메서드는 `BookRecordManager`에 위치하여 외재적 데이터를 다룬다.
 
-### 4.4 DOM 이벤트 위임 — 플라이웨이트 적용
+### 4.4 DOM 이벤트 위임 - 플라이웨이트 적용
 
-플라이웨이트 패턴은 DOM 레이어에도 적용할 수 있다. 각 자식 요소에 이벤트 핸들러를 등록하는 대신, 부모 요소에 하나의 핸들러를 등록하여 이벤트 버블링(*Event Bubbling — 하위 요소에서 발생한 이벤트가 상위 요소로 전파되는 방식*)을 활용한다:
+플라이웨이트 패턴은 DOM 레이어에도 적용할 수 있다. 각 자식 요소에 이벤트 핸들러를 등록하는 대신, 부모 요소에 하나의 핸들러를 등록하여 이벤트 버블링(*Event Bubbling - 하위 요소에서 발생한 이벤트가 상위 요소로 전파되는 방식*)을 활용한다:
 
 ```typescript
-// 플라이웨이트 없이 — 각 요소마다 핸들러 등록
+// 플라이웨이트 없이 - 각 요소마다 핸들러 등록
 document.querySelectorAll(".toggle").forEach((el) => {
   el.addEventListener("click", function () {
     this.querySelector(".info")?.classList.toggle("visible");
   });
 });
 
-// 플라이웨이트 적용 — 부모에 하나의 핸들러 (이벤트 위임)
+// 플라이웨이트 적용 - 부모에 하나의 핸들러 (이벤트 위임)
 class AccordionManager {
   constructor(containerId: string) {
     const container = document.getElementById(containerId);
@@ -889,7 +889,7 @@ const accordion = new AccordionManager("container");
 
 ## 5. 어댑터 패턴 (Adapter Pattern)
 
-어댑터(*Adapter — 호환되지 않는 인터페이스 사이의 변환기 역할*) 패턴은 기존 클래스의 인터페이스를 클라이언트가 기대하는 다른 인터페이스로 변환한다. 서로 호환되지 않는 인터페이스 때문에 함께 동작할 수 없는 클래스들을 연결해준다.
+어댑터(*Adapter - 호환되지 않는 인터페이스 사이의 변환기 역할*) 패턴은 기존 클래스의 인터페이스를 클라이언트가 기대하는 다른 인터페이스로 변환한다. 서로 호환되지 않는 인터페이스 때문에 함께 동작할 수 없는 클래스들을 연결해준다.
 
 ### 패턴 카드: Adapter
 
@@ -901,10 +901,10 @@ const accordion = new AccordionManager("container");
 | **장점** | 기존 코드 무변경, 단일 책임 원칙 준수, Open-Closed 원칙 준수 |
 | **단점** | 코드 복잡성 증가, 어댑터 레이어의 성능 오버헤드 |
 
-### 5.1 기본 어댑터 — 구 API에서 신 API로
+### 5.1 기본 어댑터 - 구 API에서 신 API로
 
 ```typescript
-// 구 API — 변경 불가능한 레거시 인터페이스
+// 구 API - 변경 불가능한 레거시 인터페이스
 interface OldLogger {
   logMessage(message: string, level: number): void;
   getLogHistory(): string[];
@@ -924,7 +924,7 @@ class LegacyLogger implements OldLogger {
   }
 }
 
-// 신 API — 애플리케이션이 기대하는 인터페이스
+// 신 API - 애플리케이션이 기대하는 인터페이스
 interface NewLogger {
   debug(message: string): void;
   info(message: string): void;
@@ -933,7 +933,7 @@ interface NewLogger {
   history(): readonly string[];
 }
 
-// 어댑터 — 구 API를 신 API 인터페이스로 변환
+// 어댑터 - 구 API를 신 API 인터페이스로 변환
 class LoggerAdapter implements NewLogger {
   #adaptee: OldLogger;
 
@@ -962,7 +962,7 @@ class LoggerAdapter implements NewLogger {
   }
 }
 
-// 사용 — 클라이언트는 NewLogger 인터페이스만 알면 됨
+// 사용 - 클라이언트는 NewLogger 인터페이스만 알면 됨
 const logger: NewLogger = new LoggerAdapter(new LegacyLogger());
 logger.info("Application started");
 logger.error("Something went wrong");
@@ -970,7 +970,7 @@ console.log(logger.history());
 // ["[Level 1] Application started", "[Level 3] Something went wrong"]
 ```
 
-### 5.2 실전 예제 — HTTP 클라이언트 어댑터
+### 5.2 실전 예제 - HTTP 클라이언트 어댑터
 
 서드파티 HTTP 라이브러리를 교체할 때 어댑터 패턴이 빛난다:
 
@@ -1025,7 +1025,7 @@ class AxiosAdapter implements HttpClient {
   }
 }
 
-// Fetch 어댑터 — 라이브러리 교체 시 어댑터만 변경
+// Fetch 어댑터 - 라이브러리 교체 시 어댑터만 변경
 class FetchAdapter implements HttpClient {
   #baseURL: string;
 
@@ -1065,7 +1065,7 @@ class FetchAdapter implements HttpClient {
   }
 }
 
-// 사용 — 어댑터를 교체해도 비즈니스 로직은 변경 없음
+// 사용 - 어댑터를 교체해도 비즈니스 로직은 변경 없음
 // const http: HttpClient = new AxiosAdapter("https://api.example.com");
 const http: HttpClient = new FetchAdapter("https://api.example.com");
 
@@ -1080,7 +1080,7 @@ const { data } = await http.get<User[]>("/users");
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 어댑터가 올바른 인터페이스를 구현하는지 보장 없음
+// JavaScript - 어댑터가 올바른 인터페이스를 구현하는지 보장 없음
 class LoggerAdapter {
   constructor(legacy) { this.legacy = legacy; }
   info(msg) { this.legacy.logMessage(msg, 1); }
@@ -1089,7 +1089,7 @@ class LoggerAdapter {
 ```
 
 ```typescript
-// TypeScript — implements로 인터페이스 계약 강제
+// TypeScript - implements로 인터페이스 계약 강제
 class LoggerAdapter implements NewLogger {
   constructor(private legacy: OldLogger) {}
   info(message: string): void { this.legacy.logMessage(message, 1); }
@@ -1104,7 +1104,7 @@ class LoggerAdapter implements NewLogger {
 
 ## 6. 프록시 패턴 (Proxy Pattern)
 
-프록시(*Proxy — 다른 객체에 대한 접근을 제어하는 대리 객체*) 패턴은 실제 객체 대신 대리 객체를 제공하여 접근을 제어한다. ES6에서 도입된 `Proxy` 내장 객체로 자바스크립트에서 네이티브하게 지원된다.
+프록시(*Proxy - 다른 객체에 대한 접근을 제어하는 대리 객체*) 패턴은 실제 객체 대신 대리 객체를 제공하여 접근을 제어한다. ES6에서 도입된 `Proxy` 내장 객체로 자바스크립트에서 네이티브하게 지원된다.
 
 ### 패턴 카드: Proxy
 
@@ -1116,10 +1116,10 @@ class LoggerAdapter implements NewLogger {
 | **장점** | Open-Closed 원칙 준수, 관심사 분리, 투명한 기능 추가 |
 | **단점** | 간접 참조로 인한 성능 오버헤드, 디버깅 복잡도 증가 |
 
-### 6.1 ES6 Proxy — 기본 사용
+### 6.1 ES6 Proxy - 기본 사용
 
 ```typescript
-// 기본 Proxy — 속성 접근/설정 가로채기
+// 기본 Proxy - 속성 접근/설정 가로채기
 interface UserData {
   name: string;
   age: number;
@@ -1152,7 +1152,7 @@ userProxy.age = 31;     // 속성 쓰기: age = 31
 // userProxy.age = -5;  // TypeError: age는 0 이상의 숫자여야 합니다
 ```
 
-### 6.2 가상 프록시 (Virtual Proxy) — 지연 로딩
+### 6.2 가상 프록시 (Virtual Proxy) - 지연 로딩
 
 무거운 객체를 필요한 시점까지 생성을 지연한다:
 
@@ -1162,7 +1162,7 @@ interface Image {
   getSize(): { width: number; height: number };
 }
 
-// 실제 객체 — 생성 비용이 높음
+// 실제 객체 - 생성 비용이 높음
 class HighResImage implements Image {
   #data: Uint8Array;
   #width: number;
@@ -1185,7 +1185,7 @@ class HighResImage implements Image {
   }
 }
 
-// 가상 프록시 — 실제 사용 시점까지 생성 지연
+// 가상 프록시 - 실제 사용 시점까지 생성 지연
 class ImageProxy implements Image {
   #realImage: HighResImage | null = null;
 
@@ -1217,11 +1217,11 @@ const images: Image[] = Array.from(
 // "이미지 프록시 생성 (아직 로딩 안 함)" × 100
 
 images[0].display();
-// "고해상도 이미지 로딩 중: .../0.jpg" — 이 시점에 실제 로딩
+// "고해상도 이미지 로딩 중: .../0.jpg" - 이 시점에 실제 로딩
 // "이미지 표시: .../0.jpg (3840x2160)"
 ```
 
-### 6.3 보호 프록시 (Protection Proxy) — 접근 제어
+### 6.3 보호 프록시 (Protection Proxy) - 접근 제어
 
 ```typescript
 interface AdminPanel {
@@ -1342,7 +1342,7 @@ await api.fetchData("users");  // 캐시 히트 → 네트워크 요청 없음
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — Proxy 핸들러의 타입 안전성 없음
+// JavaScript - Proxy 핸들러의 타입 안전성 없음
 const proxy = new Proxy(target, {
   get(target, prop) {
     // prop이 string | symbol이지만 IDE가 target의 실제 속성을 모름
@@ -1352,7 +1352,7 @@ const proxy = new Proxy(target, {
 ```
 
 ```typescript
-// TypeScript — ProxyHandler<T>로 타입 체크
+// TypeScript - ProxyHandler<T>로 타입 체크
 const proxy = new Proxy<UserData>(target, {
   get(target, property: keyof UserData, receiver) {
     return Reflect.get(target, property, receiver);
@@ -1371,7 +1371,7 @@ const proxy = new Proxy<UserData>(target, {
 
 ## 7. 컴포지트 패턴 (Composite Pattern)
 
-컴포지트(*Composite — 객체를 트리 구조로 구성하여 부분-전체 계층을 표현*) 패턴은 객체들을 트리 구조로 구성하여 **단일 객체와 복합 객체를 동일하게 취급**할 수 있게 한다. 클라이언트는 개별 객체인지 그룹인지 구분하지 않고 동일한 인터페이스로 다룬다.
+컴포지트(*Composite - 객체를 트리 구조로 구성하여 부분-전체 계층을 표현*) 패턴은 객체들을 트리 구조로 구성하여 **단일 객체와 복합 객체를 동일하게 취급**할 수 있게 한다. 클라이언트는 개별 객체인지 그룹인지 구분하지 않고 동일한 인터페이스로 다룬다.
 
 ### 패턴 카드: Composite
 
@@ -1393,7 +1393,7 @@ interface FileSystemNode {
   print(indent?: string): void;
 }
 
-// 리프 (Leaf) — 자식이 없는 개별 객체
+// 리프 (Leaf) - 자식이 없는 개별 객체
 class File implements FileSystemNode {
   constructor(
     public readonly name: string,
@@ -1409,7 +1409,7 @@ class File implements FileSystemNode {
   }
 }
 
-// 컴포지트 (Composite) — 자식을 가질 수 있는 복합 객체
+// 컴포지트 (Composite) - 자식을 가질 수 있는 복합 객체
 class Directory implements FileSystemNode {
   #children: FileSystemNode[] = [];
 
@@ -1440,7 +1440,7 @@ class Directory implements FileSystemNode {
   }
 }
 
-// 사용 — 단일 File과 복합 Directory를 동일하게 다룸
+// 사용 - 단일 File과 복합 Directory를 동일하게 다룸
 const src = new Directory("src");
 src
   .add(new File("index.ts", 1500))
@@ -1475,7 +1475,7 @@ console.log(root.getSize());       // 7500
 console.log(components.getSize()); // 2000
 ```
 
-### 7.2 React 컴포넌트 트리 — 실세계의 컴포지트
+### 7.2 React 컴포넌트 트리 - 실세계의 컴포지트
 
 React의 컴포넌트 트리는 본질적으로 컴포지트 패턴이다. 단일 컴포넌트(`<Button>`)와 복합 컴포넌트(`<Form>`)를 동일하게 `ReactNode`로 취급한다:
 
@@ -1491,7 +1491,7 @@ const Button = ({ label, onClick }: ButtonProps) => (
   <button onClick={onClick}>{label}</button>
 );
 
-// 컴포지트 컴포넌트 — children을 통해 자식을 포함
+// 컴포지트 컴포넌트 - children을 통해 자식을 포함
 interface CardProps {
   title: string;
   children: React.ReactNode; // 단일 또는 복합 자식
@@ -1504,7 +1504,7 @@ const Card = ({ title, children }: CardProps) => (
   </div>
 );
 
-// 사용 — 트리 구조로 합성
+// 사용 - 트리 구조로 합성
 const App = () => (
   <Card title="Dashboard">
     <Card title="Statistics">
@@ -1513,10 +1513,10 @@ const App = () => (
     <Button label="Settings" onClick={() => {}} />
   </Card>
 );
-// Card > [Card > Button, Button] — 컴포지트 트리
+// Card > [Card > Button, Button] - 컴포지트 트리
 ```
 
-### 7.3 제네릭 컴포지트 — 재사용 가능한 트리
+### 7.3 제네릭 컴포지트 - 재사용 가능한 트리
 
 ```typescript
 // 제네릭 컴포지트 클래스
@@ -1558,7 +1558,7 @@ class TreeNode<T> {
   }
 }
 
-// 사용 — 조직도
+// 사용 - 조직도
 interface Employee {
   name: string;
   role: string;
@@ -1636,7 +1636,7 @@ activeEffect = null;
 state.count = 1; // 자동으로 effect 실행 (trigger) → "count = 1"
 ```
 
-### TC39 Decorators — 레거시에서 표준으로
+### TC39 Decorators - 레거시에서 표준으로
 
 TypeScript의 레거시 데코레이터(`"experimentalDecorators": true`)가 TC39 Stage 3 데코레이터로 대체되고 있다:
 
@@ -1673,12 +1673,12 @@ settings.theme = "dark";    // "theme: light → dark"
 settings.fontSize = 16;     // "fontSize: 14 → 16"
 ```
 
-### React Server Components — 현대적 퍼사드
+### React Server Components - 현대적 퍼사드
 
 React Server Components(RSC)는 서버 측 데이터 페칭과 클라이언트 렌더링의 복잡성을 퍼사드 패턴으로 추상화한다. 컴포넌트 작성자는 `async/await`만으로 서버 데이터에 접근하고, RSC 프레임워크가 직렬화, 스트리밍, 하이드레이션을 내부적으로 처리한다:
 
 ```typescript
-// React Server Component — 서버 데이터 접근의 퍼사드
+// React Server Component - 서버 데이터 접근의 퍼사드
 // 내부적으로 직렬화, 스트리밍, 캐싱을 처리하지만
 // 개발자는 일반 async 함수처럼 작성
 async function UserProfile({ userId }: { userId: string }) {
@@ -1727,7 +1727,7 @@ function VirtualList({ items }: { items: string[] }) {
             {items[virtualRow.index]}
           </div>
         ))}
-        {/* 10만 행 중 ~15개만 실제 DOM에 존재 — 플라이웨이트 */}
+        {/* 10만 행 중 ~15개만 실제 DOM에 존재 - 플라이웨이트 */}
       </div>
     </div>
   );

@@ -568,7 +568,7 @@ public void testDivisionByZero() {
         new Dollar(10).divideBy(0);
         fail("ArithmeticException이 발생해야 한다");  // 여기에 도달하면 실패
     } catch (ArithmeticException e) {
-        // 기대한 예외가 발생함 — 성공
+        // 기대한 예외가 발생함 - 성공
     }
 }
 ```
@@ -803,14 +803,14 @@ TestCase (테스트의 단위)
 | Fixture | Chapter 19 | 테스트 준비 |
 | External Fixture | Chapter 20 | 자원 정리 |
 | Test Method | Chapter 18 | 시나리오 격리 |
-| Exception Test | — | 에러 경로 검증 |
+| Exception Test | - | 에러 경로 검증 |
 | All Tests | Chapter 23 | 전체 실행 |
 
 ---
 
 ## 요약
 
-- **Assertion**은 테스트의 핵심 — 기대값과 실제값을 비교하여 통과/실패를 자동 판정한다. 구체적인 assertion 메서드(`assertEqual` 등)를 사용하면 실패 메시지가 유의미해진다.
+- **Assertion**은 테스트의 핵심 - 기대값과 실제값을 비교하여 통과/실패를 자동 판정한다. 구체적인 assertion 메서드(`assertEqual` 등)를 사용하면 실패 메시지가 유의미해진다.
 - **Fixture**는 여러 테스트가 공유하는 객체를 `setUp()`에서 준비하여 중복을 제거한다. 단, 테스트의 가독성을 해치지 않도록 주의한다.
 - **External Fixture**는 파일, DB 등 외부 자원을 `tearDown()`에서 확실히 정리한다. 테스트 전후로 환경이 동일해야 한다.
 - **Test Method**는 하나의 시나리오를 하나의 메서드에 담는다. 메서드 이름이 실행 가능한 명세 역할을 한다.

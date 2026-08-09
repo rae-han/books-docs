@@ -10,7 +10,7 @@ AWS에서 실행 중인 리소스와 애플리케이션의 상태를 어떻게 �
 
 ### 1.1 CloudWatch란
 
-CloudWatch(*Amazon CloudWatch - AWS 리소스와 애플리케이션의 모니터링 및 관찰 서비스. 메트릭 수집, 로그 관리, 알람 설정, 대시보드 시각화를 하나의 서비스에서 제공한다*)는 AWS의 중앙 모니터링 서비스이다. EC2 인스턴스의 CPU 사용률부터 Lambda 함수의 에러율, RDS의 커넥션 수까지 — AWS에서 실행되는 거의 모든 것의 상태를 수집하고 시각화한다.
+CloudWatch(*Amazon CloudWatch - AWS 리소스와 애플리케이션의 모니터링 및 관찰 서비스. 메트릭 수집, 로그 관리, 알람 설정, 대시보드 시각화를 하나의 서비스에서 제공한다*)는 AWS의 중앙 모니터링 서비스이다. EC2 인스턴스의 CPU 사용률부터 Lambda 함수의 에러율, RDS의 커넥션 수까지 - AWS에서 실행되는 거의 모든 것의 상태를 수집하고 시각화한다.
 
 모니터링 없이 프로덕션 서비스를 운영하는 것은 계기판 없이 비행기를 조종하는 것과 같다. CloudWatch는 AWS 환경의 계기판 역할을 한다.
 
@@ -362,7 +362,7 @@ CloudWatch Alarm ──→ SNS Topic ──→ 이메일 (devops@example.com)
 **Slack으로 알림 전송하는 Lambda 함수:**
 
 ```javascript
-// slackNotifier.mjs — SNS 메시지를 Slack으로 전달
+// slackNotifier.mjs - SNS 메시지를 Slack으로 전달
 export const handler = async (event) => {
   const snsMessage = JSON.parse(event.Records[0].Sns.Message);
 
@@ -943,12 +943,12 @@ CloudTrail(*AWS CloudTrail - AWS 계정에서 발생하는 모든 API 호출을 
 ```
 CloudWatch vs CloudTrail:
 
-CloudWatch — "시스템이 어떤 상태인가?"
+CloudWatch - "시스템이 어떤 상태인가?"
   CPU 사용률이 95%이다
   Lambda 에러가 분당 50건이다
   디스크 사용량이 90%이다
 
-CloudTrail — "누가 무엇을 했는가?"
+CloudTrail - "누가 무엇을 했는가?"
   user/admin이 EC2 인스턴스를 종료했다
   role/deploy가 Lambda 코드를 업데이트했다
   user/intern이 S3 버킷을 삭제했다
@@ -1028,7 +1028,7 @@ aws cloudtrail lookup-events \
 ### 9.3 3계층 웹 애플리케이션 모니터링 예시
 
 ```
-모니터링 전략 — 3계층 웹 앱:
+모니터링 전략 - 3계층 웹 앱:
 
 [사용자 경험 계층]
 Synthetics Canary (5분 간격)

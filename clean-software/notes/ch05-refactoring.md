@@ -4,7 +4,7 @@
 
 제대로 동작하는 코드의 구조를 왜 굳이 개선해야 하는가? 긁어 부스럼을 만들지 말라는 옛말도 있지 않은가? 리팩토링(*Refactoring - 외부 행위를 바꾸지 않으면서 내부 구조를 개선하는 과정*)이 단순한 "코드 정리"를 넘어서 **소프트웨어 모듈의 본질적 기능**과 어떻게 연결되는가?
 
-> 풍족한 세상에서 점점 더 부족해지고 있는 유일한 것은 사람들의 주의력이다.<br>— 케빈 켈리(Kevin Kelly), 『와이어드(Wired)』
+> 풍족한 세상에서 점점 더 부족해지고 있는 유일한 것은 사람들의 주의력이다.<br>- 케빈 켈리(Kevin Kelly), 『와이어드(Wired)』
 
 ---
 
@@ -38,11 +38,11 @@
 
 ## 2. 소수 생성기: 리팩토링의 간단한 예
 
-이번 장의 중심 예제는 **소수(prime number)를 생성하는 함수**이다. 알고리즘은 고대의 **에라토스테네스의 체(Sieve of Eratosthenes)** — 2부터 시작하는 정수 배열에서 소수의 배수를 차례로 지워 나가는 방식이다.
+이번 장의 중심 예제는 **소수(prime number)를 생성하는 함수**이다. 알고리즘은 고대의 **에라토스테네스의 체(Sieve of Eratosthenes)** - 2부터 시작하는 정수 배열에서 소수의 배수를 차례로 지워 나가는 방식이다.
 
 원래 코드는 "동작은 하지만 읽기 어려운" 상태이며, 단계적 리팩토링을 통해 이를 "읽기도 쉽고 변경하기도 쉬운" 형태로 변모시키는 과정을 보여준다.
 
-### 2.1 버전 1: 원래 코드 — 거대한 단일 함수
+### 2.1 버전 1: 원래 코드 - 거대한 단일 함수
 
 처음 코드는 **단일 문자로 이루어진 많은 변수**(`s`, `f`, `i`, `j`)와 **변수의 의미를 설명하는 주석들**을 포함한 하나의 큰 함수다.
 
@@ -158,7 +158,7 @@ class GeneratePrimes {
 
 ### 2.2 안전망: 단위 테스트
 
-리팩토링의 핵심 전제는 **테스트**다. 테스트가 없으면 "동작을 바꾸지 않았다"는 보장이 없다. 다음은 통계적 접근 방식의 단위 테스트다 — 0, 2, 3, 100까지 소수 생성을 확인한다.
+리팩토링의 핵심 전제는 **테스트**다. 테스트가 없으면 "동작을 바꾸지 않았다"는 보장이 없다. 다음은 통계적 접근 방식의 단위 테스트다 - 0, 2, 3, 100까지 소수 생성을 확인한다.
 
 <details>
 <summary>원문 Java 테스트 (TestGeneratePrimes)</summary>
@@ -232,7 +232,7 @@ describe('GeneratePrimes', () => {
 2. 체로 걸러내는 동작을 실제로 실행
 3. 체로 걸러낸 결과를 정수 배열에 담기
 
-이 세 동작을 각각 별개의 메소드로 추출한다. 또한 클래스 이름을 더 의미 있는 `PrimeGenerator`로 바꾼다. 함수의 일부 지역 변수는 클래스의 `static` 필드로 **승격(promote)**되었다 — 이로써 어떤 변수가 지역이고 어떤 변수가 전역인지 명확해진다.
+이 세 동작을 각각 별개의 메소드로 추출한다. 또한 클래스 이름을 더 의미 있는 `PrimeGenerator`로 바꾼다. 함수의 일부 지역 변수는 클래스의 `static` 필드로 **승격(promote)**되었다 - 이로써 어떤 변수가 지역이고 어떤 변수가 전역인지 명확해진다.
 
 <details>
 <summary>원문 Java 코드 (버전 2)</summary>
@@ -342,7 +342,7 @@ class PrimeGenerator {
 }
 ```
 
-`generatePrimes`는 이제 세 줄의 단순한 코디네이션 로직만 남았다 — **무엇을 하는 함수인지 한눈에 들어온다**. 테스트는 여전히 모두 통과한다.
+`generatePrimes`는 이제 세 줄의 단순한 코디네이션 로직만 남았다 - **무엇을 하는 함수인지 한눈에 들어온다**. 테스트는 여전히 모두 통과한다.
 
 ### 3.2 버전 3: 변수 정리와 의미 있는 이름
 
@@ -354,7 +354,7 @@ class PrimeGenerator {
 - `initializeArrayOfIntegers`의 내부 구조를 더 읽기 쉽게 재배열한다
 
 <details>
-<summary>원문 Java 코드 (버전 3 — 일부)</summary>
+<summary>원문 Java 코드 (버전 3 - 일부)</summary>
 
 ```java
 public class PrimeGenerator {
@@ -416,7 +416,7 @@ class PrimeGenerator {
 
 ### 3.3 버전 4: 의미 있는 변수명과 이중 부정 제거
 
-`crossOutMultiples`를 본다. 함수 내부에 `if (f[i] == true)` 형태의 수행문이 많은데, 이는 **"i가 아직 안 지워졌는지"** 확인하는 것이다. 따라서 `f`의 이름을 `unCrossed`로 바꾸려 했다 — 그러나 그러면 `unCrossed[1] = false`처럼 **이중 부정으로 인한 혼란**이 생긴다.
+`crossOutMultiples`를 본다. 함수 내부에 `if (f[i] == true)` 형태의 수행문이 많은데, 이는 **"i가 아직 안 지워졌는지"** 확인하는 것이다. 따라서 `f`의 이름을 `unCrossed`로 바꾸려 했다 - 그러나 그러면 `unCrossed[1] = false`처럼 **이중 부정으로 인한 혼란**이 생긴다.
 
 > **핵심 통찰**: 이름을 짓다가 **이중 부정으로 인한 혼란**이 생기면, 그 이름은 잘못된 것이다. 의미가 더 자연스럽게 흘러가는 이름을 찾을 때까지 시도해 본다.
 
@@ -430,7 +430,7 @@ class PrimeGenerator {
 - 배열 크기의 제곱근값까지만 루프를 도는 이유를 설명하다가 그 계산을 `calcMaxPrimeFactor` 함수로 추출
 
 <details>
-<summary>원문 Java 코드 (버전 4 — 일부)</summary>
+<summary>원문 Java 코드 (버전 4 - 일부)</summary>
 
 ```java
 public class PrimeGenerator {
@@ -547,7 +547,7 @@ class PrimeGenerator {
 첫 번째 부분을 `numberOfUncrossedIntegers`라는 별도 함수로 추출한다.
 
 <details>
-<summary>원문 Java 코드 (버전 5 — 일부)</summary>
+<summary>원문 Java 코드 (버전 5 - 일부)</summary>
 
 ```java
 private static void putUncrossedIntegersIntoResult() {
@@ -594,7 +594,7 @@ private static numberOfUncrossedIntegers(): number {
 
 ---
 
-## 4. 최종 점검 — 전체를 읽어보기
+## 4. 최종 점검 - 전체를 읽어보기
 
 지금까지는 **부분**만을 리팩토링해 왔다. 이제 모든 프로그램이 **읽을 수 있는 총체로서 제대로 결합되어 있는지** 확인할 차례다. Uncle Bob은 이를 "기하학 증명을 처음부터 끝까지 읽는 것"에 비유한다.
 
@@ -606,7 +606,7 @@ private static numberOfUncrossedIntegers(): number {
 |------|------|---------|------|
 | 이름이 부정확 | `initializeArrayOfIntegers` | `uncrossIntegersUpTo` | 사실 초기화하는 건 정수 배열이 아닌 불리언 배열. 실제 동작은 "지워지지 않은 상태로 만드는 것" |
 | 이름이 부정확 | `isCrossed` | `crossedOut` | "체크되었나"보다 "지워졌다"가 도메인 의미에 가깝다 |
-| 주석이 틀림 | `calcMaxPrimeFactor` | `determineIterationLimit` | 배열 크기의 제곱근값이 꼭 소수라는 보장은 없다. 이 메소드는 **가장 큰 소인수를 계산하지 않는다** — 단지 **루프 횟수의 한계값**을 계산한다 |
+| 주석이 틀림 | `calcMaxPrimeFactor` | `determineIterationLimit` | 배열 크기의 제곱근값이 꼭 소수라는 보장은 없다. 이 메소드는 **가장 큰 소인수를 계산하지 않는다** - 단지 **루프 횟수의 한계값**을 계산한다 |
 | 불필요한 `+1` | `Math.sqrt(...) + 1` | `Math.sqrt(...)` | 편집증적으로 추가했던 안전 마진. 실제 한계값은 배열 크기의 제곱근보다 작거나 같은 가장 큰 소수이므로 `+1`은 불필요 |
 
 > **Uncle Bob의 경험**: 내가 이런 사소한 이름 변경에 너무 신경을 쓰고 있다고 생각하는 독자도 있을 것이다. 그러나 **리팩토링 브라우저를 사용하면 이런 미세 조정에 거의 아무 수고도 들지 않는다**. 리팩토링 브라우저가 없더라도 단순한 '찾기 바꾸기'는 그다지 힘든 일도 아니다. 이름 변경 중에 실수로 망가뜨릴 가능성은 테스트가 상당히 줄여 준다.
@@ -623,14 +623,14 @@ private static numberOfUncrossedIntegers(): number {
 
 > **Uncle Bob의 경험**: 켄트 벡과 짐 뉴커크가 이 프로그램을 리팩토링했을 때, 그들은 제곱근값과 관련된 부분을 **모두 제거**했다. 켄트의 의견은 "제곱근값이 이해하기 어렵고, 배열 크기까지 루프를 도는 프로그램이라 해도 실패하는 테스트는 없다"는 것이었다. 그러나 나는 효율성을 포기할 수 없었다. 이것이 내가 어셈블리 언어 사용자로 살아온 배경을 보여주는 것이라 생각한다.
 
-같은 코드를 리팩토링해도 **개발자의 배경과 가치관에 따라 결과가 달라질 수 있다**. 가독성을 우선시한다면 제곱근 최적화를 제거하고, 효율성을 중시한다면 남겨둘 수 있다 — 어느 쪽이든 테스트가 통과한다면 올바른 선택이다.
+같은 코드를 리팩토링해도 **개발자의 배경과 가치관에 따라 결과가 달라질 수 있다**. 가독성을 우선시한다면 제곱근 최적화를 제거하고, 효율성을 중시한다면 남겨둘 수 있다 - 어느 쪽이든 테스트가 통과한다면 올바른 선택이다.
 
 ---
 
 ## 5. 최종 코드
 
 <details>
-<summary>원문 Java 코드 (최종 — PrimeGenerator.java)</summary>
+<summary>원문 Java 코드 (최종 - PrimeGenerator.java)</summary>
 
 ```java
 /**
@@ -779,7 +779,7 @@ class PrimeGenerator {
 ```
 
 <details>
-<summary>원문 Java 코드 (최종 테스트 — TestGeneratePrimes.java)</summary>
+<summary>원문 Java 코드 (최종 테스트 - TestGeneratePrimes.java)</summary>
 
 ```java
 import junit.framework.TestCase;
@@ -926,7 +926,7 @@ function verifyPrime(n: number): void {
 ## 요약
 
 - **리팩토링은 외부 행위를 바꾸지 않으면서 내부 구조를 개선하는 과정**이다(마틴 파울러)
-- 모든 모듈에는 세 가지 기능이 있다 — **동작 / 변경 가능성 / 의사소통**. 변경하기 어렵거나 읽을 수 없는 모듈은 동작하더라도 망가진 것이다
+- 모든 모듈에는 세 가지 기능이 있다 - **동작 / 변경 가능성 / 의사소통**. 변경하기 어렵거나 읽을 수 없는 모듈은 동작하더라도 망가진 것이다
 - 리팩토링의 안전망은 **자동화된 테스트**다. "이 상태에서도 테스트는 전부 동작한다"를 매 단계마다 확인한다
 - 소수 생성기 예제는 거대한 단일 함수를 다음 단계로 변모시킨다:
   - 버전 1: 단일 문자 변수와 주석으로 가득한 큰 함수
@@ -936,7 +936,7 @@ function verifyPrime(n: number): void {
   - 버전 5: `putUncrossedIntegersIntoResult` 내부에서 `numberOfUncrossedIntegers` 추출
   - 최종: 부정확한 이름 `initializeArrayOfIntegers`→`uncrossIntegersUpTo`, `isCrossed`→`crossedOut`, `calcMaxPrimeFactor`→`determineIterationLimit`
 - 작은 단계마다 테스트로 검증한다. **의심이 들면 새로운 테스트를 추가**해서 그 영역을 안전망으로 덮는다
-- 함수 추출의 **성능 비용**은 무시할 수 있다고 가정하라 — 틀렸다는 것이 증명될 때까지
+- 함수 추출의 **성능 비용**은 무시할 수 있다고 가정하라 - 틀렸다는 것이 증명될 때까지
 - 리팩토링은 **부엌 청소**와 같다. 매일 청소하지 않으면 결국 저녁 식사는 영원히 끝나지 않는다
 - 원칙과 패턴에 신경 쓰기 전에 **간결하고 분명한 코드**를 만드는 데 먼저 신경을 써야 한다
 

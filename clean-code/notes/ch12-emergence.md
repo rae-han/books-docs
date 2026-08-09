@@ -8,7 +8,7 @@
 
 ## 1. 창발적 설계로 깔끔한 코드를 구현하자
 
-착실하게 따르기만 하면 우수한 설계가 나오는 간단한 규칙 네 가지가 있다면? 네 가지 규칙을 따르면 코드 구조와 설계를 파악하기 쉬워지고, SRP(*SRP — Single Responsibility Principle, 단일 책임 원칙*)나 DIP(*DIP — Dependency Inversion Principle, 의존 관계 역전 원칙*)와 같은 원칙을 적용하기도 쉬워진다.
+착실하게 따르기만 하면 우수한 설계가 나오는 간단한 규칙 네 가지가 있다면? 네 가지 규칙을 따르면 코드 구조와 설계를 파악하기 쉬워지고, SRP(*SRP - Single Responsibility Principle, 단일 책임 원칙*)나 DIP(*DIP - Dependency Inversion Principle, 의존 관계 역전 원칙*)와 같은 원칙을 적용하기도 쉬워진다.
 
 켄트 벡이 제시한 **단순한 설계 규칙 네 가지** (중요도 순):
 
@@ -82,7 +82,7 @@ boolean isEmpty() {
 ### 공통 코드 추출
 
 ```java
-// 나쁜 예 — 중복 코드
+// 나쁜 예 - 중복 코드
 public void scaleToOneDimension(float desiredDimension, float imageDimension) {
     if (Math.abs(desiredDimension - imageDimension) < errorThreshold)
         return;
@@ -105,7 +105,7 @@ public synchronized void rotate(int degrees) {
 `scaleToOneDimension`과 `rotate`에서 일부 코드가 동일하다. 공통 코드를 새 메서드로 추출한다:
 
 ```java
-// 좋은 예 — 중복 제거
+// 좋은 예 - 중복 제거
 public void scaleToOneDimension(float desiredDimension, float imageDimension) {
     if (Math.abs(desiredDimension - imageDimension) < errorThreshold)
         return;
@@ -132,7 +132,7 @@ private void replaceImage(RenderedOp newImage) {
 ### TEMPLATE METHOD 패턴으로 고차원 중복 제거
 
 ```java
-// 나쁜 예 — 고차원 중복
+// 나쁜 예 - 고차원 중복
 public class VacationPolicy {
     public void accrueUSDivisionVacation() {
         // 지금까지 근무한 시간을 바탕으로 휴가 일수를 계산하는 코드
@@ -157,7 +157,7 @@ public class VacationPolicy {
 최소 법정 일수를 계산하는 코드만 제외하면 두 메서드는 거의 동일하다. TEMPLATE METHOD 패턴을 적용한다:
 
 ```java
-// 좋은 예 — TEMPLATE METHOD 패턴으로 중복 제거
+// 좋은 예 - TEMPLATE METHOD 패턴으로 중복 제거
 abstract public class VacationPolicy {
     public void accrueVacation() {
         calculateBaseVacationHours();
@@ -200,7 +200,7 @@ public class EUVacationPolicy extends VacationPolicy {
 | **좋은 이름 선택** | 이름과 기능이 딴판인 클래스나 함수로 유지보수 담당자를 놀라게 해서는 안 된다 |
 | **함수와 클래스 크기 축소** | 작은 클래스와 작은 함수는 이름 짓기도, 구현하기도, 이해하기도 쉽다 |
 | **표준 명칭 사용** | COMMAND나 VISITOR와 같은 표준 패턴을 사용한다면 클래스 이름에 패턴 이름을 넣어준다 |
-| **단위 테스트 케이스 꼼꼼히 작성** | 테스트 케이스는 '예제로 보여주는 문서'다 — 잘 만든 테스트를 읽으면 클래스 기능이 한눈에 들어온다 |
+| **단위 테스트 케이스 꼼꼼히 작성** | 테스트 케이스는 '예제로 보여주는 문서'다 - 잘 만든 테스트를 읽으면 클래스 기능이 한눈에 들어온다 |
 
 하지만 표현력을 높이는 **가장 중요한 방법은 노력**이다. 코드만 돌린 후 다음 문제로 직행하지 말고, 나중에 읽을 사람을 고려해 **조금이라도 읽기 쉽게 만들려는 충분한 고민**이 필요하다.
 
@@ -250,10 +250,10 @@ public class EUVacationPolicy extends VacationPolicy {
 ## 요약
 
 - **켄트 벡의 단순한 설계 규칙 네 가지**를 따르면 우수한 설계가 창발한다
-- **규칙 1 (테스트)**: 모든 테스트를 실행하라 — 이것만으로도 낮은 결합도와 높은 응집력을 달성한다
-- **규칙 2 (중복 제거)**: 똑같은 코드, 비슷한 코드, 구현 중복 모두 제거하라 — 소규모 재사용이 대규모 재사용의 기반이다
-- **규칙 3 (표현)**: 좋은 이름, 작은 함수/클래스, 표준 명칭, 단위 테스트로 의도를 표현하라 — **주의는 대단한 재능이다**
-- **규칙 4 (최소화)**: 극단을 피하고 실용적으로 클래스와 메서드 수를 줄여라 — 단, 우선순위는 가장 낮다
+- **규칙 1 (테스트)**: 모든 테스트를 실행하라 - 이것만으로도 낮은 결합도와 높은 응집력을 달성한다
+- **규칙 2 (중복 제거)**: 똑같은 코드, 비슷한 코드, 구현 중복 모두 제거하라 - 소규모 재사용이 대규모 재사용의 기반이다
+- **규칙 3 (표현)**: 좋은 이름, 작은 함수/클래스, 표준 명칭, 단위 테스트로 의도를 표현하라 - **주의는 대단한 재능이다**
+- **규칙 4 (최소화)**: 극단을 피하고 실용적으로 클래스와 메서드 수를 줄여라 - 단, 우선순위는 가장 낮다
 - 테스트 케이스가 있으므로 **리팩터링 중 시스템이 깨질 걱정 없이** 코드를 정리할 수 있다
 
 ---

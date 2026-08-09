@@ -22,7 +22,7 @@ Docker Compose는 별도 옵션 없이 `docker compose up`을 실행할 때, 현
 `compose.override.yaml`이 존재하면 자동으로 `compose.yaml` 위에 병합된다. 별도의 `-f` 옵션이 필요 없다.
 
 ```yaml
-# compose.yaml — 기본 설정
+# compose.yaml - 기본 설정
 services:
   app:
     image: myapp:latest
@@ -33,7 +33,7 @@ services:
 ```
 
 ```yaml
-# compose.override.yaml — 개발용 오버라이드 (자동 병합)
+# compose.override.yaml - 개발용 오버라이드 (자동 병합)
 services:
   app:
     build: .
@@ -53,7 +53,7 @@ services:
 # 병합 결과 (docker compose config로 확인 가능)
 services:
   app:
-    build: .              # override가 image를 대체하지 않음 — build와 image가 공존
+    build: .              # override가 image를 대체하지 않음 - build와 image가 공존
     image: myapp:latest   # build 후 이 이름으로 태깅
     volumes:
       - .:/app
@@ -222,7 +222,7 @@ services:
 공통 설정을 별도 파일로 분리할 수도 있다.
 
 ```yaml
-# common-services.yaml — 공통 서비스 정의
+# common-services.yaml - 공통 서비스 정의
 services:
   node-base:
     build:
@@ -337,7 +337,7 @@ project/
 공통 설정에는 모든 환경에서 **변하지 않는** 요소만 넣는다.
 
 ```yaml
-# compose.yaml — 공통 설정
+# compose.yaml - 공통 설정
 services:
   app:
     build:
@@ -387,7 +387,7 @@ networks:
 ### 3.3 개발 오버라이드 (compose.dev.yaml)
 
 ```yaml
-# compose.dev.yaml — 개발 환경
+# compose.dev.yaml - 개발 환경
 services:
   app:
     build:
@@ -424,7 +424,7 @@ services:
 ### 3.4 프로덕션 오버라이드 (compose.prod.yaml)
 
 ```yaml
-# compose.prod.yaml — 프로덕션 환경
+# compose.prod.yaml - 프로덕션 환경
 services:
   app:
     build:
@@ -459,7 +459,7 @@ services:
       resources:
         limits:
           memory: 1G
-    # 포트를 노출하지 않음 — 외부 접근 차단
+    # 포트를 노출하지 않음 - 외부 접근 차단
 
   redis:
     restart: always
@@ -681,7 +681,7 @@ APP_VERSION=1.2.3
 ```
 
 ```yaml
-# compose.yaml — .env의 변수가 치환됨
+# compose.yaml - .env의 변수가 치환됨
 services:
   db:
     image: postgres:16-alpine
@@ -823,7 +823,7 @@ services:
 Ch 4에서 다룬 멀티스테이지 빌드와 Compose의 `target`을 결합하면 환경별로 다른 스테이지를 사용할 수 있다.
 
 ```dockerfile
-# Dockerfile — 멀티스테이지
+# Dockerfile - 멀티스테이지
 FROM node:20-alpine AS base
 WORKDIR /app
 COPY package*.json ./
@@ -854,7 +854,7 @@ CMD ["node", "server.js"]
 ```
 
 ```yaml
-# compose.dev.yaml — dev 스테이지 사용
+# compose.dev.yaml - dev 스테이지 사용
 services:
   app:
     build:
@@ -862,7 +862,7 @@ services:
 ```
 
 ```yaml
-# compose.prod.yaml — runner 스테이지 사용
+# compose.prod.yaml - runner 스테이지 사용
 services:
   app:
     build:
@@ -1054,7 +1054,7 @@ services:
 ### 1. 오버라이드 파일 병합 순서 착각
 
 ```bash
-# 순서가 중요하다 — 나중 파일이 이전 파일을 덮어씀
+# 순서가 중요하다 - 나중 파일이 이전 파일을 덮어씀
 docker compose -f compose.yaml -f compose.prod.yaml up  # ✅ 올바름
 docker compose -f compose.prod.yaml -f compose.yaml up  # ❌ 기본 설정이 프로덕션을 덮어씀
 ```
@@ -1090,7 +1090,7 @@ docker compose --env-file .env.prod up
 ### 4. 프로덕션에서 바인드 마운트 사용
 
 ```yaml
-# ❌ 프로덕션에서 바인드 마운트 — 이미지의 의미가 없어짐
+# ❌ 프로덕션에서 바인드 마운트 - 이미지의 의미가 없어짐
 services:
   app:
     image: myapp:1.0
@@ -1101,7 +1101,7 @@ services:
 services:
   app:
     image: myapp:1.0
-    # volumes 없음 — 이미지가 곧 배포 단위
+    # volumes 없음 - 이미지가 곧 배포 단위
 ```
 
 ### 5. ports 시퀀스가 병합됨을 잊음
@@ -1126,7 +1126,7 @@ services:
 ### 6. `<<:` 머지 키를 두 번 사용
 
 ```yaml
-# ❌ YAML 표준 위반 — 같은 키를 두 번 쓸 수 없음
+# ❌ YAML 표준 위반 - 같은 키를 두 번 쓸 수 없음
 services:
   app:
     <<: *anchor1

@@ -6,7 +6,7 @@
 
 - 코딩 테스트에서 자주 쓰이는 JS/TS 자료형과 메서드는 무엇인가?
 - 각 자료구조 연산의 **시간복잡도**는 얼마인가?
-- Python의 `itertools`, `heapq`, `bisect` 같은 표준 라이브러리는 JS에 없다 — 어떻게 대체하는가?
+- Python의 `itertools`, `heapq`, `bisect` 같은 표준 라이브러리는 JS에 없다 - 어떻게 대체하는가?
 - 백준 / 프로그래머스 환경에서 입출력은 어떻게 처리하는가?
 
 ## 1. 수 자료형
@@ -51,7 +51,7 @@ console.log(Math.trunc(a / b));  // 2 (음수일 때 floor와 다름)
 console.log(a ** b);         // 343 (거듭제곱)
 ```
 
-> **자주 하는 실수**: Python `int(A / B)`는 0 방향 절단(truncate) — JS에서는 `Math.trunc(a / b)` 또는 `~~(a / b)`. `Math.floor`는 음수에서 결과가 다르다 (`Math.floor(-1.5) === -2`, `Math.trunc(-1.5) === -1`).
+> **자주 하는 실수**: Python `int(A / B)`는 0 방향 절단(truncate) - JS에서는 `Math.trunc(a / b)` 또는 `~~(a / b)`. `Math.floor`는 음수에서 결과가 다르다 (`Math.floor(-1.5) === -2`, `Math.trunc(-1.5) === -1`).
 
 ## 2. 배열 (Python의 list 대체)
 
@@ -68,11 +68,11 @@ const empty: number[] = [];
 const n = 10;
 const zeros = Array(n).fill(0);                       // [0,0,...,0]
 
-// 2D 배열 (n × m, 모두 0) — 주의: fill은 참조 공유 X
+// 2D 배열 (n × m, 모두 0) - 주의: fill은 참조 공유 X
 const rows = 3, cols = 4;
 const grid = Array.from({ length: rows }, () => Array(cols).fill(0));
 
-// ❌ 잘못된 2D 초기화 — 모든 행이 같은 배열 참조
+// ❌ 잘못된 2D 초기화 - 모든 행이 같은 배열 참조
 const wrong = Array(rows).fill(Array(cols).fill(0));
 wrong[0][0] = 1;
 console.log(wrong);  // 모든 행의 [0]이 1로 바뀜!
@@ -124,7 +124,7 @@ const squares = Array.from({ length: 9 }, (_, i) => (i + 1) ** 2);
 
 > **함정**: `unshift` / `shift`가 O(N)이다. **큐(Queue)** 가 필요하면 배열의 `shift`를 그대로 쓰면 O(N²) 위험이 있어서 인덱스 포인터를 직접 관리하거나 양방향 큐(Deque)를 별도로 구현해야 한다.
 
-### 정렬 — 디폴트 비교 함수의 함정
+### 정렬 - 디폴트 비교 함수의 함정
 
 `Array.prototype.sort`의 디폴트는 **각 원소를 문자열로 변환한 뒤 사전순 비교**다. 숫자에 그대로 쓰면 의도와 다른 결과가 나온다.
 
@@ -214,12 +214,12 @@ const edge: [number, number] = [nodeIdx, weight];
 ### 두 가지 선택지
 
 ```ts
-// 1) Object — 키는 자동으로 문자열로 변환됨
+// 1) Object - 키는 자동으로 문자열로 변환됨
 const obj: Record<string, number> = {};
 obj["사과"] = 1;
 obj["바나나"] = 2;
 
-// 2) Map — 모든 타입의 키 가능, 순서 보장, 명시적 size
+// 2) Map - 모든 타입의 키 가능, 순서 보장, 명시적 size
 const map = new Map<string, number>();
 map.set("사과", 1);
 map.set("바나나", 2);
@@ -332,7 +332,7 @@ function solution(n: number, arr: number[]): number {
 }
 ```
 
-### 출력 — 문자열 + 숫자
+### 출력 - 문자열 + 숫자
 
 JS는 Python과 달리 `+`로 자동 형변환된다.
 
@@ -342,7 +342,7 @@ console.log("정답은 " + answer + "입니다.");        // OK
 console.log(`정답은 ${answer}입니다.`);              // 템플릿 리터럴 (권장)
 ```
 
-## 8. 표준 기능 — Python 라이브러리 대체
+## 8. 표준 기능 - Python 라이브러리 대체
 
 코딩 테스트 책의 부록은 Python 6대 표준 라이브러리(`itertools`, `heapq`, `bisect`, `collections`, `math`, 내장)를 다룬다. JS/TS는 표준 라이브러리가 빈약하니 **직접 구현하거나 npm 패키지**를 써야 한다.
 
@@ -623,15 +623,15 @@ console.log(gcd(21, 14));   // 7
 | 자료구조 | 접근 | 검색 | 삽입 | 삭제 |
 |---|---|---|---|---|
 | Array (인덱스) | O(1) | O(N) | O(N) (중간) / O(1) (끝 push) | O(N) (중간) / O(1) (끝 pop) |
-| Stack (배열의 push/pop) | — | O(N) | **O(1)** | **O(1)** |
-| Queue (배열의 push/shift) | — | O(N) | O(1) push / **O(N) shift** ⚠️ | — |
-| Linked Deque | — | O(N) | **O(1)** 양 끝 | **O(1)** 양 끝 |
-| Map / Object | — | **O(1)** 평균 | **O(1)** 평균 | **O(1)** 평균 |
-| Set | — | **O(1)** 평균 | **O(1)** 평균 | **O(1)** 평균 |
+| Stack (배열의 push/pop) | - | O(N) | **O(1)** | **O(1)** |
+| Queue (배열의 push/shift) | - | O(N) | O(1) push / **O(N) shift** ⚠️ | - |
+| Linked Deque | - | O(N) | **O(1)** 양 끝 | **O(1)** 양 끝 |
+| Map / Object | - | **O(1)** 평균 | **O(1)** 평균 | **O(1)** 평균 |
+| Set | - | **O(1)** 평균 | **O(1)** 평균 | **O(1)** 평균 |
 | MinHeap (이진 힙) | O(1) (peek) | O(N) | **O(log N)** | **O(log N)** (root만) |
 | 정렬된 배열 + bisect | O(1) | **O(log N)** | O(N) | O(N) |
 
-### 알고리즘 시간복잡도와 입력 크기 — 1초 기준
+### 알고리즘 시간복잡도와 입력 크기 - 1초 기준
 
 | 빅오 | 1초에 가능한 N |
 |---|---|
@@ -654,4 +654,4 @@ console.log(gcd(21, 14));   // 7
 - 집합은 `Set`. 합/교/차집합은 `[...a]` + `filter`로.
 - Python `itertools`/`heapq`/`bisect`는 JS에 없다. **직접 구현 코드를 외워두자.**
 - 백준 입력이 크면 `fs.readFileSync('/dev/stdin')`로 한 번에 읽기.
-- 시간복잡도 표는 코테의 기본 — 외울 것.
+- 시간복잡도 표는 코테의 기본 - 외울 것.

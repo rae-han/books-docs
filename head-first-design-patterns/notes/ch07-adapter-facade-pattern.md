@@ -7,11 +7,11 @@
 - 데코레이터·어댑터·퍼사드는 모두 "객체를 감싸는데" 무엇이 다른가?
 - "진짜 절친에게만 이야기하라"는 최소 지식 원칙은 왜 필요한가?
 
-> **참고**: 이 장은 **어댑터**와 **퍼사드** 두 패턴을 다룬다. 둘 다 인터페이스를 바꾸지만 목적이 다르다 — 어댑터는 **변환**, 퍼사드는 **단순화**.
+> **참고**: 이 장은 **어댑터**와 **퍼사드** 두 패턴을 다룬다. 둘 다 인터페이스를 바꾸지만 목적이 다르다 - 어댑터는 **변환**, 퍼사드는 **단순화**.
 
 ---
 
-## 1. 어댑터 패턴 — 인터페이스 변환
+## 1. 어댑터 패턴 - 인터페이스 변환
 
 한국 플러그를 영국 소켓에 꽂으려면 **AC 어댑터**가 필요하다. 소프트웨어도 마찬가지: 기존 코드가 기대하는 인터페이스와, 새 업체 클래스의 인터페이스가 다를 때, 그 사이를 **변환**하는 어댑터를 만든다.
 
@@ -75,7 +75,7 @@ public class TurkeyAdapter implements Duck {
 ```
 </details>
 
-> **패턴 정의 — 어댑터 패턴 (Adapter Pattern)**<br>특정 클래스 인터페이스를 클라이언트가 요구하는 다른 인터페이스로 변환한다. 인터페이스가 호환되지 않아 함께 쓸 수 없던 클래스를 사용할 수 있게 해 준다.
+> **패턴 정의 - 어댑터 패턴 (Adapter Pattern)**<br>특정 클래스 인터페이스를 클라이언트가 요구하는 다른 인터페이스로 변환한다. 인터페이스가 호환되지 않아 함께 쓸 수 없던 클래스를 사용할 수 있게 해 준다.
 
 ```
  Client ──request()──▶ Adapter ──specificRequest()──▶ Adaptee
@@ -92,7 +92,7 @@ public class TurkeyAdapter implements Duck {
 
 > **핵심 통찰**: 어댑터는 **객체 구성**을 쓰므로, 어댑티 전체와 그 서브클래스에 두루 적용된다. "상속보다 구성(원칙 3)"의 좋은 예다.
 
-### 실전 — Enumeration ↔ Iterator
+### 실전 - Enumeration ↔ Iterator
 
 자바 구형 컬렉션의 `Enumeration`(`hasMoreElements`/`nextElement`)을 신형 `Iterator`(`hasNext`/`next`/`remove`)로 변환.
 
@@ -114,7 +114,7 @@ public class EnumerationIterator implements Iterator<Object> {
 
 ---
 
-## 2. 퍼사드 패턴 — 인터페이스 단순화
+## 2. 퍼사드 패턴 - 인터페이스 단순화
 
 홈시어터로 영화 한 편 보려면 팝콘 기계·조명·스크린·프로젝터·앰프·플레이어 등 **6개 클래스에 걸쳐 13단계**를 호출해야 한다. 끔찍하다. **퍼사드(facade, 겉모양)** 로 이 복잡함을 단순한 메서드 뒤에 감춘다.
 
@@ -130,7 +130,7 @@ class HomeTheaterFacade {
     private popper: PopcornPopper,
   ) {}
 
-  /** 영화 볼 준비 — 복잡한 13단계를 하나로. */
+  /** 영화 볼 준비 - 복잡한 13단계를 하나로. */
   watchMovie(movie: string): void {
     this.popper.on();
     this.popper.pop();
@@ -146,7 +146,7 @@ class HomeTheaterFacade {
     this.player.play(movie);
   }
 
-  /** 영화 종료 — 모든 구성 요소를 역순으로 끈다. */
+  /** 영화 종료 - 모든 구성 요소를 역순으로 끈다. */
   endMovie(): void {
     this.popper.off();
     this.lights.on();
@@ -184,7 +184,7 @@ public void watchMovie(String movie) {
 ```
 </details>
 
-> **패턴 정의 — 퍼사드 패턴 (Facade Pattern)**<br>서브시스템에 있는 일련의 인터페이스를 통합 인터페이스로 묶어 준다. 고수준 인터페이스도 정의하므로 서브시스템을 더 편리하게 사용할 수 있다.
+> **패턴 정의 - 퍼사드 패턴 (Facade Pattern)**<br>서브시스템에 있는 일련의 인터페이스를 통합 인터페이스로 묶어 준다. 고수준 인터페이스도 정의하므로 서브시스템을 더 편리하게 사용할 수 있다.
 
 > **무엇이든 물어보세요 (Q&A)**
 >
@@ -206,7 +206,7 @@ public void watchMovie(String movie) {
 | **어댑터**(이 장) | 인터페이스를 **변환** | **바꿈** |
 | **퍼사드**(이 장) | 인터페이스를 **단순화/통합** | **간단하게 바꿈** |
 
-> **핵심 통찰**: 어댑터와 퍼사드의 차이는 "감싸는 클래스 개수"가 아니다(둘 다 여러 개 감쌀 수 있다). 차이는 **용도** — 어댑터는 **호환되게 변환**, 퍼사드는 **쓰기 쉽게 단순화**.
+> **핵심 통찰**: 어댑터와 퍼사드의 차이는 "감싸는 클래스 개수"가 아니다(둘 다 여러 개 감쌀 수 있다). 차이는 **용도** - 어댑터는 **호환되게 변환**, 퍼사드는 **쓰기 쉽게 단순화**.
 
 ---
 
@@ -214,11 +214,11 @@ public void watchMovie(String movie) {
 
 퍼사드는 새 원칙을 실현한다.
 
-> **디자인 원칙 7 — 최소 지식 원칙 (Principle of Least Knowledge)**<br>진짜 절친에게만 이야기해야 한다. (= 데메테르의 법칙, Law of Demeter)
+> **디자인 원칙 7 - 최소 지식 원칙 (Principle of Least Knowledge)**<br>진짜 절친에게만 이야기해야 한다. (= 데메테르의 법칙, Law of Demeter)
 
 객체가 상호작용하는 클래스 수와 방식을 줄여, 한 부분의 변경이 여러 곳으로 번지는 것을 막는다.
 
-### 나쁜 예 — 메서드 체이닝(기차 충돌)
+### 나쁜 예 - 메서드 체이닝(기차 충돌)
 
 ```typescript
 // ❌ 다른 메서드가 리턴한 객체의 메서드를 또 호출 → 낯선 객체와 친해짐
@@ -270,13 +270,13 @@ class Car {
 
 ## 연습 문제 (해답 예시)
 
-**1. `DuckAdapter` (Duck → Turkey)** — `Turkey`를 구현하고 `Duck`을 보유한다. `gobble()`은 `duck.quack()`을 호출. `fly()`는 오리가 더 오래 날므로, `Random`으로 **5번에 1번꼴**로만 `duck.fly()`를 호출해 균형을 맞춘다.
+**1. `DuckAdapter` (Duck → Turkey)** - `Turkey`를 구현하고 `Duck`을 보유한다. `gobble()`은 `duck.quack()`을 호출. `fly()`는 오리가 더 오래 날므로, `Random`으로 **5번에 1번꼴**로만 `duck.fly()`를 호출해 균형을 맞춘다.
 
-**2. 최소 지식 원칙 위반 판별** — `station.getThermometer().getTemperature()`는 **위반**(리턴 객체의 메서드 호출). 반면 `getThermometer()`로 받은 객체를 **매개변수로 넘겨** `getTempHelper(thermometer)`에서 호출하면 (매개변수 규칙에 따라) 형식상 위반이 아니다 — 다만 "교묘하게 속인" 느낌이라 근본 개선은 아니다.
+**2. 최소 지식 원칙 위반 판별** - `station.getThermometer().getTemperature()`는 **위반**(리턴 객체의 메서드 호출). 반면 `getThermometer()`로 받은 객체를 **매개변수로 넘겨** `getTempHelper(thermometer)`에서 호출하면 (매개변수 규칙에 따라) 형식상 위반이 아니다 - 다만 "교묘하게 속인" 느낌이라 근본 개선은 아니다.
 
-**3. `IteratorEnumeration` (Iterator → Enumeration)** — `Enumeration`을 구현하고 `Iterator`를 보유. `hasMoreElements()`→`iterator.hasNext()`, `nextElement()`→`iterator.next()`.
+**3. `IteratorEnumeration` (Iterator → Enumeration)** - `Enumeration`을 구현하고 `Iterator`를 보유. `hasMoreElements()`→`iterator.hasNext()`, `nextElement()`→`iterator.next()`.
 
-**4. 패턴-용도 연결** — 데코레이터=인터페이스 유지 + 책임 추가 / 어댑터=인터페이스 변환 / 퍼사드=인터페이스 단순화.
+**4. 패턴-용도 연결** - 데코레이터=인터페이스 유지 + 책임 추가 / 어댑터=인터페이스 변환 / 퍼사드=인터페이스 단순화.
 
 ---
 
@@ -311,7 +311,7 @@ class Car {
 
 ## 보너스: 원서 복습 요소
 
-### 🎙️ 방구석 토크 — 객체 어댑터 vs 클래스 어댑터
+### 🎙️ 방구석 토크 - 객체 어댑터 vs 클래스 어댑터
 
 - **객체 어댑터**(구성): 어댑티와 그 서브클래스 모두에 적용 가능 → 유연.
 - **클래스 어댑터**(다중 상속): 어댑티 객체 없이 어댑터 하나로 끝, 메서드 오버라이드 가능 → 효율적이지만 다중 상속 필요(자바/TS 불가).
@@ -327,4 +327,4 @@ class Car {
 
 ### 📝 낱말 퀴즈 (정답 단어 모음)
 
-7장 용어들(정답은 영어): ADAPTER 관련 — CONVERTS(변환), TARGET(타깃), TWOWAY(다중 어댑터), WRAP(감싸는), WRAPPERS(래퍼), ACADAPTER(AC어댑터), TURKEY(칠면조), FLY(날기), DECORATOR(데코레이터), SIMPLEPASSTHROUGH(그냥 통과), FACADE(퍼사드), HOMETHEATER(홈시어터), POPCORN(팝콘), DECOUPLING(분리), ALLOWS(허용), LEASTKNOWLEDGE(최소 지식 원칙), PRINTLN(println), FALSE(거짓), RAIDERSOFTHELOSTARK(인디아나 존스: 레이더스).
+7장 용어들(정답은 영어): ADAPTER 관련 - CONVERTS(변환), TARGET(타깃), TWOWAY(다중 어댑터), WRAP(감싸는), WRAPPERS(래퍼), ACADAPTER(AC어댑터), TURKEY(칠면조), FLY(날기), DECORATOR(데코레이터), SIMPLEPASSTHROUGH(그냥 통과), FACADE(퍼사드), HOMETHEATER(홈시어터), POPCORN(팝콘), DECOUPLING(분리), ALLOWS(허용), LEASTKNOWLEDGE(최소 지식 원칙), PRINTLN(println), FALSE(거짓), RAIDERSOFTHELOSTARK(인디아나 존스: 레이더스).

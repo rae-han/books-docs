@@ -41,7 +41,7 @@ Kent Beck은 최종 코드의 지표를 다음과 같이 제시한다:
 | 클래스 수 | 5개 (Money, Sum, Bank, Pair, Expression) |
 | 테스트-코드 비율 | 약 1.5:1 |
 
-> **핵심 통찰**: 테스트 코드가 프로덕션 코드보다 많다. 이것은 TDD 프로젝트에서 일반적인 현상이다. Kent Beck은 이것을 문제로 보지 않는다 — 테스트는 코드의 동작을 문서화하고, 변경의 안전망을 제공하며, 설계를 이끌어내는 자산이다.
+> **핵심 통찰**: 테스트 코드가 프로덕션 코드보다 많다. 이것은 TDD 프로젝트에서 일반적인 현상이다. Kent Beck은 이것을 문제로 보지 않는다 - 테스트는 코드의 동작을 문서화하고, 변경의 안전망을 제공하며, 설계를 이끌어내는 자산이다.
 
 ---
 
@@ -55,12 +55,12 @@ Part I의 가장 중요한 설계 결정은 **금융 계산을 산술 표현식(
 $5 + 10 CHF
 ```
 
-이것은 단순히 "숫자 두 개를 더하는 것"이 아니다. 서로 다른 통화의 금액은 환율이 적용되기 전까지는 합칠 수 없다. 따라서 `$5 + 10 CHF`는 **아직 평가되지 않은 표현식** — 즉, "나중에 환율이 주어지면 계산될 수 있는 것"이다.
+이것은 단순히 "숫자 두 개를 더하는 것"이 아니다. 서로 다른 통화의 금액은 환율이 적용되기 전까지는 합칠 수 없다. 따라서 `$5 + 10 CHF`는 **아직 평가되지 않은 표현식** - 즉, "나중에 환율이 주어지면 계산될 수 있는 것"이다.
 
 이 메타포를 통해:
-- `$5`는 리터럴(literal) — `Money` 객체
-- `$5 + 10 CHF`는 합(sum) — `Sum` 객체
-- `bank.reduce(expression, "USD")`는 평가(evaluation) — 특정 환율로 표현식을 계산
+- `$5`는 리터럴(literal) - `Money` 객체
+- `$5 + 10 CHF`는 합(sum) - `Sum` 객체
+- `bank.reduce(expression, "USD")`는 평가(evaluation) - 특정 환율로 표현식을 계산
 
 ### 2.2 Expression 메타포의 장점
 
@@ -95,9 +95,9 @@ Chapter 2에서 `times()`가 자신을 변경하는 대신 새 Dollar를 반환�
 ### 3.2 Composite 패턴
 
 Expression 트리는 Composite 패턴의 적용이다:
-- `Money` — Leaf (단말 노드)
-- `Sum` — Composite (합성 노드)
-- `Expression` — Component (공통 인터페이스)
+- `Money` - Leaf (단말 노드)
+- `Sum` - Composite (합성 노드)
+- `Expression` - Component (공통 인터페이스)
 
 클라이언트(Bank)는 Money인지 Sum인지 구분하지 않고 `Expression`으로 다룬다. `reduce()`, `plus()`, `times()` 모두 다형적으로 동작한다.
 
@@ -141,7 +141,7 @@ Part I에서 사용한 세 가지 Green Bar 전략의 분포:
 
 Kent Beck은 대부분의 경우 Obvious Implementation을 사용했다. 불확실할 때만 Fake It으로 전환했고, Triangulation은 가끔 사용했다.
 
-> **핵심 통찰**: 전문가는 대부분의 경우 Obvious Implementation을 사용할 수 있다. 하지만 Red Bar가 예상치 못하게 나타날 때 Fake It으로 전환하는 **유연성**이 중요하다. 큰 단계가 실패하면 작은 단계로 돌아가는 능력 — 이것이 TDD 숙련의 핵심이다.
+> **핵심 통찰**: 전문가는 대부분의 경우 Obvious Implementation을 사용할 수 있다. 하지만 Red Bar가 예상치 못하게 나타날 때 Fake It으로 전환하는 **유연성**이 중요하다. 큰 단계가 실패하면 작은 단계로 돌아가는 능력 - 이것이 TDD 숙련의 핵심이다.
 
 ### 4.3 테스트 순서의 중요성
 
@@ -238,7 +238,7 @@ TDD는 **Red → Green → Refactor**의 리듬이다. 이 리듬이 주는 것:
 
 ### 7.3 작은 단계의 힘
 
-$5 + 10 CHF = $10이라는 문제를 해결하기 위해 17개 챕터가 필요했다. 하지만 각 챕터에서는 하나의 작은 문제만 풀었고, 각 문제의 해결은 대부분 몇 줄의 코드 변경이었다. **큰 문제를 작은 문제의 연쇄로 바꾸는 것** — 이것이 TDD의 본질이다.
+$5 + 10 CHF = $10이라는 문제를 해결하기 위해 17개 챕터가 필요했다. 하지만 각 챕터에서는 하나의 작은 문제만 풀었고, 각 문제의 해결은 대부분 몇 줄의 코드 변경이었다. **큰 문제를 작은 문제의 연쇄로 바꾸는 것** - 이것이 TDD의 본질이다.
 
 ### 7.4 테스트는 문서다
 
@@ -276,11 +276,11 @@ Part I에서 배운 TDD 리듬을 다른 언어, 다른 도메인에 적용하�
 
 Part I과 II에서 **암묵적으로 사용한 기법들**을 Part III에서 **명시적인 패턴으로 정리**한다:
 
-- Chapter 25: TDD 패턴 — 어떤 테스트를 먼저 작성할 것인가?
-- Chapter 26: Red Bar 패턴 — 실패하는 테스트를 어떻게 잘 작성하는가?
-- Chapter 27: Testing 패턴 — 테스트를 어떻게 구성하는가?
-- Chapter 28: Green Bar 패턴 — Fake It, Triangulation, Obvious Implementation의 체계적 정리
-- Chapter 30: Design 패턴 — Value Object, Composite 등 TDD에서 자주 등장하는 설계 패턴
+- Chapter 25: TDD 패턴 - 어떤 테스트를 먼저 작성할 것인가?
+- Chapter 26: Red Bar 패턴 - 실패하는 테스트를 어떻게 잘 작성하는가?
+- Chapter 27: Testing 패턴 - 테스트를 어떻게 구성하는가?
+- Chapter 28: Green Bar 패턴 - Fake It, Triangulation, Obvious Implementation의 체계적 정리
+- Chapter 30: Design 패턴 - Value Object, Composite 등 TDD에서 자주 등장하는 설계 패턴
 
 Part I에서 직관적으로 사용했던 것들이 Part III에서 이름과 구조를 얻는다.
 
@@ -303,7 +303,7 @@ Part I에서 직관적으로 사용했던 것들이 Part III에서 이름과 구
 ## 다른 챕터와의 관계
 
 - **Chapter 1 (Multi-Currency Money)**: Part I의 시작점. `$5 × 2 = $10`이라는 첫 번째 테스트에서 출발하여 여기까지 도달했다.
-- **Chapter 15 (Mixed Currencies)**: `$5 + 10 CHF = $10` — Part I의 핵심 목표를 달성한 챕터. 이 회고의 가장 중요한 이정표다.
+- **Chapter 15 (Mixed Currencies)**: `$5 + 10 CHF = $10` - Part I의 핵심 목표를 달성한 챕터. 이 회고의 가장 중요한 이정표다.
 - **Chapter 16 (Abstraction, Finally)**: Expression 인터페이스를 완성한 챕터. Expression 메타포의 최종 형태를 보여준다.
 - **Chapter 18 (First Steps to xUnit)**: Part II의 시작. Part I에서 배운 TDD를 테스트 프레임워크 구현에 적용한다.
 - **Chapter 25~28 (TDD/Red Bar/Testing/Green Bar Patterns)**: Part I에서 암묵적으로 사용한 TDD 기법들이 Part III에서 명시적인 패턴으로 정리된다.

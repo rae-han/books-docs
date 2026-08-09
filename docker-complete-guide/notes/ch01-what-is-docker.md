@@ -206,7 +206,7 @@ runc가 수행하는 작업:
 
 runc는 컨테이너 프로세스를 시작한 후 **즉시 종료**된다. 이후 컨테이너 프로세스는 containerd-shim이라는 경량 프로세스에 의해 관리된다.
 
-### 3.6 왜 이렇게 분리했는가? — Daemonless Containers
+### 3.6 왜 이렇게 분리했는가? - Daemonless Containers
 
 초기 Docker(v1.10 이전)에서는 모든 기능이 단일 데몬(dockerd)에 집중되어 있었다. 이로 인해 심각한 문제가 있었다:
 

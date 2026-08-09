@@ -13,7 +13,7 @@ Expression 인터페이스를 완전한 추상화로 만들려면 무엇이 필�
 Chapter 15에서 `$5 + 10 CHF = $10`을 달성했다. 하지만 현재 시스템에는 빈틈이 있다:
 
 - `Money`는 `plus()`와 `times()`를 지원한다
-- `Sum`은 `reduce()`만 지원한다 — `plus()`와 `times()`가 없다
+- `Sum`은 `reduce()`만 지원한다 - `plus()`와 `times()`가 없다
 
 이것은 무슨 의미인가? `$5 + 10 CHF`의 결과(Sum)에 다시 `$5`를 더하거나, 2를 곱할 수 없다는 뜻이다:
 
@@ -43,7 +43,7 @@ Expression 인터페이스에 `plus()`와 `times()`가 없기 때문이다.
 
 ### 2.1 첫 번째 사이클: Sum.plus()
 
-#### Red — Sum에 plus()를 호출하는 테스트
+#### Red - Sum에 plus()를 호출하는 테스트
 
 ```java
 public void testSumPlusMoney() {
@@ -75,13 +75,13 @@ test('sum plus money', () => {
 </details>
 
 이 테스트가 하는 일:
-1. `$5 + 10 CHF = $10 (USD)` — Sum 생성
+1. `$5 + 10 CHF = $10 (USD)` - Sum 생성
 2. 이 Sum에 `$5`를 더한다 → `($5 + 10 CHF) + $5`
 3. `reduce("USD")` → `$10 + $5 = $15`
 
 현재 `Sum`에 `plus()` 메서드가 없으므로 **컴파일 에러**. Red Bar.
 
-#### Green — Sum.plus() 구현
+#### Green - Sum.plus() 구현
 
 ```java
 // Sum.java
@@ -189,7 +189,7 @@ plus(addend: Expression): Expression {
 
 ### 2.2 두 번째 사이클: Sum.times()
 
-#### Red — Sum에 times()를 호출하는 테스트
+#### Red - Sum에 times()를 호출하는 테스트
 
 ```java
 public void testSumTimes() {
@@ -221,13 +221,13 @@ test('sum times', () => {
 </details>
 
 이 테스트가 하는 일:
-1. `$5 + 10 CHF` — Sum 생성
+1. `$5 + 10 CHF` - Sum 생성
 2. 이 Sum에 2를 곱한다 → `($5 + 10 CHF) × 2 = ($5 × 2) + (10 CHF × 2) = $10 + 20 CHF`
 3. `reduce("USD")` → `$10 + $10 = $20`
 
 현재 `Sum`에 `times()` 메서드가 없으므로 **컴파일 에러**. Red Bar.
 
-#### Green — Sum.times() 구현
+#### Green - Sum.times() 구현
 
 ```java
 // Sum.java
@@ -369,9 +369,9 @@ Sum($20, $3).reduce → $23
 
 이 구조는 **Composite 패턴**의 전형적인 예다:
 
-- **Leaf (단말)**: `Money` — 더 이상 분해되지 않는 값
-- **Composite (합성)**: `Sum` — 두 개의 Expression을 포함하는 합성 노드
-- **Component (공통 인터페이스)**: `Expression` — Money와 Sum 모두 동일한 인터페이스 제공
+- **Leaf (단말)**: `Money` - 더 이상 분해되지 않는 값
+- **Composite (합성)**: `Sum` - 두 개의 Expression을 포함하는 합성 노드
+- **Component (공통 인터페이스)**: `Expression` - Money와 Sum 모두 동일한 인터페이스 제공
 
 Composite 패턴의 핵심 이점: 클라이언트가 Money인지 Sum인지 구분할 필요 없이 `Expression`으로 다룰 수 있다.
 
@@ -461,7 +461,7 @@ class Sum implements Expression {
 
 </details>
 
-### 5.3 Money.java (참고 — 이미 구현되어 있던 메서드들)
+### 5.3 Money.java (참고 - 이미 구현되어 있던 메서드들)
 
 ```java
 class Money implements Expression {
@@ -588,8 +588,8 @@ TODO 리스트에 아직 남아 있는 `$5 + $5에서 Money 반환하기`를 살
 ## 요약
 
 - `Expression` 인터페이스에 **`plus()`와 `times()`를 추가**하여 완전한 산술 표현식 인터페이스를 완성했다.
-- **Sum.plus()**: `new Sum(this, addend)` — Money.plus()와 동일한 구조.
-- **Sum.times()**: `new Sum(augend.times(multiplier), addend.times(multiplier))` — **분배 법칙**을 적용하여 각 피연산자에 배수를 곱한다.
+- **Sum.plus()**: `new Sum(this, addend)` - Money.plus()와 동일한 구조.
+- **Sum.times()**: `new Sum(augend.times(multiplier), addend.times(multiplier))` - **분배 법칙**을 적용하여 각 피연산자에 배수를 곱한다.
 - Expression 트리는 **Composite 패턴**이다. Money가 단말 노드, Sum이 합성 노드, Expression이 공통 인터페이스다.
 - `plus()`와 `times()`는 Expression을 반환하고, `reduce()`만 Money를 반환한다. **표현식 생성과 표현식 평가가 분리**된 구조다.
 - TODO 리스트에서 불필요한 항목(`$5 + $5에서 Money 반환하기`)을 삭제했다. 모든 TODO를 구현하는 것이 목표가 아니다.
@@ -601,5 +601,5 @@ TODO 리스트에 아직 남아 있는 `$5 + $5에서 Money 반환하기`를 살
 - **Chapter 12 (Addition, Finally)**: Expression 인터페이스와 Sum 클래스의 기본 구조를 만들었다. 이 챕터에서 plus()와 times()를 추가하여 인터페이스를 완성했다.
 - **Chapter 15 (Mixed Currencies)**: Sum.reduce()에서 각 피연산자를 reduce()하도록 수정했다. 이 재귀 구조 위에 Sum.plus()와 Sum.times()가 자연스럽게 쌓인다.
 - **Chapter 17 (Money Retrospective)**: Part I 전체를 돌아보며, Expression 메타포의 의미, 설계 결정들, TDD 과정을 회고한다.
-- **Chapter 2 (Degenerate Objects)**: 값 객체 패턴을 도입했다. Money가 값 객체이고, Sum도 사실상 값 객체다 — 모든 연산이 새 객체를 반환한다.
+- **Chapter 2 (Degenerate Objects)**: 값 객체 패턴을 도입했다. Money가 값 객체이고, Sum도 사실상 값 객체다 - 모든 연산이 새 객체를 반환한다.
 - **Chapter 30 (Design Patterns)**: Composite 패턴, Value Object 패턴 등 이 챕터에서 사용한 설계 패턴이 Part III에서 체계적으로 정리된다.

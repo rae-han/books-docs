@@ -80,7 +80,7 @@ function travelPlan(n: number, matrix: number[][], plan: number[]): string {
 
 ### 핵심 아이디어
 
-각 비행기를 **가능한 가장 큰 번호** 탑승구에 도킹하는 그리디. Union-Find로 "g 이하의 빈 탑승구"를 O(α)에 찾는다(`find(g)`가 빈 자리, 도킹하면 그 자리를 `자리−1`에 합쳐 다음 후보로).
+각 비행기를 **가능한 가장 큰 번호** 탑승구에 도킹하는 그리디. Union-Find로 "g 이하의 빈 탑승구"를 O(α)에 찾는다(`find(g)`가 빈 자리, 도킹하면 그 자리를 `자리-1`에 합쳐 다음 후보로).
 
 ```ts
 function gates(g: number, planes: number[]): number {
@@ -122,7 +122,7 @@ function gates(g: number, planes: number[]): number {
 
 ### 핵심 아이디어
 
-**전체 도로 비용 − MST 비용** = 절약액. 크루스칼로 MST를 구한다.
+**전체 도로 비용 - MST 비용** = 절약액. 크루스칼로 MST를 구한다.
 
 ```ts
 function darkRoad(n: number, edges: [number, number, number][]): number {
@@ -165,7 +165,7 @@ function darkRoad(n: number, edges: [number, number, number][]): number {
 
 ### 핵심 아이디어
 
-간선이 N²개라 다 만들면 시간 초과. 비용이 **각 축의 차이 중 최소**이므로, **각 축으로 정렬한 인접 행성 쌍만** 후보 간선으로 두면 충분하다(축당 N−1개, 총 3(N−1)개). 이후 크루스칼.
+간선이 N²개라 다 만들면 시간 초과. 비용이 **각 축의 차이 중 최소**이므로, **각 축으로 정렬한 인접 행성 쌍만** 후보 간선으로 두면 충분하다(축당 N-1개, 총 3(N-1)개). 이후 크루스칼.
 
 ```ts
 function planetTunnel(planets: number[][]): number {
@@ -284,7 +284,7 @@ console.log(finalRank(5, [5, 4, 3, 2, 1], [[2, 4], [3, 4]])); // 5 3 2 4 1
 
 - **여행 계획**: Union-Find로 연결성 → 계획 도시들이 같은 루트인지.
 - **탑승구**: Union-Find로 "빈 슬롯 추적" 그리디.
-- **어두운 길**: 크루스칼 MST, 절약 = **전체 − MST**.
+- **어두운 길**: 크루스칼 MST, 절약 = **전체 - MST**.
 - **행성 터널**: 간선 폭발 → **각 축 정렬 인접 쌍만** 후보로 + 크루스칼.
 - **최종 순위**: 작년 완전 그래프 + 간선 뒤집기 → 위상 정렬로 **유일성(`?`)·사이클(`IMPOSSIBLE`)** 판정.
 - 그래프 이론 기출의 핵심은 **문제를 Union-Find/MST/위상 정렬 중 무엇으로 환원**하느냐다.

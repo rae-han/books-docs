@@ -66,7 +66,7 @@ Ch 4에서 멀티스테이지 빌드의 기본 개념을 다뤘다. 이 섹션�
 
 ```dockerfile
 # ============================================
-# Stage 1: deps — 의존성 설치
+# Stage 1: deps - 의존성 설치
 # ============================================
 FROM node:20-alpine AS deps
 
@@ -79,7 +79,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # ============================================
-# Stage 2: builder — 애플리케이션 빌드
+# Stage 2: builder - 애플리케이션 빌드
 # ============================================
 FROM node:20-alpine AS builder
 
@@ -93,7 +93,7 @@ COPY . .
 RUN npm run build
 
 # ============================================
-# Stage 3: runner — 프로덕션 실행
+# Stage 3: runner - 프로덕션 실행
 # ============================================
 FROM node:20-alpine AS runner
 
@@ -159,7 +159,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# Stage 3: runner — standalone 활용
+# Stage 3: runner - standalone 활용
 FROM node:20-alpine AS runner
 WORKDIR /app
 
@@ -237,8 +237,8 @@ CMD ["node", "server.js"]
 ```
 
 `turbo prune --docker`는 두 가지 디렉터리를 생성한다:
-- `out/json/` — `package.json`과 락 파일만 포함 (의존성 설치용, 캐시 최적화)
-- `out/full/` — 실제 소스 코드 포함
+- `out/json/` - `package.json`과 락 파일만 포함 (의존성 설치용, 캐시 최적화)
+- `out/full/` - 실제 소스 코드 포함
 
 ---
 
@@ -397,7 +397,7 @@ docker image inspect my-next-app:latest --format '{{json .RootFS.Layers}}' | jq 
 docker image inspect my-next-app:latest --format '{{.Size}}' | numfmt --to=iec
 ```
 
-### dive — 인터랙티브 레이어 분석 TUI
+### dive - 인터랙티브 레이어 분석 TUI
 
 dive(*dive - Docker 이미지의 레이어를 시각적으로 탐색하는 터미널 기반 도구*)는 각 레이어에서 추가/수정/삭제된 파일을 인터랙티브하게 탐색할 수 있다.
 

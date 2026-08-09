@@ -261,8 +261,8 @@ test('multiplication', () => {
 </details>
 
 핵심 변경점:
-- `Dollar five` → `Money five` — 변수 타입을 상위 타입으로 변경
-- `new Dollar(5)` → `Money.dollar(5)` — 직접 생성자 호출 대신 팩토리 메서드 사용
+- `Dollar five` → `Money five` - 변수 타입을 상위 타입으로 변경
+- `new Dollar(5)` → `Money.dollar(5)` - 직접 생성자 호출 대신 팩토리 메서드 사용
 
 **테스트 실행 → 모든 테스트 통과!**
 

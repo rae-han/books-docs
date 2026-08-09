@@ -1,4 +1,4 @@
-# Chapter 3: 컨테이너 — 이미지의 실행 인스턴스: Containers
+# Chapter 3: 컨테이너 - 이미지의 실행 인스턴스: Containers
 
 ## 핵심 질문
 
@@ -47,7 +47,7 @@ docker run -d --name app-3 my-next-app
 
 # 각 컨테이너는 독립된 R/W 레이어, PID 공간, 네트워크를 가진다
 docker exec app-1 sh -c "echo 'modified' > /tmp/test.txt"
-docker exec app-2 cat /tmp/test.txt  # 파일이 존재하지 않음 — 격리 확인
+docker exec app-2 cat /tmp/test.txt  # 파일이 존재하지 않음 - 격리 확인
 ```
 
 ---
@@ -136,7 +136,7 @@ docker restart -t 5 my-app   # 5초 대기 후 강제 종료 → start
 
 # pause/unpause: cgroups의 freezer를 사용하여 프로세스를 일시 중지
 docker pause my-app
-# 모든 프로세스가 얼어붙음 — CPU를 전혀 사용하지 않지만 메모리는 유지
+# 모든 프로세스가 얼어붙음 - CPU를 전혀 사용하지 않지만 메모리는 유지
 docker unpause my-app
 ```
 
@@ -147,7 +147,7 @@ docker unpause my-app
 ```bash
 # 학습/테스트용 컨테이너는 --rm을 사용하여 종료 시 자동 삭제
 docker run --rm -it node:20-alpine node -e "console.log(process.version)"
-# 실행 후 즉시 삭제됨 — docker ps -a에도 남지 않음
+# 실행 후 즉시 삭제됨 - docker ps -a에도 남지 않음
 
 # --rm 없이 실행하면 Stopped 상태로 계속 남아 디스크 공간을 차지
 docker run node:20-alpine echo "hello"
@@ -187,7 +187,7 @@ docker exec next-app ps aux
 호스트에서 같은 프로세스를 보면 PID는 완전히 다른 번호를 가진다. 이것이 PID 네임스페이스의 격리 효과다.
 
 ```bash
-# 호스트에서 확인 — 같은 프로세스가 다른 PID를 가짐
+# 호스트에서 확인 - 같은 프로세스가 다른 PID를 가짐
 docker top next-app
 # PID     PPID    COMMAND
 # 48291   48270   node server.js
@@ -220,7 +220,7 @@ docker run --rm node:20-alpine ls /
 
 # 호스트의 파일시스템과 완전히 분리되어 있다
 docker run --rm node:20-alpine cat /etc/os-release
-# Alpine Linux — 호스트가 Ubuntu여도 컨테이너 안은 Alpine
+# Alpine Linux - 호스트가 Ubuntu여도 컨테이너 안은 Alpine
 ```
 
 ### 3.5 UTS 네임스페이스
@@ -244,7 +244,7 @@ IPC(*Inter-Process Communication - 프로세스 간 통신*) 네임스페이스�
 ```bash
 # IPC 리소스 확인
 docker run --rm node:20-alpine ipcs
-# 빈 목록 — 격리된 IPC 네임스페이스이므로 호스트의 IPC 리소스가 보이지 않음
+# 빈 목록 - 격리된 IPC 네임스페이스이므로 호스트의 IPC 리소스가 보이지 않음
 ```
 
 ### 3.7 User 네임스페이스
@@ -254,7 +254,7 @@ User 네임스페이스는 UID/GID를 매핑한다. 컨테이너 안에서 root(
 ```bash
 # 컨테이너 안에서 UID 확인
 docker run --rm node:20-alpine id
-# uid=0(root) gid=0(root) — 기본적으로 root로 실행됨
+# uid=0(root) gid=0(root) - 기본적으로 root로 실행됨
 
 # 비root 사용자로 실행 (보안 모범 사례)
 docker run --rm --user 1000:1000 node:20-alpine id
@@ -282,7 +282,7 @@ docker run -d --cpus=1.5 --name cpu-limited my-next-app
 docker run -d --cpu-shares=512 --name low-priority my-next-app
 docker run -d --cpu-shares=2048 --name high-priority my-next-app
 # CPU 경합 시 high-priority가 low-priority보다 4배 더 많은 CPU 시간을 받음
-# CPU가 충분하면 shares는 효과가 없다 — 경합 시에만 작동
+# CPU가 충분하면 shares는 효과가 없다 - 경합 시에만 작동
 
 # --cpuset-cpus: 특정 CPU 코어에 고정
 docker run -d --cpuset-cpus="0,1" --name pinned-app my-next-app
@@ -380,16 +380,16 @@ docker stats --no-stream my-next-app
 **문제 1: SIGTERM을 못 받을 수 있다**
 
 ```dockerfile
-# 나쁜 예: shell form — sh가 PID 1, node는 PID 1이 아님
+# 나쁜 예: shell form - sh가 PID 1, node는 PID 1이 아님
 CMD npm start
 # sh -c "npm start" → sh(PID 1) → npm → node(PID ~20)
 # docker stop 시 sh에 SIGTERM 전송 → sh는 자식에게 전달하지 않음 → 10초 후 SIGKILL
 ```
 
 ```dockerfile
-# 좋은 예: exec form — node가 직접 PID 1
+# 좋은 예: exec form - node가 직접 PID 1
 CMD ["node", "server.js"]
-# node(PID 1) — SIGTERM을 직접 받을 수 있음
+# node(PID 1) - SIGTERM을 직접 받을 수 있음
 ```
 
 **문제 2: Node.js는 좀비를 수확하지 않는다**
@@ -420,7 +420,7 @@ server.listen(3000, () => {
   console.log('Server running on port 3000');
 });
 
-// SIGTERM 핸들러 등록 — docker stop 시 호출됨
+// SIGTERM 핸들러 등록 - docker stop 시 호출됨
 process.on('SIGTERM', () => {
   console.log('SIGTERM received. Starting graceful shutdown...');
 
@@ -629,12 +629,12 @@ docker run -it node:20-alpine sh
 ### 7.2 포트 매핑과 볼륨 마운트 (간략)
 
 ```bash
-# -p (포트 매핑) — Ch 6에서 상세
+# -p (포트 매핑) - Ch 6에서 상세
 docker run -d -p 3000:3000 my-next-app                    # 호스트 3000 → 컨테이너 3000
 docker run -d -p 127.0.0.1:3000:3000 my-next-app          # localhost에서만 접근 가능
 docker run -d -p 8080:3000 my-next-app                     # 호스트 8080 → 컨테이너 3000
 
-# -v (볼륨 마운트) — Ch 5에서 상세
+# -v (볼륨 마운트) - Ch 5에서 상세
 docker run -d -v my-data:/app/data my-next-app             # 네임드 볼륨
 docker run -d -v $(pwd)/src:/app/src my-next-app           # 바인드 마운트
 ```
@@ -645,7 +645,7 @@ docker run -d -v $(pwd)/src:/app/src my-next-app           # 바인드 마운트
 # --name: 컨테이너에 사람이 읽을 수 있는 이름 부여
 docker run -d --name my-next-app-prod my-next-app
 
-# 이름은 고유해야 함 — 같은 이름으로 두 번째 컨테이너를 만들면 에러
+# 이름은 고유해야 함 - 같은 이름으로 두 번째 컨테이너를 만들면 에러
 docker run -d --name my-next-app-prod my-next-app
 # Error: Conflict. The container name "/my-next-app-prod" is already in use.
 

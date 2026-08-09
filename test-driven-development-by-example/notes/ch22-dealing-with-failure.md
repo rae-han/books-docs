@@ -36,7 +36,7 @@ Python에서는 둘 다 **예외(Exception)** 로 표현된다. `assert`가 실�
 
 ## 2. TDD 사이클
 
-### 2.1 Red — 실패한 테스트 보고를 테스트
+### 2.1 Red - 실패한 테스트 보고를 테스트
 
 실패하는 테스트를 실행했을 때, `TestResult`가 `"1 run, 1 failed"`를 보고하는지 확인하는 테스트를 작성한다.
 
@@ -114,11 +114,11 @@ class TestCaseTest extends TestCase {
 1. `WasRun("testBrokenMethod").run()`이 호출된다
 2. `testBrokenMethod()`에서 `Exception`이 발생한다
 3. 현재 코드에서는 이 예외가 **잡히지 않고 전파**된다
-4. 프로그램이 **충돌**한다 — `result.summary()`에 도달하지도 못한다
+4. 프로그램이 **충돌**한다 - `result.summary()`에 도달하지도 못한다
 
 Red Bar! (사실 Red Bar라기보다는 프로그램 자체가 죽는 상황이다)
 
-### 2.2 Green — 예외를 잡아서 기록
+### 2.2 Green - 예외를 잡아서 기록
 
 `TestCase.run()`에서 테스트 메서드 호출을 `try/except`로 감싸서 예외를 잡는다:
 
@@ -166,7 +166,7 @@ class TestResult {
 
 변경 사항:
 - `failureCount` 필드 추가
-- `testFailed()` 메서드 추가 — 테스트가 실패할 때 호출
+- `testFailed()` 메서드 추가 - 테스트가 실패할 때 호출
 - `summary()`에서 하드코딩된 `0` 대신 `self.failureCount` 사용
 
 **Step 2**: `TestCase.run()`에서 예외를 잡아 기록
@@ -238,9 +238,9 @@ TestCaseTest("testFailedResult").run()
 
 통과! `result.summary()`가 `"1 run, 1 failed"`를 반환한다. Green Bar!
 
-### 2.3 Refactor — bare except의 문제
+### 2.3 Refactor - bare except의 문제
 
-현재 코드에서 `except:` (bare except)를 사용하고 있다. 이것은 **모든 예외를 잡는다** — `KeyboardInterrupt`, `SystemExit` 등 시스템 예외까지. 실무에서는 이것이 위험할 수 있다.
+현재 코드에서 `except:` (bare except)를 사용하고 있다. 이것은 **모든 예외를 잡는다** - `KeyboardInterrupt`, `SystemExit` 등 시스템 예외까지. 실무에서는 이것이 위험할 수 있다.
 
 더 나은 방식:
 
@@ -542,7 +542,7 @@ Kent Beck의 xUnit에서 사용한 전략과 다른 접근법을 비교한다:
 
 `실패한 테스트 보고하기`가 완료되었다. `tearDown`의 예외 안전성과 `setUp` 에러 처리는 남아 있다. 다음 챕터에서는 `TestSuite`를 구현하여 여러 테스트를 한꺼번에 실행한다.
 
-> 참고: "테스트 메서드가 실패해도 tearDown 호출하기"는 현재 코드에서 사실상 해결되었다 (`tearDown`이 `try/except` 밖에 있어 항상 실행됨). 하지만 Kent Beck은 이 항목을 명시적으로 "완료"로 표시하지 않는다 — `setUp` 실패 시의 동작이 아직 불확실하기 때문이다.
+> 참고: "테스트 메서드가 실패해도 tearDown 호출하기"는 현재 코드에서 사실상 해결되었다 (`tearDown`이 `try/except` 밖에 있어 항상 실행됨). 하지만 Kent Beck은 이 항목을 명시적으로 "완료"로 표시하지 않는다 - `setUp` 실패 시의 동작이 아직 불확실하기 때문이다.
 
 ---
 
@@ -552,7 +552,7 @@ Kent Beck의 xUnit에서 사용한 전략과 다른 접근법을 비교한다:
 - `TestResult`에 `failureCount`와 `testFailed()` 메서드를 추가하여 실패를 추적한다. `summary()`가 `"N run, M failed"` 형식으로 실패 횟수까지 보고한다.
 - `TestCase.run()`에서 테스트 메서드 호출을 `try/except`로 감싸 예외를 잡는다. 예외가 발생하면 `result.testFailed()`를 호출하여 기록하고, 프로그램은 계속 실행된다.
 - `tearDown()`은 `try/except` 블록 밖에 배치하여 **실패 시에도 항상 실행**되도록 했다.
-- `setUp()` 실패는 아직 처리하지 않는다 — TODO 리스트에 기록하고 나중에 다룬다.
+- `setUp()` 실패는 아직 처리하지 않는다 - TODO 리스트에 기록하고 나중에 다룬다.
 - `WasRun`에 `testBrokenMethod`를 추가하여 **의도적으로 실패하는 테스트**를 만들었다. 이것으로 실패 보고 기능을 테스트한다.
 
 ---

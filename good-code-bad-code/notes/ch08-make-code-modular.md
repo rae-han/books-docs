@@ -23,14 +23,14 @@
 클래스는 보통 다른 클래스에 의존한다. 그런데 하위 문제의 해결책이 **항상 하나뿐인 것은 아니므로**, 의존 대상을 나중에 교체할 수 있게 열어 두는 것이 유용하다. `RoutePlanner`(자동차 여행 플래너)가 생성자에서 직접 `NorthAmericaRoadMap`을 생성하면, 이 클래스는 **북미 여행에만** 쓸 수 있고 다른 지역엔 무용지물이 된다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.1 · 8.3 하드코드된 의존성 (나쁜 예)</summary>
+<summary>의사코드 (원서) - 예제 8.1 · 8.3 하드코드된 의존성 (나쁜 예)</summary>
 
 ```java
 class RoutePlanner {
   private final RoadMap roadMap;
 
   RoutePlanner() {
-    // 특정 구현을 생성자 안에서 직접 생성 — 북미 전용으로 고정됨
+    // 특정 구현을 생성자 안에서 직접 생성 - 북미 전용으로 고정됨
     this.roadMap = new NorthAmericaRoadMap(true, false); // 온라인 사용, 계절도로 제외 (임의 결정)
   }
   Route planRoute(LatLong startPoint, LatLong endPoint) { ... }
@@ -45,7 +45,7 @@ interface RoadMap {
 </details>
 
 ```typescript
-// ❌ 나쁜 예: 특정 구현을 하드코드 — 북미·온라인·계절도로 제외로 고정
+// ❌ 나쁜 예: 특정 구현을 하드코드 - 북미·온라인·계절도로 제외로 고정
 class RoutePlanner {
   private readonly roadMap: RoadMap;
 
@@ -56,10 +56,10 @@ class RoutePlanner {
 }
 ```
 
-**해결책 — 의존성 주입(*dependency injection*)**: 의존 대상을 생성자 매개변수로 **주입**받는다. 이제 어떤 로드맵으로도 설정할 수 있어 모듈화되고 적응성이 높아진다.
+**해결책 - 의존성 주입(*dependency injection*)**: 의존 대상을 생성자 매개변수로 **주입**받는다. 이제 어떤 로드맵으로도 설정할 수 있어 모듈화되고 적응성이 높아진다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.4 · 8.5 의존성 주입 + 팩토리 함수 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.4 · 8.5 의존성 주입 + 팩토리 함수 (좋은 예)</summary>
 
 ```java
 class RoutePlanner {
@@ -84,7 +84,7 @@ class RoutePlannerFactory {
 </details>
 
 ```typescript
-// ✅ 좋은 예: 의존성을 주입 — 어떤 RoadMap으로도 설정 가능
+// ✅ 좋은 예: 의존성을 주입 - 어떤 RoadMap으로도 설정 가능
 class RoutePlanner {
   constructor(private readonly roadMap: RoadMap) {}
   planRoute(startPoint: LatLong, endPoint: LatLong): Route { /* ... */ }
@@ -110,7 +110,7 @@ class RoutePlannerFactory {
 DI를 쓰더라도 **구체적인 구현 클래스**에 의존하면 이점의 절반을 잃는다. `RoutePlanner`가 `RoadMap` 인터페이스가 아니라 `NorthAmericaRoadMap` 클래스를 생성자 타입으로 받으면, 여전히 다른 로드맵 구현으로는 쓸 수 없다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.8 → 8.9 구체 클래스 의존(나쁨) → 인터페이스 의존(좋음)</summary>
+<summary>의사코드 (원서) - 예제 8.8 → 8.9 구체 클래스 의존(나쁨) → 인터페이스 의존(좋음)</summary>
 
 ```java
 // ❌ 나쁜 예: 구체 클래스에 의존
@@ -129,18 +129,18 @@ class RoutePlanner {
 </details>
 
 ```typescript
-// ❌ 나쁜 예: 구체 클래스에 의존 — 북미 구현에 고정
+// ❌ 나쁜 예: 구체 클래스에 의존 - 북미 구현에 고정
 class RoutePlanner {
   constructor(private readonly roadMap: NorthAmericaRoadMap) {}
 }
 
-// ✅ 좋은 예: 인터페이스에 의존 — 어떤 구현이든 주입 가능
+// ✅ 좋은 예: 인터페이스에 의존 - 어떤 구현이든 주입 가능
 class RoutePlanner {
   constructor(private readonly roadMap: RoadMap) {}
 }
 ```
 
-> **핵심 통찰**: 어떤 클래스가 인터페이스를 구현하고 필요한 기능이 그 인터페이스에 모두 정의되어 있다면, 클래스가 아니라 **인터페이스에 의존**하는 것이 낫다. 추가 노력이 거의 없으면서 코드가 훨씬 모듈화된다. "구체적인 구현보다 추상화에 의존하라"는 것이 **의존성 역전 원리(*Dependency Inversion Principle* — SOLID의 D)**의 핵심이다.
+> **핵심 통찰**: 어떤 클래스가 인터페이스를 구현하고 필요한 기능이 그 인터페이스에 모두 정의되어 있다면, 클래스가 아니라 **인터페이스에 의존**하는 것이 낫다. 추가 노력이 거의 없으면서 코드가 훨씬 모듈화된다. "구체적인 구현보다 추상화에 의존하라"는 것이 **의존성 역전 원리(*Dependency Inversion Principle* - SOLID의 D)**의 핵심이다.
 
 ---
 
@@ -149,7 +149,7 @@ class RoutePlanner {
 두 클래스가 진정한 **is-a 관계**(예: 포드 머스탱 *is a* 자동차)면 상속이 적절할 수 있다. 하지만 상속은 함정이 많아, 상속을 쓸 수 있는 많은 상황에서 **구성(*composition*)**이 더 낫다. "쉼표로 구분된 정수 파일을 읽는" 문제를 예로 보자. `CsvFileHandler`(파일을 열고 문자열을 읽음)를 재사용해 `IntFileReader`를 만들 때, 상속을 쓰면 두 가지 문제가 생긴다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.11 · 8.12 상속 (나쁜 예)</summary>
+<summary>의사코드 (원서) - 예제 8.11 · 8.12 상속 (나쁜 예)</summary>
 
 ```java
 class IntFileReader extends CsvFileHandler {   // CsvFileHandler를 상속(확장)
@@ -161,7 +161,7 @@ class IntFileReader extends CsvFileHandler {   // CsvFileHandler를 상속(확�
   }
 }
 
-// 실질적 퍼블릭 API — 원치 않는 함수까지 노출된다
+// 실질적 퍼블릭 API - 원치 않는 함수까지 노출된다
 class IntFileReader /* extends CsvFileHandler */ {
   Int? getNextInt() { ... }
   String? getNextValue() { ... }              // ← 유출된 구현 세부사항
@@ -173,7 +173,7 @@ class IntFileReader /* extends CsvFileHandler */ {
 </details>
 
 ```typescript
-// ❌ 나쁜 예: 상속 — 슈퍼클래스의 모든 기능이 원치 않게 노출된다
+// ❌ 나쁜 예: 상속 - 슈퍼클래스의 모든 기능이 원치 않게 노출된다
 class IntFileReader extends CsvFileHandler {
   constructor(file: File) {
     super(file);
@@ -189,13 +189,13 @@ class IntFileReader extends CsvFileHandler {
 }
 ```
 
-- **문제 1 — 추상화 계층 오염**: 상속하면 슈퍼클래스의 **모든 기능**이 노출된다. 정수를 읽는 클래스가 `getNextValue()`(문자열 읽기)·`writeValue()`(쓰기)까지 제공하는 이상한 API가 되고, 훗날 이 함수들이 코드베이스 곳곳에서 호출되면 변경이 어려워진다.
-- **문제 2 — 적응성 저하**: "세미콜론 구분 파일도 읽어야 한다"는 요구가 생기면, `SemicolonFileHandler`가 이미 있어도 `IntFileReader`가 `CsvFileHandler`를 상속하고 있어 갈아끼울 수 없다. 결국 `SemicolonIntFileReader`를 통째로 복제해야 하는데, 이 **코드 중복**은 유지보수 비용과 버그를 키운다.
+- **문제 1 - 추상화 계층 오염**: 상속하면 슈퍼클래스의 **모든 기능**이 노출된다. 정수를 읽는 클래스가 `getNextValue()`(문자열 읽기)·`writeValue()`(쓰기)까지 제공하는 이상한 API가 되고, 훗날 이 함수들이 코드베이스 곳곳에서 호출되면 변경이 어려워진다.
+- **문제 2 - 적응성 저하**: "세미콜론 구분 파일도 읽어야 한다"는 요구가 생기면, `SemicolonFileHandler`가 이미 있어도 `IntFileReader`가 `CsvFileHandler`를 상속하고 있어 갈아끼울 수 없다. 결국 `SemicolonIntFileReader`를 통째로 복제해야 하는데, 이 **코드 중복**은 유지보수 비용과 버그를 키운다.
 
-**해결책 — 구성(composition)**: 클래스를 확장하는 대신, 필요한 인터페이스의 인스턴스를 **멤버로 갖고**(주입받고), 노출할 함수만 직접 골라 **전달(forwarding)**한다.
+**해결책 - 구성(composition)**: 클래스를 확장하는 대신, 필요한 인터페이스의 인스턴스를 **멤버로 갖고**(주입받고), 노출할 함수만 직접 골라 **전달(forwarding)**한다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.15 · 8.17 구성 + 팩토리 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.15 · 8.17 구성 + 팩토리 (좋은 예)</summary>
 
 ```java
 class IntFileReader {
@@ -224,7 +224,7 @@ class IntFileReaderFactory {
 </details>
 
 ```typescript
-// ✅ 좋은 예: 구성 — FileValueReader 인터페이스 인스턴스를 멤버로 갖는다
+// ✅ 좋은 예: 구성 - FileValueReader 인터페이스 인스턴스를 멤버로 갖는다
 class IntFileReader {
   constructor(private readonly valueReader: FileValueReader) {} // DI로 주입
 
@@ -238,7 +238,7 @@ class IntFileReader {
   close(): void {
     this.valueReader.close(); // 노출할 함수만 명시적으로 전달(forwarding)
   }
-  // 퍼블릭 API는 getNextInt()·close()뿐 — 문자열 읽기/쓰기는 숨겨짐
+  // 퍼블릭 API는 getNextInt()·close()뿐 - 문자열 읽기/쓰기는 숨겨짐
 }
 
 class IntFileReaderFactory {
@@ -264,7 +264,7 @@ class IntFileReaderFactory {
 한 개념이 여러 클래스에 흩어지면, 그 개념의 요구사항이 바뀔 때 관련 클래스를 모두 고쳐야 하고 하나라도 빠뜨리면 버그가 된다. `Book` 클래스가 장(chapter)의 단어 수를 직접 세는 `getChapterWordCount()`를 가지면, 이는 `Chapter`의 세부사항(서두·절 구조)을 `Book`에 하드코딩하는 셈이다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.18 → 8.19 (나쁨 → 좋음)</summary>
+<summary>의사코드 (원서) - 예제 8.18 → 8.19 (나쁨 → 좋음)</summary>
 
 ```java
 // ❌ 나쁜 예: Book이 Chapter의 세부사항을 다룬다
@@ -341,7 +341,7 @@ class Chapter {
 서로 밀접해 **항상 함께 움직이는** 데이터는 하나의 객체로 묶는 것이 낫다. `TextBox.renderText()`가 `font`·`fontSize`·`lineHeight`·`textColor`를 개별 매개변수로 받으면, 이 값들을 넘겨야 하는 상위 함수(`displayMessage()`)까지 스타일의 세부사항을 알아야 한다. 스타일에 항목(예: 기울임꼴)이 하나 추가되면, 실제로는 스타일과 무관한 `displayMessage()`까지 수정해야 한다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.20~8.23 (나쁨 → 좋음)</summary>
+<summary>의사코드 (원서) - 예제 8.20~8.23 (나쁨 → 좋음)</summary>
 
 ```java
 // ❌ 나쁜 예: 스타일 값이 개별 매개변수로 흩어져 있다
@@ -396,7 +396,7 @@ class UserInterface {
 }
 ```
 
-> **핵심 통찰**: `displayMessage()`는 상자 안에 무엇이 든지 모른 채 소포를 배달하는 **택배기사**와 같아야 한다. 단, 캡슐화는 신중히 — 데이터가 따로 떨어지면 의미가 없을 만큼 밀접하거나, 일부만 골라 쓰는 경우가 아닐 때 캡슐화한다(2장의 "너무 많은 것을 한 클래스에 담지 말라"와 균형).
+> **핵심 통찰**: `displayMessage()`는 상자 안에 무엇이 든지 모른 채 소포를 배달하는 **택배기사**와 같아야 한다. 단, 캡슐화는 신중히 - 데이터가 따로 떨어지면 의미가 없을 만큼 밀접하거나, 일부만 골라 쓰는 경우가 아닐 때 캡슐화한다(2장의 "너무 많은 것을 한 클래스에 담지 말라"와 균형).
 
 ---
 
@@ -407,10 +407,10 @@ class UserInterface {
 - 사용자는 50개가 넘는 HTTP 상태 코드를 알아야 하고, "성공=200, 없음=404"를 스스로 추측해야 한다.
 - HTTP 대신 WebSocket으로 바꾸는 순간, `HttpResponse` 유형에 의존하던 **모든 코드**를 고쳐야 한다.
 
-**해결책 — 추상화 계층에 맞는 유형을 반환하라**: 사용자가 실제로 신경 써야 할 개념만 담은 **전용 열거형**과 **바이트 리스트**를 반환한다.
+**해결책 - 추상화 계층에 맞는 유형을 반환하라**: 사용자가 실제로 신경 써야 할 개념만 담은 **전용 열거형**과 **바이트 리스트**를 반환한다.
 
 <details>
-<summary>의사코드 (원서) — 예제 8.24 → 8.25 (나쁨 → 좋음)</summary>
+<summary>의사코드 (원서) - 예제 8.24 → 8.25 (나쁨 → 좋음)</summary>
 
 ```java
 // ❌ 나쁜 예: HTTP 세부사항이 반환 유형으로 유출
@@ -453,10 +453,10 @@ enum ProfilePictureStatus {
 
 같은 유출이 **예외**에서도 일어난다. `TextSummarizer`가 `TextImportanceScorer` 인터페이스에 의존하는데, 그 구현체인 `ModelBasedScorer`가 `PredictionModelException`(비검사 예외)을 던지면, `TextSummarizer` 사용자는 이 예외를 처리하려다 "내부적으로 모델 기반 예측을 쓴다"는 구현 세부사항을 알게 된다. 게다가 다른 구현체는 전혀 다른 예외를 던질 수 있어 처리 코드가 신뢰할 수 없게 된다.
 
-**해결책 — 계층에 맞는 예외로 감싸라(wrap)**: 각 계층이 자신의 추상화에 맞는 예외 유형만 드러내도록, 하위 계층 오류를 현재 계층의 예외로 감싼다(원래 오류 정보는 `cause`로 보존).
+**해결책 - 계층에 맞는 예외로 감싸라(wrap)**: 각 계층이 자신의 추상화에 맞는 예외 유형만 드러내도록, 하위 계층 오류를 현재 계층의 예외로 감싼다(원래 오류 정보는 `cause`로 보존).
 
 <details>
-<summary>의사코드 (원서) — 예제 8.28 · 8.29 계층에 적합한 예외 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.28 · 8.29 계층에 적합한 예외 (좋은 예)</summary>
 
 ```java
 class TextImportanceScorerException extends Exception {
@@ -513,7 +513,7 @@ class ModelBasedScorer implements TextImportanceScorer {
 }
 ```
 
-> **핵심 통찰**: 감싸기는 코드 줄이 늘지만, 사용자는 이제 **한 가지 유형의 오류만** 처리하면 되고 그 처리는 구현이 바뀌어도 계속 작동한다. 다만 호출 측이 그 오류로부터 복구하지 않을 것이 확실하다면(상위에서 처리하지 않음) 유출은 큰 문제가 아니다 — 복구 대상 오류일 때만 계층 적합성을 꼭 챙기면 된다.
+> **핵심 통찰**: 감싸기는 코드 줄이 늘지만, 사용자는 이제 **한 가지 유형의 오류만** 처리하면 되고 그 처리는 구현이 바뀌어도 계속 작동한다. 다만 호출 측이 그 오류로부터 복구하지 않을 것이 확실하다면(상위에서 처리하지 않음) 유출은 큰 문제가 아니다 - 복구 대상 오류일 때만 계층 적합성을 꼭 챙기면 된다.
 
 ---
 

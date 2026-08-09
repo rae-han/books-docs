@@ -37,7 +37,7 @@
 코어 시스템의 순환 복잡도를 없애고 별도 플러그인으로 분리하면 확장성·유지보수성·시험성이 좋아진다. 전자제품 재활용 애플리케이션 예:
 
 ```java
-// 나쁜 예 — 코어 시스템에 클라이언트 종속 코드가 몰림 (높은 순환 복잡도)
+// 나쁜 예 - 코어 시스템에 클라이언트 종속 코드가 몰림 (높은 순환 복잡도)
 public void assessDevice(String deviceID) {
     if (deviceID.equals("iPhone6s")) {
         assessiPhone6s();
@@ -50,7 +50,7 @@ public void assessDevice(String deviceID) {
 ```
 
 ```java
-// 좋은 예 — 코어는 레지스트리에서 플러그인을 찾아 호출만 한다
+// 좋은 예 - 코어는 레지스트리에서 플러그인을 찾아 호출만 한다
 public void assessDevice(String deviceID) {
     String plugin = pluginRegistry.get(deviceID);
     Class<?> theClass = Class.forName(plugin);
@@ -73,7 +73,7 @@ public void assessDevice(String deviceID) {
 
 점대점 플러그인은 JAR·DLL·gem 같은 공유 라이브러리나 패키지명(자바)/네임스페이스(C#)로 구현한다. 네임스페이스는 `app.plugin.<도메인>.<콘텍스트>` 포맷(예: `app.plugin.assessment.iphone6s`)으로 명명하는 게 좋다.
 
-### 2.3 원격 플러그인 — 점대점 vs REST
+### 2.3 원격 플러그인 - 점대점 vs REST
 
 플러그인을 스탠드얼론 서비스(REST·메시징)로 만들 수도 있다. 다만:
 
@@ -86,7 +86,7 @@ public void assessDevice(String deviceID) {
 
 ### 2.4 데이터
 
-플러그인이 중앙 공유 DB에 직접 접속할 일은 거의 없다. **코어 시스템이 데이터를 가져와 각 플러그인에 전달**한다 — 이유는 디커플링이다. DB 변경이 코어에만 영향을 주고 플러그인에는 영향이 없으며, 플러그인은 자기만 액세스하는 데이터 저장소(제품별 감정 규칙 DB·규칙 엔진)를 따로 가질 수 있다.
+플러그인이 중앙 공유 DB에 직접 접속할 일은 거의 없다. **코어 시스템이 데이터를 가져와 각 플러그인에 전달**한다 - 이유는 디커플링이다. DB 변경이 코어에만 영향을 주고 플러그인에는 영향이 없으며, 플러그인은 자기만 액세스하는 데이터 저장소(제품별 감정 규칙 DB·규칙 엔진)를 따로 가질 수 있다.
 
 ---
 

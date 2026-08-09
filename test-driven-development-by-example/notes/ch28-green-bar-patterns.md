@@ -35,11 +35,11 @@ TDD의 Red-Green-Refactor 사이클에서, 이 챕터는 **Green 단계**: 실�
 
 Fake It은 TDD에서 가장 특징적이고, 처음 접하는 사람에게 가장 반직관적인 전략이다. "정답을 하드코딩하는 게 무슨 의미가 있지?"라는 의문이 자연스럽다. Kent Beck은 세 가지 이유를 제시한다:
 
-**1. 심리적 효과 — Green Bar의 안도감**
+**1. 심리적 효과 - Green Bar의 안도감**
 
 Red Bar(실패)에서 Green Bar(성공)로 전환되는 순간, 프로그래머는 "올바른 방향으로 가고 있다"는 확신을 얻는다. 이 확신이 다음 단계를 진행할 동력이 된다.
 
-**2. 범위 제어 — 한 번에 하나씩**
+**2. 범위 제어 - 한 번에 하나씩**
 
 상수로 시작하면, "테스트를 통과시키는 문제"와 "올바른 구현을 만드는 문제"를 분리할 수 있다. 두 문제를 동시에 풀려 하면 복잡도가 곱해진다.
 
@@ -75,7 +75,7 @@ test('multiplication', () => {
 </details>
 
 ```java
-// Step 1: Fake It — 상수 반환
+// Step 1: Fake It - 상수 반환
 class Dollar {
     int amount = 10;  // 하드코딩!
     Dollar(int amount) {}
@@ -88,7 +88,7 @@ class Dollar {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Step 1: Fake It — 상수 반환
+// Step 1: Fake It - 상수 반환
 class Dollar {
     amount: number = 10;  // 하드코딩!
     constructor(amount: number) {}
@@ -100,7 +100,7 @@ class Dollar {
 </details>
 
 ```java
-// Step 2: 중복 제거 — 10은 어디서 왔는가? 5 × 2에서 왔다
+// Step 2: 중복 제거 - 10은 어디서 왔는가? 5 × 2에서 왔다
 class Dollar {
     int amount;
     Dollar(int amount) {
@@ -117,7 +117,7 @@ class Dollar {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Step 2: 중복 제거 — 10은 어디서 왔는가? 5 × 2에서 왔다
+// Step 2: 중복 제거 - 10은 어디서 왔는가? 5 × 2에서 왔다
 class Dollar {
     amount: number;
     constructor(amount: number) {
@@ -300,7 +300,7 @@ test('multiplication', () => {
 </details>
 
 ```java
-// Obvious Implementation — 바로 올바른 구현을 작성
+// Obvious Implementation - 바로 올바른 구현을 작성
 Dollar times(int multiplier) {
     return new Dollar(amount * multiplier);
 }
@@ -310,7 +310,7 @@ Dollar times(int multiplier) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Obvious Implementation — 바로 올바른 구현을 작성
+// Obvious Implementation - 바로 올바른 구현을 작성
 times(multiplier: number): Dollar {
     return new Dollar(this.amount * multiplier);
 }
@@ -335,7 +335,7 @@ Kent Beck의 경험 법칙:
 
 > Obvious Implementation을 시도해서 Red Bar가 나오는 것은 괜찮다. 두 번 연속 Red Bar가 나오면, 그것은 "지금 당신의 확신 수준이 실제 난이도에 비해 과대평가되어 있다"는 신호다. 작은 단계로 돌아가라.
 
-### Fake It vs Obvious Implementation — 실무적 판단
+### Fake It vs Obvious Implementation - 실무적 판단
 
 ```
 확신 높음, 문제 단순 → Obvious Implementation
@@ -434,7 +434,7 @@ test('sum two', () => {
 </details>
 
 ```java
-// 구현 변경 — 가변 인자 도입
+// 구현 변경 - 가변 인자 도입
 int sum(int... values) {
     int result = 0;
     for (int value : values) {
@@ -449,7 +449,7 @@ int sum(int... values) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 구현 변경 — 나머지 매개변수 도입
+// 구현 변경 - 나머지 매개변수 도입
 function sum(...values: number[]): number {
     let result = 0;
     for (const value of values) {

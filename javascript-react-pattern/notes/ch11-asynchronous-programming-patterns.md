@@ -14,7 +14,7 @@
 
 ```typescript
 function synchronousFunction(): void {
-  // 동기 함수 동작 — 내부 코드가 모두 실행된 후 반환
+  // 동기 함수 동작 - 내부 코드가 모두 실행된 후 반환
 }
 
 synchronousFunction();
@@ -25,7 +25,7 @@ synchronousFunction();
 
 ```typescript
 async function asynchronousFunction(): Promise<void> {
-  // 비동기 함수 동작 — 백그라운드에서 실행
+  // 비동기 함수 동작 - 백그라운드에서 실행
 }
 
 asynchronousFunction();
@@ -57,7 +57,7 @@ asynchronousFunction();
 
 ---
 
-## 2. 콜백에서 async/await까지 — 비동기의 진화
+## 2. 콜백에서 async/await까지 - 비동기의 진화
 
 자바스크립트의 비동기 처리는 세 단계로 진화해왔다. 같은 HTTP 요청 작업을 각 방식으로 비교해보면 그 차이가 명확하다.
 
@@ -89,7 +89,7 @@ makeRequest('https://api.example.com/data', (error, data) => {
 콜백의 최대 단점은 **콜백 지옥**(*Callback Hell*)이다. 순차적인 비동기 작업이 중첩되면 코드가 피라미드 형태로 깊어진다.
 
 ```typescript
-// 나쁜 예 — 콜백 지옥
+// 나쁜 예 - 콜백 지옥
 makeRequest('https://api.example.com/1', (error, data1) => {
   if (error) { console.error(error); return; }
   makeRequest('https://api.example.com/2', (error, data2) => {
@@ -306,7 +306,7 @@ async function fetchWithErrorHandling(url: string): Promise<unknown> {
 }
 ```
 
-### 4.2 Result 패턴 — 에러를 값으로 다루기
+### 4.2 Result 패턴 - 에러를 값으로 다루기
 
 Go 언어 스타일의 에러 처리를 TypeScript에 적용하면, `try-catch` 없이도 타입 안전한 에러 처리가 가능하다.
 
@@ -343,7 +343,7 @@ async function loadUserProfile(id: number): Promise<void> {
 TypeScript의 **판별 유니온**(*Discriminated Union*)은 Result 패턴에서 큰 이점을 제공한다.
 
 ```typescript
-// TypeScript — ok 필드로 타입이 자동 좁혀짐
+// TypeScript - ok 필드로 타입이 자동 좁혀짐
 const result = await safeAsync(fetchData());
 if (result.ok) {
   console.log(result.value); // ✅ value 접근 가능, error 접근 불가
@@ -376,7 +376,7 @@ fetchData('/api/data')
 
 여러 비동기 작업을 동시에 실행하는 것은 성능 최적화의 핵심이다. JavaScript는 네 가지 병렬 처리 유틸리티를 제공한다.
 
-### 5.1 Promise.all — 전부 성공해야 하는 경우
+### 5.1 Promise.all - 전부 성공해야 하는 경우
 
 모든 Promise가 이행되면 결과 배열을 반환하고, **하나라도 거부되면 즉시 실패**한다.
 
@@ -398,7 +398,7 @@ async function loadDashboard(): Promise<ApiResponses> {
 }
 ```
 
-### 5.2 Promise.allSettled — 결과와 무관하게 모두 완료 대기
+### 5.2 Promise.allSettled - 결과와 무관하게 모두 완료 대기
 
 모든 Promise가 **이행 또는 거부된 후** 각각의 결과를 배열로 반환한다. 하나가 실패해도 나머지 결과를 잃지 않는다.
 
@@ -434,7 +434,7 @@ const { succeeded, failed } = await batchFetch<User>([
 console.log(`성공: ${succeeded.length}, 실패: ${failed.length}`);
 ```
 
-### 5.3 Promise.race — 가장 빠른 결과
+### 5.3 Promise.race - 가장 빠른 결과
 
 여러 Promise 중 **가장 먼저 이행 또는 거부되는** 결과를 반환한다. 타임아웃 구현에 유용하다.
 
@@ -456,7 +456,7 @@ try {
 }
 ```
 
-### 5.4 Promise.any — 첫 번째 성공
+### 5.4 Promise.any - 첫 번째 성공
 
 여러 Promise 중 **가장 먼저 이행되는** 결과를 반환한다. 모두 거부되면 `AggregateError`를 던진다. 가장 빠른 미러 서버 선택 등에 유용하다.
 
@@ -552,7 +552,7 @@ async function sequentialRequests(): Promise<void> {
 작업 목록이 동적으로 결정되는 경우, `reduce` 또는 `for...of`를 사용한다.
 
 ```typescript
-// for...of — 가독성 우수 (권장)
+// for...of - 가독성 우수 (권장)
 async function processSequentially<T, R>(
   items: T[],
   processor: (item: T) => Promise<R>
@@ -565,7 +565,7 @@ async function processSequentially<T, R>(
   return results;
 }
 
-// reduce — 함수형 스타일
+// reduce - 함수형 스타일
 async function processWithReduce<T, R>(
   items: T[],
   processor: (item: T) => Promise<R>
@@ -706,7 +706,7 @@ const data = await withSmartRetry(
 );
 ```
 
-> **핵심 통찰**: 지수 백오프에 **지터**(*Jitter — 임의의 시간 편차*)를 추가하는 것이 중요하다. 지터 없이 고정된 백오프만 사용하면 여러 클라이언트가 동시에 재시도하는 **집단 효과**(*Thundering Herd*)가 발생한다.
+> **핵심 통찰**: 지수 백오프에 **지터**(*Jitter - 임의의 시간 편차*)를 추가하는 것이 중요하다. 지터 없이 고정된 백오프만 사용하면 여러 클라이언트가 동시에 재시도하는 **집단 효과**(*Thundering Herd*)가 발생한다.
 
 ---
 
@@ -729,7 +729,7 @@ function asyncMemoize<Args extends unknown[], R>(
       return cache.get(key)!;
     }
 
-    // Promise 자체를 캐싱 — 동시 중복 호출도 하나의 요청으로 처리
+    // Promise 자체를 캐싱 - 동시 중복 호출도 하나의 요청으로 처리
     const promise = fn(...args).catch(error => {
       cache.delete(key); // 실패 시 캐시 제거
       throw error;
@@ -759,7 +759,7 @@ const [data1, data2] = await Promise.all([
 
 ### 8.2 TTL이 있는 캐시
 
-캐시된 데이터가 영원히 유효한 것은 아니다. **만료 시간**(*TTL — Time To Live*)을 설정하면 데이터의 신선도를 보장할 수 있다.
+캐시된 데이터가 영원히 유효한 것은 아니다. **만료 시간**(*TTL - Time To Live*)을 설정하면 데이터의 신선도를 보장할 수 있다.
 
 ```typescript
 interface CacheEntry<T> {
@@ -915,13 +915,13 @@ class ApiService {
 ### JavaScript vs TypeScript
 
 ```typescript
-// TypeScript — 표준 데코레이터 문법 (TS 5.0+)
+// TypeScript - 표준 데코레이터 문법 (TS 5.0+)
 class Service {
   @asyncLogger
   async fetchData(): Promise<Data> { /* ... */ }
 }
 
-// JavaScript — 고차 함수로 동일한 효과
+// JavaScript - 고차 함수로 동일한 효과
 const fetchData = withLogging(
   async () => { /* ... */ },
   'fetchData'
@@ -941,7 +941,7 @@ TypeScript의 데코레이터는 **타입 안전성**을 제공하며, `ClassMet
 비동기 이터레이터(*Async Iterator*)는 `Symbol.asyncIterator` 메서드를 구현하여, `for await...of` 루프로 순회할 수 있는 객체를 만드는 프로토콜이다.
 
 ```typescript
-// 비동기 제너레이터 — 가장 간단한 AsyncIterable 생성 방법
+// 비동기 제너레이터 - 가장 간단한 AsyncIterable 생성 방법
 async function* createAsyncRange(start: number, end: number): AsyncGenerator<number> {
   for (let i = start; i <= end; i++) {
     await new Promise(resolve => setTimeout(resolve, 100)); // 비동기 딜레이
@@ -1097,12 +1097,12 @@ function useAsyncData<T>(url: string): { data: T | null; loading: boolean; error
 ### 11.3 AbortSignal.timeout과 AbortSignal.any
 
 ```typescript
-// AbortSignal.timeout — 간편한 타임아웃 생성
+// AbortSignal.timeout - 간편한 타임아웃 생성
 const data = await fetch('/api/data', {
   signal: AbortSignal.timeout(5000) // 5초 타임아웃
 });
 
-// AbortSignal.any — 여러 시그널 결합
+// AbortSignal.any - 여러 시그널 결합
 const userController = new AbortController();
 const timeoutSignal = AbortSignal.timeout(10000);
 
@@ -1124,7 +1124,7 @@ const response = await fetch('/api/data', {
 Promise를 생성할 때 `resolve`와 `reject` 함수를 외부에서 접근할 수 있게 하는 유틸리티다. 기존에는 변수를 클로저 밖에 선언하는 패턴이 필요했다.
 
 ```typescript
-// 기존 패턴 — 어색한 변수 선언
+// 기존 패턴 - 어색한 변수 선언
 let resolve!: (value: string) => void;
 let reject!: (reason: Error) => void;
 const promise = new Promise<string>((res, rej) => {
@@ -1132,7 +1132,7 @@ const promise = new Promise<string>((res, rej) => {
   reject = rej;
 });
 
-// ES2024 — Promise.withResolvers()
+// ES2024 - Promise.withResolvers()
 const { promise, resolve, reject } = Promise.withResolvers<string>();
 
 // 실용 예시: Deferred 패턴
@@ -1186,12 +1186,12 @@ async function getUsers(): Promise<User[]> {
 ### JavaScript vs TypeScript
 
 ```typescript
-// TypeScript — await using 구문으로 타입 안전한 리소스 관리
+// TypeScript - await using 구문으로 타입 안전한 리소스 관리
 await using db = await DatabaseConnection.create('...');
 // db의 타입이 DatabaseConnection으로 추론되며,
 // AsyncDisposable을 구현하지 않은 객체에 using을 사용하면 컴파일 에러
 
-// JavaScript — 동일한 구문이지만 타입 검증 없음
+// JavaScript - 동일한 구문이지만 타입 검증 없음
 // AsyncDisposable을 구현하지 않은 객체에 사용해도 런타임에서야 에러 발견
 ```
 
@@ -1200,11 +1200,11 @@ await using db = await DatabaseConnection.create('...');
 모듈의 최상위 수준에서 `await`를 사용할 수 있다. 설정 파일 로드, 데이터베이스 초기화 등에 유용하다.
 
 ```typescript
-// config.ts — 모듈 초기화 시 비동기 작업 수행
+// config.ts - 모듈 초기화 시 비동기 작업 수행
 const response = await fetch('/api/config');
 export const config: AppConfig = await response.json();
 
-// main.ts — import하면 config가 이미 로드된 상태
+// main.ts - import하면 config가 이미 로드된 상태
 import { config } from './config.ts';
 console.log(config.apiUrl); // 이미 resolve된 값
 ```
@@ -1214,7 +1214,7 @@ console.log(config.apiUrl); // 이미 resolve된 값
 콜백이나 Observable 패턴의 대안으로, **반응형 프로그래밍**(*Reactive Programming*)을 위한 Signals 제안이 진행 중이다. Angular, Solid, Preact에서 이미 자체 구현을 사용하고 있다.
 
 ```typescript
-// Signals — TC39 제안 (아직 표준 아님, 프레임워크별 API 상이)
+// Signals - TC39 제안 (아직 표준 아님, 프레임워크별 API 상이)
 // 개념 설명을 위한 의사 코드
 const count = new Signal.State(0);
 const doubled = new Signal.Computed(() => count.get() * 2);

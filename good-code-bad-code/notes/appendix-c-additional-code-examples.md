@@ -28,7 +28,7 @@
 이 구현은 조슈아 블로크(*Joshua Bloch*)의 《이펙티브 자바 3판》과 구글 구아바(Guava) 라이브러리 같은 여러 코드베이스에서 영감을 받았다.
 
 <details>
-<summary>의사코드 (원서, 자바) — 예제 C.1 빌더 패턴 구현</summary>
+<summary>의사코드 (원서, 자바) - 예제 C.1 빌더 패턴 구현</summary>
 
 ```java
 public final class TextOptions {
@@ -179,7 +179,7 @@ class TextOptionsBuilder {
 이 코드가 사용되는 몇 가지 예는 다음과 같다.
 
 <details>
-<summary>의사코드 (원서, 자바) — 사용 예</summary>
+<summary>의사코드 (원서, 자바) - 사용 예</summary>
 
 ```java
 TextOptions options1 = new TextOptions.Builder(Font.ARIAL)
@@ -223,7 +223,7 @@ const options3 = options2.toBuilder()
 - **"빌더로만 생성" 강제 방식이 다르다**: 자바는 `private` 생성자 + 내부 클래스로 (1) 직접 생성을 막고 (2) 두 클래스가 서로의 프라이빗 멤버에 접근하게 했다. TypeScript의 `private`은 **클래스 단위**라 다른 클래스가 프라이빗 생성자에 접근할 수 없다. 직접 생성을 정말로 막아야 한다면 **모듈 전용 심벌 토큰**으로 생성을 제한할 수 있다.
 
 <details>
-<summary>참고 — TypeScript에서 "빌더로만 생성"을 강제하는 토큰 기법</summary>
+<summary>참고 - TypeScript에서 "빌더로만 생성"을 강제하는 토큰 기법</summary>
 
 ```typescript
 // 이 심벌은 모듈 밖으로 export하지 않으므로, 외부 코드는 TextOptions를 직접 생성할 수 없다

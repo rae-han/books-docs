@@ -256,4 +256,4 @@ Feathers는 레거시 코드에서의 작업 절차를 다음과 같은 **알고
 
 ## 다음 챕터와의 연결
 
-Chapter 3 **"감지와 분리 (Sensing and Separation)"** 에서는 의존성을 깨뜨려야 하는 두 가지 구체적인 이유 — 코드가 수행하는 동작을 **감지(Sensing)** 할 수 없는 경우와, 테스트 대상 코드를 다른 코드로부터 **분리(Separation)** 할 수 없는 경우 — 를 살펴보고, 가짜 객체(Fake Object)와 Mock Object를 사용하여 이 문제를 해결하는 방법을 소개한다.
+Chapter 3 **"감지와 분리 (Sensing and Separation)"** 에서는 의존성을 깨뜨려야 하는 두 가지 구체적인 이유 - 코드가 수행하는 동작을 **감지(Sensing)** 할 수 없는 경우와, 테스트 대상 코드를 다른 코드로부터 **분리(Separation)** 할 수 없는 경우 - 를 살펴보고, 가짜 객체(Fake Object)와 Mock Object를 사용하여 이 문제를 해결하는 방법을 소개한다.

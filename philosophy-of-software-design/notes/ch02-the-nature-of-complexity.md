@@ -182,7 +182,7 @@ Unknown Unknowns이 발생하면:
 **예시: 명시적 의존성 vs 암묵적 의존성**
 
 ```java
-// 명시적 의존성 — 메서드 시그니처에 드러남
+// 명시적 의존성 - 메서드 시그니처에 드러남
 public class OrderProcessor {
     private final PaymentService paymentService;
 
@@ -198,7 +198,7 @@ public class OrderProcessor {
 ```
 
 ```java
-// 암묵적 의존성 — 코드에 드러나지 않음
+// 암묵적 의존성 - 코드에 드러나지 않음
 public class OrderProcessor {
     public void process(Order order) {
         // PaymentService를 전역 레지스트리에서 가져옴
@@ -357,4 +357,4 @@ C = Σ (cp × tp)
 
 ## 다음 챕터와의 연결
 
-Chapter 3 **"Working Code Isn't Enough (동작하는 코드만으로는 부족하다)"** 에서는 복잡성을 유발하는 근본적인 **태도**의 문제를 다룬다. **전술적 프로그래밍(Tactical Programming)** — "일단 동작하게 만들자"는 접근 — 이 어떻게 복잡성을 축적시키는지, 그리고 **전략적 프로그래밍(Strategic Programming)** — "좋은 설계를 만들자"는 접근 — 이 장기적으로 왜 더 빠른지를 설명한다.
+Chapter 3 **"Working Code Isn't Enough (동작하는 코드만으로는 부족하다)"** 에서는 복잡성을 유발하는 근본적인 **태도**의 문제를 다룬다. **전술적 프로그래밍(Tactical Programming)** - "일단 동작하게 만들자"는 접근 - 이 어떻게 복잡성을 축적시키는지, 그리고 **전략적 프로그래밍(Strategic Programming)** - "좋은 설계를 만들자"는 접근 - 이 장기적으로 왜 더 빠른지를 설명한다.

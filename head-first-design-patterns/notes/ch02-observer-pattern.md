@@ -17,7 +17,7 @@
 
 ---
 
-## 2. 첫 시도 (나쁜 예) — 구상 디스플레이에 직접 의존
+## 2. 첫 시도 (나쁜 예) - 구상 디스플레이에 직접 의존
 
 가장 먼저 떠오르는 구현은 이렇다.
 
@@ -70,13 +70,13 @@ public void measurementsChanged() {
 
 즉 **신문사(주제)가 상태(신문)를 관리**하고, **구독자(옵저버)는 등록/해지**하며, 주제의 상태가 바뀌면(새 신문) 등록된 옵저버 전원에게 자동 전달된다.
 
-> 오늘의 5분 드라마: 헤드헌터(주제)가 구직자 명단을 관리하고, 자바 개발자(옵저버)들이 명단에 등록한다. 일자리가 나오면 명단의 모두에게 연락이 간다. 어떤 개발자가 스스로 직장을 구하면 명단에서 빠진다(해지). 흥미롭게도, 스스로 주제가 되어 자기만의 옵저버를 거느리는 개발자도 생긴다 — 한 객체가 **주제이자 옵저버**일 수 있다.
+> 오늘의 5분 드라마: 헤드헌터(주제)가 구직자 명단을 관리하고, 자바 개발자(옵저버)들이 명단에 등록한다. 일자리가 나오면 명단의 모두에게 연락이 간다. 어떤 개발자가 스스로 직장을 구하면 명단에서 빠진다(해지). 흥미롭게도, 스스로 주제가 되어 자기만의 옵저버를 거느리는 개발자도 생긴다 - 한 객체가 **주제이자 옵저버**일 수 있다.
 
 ---
 
 ## 4. 옵저버 패턴의 정의
 
-> **패턴 정의 — 옵저버 패턴 (Observer Pattern)**<br>객체들 사이에 일대다(one-to-many) 의존성을 정의한다. 어떤 객체의 상태가 바뀌면, 그 객체에 의존하는 모든 객체에게 연락이 가고 자동으로 내용이 갱신된다.
+> **패턴 정의 - 옵저버 패턴 (Observer Pattern)**<br>객체들 사이에 일대다(one-to-many) 의존성을 정의한다. 어떤 객체의 상태가 바뀌면, 그 객체에 의존하는 모든 객체에게 연락이 가고 자동으로 내용이 갱신된다.
 
 옵저버 패턴은 보통 **Subject 인터페이스**와 **Observer 인터페이스**를 갖춘 클래스 구조로 구현한다.
 
@@ -125,7 +125,7 @@ public void measurementsChanged() {
 - `DisplayElement`: 화면 표시용 `display()` (디스플레이 공통)
 
 ```typescript
-/** 주제(관찰 대상) — 옵저버를 등록·해지하고 알림을 보낸다. */
+/** 주제(관찰 대상) - 옵저버를 등록·해지하고 알림을 보낸다. */
 interface Subject {
   /** 옵저버를 등록한다. */
   registerObserver(o: Observer): void;
@@ -135,7 +135,7 @@ interface Subject {
   notifyObservers(): void;
 }
 
-/** 옵저버 — 주제의 상태가 바뀌면 통보받는다. */
+/** 옵저버 - 주제의 상태가 바뀌면 통보받는다. */
 interface Observer {
   /** 주제의 상태가 바뀌었을 때 호출된다. */
   update(temp: number, humidity: number, pressure: number): void;
@@ -203,7 +203,7 @@ class WeatherData implements Subject {
     this.notifyObservers();
   }
 
-  // 테스트용 — 실제 장비 대신 측정값을 수동 주입
+  // 테스트용 - 실제 장비 대신 측정값을 수동 주입
   setMeasurements(temperature: number, humidity: number, pressure: number): void {
     this.temperature = temperature;
     this.humidity = humidity;
@@ -335,7 +335,7 @@ weatherData.setMeasurements(78, 90, 29.2);
 
 지금 설계는 주제가 옵저버에게 데이터를 **밀어 넣는(push)** 방식이다. `update(temp, humidity, pressure)`로 모든 값을 강제로 전달한다.
 
-> 방구석 토크 — 주제와 옵저버의 논쟁<br><br>**옵저버**: 왜 내가 필요할 때가 아니라 당신이 필요할 때 상태를 뿌리는 거죠? 필요한 것만 가져가게 해 주세요.<br>**주제**: 하지만 매번 여러 번 게터를 호출해야 할 텐데요?<br>**옵저버**: 그래도 당신이 새 상태(예: 풍속)를 추가하면, 지금 방식은 **모든 옵저버의 `update()` 시그니처를 다 고쳐야** 하잖아요. 내가 게터로 당겨오면 게터 하나만 추가하면 되고요.
+> 방구석 토크 - 주제와 옵저버의 논쟁<br><br>**옵저버**: 왜 내가 필요할 때가 아니라 당신이 필요할 때 상태를 뿌리는 거죠? 필요한 것만 가져가게 해 주세요.<br>**주제**: 하지만 매번 여러 번 게터를 호출해야 할 텐데요?<br>**옵저버**: 그래도 당신이 새 상태(예: 풍속)를 추가하면, 지금 방식은 **모든 옵저버의 `update()` 시그니처를 다 고쳐야** 하잖아요. 내가 게터로 당겨오면 게터 하나만 추가하면 되고요.
 
 이 논쟁의 결론이 **풀(pull) 방식**이다. 주제는 "바뀌었다"고만 알리고, 옵저버가 필요한 데이터를 게터로 당겨온다.
 
@@ -373,7 +373,7 @@ update(): void {
 - **자바스크립트 이벤트**, 코코아/스위프트의 키-값 옵저빙, **RxJava**, 자바빈의 `PropertyChangeListener` 등.
 
 ```typescript
-// 개념적으로 동일 — DOM 이벤트도 옵저버 패턴
+// 개념적으로 동일 - DOM 이벤트도 옵저버 패턴
 button.addEventListener("click", () => {
   console.log("그냥 저질러 버렷!!!");
 });
@@ -396,7 +396,7 @@ class AngelListener implements ActionListener {
     }
 }
 
-// 람다 방식 — ActionListener 구현 클래스가 사라진다
+// 람다 방식 - ActionListener 구현 클래스가 사라진다
 button.addActionListener(event -> System.out.println("하지 마! 아마 후회할 걸?"));
 button.addActionListener(event -> System.out.println("그냥 저질러 버렷!!!"));
 ```
@@ -419,9 +419,9 @@ button.addActionListener(event -> System.out.println("그냥 저질러 버렷!!!
 - ✅ B. 새 디스플레이가 추가될 때마다 코드를 변경해야 한다.
 - ✅ C. 실행 중에 디스플레이를 추가·제거할 수 없다.
 - ✅ E. 바뀌는 부분(디스플레이 집합)을 캡슐화하지 않았다.
-- (D는 틀림 — 디스플레이들은 공통 `update()`를 쓴다. F도 핵심 문제가 아니다.)
+- (D는 틀림 - 디스플레이들은 공통 `update()`를 쓴다. F도 핵심 문제가 아니다.)
 
-**2. 체감 온도 디스플레이 추가하기** — `HeatIndexDisplay`가 `Observer`, `DisplayElement`를 구현하고 생성자에서 `weatherData`에 등록하면 된다. `WeatherData`는 전혀 건드리지 않는다(옵저버 패턴의 확장성).
+**2. 체감 온도 디스플레이 추가하기** - `HeatIndexDisplay`가 `Observer`, `DisplayElement`를 구현하고 생성자에서 `weatherData`에 등록하면 된다. `WeatherData`는 전혀 건드리지 않는다(옵저버 패턴의 확장성).
 
 **3. 디자인 원칙이 옵저버 패턴에서 쓰인 방식**
 - *바뀌는 부분 캡슐화*: 변하는 것은 주제의 상태와 옵저버의 개수·형식. 주제를 바꾸지 않고 옵저버를 교체할 수 있다.
@@ -459,7 +459,7 @@ button.addActionListener(event -> System.out.println("그냥 저질러 버렷!!!
 
 ## 보너스: 원서 복습 요소
 
-### 🎬 5분 드라마 — 헤드헌터와 개발자
+### 🎬 5분 드라마 - 헤드헌터와 개발자
 
 헤드헌터(**주제**)가 자바 개발자(**옵저버**) 명단을 관리한다. 새 일자리가 나오면 명단 전원에게 연락이 간다. 수(Sue)는 스스로 직장을 구해 명단에서 빠지고(**해지**), 나중엔 자기만의 옵저버를 거느린 **주제이자 옵저버**가 된다. → 옵저버 패턴의 등록·통지·해지, 그리고 "주제↔옵저버 역할 겸용"을 극적으로 보여준다.
 
@@ -467,7 +467,7 @@ button.addActionListener(event -> System.out.println("그냥 저질러 버렷!!!
 
 측정값을 `update(temp, humidity, pressure)`로 직접 전달하는 게 정말 좋은가? → 힌트: 나중에 풍속 같은 값이 추가되면 어떻게 될까? 그 변경이 캡슐화되어 있는가, 아니면 여러 곳을 고쳐야 하는가? (→ §9 푸시/풀 논의로 이어진다.)
 
-### 🧲 코드 자석 — ForecastDisplay 조립
+### 🧲 코드 자석 - ForecastDisplay 조립
 
 냉장고 문에 흩어진 조각들로 `ForecastDisplay`를 완성하는 문제. 정답 구조는 다음과 같다.
 
@@ -494,4 +494,4 @@ class ForecastDisplay implements Observer, DisplayElement {
 
 ### 📝 낱말 퀴즈 (정답 단어 모음)
 
-1·2장 용어들(정답은 영어): OBSERVER(S)(옵저버), SUBJECT(주제), PUBLISHER(신문사), INTERFACE(인터페이스), IMPLEMENTS(구현하다), LOOSE(느슨한), DEPENDENT(의존적), MANY(여러 개), UPDATE(업데이트), NOTIFIED(알림), PUSH(푸시), ORDER(순서), REMOVEOBSERVER(옵저버 해지), PRESSURE(기압), SWING(스윙), HURRICANE(허리케인 — CEO 이름이자 열대성 저기압), DEVILLISTENER(악마의 대답), HEAT(체감 온도), LISTENING(리스너 역할), JOB(직장), MOUSE(마우스).
+1·2장 용어들(정답은 영어): OBSERVER(S)(옵저버), SUBJECT(주제), PUBLISHER(신문사), INTERFACE(인터페이스), IMPLEMENTS(구현하다), LOOSE(느슨한), DEPENDENT(의존적), MANY(여러 개), UPDATE(업데이트), NOTIFIED(알림), PUSH(푸시), ORDER(순서), REMOVEOBSERVER(옵저버 해지), PRESSURE(기압), SWING(스윙), HURRICANE(허리케인 - CEO 이름이자 열대성 저기압), DEVILLISTENER(악마의 대답), HEAT(체감 온도), LISTENING(리스너 역할), JOB(직장), MOUSE(마우스).

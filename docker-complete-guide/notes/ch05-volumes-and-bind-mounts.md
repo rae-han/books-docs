@@ -25,7 +25,7 @@ docker exec my-app cat /app/data.txt
 # 컨테이너 삭제
 docker rm -f my-app
 
-# 같은 이미지로 새 컨테이너 생성 — 데이터 사라짐
+# 같은 이미지로 새 컨테이너 생성 - 데이터 사라짐
 docker run --name my-app node:20-alpine cat /app/data.txt
 # cat: can't open '/app/data.txt': No such file or directory
 ```
@@ -144,7 +144,7 @@ docker run -d --name my-app \
   -v /app/node_modules \
   node:20-alpine
 
-# 볼륨 확인 — 해시 형태의 이름이 자동 생성됨
+# 볼륨 확인 - 해시 형태의 이름이 자동 생성됨
 docker volume ls
 # DRIVER    VOLUME NAME
 # local     a1b2c3d4e5f6...
@@ -202,7 +202,7 @@ docker exec postgres psql -U postgres -d myapp -c "INSERT INTO users (name) VALU
 # 컨테이너 삭제
 docker rm -f postgres
 
-# 같은 볼륨으로 새 컨테이너 실행 — 데이터가 보존됨
+# 같은 볼륨으로 새 컨테이너 실행 - 데이터가 보존됨
 docker run -d \
   --name postgres-new \
   -e POSTGRES_PASSWORD=mysecret \
@@ -275,14 +275,14 @@ docker run -v $(pwd)/empty-dir:/app my-image ls /app
 # 호스트에서 파일 생성
 echo "hello from host" > $(pwd)/test.txt
 
-# 컨테이너에서 확인 — 즉시 보임
+# 컨테이너에서 확인 - 즉시 보임
 docker exec my-app cat /app/test.txt
 # hello from host
 
 # 컨테이너에서 파일 생성
 docker exec my-app sh -c "echo 'hello from container' > /app/from-container.txt"
 
-# 호스트에서 확인 — 즉시 보임
+# 호스트에서 확인 - 즉시 보임
 cat $(pwd)/from-container.txt
 # hello from container
 ```
@@ -673,7 +673,7 @@ docker run -d \
 
 ```bash
 #!/bin/bash
-# backup-volume.sh — 볼륨 백업 스크립트
+# backup-volume.sh - 볼륨 백업 스크립트
 
 VOLUME_NAME=$1
 BACKUP_DIR=${2:-./backups}

@@ -526,7 +526,7 @@ class NightlyDiscountPhone extends Phone {
     }
 
     override calculateFee(): number {
-        // 부모 클래스의 calculateFee 호출 — 모든 통화를 일반 요금으로 계산
+        // 부모 클래스의 calculateFee 호출 - 모든 통화를 일반 요금으로 계산
         const result = super.calculateFee();
 
         let nightlyFee = 0;
@@ -717,7 +717,7 @@ assertEquals("4th", stack.pop()); // 에러! 실제 반환값은 "3rd"
 </details>
 
 ```typescript
-// TypeScript — Stack이 Array를 상속받았다고 가정
+// TypeScript - Stack이 Array를 상속받았다고 가정
 class Stack<T> extends Array<T> {
     push(...items: T[]): number { return super.push(...items); }
     pop(): T | undefined { return super.pop(); }
@@ -730,7 +730,7 @@ stack.push("3rd");
 
 stack.splice(0, 0, "4th"); // Array의 메서드로 스택 맨 앞에 삽입
 
-stack.pop(); // "3rd" — "4th"가 아니다!
+stack.pop(); // "3rd" - "4th"가 아니다!
 ```
 
 문제의 원인은 `Stack`이 규칙을 무너뜨릴 여지가 있는 위험한 `Vector`의 퍼블릭 인터페이스까지도 함께 상속받았기 때문이다.

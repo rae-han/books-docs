@@ -38,7 +38,7 @@
 
 | 위치 | 신문 기사 | 소스 파일 |
 |---|---|---|
-| **최상단** | 표제 — 기사를 몇 마디로 요약 | 이름 — 간단하면서도 설명 가능 |
+| **최상단** | 표제 - 기사를 몇 마디로 요약 | 이름 - 간단하면서도 설명 가능 |
 | **첫 문단** | 전체 내용 요약, 큰 그림 | 고차원 개념과 알고리즘 |
 | **중간** | 세세한 사실이 조금씩 드러남 | 의도를 세세하게 묘사 |
 | **마지막** | 날짜, 이름, 기타 세부사항 | 가장 저차원 함수와 세부 내역 |
@@ -52,7 +52,7 @@
 각 행은 수식이나 절을 나타내고, 일련의 행 묶음은 완결된 생각 하나를 표현한다. 생각 사이는 빈 행을 넣어 분리해야 마땅하다.
 
 ```java
-// 좋은 예 — 빈 행으로 개념 분리
+// 좋은 예 - 빈 행으로 개념 분리
 package fitnesse.wikitext.widgets;
 
 import java.util.regex.*;
@@ -79,7 +79,7 @@ public class BoldWidget extends ParentWidget {
 ```
 
 ```java
-// 나쁜 예 — 빈 행이 없는 코드 (암호처럼 보인다)
+// 나쁜 예 - 빈 행이 없는 코드 (암호처럼 보인다)
 package fitnesse.wikitext.widgets;
 import java.util.regex.*;
 public class BoldWidget extends ParentWidget {
@@ -108,7 +108,7 @@ return html.toString();
 줄바꿈이 개념을 분리한다면 **세로 밀집도는 연관성**을 의미한다. 서로 밀접한 코드 행은 세로로 가까이 놓여야 한다:
 
 ```java
-// 나쁜 예 — 의미 없는 주석이 관련 코드를 떨어뜨려 놓음
+// 나쁜 예 - 의미 없는 주석이 관련 코드를 떨어뜨려 놓음
 public class ReporterConfig {
     /**
      * 리포터 리스너의 클래스 이름
@@ -126,7 +126,7 @@ public class ReporterConfig {
 ```
 
 ```java
-// 좋은 예 — 한눈에 들어옴
+// 좋은 예 - 한눈에 들어옴
 public class ReporterConfig {
     private String m_className;
     private List<Property> m_properties = new ArrayList<Property>();
@@ -182,7 +182,7 @@ public int countTestCases() {
 C++에서는 클래스 마지막에 선언하는 가위 규칙(scissors rule)을 적용하고, 자바에서는 보통 클래스 맨 처음에 선언한다. 어느 쪽이든 핵심은 **잘 알려진 위치에 인스턴스 변수를 모은다**는 것이다.
 
 ```java
-// 나쁜 예 — 인스턴스 변수가 클래스 중간에 숨어 있음
+// 나쁜 예 - 인스턴스 변수가 클래스 중간에 숨어 있음
 public class TestSuite implements Test {
     static public Test createTest(Class<? extends TestCase> theClass, String name) { ... }
     public static Constructor<? extends TestCase> getTestConstructor(...) { ... }
@@ -202,7 +202,7 @@ public class TestSuite implements Test {
 한 함수가 다른 함수를 호출한다면 두 함수는 세로로 가까이 배치한다. 또한 가능하다면 **호출하는 함수를 호출되는 함수보다 먼저** 배치한다:
 
 ```java
-// 좋은 예 — 호출 순서에 따라 배치
+// 좋은 예 - 호출 순서에 따라 배치
 public class WikiPageResponder implements SecureResponder {
     protected WikiPage page;
     protected PageData pageData;
@@ -335,8 +335,8 @@ public class Quadratic {
 }
 ```
 
-- 승수 사이 `b*b`, `4*a*c`: 공백 없음 — 곱셈이 우선순위가 가장 높으므로
-- 항 사이 `-`: 공백 있음 — 덧셈/뺄셈은 곱셈보다 우선순위가 낮으므로
+- 승수 사이 `b*b`, `4*a*c`: 공백 없음 - 곱셈이 우선순위가 가장 높으므로
+- 항 사이 `-`: 공백 있음 - 덧셈/뺄셈은 곱셈보다 우선순위가 낮으므로
 
 > 불행히도 코드 형식을 자동으로 맞춰주는 도구는 대다수가 연산자 우선순위를 고려하지 못하므로, 위와 같이 공백을 넣어줘도 나중에 도구에서 없애는 경우가 흔하다.
 
@@ -345,7 +345,7 @@ public class Quadratic {
 ## 10. 가로 정렬
 
 ```java
-// 나쁜 예 — 가로 정렬
+// 나쁜 예 - 가로 정렬
 private   Socket          socket;
 private   InputStream     input;
 private   OutputStream    output;
@@ -355,10 +355,10 @@ private   FitNesseContext  context;
 protected long            requestParsingTimeLimit;
 ```
 
-위와 같은 정렬은 별로 유용하지 못하다. 코드가 엉뚱한 부분을 강조해 진짜 의도가 가려지기 때문이다 — 선언부를 읽다 보면 **변수 유형은 무시하고 변수 이름부터** 읽게 된다.
+위와 같은 정렬은 별로 유용하지 못하다. 코드가 엉뚱한 부분을 강조해 진짜 의도가 가려지기 때문이다 - 선언부를 읽다 보면 **변수 유형은 무시하고 변수 이름부터** 읽게 된다.
 
 ```java
-// 좋은 예 — 정렬하지 않음
+// 좋은 예 - 정렬하지 않음
 private Socket socket;
 private InputStream input;
 private OutputStream output;
@@ -384,7 +384,7 @@ protected long requestParsingTimeLimit;
 | 블록 | 블록 내 정보 | 3단+ |
 
 ```java
-// 나쁜 예 — 들여쓰기 없음 (거의 불가해)
+// 나쁜 예 - 들여쓰기 없음 (거의 불가해)
 public class FitNesseServer implements SocketServer { private FitNesseContext
 context; public FitNesseServer(FitNesseContext context) { this.context =
 context; } public void serve(Socket s) { serve(s, 10000); } public void
@@ -395,7 +395,7 @@ catch(Exception e) { e.printStackTrace(); } } }
 ```
 
 ```java
-// 좋은 예 — 들여쓰기한 코드 (구조가 한눈에 들어옴)
+// 좋은 예 - 들여쓰기한 코드 (구조가 한눈에 들어옴)
 public class FitNesseServer implements SocketServer {
     private FitNesseContext context;
 
@@ -426,13 +426,13 @@ public class FitNesseServer implements SocketServer {
 간단한 `if` 문, 짧은 `while` 문, 짧은 함수에서 들여쓰기 규칙을 무시하고픈 유혹이 생긴다:
 
 ```java
-// 나쁜 예 — 한 행에 뭉뚱그린 코드
+// 나쁜 예 - 한 행에 뭉뚱그린 코드
 public CommentWidget(ParentWidget parent, String text){super(parent, text);}
 public String render() throws Exception {return ""; }
 ```
 
 ```java
-// 좋은 예 — 들여쓰기로 범위를 표현
+// 좋은 예 - 들여쓰기로 범위를 표현
 public CommentWidget(ParentWidget parent, String text) {
     super(parent, text);
 }
@@ -482,7 +482,7 @@ while (dis.read(buf, 0, readBufferSize) != -1)
 | 7 | 세로 순서 | 호출하는 함수 먼저, 호출되는 함수 나중 |
 | 8 | 가로 길이 | 120자 이내 권장 |
 | 9 | 가로 공백 | 밀접한 개념은 붙이고, 느슨한 개념은 떼어놓기 |
-| 10 | 가로 정렬 | 하지 않는 편이 좋다 — 목록이 길면 클래스를 쪼개야 |
+| 10 | 가로 정렬 | 하지 않는 편이 좋다 - 목록이 길면 클래스를 쪼개야 |
 | 11 | 들여쓰기 | 범위 계층을 시각적으로 표현, 무시하지 말 것 |
 | 12 | 가짜 범위 | 빈 루프의 세미콜론은 새 행에 |
 | 13 | 팀 규칙 | 개인 선호보다 팀 합의가 우선 |
@@ -491,16 +491,16 @@ while (dis.read(buf, 0, readBufferSize) != -1)
 
 ## 요약
 
-- **코드 형식은 의사소통이다** — 전문 개발자의 일차적인 의무이며, 원래 코드가 사라져도 스타일과 규율은 남는다
-- **파일은 작게 유지하라** — 대부분 200줄, 최대 500줄이면 커다란 시스템도 구축 가능
-- **신문 기사처럼 작성하라** — 위에서 아래로 추상화 수준이 내려가도록
-- **빈 행으로 개념을 분리하라** — 빈 행은 새로운 개념의 시각적 단서
-- **밀접한 코드는 세로로 가까이** — 변수 선언은 사용 위치 근처, 인스턴스 변수는 클래스 맨 처음
-- **호출하는 함수를 먼저 배치하라** — 소스 코드가 고차원에서 저차원으로 자연스럽게 내려감
-- **행 길이는 120자 이내** — 짧은 행을 선호하되 융통성 있게
-- **가로 공백으로 밀접도를 표현하라** — 할당 연산자 앞뒤에 공백, 함수와 괄호 사이에 없음
-- **들여쓰기를 무시하지 마라** — 짧은 함수라도 들여쓰기로 범위를 표현
-- **팀 규칙이 최우선이다** — 일관적인 스타일이 소프트웨어 품질의 기반
+- **코드 형식은 의사소통이다** - 전문 개발자의 일차적인 의무이며, 원래 코드가 사라져도 스타일과 규율은 남는다
+- **파일은 작게 유지하라** - 대부분 200줄, 최대 500줄이면 커다란 시스템도 구축 가능
+- **신문 기사처럼 작성하라** - 위에서 아래로 추상화 수준이 내려가도록
+- **빈 행으로 개념을 분리하라** - 빈 행은 새로운 개념의 시각적 단서
+- **밀접한 코드는 세로로 가까이** - 변수 선언은 사용 위치 근처, 인스턴스 변수는 클래스 맨 처음
+- **호출하는 함수를 먼저 배치하라** - 소스 코드가 고차원에서 저차원으로 자연스럽게 내려감
+- **행 길이는 120자 이내** - 짧은 행을 선호하되 융통성 있게
+- **가로 공백으로 밀접도를 표현하라** - 할당 연산자 앞뒤에 공백, 함수와 괄호 사이에 없음
+- **들여쓰기를 무시하지 마라** - 짧은 함수라도 들여쓰기로 범위를 표현
+- **팀 규칙이 최우선이다** - 일관적인 스타일이 소프트웨어 품질의 기반
 
 ---
 

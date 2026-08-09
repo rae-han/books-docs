@@ -42,7 +42,7 @@ not dead
 
 크롬/엣지 120 이상(2023년 12월 출시)은 ES2023까지 대부분의 기능(`Array.prototype.toSorted()`, `Array.prototype.findLast()`, `Object.hasOwn()`)을 네이티브로 지원한다. 다만 `Array.fromAsync()`(크롬 121+), `Set.prototype.union()`(크롬/엣지 122+, 파이어폭스 127+, 사파리 17+), `Object.groupBy()`(크롬 117+, 사파리 17.4+) 등 일부 최신 기능은 더 높은 버전이 필요하다.
 
-> **참고 — 에버그린 브라우저(evergreen browser)**<br><br>사용자의 별도 조작 없이 자동으로 최신 버전으로 업데이트되는 브라우저다. 크롬·엣지·파이어폭스·사파리가 대표적이다. IE 시절에는 사용자가 직접 설치 파일을 받아 버전을 올려야 했기에 구버전 사용자가 많았지만, 에버그린 브라우저는 항상 최신 상태를 유지하므로 개발자가 최신 웹 표준을 더 빠르고 과감하게 도입할 수 있다.
+> **참고 - 에버그린 브라우저(evergreen browser)**<br><br>사용자의 별도 조작 없이 자동으로 최신 버전으로 업데이트되는 브라우저다. 크롬·엣지·파이어폭스·사파리가 대표적이다. IE 시절에는 사용자가 직접 설치 파일을 받아 버전을 올려야 했기에 구버전 사용자가 많았지만, 에버그린 브라우저는 항상 최신 상태를 유지하므로 개발자가 최신 웹 표준을 더 빠르고 과감하게 도입할 수 있다.
 
 browserslist는 한 번 설정하고 끝이 아니다. **분기마다 사용자 데이터를 재검토**하고 `npx update-browserslist-db`로 브라우저 데이터베이스를 최신으로 유지한다. 1년 전 점유율 5%였던 브라우저가 지금은 1% 미만일 수 있다.
 
@@ -146,7 +146,7 @@ function needsSetMethodsPolyfill(): boolean {
 ```
 
 ```ts
-// index.js (진입점) — 번들러 사용 시
+// index.js (진입점) - 번들러 사용 시
 import { loadPolyfillsIfNeeded } from './polyfill-loader.js';
 
 // 1. 폴리필 먼저 로드 (await로 완료 대기)
@@ -177,20 +177,20 @@ import('./main.js');
 `core-js`를 직접 임포트해 필요한 기능만 담은 폴리필 파일을 만든다.
 
 ```ts
-// polyfills/modern.js — 모던 브라우저용 최소 폴리필 (ES2023~2024)
+// polyfills/modern.js - 모던 브라우저용 최소 폴리필 (ES2023~2024)
 import 'core-js/actual/object/group-by';      // 크롬 117+, 사파리 17.4+
 import 'core-js/actual/array/from-async';     // 크롬 121+, 사파리 16.4+
 import 'core-js/actual/array/to-sorted';      // 크롬 110+, 사파리 16+
 import 'core-js/actual/set/union';            // 크롬/엣지 122+, 파이어폭스 127+, 사파리 17+
 import 'core-js/actual/set/intersection';
 
-// polyfills/legacy.js — 레거시 브라우저용 전체 폴리필
+// polyfills/legacy.js - 레거시 브라우저용 전체 폴리필
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 ```
 
 ```ts
-// vite.config.ts — 폴리필을 별도 청크로 분리
+// vite.config.ts - 폴리필을 별도 청크로 분리
 export default {
   build: {
     rollupOptions: {
@@ -281,7 +281,7 @@ async function loadLatestPolyfills(): Promise<void> {
 - 크롬 117~120 사용자: `Object.groupBy`는 네이티브, `Array.fromAsync`만 동적으로 받음
 - 크롬 121+ 사용자: 모든 기능 네이티브, 추가 폴리필 0바이트
 
-> **핵심 통찰**: 어떤 방식을 고르든 근거는 **실제 사용자 데이터**다. 구글 애널리틱스 Browser & OS 리포트, CrUX, RUM에서 브라우저 버전별 사용자 비율·번들 다운로드 시간·LCP/FCP·에러율을 확인한다. "추측하지 말고 측정하라." 그리고 분기마다 재검토한다 — 1년 전에는 런타임 방식이 맞았어도 지금은 빌드타임이 더 적합할 수 있고, 그 반대도 마찬가지다.
+> **핵심 통찰**: 어떤 방식을 고르든 근거는 **실제 사용자 데이터**다. 구글 애널리틱스 Browser & OS 리포트, CrUX, RUM에서 브라우저 버전별 사용자 비율·번들 다운로드 시간·LCP/FCP·에러율을 확인한다. "추측하지 말고 측정하라." 그리고 분기마다 재검토한다 - 1년 전에는 런타임 방식이 맞았어도 지금은 빌드타임이 더 적합할 수 있고, 그 반대도 마찬가지다.
 
 ## 3. core-js와 폴리필 최적화
 
@@ -291,9 +291,9 @@ async function loadLatestPolyfills(): Promise<void> {
 
 `useBuiltIns`는 폴리필 포함 방식을 제어하며 세 가지 값을 가진다.
 
-**`false`(기본값)** — 폴리필을 자동으로 추가하지 않는다. 개발자가 직접 임포트해야 하며 관리 책임이 전적으로 개발자에게 있다.
+**`false`(기본값)** - 폴리필을 자동으로 추가하지 않는다. 개발자가 직접 임포트해야 하며 관리 책임이 전적으로 개발자에게 있다.
 
-**`entry`** — 진입점의 `import 'core-js/stable'`을 browserslist 설정에 따라 필요한 폴리필로 대체한다.
+**`entry`** - 진입점의 `import 'core-js/stable'`을 browserslist 설정에 따라 필요한 폴리필로 대체한다.
 
 ```json
 // .babelrc
@@ -315,7 +315,7 @@ import 'regenerator-runtime/runtime';
 
 바벨이 이 임포트를 타깃 브라우저에 필요한 개별 폴리필 수백 개로 변환한다. **코드에서 실제로 쓰는지와 무관하게** 타깃 브라우저가 지원하지 않는 모든 기능의 폴리필이 포함되므로 비효율적이다.
 
-**`usage`(권장)** — 코드에서 **실제로 사용하는 기능만** 자동으로 폴리필을 추가한다. `core-js`를 명시적으로 임포트할 필요도 없다.
+**`usage`(권장)** - 코드에서 **실제로 사용하는 기능만** 자동으로 폴리필을 추가한다. `core-js`를 명시적으로 임포트할 필요도 없다.
 
 ```json
 // .babelrc
@@ -330,7 +330,7 @@ import 'regenerator-runtime/runtime';
 ```
 
 ```ts
-// src/index.js — core-js 임포트 불필요
+// src/index.js - core-js 임포트 불필요
 const grouped = Object.groupBy(items, (item) => item.category);
 const asyncData = await Array.fromAsync(asyncIterator);
 

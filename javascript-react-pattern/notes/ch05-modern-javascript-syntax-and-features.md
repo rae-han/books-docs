@@ -8,11 +8,11 @@
 
 ## 1. 애플리케이션 분리의 중요성
 
-확장 가능하고 유지보수하기 쉬운 애플리케이션을 만들려면 **관심사의 분리**(*Separation of Concerns*)가 필수다. 모듈(*Module — 독립적인 코드 단위로, 특정 기능을 캡슐화하여 다른 코드와의 의존성을 최소화한 것*)은 이 분리를 실현하는 핵심 도구다.
+확장 가능하고 유지보수하기 쉬운 애플리케이션을 만들려면 **관심사의 분리**(*Separation of Concerns*)가 필수다. 모듈(*Module - 독립적인 코드 단위로, 특정 기능을 캡슐화하여 다른 코드와의 의존성을 최소화한 것*)은 이 분리를 실현하는 핵심 도구다.
 
 ### 모듈의 역할
 
-모듈을 사용하면 코드를 **느슨한 결합**(*Loose Coupling — 모듈 간 의존성이 최소화되어 한 모듈의 변경이 다른 모듈에 영향을 주지 않는 상태*)으로 구성할 수 있다. 각 모듈은 자신의 책임만 담당하고, 필요한 의존성만 명시적으로 가져온다.
+모듈을 사용하면 코드를 **느슨한 결합**(*Loose Coupling - 모듈 간 의존성이 최소화되어 한 모듈의 변경이 다른 모듈에 영향을 주지 않는 상태*)으로 구성할 수 있다. 각 모듈은 자신의 책임만 담당하고, 필요한 의존성만 명시적으로 가져온다.
 
 ### 모듈 시스템의 역사
 
@@ -51,7 +51,7 @@ ES Modules의 핵심은 `import`와 `export` 키워드다.
 내보내기에는 **이름 있는 내보내기**(*Named Export*)와 **기본 내보내기**(*Default Export*) 두 가지가 있다.
 
 ```typescript
-// bakery.ts — 이름 있는 내보내기
+// bakery.ts - 이름 있는 내보내기
 export interface Cake {
   name: string;
   flavor: string;
@@ -64,7 +64,7 @@ export function createCake(name: string, flavor: string = defaultFlavor): Cake {
   return { name, flavor, price: calculatePrice(flavor) };
 }
 
-// 내부 함수 — export하지 않으므로 외부에서 접근 불가
+// 내부 함수 - export하지 않으므로 외부에서 접근 불가
 function calculatePrice(flavor: string): number {
   const prices: Record<string, number> = {
     vanilla: 3000,
@@ -76,7 +76,7 @@ function calculatePrice(flavor: string): number {
 ```
 
 ```typescript
-// cakeFactory.ts — 기본 내보내기
+// cakeFactory.ts - 기본 내보내기
 import type { Cake } from "./bakery";
 
 export default class CakeFactory {
@@ -104,13 +104,13 @@ export default class CakeFactory {
 import { createCake, defaultFlavor } from "./bakery";
 import type { Cake } from "./bakery";
 
-// 기본 가져오기 — 이름을 자유롭게 지정
+// 기본 가져오기 - 이름을 자유롭게 지정
 import Factory from "./cakeFactory";
 
 // 이름 변경 (별칭)
 import { createCake as bakeCake } from "./bakery";
 
-// 혼합 가져오기 — 기본 + 이름 있는 내보내기를 동시에
+// 혼합 가져오기 - 기본 + 이름 있는 내보내기를 동시에
 import Factory, { createCake } from "./combined-module";
 ```
 
@@ -119,7 +119,7 @@ import Factory, { createCake } from "./combined-module";
 TypeScript에서는 내보내기에 **타입**과 **인터페이스**도 포함할 수 있다. `export type`이나 `export interface`를 사용하면 런타임 코드 없이 타입 정보만 내보낸다.
 
 ```typescript
-// types.ts — 타입 전용 내보내기
+// types.ts - 타입 전용 내보내기
 export type ID = string | number;
 export interface User {
   id: ID;
@@ -130,7 +130,7 @@ export interface User {
 // 타입 전용 가져오기 (TypeScript 3.8+)
 import type { User, ID } from "./types";
 
-// 혼합 — 인라인 타입 표시 (TypeScript 4.5+)
+// 혼합 - 인라인 타입 표시 (TypeScript 4.5+)
 import { CakeFactory, type Cake } from "./cakeFactory";
 ```
 
@@ -182,7 +182,7 @@ console.log(MathUtils.add(2, 3));      // 5
 console.log(MathUtils.multiply(4, 5)); // 20
 ```
 
-`import * as`는 모듈의 모든 이름 있는 내보내기를 하나의 객체 아래에 모은다. 이 방식은 모듈의 출처를 명확하게 만들어 코드 가독성을 높이지만, **트리 셰이킹**(*Tree Shaking — 사용하지 않는 코드를 번들에서 제거하는 최적화 기법*)에 불리할 수 있으므로 주의가 필요하다. 다만 최신 번들러(Webpack 5, Rollup, esbuild)는 `import *`에 대해서도 상당 수준의 트리 셰이킹을 지원한다.
+`import * as`는 모듈의 모든 이름 있는 내보내기를 하나의 객체 아래에 모은다. 이 방식은 모듈의 출처를 명확하게 만들어 코드 가독성을 높이지만, **트리 셰이킹**(*Tree Shaking - 사용하지 않는 코드를 번들에서 제거하는 최적화 기법*)에 불리할 수 있으므로 주의가 필요하다. 다만 최신 번들러(Webpack 5, Rollup, esbuild)는 `import *`에 대해서도 상당 수준의 트리 셰이킹을 지원한다.
 
 ```typescript
 // 트리 셰이킹에 유리한 방식 (권장)
@@ -213,7 +213,7 @@ CDN(*Content Delivery Network*)에서 직접 모듈을 가져오는 방식은 �
 Deno와 같은 런타임은 URL 기반 모듈 가져오기를 1급 시민(*first-class citizen*)으로 지원하며, 이는 Node.js의 `node_modules` 방식과 대조적인 접근이다.
 
 ```typescript
-// Deno — URL 기반 임포트
+// Deno - URL 기반 임포트
 import { serve } from "https://deno.land/std@0.200.0/http/server.ts";
 ```
 
@@ -231,7 +231,7 @@ import { serve } from "https://deno.land/std@0.200.0/http/server.ts";
 | **순환 참조 처리** | 정적 분석 덕분에 순환 참조를 감지하고 처리할 수 있다 |
 
 ```typescript
-// 정적 가져오기 — 항상 파일 최상위에 위치
+// 정적 가져오기 - 항상 파일 최상위에 위치
 import { useState, useEffect } from "react";
 import type { FC, ReactNode } from "react";
 
@@ -273,14 +273,14 @@ async function loadModule(): Promise<void> {
 }
 ```
 
-동적 가져오기는 **코드 분할**(*Code Splitting — 전체 번들을 여러 작은 청크로 나누어 필요한 시점에만 로드하는 기법*)의 기반이 된다. Webpack, Vite, Rollup 등 주요 번들러는 `import()` 호출을 만나면 자동으로 별도의 청크(*chunk*)로 분리한다.
+동적 가져오기는 **코드 분할**(*Code Splitting - 전체 번들을 여러 작은 청크로 나누어 필요한 시점에만 로드하는 기법*)의 기반이 된다. Webpack, Vite, Rollup 등 주요 번들러는 `import()` 호출을 만나면 자동으로 별도의 청크(*chunk*)로 분리한다.
 
 ### 6.1 사용자 상호작용에 따라 가져오기
 
 사용자가 특정 기능을 실제로 사용할 때만 해당 모듈을 로드하면 초기 번들 크기를 크게 줄일 수 있다.
 
 ```typescript
-// 채팅 위젯 — 버튼 클릭 시에만 모듈 로드
+// 채팅 위젯 - 버튼 클릭 시에만 모듈 로드
 const chatButton = document.getElementById("open-chat") as HTMLButtonElement;
 
 chatButton.addEventListener("click", async (): Promise<void> => {
@@ -344,12 +344,12 @@ function lazyLoadOnVisible(
   observer.observe(element);
 }
 
-// 사용 예시 — 차트가 화면에 보일 때 차트 라이브러리 로드
+// 사용 예시 - 차트가 화면에 보일 때 차트 라이브러리 로드
 lazyLoadOnVisible("chart-container", () => import("./heavy-chart-lib"));
 ```
 
 ```tsx
-// React에서 — 커스텀 Hook으로 구현
+// React에서 - 커스텀 Hook으로 구현
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
 
 function useOnScreen(ref: React.RefObject<HTMLElement | null>): boolean {
@@ -441,10 +441,10 @@ project/
 ### CommonJS와 ES Modules 상호 운용
 
 ```typescript
-// ESM에서 CommonJS 모듈 가져오기 — 대부분 동작
+// ESM에서 CommonJS 모듈 가져오기 - 대부분 동작
 import express from "express"; // CommonJS 모듈이지만 default import 가능
 
-// CommonJS에서 ESM 모듈 가져오기 — 동적 import만 가능
+// CommonJS에서 ESM 모듈 가져오기 - 동적 import만 가능
 // const { something } = require("./es-module.mjs"); // 불가!
 const esModule = await import("./es-module.mjs"); // OK
 ```
@@ -471,7 +471,7 @@ ES Modules를 사용하면 다음과 같은 이점을 얻는다.
 모듈 코드는 **최초 가져오기 시 단 한 번만 실행**된다. 동일한 모듈을 여러 곳에서 가져와도 코드는 다시 실행되지 않으며, 이미 평가된 결과가 공유된다. 이 특성은 싱글턴(*Singleton*) 패턴을 자연스럽게 구현할 수 있게 한다.
 
 ```typescript
-// config.ts — 모듈 스코프의 싱글턴
+// config.ts - 모듈 스코프의 싱글턴
 interface AppConfig {
   apiUrl: string;
   debug: boolean;
@@ -494,10 +494,10 @@ export default config;
 `<script type="module">`로 로드된 스크립트는 자동으로 **지연 실행**(*deferred*)된다. 일반 `<script>` 태그와 달리 DOM 파싱을 차단하지 않으므로 별도의 `defer` 속성이 필요 없다.
 
 ```html
-<!-- 일반 스크립트 — HTML 파싱 차단 -->
+<!-- 일반 스크립트 - HTML 파싱 차단 -->
 <script src="blocking.js"></script>
 
-<!-- 모듈 스크립트 — 자동 defer -->
+<!-- 모듈 스크립트 - 자동 defer -->
 <script type="module" src="non-blocking.js"></script>
 
 <!-- 위 두 줄은 사실상 동일한 효과 -->
@@ -524,7 +524,7 @@ export function subtract(a: number, b: number): number { return a - b; }
 export function multiply(a: number, b: number): number { return a * b; }
 export function divide(a: number, b: number): number { return a / b; }
 
-// app.ts — add만 사용
+// app.ts - add만 사용
 import { add } from "./math";
 console.log(add(1, 2));
 // 번들러는 subtract, multiply, divide를 최종 번들에서 제거한다
@@ -552,12 +552,12 @@ class Cake {
     this.toppings = toppings;
   }
 
-  // 게터 (getter) — 프로퍼티처럼 접근
+  // 게터 (getter) - 프로퍼티처럼 접근
   get description(): string {
     return `${this.name}은(는) ${this.flavor} 맛이다.`;
   }
 
-  // 세터 (setter) — 유효성 검사 포함 가능
+  // 세터 (setter) - 유효성 검사 포함 가능
   set mainFlavor(flavor: string) {
     if (!flavor.trim()) {
       throw new Error("빈 문자열은 허용되지 않는다");
@@ -585,7 +585,7 @@ myCake.addTopping("블루베리");
 TypeScript의 클래스는 JavaScript 클래스에 **접근 제한자**(*Access Modifier*)와 **타입 주석**, 그리고 **매개변수 프로퍼티**를 추가한다.
 
 ```typescript
-// TypeScript — 매개변수 프로퍼티로 간결하게 작성
+// TypeScript - 매개변수 프로퍼티로 간결하게 작성
 class Cake {
   constructor(
     private name: string,
@@ -601,7 +601,7 @@ class Cake {
 ```
 
 ```javascript
-// JavaScript (동등한 코드) — 접근 제한자 없음
+// JavaScript (동등한 코드) - 접근 제한자 없음
 class Cake {
   #name;    // # 프리픽스로 private 필드 (ES2022)
   #flavor;
@@ -636,7 +636,7 @@ class PremiumCake extends Cake {
   private candles: number;
 
   constructor(name: string, flavor: string, candles: number) {
-    super(name, flavor, ["생크림"]); // 부모 생성자 호출 — 반드시 this 접근 전에
+    super(name, flavor, ["생크림"]); // 부모 생성자 호출 - 반드시 this 접근 전에
     this.candles = candles;
   }
 
@@ -680,7 +680,7 @@ class Counter {
     return Counter.#totalInstances;
   }
 
-  // 정적 블록 (ES2022) — 복잡한 정적 초기화
+  // 정적 블록 (ES2022) - 복잡한 정적 초기화
   static {
     console.log("Counter 클래스 로드됨");
   }
@@ -689,20 +689,20 @@ class Counter {
 const c1 = new Counter();
 const c2 = new Counter();
 console.log(Counter.getTotalInstances()); // 2
-// c1.#count; // SyntaxError — 외부에서 비공개 필드 접근 불가
+// c1.#count; // SyntaxError - 외부에서 비공개 필드 접근 불가
 ```
 
 ### JavaScript vs TypeScript
 
-TypeScript에서는 `abstract` 키워드로 **추상 클래스**(*Abstract Class — 직접 인스턴스화할 수 없고, 하위 클래스가 특정 메서드를 반드시 구현하도록 강제하는 클래스*)를 정의할 수 있다. 이는 디자인 패턴의 **템플릿 메서드 패턴**이나 **팩토리 패턴** 구현에 유용하다.
+TypeScript에서는 `abstract` 키워드로 **추상 클래스**(*Abstract Class - 직접 인스턴스화할 수 없고, 하위 클래스가 특정 메서드를 반드시 구현하도록 강제하는 클래스*)를 정의할 수 있다. 이는 디자인 패턴의 **템플릿 메서드 패턴**이나 **팩토리 패턴** 구현에 유용하다.
 
 ```typescript
-// TypeScript 전용 — 추상 클래스
+// TypeScript 전용 - 추상 클래스
 abstract class Shape {
   abstract area(): number;
   abstract perimeter(): number;
 
-  // 구체 메서드 — 하위 클래스가 공통으로 사용
+  // 구체 메서드 - 하위 클래스가 공통으로 사용
   describe(): string {
     return `넓이: ${this.area().toFixed(2)}, 둘레: ${this.perimeter().toFixed(2)}`;
   }
@@ -722,7 +722,7 @@ class Circle extends Shape {
   }
 }
 
-// const shape = new Shape(); // Error — 추상 클래스는 인스턴스화 불가
+// const shape = new Shape(); // Error - 추상 클래스는 인스턴스화 불가
 const circle = new Circle(5);
 console.log(circle.describe()); // "넓이: 78.54, 둘레: 31.42"
 ```
@@ -798,7 +798,7 @@ const Counter: FC<CounterProps> = ({ initialCount }) => {
 
 ### 웹 컴포넌트: 클래스가 여전히 필수
 
-반면 **웹 컴포넌트**(*Web Components — 프레임워크에 의존하지 않는 브라우저 네이티브 컴포넌트 기술*)에서는 클래스가 필수다. 커스텀 엘리먼트(*Custom Element*)를 정의하려면 `HTMLElement`를 상속해야 한다.
+반면 **웹 컴포넌트**(*Web Components - 프레임워크에 의존하지 않는 브라우저 네이티브 컴포넌트 기술*)에서는 클래스가 필수다. 커스텀 엘리먼트(*Custom Element*)를 정의하려면 `HTMLElement`를 상속해야 한다.
 
 ```typescript
 class MyCounter extends HTMLElement {
@@ -855,8 +855,8 @@ customElements.define("my-counter", MyCounter);
 | **ES2023** | `Array.prototype.findLast()`/`findLastIndex()`, Hashbang grammar, Change Array by Copy (`toSorted()`, `toReversed()`, `with()`) |
 | **ES2024** | `Promise.withResolvers()`, `Object.groupBy()`, Temporal API (Stage 3), Decorators (Stage 3 → 표준화 진행), Explicit Resource Management (`using` 키워드) |
 | **Import Maps** | `<script type="importmap">`으로 번들러 없이 베어 스페시파이어(*bare specifier*) 해석 가능 |
-| **빌드 도구** | Vite 6, Turbopack 안정화, Rspack 등장 — Webpack에서 이동하는 추세 |
-| **TypeScript** | TS 5.x — `const` 타입 매개변수, `satisfies` 연산자, 데코레이터 지원 |
+| **빌드 도구** | Vite 6, Turbopack 안정화, Rspack 등장 - Webpack에서 이동하는 추세 |
+| **TypeScript** | TS 5.x - `const` 타입 매개변수, `satisfies` 연산자, 데코레이터 지원 |
 
 ### Change Array by Copy (ES2023)
 
@@ -865,15 +865,15 @@ customElements.define("my-counter", MyCounter);
 ```typescript
 const numbers: number[] = [3, 1, 4, 1, 5];
 
-// 기존 — 원본을 변경
+// 기존 - 원본을 변경
 // numbers.sort(); // numbers가 변경됨!
 
-// ES2023 — 원본 보존
+// ES2023 - 원본 보존
 const sorted: number[] = numbers.toSorted((a, b) => a - b);
 const reversed: number[] = numbers.toReversed();
 const replaced: number[] = numbers.with(2, 99); // index 2를 99로 교체
 
-console.log(numbers);  // [3, 1, 4, 1, 5] — 변경 없음
+console.log(numbers);  // [3, 1, 4, 1, 5] - 변경 없음
 console.log(sorted);   // [1, 1, 3, 4, 5]
 console.log(reversed); // [5, 1, 4, 1, 3]
 console.log(replaced); // [3, 1, 99, 1, 5]
@@ -884,7 +884,7 @@ console.log(replaced); // [3, 1, 99, 1, 5]
 Promise 생성 시 `resolve`와 `reject` 함수를 외부로 추출할 수 있는 정적 메서드다.
 
 ```typescript
-// 기존 방식 — 콜백 내부에서만 resolve/reject 접근 가능
+// 기존 방식 - 콜백 내부에서만 resolve/reject 접근 가능
 let resolve!: (value: string) => void;
 let reject!: (reason: Error) => void;
 const promise = new Promise<string>((res, rej) => {
@@ -892,7 +892,7 @@ const promise = new Promise<string>((res, rej) => {
   reject = rej;
 });
 
-// ES2024 — 깔끔한 분해
+// ES2024 - 깔끔한 분해
 const { promise: p, resolve: res, reject: rej } = Promise.withResolvers<string>();
 setTimeout(() => res("완료!"), 1000);
 ```

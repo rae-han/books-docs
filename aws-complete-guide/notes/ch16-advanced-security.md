@@ -2,7 +2,7 @@
 
 ## 핵심 질문
 
-프로덕션 환경에서 AWS 인프라를 안전하게 운영하려면 어떤 보안 계층이 필요한가? 네트워크 방화벽, 웹 애플리케이션 보호, 비밀 정보 관리, 암호화, SSL/TLS 인증서까지 — AWS가 제공하는 보안 서비스를 어떻게 조합하여 견고한 보안 아키텍처를 구축하는가?
+프로덕션 환경에서 AWS 인프라를 안전하게 운영하려면 어떤 보안 계층이 필요한가? 네트워크 방화벽, 웹 애플리케이션 보호, 비밀 정보 관리, 암호화, SSL/TLS 인증서까지 - AWS가 제공하는 보안 서비스를 어떻게 조합하여 견고한 보안 아키텍처를 구축하는가?
 
 ---
 
@@ -439,7 +439,7 @@ import { Client } from 'pg';
 
 const secretsClient = new SecretsManagerClient({});
 
-// 핸들러 밖에서 캐시 — 실행 컨텍스트 재사용 시 API 호출 절약
+// 핸들러 밖에서 캐시 - 실행 컨텍스트 재사용 시 API 호출 절약
 let cachedCredentials: {
   username: string;
   password: string;
@@ -809,7 +809,7 @@ export async function OPTIONS(request: Request) {
 CSP(*Content Security Policy - 브라우저에게 어떤 소스의 리소스를 로드할 수 있는지 지시하는 HTTP 응답 헤더. XSS 공격 방지에 효과적이다*)는 XSS 공격을 방지하는 가장 강력한 브라우저 보안 메커니즘이다.
 
 ```typescript
-// next.config.ts — CSP 헤더 설정
+// next.config.ts - CSP 헤더 설정
 import type { NextConfig } from 'next';
 
 const cspHeader = `

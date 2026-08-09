@@ -1,4 +1,4 @@
-# Chapter 26: Proxy and Stairway to Heaven (프록시와 천국으로의 계단 — 서드파티 API 관리)
+# Chapter 26: Proxy and Stairway to Heaven (프록시와 천국으로의 계단 - 서드파티 API 관리)
 
 ## 핵심 질문
 
@@ -234,7 +234,7 @@ public class ProductProxy implements Product {
 정규형 프록시라면 모든 메소드에서 `ProductImp`를 생성해 위임해야 한다.
 
 ```typescript
-// 정규형이 요구하는 모양 — 그러나 비효율적
+// 정규형이 요구하는 모양 - 그러나 비효율적
 getPrice(): number {
   const pd = DB.getProductData(this.sku);
   const p = new ProductImp(pd.sku, pd.name, pd.price);
@@ -242,7 +242,7 @@ getPrice(): number {
 }
 ```
 
-> **Uncle Bob의 경험**: `ProductImp`를 생성하는 것은 프로그래머와 컴퓨터 자원 모두에 있어 완전히 쓸데없는 짓이다. `ProductProxy`는 이미 `ProductImp` 접근 메소드가 반환할 데이터를 갖고 있다. 그러므로 `ProductImp`를 생성하고 위임할 필요가 전혀 없다. 이것은 원래 기대하던 패턴과 모델에서 프로그래머를 꾀어내어 잘못된 길로 가게 할 수 있는 또 하나의 예다. `getSku`는 한 발 더 깊숙이 들어가 데이터베이스를 건드리지도 않는다 — 이미 sku를 갖고 있는데 말이다.
+> **Uncle Bob의 경험**: `ProductImp`를 생성하는 것은 프로그래머와 컴퓨터 자원 모두에 있어 완전히 쓸데없는 짓이다. `ProductProxy`는 이미 `ProductImp` 접근 메소드가 반환할 데이터를 갖고 있다. 그러므로 `ProductImp`를 생성하고 위임할 필요가 전혀 없다. 이것은 원래 기대하던 패턴과 모델에서 프로그래머를 꾀어내어 잘못된 길로 가게 할 수 있는 또 하나의 예다. `getSku`는 한 발 더 깊숙이 들어가 데이터베이스를 건드리지도 않는다 - 이미 sku를 갖고 있는데 말이다.
 
 캐싱을 고민할 수도 있다. 매 접근마다 DB를 친다고 느껴지기 때문이다. 하지만 이 시점에 성능 문제가 있다는 데이터는 없다. 데이터베이스 엔진 자체가 캐싱을 한다는 사실도 알려져 있다. 일부러 골치 아픈 문제를 만들지 말고, 성능 문제가 겉으로 드러날 때까지 기다려야 한다.
 
@@ -254,8 +254,8 @@ getPrice(): number {
 
 ### 4.1 위임 정책
 
-- `addItem`: **위임하지 않는다** — 프록시가 직접 DB에 Item 행을 추가한다.
-- `total`: **위임한다** — 합계 정책은 업무 규칙이므로 `OrderImp.total`에 위임해야 한다. 그러기 위해 프록시가 DB에서 모든 Item을 읽어 빈 `OrderImp`에 채워 넣은 뒤 `total`을 호출한다.
+- `addItem`: **위임하지 않는다** - 프록시가 직접 DB에 Item 행을 추가한다.
+- `total`: **위임한다** - 합계 정책은 업무 규칙이므로 `OrderImp.total`에 위임해야 한다. 그러기 위해 프록시가 DB에서 모든 Item을 읽어 빈 `OrderImp`에 채워 넣은 뒤 `total`을 호출한다.
 
 > **핵심 통찰**: 프록시 구축의 제일 중요한 부분은 데이터베이스 구현부를 업무 규칙에서 분리하는 것이다. 합계를 내는 정책이 `OrderImp`에 캡슐화되기를 원하기 때문에, `total`만큼은 반드시 위임해야 한다.
 
@@ -349,7 +349,7 @@ public class OrderProxy implements Order {
 
 ## 6. 서드파티 API를 다루는 방법
 
-### 6.1 기본 관계 — 직접 호출
+### 6.1 기본 관계 - 직접 호출
 
 엔지니어는 데이터베이스, 미들웨어, 클래스 라이브러리 등을 구입해 자신의 애플리케이션에서 직접 호출한다.
 
@@ -388,7 +388,7 @@ public class OrderProxy implements Order {
 
 그런데 애플리케이션이 레이어에 의존하므로, 레이어를 거쳐 API로 전이 종속성(*transitive dependency - A→B, B→C이면 A는 C에 간접적으로 의존하게 되는 종속성*)이 생긴다. JDBC는 애플리케이션을 스키마 세부에서 보호하지 않는다.
 
-### 6.3 종속성 뒤집기 — 이것이 프록시가 하는 일
+### 6.3 종속성 뒤집기 - 이것이 프록시가 하는 일
 
 ```
 ┌─────────────────┐
@@ -471,7 +471,7 @@ if (o) {
 C++에서의 핵심 구조만 발췌한다.
 
 ```cpp
-// Product — 영속성 모른다
+// Product - 영속성 모른다
 class Product {
 public:
   Product(const string& name);
@@ -481,7 +481,7 @@ private:
   string itsName;
 };
 
-// Assembly — Product를 가상 상속
+// Assembly - Product를 가상 상속
 class Assembly : public virtual Product {
 public:
   Assembly(const string& name, const string& assyCode);
@@ -490,7 +490,7 @@ private:
   string itsAssyCode;
 };
 
-// PersistentObject — DB만 안다. 템플릿 메소드로 write 제어
+// PersistentObject - DB만 안다. 템플릿 메소드로 write 제어
 class PersistentObject {
 public:
   virtual ~PersistentObject();
@@ -508,7 +508,7 @@ void PersistentObject::write(ostream& s) const {
   writeFooter(s);
 }
 
-// PersistentProduct — Product + PersistentObject
+// PersistentProduct - Product + PersistentObject
 class PersistentProduct : public virtual Product,
                           public PersistentObject {
 protected:
@@ -520,7 +520,7 @@ private:
   virtual void writeFooter(ostream& s) const { s << "</PRODUCT>"; }
 };
 
-// PersistentAssembly — Assembly + PersistentProduct
+// PersistentAssembly - Assembly + PersistentProduct
 class PersistentAssembly : public Assembly, public PersistentProduct {
 protected:
   virtual void writeFields(ostream& s) const {
@@ -533,7 +533,7 @@ private:
 };
 ```
 
-`PersistentAssembly::writeFields`가 `PersistentProduct::writeFields`를 호출해 `Product` 부분의 쓰기 기능을 재사용한다. 이것이 '계단'의 의미다 — 한 단씩 쌓아 올린다.
+`PersistentAssembly::writeFields`가 `PersistentProduct::writeFields`를 호출해 `Product` 부분의 쓰기 기능을 재사용한다. 이것이 '계단'의 의미다 - 한 단씩 쌓아 올린다.
 
 ### 7.5 한계
 
@@ -576,7 +576,7 @@ product.accept(dwv);
 1. 업무 객체를 장식해 `read`/`write` 메소드를 주는 방법
 2. 자신을 읽고 쓰는 방법을 아는 데이터 객체를 장식해 업무 규칙을 주는 방법 (OODB에서 드문 방식)
 
-### 8.4 퍼사드(Facade) — Uncle Bob이 좋아하는 시작점
+### 8.4 퍼사드(Facade) - Uncle Bob이 좋아하는 시작점
 
 가장 단순하고 효과적이다. 단점은 업무 규칙 객체를 DB와 결합시킨다는 점이다.
 
@@ -620,8 +620,8 @@ product.accept(dwv);
 
 | 상황 | 추천 패턴 |
 |---|---|
-| 작은 애플리케이션, 거대해지기 직전 | 퍼사드 — 단순, 효과적, 리팩토링 쉽다 |
-| 큰 시스템, 스키마/API가 자주 변경됨 | 프록시 — 업무 규칙 완벽 분리, 변경 영향을 한 곳에 집중 |
+| 작은 애플리케이션, 거대해지기 직전 | 퍼사드 - 단순, 효과적, 리팩토링 쉽다 |
+| 큰 시스템, 스키마/API가 자주 변경됨 | 프록시 - 업무 규칙 완벽 분리, 변경 영향을 한 곳에 집중 |
 | 다양한 DB/미들웨어 엔진을 갈아끼워야 함 | 프록시 |
 | C++/다중 상속 언어 + 영속성 완전 분리가 필요 | 천국으로의 계단 |
 | 객체별로 자료형이 다양하고 동작이 늘어남 | 비지터 |

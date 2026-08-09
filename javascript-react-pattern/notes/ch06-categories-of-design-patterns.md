@@ -6,7 +6,7 @@
 
 ---
 
-## 1. 배경 — GoF와 디자인 패턴의 분류 체계
+## 1. 배경 - GoF와 디자인 패턴의 분류 체계
 
 GoF(*Gang of Four*)로 불리는 에리히 감마(*Erich Gamma*), 리차드 헬름(*Richard Helm*), 랄프 존슨(*Ralph Johnson*), 존 블리시드(*John Vlissides*)는 1995년에 **23가지 핵심 객체 지향 디자인 패턴**을 정의했다. 이 패턴들은 모두 **특정 객체 지향 설계의 문제나 이슈에 초점**을 맞추고 있다.
 
@@ -48,7 +48,7 @@ GoF는 이 23가지 패턴을 **문제 해결 방법의 공통점**을 기준으
 ### TypeScript에서의 생성 패턴 활용
 
 ```typescript
-// Factory 패턴 — 구체 클래스를 숨기고 인터페이스로 반환
+// Factory 패턴 - 구체 클래스를 숨기고 인터페이스로 반환
 interface Notification {
   send(message: string): void;
 }
@@ -109,7 +109,7 @@ notification.send("Hello!");
 ### TypeScript에서의 구조 패턴 활용
 
 ```typescript
-// Decorator 패턴 — TC39 Stage 3 Decorators (TypeScript 5.0+)
+// Decorator 패턴 - TC39 Stage 3 Decorators (TypeScript 5.0+)
 function logged<T extends (...args: any[]) => any>(
   originalMethod: T,
   context: ClassMethodDecoratorContext,
@@ -136,7 +136,7 @@ calc.add(2, 3);
 ```
 
 ```typescript
-// Proxy 패턴 — ES6 Proxy로 접근 제어
+// Proxy 패턴 - ES6 Proxy로 접근 제어
 interface User {
   name: string;
   email: string;
@@ -193,7 +193,7 @@ console.log(user.name);      // "Alice"
 ### TypeScript에서의 행위 패턴 활용
 
 ```typescript
-// Observer 패턴 — 제네릭을 활용한 타입 안전한 이벤트 시스템
+// Observer 패턴 - 제네릭을 활용한 타입 안전한 이벤트 시스템
 type Listener<T> = (data: T) => void;
 
 class EventEmitter<EventMap extends Record<string, unknown>> {
@@ -215,7 +215,7 @@ class EventEmitter<EventMap extends Record<string, unknown>> {
   }
 }
 
-// 사용 예시 — 이벤트명과 데이터 타입이 컴파일 타임에 검증된다
+// 사용 예시 - 이벤트명과 데이터 타입이 컴파일 타임에 검증된다
 interface AppEvents {
   userLogin: { userId: string; timestamp: number };
   itemAdded: { itemId: string; quantity: number };
@@ -228,7 +228,7 @@ emitter.on("userLogin", (data) => {
 ```
 
 ```typescript
-// Strategy 패턴 — 함수형 스타일
+// Strategy 패턴 - 함수형 스타일
 type SortStrategy<T> = (items: T[]) => T[];
 
 const bubbleSort: SortStrategy<number> = (items) => {
@@ -271,7 +271,7 @@ sorter.sort([3, 1, 4, 1, 5]); // quickSort로 교체
 
 ---
 
-## 5. 디자인 패턴의 분류 — 클래스 vs 객체
+## 5. 디자인 패턴의 분류 - 클래스 vs 객체
 
 GoF는 세 가지 유형 외에 **클래스 기반**과 **객체 기반**이라는 또 다른 축을 추가하여 패턴을 더 세밀하게 분류했다. 엘리스 닐슨(*Elis Nielsen*)의 2004년 분류표는 이 매트릭스를 정리한 것으로, 패턴이 주로 **클래스 간의 관계**(상속)를 다루는지 **객체 간의 관계**(합성)를 다루는지를 구분한다.
 
@@ -281,8 +281,8 @@ GoF는 세 가지 유형 외에 **클래스 기반**과 **객체 기반**이라�
 |------|-------------|-----------|
 | **관계 형성 시점** | 컴파일 타임 (상속) | 런타임 (합성/위임) |
 | **메커니즘** | 클래스 상속 (`extends`) | 객체 합성, 위임, 참조 |
-| **유연성** | 정적 — 실행 중 변경 불가 | 동적 — 실행 중 변경 가능 |
-| **GoF 원칙** | — | "상속보다 합성을 선호하라" |
+| **유연성** | 정적 - 실행 중 변경 불가 | 동적 - 실행 중 변경 가능 |
+| **GoF 원칙** | - | "상속보다 합성을 선호하라" |
 
 ### GoF 23가지 패턴 분류표
 
@@ -328,23 +328,23 @@ GoF의 23가지 패턴은 1995년에 C++과 Smalltalk를 기반으로 정의되�
 
 다음 패턴들은 현대 JS/TS에서도 **명시적으로 구현해야 하는 상황이 빈번**하다:
 
-- **Observer** — 상태 관리, 이벤트 시스템, 리액티브 프로그래밍의 근간
-- **Strategy** — 알고리즘 교체, 렌더링 전략 선택, 정렬/필터 로직 분리
-- **Factory** — 컴포넌트 동적 생성, API 응답 기반 객체 생성
-- **Decorator** — TC39 데코레이터 표준화(TypeScript 5.0+)로 언어 수준에서 지원
-- **Facade** — 복잡한 API를 커스텀 Hook이나 래퍼 함수로 단순화
-- **Composite** — React/JSX의 컴포넌트 트리 자체가 Composite 구조
-- **Command** — `useReducer`의 action dispatch, undo/redo 구현
-- **Mediator** — 상태 관리 스토어(Redux, Zustand)가 Mediator 역할
+- **Observer** - 상태 관리, 이벤트 시스템, 리액티브 프로그래밍의 근간
+- **Strategy** - 알고리즘 교체, 렌더링 전략 선택, 정렬/필터 로직 분리
+- **Factory** - 컴포넌트 동적 생성, API 응답 기반 객체 생성
+- **Decorator** - TC39 데코레이터 표준화(TypeScript 5.0+)로 언어 수준에서 지원
+- **Facade** - 복잡한 API를 커스텀 Hook이나 래퍼 함수로 단순화
+- **Composite** - React/JSX의 컴포넌트 트리 자체가 Composite 구조
+- **Command** - `useReducer`의 action dispatch, undo/redo 구현
+- **Mediator** - 상태 관리 스토어(Redux, Zustand)가 Mediator 역할
 
 ### 언어 기능에 흡수된 패턴
 
 다음 패턴들은 **언어 또는 런타임이 이미 제공**하므로, 별도로 구현할 필요가 거의 없다:
 
-- **Iterator** — `for...of`, 제너레이터(`function*`), `Symbol.iterator`가 내장
-- **Singleton** — ES 모듈이 본질적으로 싱글톤 (모듈 스코프는 한 번만 평가됨)
-- **Prototype** — `Object.create()`, 프로토타입 체인이 언어의 핵심 메커니즘
-- **Proxy** — ES6 `Proxy` 객체가 네이티브로 제공
+- **Iterator** - `for...of`, 제너레이터(`function*`), `Symbol.iterator`가 내장
+- **Singleton** - ES 모듈이 본질적으로 싱글톤 (모듈 스코프는 한 번만 평가됨)
+- **Prototype** - `Object.create()`, 프로토타입 체인이 언어의 핵심 메커니즘
+- **Proxy** - ES6 `Proxy` 객체가 네이티브로 제공
 
 ### 다른 형태로 변형된 패턴
 
@@ -374,7 +374,7 @@ GoF의 23가지 패턴은 1995년에 C++과 Smalltalk를 기반으로 정의되�
 | **Memento** | Memento 객체로 상태 스냅샷 | `structuredClone()`, Immer의 불변 상태 |
 
 ```typescript
-// Iterator — 언어에 내장된 패턴
+// Iterator - 언어에 내장된 패턴
 class Range {
   constructor(private start: number, private end: number) {}
 
@@ -390,7 +390,7 @@ for (const num of new Range(1, 5)) {
   console.log(num); // 1, 2, 3, 4, 5
 }
 
-// Singleton — ES Module이 자체적으로 싱글톤을 보장
+// Singleton - ES Module이 자체적으로 싱글톤을 보장
 // config.ts
 const config = {
   apiUrl: process.env.API_URL ?? "https://api.example.com",
@@ -398,9 +398,9 @@ const config = {
 } as const;
 
 export default config;
-// 어디서 import해도 동일한 객체 참조 — 별도 Singleton 클래스 불필요
+// 어디서 import해도 동일한 객체 참조 - 별도 Singleton 클래스 불필요
 
-// Proxy — ES6 Proxy로 접근 제어
+// Proxy - ES6 Proxy로 접근 제어
 function createReactive<T extends object>(
   target: T,
   onChange: (prop: string, value: unknown) => void,
@@ -475,10 +475,10 @@ state.count = 1; // "count changed to 1"
 | 유형 | 흔한 실수 | 올바른 접근 |
 |------|-----------|-------------|
 | **생성** | 모든 객체 생성에 Factory 적용 | 생성 로직이 **실제로 복잡하거나 변경 가능성이 있을 때**만 적용 |
-| **생성** | Singleton 남용 | 전역 상태가 **정말 필요한지** 먼저 검토 — 대부분 의존성 주입으로 대체 가능 |
+| **생성** | Singleton 남용 | 전역 상태가 **정말 필요한지** 먼저 검토 - 대부분 의존성 주입으로 대체 가능 |
 | **구조** | Decorator 중첩으로 디버깅 곤란 | 데코레이터 체인이 3단계를 넘으면 설계를 재검토 |
 | **구조** | Facade가 God Object로 변질 | Facade는 **위임만** 해야 하며, 자체 로직을 가져서는 안 된다 |
-| **행위** | Observer에서 메모리 누수 | 구독 해제(`unsubscribe`)를 반드시 구현 — React의 `useEffect` cleanup |
+| **행위** | Observer에서 메모리 누수 | 구독 해제(`unsubscribe`)를 반드시 구현 - React의 `useEffect` cleanup |
 | **행위** | Strategy 패턴을 if-else로 대체 | 전략이 2개 이하이고 변경 가능성이 낮으면 단순 조건문이 더 적합 |
 
 ---
@@ -489,7 +489,7 @@ state.count = 1; // "count changed to 1"
 - **생성 패턴**은 객체를 "어떻게 만들 것인가"에 초점을 두며, Factory, Singleton, Builder 등이 포함된다
 - **구조 패턴**은 객체를 "어떻게 조합할 것인가"에 초점을 두며, Decorator, Facade, Adapter 등이 포함된다
 - **행위 패턴**은 객체 간 "어떻게 소통할 것인가"에 초점을 두며, Observer, Strategy, Command 등이 포함된다
-- 클래스 기반 vs 객체 기반의 추가 분류축이 있으며, **객체 합성 기반 패턴이 압도적으로 많다** — 이는 "상속보다 합성" 원칙과 일치한다
+- 클래스 기반 vs 객체 기반의 추가 분류축이 있으며, **객체 합성 기반 패턴이 압도적으로 많다** - 이는 "상속보다 합성" 원칙과 일치한다
 - 현대 JS/TS에서는 일부 패턴(Iterator, Singleton, Proxy 등)이 **언어 기능에 흡수**되었고, 일부(Observer, State, Chain of Responsibility 등)는 **현대적 도구로 변형**되었다
 - 패턴 선택의 출발점은 **"이 문제가 생성의 문제인가, 구조의 문제인가, 소통의 문제인가?"**를 자문하는 것이다
 

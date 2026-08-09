@@ -101,7 +101,7 @@ test('multiplication', () => {
 격리 위반의 전형적 사례:
 
 ```java
-// 나쁜 예 — 테스트 간 상태 공유
+// 나쁜 예 - 테스트 간 상태 공유
 static Dollar sharedDollar = new Dollar(5);
 
 public void testMultiplication() {
@@ -120,7 +120,7 @@ public void testAddition() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 나쁜 예 — 테스트 간 상태 공유
+// 나쁜 예 - 테스트 간 상태 공유
 const sharedDollar = new Dollar(5);
 
 test('multiplication', () => {
@@ -138,7 +138,7 @@ test('addition', () => {
 </details>
 
 ```java
-// 좋은 예 — 각 테스트가 독립적
+// 좋은 예 - 각 테스트가 독립적
 public void testMultiplication() {
     Dollar five = new Dollar(5);  // 자체 생성
     Dollar result = five.times(2);
@@ -156,7 +156,7 @@ public void testAddition() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 좋은 예 — 각 테스트가 독립적
+// 좋은 예 - 각 테스트가 독립적
 test('multiplication', () => {
     const five = new Dollar(5);  // 자체 생성
     const result = five.times(2);
@@ -289,7 +289,7 @@ Part I의 모든 챕터에서 예외 없이 Test First가 적용되었다. Chapt
 ```java
 // Dollar 클래스가 아직 없다!
 public void testMultiplication() {
-    Dollar five = new Dollar(5);  // 컴파일 에러 — Dollar가 없음
+    Dollar five = new Dollar(5);  // 컴파일 에러 - Dollar가 없음
     five.times(2);
     assertEquals(10, five.amount);
 }
@@ -301,7 +301,7 @@ public void testMultiplication() {
 ```typescript
 // Dollar 클래스가 아직 없다!
 test('multiplication', () => {
-    const five = new Dollar(5);  // 컴파일 에러 — Dollar가 없음
+    const five = new Dollar(5);  // 컴파일 에러 - Dollar가 없음
     five.times(2);
     expect(five.amount).toBe(10);
 });
@@ -339,7 +339,7 @@ Assert First 패턴은 이 순서를 **거꾸로** 작성할 것을 권한다. �
 
 예를 들어, "소켓을 통해 통신하는 시스템"을 테스트한다고 하자.
 
-**Step 1**: 단언부터 작성한다 — "결과가 어떠해야 하는가?"
+**Step 1**: 단언부터 작성한다 - "결과가 어떠해야 하는가?"
 
 ```java
 // Step 1: 내가 기대하는 결과
@@ -420,7 +420,7 @@ Assert First는 **목표 지향적 사고**를 유도한다. "나는 어디로 �
 나쁜 예와 좋은 예:
 
 ```java
-// 나쁜 예 — 불필요하게 큰 숫자, 의미 불분명
+// 나쁜 예 - 불필요하게 큰 숫자, 의미 불분명
 public void testMultiplication() {
     Dollar price = new Dollar(1472);
     Dollar result = price.times(37);
@@ -432,7 +432,7 @@ public void testMultiplication() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 나쁜 예 — 불필요하게 큰 숫자, 의미 불분명
+// 나쁜 예 - 불필요하게 큰 숫자, 의미 불분명
 test('multiplication', () => {
     const price = new Dollar(1472);
     const result = price.times(37);
@@ -443,7 +443,7 @@ test('multiplication', () => {
 </details>
 
 ```java
-// 좋은 예 — 작고 명확한 숫자
+// 좋은 예 - 작고 명확한 숫자
 public void testMultiplication() {
     Dollar five = new Dollar(5);
     Dollar result = five.times(2);
@@ -455,7 +455,7 @@ public void testMultiplication() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 좋은 예 — 작고 명확한 숫자
+// 좋은 예 - 작고 명확한 숫자
 test('multiplication', () => {
     const five = new Dollar(5);
     const result = five.times(2);
@@ -494,7 +494,7 @@ test('multiplication', () => {
 Evident Data의 핵심은 "테스트를 읽는 사람이 **왜 이 기대값이 나오는지** 바로 알 수 있어야 한다"는 것이다.
 
 ```java
-// 나쁜 예 — 기대값의 출처가 불분명
+// 나쁜 예 - 기대값의 출처가 불분명
 public void testCurrencyConversion() {
     Bank bank = new Bank();
     bank.addRate("CHF", "USD", 2);
@@ -508,7 +508,7 @@ public void testCurrencyConversion() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 나쁜 예 — 기대값의 출처가 불분명
+// 나쁜 예 - 기대값의 출처가 불분명
 test('currency conversion', () => {
     const bank = new Bank();
     bank.addRate('CHF', 'USD', 2);
@@ -521,7 +521,7 @@ test('currency conversion', () => {
 </details>
 
 ```java
-// 좋은 예 — 입력과 기대값의 관계가 명백
+// 좋은 예 - 입력과 기대값의 관계가 명백
 public void testCurrencyConversion() {
     Bank bank = new Bank();
     bank.addRate("CHF", "USD", 2);
@@ -535,7 +535,7 @@ public void testCurrencyConversion() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 좋은 예 — 입력과 기대값의 관계가 명백
+// 좋은 예 - 입력과 기대값의 관계가 명백
 test('currency conversion', () => {
     const bank = new Bank();
     bank.addRate('CHF', 'USD', 2);
@@ -623,7 +623,7 @@ Test (테스트란 무엇인가?)
 - **Test**: 테스트는 자동화된 프로그램이다. 한 번 작성하면 영구적으로 보관하고 반복 실행하는 자산이다.
 - **Isolated Test**: 테스트들은 서로 완전히 독립적이어야 한다. 실행 순서가 결과에 영향을 주면 안 된다. `setUp()`으로 매 테스트마다 깨끗한 환경을 보장한다.
 - **Test List**: 코딩 전에 작성할 테스트 목록을 만든다. 머릿속의 걱정을 종이 위로 꺼내놓아 현재 작업에 집중한다.
-- **Test First**: 코드보다 테스트를 먼저 작성한다. 이것은 습관이 아니라 설계 기법이다 — 사용자 관점의 인터페이스가 자연스럽게 만들어진다.
+- **Test First**: 코드보다 테스트를 먼저 작성한다. 이것은 습관이 아니라 설계 기법이다 - 사용자 관점의 인터페이스가 자연스럽게 만들어진다.
 - **Assert First**: 테스트 작성 시 단언(기대 결과)부터 시작하고 역순으로 올라간다. 목표 지향적 사고를 유도한다.
 - **Test Data**: 의미를 전달하는 최소한의 데이터를 사용한다. `5 × 2 = 10`이면 충분하다.
 - **Evident Data**: 입력값과 기대 결과값 사이의 관계를 명백히 드러낸다. `assertEquals(Money.dollar(100 / 2), result)`처럼 계산 과정을 코드에 녹인다.

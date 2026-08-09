@@ -535,7 +535,7 @@ services:
       POSTGRES_DB: myapp
     volumes:
       - pgdata:/var/lib/postgresql/data
-    # 포트 매핑 없음 — 내부 통신만
+    # 포트 매핑 없음 - 내부 통신만
 
   api:
     build: ./api

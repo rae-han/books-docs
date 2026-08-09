@@ -41,7 +41,7 @@ Sending build context to Docker daemon  234.5MB
 `docker build`의 기본 형태와 주요 옵션:
 
 ```bash
-# 기본 빌드 — 현재 디렉토리의 Dockerfile 사용
+# 기본 빌드 - 현재 디렉토리의 Dockerfile 사용
 docker build -t my-next-app:1.0 .
 
 # Dockerfile 경로를 명시적으로 지정
@@ -71,7 +71,7 @@ docker build --no-cache -t my-next-app .
 5. -t 옵션으로 지정한 이름:태그를 이미지에 부여
 ```
 
-### 1.4 기본 Dockerfile 예제 — Next.js 앱
+### 1.4 기본 Dockerfile 예제 - Next.js 앱
 
 가장 기본적인 형태의 Next.js Dockerfile을 살펴보자:
 
@@ -107,7 +107,7 @@ CMD ["npm", "start"]
 
 ## 2. 모든 Dockerfile 인스트럭션 상세
 
-### 2.1 FROM — 베이스 이미지 지정
+### 2.1 FROM - 베이스 이미지 지정
 
 모든 Dockerfile은 `FROM` 인스트럭션으로 시작한다. 어떤 이미지를 기반으로 새 이미지를 만들 것인지 지정한다.
 
@@ -144,7 +144,7 @@ FROM scratch
 
 > **실무 팁**: Node.js 프로젝트에서는 **`node:20-alpine`** 이 가장 널리 사용된다. 단, `bcrypt`, `sharp` 같은 native addon을 사용하는 프로젝트에서 Alpine의 musl libc로 인해 호환성 문제가 발생할 수 있다. 이 경우 빌드 스테이지에서는 `node:20`을, 프로덕션 스테이지에서는 `node:20-alpine`을 사용하는 멀티스테이지 전략이 효과적이다.
 
-### 2.2 WORKDIR — 작업 디렉토리 설정
+### 2.2 WORKDIR - 작업 디렉토리 설정
 
 `WORKDIR`은 이후 모든 `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, `ADD` 인스트럭션의 작업 디렉토리를 설정한다. 해당 디렉토리가 존재하지 않으면 **자동으로 생성**한다.
 
@@ -168,18 +168,18 @@ COPY . .                   # /app으로 모든 파일 복사
 `WORKDIR`은 `mkdir -p /app && cd /app`과 동일한 효과이지만, 중요한 차이가 있다:
 
 ```dockerfile
-# 나쁜 예: RUN으로 디렉토리 이동 — 다음 인스트럭션에 영향을 주지 않는다
+# 나쁜 예: RUN으로 디렉토리 이동 - 다음 인스트럭션에 영향을 주지 않는다
 RUN cd /app         # 이 RUN이 끝나면 cd 효과 사라짐
 RUN npm ci          # /에서 실행됨 (의도와 다름!)
 
-# 좋은 예: WORKDIR 사용 — 이후 모든 인스트럭션에 적용
+# 좋은 예: WORKDIR 사용 - 이후 모든 인스트럭션에 적용
 WORKDIR /app
 RUN npm ci          # /app에서 실행됨
 ```
 
 각 `RUN` 인스트럭션은 독립된 셸에서 실행되므로 `cd`의 효과는 해당 `RUN` 내에서만 유효하다. `WORKDIR`은 **Dockerfile 전체에 걸쳐 지속**되는 작업 디렉토리를 설정한다.
 
-### 2.3 COPY vs ADD — 파일 복사
+### 2.3 COPY vs ADD - 파일 복사
 
 #### COPY
 
@@ -207,7 +207,7 @@ COPY --chown=nextjs:nodejs package.json ./
 `COPY`의 기능에 추가로 두 가지 특수 기능을 지원한다:
 
 ```dockerfile
-# URL에서 파일 다운로드 (비권장 — 레이어 캐시 제어 불가)
+# URL에서 파일 다운로드 (비권장 - 레이어 캐시 제어 불가)
 ADD https://example.com/config.json ./
 
 # tar 파일 자동 해제
@@ -222,31 +222,31 @@ ADD . .
 # → 만약 빌드 컨텍스트에 .tar.gz 파일이 있다면 자동으로 해제된다!
 #   이 동작을 의도하지 않았다면 예상치 못한 결과가 발생
 
-# 좋은 예: COPY는 항상 단순 복사만 수행 — 동작이 명확하다
+# 좋은 예: COPY는 항상 단순 복사만 수행 - 동작이 명확하다
 COPY . .
 ```
 
 Docker 공식 베스트 프랙티스에서도 **`ADD` 대신 `COPY`를 사용하라**고 권장한다. `ADD`는 tar 해제가 명시적으로 필요한 경우에만 사용한다.
 
-### 2.4 RUN — 명령어 실행
+### 2.4 RUN - 명령어 실행
 
 이미지 빌드 시점에 명령어를 실행하고 그 결과를 새 레이어로 커밋한다. 의존성 설치, 빌드, 디렉토리 생성 등에 사용한다.
 
 **두 가지 형식:**
 
 ```dockerfile
-# Shell form — /bin/sh -c "..." 로 실행된다
+# Shell form - /bin/sh -c "..." 로 실행된다
 RUN npm ci
 RUN echo "Hello" && echo "World"
 
-# Exec form — 셸을 거치지 않고 직접 실행한다
+# Exec form - 셸을 거치지 않고 직접 실행한다
 RUN ["npm", "ci"]
 RUN ["sh", "-c", "echo Hello && echo World"]
 ```
 
 Shell form은 환경변수 치환(`$HOME` 등)이 가능하지만, exec form은 셸을 거치지 않으므로 환경변수를 직접 해석하지 않는다.
 
-**레이어 최적화 — `&&`로 체이닝:**
+**레이어 최적화 - `&&`로 체이닝:**
 
 각 `RUN`은 새 레이어를 생성한다. 관련된 명령어는 `&&`로 연결하여 하나의 레이어로 만드는 것이 좋다:
 
@@ -266,17 +266,17 @@ RUN apt-get update && \
 
 > **핵심 통찰**: `RUN`의 레이어 체이닝은 단순히 레이어 수를 줄이는 것 이상의 의미가 있다. 관련 명령어가 항상 함께 실행되도록 강제하여 **빌드의 일관성**을 보장한다.
 
-### 2.5 CMD vs ENTRYPOINT — 컨테이너 시작 명령어
+### 2.5 CMD vs ENTRYPOINT - 컨테이너 시작 명령어
 
 이 두 인스트럭션은 컨테이너가 **시작될 때** 실행할 명령어를 정의한다. `RUN`은 이미지 빌드 시에 실행되고, `CMD`/`ENTRYPOINT`는 컨테이너 실행 시에 동작한다는 점이 근본적으로 다르다.
 
-#### CMD — 기본 명령어
+#### CMD - 기본 명령어
 
 ```dockerfile
 # Exec form (권장)
 CMD ["node", "server.js"]
 
-# Shell form (비권장 — PID 1 문제 발생)
+# Shell form (비권장 - PID 1 문제 발생)
 CMD node server.js
 ```
 
@@ -287,7 +287,7 @@ CMD node server.js
 docker run my-next-app sh
 ```
 
-#### ENTRYPOINT — 고정 명령어
+#### ENTRYPOINT - 고정 명령어
 
 ```dockerfile
 ENTRYPOINT ["node", "server.js"]
@@ -321,7 +321,7 @@ docker run my-app repl.js
 docker run --entrypoint sh my-app
 ```
 
-#### PID 1 문제 — Shell form vs Exec form
+#### PID 1 문제 - Shell form vs Exec form
 
 Shell form을 사용하면 명령어가 `/bin/sh -c`의 자식 프로세스로 실행된다. 이때 `sh`가 PID 1이 되어 SIGTERM 시그널을 Node.js 프로세스에 전달하지 못한다:
 
@@ -361,9 +361,9 @@ process.on('SIGTERM', () => {
 
 > **핵심 통찰**: `CMD`와 `ENTRYPOINT`는 항상 exec form(`["executable", "arg1"]`)으로 작성하라. Shell form(`executable arg1`)은 PID 1 문제로 인해 SIGTERM이 애플리케이션에 전달되지 않아 graceful shutdown이 불가능하다.
 
-### 2.6 ENV vs ARG — 환경변수
+### 2.6 ENV vs ARG - 환경변수
 
-#### ENV — 빌드 + 런타임
+#### ENV - 빌드 + 런타임
 
 `ENV`로 설정한 환경변수는 **빌드 시점과 컨테이너 런타임** 모두에서 사용할 수 있다.
 
@@ -378,7 +378,7 @@ RUN echo $NODE_ENV            # "production" 출력
 CMD ["node", "server.js"]     # process.env.NODE_ENV === 'production'
 ```
 
-#### ARG — 빌드 시에만
+#### ARG - 빌드 시에만
 
 `ARG`로 설정한 변수는 **빌드 시점에서만** 사용 가능하고, 최종 이미지에는 포함되지 않는다.
 
@@ -406,7 +406,7 @@ ARG NODE_VERSION
 RUN echo $NODE_VERSION
 ```
 
-#### 보안 주의사항 — ARG도 이미지 히스토리에 남는다
+#### 보안 주의사항 - ARG도 이미지 히스토리에 남는다
 
 ```dockerfile
 # 매우 위험: 비밀 정보를 ARG로 전달하면 이미지 히스토리에 기록된다
@@ -424,7 +424,7 @@ docker history my-app
 
 비밀 정보는 반드시 BuildKit의 `--mount=type=secret`을 사용해야 한다(섹션 6에서 다룬다).
 
-### 2.7 EXPOSE — 포트 문서화
+### 2.7 EXPOSE - 포트 문서화
 
 `EXPOSE`는 컨테이너가 사용하는 포트를 **문서화**하는 역할만 한다. 실제 포트 매핑은 `docker run`의 `-p` 플래그로 수행해야 한다.
 
@@ -448,7 +448,7 @@ docker run -p 8080:3000 my-next-app
 
 `EXPOSE`를 작성하지 않아도 `-p`를 사용하면 포트 매핑은 동작한다. 그러나 **어떤 포트를 사용하는지 명시적으로 문서화**하는 좋은 습관이다. `docker inspect`나 Docker Compose에서 이 정보를 활용할 수 있다.
 
-### 2.8 VOLUME — 볼륨 마운트 포인트 선언
+### 2.8 VOLUME - 볼륨 마운트 포인트 선언
 
 ```dockerfile
 VOLUME ["/data"]
@@ -471,7 +471,7 @@ RUN echo "hello" > /app/data/test.txt  # 이 변경이 무시될 수 있다!
 
 > **실무 팁**: Dockerfile에 `VOLUME` 인스트럭션을 넣지 마라. 볼륨 관리는 `docker run -v` 또는 Docker Compose에서 처리하는 것이 명확하고 예측 가능하다.
 
-### 2.9 USER — 실행 사용자 변경
+### 2.9 USER - 실행 사용자 변경
 
 기본적으로 Docker 컨테이너 내부의 프로세스는 **root 권한**으로 실행된다. 보안상 프로덕션 이미지에서는 비루트 사용자로 전환해야 한다.
 
@@ -499,7 +499,7 @@ CMD ["node", "server.js"]
 
 단, `USER` 전환 전에 파일 복사와 `npm ci`를 완료해야 한다. 비루트 사용자는 `/app` 디렉토리에 대한 쓰기 권한이 없을 수 있기 때문이다. 멀티스테이지 빌드에서는 `COPY --chown`을 사용하여 소유권을 지정한다.
 
-### 2.10 HEALTHCHECK — 컨테이너 헬스 체크
+### 2.10 HEALTHCHECK - 컨테이너 헬스 체크
 
 Docker가 컨테이너의 **건강 상태**를 주기적으로 확인하도록 설정한다. 단순히 프로세스가 실행 중인지가 아니라, 애플리케이션이 정상적으로 요청을 처리할 수 있는지 확인한다.
 
@@ -532,7 +532,7 @@ docker ps
 # a1b2c3d4e5f6   my-app       Up 30s (healthy)
 ```
 
-### 2.11 LABEL — 메타데이터 추가
+### 2.11 LABEL - 메타데이터 추가
 
 이미지에 메타데이터를 키-값 쌍으로 추가한다. 이미지 관리, 필터링, 자동화에 유용하다.
 
@@ -548,7 +548,7 @@ LABEL org.opencontainers.image.description="Next.js production app"
 docker inspect --format='{{json .Config.Labels}}' my-app
 ```
 
-### 2.12 SHELL — 기본 셸 변경
+### 2.12 SHELL - 기본 셸 변경
 
 `RUN`, `CMD`, `ENTRYPOINT`의 shell form에서 사용되는 기본 셸을 변경한다. 기본값은 Linux에서 `["/bin/sh", "-c"]`다.
 
@@ -588,10 +588,10 @@ du -sh node_modules .next .git
 `.dockerignore`는 `.gitignore`와 동일한 문법을 사용하며, 프로젝트 루트에 위치한다:
 
 ```
-# 의존성 — 컨테이너 안에서 새로 설치
+# 의존성 - 컨테이너 안에서 새로 설치
 node_modules
 
-# 빌드 산출물 — 컨테이너 안에서 새로 빌드
+# 빌드 산출물 - 컨테이너 안에서 새로 빌드
 .next
 out
 dist
@@ -607,7 +607,7 @@ build
 *.swp
 *.swo
 
-# 환경 설정 — 런타임에 주입해야 함
+# 환경 설정 - 런타임에 주입해야 함
 .env
 .env.local
 .env.*.local
@@ -889,18 +889,18 @@ CMD ["node", "server.js"]
 
 ### 5.4 각 스테이지별 역할 상세 해설
 
-**Stage 1 — deps (의존성 설치):**
+**Stage 1 - deps (의존성 설치):**
 - `package.json`과 lock 파일만 복사하여 의존성을 설치한다
 - 소스 코드와 분리하여 **의존성 레이어 캐싱**을 극대화한다
 - `package.json`이 변경되지 않으면 이 스테이지 전체가 캐시된다
 
-**Stage 2 — builder (빌드):**
+**Stage 2 - builder (빌드):**
 - `deps` 스테이지의 `node_modules`를 복사받아 빌드를 수행한다
 - `COPY --from=deps`로 다른 스테이지의 파일을 참조하는 것이 멀티스테이지의 핵심 메커니즘이다
 - `NEXT_PUBLIC_*` 환경변수는 빌드 시 클라이언트 번들에 인라인되므로 `ARG`로 받아 `ENV`로 설정한다
 - 빌드 결과물(`.next/standalone`, `.next/static`)만이 다음 스테이지에서 사용된다
 
-**Stage 3 — runner (프로덕션):**
+**Stage 3 - runner (프로덕션):**
 - **새 베이스 이미지**에서 시작하므로 빌드 도구, 소스 코드, devDependencies가 모두 제거된다
 - `standalone` 산출물에는 Next.js 서버 + 필요한 `node_modules`만 포함되어 있어 극도로 가볍다
 - `addgroup`/`adduser`로 비루트 사용자를 생성하고 `USER`로 전환한다
@@ -936,7 +936,7 @@ docker build --target deps -t my-app:deps .
 # builder 스테이지까지 빌드 (빌드 결과물 확인용)
 docker build --target builder -t my-app:builder .
 
-# 전체 빌드 (runner — 기본)
+# 전체 빌드 (runner - 기본)
 docker build -t my-app:latest .
 ```
 
@@ -949,7 +949,7 @@ docker build -t my-app:latest .
 BuildKit(*Docker의 차세대 빌드 엔진으로, 기존 빌드 엔진 대비 성능, 캐시, 보안을 대폭 개선한다*)은 Docker 18.09에서 도입되어, Docker Desktop 23.0부터는 **기본 빌드 엔진**으로 활성화되어 있다.
 
 ```bash
-# BuildKit 활성화 확인 — Docker Desktop을 사용 중이라면 기본 활성화
+# BuildKit 활성화 확인 - Docker Desktop을 사용 중이라면 기본 활성화
 docker buildx version
 
 # 명시적으로 BuildKit 활성화 (Linux 서버 등)
@@ -990,10 +990,10 @@ RUN npm run build
 BuildKit은 기존 레이어 캐시 외에 다양한 캐시 백엔드를 지원한다:
 
 ```bash
-# 인라인 캐시 — 이미지 자체에 캐시 메타데이터 포함
+# 인라인 캐시 - 이미지 자체에 캐시 메타데이터 포함
 docker build --build-arg BUILDKIT_INLINE_CACHE=1 -t my-app .
 
-# 레지스트리 캐시 — 원격 레지스트리에서 캐시를 가져옴
+# 레지스트리 캐시 - 원격 레지스트리에서 캐시를 가져옴
 docker buildx build \
   --cache-from type=registry,ref=ghcr.io/org/my-app:cache \
   --cache-to type=registry,ref=ghcr.io/org/my-app:cache \
@@ -1064,12 +1064,12 @@ docker build --secret id=npmrc,src=$HOME/.npmrc -t my-app .
 `ARG`로 토큰을 전달하는 방법과의 차이:
 
 ```bash
-# ARG 방식 — docker history에 토큰이 노출됨 (위험!)
+# ARG 방식 - docker history에 토큰이 노출됨 (위험!)
 docker build --build-arg NPM_TOKEN=secret123 .
 docker history my-app
 # → RUN |1 NPM_TOKEN=secret123 ...
 
-# Secret 마운트 방식 — 이미지에 어떤 흔적도 남지 않음 (안전)
+# Secret 마운트 방식 - 이미지에 어떤 흔적도 남지 않음 (안전)
 docker build --secret id=npmrc,src=.npmrc .
 docker history my-app
 # → RUN ... (시크릿 정보 없음)

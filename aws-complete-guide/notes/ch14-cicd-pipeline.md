@@ -172,7 +172,7 @@ CodeBuild 동작 흐름:
 `buildspec.yml`은 CodeBuild가 실행할 명령을 정의하는 파일이다. 프로젝트 루트에 위치시킨다.
 
 ```yaml
-# buildspec.yml — 기본 구조
+# buildspec.yml - 기본 구조
 version: 0.2
 
 env:
@@ -232,7 +232,7 @@ cache:
 ### 3.3 Node.js 프로젝트 빌드 예시
 
 ```yaml
-# buildspec.yml — Next.js 빌드
+# buildspec.yml - Next.js 빌드
 version: 0.2
 
 phases:
@@ -271,7 +271,7 @@ cache:
 CodeBuild에서 Docker 이미지를 빌드하고 ECR에 푸시하는 것은 가장 흔한 사용 사례이다. Ch 8에서 다룬 ECR 인증과 이미지 푸시 과정을 buildspec.yml로 자동화한다.
 
 ```yaml
-# buildspec.yml — Docker 빌드 + ECR 푸시
+# buildspec.yml - Docker 빌드 + ECR 푸시
 version: 0.2
 
 env:

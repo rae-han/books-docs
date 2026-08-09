@@ -36,7 +36,7 @@ $5 + $5 = $10       ← 이것부터 시작하자
 `$5 + $5 = $10`을 구현하는 가장 순진한 방법은:
 
 ```java
-// 순진한 접근 — Money에 plus 메서드 추가
+// 순진한 접근 - Money에 plus 메서드 추가
 Money plus(Money addend) {
     return new Money(amount + addend.amount, currency);
 }
@@ -46,7 +46,7 @@ Money plus(Money addend) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 순진한 접근 — Money에 plus 메서드 추가
+// 순진한 접근 - Money에 plus 메서드 추가
 plus(addend: Money): Money {
     return new Money(this.amount + addend.amount, this.currency);
 }
@@ -97,7 +97,7 @@ Money ---implements---> Expression <---implements--- Sum
 
 ## 3. TDD 사이클
 
-### 3.1 Red — $5 + $5 = $10 테스트 작성
+### 3.1 Red - $5 + $5 = $10 테스트 작성
 
 Kent Beck은 원하는 API를 테스트에 먼저 표현한다:
 
@@ -137,7 +137,7 @@ test('simple addition', () => {
 - `Bank` 클래스가 없다
 - `Bank.reduce()` 메서드가 없다
 
-### 3.2 Green — 최소한의 코드로 테스트 통과
+### 3.2 Green - 최소한의 코드로 테스트 통과
 
 Kent Beck은 컴파일 에러를 하나씩 해결하면서, **가장 단순한 구현**으로 테스트를 통과시킨다.
 
@@ -200,7 +200,7 @@ class Money implements Expression {
 
 </details>
 
-여기서 `plus()`는 단순히 amount를 더한 새 Money를 반환한다. 이것은 **Fake It** 전략이다 — 실제로는 Sum 객체를 반환해야 하지만, 지금은 테스트를 통과시키는 것이 우선이다.
+여기서 `plus()`는 단순히 amount를 더한 새 Money를 반환한다. 이것은 **Fake It** 전략이다 - 실제로는 Sum 객체를 반환해야 하지만, 지금은 테스트를 통과시키는 것이 우선이다.
 
 **Step 3**: Bank 클래스 생성:
 
@@ -227,9 +227,9 @@ class Bank {
 
 `reduce()`도 하드코딩된 값을 반환한다. 역시 Fake It이다.
 
-**테스트 실행 — Green Bar!**
+**테스트 실행 - Green Bar!**
 
-### 3.3 Refactor — Fake It에서 진짜 구현으로
+### 3.3 Refactor - Fake It에서 진짜 구현으로
 
 지금 코드에는 두 가지 하드코딩이 있다:
 
@@ -320,9 +320,9 @@ class Bank {
 
 </details>
 
-여기서 `(Sum) source`라는 캐스팅은 분명히 문제가 있다 — source가 항상 Sum인 것은 아니다. 하지만 **지금은** 테스트를 통과시키는 것이 우선이다. 이 문제는 TODO 리스트에 적어둔다.
+여기서 `(Sum) source`라는 캐스팅은 분명히 문제가 있다 - source가 항상 Sum인 것은 아니다. 하지만 **지금은** 테스트를 통과시키는 것이 우선이다. 이 문제는 TODO 리스트에 적어둔다.
 
-**테스트 실행 — Green Bar!**
+**테스트 실행 - Green Bar!**
 
 ---
 

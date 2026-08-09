@@ -22,10 +22,10 @@
 `Map`은 굉장히 다양한 인터페이스로 수많은 기능을 제공한다. 유용하지만 그만큼 위험도 크다:
 
 - `Map` 사용자라면 누구나 `clear()` 메서드로 내용을 지울 권한이 있다
-- `Map`은 객체 유형을 제한하지 않는다 — 마음만 먹으면 어떤 객체 유형도 추가할 수 있다
+- `Map`은 객체 유형을 제한하지 않는다 - 마음만 먹으면 어떤 객체 유형도 추가할 수 있다
 
 ```java
-// 1단계 — 캐스팅 필요, 의도 불분명
+// 1단계 - 캐스팅 필요, 의도 불분명
 Map sensors = new HashMap();
 Sensor s = (Sensor) sensors.get(sensorId);
 ```
@@ -33,7 +33,7 @@ Sensor s = (Sensor) sensors.get(sensorId);
 `Map`이 반환하는 `Object`를 올바른 유형으로 변환할 책임이 클라이언트에 있다. 코드는 동작하지만 깨끗하다고 보기 어렵다.
 
 ```java
-// 2단계 — 제네릭스 사용으로 가독성 향상
+// 2단계 - 제네릭스 사용으로 가독성 향상
 Map<String, Sensor> sensors = new HashMap<Sensor>();
 Sensor s = sensors.get(sensorId);
 ```
@@ -41,7 +41,7 @@ Sensor s = sensors.get(sensorId);
 가독성은 높아지지만 **불필요한 기능까지 제공한다**는 문제는 해결하지 못한다. `Map<String, Sensor>` 인스턴스를 여기저기 넘긴다면, `Map` 인터페이스가 변할 경우 수정할 코드가 상당히 많아진다. 실제로 자바 5가 제네릭스를 지원하면서 `Map` 인터페이스가 변했다.
 
 ```java
-// 3단계 — 경계 인터페이스를 캡슐화
+// 3단계 - 경계 인터페이스를 캡슐화
 public class Sensors {
     private Map sensors = new HashMap();
 
@@ -75,11 +75,11 @@ public class Sensors {
 
 ---
 
-## 3. log4j 익히기 — 학습 테스트 실전 예제
+## 3. log4j 익히기 - 학습 테스트 실전 예제
 
 로깅 기능을 직접 구현하는 대신 아파치의 log4j 패키지를 사용하려 한다고 가정하자.
 
-### 시도 1 — 가장 간단한 테스트
+### 시도 1 - 가장 간단한 테스트
 
 ```java
 @Test
@@ -91,7 +91,7 @@ public void testLogCreate() {
 
 테스트를 돌리니 `Appender`라는 뭔가가 필요하다는 오류가 발생한다.
 
-### 시도 2 — ConsoleAppender 추가
+### 시도 2 - ConsoleAppender 추가
 
 ```java
 @Test
@@ -105,7 +105,7 @@ public void testLogAddAppender() {
 
 `Appender`에 출력 스트림이 없다는 사실을 발견한다.
 
-### 시도 3 — PatternLayout 추가
+### 시도 3 - PatternLayout 추가
 
 ```java
 @Test
@@ -119,9 +119,9 @@ public void testLogAddAppender() {
 }
 ```
 
-이제 제대로 돌아간다. 흥미롭게도 `ConsoleAppender.SYSTEM_OUT` 인수를 제거해도 문제가 없다. 하지만 `PatternLayout`을 제거하면 출력 스트림이 없다는 오류가 뜬다. 기본 `ConsoleAppender` 생성자는 '설정되지 않은' 상태란다 — log4j 버그이거나 적어도 일관성 부족으로 여겨진다.
+이제 제대로 돌아간다. 흥미롭게도 `ConsoleAppender.SYSTEM_OUT` 인수를 제거해도 문제가 없다. 하지만 `PatternLayout`을 제거하면 출력 스트림이 없다는 오류가 뜬다. 기본 `ConsoleAppender` 생성자는 '설정되지 않은' 상태란다 - log4j 버그이거나 적어도 일관성 부족으로 여겨진다.
 
-### 최종 결과 — 학습 테스트 모음
+### 최종 결과 - 학습 테스트 모음
 
 ```java
 public class LogTest {
@@ -203,7 +203,7 @@ TransmitterAdapter ──→ <<future>> Transmitter API
 
 - `Transmitter` 인터페이스: 주파수와 자료 스트림을 입력으로 받는 **우리가 바라는 인터페이스**
 - `FakeTransmitter`: 테스트에 사용하는 가짜 구현
-- `TransmitterAdapter`: 저쪽 팀이 API를 정의한 후 ADAPTER 패턴(*ADAPTER 패턴 — GoF의 디자인 패턴 중 하나. 인터페이스를 다른 인터페이스로 변환하여 호환되지 않는 클래스들이 함께 동작할 수 있게 한다.*)으로 간극을 메움
+- `TransmitterAdapter`: 저쪽 팀이 API를 정의한 후 ADAPTER 패턴(*ADAPTER 패턴 - GoF의 디자인 패턴 중 하나. 인터페이스를 다른 인터페이스로 변환하여 호환되지 않는 클래스들이 함께 동작할 수 있게 한다.*)으로 간극을 메움
 
 ### 자체 인터페이스 정의의 장점
 
@@ -242,8 +242,8 @@ TransmitterAdapter ──→ <<future>> Transmitter API
 
 ## 요약
 
-- **외부 코드 사용 시 경계를 관리**하라 — 경계 인터페이스를 여기저기 넘기지 말고 캡슐화하라
-- **학습 테스트**로 외부 API를 익히라 — 비용은 없고 이해도 향상, 호환성 검증, 이전 용이 등의 가치를 제공한다
+- **외부 코드 사용 시 경계를 관리**하라 - 경계 인터페이스를 여기저기 넘기지 말고 캡슐화하라
+- **학습 테스트**로 외부 API를 익히라 - 비용은 없고 이해도 향상, 호환성 검증, 이전 용이 등의 가치를 제공한다
 - **아직 존재하지 않는 코드**에 대해서는 우리가 바라는 인터페이스를 정의하고 ADAPTER 패턴으로 간극을 메우라
 - 통제가 불가능한 외부 패키지에 의존하는 대신 **통제가 가능한 우리 코드에 의존**하라
 - 외부 패키지를 호출하는 코드를 **가능한 줄여** 경계를 관리하라

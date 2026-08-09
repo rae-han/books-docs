@@ -192,7 +192,7 @@ FROM node:20-alpine
 WORKDIR /app
 COPY . .
 
-# install이 필요 없다 — 이미 .yarn/cache에 모든 의존성이 있음
+# install이 필요 없다 - 이미 .yarn/cache에 모든 의존성이 있음
 # 검증만 수행
 RUN yarn install --immutable --immutable-cache
 
@@ -519,7 +519,7 @@ start();
 Next.js의 standalone 출력을 사용할 때는 `server.js`를 직접 커스터마이징할 수 없다. 대신 래퍼 스크립트를 사용한다:
 
 ```typescript
-// start.ts — Next.js standalone 서버의 graceful shutdown 래퍼
+// start.ts - Next.js standalone 서버의 graceful shutdown 래퍼
 import { execSync, fork } from 'child_process';
 
 const child = fork('./server.js', {
@@ -603,7 +603,7 @@ V8 엔진은 Node.js 버전과 시스템 메모리에 따라 기본 힙 한도�
 | 시스템 메모리 | V8 기본 힙 한도 (대략) |
 |-------------|---------------------|
 | 2GB 이하 | ~512MB |
-| 2–4GB | ~1GB |
+| 2-4GB | ~1GB |
 | 4GB 이상 | ~1.5GB |
 
 문제는 Docker 컨테이너의 메모리 제한과 V8 힙 한도가 **독립적**이라는 점이다:
@@ -795,7 +795,7 @@ Jenkinsfile
 
 ```dockerfile
 # ============================================================
-# Stage 0: Base — 공통 설정
+# Stage 0: Base - 공통 설정
 # ============================================================
 FROM node:20-alpine AS base
 
@@ -808,7 +808,7 @@ RUN corepack enable pnpm
 WORKDIR /app
 
 # ============================================================
-# Stage 1: Dependencies — 의존성 설치
+# Stage 1: Dependencies - 의존성 설치
 # ============================================================
 FROM base AS deps
 
@@ -820,7 +820,7 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile
 
 # ============================================================
-# Stage 2: Builder — 애플리케이션 빌드
+# Stage 2: Builder - 애플리케이션 빌드
 # ============================================================
 FROM base AS builder
 
@@ -835,7 +835,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm build
 
 # ============================================================
-# Stage 3: Runner — 프로덕션 실행
+# Stage 3: Runner - 프로덕션 실행
 # ============================================================
 FROM node:20-alpine AS runner
 
@@ -972,7 +972,7 @@ RUN npm ci
 arm64와 amd64 모두 지원하는 Dockerfile을 작성할 때는 아키텍처에 따라 분기가 필요한 경우가 거의 없다. 대부분의 Node.js 패키지와 Alpine apk 패키지는 양쪽 아키텍처를 모두 지원한다.
 
 ```dockerfile
-# 멀티 플랫폼 호환 Dockerfile — 특별한 처리 불필요
+# 멀티 플랫폼 호환 Dockerfile - 특별한 처리 불필요
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -1124,4 +1124,4 @@ eslint, typescript, jest 등 개발 도구가 프로덕션 이미지에 포함�
 - **Ch 11 (컨테이너 모니터링)**: OOM Kill, 메모리 모니터링 등을 소개했다. 이 챕터에서는 V8 힙 한도 설정으로 OOM을 사전에 방지하는 방법을 다룬다.
 - **Ch 13 (모노레포와 Docker)**: 모노레포 환경에서의 Node.js Docker 빌드는 이 챕터의 패키지 매니저 지식을 기반으로 확장된다. 특히 pnpm workspace와 Turborepo의 Docker 빌드 전략을 다룬다.
 - **Ch 14 (CI/CD)**: 이 챕터의 Apple Silicon 섹션에서 다룬 멀티 플랫폼 개념은, Ch 14에서 `docker buildx`와 GitHub Actions를 활용한 CI 멀티 플랫폼 빌드 파이프라인으로 확장된다.
-- **Ch 15 (Kubernetes 배포)**: graceful shutdown의 Kubernetes 확장 — `terminationGracePeriodSeconds`, `preStop` 훅, readiness probe 등을 이 챕터의 기초 위에 다룬다.
+- **Ch 15 (Kubernetes 배포)**: graceful shutdown의 Kubernetes 확장 - `terminationGracePeriodSeconds`, `preStop` 훅, readiness probe 등을 이 챕터의 기초 위에 다룬다.

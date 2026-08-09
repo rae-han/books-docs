@@ -32,7 +32,7 @@ Kent Beck은 이 챕터를 FAQ 형식으로 구성한다. TDD를 처음 시작�
 ### 2.3 실전 예시
 
 ```java
-// 큰 단계 — 구현이 명백할 때
+// 큰 단계 - 구현이 명백할 때
 public void testSum() {
     assertEquals(5, add(2, 3));
 }
@@ -41,7 +41,7 @@ int add(int a, int b) {
     return a + b;
 }
 
-// 작은 단계 — 불확실할 때
+// 작은 단계 - 불확실할 때
 public void testFibonacci() {
     assertEquals(0, fib(0));
 }
@@ -62,7 +62,7 @@ int fib(int n) {
 public void testFibonacci2() {
     assertEquals(1, fib(2));
 }
-// 여전히 통과 — 다음 테스트가 필요
+// 여전히 통과 - 다음 테스트가 필요
 
 public void testFibonacci3() {
     assertEquals(2, fib(3));
@@ -78,7 +78,7 @@ int fib(int n) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 큰 단계 — 구현이 명백할 때
+// 큰 단계 - 구현이 명백할 때
 test('sum', () => {
   expect(add(2, 3)).toBe(5);
 });
@@ -87,7 +87,7 @@ function add(a: number, b: number): number {
   return a + b;
 }
 
-// 작은 단계 — 불확실할 때
+// 작은 단계 - 불확실할 때
 test('fibonacci of 0', () => {
   expect(fib(0)).toBe(0);
 });
@@ -108,7 +108,7 @@ function fib(n: number): number {
 test('fibonacci of 2', () => {
   expect(fib(2)).toBe(1);
 });
-// 여전히 통과 — 다음 테스트가 필요
+// 여전히 통과 - 다음 테스트가 필요
 
 test('fibonacci of 3', () => {
   expect(fib(3)).toBe(2);
@@ -153,12 +153,12 @@ Part I에서도 이 원칙이 일관되게 적용되었다. 처음에는 `Dollar
 - 비즈니스 규칙
 
 ```java
-// 테스트할 필요 없음 — 단순 위임
+// 테스트할 필요 없음 - 단순 위임
 public String getName() {
     return name;
 }
 
-// 테스트해야 함 — 비즈니스 로직
+// 테스트해야 함 - 비즈니스 로직
 public Money calculateDiscount(Money price, int quantity) {
     if (quantity >= 100) return price.times(0.10);
     if (quantity >= 50) return price.times(0.05);
@@ -189,7 +189,7 @@ public Money calculateDiscount(Money price, int quantity) {
 ### 4.3 나쁜 테스트의 징후
 
 ```java
-// 나쁜 테스트 — 내부 구조에 의존
+// 나쁜 테스트 - 내부 구조에 의존
 public void testOrderTotal() {
     Order order = new Order();
     order.items = new ArrayList<>();  // 내부 필드에 직접 접근
@@ -198,7 +198,7 @@ public void testOrderTotal() {
     assertEquals(1000, order.calculateTotal());
 }
 
-// 좋은 테스트 — 공개 행위에 의존
+// 좋은 테스트 - 공개 행위에 의존
 public void testOrderTotal() {
     Order order = new Order();
     order.addItem("book", 1000);  // 공개 API 사용
@@ -211,7 +211,7 @@ public void testOrderTotal() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 나쁜 테스트 — 내부 구조에 의존
+// 나쁜 테스트 - 내부 구조에 의존
 test('order total (bad)', () => {
   const order = new Order();
   (order as any).items = [];  // 내부 필드에 직접 접근
@@ -220,7 +220,7 @@ test('order total (bad)', () => {
   expect(order.calculateTotal()).toBe(1000);
 });
 
-// 좋은 테스트 — 공개 행위에 의존
+// 좋은 테스트 - 공개 행위에 의존
 test('order total (good)', () => {
   const order = new Order();
   order.addItem("book", 1000); // 공개 API 사용
@@ -271,12 +271,12 @@ Bank.reduce(Expression, String) → Money
 Part II도 마찬가지다. "테스트 프레임워크를 만들자"고 시작한 것이 아니라, "테스트 메서드를 실행할 수 있는가?"라는 단순한 테스트에서 시작했다:
 
 ```python
-# 시작점 — Chapter 18
+# 시작점 - Chapter 18
 test = WasRun("testMethod")
 test.run()
 assert test.wasRun  # 이것이 전부
 
-# 최종 결과 — Chapter 23
+# 최종 결과 - Chapter 23
 suite = TestSuite()
 suite.add(...)
 result = TestResult()
@@ -486,7 +486,7 @@ Kent Beck은 TDD의 창시자이자 익스트림 프로그래밍(XP)의 창시�
 
 **그렇다.** TDD는 XP의 다른 실천법 없이도 독립적으로 가치가 있다. XP를 도입하지 않는 팀에서도 TDD만 실천하여 이점을 얻을 수 있다. Kent Beck은 "TDD는 XP의 가장 독립적인 실천법"이라고 평가한다.
 
-물론 다른 XP 실천법과 결합하면 시너지가 생긴다. 특히 지속적 통합(CI)과의 결합은 거의 필수적이다 — 테스트를 작성했지만 통합 서버에서 실행하지 않는다면 가치의 상당 부분을 잃는다.
+물론 다른 XP 실천법과 결합하면 시너지가 생긴다. 특히 지속적 통합(CI)과의 결합은 거의 필수적이다 - 테스트를 작성했지만 통합 서버에서 실행하지 않는다면 가치의 상당 부분을 잃는다.
 
 > **핵심 통찰**: TDD를 시작하기 위해 팀 전체가 XP를 도입할 필요는 없다. 개인 수준에서 TDD를 시작할 수 있으며, 그것만으로도 코드 품질과 개발 경험이 개선된다. 하지만 CI와의 결합은 강력히 권장된다.
 

@@ -105,7 +105,7 @@ document.head.appendChild(script);
 이 코드가 `<head>`의 블로킹 스크립트 안에 있다면 그 스크립트가 다운로드·파싱·실행될 때까지 `analytics.js` 다운로드가 시작되지 않는다. 수백 ms에서 수 초까지 지연된다.
 
 ```ts
-// ❌ 이미지도 마찬가지 — LCP 이미지라면 치명적
+// ❌ 이미지도 마찬가지 - LCP 이미지라면 치명적
 function loadHeroImage(): void {
   const img = document.createElement('img');
   img.src = '/hero.jpg';

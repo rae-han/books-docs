@@ -1,4 +1,4 @@
-# Chapter 15: Docker 너머 — 컨테이너 오케스트레이션: Beyond Docker
+# Chapter 15: Docker 너머 - 컨테이너 오케스트레이션: Beyond Docker
 
 ## 핵심 질문
 
@@ -49,7 +49,7 @@
 
 이러한 기능들을 제공하는 시스템을 컨테이너 오케스트레이터(*Container Orchestrator - 여러 호스트에 걸쳐 컨테이너의 배포, 스케일링, 관리를 자동화하는 시스템*)라고 부른다.
 
-### 1.3 Docker Swarm — Docker 내장 오케스트레이터
+### 1.3 Docker Swarm - Docker 내장 오케스트레이터
 
 Docker 자체에도 오케스트레이션 기능이 내장되어 있다. Docker Swarm(*Docker의 내장 클러스터링/오케스트레이션 도구*)은 여러 Docker 호스트를 하나의 가상 호스트처럼 관리할 수 있게 해준다.
 
@@ -388,7 +388,7 @@ Cloud Run(*Google Cloud의 서버리스 컨테이너 플랫폼*)은 서버리스
 # 이미지 빌드 후 Artifact Registry에 푸시
 gcloud builds submit --tag gcr.io/my-project/nextjs-app
 
-# Cloud Run에 배포 — 이것이 전부다
+# Cloud Run에 배포 - 이것이 전부다
 gcloud run deploy nextjs-app \
   --image gcr.io/my-project/nextjs-app \
   --platform managed \
@@ -527,7 +527,7 @@ Next.js를 프로덕션에 배포하는 방법은 크게 6가지로 나뉜다:
 └─────────────┴───────────────────────────────────┘
 ```
 
-### 4.2 Vercel — 관리형 플랫폼
+### 4.2 Vercel - 관리형 플랫폼
 
 Vercel은 Next.js를 만든 회사의 공식 호스팅 플랫폼으로, **가장 쉬운 배포 경험**을 제공한다. Git 저장소를 연결하면 자동으로 빌드하고 배포한다.
 
@@ -544,7 +544,7 @@ Vercel 전용 기능 의존 시:
   Analytics / Speed Insights → Vercel 전용
 ```
 
-### 4.3 Docker + VPS — 완전한 통제
+### 4.3 Docker + VPS - 완전한 통제
 
 VPS(*Virtual Private Server - DigitalOcean, Hetzner, Vultr 등이 제공하는 가상 서버*)에 Docker로 직접 배포하는 방식이다. 가장 자유도가 높고, 비용도 예측 가능하다.
 
@@ -643,7 +643,7 @@ docker compose -f docker-compose.prod.yml pull
 docker compose -f docker-compose.prod.yml up -d
 ```
 
-### 4.4 Coolify / Dokku — 셀프호스팅 PaaS
+### 4.4 Coolify / Dokku - 셀프호스팅 PaaS
 
 직접 서버를 관리하면서도 Heroku/Vercel 같은 편의성을 원한다면 셀프호스팅 PaaS(*Platform as a Service*)가 답이다.
 
@@ -727,7 +727,7 @@ npx sst deploy --stage production
 - **장점**: AWS 인프라를 코드로 관리, Next.js의 모든 기능 지원, 스테이지별 환경 분리
 - **단점**: AWS에 종속, 학습 곡선, 디버깅이 복잡할 수 있음
 
-### 4.6 선택 가이드 — 의사결정 테이블
+### 4.6 선택 가이드 - 의사결정 테이블
 
 | 기준 | Vercel | Docker + VPS | Cloud Run | Coolify/Dokku | SST | K8s |
 |------|--------|-------------|-----------|--------------|-----|-----|
@@ -760,7 +760,7 @@ nerdctl build → 같은 이미지 → containerd로 실행
 모든 도구가 동일한 이미지 형식을 공유한다.
 ```
 
-### 5.2 Podman — Docker의 대안
+### 5.2 Podman - Docker의 대안
 
 Podman(*Pod Manager - Red Hat이 개발한 daemonless 컨테이너 엔진*)은 Docker와 CLI가 거의 동일하지만, **데몬 프로세스 없이** 컨테이너를 실행한다.
 
@@ -770,7 +770,7 @@ podman build -t my-app .
 podman run -d -p 3000:3000 my-app
 podman compose up -d        # docker-compose.yml 호환
 
-# rootless 모드 — 일반 사용자 권한으로 컨테이너 실행
+# rootless 모드 - 일반 사용자 권한으로 컨테이너 실행
 podman run --rm -p 3000:3000 my-nextjs-app
 ```
 

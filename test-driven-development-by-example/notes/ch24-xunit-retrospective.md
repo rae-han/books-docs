@@ -74,7 +74,7 @@ class TestSuite:
 class TestResult:
     def summary(self): ...
 
-# 프레임워크의 테스트 코드 — 프레임워크 자체를 사용!
+# 프레임워크의 테스트 코드 - 프레임워크 자체를 사용!
 class TestCaseTest(TestCase):  # ← TestCase를 상속
     def testSuite(self):
         suite = TestSuite()    # ← TestSuite를 사용
@@ -83,7 +83,7 @@ class TestCaseTest(TestCase):  # ← TestCase를 상속
         suite.run(result)
         assert("2 run, 1 failed" == result.summary())
 
-# 실행 — TestSuite로 실행!
+# 실행 - TestSuite로 실행!
 suite = TestSuite()
 suite.add(TestCaseTest("testTemplateMethod"))
 suite.add(TestCaseTest("testResult"))
@@ -165,11 +165,11 @@ suite.add(TestCaseTest("testResult"))
 실제 프레임워크는 **자동으로 테스트를 찾는다**:
 
 ```python
-# pytest — 파일 이름이 test_로 시작하고, 함수 이름이 test_로 시작하면 자동 실행
+# pytest - 파일 이름이 test_로 시작하고, 함수 이름이 test_로 시작하면 자동 실행
 def test_multiplication():
     assert Dollar(5).times(2).amount == 10
 
-# JUnit — @Test 어노테이션이 붙은 메서드를 자동 발견
+# JUnit - @Test 어노테이션이 붙은 메서드를 자동 발견
 @Test
 public void testMultiplication() { ... }
 ```
@@ -223,7 +223,7 @@ test_money.py:15: AssertionError
 | 테스트 검색 | 수동 등록 | 자동 검색 |
 | 스위트 | 수동 구성 | 자동 구성 |
 
-> **핵심 통찰**: 핵심 구조는 **놀라울 정도로 동일**하다. TestCase, TestSuite, TestResult, setUp/tearDown — 이것들이 모든 xUnit 프레임워크의 뼈대다. 실제 프레임워크는 이 뼈대 위에 편의 기능과 보고 기능을 쌓은 것이다. 50줄의 프레임워크에서 핵심을 이해했다면, JUnit이나 pytest의 내부 구조도 이해할 수 있다.
+> **핵심 통찰**: 핵심 구조는 **놀라울 정도로 동일**하다. TestCase, TestSuite, TestResult, setUp/tearDown - 이것들이 모든 xUnit 프레임워크의 뼈대다. 실제 프레임워크는 이 뼈대 위에 편의 기능과 보고 기능을 쌓은 것이다. 50줄의 프레임워크에서 핵심을 이해했다면, JUnit이나 pytest의 내부 구조도 이해할 수 있다.
 
 ---
 
@@ -318,7 +318,7 @@ def run(self, result):
 
 6단계에 걸친 점진적 진화. 처음부터 최종 버전을 설계하지 않았다. **필요에 의해** 한 줄씩 추가되었다. 그리고 최종 결과는 깔끔하다.
 
-> **핵심 통찰**: Kent Beck은 이 과정을 통해 TDD의 핵심 메시지를 전달한다 — **좋은 설계는 한 번에 만들어지는 것이 아니라, 작은 단계를 통해 점진적으로 출현(emerge)하는 것이다.** 테스트가 설계를 이끌어낸다(drive).
+> **핵심 통찰**: Kent Beck은 이 과정을 통해 TDD의 핵심 메시지를 전달한다 - **좋은 설계는 한 번에 만들어지는 것이 아니라, 작은 단계를 통해 점진적으로 출현(emerge)하는 것이다.** 테스트가 설계를 이끌어낸다(drive).
 
 ---
 
@@ -348,7 +348,7 @@ def run(self, result):
 ### 5.3 두 파트를 관통하는 원칙
 
 1. **한 번에 한 가지**: 두 파트 모두 한 번에 하나의 테스트, 하나의 기능에 집중한다.
-2. **먼저 동작하게, 그 다음 올바르게, 그 다음 빠르게**: Make it work, make it right, make it fast — Kent Beck이 자주 인용하는 격언이다.
+2. **먼저 동작하게, 그 다음 올바르게, 그 다음 빠르게**: Make it work, make it right, make it fast - Kent Beck이 자주 인용하는 격언이다.
 3. **테스트가 설계를 이끈다**: 테스트를 먼저 작성하면, 자연스럽게 테스트하기 쉬운 (즉, 잘 설계된) 코드가 만들어진다.
 4. **자신감에 따른 단계 크기 조절**: 확실하면 큰 단계, 불확실하면 작은 단계. 이 원칙이 두 파트 모두에서 일관되게 적용되었다.
 
@@ -458,6 +458,6 @@ def run(self, result):
 - **Chapter 18~23**: 이 챕터가 회고하는 내용의 실제 구현 과정이다.
 - **Chapter 25 (TDD Patterns)**: Part III의 시작. Part I과 Part II의 경험을 바탕으로 TDD의 패턴을 체계적으로 정리한다.
 - **Chapter 27 (Testing Patterns)**: Self-Shunt, Log String 등 Part II에서 사용한 테스트 기법이 패턴으로 정리된다.
-- **Chapter 28 (Green Bar Patterns)**: Fake It, Obvious Implementation, Triangulation — Part I과 Part II 모두에서 사용한 전략이 정리된다.
+- **Chapter 28 (Green Bar Patterns)**: Fake It, Obvious Implementation, Triangulation - Part I과 Part II 모두에서 사용한 전략이 정리된다.
 - **Chapter 29 (xUnit Patterns)**: TestCase, TestSuite, TestResult 등 Part II에서 만든 구조가 패턴으로 분석된다.
 - **Chapter 32 (Mastering TDD)**: 책의 최종 챕터에서 TDD의 철학과 실천에 대한 Kent Beck의 결론이 제시된다. Part I과 Part II의 경험이 이 결론의 근거가 된다.

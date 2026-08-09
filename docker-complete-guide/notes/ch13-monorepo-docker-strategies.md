@@ -117,7 +117,7 @@ $ du -sh out/
 ### 수동 복사의 한계
 
 ```dockerfile
-# 수동으로 필요한 파일만 복사 — 유지보수가 힘들다
+# 수동으로 필요한 파일만 복사 - 유지보수가 힘들다
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json ./apps/web/
 COPY packages/ui/package.json ./packages/ui/
@@ -179,7 +179,7 @@ turbo prune의 출력을 활용한 최적의 Dockerfile은 4개의 스테이지�
 
 ```dockerfile
 # =============================================================
-# Stage 1: Pruner — turbo prune으로 필요한 파일만 추출
+# Stage 1: Pruner - turbo prune으로 필요한 파일만 추출
 # =============================================================
 FROM node:20-alpine AS pruner
 
@@ -191,7 +191,7 @@ COPY . .
 RUN turbo prune web --docker
 
 # =============================================================
-# Stage 2: Installer — 의존성 설치 (캐시 최적화)
+# Stage 2: Installer - 의존성 설치 (캐시 최적화)
 # =============================================================
 FROM node:20-alpine AS installer
 
@@ -212,7 +212,7 @@ COPY --from=pruner /app/out/full/ .
 RUN pnpm turbo build --filter=web...
 
 # =============================================================
-# Stage 3: Runner — 프로덕션 실행 환경
+# Stage 3: Runner - 프로덕션 실행 환경
 # =============================================================
 FROM node:20-alpine AS runner
 
@@ -270,7 +270,7 @@ export default nextConfig;
 
 ## 4. Nx + Docker
 
-### nx affected:build — 변경된 앱만 감지하여 빌드
+### nx affected:build - 변경된 앱만 감지하여 빌드
 
 Nx(*Nx - Nrwl이 만든 모노레포 빌드 시스템*)는 프로젝트 그래프를 분석하여 변경에 영향받은 앱만 식별할 수 있다.
 
@@ -424,7 +424,7 @@ link-workspace-packages=true
 
 ```dockerfile
 # =============================================================
-# Stage 1: Builder — 빌드 수행
+# Stage 1: Builder - 빌드 수행
 # =============================================================
 FROM node:20-alpine AS builder
 
@@ -445,7 +445,7 @@ RUN pnpm --filter=@repo/shared build
 RUN pnpm --filter=web build
 
 # =============================================================
-# Stage 2: Deployer — 프로덕션 패키지만 추출
+# Stage 2: Deployer - 프로덕션 패키지만 추출
 # =============================================================
 FROM node:20-alpine AS deployer
 
@@ -498,7 +498,7 @@ CMD ["node", "server.js"]
 2. **사전 빌드 패키지**: 패키지 자체를 빌드한 뒤 배포 산출물을 가져오는 방식
 
 ```json
-// packages/ui/package.json — 소스 공유 방식
+// packages/ui/package.json - 소스 공유 방식
 {
   "name": "@repo/ui",
   "main": "./src/index.ts",     // 소스를 직접 참조
@@ -507,7 +507,7 @@ CMD ["node", "server.js"]
 ```
 
 ```json
-// packages/ui/package.json — 사전 빌드 방식
+// packages/ui/package.json - 사전 빌드 방식
 {
   "name": "@repo/ui",
   "main": "./dist/index.js",    // 빌드 산출물 참조

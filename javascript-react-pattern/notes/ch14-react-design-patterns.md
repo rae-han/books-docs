@@ -269,7 +269,7 @@ const Title = ({ renderFirst, renderSecond, renderThird }: MultiRenderProps) => 
 상태 끌어올리기란 형제 컴포넌트 간 상태를 공유해야 할 때, 상태를 가장 가까운 공통 조상 컴포넌트로 끌어올리는 것을 말한다.
 
 ```tsx
-// 온도 변환기 예제 — 상태 끌어올리기
+// 온도 변환기 예제 - 상태 끌어올리기
 interface InputProps {
   render: (value: string) => React.ReactNode;
 }
@@ -395,18 +395,18 @@ function Input() {
 
 #### useEffect
 
-컴포넌트의 라이프사이클에 접근하여 부수 효과(*Side Effect — 데이터 페칭, 구독, 타이머, DOM 조작 등 렌더링 외의 작업*)를 처리한다. `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`를 하나로 합쳐 사용할 수 있다.
+컴포넌트의 라이프사이클에 접근하여 부수 효과(*Side Effect - 데이터 페칭, 구독, 타이머, DOM 조작 등 렌더링 외의 작업*)를 처리한다. `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`를 하나로 합쳐 사용할 수 있다.
 
 ```tsx
-// componentDidMount — 마운트 시 한 번 실행
+// componentDidMount - 마운트 시 한 번 실행
 useEffect(() => { /* ... */ }, []);
 
-// componentWillUnmount — 클린업 함수
+// componentWillUnmount - 클린업 함수
 useEffect(() => {
   return () => { /* 정리 로직 */ };
 }, []);
 
-// componentDidUpdate — 의존성 변경 시 실행
+// componentDidUpdate - 의존성 변경 시 실행
 useEffect(() => { /* ... */ }, [dependency]);
 ```
 
@@ -535,7 +535,7 @@ function Counter() {
 
 리액트에서 기본 제공하는 Hooks 외에도 직접 커스텀 Hook을 만들어 사용할 수 있다. 모든 Hook은 `use`로 시작해야 하며, 이를 통해 리액트가 내부적으로 Hook 규칙 준수 여부를 판단한다.
 
-#### useKeyPress — 키 입력 감지
+#### useKeyPress - 키 입력 감지
 
 ```tsx
 function useKeyPress(targetKey: string): boolean {
@@ -563,7 +563,7 @@ function useKeyPress(targetKey: string): boolean {
 }
 ```
 
-#### useToggle — 불리언 토글
+#### useToggle - 불리언 토글
 
 ```tsx
 function useToggle(initialValue = false): [boolean, () => void] {
@@ -584,7 +584,7 @@ function Modal() {
 }
 ```
 
-#### useLocalStorage — 로컬 스토리지 동기화
+#### useLocalStorage - 로컬 스토리지 동기화
 
 ```tsx
 function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void] {
@@ -613,7 +613,7 @@ function Settings() {
 }
 ```
 
-#### useDebounce — 디바운스된 값
+#### useDebounce - 디바운스된 값
 
 ```tsx
 function useDebounce<T>(value: T, delay: number): T {
@@ -642,7 +642,7 @@ function SearchInput() {
 }
 ```
 
-#### useFetch — 데이터 페칭
+#### useFetch - 데이터 페칭
 
 ```tsx
 interface UseFetchResult<T> {
@@ -702,7 +702,7 @@ function useFetch<T>(url: string): UseFetchResult<T> {
 // 잘못된 사용
 function Component({ shouldFetch }: { shouldFetch: boolean }) {
   if (shouldFetch) {
-    const data = useFetch("/api/data"); // 조건문 안에서 Hook 호출 — 규칙 위반!
+    const data = useFetch("/api/data"); // 조건문 안에서 Hook 호출 - 규칙 위반!
   }
 }
 
@@ -918,7 +918,7 @@ function UncontrolledInput() {
 
 ### 6.2 공급자 패턴 (Context API + Provider)
 
-프롭 드릴링(*Prop Drilling — 부모 컴포넌트로부터 자식 컴포넌트에 이르기까지 여러 계층을 통해 prop을 전달하는 과정*)을 해결하기 위해 Context API를 사용한다.
+프롭 드릴링(*Prop Drilling - 부모 컴포넌트로부터 자식 컴포넌트에 이르기까지 여러 계층을 통해 prop을 전달하는 과정*)을 해결하기 위해 Context API를 사용한다.
 
 ```tsx
 interface AuthContextType {
@@ -1109,7 +1109,7 @@ PRPL(*Push, Render, Pre-cache, Lazy-load*)은 어려운 네트워크 환경에�
 | **Pre-cache** (사전 캐싱) | 서비스 워커를 사용하여 자주 방문하는 경로의 에셋을 백그라운드에서 미리 캐싱 |
 | **Lazy-load** (지연 로딩) | 자주 요청되지 않는 경로나 에셋은 나중에 로드 |
 
-PRPL 패턴은 주로 **애플리케이션 셸**(*App Shell — 애플리케이션 로직의 대부분을 포함하며 여러 경로에서 공유되는 최소한의 파일*)을 주요 진입점으로 사용한다. 초기 접근 경로의 화면이 완전히 렌더링되기 전에 다른 리소스가 요청되지 않도록 보장하며, 초기 경로 로드 후 서비스 워커가 설치되어 다른 경로의 리소스를 백그라운드에서 가져온다.
+PRPL 패턴은 주로 **애플리케이션 셸**(*App Shell - 애플리케이션 로직의 대부분을 포함하며 여러 경로에서 공유되는 최소한의 파일*)을 주요 진입점으로 사용한다. 초기 접근 경로의 화면이 완전히 렌더링되기 전에 다른 리소스가 요청되지 않도록 보장하며, 초기 경로 로드 후 서비스 워커가 설치되어 다른 경로의 리소스를 백그라운드에서 가져온다.
 
 ### 7.5 번들 분할과 성능 지표
 
@@ -1149,7 +1149,7 @@ PRPL 패턴은 주로 **애플리케이션 셸**(*App Shell — 애플리케이�
 
 React 19는 기존 패턴을 대체하거나 보완하는 새로운 API를 도입했다. 이러한 변화는 서버 중심 아키텍처와 더 나은 사용자 경험을 향한 리액트의 방향성을 반영한다.
 
-### 8.1 `use()` Hook — Promise/Context 소비
+### 8.1 `use()` Hook - Promise/Context 소비
 
 `use()`는 Promise나 Context를 컴포넌트 내부에서 직접 소비할 수 있게 해주는 새로운 Hook이다. 기존 Hook과 달리 **조건문 안에서도 호출**할 수 있다는 특별한 규칙을 가진다.
 
@@ -1185,7 +1185,7 @@ function App() {
 ```
 
 ```tsx
-// Context 소비 — 조건부 사용 가능
+// Context 소비 - 조건부 사용 가능
 function StatusDisplay({ showTheme }: { showTheme: boolean }) {
   if (showTheme) {
     const theme = use(ThemeContext); // 조건문 안에서 호출 가능!
@@ -1195,12 +1195,12 @@ function StatusDisplay({ showTheme }: { showTheme: boolean }) {
 }
 ```
 
-### 8.2 Server Actions — 폼 처리
+### 8.2 Server Actions - 폼 처리
 
 Server Actions는 클라이언트에서 서버 함수를 직접 호출할 수 있게 하는 기능이다. `"use server"` 지시어로 표시하며, `<form>`의 `action` prop에 직접 전달할 수 있다.
 
 ```tsx
-// actions.ts — 서버에서 실행
+// actions.ts - 서버에서 실행
 "use server";
 
 export async function createTodo(formData: FormData) {
@@ -1211,7 +1211,7 @@ export async function createTodo(formData: FormData) {
 ```
 
 ```tsx
-// TodoForm.tsx — 클라이언트 컴포넌트
+// TodoForm.tsx - 클라이언트 컴포넌트
 import { createTodo } from "./actions";
 
 function TodoForm() {
@@ -1226,7 +1226,7 @@ function TodoForm() {
 
 Server Actions는 기존의 API 라우트 + `fetch` + 로딩 상태 관리 패턴을 크게 단순화한다.
 
-### 8.3 `useOptimistic` — 낙관적 업데이트
+### 8.3 `useOptimistic` - 낙관적 업데이트
 
 `useOptimistic`은 서버 응답을 기다리지 않고 UI를 즉시 업데이트하는 낙관적 업데이트(*Optimistic Update*)를 간편하게 구현할 수 있게 한다.
 
@@ -1271,7 +1271,7 @@ function TodoList({ todos }: { todos: Todo[] }) {
 }
 ```
 
-### 8.4 `useFormStatus` — 폼 상태
+### 8.4 `useFormStatus` - 폼 상태
 
 `useFormStatus`는 부모 `<form>`의 제출 상태에 접근할 수 있게 하는 Hook이다. 폼 내부의 자식 컴포넌트에서 사용한다.
 
@@ -1299,7 +1299,7 @@ function ContactForm() {
 }
 ```
 
-### 8.5 `useActionState` — 액션 상태 관리
+### 8.5 `useActionState` - 액션 상태 관리
 
 `useActionState`는 Server Action의 결과를 상태로 관리하는 Hook이다. 폼 제출 후 성공/오류 메시지 표시 등에 활용한다.
 
@@ -1338,7 +1338,7 @@ function LoginForm() {
 }
 ```
 
-### 8.6 React Compiler — 자동 메모이제이션
+### 8.6 React Compiler - 자동 메모이제이션
 
 React Compiler(*이전 이름: React Forget*)는 빌드 타임에 코드를 분석하여 **자동으로 메모이제이션을 적용**하는 컴파일러다. `useMemo`, `useCallback`, `React.memo`를 수동으로 작성하지 않아도 컴파일러가 최적의 메모이제이션을 삽입한다.
 

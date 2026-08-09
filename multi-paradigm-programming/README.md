@@ -1,6 +1,6 @@
 # 멀티패러다임 프로그래밍 (함수형, 객체지향, 명령형 패러다임의 조화)
 
-> 『멀티패러다임 프로그래밍 — 함수형, 객체지향, 명령형 패러다임의 조화』 (유인동 지음, 한빛미디어, 2025)
+> 『멀티패러다임 프로그래밍 - 함수형, 객체지향, 명령형 패러다임의 조화』 (유인동 지음, 한빛미디어, 2025)
 
 현대 프로그래밍 언어들은 함수형·객체지향·명령형을 모두 지원하는 멀티패러다임 언어로 수렴하고 있다. 이 책은 멀티패러다임 언어의 기능을 깊이 있게 활용해 더 나은 소프트웨어를 만드는 방법을 다룬다.
 
@@ -17,7 +17,7 @@
 
 타입스크립트를 주 언어로 쓰되 여러 언어의 코드를 비교하며 패러다임의 본질을 탐구한다. 이터레이터/제너레이터 기반 리스트 프로세싱, 지연 평가, 비동기/동시성, 타입 시스템, 그리고 객체지향과 함수형의 조화를 통한 실전 프런트엔드 개발까지를 다룬다.
 
-이 노트는 [functional-programming-complete-guide/](../functional-programming-complete-guide/)의 1차 소스다 — 본 폴더가 챕터 원본이고, 병합 가이드가 주제별 커리큘럼으로 재배열한 이관본(ch05→16, ch06→17, ch07→18 등)을 담는다.
+이 노트는 [functional-programming-complete-guide/](../functional-programming-complete-guide/)의 1차 소스다 - 본 폴더가 챕터 원본이고, 병합 가이드가 주제별 커리큘럼으로 재배열한 이관본(ch05→16, ch06→17, ch07→18 등)을 담는다.
 
 ## 목차
 
@@ -26,18 +26,18 @@
 | 0 | [서문](notes/ch00-introduction.md) | 멀티패러다임 언어 | 주요 언어들이 멀티패러다임으로 수렴한 배경과 책의 목표 |
 | 1 | [멀티패러다임이 현대 언어를 확장하는 방법](notes/ch01-multi-paradigm-extends-modern-languages.md) | 이터레이터 · 제너레이터 · 리스트 프로세싱 · 지연 평가 | 반복자 패턴(OOP)·제너레이터(명령형)·리스트 프로세싱(FP)이 이터레이션 프로토콜에서 만난다 |
 | 2 | [함수형 프로그래밍과 타입 시스템 그리고 LISP](notes/ch02-functional-programming-type-system-and-lisp.md) | 고차 함수 · 타입 추론 · 제네릭 · LISP 매크로 | 고차 함수에 타입을 입히고, 코드=데이터인 LISP의 세계까지 |
-| 3 | [코드·객체·함수·제너레이터·이터레이터·LISP](notes/ch03-code-object-function-generator-iterator-lisp.md) | 패러다임 전환 · FxIterable · 지연 평가 심화 | 같은 문제의 명령형/객체지향/함수형 1:1:1 풀이 — find·every·some·concat |
-| 4 | [비동기 프로그래밍](notes/ch04-asynchronous-programming.md) | Promise · `C.*` 동시성 · AsyncIterator · 에러 핸들링 | 비동기의 3층위 — 값(Promise)·지연성(동시성 제어)·타입(AsyncIterator) |
+| 3 | [코드·객체·함수·제너레이터·이터레이터·LISP](notes/ch03-code-object-function-generator-iterator-lisp.md) | 패러다임 전환 · FxIterable · 지연 평가 심화 | 같은 문제의 명령형/객체지향/함수형 1:1:1 풀이 - find·every·some·concat |
+| 4 | [비동기 프로그래밍](notes/ch04-asynchronous-programming.md) | Promise · `C.*` 동시성 · AsyncIterator · 에러 핸들링 | 비동기의 3층위 - 값(Promise)·지연성(동시성 제어)·타입(AsyncIterator) |
 | 5 | [실전 함수형 프로그래밍](notes/ch05-practical-functional-programming.md) | 실전 데이터 처리 · 스케줄러 · 리스트 프로세싱 패턴 | 커머스 데이터와 백엔드 스케줄러로 보는 실전 함수형 |
-| 6 | [멀티패러다임 프로그래밍](notes/ch06-multi-paradigm-programming.md) | 템플릿 엔진 · View 클래스 · TaskRunner | HTML 템플릿 엔진 — 구조는 OOP, 로직은 FP로 |
-| 7 | [객체지향 프런트엔드 개발과 멀티패러다임적 접근](notes/ch07-oop-frontend-and-multi-paradigm-approach.md) | Headless UI · 옵저버/전략/상태 패턴 · Promise 통신 | Setting/Todo 앱 — 디자인 패턴과 Promise 기반 컴포넌트 설계 |
+| 6 | [멀티패러다임 프로그래밍](notes/ch06-multi-paradigm-programming.md) | 템플릿 엔진 · View 클래스 · TaskRunner | HTML 템플릿 엔진 - 구조는 OOP, 로직은 FP로 |
+| 7 | [객체지향 프런트엔드 개발과 멀티패러다임적 접근](notes/ch07-oop-frontend-and-multi-paradigm-approach.md) | Headless UI · 옵저버/전략/상태 패턴 · Promise 통신 | Setting/Todo 앱 - 디자인 패턴과 Promise 기반 컴포넌트 설계 |
 
 ## 학습 가이드
 
-1. **Ch0~1을 먼저** — "세 패러다임이 이터레이션 프로토콜에서 만난다"는 책 전체의 프레임이 여기서 잡힌다
-2. **Ch2~3은 세트** — 타입 시스템(Ch2) 위에서 패러다임 전환 연습(Ch3)이 진행된다
-3. **Ch4(비동기)는 독립 트랙** — 값→지연성→타입의 3층위 구조만 잡으면 따로 읽어도 된다
-4. **Ch5~7은 실전 응용** — 앞의 도구들이 실제 설계(스케줄러·템플릿 엔진·프런트엔드 앱)로 조합된다
+1. **Ch0~1을 먼저** - "세 패러다임이 이터레이션 프로토콜에서 만난다"는 책 전체의 프레임이 여기서 잡힌다
+2. **Ch2~3은 세트** - 타입 시스템(Ch2) 위에서 패러다임 전환 연습(Ch3)이 진행된다
+3. **Ch4(비동기)는 독립 트랙** - 값→지연성→타입의 3층위 구조만 잡으면 따로 읽어도 된다
+4. **Ch5~7은 실전 응용** - 앞의 도구들이 실제 설계(스케줄러·템플릿 엔진·프런트엔드 앱)로 조합된다
 5. 주제별 재배열 커리큘럼으로 보려면 [함수형 프로그래밍 완전 가이드](../functional-programming-complete-guide/)를 이용
 
 ### 패러다임 흐름도
@@ -68,14 +68,14 @@
 ## 핵심 개념 맵
 
 - **리스트 프로세싱**: `map`·`filter`·`reduce`·`take`·`zip` 조합으로 데이터를 선언적으로 변환한다
-- **지연 평가**: 제너레이터와 이터레이션 프로토콜로 필요한 만큼만 계산 — 무한 시퀀스도 안전하게
+- **지연 평가**: 제너레이터와 이터레이션 프로토콜로 필요한 만큼만 계산 - 무한 시퀀스도 안전하게
 - **비동기 프로그래밍**: Promise를 값으로, AsyncIterator로 비동기 스트림을, 동기/비동기를 타입으로 통합
 - **타입 시스템과 FP**: 고차 함수·제네릭·추론이 함수형 표기의 진화(파이프라인→체이닝)를 이끈다
-- **멀티패러다임 설계**: 함수형의 순수성과 객체지향의 캡슐화를 결합 — GoF 패턴을 람다로 단순화하고, 클래스 안에서 리스트 프로세싱을 쓴다
+- **멀티패러다임 설계**: 함수형의 순수성과 객체지향의 캡슐화를 결합 - GoF 패턴을 람다로 단순화하고, 클래스 안에서 리스트 프로세싱을 쓴다
 
 ## 시그니처 요소와 표기 규칙
 
-- 코드 번호 `[코드 N-M]` — 원서 코드 번호 유지 (⚠️ ch07은 노트 자체 순번 — 장 서두 참고 문구 참조)
+- 코드 번호 `[코드 N-M]` - 원서 코드 번호 유지 (⚠️ ch07은 노트 자체 순번 - 장 서두 참고 문구 참조)
 - `> **핵심 통찰**:` / `> **참고**:` 콜아웃, `(*Term - 설명*)` 용어 이탤릭
 - TypeScript 위주, 언어 비교 코드(하스켈·코틀린 등) 병용
 

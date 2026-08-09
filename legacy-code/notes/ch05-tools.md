@@ -266,4 +266,4 @@ Feathers는 통합 테스트 프레임워크의 가치를 인정하면서도, �
 
 ## 다음 챕터와의 연결
 
-Chapter 5까지가 Part I(서론 부분)이다. Chapter 6부터는 Part II로, 레거시 코드에서 만나는 **구체적인 문제 상황들**을 다룬다. Chapter 6 **"고칠 것은 많고 시간은 없고 (I Don't Have Much Time and I Have to Change It)"** 에서는 시간 압박 속에서도 안전하게 변경하기 위한 실용적인 기법들 — Sprout Method, Sprout Class, Wrap Method, Wrap Class — 을 소개한다.
+Chapter 5까지가 Part I(서론 부분)이다. Chapter 6부터는 Part II로, 레거시 코드에서 만나는 **구체적인 문제 상황들**을 다룬다. Chapter 6 **"고칠 것은 많고 시간은 없고 (I Don't Have Much Time and I Have to Change It)"** 에서는 시간 압박 속에서도 안전하게 변경하기 위한 실용적인 기법들 - Sprout Method, Sprout Class, Wrap Method, Wrap Class - 을 소개한다.

@@ -1,4 +1,4 @@
-# Chapter 14: Docker 기반 CI/CD 파이프라인 — CI/CD Pipeline with Docker
+# Chapter 14: Docker 기반 CI/CD 파이프라인 - CI/CD Pipeline with Docker
 
 ## 핵심 질문
 
@@ -665,7 +665,7 @@ services:
 ```
 
 ```dockerfile
-# Dockerfile.e2e — Playwright 테스트 러너
+# Dockerfile.e2e - Playwright 테스트 러너
 FROM mcr.microsoft.com/playwright:v1.48.0-noble
 
 WORKDIR /app
@@ -1107,7 +1107,7 @@ kubectl rollout undo deployment/my-app
 ### 1. 캐시를 설정하지 않아 매번 전체 빌드
 
 ```yaml
-# 나쁜 예: 캐시 없음 — 매번 npm ci부터 전체 빌드
+# 나쁜 예: 캐시 없음 - 매번 npm ci부터 전체 빌드
 - uses: docker/build-push-action@v6
   with:
     context: .

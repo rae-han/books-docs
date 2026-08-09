@@ -40,7 +40,7 @@ Kent Beck은 **2번**을 선택한다. 이것은 의도적인 결정이다.
 
 ## 2. TDD 사이클
 
-### 2.1 Red — Franc 곱하기 테스트 작성
+### 2.1 Red - Franc 곱하기 테스트 작성
 
 Dollar의 곱하기 테스트와 거의 동일한 Franc 테스트를 작성한다:
 
@@ -69,12 +69,12 @@ test('franc multiplication', () => {
 
 **Red Bar!**
 
-### 2.2 Green — Dollar를 복사하여 Franc 생성
+### 2.2 Green - Dollar를 복사하여 Franc 생성
 
 가장 빠르게 Green Bar를 얻는 방법: **Dollar 클래스를 통째로 복사하여 이름만 Franc으로 바꾼다.**
 
 ```java
-// Franc.java — Dollar.java를 복사한 것!
+// Franc.java - Dollar.java를 복사한 것!
 class Franc {
     private int amount;
 
@@ -97,7 +97,7 @@ class Franc {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Franc.ts — Dollar.ts를 복사한 것!
+// Franc.ts - Dollar.ts를 복사한 것!
 class Franc {
     private amount: number;
 
@@ -124,7 +124,7 @@ class Franc {
 
 **테스트 통과! Green Bar!**
 
-### 2.3 Refactor — 지금은 하지 않는다 (그러나 인식한다)
+### 2.3 Refactor - 지금은 하지 않는다 (그러나 인식한다)
 
 이 시점에서 코드는 **끔찍한 상태**다. Dollar와 Franc 사이에 엄청난 중복이 있다:
 
@@ -195,7 +195,7 @@ Kent Beck의 철학: **구체적인 예제가 두 개 이상 있을 때 추상�
 
 ## 4. 코드 진화 과정 전체 추적
 
-**Step 1**: Chapter 4 종료 시점 — Dollar만 존재
+**Step 1**: Chapter 4 종료 시점 - Dollar만 존재
 
 ```java
 // Dollar.java
@@ -441,7 +441,7 @@ test('franc multiplication', () => {
 ## 요약
 
 - 다중 통화 지원의 첫 단계로 **Franc(스위스 프랑)** 클래스를 만들었다.
-- Dollar 클래스를 **통째로 복사**하여 Franc를 만들었다 — 이것은 의도적인 TDD 전략이다.
+- Dollar 클래스를 **통째로 복사**하여 Franc를 만들었다 - 이것은 의도적인 TDD 전략이다.
 - 복사-붙여넣기로 **Green Bar를 빠르게 얻었고**, 대신 TODO 리스트에 중복 제거 항목을 추가했다.
 - TDD에서 복사-붙여넣기는 **임시적인 전략**이다. 반드시 중복을 제거하는 단계가 뒤따라야 한다.
 - **구체적인 예제가 두 개 이상 있을 때** 추상화하는 것이 더 안전하다. Dollar 하나만 있을 때보다, Dollar와 Franc 두 개가 있을 때 공통점과 차이점이 명확하게 보인다.
@@ -455,4 +455,4 @@ test('franc multiplication', () => {
 - **Chapter 6 (Equality for All, Redux)**: Dollar와 Franc의 `equals()` 중복을 제거하기 위해 공통 상위 클래스 Money를 도입한다. 이 챕터의 기술 부채를 갚기 시작하는 첫 단계다.
 - **Chapter 7 (Apples and Oranges)**: Dollar(5)와 Franc(5)가 동등하게 취급되는 문제를 발견하고 해결한다.
 - **Chapter 10 (Interesting Times)**: Dollar와 Franc의 `times()` 중복을 제거한다.
-- **Chapter 11 (The Root of All Evil)**: Dollar와 Franc 하위 클래스 자체를 제거한다 — 이 챕터에서 만든 Franc 클래스가 최종적으로 사라지는 시점이다.
+- **Chapter 11 (The Root of All Evil)**: Dollar와 Franc 하위 클래스 자체를 제거한다 - 이 챕터에서 만든 Franc 클래스가 최종적으로 사라지는 시점이다.

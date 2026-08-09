@@ -591,7 +591,7 @@ abstract class BasicRatePolicy implements RatePolicy {
     calculateFee(calls: Call[]): Money {
         // 사전조건 (강화!)
         console.assert(calls != null);
-        console.assert(calls.length > 0); // 빈 배열 불허 — 문제!
+        console.assert(calls.length > 0); // 빈 배열 불허 - 문제!
         // ...
     }
 }
@@ -642,7 +642,7 @@ public abstract class AdditionalRatePolicy implements RatePolicy {
         Money fee = next.calculateFee(calls);
         Money result = afterCalculated(fee);
 
-        // 사후조건 (완화! — 주석 처리)
+        // 사후조건 (완화! - 주석 처리)
         // assert result.isGreaterThanOrEqual(Money.ZERO);
 
         return result;
@@ -660,7 +660,7 @@ abstract class AdditionalRatePolicy implements RatePolicy {
         const fee = this.next.calculateFee(calls);
         const result = this.afterCalculated(fee);
 
-        // 사후조건 (완화! — 주석 처리)
+        // 사후조건 (완화! - 주석 처리)
         // console.assert(result.isGreaterThanOrEqual(Money.ZERO));
 
         return result;
@@ -680,7 +680,7 @@ abstract class AdditionalRatePolicy implements RatePolicy {
 
 > 처음에는 의아하게 생각될 수도 있지만 마이너스 금액을 그대로 사용하는 것보다 처리를 종료하는 것이 올바른 선택이다. 클라이언트인 `Phone`은 서버가 계약에 명시된 사후조건을 만족시킬 것이라고 가정하기 때문에 반환값을 체크할 필요가 없다. 따라서 `Phone`은 항상 플러스 금액을 반환할 것이라고 가정하고 별도의 확인 없이 반환값을 그대로 `Bill`의 생성자에게 전달한다. 그 결과, **원인에서 멀리 떨어진 엉뚱한 곳에서 경보음이 울리게 되는 것이다.**
 
-> 가능한 한 빨리 문제를 발견하게 되면 좀 더 일찍 시스템을 멈출 수 있다는 이득이 있다. 게다가 프로그램을 멈추는 것이 할 수 있는 최선일 때가 많다. 방금 불가능한 뭔가가 발생했다는 것을 코드가 발견한다면 프로그램은 더 이상 유효하지 않다고 할 수 있다. 일반적으로, **죽은 프로그램이 입히는 피해는 절름발이 프로그램이 끼치는 것보다 훨씬 덜한 법이다.** — [Hunt99]
+> 가능한 한 빨리 문제를 발견하게 되면 좀 더 일찍 시스템을 멈출 수 있다는 이득이 있다. 게다가 프로그램을 멈추는 것이 할 수 있는 최선일 때가 많다. 방금 불가능한 뭔가가 발생했다는 것을 코드가 발견한다면 프로그램은 더 이상 유효하지 않다고 할 수 있다. 일반적으로, **죽은 프로그램이 입히는 피해는 절름발이 프로그램이 끼치는 것보다 훨씬 덜한 법이다.** - [Hunt99]
 
 ### 7.5 슈퍼타입의 불변식은 서브타입에서도 반드시 유지돼야 한다
 
@@ -725,7 +725,7 @@ public abstract class AdditionalRatePolicy implements RatePolicy {
 ```typescript
 // TypeScript
 abstract class AdditionalRatePolicy implements RatePolicy {
-    protected next: RatePolicy; // protected — 문제의 원인!
+    protected next: RatePolicy; // protected - 문제의 원인!
 
     constructor(next: RatePolicy) {
         this.next = next;
@@ -764,7 +764,7 @@ const policy = new RateDiscountablePolicy(
     Money.wons(1000),
     new RegularPolicy(Money.wons(100), Duration.ofSeconds(10))
 );
-policy.changeNext(null); // next가 null이 됨 — 불변식 위반
+policy.changeNext(null); // next가 null이 됨 - 불변식 위반
 ```
 
 > **핵심 통찰**: 계약의 관점에서 캡슐화의 중요성을 잘 보여준다. 자식 클래스가 계약을 위반할 수 있는 코드를 작성하는 것을 막을 수 있는 유일한 방법은 인스턴스 변수의 가시성을 `protected`가 아니라 **`private`**으로 만드는 것뿐이다. `protected` 인스턴스 변수를 가진 부모 클래스의 불변성은 자식 클래스에 의해 언제라도 쉽게 무너질 수 있다.

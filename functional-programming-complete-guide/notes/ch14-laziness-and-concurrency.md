@@ -2,17 +2,17 @@
 
 ## 핵심 질문
 
-Promise는 생성 즉시 실행된다 — 그렇다면 비동기 실행을 어떻게 지연하고, 부하를 조절하며, 동기와 비동기를 하나의 파이프라인으로 다룰 수 있는가?
+Promise는 생성 즉시 실행된다 - 그렇다면 비동기 실행을 어떻게 지연하고, 부하를 조절하며, 동기와 비동기를 하나의 파이프라인으로 다룰 수 있는가?
 
 ---
 
-이 장은 Part 4의 기술적 심장부다. 먼저 Promise의 "즉시 실행" 성질이 만드는 문제를 확인하고(1~3절), 3장에서 만든 `go`/`pipe`/`reduce`와 8장의 지연 함수들에 Promise 지원을 직접 구현해 넣는다(4~8절). 이어서 지연된 함수열을 병렬로 평가하는 `C.*` 함수들을 만들고(9절), 마지막으로 같은 문제를 타입 시스템으로 푸는 멀티패러다임 세대의 해법 — AsyncIterator와 `toAsync` — 을 다룬 뒤(10~12절) 두 접근을 비교한다(13절).
+이 장은 Part 4의 기술적 심장부다. 먼저 Promise의 "즉시 실행" 성질이 만드는 문제를 확인하고(1~3절), 3장에서 만든 `go`/`pipe`/`reduce`와 8장의 지연 함수들에 Promise 지원을 직접 구현해 넣는다(4~8절). 이어서 지연된 함수열을 병렬로 평가하는 `C.*` 함수들을 만들고(9절), 마지막으로 같은 문제를 타입 시스템으로 푸는 멀티패러다임 세대의 해법 - AsyncIterator와 `toAsync` - 을 다룬 뒤(10~12절) 두 접근을 비교한다(13절).
 
 ---
 
 ## 1. Promise 실행을 지연하려면
 
-`Promise.all`은 모든 Promise를 동시에 병렬로 실행한다. 그런데 부하를 조절하고 싶다면 — 예를 들어 6개의 비동기 작업을 한 번에 3개씩 실행하고 싶다면 — 어떻게 해야 할까?
+`Promise.all`은 모든 Promise를 동시에 병렬로 실행한다. 그런데 부하를 조절하고 싶다면 - 예를 들어 6개의 비동기 작업을 한 번에 3개씩 실행하고 싶다면 - 어떻게 해야 할까?
 
 ```typescript
 // 첫 번째 시도 - 문제가 있는 코드
@@ -28,7 +28,7 @@ async function executeWithLimit<T>(
 
 이 코드는 2000ms 정도 걸릴 것이라는 기대와 달리 약 1000ms 만에 모든 Promise가 완료된다. **Promise 객체는 생성되는 즉시 실행되기 때문이다.** `getFile` 같은 함수가 호출되는 순간 이미 Promise가 시작된다. `Promise.all`은 이미 실행된 Promise들을 받아 완료를 대기하는 함수일 뿐, Promise의 시작 자체를 제어하는 함수가 아니다.
 
-해결하려면 아직 Promise들이 실행되지 않은 상태에서 그룹을 나누고 각 그룹이 순차적으로 실행되도록 해야 한다. 방법은 간단하다 — `() =>`와 `()`를 추가하면 된다.
+해결하려면 아직 Promise들이 실행되지 않은 상태에서 그룹을 나누고 각 그룹이 순차적으로 실행되도록 해야 한다. 방법은 간단하다 - `() =>`와 `()`를 추가하면 된다.
 
 ```typescript
 async function executeWithLimit<T>(
@@ -82,11 +82,11 @@ async function executeWithLimit<T>(
 리스트 프로세싱 관점으로 계획하면 이렇게 된다.
 
 - `[() => P, () => P, () => P, () => P, ...]`
-- `[[() => P, () => P, () => P], ...]` — 3개씩 그룹화
-- `[[P, P, P], ...]` — 함수 실행
-- `[P<[T, T, T]>, ...]` — 3개씩 대기하도록 `Promise.all`로 감싸기
-- `P<[[T, T, T], ...]>` — `Promise.all`들의 결과 꺼내기
-- `P<[T, T, T, T, ...]>` — 1차원 배열로 평탄화
+- `[[() => P, () => P, () => P], ...]` - 3개씩 그룹화
+- `[[P, P, P], ...]` - 함수 실행
+- `[P<[T, T, T]>, ...]` - 3개씩 대기하도록 `Promise.all`로 감싸기
+- `P<[[T, T, T], ...]>` - `Promise.all`들의 결과 꺼내기
+- `P<[T, T, T, T, ...]>` - 1차원 배열로 평탄화
 
 ```typescript
 async function fromAsync<T>(
@@ -112,7 +112,7 @@ const executeWithLimit = <T>(fs: (() => Promise<T>)[], limit: number): Promise<T
 
 `i++` 같은 상태 변화, `j < limit && (i + j) < fs.length` 같은 조건절이 없다. `push` 대신 `fromAsync`, `arr.flat()` 같은 선언적 표현을 쓴다.
 
-## 3. 지연성 — 효과적인 비동기 핸들링의 계단
+## 3. 지연성 - 효과적인 비동기 핸들링의 계단
 
 `executeWithLimit` 구현의 핵심은 지연성이다.
 
@@ -123,7 +123,7 @@ const executeWithLimit = <T>(fs: (() => Promise<T>)[], limit: number): Promise<T
 
 지연 평가는 단순히 성능 개선을 위한 도구가 아니다. 이터레이터와 일급 함수를 **원하는 시점에 평가하는 코드 패턴**을 통해 로직을 재사용 가능한 형태로 만들 수 있다.
 
-## 4. go, pipe, reduce의 비동기 지원 — 직접 구현
+## 4. go, pipe, reduce의 비동기 지원 - 직접 구현
 
 이제 관점을 바꿔, 3장에서 만든 파이프라인 함수들이 비동기를 만나면 어떻게 되는지 직접 확인하고 고쳐 보자. `go`/`pipe`/`reduce`는 함수를 연속으로 실행하는 합성 함수들이다. 여기에도 Promise의 "비동기를 값으로 다루는" 성질을 이용해, 비동기 상황에 잘 대응하고 중간에 reject나 에러가 나면 뒤로 흘려보내는 기법을 적용할 수 있다.
 
@@ -210,7 +210,7 @@ go(
 );
 ```
 
-다만 첫 값 자체가 Promise면 여전히 잘못된 결과가 나온다 — 첫 값은 Promise 검사 없이 바로 합성되기 때문이다. `go1`(별칭 `lift`)로 첫 `acc`를 풀어서 전달하면 해결된다.
+다만 첫 값 자체가 Promise면 여전히 잘못된 결과가 나온다 - 첫 값은 Promise 검사 없이 바로 합성되기 때문이다. `go1`(별칭 `lift`)로 첫 `acc`를 풀어서 전달하면 해결된다.
 
 ```typescript
 const lift = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
@@ -356,7 +356,7 @@ export const take = curry((l, iter) => {
 });
 ```
 
-코드 정리 — 1·2를 삼항으로 합치고, 3까지 콤마 연산자로 합치면 한 줄이 된다.
+코드 정리 - 1·2를 삼항으로 합치고, 3까지 콤마 연산자로 합치면 한 줄이 된다.
 
 ```typescript
 return a.then((a) => ((res.push(a), res).length >= l ? res : recur()));
@@ -411,7 +411,7 @@ go(
 );
 ```
 
-## 6. L.filter와 nop — Kleisli 합성의 실전
+## 6. L.filter와 nop - Kleisli 합성의 실전
 
 filter에서 지연 평가와 Promise를 함께 지원하려면 **Kleisli 합성**(13장)을 활용해야 한다. 아래 코드는 동작하지 않는다.
 
@@ -436,7 +436,7 @@ L.filter = curry(function* (fn, iter) {
 });
 ```
 
-**(go1 적용 — 아직 불완전)**
+**(go1 적용 - 아직 불완전)**
 ```typescript
 L.filter = curry(function* (fn, iter) {
   for (const a of iter) {
@@ -466,7 +466,7 @@ L.filter = curry(function* (fn, iter) {
 ```
 
 - `b`가 Promise면 풀어서 판단한다. 푼 값이 참이면 `a`를 리턴한다(여기서 `a`는 풀리지 않은 Promise일 수 있지만 다른 곳(take)에서 풀어 쓸 것이므로 그대로 보내도 된다).
-- 푼 값이 거짓이면 **아무 일도 일어나지 않게** 해야 한다. 여기서 Kleisli 합성을 쓴다 — `Promise.reject`를 하면 이후 값은 다음 코드로 흘러가지 않는다. 다만 "아무 일도 하지 않길 바라는 reject"인지 "정말 에러가 난 reject"인지 구별해야 하므로 `Symbol('nop')`이라는 구분자를 만들어, catch에서 nop이 오면 아무 일도 하지 않도록 처리한다.
+- 푼 값이 거짓이면 **아무 일도 일어나지 않게** 해야 한다. 여기서 Kleisli 합성을 쓴다 - `Promise.reject`를 하면 이후 값은 다음 코드로 흘러가지 않는다. 다만 "아무 일도 하지 않길 바라는 reject"인지 "정말 에러가 난 reject"인지 구별해야 하므로 `Symbol('nop')`이라는 구분자를 만들어, catch에서 nop이 오면 아무 일도 하지 않도록 처리한다.
 
 take에서 nop 에러를 통과시키는 코드를 더한다.
 
@@ -562,7 +562,7 @@ const reduceF = (acc, a, f) =>
 ```
 
 - **에러가 nop이면**: "의도된 예외"이므로 무시하고 현재까지의 누적값(acc)을 그대로 반환 → 이후 합성(체인, reduce)을 계속한다.
-- **에러가 nop이 아니면**: 의도한 것이 아니므로 더 이상 합성하지 않고 `Promise.reject`로 에러를 아래로 전파한다(즉시 종료·에러 전파 — throw와 동일한 효과).
+- **에러가 nop이 아니면**: 의도한 것이 아니므로 더 이상 합성하지 않고 `Promise.reject`로 에러를 아래로 전파한다(즉시 종료·에러 전파 - throw와 동일한 효과).
 
 한 가지 더 정리하면, 초깃값 생략 시 `iter.next()`로 첫 값을 꺼내는 부분도 비동기가 일어날 수 있으므로 문장이 아닌 표현식으로 안전하게 합성하면 좋다. "head를 뽑고, head가 뽑힌 나머지 이터레이터로 reduce한다"로 읽으면 된다.
 
@@ -611,11 +611,11 @@ go(
 
 1부터 8까지 전체를 순회하는 것이 아니라 **1부터 3까지만** 순회한다(2는 filter까지만 가고 map의 결과가 걸러짐). 필요한 상황에만 비동기 작업을 실행하므로, 지연 평가가 비동기 세계에서 곧바로 **부하 절감**으로 이어진다.
 
-## 9. 지연된 함수열을 병렬적으로 평가하기 — C.reduce, C.take, C.map
+## 9. 지연된 함수열을 병렬적으로 평가하기 - C.reduce, C.take, C.map
 
 ### 9.1 왜 병렬 평가인가
 
-자바스크립트가 싱글 스레드라서 병렬 프로그래밍이 필요 없다는 것은 오해다. 자바스크립트는 **로직 제어를** 싱글 스레드로 비동기적으로 할 뿐, 병렬 처리가 필요한 상황은 얼마든지 있다. PostgreSQL 같은 DB에 쿼리들을 병렬로 출발시켜 결과를 한 번에 받거나, Redis에 여러 키를 동시에 조회하거나, Node.js가 이미지 처리 명령을 네트워크·IO로 외부에 보내고 시점만 관리하는 경우 — **작업을 동시에 출발시켰다가 하나의 로직으로 귀결시키는** 제어가 필요하다.
+자바스크립트가 싱글 스레드라서 병렬 프로그래밍이 필요 없다는 것은 오해다. 자바스크립트는 **로직 제어를** 싱글 스레드로 비동기적으로 할 뿐, 병렬 처리가 필요한 상황은 얼마든지 있다. PostgreSQL 같은 DB에 쿼리들을 병렬로 출발시켜 결과를 한 번에 받거나, Redis에 여러 키를 동시에 조회하거나, Node.js가 이미지 처리 명령을 네트워크·IO로 외부에 보내고 시점만 관리하는 경우 - **작업을 동시에 출발시켰다가 하나의 로직으로 귀결시키는** 제어가 필요하다.
 
 ```typescript
 const delay1000 = (a) =>
@@ -645,7 +645,7 @@ C.reduce = curry((fn, acc, iter) =>
 );
 ```
 
-핵심은 전개 연산자 `[...iter]`다 — 지연된 이터레이터를 **즉시 소비**해 모든 대기 함수(L.map, L.filter)를 한꺼번에 출발시키고, 그 다음 reduce가 순회하며 앞에서부터 값을 꺼내(비동기 제어) 누적한다.
+핵심은 전개 연산자 `[...iter]`다 - 지연된 이터레이터를 **즉시 소비**해 모든 대기 함수(L.map, L.filter)를 한꺼번에 출발시키고, 그 다음 reduce가 순회하며 앞에서부터 값을 꺼내(비동기 제어) 누적한다.
 
 ```typescript
 console.time('')
@@ -663,7 +663,7 @@ go(
 
 ### 9.2 Uncaught 에러 로그 문제와 catchNoop
 
-그런데 아래처럼 filter 뒤에 추가 평가가 있으면, 값은 정상적으로 나오지만 콘솔에 에러가 출력된다 — `Uncaught (in promise) Symbol(nop)`.
+그런데 아래처럼 filter 뒤에 추가 평가가 있으면, 값은 정상적으로 나오지만 콘솔에 에러가 출력된다 - `Uncaught (in promise) Symbol(nop)`.
 
 ```typescript
 go(
@@ -683,11 +683,11 @@ const p = Promise.reject('hi'); // Uncaught (in promise) hi
 p.catch(a => console.log('해결: ', a)); // 이 시점은 이미 에러 로그가 찍힌 후다.
 ```
 
-개발자가 인지하고 있는 nop 에러는 이후 콜스택에서 캐치할 것이므로, "알고 있으니 로그를 찍을 필요 없다"고 Promise에 미리 알려주면 된다. 여기서 중요한 테크닉 — **catch를 해서 반환된 Promise를 전달하는 것이 아니라, catch만 임시로 걸어 두고 원본 Promise를 전달한다.**
+개발자가 인지하고 있는 nop 에러는 이후 콜스택에서 캐치할 것이므로, "알고 있으니 로그를 찍을 필요 없다"고 Promise에 미리 알려주면 된다. 여기서 중요한 테크닉 - **catch를 해서 반환된 Promise를 전달하는 것이 아니라, catch만 임시로 걸어 두고 원본 Promise를 전달한다.**
 
 ```typescript
 let p = Promise.reject('hi');
-p.catch(a => `${a} catch`); // p에 재할당하지 않음 — 에러 로그만 억제됨
+p.catch(a => `${a} catch`); // p에 재할당하지 않음 - 에러 로그만 억제됨
 
 p.catch(a => `${a} re catch`); // 원하는 시점에 다시 catch 가능
 ```
@@ -710,7 +710,7 @@ C.take = curry((l, iter) => take(l, catchNoop(iter)));
 
 `C.take`도 같은 방식으로 전체 대기열을 병렬 실행한다. take와 C.take의 차이는 최적화 방향의 차이다.
 
-**C.reduce — 최대한 많은 자원으로 빠르게:**
+**C.reduce - 최대한 많은 자원으로 빠르게:**
 ```typescript
 go(
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -723,7 +723,7 @@ go(
 );
 ```
 
-**reduce — 명령을 덜 실행시켜 부하를 줄이는 방향:**
+**reduce - 명령을 덜 실행시켜 부하를 줄이는 방향:**
 ```typescript
 go(
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -738,7 +738,7 @@ go(
 
 **이터러블 중심으로 사고하면, "하나씩" 평가할지 "병렬적으로" 평가할지를 선언적으로 선택·관리할 수 있다.** 병렬 프로그래밍을 안전하고 쉽게, 선언적으로 다루게 된 것이다.
 
-### 9.3 특정 라인만 병렬 평가 — C.map, C.filter
+### 9.3 특정 라인만 병렬 평가 - C.map, C.filter
 
 지금까지는 파이프라인의 끝(reduce·take)에서 앞의 함수열 전체를 병렬 실행할지 결정했다. `C.map`·`C.filter`는 **특정 함수 라인만** 병렬적으로 평가한다. `C.takeAll`을 만들어 두면 구현이 간단하다.
 
@@ -753,7 +753,7 @@ C.filter = curry(pipe(L.filter, C.takeAll));
 C.map((a) => delay1000(a * a), [1, 2, 3]).then(console.log); // [1, 4, 9]
 ```
 
-즉시 평가(map) / 지연 평가(L.map) / 병렬 평가(C.map), 그리고 동기·비동기 지원 — 이 조각들을 조합해 **원하는 평가 전략을 세우는 식**으로 코딩할 수 있다.
+즉시 평가(map) / 지연 평가(L.map) / 병렬 평가(C.map), 그리고 동기·비동기 지원 - 이 조각들을 조합해 **원하는 평가 전략을 세우는 식**으로 코딩할 수 있다.
 
 ## 10. AsyncIterator, AsyncGenerator, toAsync
 
@@ -849,7 +849,7 @@ function mapAsync<A, B>(
 }
 ```
 
-사실상 `mapSync`와 `mapAsync`는 코드와 값이 흐르는 방식이 완전히 동일하다 — 비동기 이터러블을 다룰 수 있게 됐을 뿐이다. AsyncGenerator로 더 간결하게 구현할 수 있다.
+사실상 `mapSync`와 `mapAsync`는 코드와 값이 흐르는 방식이 완전히 동일하다 - 비동기 이터러블을 다룰 수 있게 됐을 뿐이다. AsyncGenerator로 더 간결하게 구현할 수 있다.
 
 ```typescript
 async function* mapAsync<A, B>(
@@ -881,11 +881,11 @@ for await (const a of filterAsync(a => a % 2 === 1, toAsync([1, 2, 3]))) {
 // 3
 ```
 
-주목할 점: `filterAsync`는 `await f(value)`로 조건을 **풀어서** 판단한다 — 6절에서 nop으로 풀었던 "Promise는 항상 truthy" 문제를, 비동기 세계를 분리함으로써 자연스럽게 해결한 것이다.
+주목할 점: `filterAsync`는 `await f(value)`로 조건을 **풀어서** 판단한다 - 6절에서 nop으로 풀었던 "Promise는 항상 truthy" 문제를, 비동기 세계를 분리함으로써 자연스럽게 해결한 것이다.
 
-### 11.2 오버로드로 통합하기 — 규약으로서의 toAsync
+### 11.2 오버로드로 통합하기 - 규약으로서의 toAsync
 
-`toAsync`는 런타임 변환일 뿐 아니라 **컴파일 타임 선언**이다 — "이제부터 비동기적으로 값을 다루겠다"를 타입으로 알리는 것이다. 함수 오버로드로 동기·비동기를 하나의 함수로 통합한다.
+`toAsync`는 런타임 변환일 뿐 아니라 **컴파일 타임 선언**이다 - "이제부터 비동기적으로 값을 다루겠다"를 타입으로 알리는 것이다. 함수 오버로드로 동기·비동기를 하나의 함수로 통합한다.
 
 ```typescript
 function isIterable<T = unknown>(a: Iterable<T> | unknown): a is Iterable<T> {
@@ -945,7 +945,7 @@ for await (const a of map(a => delay(100, a * 10), toAsync([1, 2]))) {
 // 다시 100ms 뒤: 20
 ```
 
-`filter`도 동일한 패턴이다. 특히 **동기 이터러블에 비동기 조건 함수를 쓰면 타입 에러**가 발생하는데, 이는 의도된 결과다 — `Promise.resolve(true)`든 `false`든 모두 객체라서 truthy로 평가되므로, 결과를 꺼내 보지 않고는 제대로 평가할 수 없기 때문이다(6절에서 `[1, 4]`가 나왔던 바로 그 문제를 타입이 컴파일 타임에 막아준다).
+`filter`도 동일한 패턴이다. 특히 **동기 이터러블에 비동기 조건 함수를 쓰면 타입 에러**가 발생하는데, 이는 의도된 결과다 - `Promise.resolve(true)`든 `false`든 모두 객체라서 truthy로 평가되므로, 결과를 꺼내 보지 않고는 제대로 평가할 수 없기 때문이다(6절에서 `[1, 4]`가 나왔던 바로 그 문제를 타입이 컴파일 타임에 막아준다).
 
 ```typescript
 function filter<A>(
@@ -1061,7 +1061,7 @@ async function test() {
 }
 ```
 
-타입 시스템이 비동기 로직을 검증해 준다 — `toAsync` 없이 비동기 필터링을 시도하면 타입 오류가 발생한다.
+타입 시스템이 비동기 로직을 검증해 준다 - `toAsync` 없이 비동기 필터링을 시도하면 타입 오류가 발생한다.
 
 ```typescript
 const iter2 = fx(naturals(4))
@@ -1106,14 +1106,14 @@ console.log(result, await resultPromise);
 // 40 40
 ```
 
-## 13. 두 세대의 비교 — nop 방식 vs toAsync 방식
+## 13. 두 세대의 비교 - nop 방식 vs toAsync 방식
 
 이 장에서 같은 문제를 두 가지 방식으로 풀었다. 접근이 다르므로 둘 다 알아둘 가치가 있다.
 
 | 관점 | nop 방식 (es6/fxjs 세대) | toAsync 방식 (멀티패러다임/FxTS 세대) |
 |---|---|---|
 | 세계관 | **하나의 이터레이터 파이프라인**에 Promise를 값으로 흘림 | 동기(Iterable)와 비동기(AsyncIterable) **세계를 분리**하고 toAsync로 명시적 전환 |
-| filter의 거짓 신호 | `Promise.reject(Symbol('nop'))` — Kleisli 합성으로 "없음"을 전파 | `await f(value)` — 비동기 세계에서 조건을 풀어 판단 |
+| filter의 거짓 신호 | `Promise.reject(Symbol('nop'))` - Kleisli 합성으로 "없음"을 전파 | `await f(value)` - 비동기 세계에서 조건을 풀어 판단 |
 | 잘못된 사용 방지 | 런타임 규약(개발자가 nop을 처리해야 함) | **컴파일 타임 타입 에러**(TS2322)로 차단 |
 | 동기·비동기 통합 | `instanceof Promise` 런타임 검사(go1) | 함수 오버로드 + `isIterable` 타입 가드 |
 | 강점 | 동적 JS에서 간결·다형적, 파이프 중간 어디서든 Promise 허용 | 타입 추론·검증, 의도가 코드(toAsync)에 드러남 |
@@ -1122,12 +1122,12 @@ console.log(result, await resultPromise);
 
 ## 요약
 
-- **Promise는 생성 즉시 실행**된다 — 실행을 지연하려면 `() => Promise`로 감싸고, 지연 평가 map과 결합하면 부하 조절(`executeWithLimit`)이 선언적으로 풀린다.
-- `go`/`pipe`/`reduce`의 비동기 지원 핵심은 **유명 함수 recur** — 동기 구간은 한 콜스택에서, Promise를 만난 지점에서만 then으로 이어 다형적으로 처리한다.
-- `L.filter`의 비동기 지원은 **Kleisli 합성**의 실전이다 — 거짓 판정을 `Promise.reject(nop)`로 전파하고, take·reduce가 nop이면 재개, 아니면 재전파한다.
-- **catchNoop 테크닉**: catch한 Promise를 전달하지 말고, catch를 걸어두기만 한 원본을 전달한다 — Uncaught 로그는 억제되고 나중에 다시 catch할 수 있다.
-- `C.reduce`/`C.take`/`C.map`은 전개 연산자로 지연 함수열을 **즉시 소비해 병렬로 출발**시킨다 — 하나씩(세로) 평가와 병렬 평가를 선언적으로 선택한다.
-- **AsyncIterator/toAsync/FxAsyncIterable**은 같은 문제의 타입 시스템 해법이다 — toAsync가 동기→비동기 전환을 선언하고, 오버로드와 타입 가드가 동기·비동기를 하나의 API로 통합하며, 잘못된 조합은 컴파일 타임에 차단된다.
+- **Promise는 생성 즉시 실행**된다 - 실행을 지연하려면 `() => Promise`로 감싸고, 지연 평가 map과 결합하면 부하 조절(`executeWithLimit`)이 선언적으로 풀린다.
+- `go`/`pipe`/`reduce`의 비동기 지원 핵심은 **유명 함수 recur** - 동기 구간은 한 콜스택에서, Promise를 만난 지점에서만 then으로 이어 다형적으로 처리한다.
+- `L.filter`의 비동기 지원은 **Kleisli 합성**의 실전이다 - 거짓 판정을 `Promise.reject(nop)`로 전파하고, take·reduce가 nop이면 재개, 아니면 재전파한다.
+- **catchNoop 테크닉**: catch한 Promise를 전달하지 말고, catch를 걸어두기만 한 원본을 전달한다 - Uncaught 로그는 억제되고 나중에 다시 catch할 수 있다.
+- `C.reduce`/`C.take`/`C.map`은 전개 연산자로 지연 함수열을 **즉시 소비해 병렬로 출발**시킨다 - 하나씩(세로) 평가와 병렬 평가를 선언적으로 선택한다.
+- **AsyncIterator/toAsync/FxAsyncIterable**은 같은 문제의 타입 시스템 해법이다 - toAsync가 동기→비동기 전환을 선언하고, 오버로드와 타입 가드가 동기·비동기를 하나의 API로 통합하며, 잘못된 조합은 컴파일 타임에 차단된다.
 
 ## 다른 챕터와의 관계
 

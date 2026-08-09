@@ -8,7 +8,7 @@
 
 ## 1. Docker Compose란
 
-실제 애플리케이션은 단일 컨테이너로 구성되는 경우가 드물다. Next.js 프론트엔드, Express API 서버, PostgreSQL 데이터베이스, Redis 캐시 — 이런 서비스들을 각각 `docker run` 명령어로 실행하고, 네트워크를 연결하고, 볼륨을 마운트하는 것은 번거롭고 오류가 발생하기 쉽다.
+실제 애플리케이션은 단일 컨테이너로 구성되는 경우가 드물다. Next.js 프론트엔드, Express API 서버, PostgreSQL 데이터베이스, Redis 캐시 - 이런 서비스들을 각각 `docker run` 명령어로 실행하고, 네트워크를 연결하고, 볼륨을 마운트하는 것은 번거롭고 오류가 발생하기 쉽다.
 
 도커 컴포즈(*Docker Compose - 다중 컨테이너 애플리케이션을 YAML 파일 하나로 정의하고 관리하는 도구*)는 이 문제를 해결한다. 하나의 YAML 파일에 모든 서비스, 네트워크, 볼륨을 선언적으로 정의하고, 단일 명령어로 전체 스택을 시작하거나 종료할 수 있다.
 
@@ -32,7 +32,7 @@ V1은 2023년 6월에 공식적으로 지원이 종료되었다. 현재는 `dock
 
 Docker Compose는 다음 순서로 설정 파일을 탐색한다:
 
-1. `compose.yaml` — **현재 권장 표준**
+1. `compose.yaml` - **현재 권장 표준**
 2. `compose.yml`
 3. `docker-compose.yaml`
 4. `docker-compose.yml`
@@ -161,7 +161,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - NODE_ENV=development
 
-    # 방법 1: 직접 정의 (맵 형식 — 동일 결과)
+    # 방법 1: 직접 정의 (맵 형식 - 동일 결과)
     environment:
       DATABASE_URL: postgresql://user:pass@db:5432/mydb
       REDIS_URL: redis://redis:6379
@@ -442,7 +442,7 @@ volumes:
 ### 3.3 .env 파일
 
 ```bash
-# .env — compose.yaml 변수 치환용
+# .env - compose.yaml 변수 치환용
 DB_USER=myapp_user
 DB_PASSWORD=supersecretpassword
 DB_NAME=myapp_db
@@ -462,7 +462,7 @@ DB_NAME=myapp_db
 - `healthcheck`가 `/health` 엔드포인트를 호출하여 서버 상태를 확인한다. Express 서버에 해당 라우트가 반드시 있어야 한다.
 
 ```typescript
-// api/src/index.ts — 헬스체크 엔드포인트 예시
+// api/src/index.ts - 헬스체크 엔드포인트 예시
 import express from "express";
 
 const app = express();

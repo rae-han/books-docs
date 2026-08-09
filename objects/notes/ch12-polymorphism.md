@@ -42,7 +42,7 @@ public class Money {
 </details>
 
 ```typescript
-// TypeScript — 오버로딩 시그니처
+// TypeScript - 오버로딩 시그니처
 class Money {
     plus(amount: Money): Money;
     plus(amount: bigint): Money;
@@ -79,7 +79,7 @@ List<Integer> scores = new ArrayList<>();    // T를 Integer로 지정
 </details>
 
 ```typescript
-// TypeScript — 제네릭
+// TypeScript - 제네릭
 const names: Array<string> = [];     // T를 string으로 지정
 const scores: Array<number> = [];    // T를 number로 지정
 ```
@@ -915,7 +915,7 @@ self ────────▶│ FormattedGradeLecture    │
 | 구분 | self 전송 | super 전송 |
 |---|---|---|
 | **탐색 시작 위치** | self 참조가 가리키는 객체의 클래스 (동적) | 메시지를 전송하는 클래스의 **부모 클래스** (정적) |
-| **결정 시점** | **런타임** — 어떤 클래스에서 탐색이 시작될지 알 수 없음 | **컴파일타임** — 항상 해당 클래스의 부모 클래스에서 시작됨 |
+| **결정 시점** | **런타임** - 어떤 클래스에서 탐색이 시작될지 알 수 없음 | **컴파일타임** - 항상 해당 클래스의 부모 클래스에서 시작됨 |
 | **예측 가능성** | 낮음: `Lecture`일 수도, `GradeLecture`일 수도, 미래의 자식 클래스일 수도 있음 | 높음: 항상 미리 정해진 클래스에서 시작 |
 
 > super 전송과 동적 바인딩: 상속에서 super가 컴파일 시점에 미리 결정된다고 설명했지만 super를 런타임에 결정하는 경우도 있다. 11장에서 믹스인을 설명하면서 예로 들었던 스칼라의 트레이트는 super의 대상을 믹스인되는 순서에 따라 동적으로 결정한다. 대부분의 객체지향 언어에서 상속을 사용하는 경우에는 super가 컴파일타임에 결정된다.
@@ -951,7 +951,7 @@ self ────────▶│ FormattedGradeLecture    │
 개념을 좀 더 쉽게 설명하기 위해 `GradeLecture`에서 `Lecture`로 self 참조가 공유되는 과정을 상속을 사용하지 않고 직접 코드로 구현해 본다.
 
 ```ruby
-# Ruby — Lecture
+# Ruby - Lecture
 class Lecture
   def initialize(name, scores)
     @name = name
@@ -969,7 +969,7 @@ end
 ```
 
 ```ruby
-# Ruby — GradeLecture (상속 없이 위임으로 구현)
+# Ruby - GradeLecture (상속 없이 위임으로 구현)
 class GradeLecture
   def initialize(name, canceled, scores)
     @parent = Lecture.new(name, scores)   # 부모 인스턴스를 링크로 보관

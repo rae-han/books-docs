@@ -385,7 +385,7 @@ aws ec2 stop-instances --instance-ids i-0abc123
 # 인스턴스 시작
 aws ec2 start-instances --instance-ids i-0abc123
 
-# 인스턴스 종료 (완전 삭제 — 주의!)
+# 인스턴스 종료 (완전 삭제 - 주의!)
 aws ec2 terminate-instances --instance-ids i-0abc123
 ```
 
@@ -468,22 +468,22 @@ aws ec2 create-security-group \
   --description "Web server security group" \
   --vpc-id vpc-0abc123
 
-# HTTP (80) — 모든 IP에서 허용 (ALB를 사용한다면 ALB SG에서만 허용)
+# HTTP (80) - 모든 IP에서 허용 (ALB를 사용한다면 ALB SG에서만 허용)
 aws ec2 authorize-security-group-ingress \
   --group-id sg-web123 \
   --protocol tcp --port 80 --cidr 0.0.0.0/0
 
-# HTTPS (443) — 모든 IP에서 허용
+# HTTPS (443) - 모든 IP에서 허용
 aws ec2 authorize-security-group-ingress \
   --group-id sg-web123 \
   --protocol tcp --port 443 --cidr 0.0.0.0/0
 
-# SSH (22) — 내 IP에서만 허용 (또는 SSM 사용 시 불필요)
+# SSH (22) - 내 IP에서만 허용 (또는 SSM 사용 시 불필요)
 aws ec2 authorize-security-group-ingress \
   --group-id sg-web123 \
   --protocol tcp --port 22 --cidr 203.0.113.50/32
 
-# Node.js 앱 포트 (3000) — ALB 보안 그룹에서만 허용
+# Node.js 앱 포트 (3000) - ALB 보안 그룹에서만 허용
 aws ec2 authorize-security-group-ingress \
   --group-id sg-web123 \
   --protocol tcp --port 3000 --source-group sg-alb123

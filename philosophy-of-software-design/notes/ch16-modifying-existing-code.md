@@ -65,7 +65,7 @@ class PaymentProcessor {
     void process(Payment p) {
         if (p.type == CREDIT_CARD) { ... }
         else if (p.type == BANK_TRANSFER) { ... }
-        else if (p.type == CRYPTO) {  // 새로 추가 — if 체인이 길어짐
+        else if (p.type == CRYPTO) {  // 새로 추가 - if 체인이 길어짐
             ...
         }
     }

@@ -1,4 +1,4 @@
-# Chapter 14: Appendix — Leftover Patterns (기타 패턴)
+# Chapter 14: Appendix - Leftover Patterns (기타 패턴)
 
 ## 핵심 질문
 
@@ -24,7 +24,7 @@ interface TV {
   tuneChannel(ch: number): void;
 }
 
-// 추상화 계층 (리모컨) — TV를 "구성"으로 보유(브리지)
+// 추상화 계층 (리모컨) - TV를 "구성"으로 보유(브리지)
 abstract class RemoteControl {
   constructor(protected tv: TV) {} // 브리지
   on(): void { this.tv.on(); }
@@ -73,7 +73,7 @@ const planner = new VacationBuilder()
 - **장점**: 복합 객체 생성 과정 캡슐화, 내부 구조를 클라이언트로부터 보호.
 - **단점**: 팩토리보다 클라이언트가 더 많이 알아야 함.
 
-> **TS 통찰**: **fluent builder**(메서드 체이닝, `this` 반환)는 TS에서 매우 흔하다 — 쿼리 빌더(Prisma·Knex·Drizzle), 테스트 픽스처, 설정 객체 등. 옵션이 많은 객체를 안전하게 조립할 때 유용하다.
+> **TS 통찰**: **fluent builder**(메서드 체이닝, `this` 반환)는 TS에서 매우 흔하다 - 쿼리 빌더(Prisma·Knex·Drizzle), 테스트 픽스처, 설정 객체 등. 옵션이 많은 객체를 안전하게 조립할 때 유용하다.
 
 ---
 
@@ -236,7 +236,7 @@ class MonsterRegistry {
 - **장점**: 클라이언트가 구체 타입·생성 과정을 몰라도 객체 생성. 새로 만드는 것보다 복사가 효율적일 수 있음.
 - **단점**: 깊은 복사(deep clone)가 복잡할 수 있음.
 
-> **TS 통찰**: **자바스크립트 자체가 프로토타입 기반 언어**다. `Object.create(proto)`로 프로토타입 상속을, **`structuredClone(obj)`** 로 깊은 복사를 언어가 직접 지원한다 — 이 패턴이 언어에 내장된 셈이다.
+> **TS 통찰**: **자바스크립트 자체가 프로토타입 기반 언어**다. `Object.create(proto)`로 프로토타입 상속을, **`structuredClone(obj)`** 로 깊은 복사를 언어가 직접 지원한다 - 이 패턴이 언어에 내장된 셈이다.
 
 ---
 
@@ -263,7 +263,7 @@ class NutritionVisitor implements Visitor { // 새 기능은 여기만 추가
 
 ---
 
-## 요약 — GoF 23개 전체 지도
+## 요약 - GoF 23개 전체 지도
 
 이 장의 9개를 더하면 GoF 23개가 완성된다.
 

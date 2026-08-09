@@ -1,11 +1,11 @@
-# Docker 실전 입문 — 핸즈온 Q&A & vs 비교 노트 (자립형)
+# Docker 실전 입문 - 핸즈온 Q&A & vs 비교 노트 (자립형)
 
 ## 이 노트는 무엇인가
 
 Docker를 **직접 터미널에 명령어를 치고 Docker Desktop GUI로 확인하며** 한 챕터씩 배우는 실습 과정에서, 실제로 **막혔던 지점과 던졌던 질문**을 정리한 복습 노트다.
 
 - **자립형 노트**다. 교재의 핵심 개념을 압축 요약해 함께 담았으므로, **이 노트 하나만 봐도 학습·복습이 완결**된다.
-- 더 깊은 디테일(모든 예제, 세부 설명)은 교재 해당 챕터를 참고한다 — 각 세션 끝의 "더 깊이" 링크로 연결된다. (현재 세션 0~4 = [ch01](ch01-what-is-docker.md)~[ch04](ch04-dockerfile-deep-dive.md))
+- 더 깊은 디테일(모든 예제, 세부 설명)은 교재 해당 챕터를 참고한다 - 각 세션 끝의 "더 깊이" 링크로 연결된다. (현재 세션 0~4 = [ch01](ch01-what-is-docker.md)~[ch04](ch04-dockerfile-deep-dive.md))
 - 구성: **Part A**(세션별 흐름 + 교재 핵심) → **Part B**(vs 비교 모음) → **Part C**(Q&A 모음) → **Part D**(명령어 치트시트).
 - 실습 코드(server.js, Dockerfile, .dockerignore 등)는 이 레포 밖 `~/Documents/personal/docker-practice/hello-docker/`에 있다.
 
@@ -15,7 +15,7 @@ Docker를 **직접 터미널에 명령어를 치고 Docker Desktop GUI로 확인
 
 # Part A. 세션별 흐름 + 교재 핵심 요약
 
-## 세션 0 — 환경 셋업: daemon / Docker Desktop / CLI 3자 관계
+## 세션 0 - 환경 셋업: daemon / Docker Desktop / CLI 3자 관계
 
 ### 교재 핵심 (이것만 알면 됨)
 
@@ -57,11 +57,11 @@ docker info             # Docker 시스템 상세 정보
 - "Cannot connect to the Docker daemon" 에러는 **daemon이 꺼져 있다**는 신호다 → Docker Desktop을 켜면 해결.
 - Client는 맥(`darwin`), Server(엔진)는 Linux다. 맥 안에서 격리된 Linux가 돌고 있다.
 
-> 더 깊이: [ch01 §5 — Docker Engine 아키텍처](ch01-what-is-docker.md)
+> 더 깊이: [ch01 §5 - Docker Engine 아키텍처](ch01-what-is-docker.md)
 
 ---
 
-## 세션 1 — ch01: 첫 컨테이너 띄우기
+## 세션 1 - ch01: 첫 컨테이너 띄우기
 
 ### 교재 핵심 (이것만 알면 됨)
 
@@ -96,7 +96,7 @@ docker run <이미지>  =  pull(없으면 다운로드)  +  create(컨테이너 
 
 **`node:22-alpine`의 정체**: "노드 서버"가 아니라 **Alpine Linux(초경량 리눅스) + Node.js 런타임**이다. 내 앱 코드는 아직 한 줄도 없는 빈 환경이다.
 
-**명령어 구조** — 이미지 이름이 경계다.
+**명령어 구조** - 이미지 이름이 경계다.
 
 ```
 docker run  --rm  -it   node:22-alpine   node  -e  "console.log('hi')"
@@ -108,7 +108,7 @@ docker run  --rm  -it   node:22-alpine   node  -e  "console.log('hi')"
 ### 이 세션에서 한 일
 
 ```bash
-# 첫 컨테이너 — 한 줄 코드 실행
+# 첫 컨테이너 - 한 줄 코드 실행
 docker run --rm node:22-alpine node -e "console.log('Hello from Docker!')"
 
 # 컨테이너 안 셸로 진입해서 내부 탐험
@@ -127,11 +127,11 @@ docker run --rm -it node:22-alpine sh
 - `-it`와 `-e`는 **서로 다른 프로그램의 옵션**이다(docker vs node).
 - "컨테이너에 들어간다" = 안 끝나는 셸(`sh`)을 실행하고 `-it`로 키보드를 연결한 것.
 
-> 더 깊이: [ch01 §6 — 컨테이너 실행하기](ch01-what-is-docker.md)
+> 더 깊이: [ch01 §6 - 컨테이너 실행하기](ch01-what-is-docker.md)
 
 ---
 
-## 세션 2 — ch02: 이미지
+## 세션 2 - ch02: 이미지
 
 ### 교재 핵심 (이것만 알면 됨)
 
@@ -171,7 +171,7 @@ docker pull node:22                    # full 버전 받기 (다운로드만)
 docker images node                     # alpine(161MB) vs full(1.13GB) 비교
 
 docker image prune                     # <none>(dangling) 이미지 정리
-docker tag node:22 my-node:test        # 별명(라벨) 추가 — 같은 IMAGE ID
+docker tag node:22 my-node:test        # 별명(라벨) 추가 - 같은 IMAGE ID
 docker rmi my-node:test                # 라벨만 제거 (본체는 node:22가 가리켜 유지)
 ```
 
@@ -183,11 +183,11 @@ docker rmi my-node:test                # 라벨만 제거 (본체는 node:22가 
 - 한 이미지 본체에 **여러 라벨**을 붙일 수 있고, `rmi`는 라벨을 떼는(untag) 명령이다.
 - 공식 `node` 이미지엔 **yarn이 기본 포함**돼 있고, **pnpm은 없다**(corepack으로 켠다).
 
-> 더 깊이: [ch02 — 이미지](ch02-images.md)
+> 더 깊이: [ch02 - 이미지](ch02-images.md)
 
 ---
 
-## 세션 3 — ch03: 컨테이너 (살아있는 컨테이너 다루기)
+## 세션 3 - ch03: 컨테이너 (살아있는 컨테이너 다루기)
 
 ### 교재 핵심 (이것만 알면 됨)
 
@@ -238,20 +238,20 @@ docker rm ticker           # 삭제 (멈춘 뒤)
 - `docker run -d`가 ID를 출력해도 **안의 코드가 크래시하면 컨테이너는 즉시 죽는다** → `ps`에 안 보이면 `ps -a`로 찾고 `logs`로 사인 확인. (이번엔 따옴표 줄바꿈으로 `SyntaxError` → `Exited (1)`)
 - `--rm` 없이 띄운 죽은 컨테이너가 **이름을 계속 점유** → 같은 이름 재사용 시 `Conflict ... already in use` → `rm`으로 제거.
 - `exit code`로 사인 구분: `0`(정상) / `1`(에러) / `137`(SIGKILL 강제 종료).
-- `exec`로 들어가 `exit`해도 컨테이너는 **안 죽는다**(곁다리 셸만 종료, 메인 `node`는 계속) — `run -it sh`와의 결정적 차이.
-- 컨테이너 안 시각이 UTC라 호스트(KST)와 9시간 차이 — **격리된 환경**의 증거.
+- `exec`로 들어가 `exit`해도 컨테이너는 **안 죽는다**(곁다리 셸만 종료, 메인 `node`는 계속) - `run -it sh`와의 결정적 차이.
+- 컨테이너 안 시각이 UTC라 호스트(KST)와 9시간 차이 - **격리된 환경**의 증거.
 
-> 더 깊이: [ch03 — 컨테이너](ch03-containers.md)
+> 더 깊이: [ch03 - 컨테이너](ch03-containers.md)
 
 ---
 
-## 세션 4 — ch04: Dockerfile (내 이미지를 직접 build)
+## 세션 4 - ch04: Dockerfile (내 이미지를 직접 build)
 
 ### 교재 핵심 (이것만 알면 됨)
 
 지금까지 남이 만든 이미지(`node:22-alpine`)를 `pull`해 썼다. 이제 **Dockerfile**(이미지 굽는 레시피)로 그 위에 내 코드를 얹어 **내 이미지를 `build`**한다. 세션 1의 "이미지 두 방향(pull/build)" 중 `build`이고, `FROM`이 "어떤 베이스 위에 쌓을지"를 정한다.
 
-**Dockerfile 인스트럭션** (각각 레이어 하나가 됨 — ch02 레이어의 역방향):
+**Dockerfile 인스트럭션** (각각 레이어 하나가 됨 - ch02 레이어의 역방향):
 
 | 인스트럭션 | 의미 |
 |---|---|
@@ -296,7 +296,7 @@ curl localhost:3000                  # → v2 반영!
 - `--name` 생략 시 도커가 랜덤 이름(`형용사_과학자`)을 부여. (→ B-25)
 - `COPY`는 파일·폴더·전체(`COPY . .`) 다 되고, 목적지 `.`은 WORKDIR 기준.
 
-> 더 깊이: [ch04 — Dockerfile 완전 정복](ch04-dockerfile-deep-dive.md)
+> 더 깊이: [ch04 - Dockerfile 완전 정복](ch04-dockerfile-deep-dive.md)
 
 ---
 
@@ -459,7 +459,7 @@ docker run --rm -it node:22-alpine sh
 | 속도 | 몇 분~수십 분 | 수십 초 |
 | 환경 일관성 | 재빌드 환경에 따라 미묘하게 다를 수 있음 | 그때 그 환경 그대로(불변) |
 
-> 배포마다 **커밋 SHA**를 이미지 태그로 push하면(`ghcr.io/org/app:$GIT_SHA`), 과거 버전이 레지스트리에 보존되어 즉시 롤백 가능. (단 **DB 스키마 변경은 이미지 롤백으로 안 돌아감** — 데이터는 컨테이너 바깥의 별개 문제)
+> 배포마다 **커밋 SHA**를 이미지 태그로 push하면(`ghcr.io/org/app:$GIT_SHA`), 과거 버전이 레지스트리에 보존되어 즉시 롤백 가능. (단 **DB 스키마 변경은 이미지 롤백으로 안 돌아감** - 데이터는 컨테이너 바깥의 별개 문제)
 
 ## B-14. Docker Desktop vs daemon vs CLI
 
@@ -469,7 +469,7 @@ docker run --rm -it node:22-alpine sh
 | **daemon** (`dockerd`) | 실제 일하는 엔진. 맥에선 Linux VM 안에서 돎 |
 | **Docker Desktop** | 맥에 Linux VM을 띄워 daemon을 살리고, GUI 대시보드 제공 |
 
-> 셋은 한 몸이다. CLI로 띄운 컨테이너가 GUI에 즉시 뜨고, GUI에서 멈추면 `docker ps`에서도 사라진다 — 같은 daemon을 보기 때문.
+> 셋은 한 몸이다. CLI로 띄운 컨테이너가 GUI에 즉시 뜨고, GUI에서 멈추면 `docker ps`에서도 사라진다 - 같은 daemon을 보기 때문.
 
 ## B-15. docker run vs docker exec
 
@@ -556,7 +556,7 @@ docker run --rm -it node:22-alpine sh
 | | `docker build` | 돌고 있는 컨테이너 |
 |---|---|---|
 | 효과 | 새 이미지 생성 | 그대로 (옛 이미지로 계속 돎) |
-| 반영하려면 | — | `rm` → 새 이미지로 `run` (갈아끼우기) |
+| 반영하려면 | - | `rm` → 새 이미지로 `run` (갈아끼우기) |
 
 > 붕어빵 틀을 새로 만들어도 이미 구운 붕어빵은 안 바뀐다. 실무 배포 = 새 이미지 빌드 → 컨테이너 교체.
 
@@ -593,7 +593,7 @@ A. 맞다. `-it`는 `docker run`의 옵션(이미지 이름 앞), `node -e`의 `
 A. 기술적으론 필요 없다(node에 npm이 딸려옴). yarn 1 전성기부터 공식 이미지에 번들됐고, 이제 와 빼면 수많은 Dockerfile이 깨져서 호환성 때문에 유지하는 레거시다. pnpm은 미포함이지만 내장된 **corepack**으로 `corepack enable` 한 줄이면 켤 수 있다. (→ B-11)
 
 **Q8. `docker pull node:22`는 클라우드의 환경 구성된 무언가를 받는 거고, 공식 노드팀이 제공하는 건가?**
-A. 정확하다. 그 "클라우드 저장소"의 정식 명칭은 **레지스트리**(기본값 = Docker Hub)다. `node`처럼 접두어 없는 이름은 **공식 이미지**(`library/node`)다. `npm install`이나 `git clone`과 똑같은 구조 — 중앙 저장소에서 남이 만든 걸 받아 쓴다.
+A. 정확하다. 그 "클라우드 저장소"의 정식 명칭은 **레지스트리**(기본값 = Docker Hub)다. `node`처럼 접두어 없는 이름은 **공식 이미지**(`library/node`)다. `npm install`이나 `git clone`과 똑같은 구조 - 중앙 저장소에서 남이 만든 걸 받아 쓴다.
 
 **Q9. `pull`할 때 원하는 이름으로 바로 못 받나? (그럼 tag로 라벨이 2개 되잖아)**
 A. `pull`은 레지스트리에 적힌 이름 그대로 받는다(개명 옵션 없음). 출처를 보존하기 위해서다. 별명이 필요하면 `docker tag`로 추가하는데, 라벨이 2개여도 **본체는 1개**라 디스크 낭비는 없다. (→ B-5, B-7)
@@ -605,7 +605,7 @@ A. 맞다. GitHub Actions가 push마다 `docker build` → `docker push`(GHCR에
 A. 맞다. 단 기존 이미지가 업그레이드되는 게 아니라(이미지는 불변), **별개의 이미지를 하나 더 받는** 것이다. 받고 나면 22와 24가 로컬에 공존한다. 태그는 `<버전>-<변형>` 조합이다(`24-alpine` = Node 24 최신 + alpine).
 
 **Q12. "라벨(메모)과 실물이 같다"는 게 무슨 뜻?**
-A. `docker history`에 적힌 `ENV NODE_VERSION=22.x`(빌드 시 기록한 메모)와, 컨테이너 안에서 `node -v`로 확인한 실제 버전이 일치한다는 뜻. 이미지가 **불변(봉인된 통조림)**이라 누가 언제 어디서 실행해도 똑같다 — 이게 도커가 "내 컴퓨터에선 되는데" 문제를 해결하는 원리다.
+A. `docker history`에 적힌 `ENV NODE_VERSION=22.x`(빌드 시 기록한 메모)와, 컨테이너 안에서 `node -v`로 확인한 실제 버전이 일치한다는 뜻. 이미지가 **불변(봉인된 통조림)**이라 누가 언제 어디서 실행해도 똑같다 - 이게 도커가 "내 컴퓨터에선 되는데" 문제를 해결하는 원리다.
 
 **Q13. `stop`/`rm`은 `run`이 자동으로 하나, 별도 명령인가?**
 A. 별도 명령이다. `docker run`은 Running까지만 데려다놓는다. 멈추기(`stop`)·삭제(`rm`)는 직접 쳐야 한다. 단 `--rm` 옵션을 붙이면 "종료 시 자동 `rm`"까지 해준다. (→ B-16)
@@ -696,7 +696,7 @@ docker run --rm <이미지> node -e "코드"    # 한 줄 코드 실행
 #   -e KEY=V 환경변수 주입(--env)  ※ node -e 의 -e(코드 평가)와 다름!
 ```
 
-## 컨테이너 — 조회·로그·진입·생명주기 (세션 3)
+## 컨테이너 - 조회·로그·진입·생명주기 (세션 3)
 
 ```bash
 # 조회
@@ -710,7 +710,7 @@ docker run -d --name <이름> <이미지> <명령>   # -d: 백그라운드(detac
 docker logs <컨테이너>          # 로그 출력 (크래시 사인 확인)
 docker logs -f <컨테이너>       # 실시간 (Ctrl+C로 빠져나옴, 컨테이너는 안 죽음)
 docker exec -it <컨테이너> sh   # 도는 컨테이너에 진입 (COMMAND 필수!)
-docker exec <컨테이너> <명령>   # 단발 명령 (예: date, ls — -it 불필요)
+docker exec <컨테이너> <명령>   # 단발 명령 (예: date, ls - -it 불필요)
 
 # 생명주기 제어
 docker stop <컨테이너>          # 멈춤 (SIGTERM→10초→SIGKILL)
@@ -734,4 +734,4 @@ docker build -t <이름> -f <경로>/Dockerfile .  # Dockerfile 경로 지정 (-
 
 ---
 
-> **다음 세션 예고**: 세션 5 = [ch05 볼륨과 바인드 마운트](ch05-volumes-and-bind-mounts.md) — 컨테이너를 지우면 안의 데이터도 함께 사라진다. 이번엔 **데이터를 컨테이너 바깥에 영속**시키는 법(볼륨 vs 바인드 마운트)과, 코드를 고치면 즉시 반영되는 개발 환경(HMR)을 배운다.
+> **다음 세션 예고**: 세션 5 = [ch05 볼륨과 바인드 마운트](ch05-volumes-and-bind-mounts.md) - 컨테이너를 지우면 안의 데이터도 함께 사라진다. 이번엔 **데이터를 컨테이너 바깥에 영속**시키는 법(볼륨 vs 바인드 마운트)과, 코드를 고치면 즉시 반영되는 개발 환경(HMR)을 배운다.

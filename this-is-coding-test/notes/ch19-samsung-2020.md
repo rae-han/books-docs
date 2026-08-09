@@ -232,7 +232,7 @@ function adultShark(
     }
     time++;
 
-    // 1) 냄새 시간 감소 (이동 결정 전 — 막 사라지는 냄새는 빈 칸으로 취급)
+    // 1) 냄새 시간 감소 (이동 결정 전 - 막 사라지는 냄새는 빈 칸으로 취급)
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < n; j++) {
         if (smell[i][j]) {

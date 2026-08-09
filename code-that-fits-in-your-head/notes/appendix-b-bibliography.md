@@ -174,11 +174,11 @@
 
 이 목록에서 우선 읽을 만한 것을 딱 다섯 권만 고른다면 저자의 인용 빈도로 봤을 때 다음이 유력하다.
 
-1. **Refactoring** — Martin Fowler
-2. **Working Effectively with Legacy Code** — Michael Feathers
-3. **Accelerate** — Forsgren, Humble, Kim
-4. **Growing Object-Oriented Software, Guided by Tests** — Freeman & Pryce
-5. **Thinking, Fast and Slow** — Daniel Kahneman
+1. **Refactoring** - Martin Fowler
+2. **Working Effectively with Legacy Code** - Michael Feathers
+3. **Accelerate** - Forsgren, Humble, Kim
+4. **Growing Object-Oriented Software, Guided by Tests** - Freeman & Pryce
+5. **Thinking, Fast and Slow** - Daniel Kahneman
 
 ---
 
@@ -186,7 +186,7 @@
 
 - 이 책은 소프트웨어 공학 고전, 애자일, 리팩터링, 디자인 패턴, 아키텍처, 테스트, 보안, 인지 과학, 함수형 프로그래밍, REST, 코드 분석, 사회과학까지 폭넓게 참조
 - 저자가 자주 인용하는 축: **Kent Beck, Martin Fowler, Robert C. Martin, Michael Feathers, Gerald Weinberg**
-- **콘웨이의 법칙, 시스템 1/2, 명료성**은 이 책의 이론적 뼈대 — 각각 콘웨이(1968), 카너먼(2011), 스콧(1998)에서 옴
+- **콘웨이의 법칙, 시스템 1/2, 명료성**은 이 책의 이론적 뼈대 - 각각 콘웨이(1968), 카너먼(2011), 스콧(1998)에서 옴
 - Steven van Deursen과 공저한 『Dependency Injection Principles, Practices, and Patterns』은 저자 본인의 핵심 저서
 - 저자의 [blog.ploeh.dk](https://blog.ploeh.dk) 에는 이 책의 각 주장을 뒷받침하는 상세 코드 예제가 있다
 - 우선 다섯 권: Fowler(Refactoring), Feathers(Legacy Code), Accelerate, GOOS, Thinking Fast and Slow

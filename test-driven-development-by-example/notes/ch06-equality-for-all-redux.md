@@ -198,7 +198,7 @@ class Dollar extends Money {
 이제 핵심 단계다. Dollar의 `equals()`에서 캐스팅 타입을 `Dollar`에서 `Money`로 변경한다:
 
 ```java
-// Dollar.java — equals()의 캐스팅 타입 변경
+// Dollar.java - equals()의 캐스팅 타입 변경
 public boolean equals(Object object) {
     Money money = (Money) object;          // Dollar → Money
     return amount == money.amount;
@@ -209,7 +209,7 @@ public boolean equals(Object object) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Dollar.ts — equals()의 파라미터 타입 변경
+// Dollar.ts - equals()의 파라미터 타입 변경
 equals(object: Money): boolean {          // Dollar → Money
     return this.amount === object.amount;
 }
@@ -261,7 +261,7 @@ class Dollar extends Money {
         return new Dollar(amount * multiplier);
     }
 
-    // equals() 제거 — Money에서 상속받음
+    // equals() 제거 - Money에서 상속받음
 }
 ```
 
@@ -279,7 +279,7 @@ class Dollar extends Money {
         return new Dollar(this.amount * multiplier);
     }
 
-    // equals() 제거 — Money에서 상속받음
+    // equals() 제거 - Money에서 상속받음
 }
 ```
 
@@ -301,8 +301,8 @@ class Franc extends Money {
         return new Franc(amount * multiplier);
     }
 
-    // equals() 제거 — Money에서 상속받음
-    // amount 필드도 제거 — Money에서 상속받음
+    // equals() 제거 - Money에서 상속받음
+    // amount 필드도 제거 - Money에서 상속받음
 }
 ```
 
@@ -320,8 +320,8 @@ class Franc extends Money {
         return new Franc(this.amount * multiplier);
     }
 
-    // equals() 제거 — Money에서 상속받음
-    // amount 필드도 제거 — Money에서 상속받음
+    // equals() 제거 - Money에서 상속받음
+    // amount 필드도 제거 - Money에서 상속받음
 }
 ```
 
@@ -711,7 +711,7 @@ test('equality', () => {
 - [ ] **Franc과 Dollar 비교**
 - [ ] 통화(Currency)?
 
-`공통 equals()`가 완료되었다. Dollar와 Franc의 `equals()` 중복이 Money로 통합되었다. 하지만 아직 **Franc과 Dollar 비교** 문제가 남아 있다 — `Dollar(5).equals(Franc(5))`는 현재 `true`를 반환한다. 이것은 다음 챕터의 주제다.
+`공통 equals()`가 완료되었다. Dollar와 Franc의 `equals()` 중복이 Money로 통합되었다. 하지만 아직 **Franc과 Dollar 비교** 문제가 남아 있다 - `Dollar(5).equals(Franc(5))`는 현재 `true`를 반환한다. 이것은 다음 챕터의 주제다.
 
 ---
 
@@ -720,8 +720,8 @@ test('equality', () => {
 - Dollar와 Franc의 **`equals()` 중복**을 제거하기 위해 공통 상위 클래스 **Money**를 도입했다.
 - `amount` 필드와 `equals()` 메서드를 Money로 올렸다.
 - 리팩토링은 **작은 단계**로 나누어 진행했으며, **매 단계마다 테스트를 실행**하여 안전성을 확보했다.
-- Franc의 동등성 테스트가 없었으므로 추가했다 — 공통 코드가 모든 사용처에서 동작하는지 확인하기 위해.
-- `amount`의 접근 제어자가 `private`에서 `protected`로 변경되었다 — 상속을 위한 트레이드오프다.
+- Franc의 동등성 테스트가 없었으므로 추가했다 - 공통 코드가 모든 사용처에서 동작하는지 확인하기 위해.
+- `amount`의 접근 제어자가 `private`에서 `protected`로 변경되었다 - 상속을 위한 트레이드오프다.
 - **상속을 사용한 중복 제거**는 가장 기본적인 리팩토링 기법 중 하나다. TDD에서는 테스트가 리팩토링의 안전망이 된다.
 
 ---

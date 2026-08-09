@@ -107,7 +107,7 @@ static franc(amount: number): Money {
 
 ## 3. TDD 사이클
 
-### 3.1 Red/Green — 팩토리 메서드 변경
+### 3.1 Red/Green - 팩토리 메서드 변경
 
 이 챕터는 새로운 기능을 추가하는 것이 아니라 **기존 기능을 유지하면서 코드를 제거**하는 리팩토링이다. 따라서 새 테스트를 작성하기보다는 기존 테스트가 계속 통과하는지 확인하면서 진행한다.
 
@@ -142,7 +142,7 @@ static dollar(amount: number): Money {
 
 </details>
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
 Chapter 10에서 `equals()`를 통화 비교로 변경했기 때문에, `new Money(10, "USD")`와 `new Dollar(10, "USD")`는 동등하다. 기존 테스트가 모두 통과한다.
 
@@ -177,9 +177,9 @@ static franc(amount: number): Money {
 
 </details>
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
-### 3.2 Refactor — 서브클래스 삭제
+### 3.2 Refactor - 서브클래스 삭제
 
 이제 Dollar와 Franc 클래스를 참조하는 코드가 **어디에도 없다**. 안전하게 삭제할 수 있다.
 
@@ -187,7 +187,7 @@ static franc(amount: number): Money {
 
 **Step 4**: Franc 클래스 삭제.
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
 ### 3.3 테스트 코드 정리
 
@@ -220,10 +220,10 @@ test('different class equality', () => {
 
 ## 4. 제거 후의 코드
 
-### 4.1 최종 코드 — Money 하나로 통합
+### 4.1 최종 코드 - Money 하나로 통합
 
 ```java
-// Money.java — 이것이 전부다!
+// Money.java - 이것이 전부다!
 class Money {
     protected int amount;
     protected String currency;
@@ -265,7 +265,7 @@ class Money {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Money.ts — 이것이 전부다!
+// Money.ts - 이것이 전부다!
 class Money {
     protected amount: number;
     protected _currency: string;

@@ -48,7 +48,7 @@ Child Test의 절차:
 ### 예시
 
 ```java
-// 원래의 큰 테스트 — 이것을 한 번에 통과시키기 어렵다
+// 원래의 큰 테스트 - 이것을 한 번에 통과시키기 어렵다
 public void testOrderTotal() {
     Order order = new Order();
     order.addItem(new Item("Widget", 25.00, 3));    // 25 × 3 = 75
@@ -64,7 +64,7 @@ public void testOrderTotal() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 원래의 큰 테스트 — 이것을 한 번에 통과시키기 어렵다
+// 원래의 큰 테스트 - 이것을 한 번에 통과시키기 어렵다
 test('order total', () => {
     const order = new Order();
     order.addItem(new Item('Widget', 25.00, 3));    // 25 × 3 = 75
@@ -151,7 +151,7 @@ test('order with tax', () => {
 
 각 자식 테스트는 한 가지 기능만 검증하며, 한 번에 통과시킬 수 있다.
 
-> **핵심 통찰**: Child Test는 Chapter 26의 One Step Test와 연결된다. 테스트가 "한 걸음" 이상을 요구하면, 그 걸음을 여러 개의 작은 걸음으로 나눈다. 큰 테스트를 작성한 것 자체는 실수가 아니다 — 그것은 목적지를 설정한 것이다. 실수는 그 큰 테스트를 한 번에 통과시키려 하는 것이다.
+> **핵심 통찰**: Child Test는 Chapter 26의 One Step Test와 연결된다. 테스트가 "한 걸음" 이상을 요구하면, 그 걸음을 여러 개의 작은 걸음으로 나눈다. 큰 테스트를 작성한 것 자체는 실수가 아니다 - 그것은 목적지를 설정한 것이다. 실수는 그 큰 테스트를 한 번에 통과시키려 하는 것이다.
 
 ---
 
@@ -218,7 +218,7 @@ class OrderService {
 ```java
 // Mock을 사용한 테스트
 public void testFindOrder() {
-    // Mock DB 생성 — 실제 DB 없이 동작
+    // Mock DB 생성 - 실제 DB 없이 동작
     MockDatabase mockDb = new MockDatabase();
     mockDb.setupResult("SELECT * FROM orders WHERE id = ?",
         new MockResultSet("Widget Order", 99.95));
@@ -237,7 +237,7 @@ public void testFindOrder() {
 ```typescript
 // Mock을 사용한 테스트
 test('find order', () => {
-    // Mock DB 생성 — 실제 DB 없이 동작
+    // Mock DB 생성 - 실제 DB 없이 동작
     const mockDb = new MockDatabase();
     mockDb.setupResult('SELECT * FROM orders WHERE id = ?',
         new MockResultSet('Widget Order', 99.95));
@@ -384,7 +384,7 @@ test('button click', () => {
 Self Shunt를 사용하는 방법:
 
 ```java
-// 방법 2: Self Shunt — 테스트 클래스가 직접 인터페이스 구현
+// 방법 2: Self Shunt - 테스트 클래스가 직접 인터페이스 구현
 public class ButtonTest extends TestCase implements ActionListener {
     String lastAction;
 
@@ -405,7 +405,7 @@ public class ButtonTest extends TestCase implements ActionListener {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 방법 2: Self Shunt — 테스트 자체가 리스너 역할
+// 방법 2: Self Shunt - 테스트 자체가 리스너 역할
 test('button click (self shunt)', () => {
     let lastAction = '';
     const listener: ActionListener = {
@@ -739,10 +739,10 @@ Broken Test는 **개인 작업에만** 적용되는 패턴이다. 팀과 공유�
 이 패턴은 **반드시 개인 브랜치 또는 로컬 작업에서만** 사용해야 한다:
 
 ```
-✓ 로컬에서 혼자 작업할 때 — Broken Test OK
-✓ 개인 브랜치에서 — Broken Test OK
-✗ 공유 브랜치(main/master)에 커밋 — Broken Test 절대 금지!
-✗ CI/CD 파이프라인에 — Broken Test 절대 금지!
+✓ 로컬에서 혼자 작업할 때 - Broken Test OK
+✓ 개인 브랜치에서 - Broken Test OK
+✗ 공유 브랜치(main/master)에 커밋 - Broken Test 절대 금지!
+✗ CI/CD 파이프라인에 - Broken Test 절대 금지!
 ```
 
 > **핵심 통찰**: Broken Test는 "내일의 나에게 보내는 메모"이다. 텍스트 메모("내일 할 일: ...")보다 실패하는 테스트가 더 효과적인 이유는, 테스트가 **실행 가능한 명세**이기 때문이다. "다음에 할 일"이 무엇인지뿐만 아니라, 그것이 **어떤 상태에서 시작하는지**까지 코드로 표현된다.
@@ -783,7 +783,7 @@ Clean Check-in의 원칙:
     ↓
 개발자 B가 최신 코드를 받음
     ↓
-개발자 B의 테스트가 실패 — 자신의 코드 문제인가? A의 문제인가?
+개발자 B의 테스트가 실패 - 자신의 코드 문제인가? A의 문제인가?
     ↓
 디버깅에 시간 낭비
     ↓

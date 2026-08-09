@@ -11,7 +11,7 @@
 | 개념 | 정의 |
 |------|------|
 | **프레임(Frame)** | 이름-값 바인딩의 집합을 담는 테이블 |
-| **환경(Environment)** | 프레임들의 체인 — 각 프레임이 상위 환경(enclosing environment)을 가리킴 |
+| **환경(Environment)** | 프레임들의 체인 - 각 프레임이 상위 환경(enclosing environment)을 가리킴 |
 | **전역 환경(Global environment)** | 최상위 프레임. 내장 함수와 전역 변수를 담음 |
 
 ---
@@ -88,7 +88,7 @@ const W1 = make_withdraw(100);
 ```
 
 1. `make_withdraw(100)` 호출 → 프레임 E1 생성: `balance: 100`
-2. 반환되는 화살표 함수는 (코드, E1)로 구성 — E1을 기억한다
+2. 반환되는 화살표 함수는 (코드, E1)로 구성 - E1을 기억한다
 3. `W1(50)` 호출 → 프레임 E2 생성: `amount: 50`, 상위는 E1
 4. E2에서 `balance`를 찾으면 E1의 `balance: 100` 발견 → `balance = 50`으로 변경
 

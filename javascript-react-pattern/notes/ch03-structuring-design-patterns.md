@@ -180,7 +180,7 @@ function createSubject<T>(): Subject<T> {
 ```typescript
 // 필요성 근거의 예: 전략 패턴이 왜 필요한가?
 
-// 패턴 없이 — 조건문이 계속 늘어남
+// 패턴 없이 - 조건문이 계속 늘어남
 function calculateDiscount(type: string, amount: number): number {
   if (type === "vip") return amount * 0.2;
   if (type === "member") return amount * 0.1;
@@ -191,7 +191,7 @@ function calculateDiscount(type: string, amount: number): number {
   return 0;
 }
 
-// 전략 패턴 적용 — 새 전략 추가 시 기존 코드 수정 불필요
+// 전략 패턴 적용 - 새 전략 추가 시 기존 코드 수정 불필요
 interface DiscountStrategy {
   calculate(amount: number): number;
 }
@@ -245,9 +245,9 @@ function applyDiscount(strategy: DiscountStrategy, amount: number): number {
 
 ```typescript
 // 후보 패턴: "타입 가드 팩토리 패턴"
-// — 런타임 타입 검사 함수를 자동 생성하는 패턴
+// - 런타임 타입 검사 함수를 자동 생성하는 패턴
 
-// 1. 실용성 ✅ — API 응답 검증에서 실제로 필요
+// 1. 실용성 ✅ - API 응답 검증에서 실제로 필요
 function createTypeGuard<T>(
   schema: Record<keyof T, string>
 ): (value: unknown) => value is T {
@@ -266,10 +266,10 @@ interface User {
 
 const isUser = createTypeGuard<User>({ name: "string", age: "number" });
 
-// 2. 모범 사례 ⚠️ — Zod, io-ts 같은 라이브러리가 이미 이 문제를 해결
-// 3. 사용자에 대한 솔직함 ✅ — 중첩 객체 검증 불가 등 한계 기술 가능
-// 4. 독창성 불필요 ✅ — Validation 패턴의 TypeScript 맥락 적용
-// 5. 훌륭한 예시 ✅ — API 응답 검증 예시가 명확
+// 2. 모범 사례 ⚠️ - Zod, io-ts 같은 라이브러리가 이미 이 문제를 해결
+// 3. 사용자에 대한 솔직함 ✅ - 중첩 객체 검증 불가 등 한계 기술 가능
+// 4. 독창성 불필요 ✅ - Validation 패턴의 TypeScript 맥락 적용
+// 5. 훌륭한 예시 ✅ - API 응답 검증 예시가 명확
 
 // 결론: 기준 2를 충족하지 못하므로 독립 패턴보다는
 //       기존 패턴(Validation 패턴)의 TypeScript 변형으로 문서화하는 것이 적절하다
@@ -284,12 +284,12 @@ const isUser = createTypeGuard<User>({ name: "string", age: "number" });
 ### 기존 모듈 패턴의 문제
 
 ```typescript
-// 기존 모듈 패턴 — 공개 멤버와 비공개 멤버의 문법이 다르다
+// 기존 모듈 패턴 - 공개 멤버와 비공개 멤버의 문법이 다르다
 const counterModule = (() => {
   let count = 0; // private
 
   return {
-    increment() {    // public — 객체 리터럴 내부에 직접 정의
+    increment() {    // public - 객체 리터럴 내부에 직접 정의
       count++;
     },
     getCount() {     // public
@@ -307,7 +307,7 @@ const counterModule = (() => {
 ### 노출 모듈 패턴의 개선
 
 ```typescript
-// 노출 모듈 패턴 — 모든 함수를 동일한 방식으로 정의하고, 마지막에 공개할 것만 선택
+// 노출 모듈 패턴 - 모든 함수를 동일한 방식으로 정의하고, 마지막에 공개할 것만 선택
 const counterModule = (() => {
   let count = 0;
 
@@ -351,7 +351,7 @@ const counterModule = (() => {
 | 런타임에 한 번만 실행 | 정적 분석 가능, 트리 셰이킹 지원 |
 
 ```typescript
-// 현대 ES Module — 노출 모듈 패턴의 정신을 계승
+// 현대 ES Module - 노출 모듈 패턴의 정신을 계승
 let count = 0;                    // 모듈 스코프 (비공개)
 
 function increment(): void {      // 아직 비공개
@@ -381,7 +381,7 @@ export { increment, getCount };   // 공개할 것만 export
 |-------------|------|
 | **Storybook** | 컴포넌트 패턴의 시각적 문서화 및 인터랙티브 예시 |
 | **TypeDoc** | TypeScript 인터페이스를 통한 패턴 구조 자동 문서화 |
-| **ADR** (*Architecture Decision Records — 아키텍처 결정 기록*) | 아키텍처 패턴 선택의 근거를 기록하는 문서 형식 |
+| **ADR** (*Architecture Decision Records - 아키텍처 결정 기록*) | 아키텍처 패턴 선택의 근거를 기록하는 문서 형식 |
 | **GitHub Discussions** | 오픈 소스 프로젝트에서의 패턴 토론과 피드백 |
 | **RFC 문서** | React, Next.js 등 주요 프레임워크의 패턴 제안 형식 |
 

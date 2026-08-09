@@ -44,7 +44,7 @@ tearDown() → 자원 해제 (release)
 
 ## 2. TDD 사이클
 
-### 2.1 Red — tearDown()이 호출되는지 테스트
+### 2.1 Red - tearDown()이 호출되는지 테스트
 
 Chapter 19에서 도입한 로그 문자열 기법을 그대로 활용한다. `tearDown()`이 호출되면 로그에 `"tearDown "`이 추가되어야 한다:
 
@@ -83,7 +83,7 @@ AssertionError
 
 `tearDown()`이 아직 구현되지 않았으므로 로그에 기록되지 않는다. Red Bar!
 
-### 2.2 Green — tearDown() 구현
+### 2.2 Green - tearDown() 구현
 
 두 곳을 수정한다:
 
@@ -182,7 +182,7 @@ TestCaseTest("testTemplateMethod").run()
 
 통과! 로그 문자열이 `"setUp testMethod tearDown "`으로 정확히 일치한다. Green Bar!
 
-### 2.3 Refactor — Template Method 완성
+### 2.3 Refactor - Template Method 완성
 
 이 시점에서 `TestCase.run()`을 보면 Template Method 패턴이 완전한 형태를 갖추었다:
 
@@ -422,7 +422,7 @@ new TestCaseTest("testTemplateMethod").run();
 - [ ] setUp 에러를 잡아서 보고하기
 - [ ] TestSuite 만들기
 
-`tearDown 나중에 호출하기`가 완료되었다. "테스트 메서드가 실패해도 tearDown 호출하기"는 아직 미완성 — Chapter 22에서 예외 처리와 함께 다룬다.
+`tearDown 나중에 호출하기`가 완료되었다. "테스트 메서드가 실패해도 tearDown 호출하기"는 아직 미완성 - Chapter 22에서 예외 처리와 함께 다룬다.
 
 ---
 
@@ -433,7 +433,7 @@ new TestCaseTest("testTemplateMethod").run();
 - **로그 문자열**로 세 단계의 호출 순서를 `"setUp testMethod tearDown "`으로 검증할 수 있다.
 - 현재 구현에는 **약점**이 있다: 테스트 메서드에서 예외가 발생하면 `tearDown()`이 호출되지 않는다. 이것은 TODO 리스트에 기록하고, 나중에 해결한다.
 - **테스트 격리(Test Isolation)**: 매 테스트마다 `setUp/tearDown`을 실행하여 테스트 간 간섭을 방지한다. 성능보다 격리를 우선시한다.
-- 이 챕터의 변경은 매우 작았다 — `tearDown()` 메서드 추가와 `run()`에서의 호출 한 줄. **작은 단계**로 진행하는 TDD의 리듬이 여전히 유지된다.
+- 이 챕터의 변경은 매우 작았다 - `tearDown()` 메서드 추가와 `run()`에서의 호출 한 줄. **작은 단계**로 진행하는 TDD의 리듬이 여전히 유지된다.
 
 ---
 

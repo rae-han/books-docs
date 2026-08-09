@@ -4,7 +4,7 @@
 
 어떻게 한 객체가 다른 객체들의 그룹에 정책(*policy - 객체들이 따라야 할 사용 규약과 절차*)을 부과할 수 있는가? 정책을 "위로부터 가시적으로" 적용하는 것과 "아래로부터 비가시적으로" 적용하는 것은 각각 어떤 상황에서 적절한가? 퍼사드(*Facade - 외관, 건물의 정면*)와 미디에이터(*Mediator - 중재자*)는 같은 목표를 어떻게 다른 방식으로 달성하는가?
 
-> 상징이 체면을 지켜주는 외벽이 되어서 꿈의 외설스러움을 숨겨준다.<br>— 메이슨 쿨리(Mason Cooley)
+> 상징이 체면을 지켜주는 외벽이 되어서 꿈의 외설스러움을 숨겨준다.<br>- 메이슨 쿨리(Mason Cooley)
 
 ---
 
@@ -18,7 +18,7 @@
 | 가시성 | 가시적(visible) | 비가시적(invisible) |
 | 강제성 | 강제적(imposing) | 허용적·암묵적 |
 | 사용자 인식 | 사용자는 퍼사드의 존재를 알고 그것을 거쳐야 한다 | 사용자는 미디에이터의 존재를 모른다 |
-| 정책의 성격 | 규정(convention) — 합의된 약속 | 기정사실(fait accompli) — 이미 일어나는 일 |
+| 정책의 성격 | 규정(convention) - 합의된 약속 | 기정사실(fait accompli) - 이미 일어나는 일 |
 
 > **핵심 통찰**: 퍼사드는 위로부터 정책을 적용하고, 미디에이터는 아래로부터 정책을 적용한다. 퍼사드의 사용은 가시적이고 강제적인 반면, 미디에이터의 사용은 비가시적이고 허용적이다. 정책의 "어디서, 어떻게" 보이는지가 두 패턴을 가르는 핵심이다.
 
@@ -224,7 +224,7 @@ public class QuickEntryMediator {
 </details>
 
 ```typescript
-// TypeScript (개념적 대응 — 브라우저 환경의 input/select 사용)
+// TypeScript (개념적 대응 - 브라우저 환경의 input/select 사용)
 /** 텍스트 입력 접두어와 일치하는 첫 옵션을 선택하는 미디에이터. */
 class QuickEntryMediator {
     private readonly itsTextField: HTMLInputElement;
@@ -234,7 +234,7 @@ class QuickEntryMediator {
         this.itsTextField = textField;
         this.itsList = list;
 
-        // textField에 리스너를 등록한다 — list와 textField는 미디에이터를 모른다
+        // textField에 리스너를 등록한다 - list와 textField는 미디에이터를 모른다
         this.itsTextField.addEventListener('input', () => {
             this.textFieldChanged();
         });
@@ -262,7 +262,7 @@ class QuickEntryMediator {
     }
 }
 
-// 사용 예 — 생성하고 잊어버리면 된다
+// 사용 예 - 생성하고 잊어버리면 된다
 const t = document.querySelector<HTMLInputElement>('#text')!;
 const l = document.querySelector<HTMLSelectElement>('#list')!;
 new QuickEntryMediator(t, l); // 이게 전부다.
@@ -280,7 +280,7 @@ new QuickEntryMediator(t, l); // 이게 전부다.
 
 ---
 
-## 4. 두 패턴의 비교 — 언제 무엇을 쓸 것인가
+## 4. 두 패턴의 비교 - 언제 무엇을 쓸 것인가
 
 ### 4.1 결정 기준
 
@@ -310,9 +310,9 @@ new QuickEntryMediator(t, l); // 이게 전부다.
 ## 요약
 
 - 퍼사드와 미디에이터는 모두 **객체들의 그룹에 정책을 부과**한다는 공통점을 가진다
-- 차이는 **정책 적용 방향과 가시성**이다 — 퍼사드는 위에서 가시적·강제적으로, 미디에이터는 아래에서 비가시적·허용적으로
+- 차이는 **정책 적용 방향과 가시성**이다 - 퍼사드는 위에서 가시적·강제적으로, 미디에이터는 아래에서 비가시적·허용적으로
 - **퍼사드**는 복잡하고 일반적인 인터페이스 위에 간단하고 구체적인 인터페이스를 씌운다. 예: `DB` 클래스가 `java.sql`을 감싸 `Application`에게 좁은 창구만 제공
-- 퍼사드의 정책은 **합의된 규정**이다 — "모든 호출은 퍼사드를 거친다"
+- 퍼사드의 정책은 **합의된 규정**이다 - "모든 호출은 퍼사드를 거친다"
 - **미디에이터**는 객체들 사이의 상호작용을 캡슐화하되, 그 객체들이 미디에이터의 존재를 모르게 한다. 예: `QuickEntryMediator`가 `JTextField`와 `JList`를 결합
-- 미디에이터의 정책은 **기정사실**이다 — 객체들의 허락이나 인식 없이 적용된다
-- 선택 기준: **정책이 얼마나 드러나야 하는가** — 크고 가시적이면 퍼사드, 교묘하고 재량적이면 미디에이터
+- 미디에이터의 정책은 **기정사실**이다 - 객체들의 허락이나 인식 없이 적용된다
+- 선택 기준: **정책이 얼마나 드러나야 하는가** - 크고 가시적이면 퍼사드, 교묘하고 재량적이면 미디에이터

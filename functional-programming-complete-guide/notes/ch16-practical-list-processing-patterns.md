@@ -832,7 +832,7 @@ console.log(formatCalendar([
 때로는 부수 효과를 일으키면서도 실행 결과를 반환해야 하는 경우가 있다. 이때는 `mapEffect` 같은 함수명을 사용하여, `map`과 유사하게 동작하지만 부수 효과를 포함한 동작임을 이름으로 명확히 표현할 수 있다.
 
 ```typescript
-// [코드 5-59a] 결제 취소 — 부수 효과 구간을 이름으로 드러내기
+// [코드 5-59a] 결제 취소 - 부수 효과 구간을 이름으로 드러내기
 await fx(payments)
   .toAsync()
   .reject(p => ordersMapById.has(p.store_order_id))  // ordersMapById: orders를 Map 해시로 변환(3.3절)
@@ -840,7 +840,7 @@ await fx(payments)
   .forEach(res => console.log(res.message));         // 부수 효과만
 ```
 
-이렇게 순수한 변환(`map`·`filter`·`reduce`)과 부수 효과(`forEach`·`mapEffect`)를 구분하면 어떤 코드 블록에서 어떤 변화가 일어나는지 예측하기 쉬워 디버깅과 유지보수가 용이해진다. 부수 효과를 의도적으로 허용하되 그 구간을 이름으로 명확히 구분하는 것 — 순수 함수와 부수 효과의 격리라는 함수형 프로그래밍의 철학을 실현하는 실용적인 도구다.
+이렇게 순수한 변환(`map`·`filter`·`reduce`)과 부수 효과(`forEach`·`mapEffect`)를 구분하면 어떤 코드 블록에서 어떤 변화가 일어나는지 예측하기 쉬워 디버깅과 유지보수가 용이해진다. 부수 효과를 의도적으로 허용하되 그 구간을 이름으로 명확히 구분하는 것 - 순수 함수와 부수 효과의 격리라는 함수형 프로그래밍의 철학을 실현하는 실용적인 도구다.
 
 ### 4.4 필터-중단 패턴
 

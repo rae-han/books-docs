@@ -10,7 +10,7 @@
 
 ### 전역 스코프 오염 문제
 
-네임스페이스(*Namespace — 코드 단위를 고유한 식별자로 그룹화한 것*)는 자바스크립트에서 가장 오래된 구조적 문제 중 하나인 **전역 스코프 오염**을 해결하기 위해 등장했다. 자바스크립트는 C++, Java, Python과 달리 언어 차원의 네임스페이스 기능을 기본 제공하지 않았다. 모든 `<script>` 태그는 동일한 전역 스코프를 공유하기 때문에, 서로 다른 스크립트가 같은 이름의 변수나 함수를 정의하면 **충돌**이 발생했다.
+네임스페이스(*Namespace - 코드 단위를 고유한 식별자로 그룹화한 것*)는 자바스크립트에서 가장 오래된 구조적 문제 중 하나인 **전역 스코프 오염**을 해결하기 위해 등장했다. 자바스크립트는 C++, Java, Python과 달리 언어 차원의 네임스페이스 기능을 기본 제공하지 않았다. 모든 `<script>` 태그는 동일한 전역 스코프를 공유하기 때문에, 서로 다른 스크립트가 같은 이름의 변수나 함수를 정의하면 **충돌**이 발생했다.
 
 ```html
 <!-- 2010년대 전형적인 웹 페이지 -->
@@ -36,7 +36,7 @@ ES Modules 이전의 자바스크립트에는 파일 단위의 스코프 격리�
 
 ### 2.1 단일 전역 변수 (Single Global Variable)
 
-하나의 전역 변수를 주요 참조 객체로 사용하는 방식이다. IIFE(*Immediately Invoked Function Expression — 정의 직후 즉시 실행되는 함수 표현식*)가 함수와 속성을 가진 객체를 반환하고, 이를 단일 변수에 할당한다.
+하나의 전역 변수를 주요 참조 객체로 사용하는 방식이다. IIFE(*Immediately Invoked Function Expression - 정의 직후 즉시 실행되는 함수 표현식*)가 함수와 속성을 가진 객체를 반환하고, 이를 단일 변수에 할당한다.
 
 ```typescript
 const myApp = (() => {
@@ -308,7 +308,7 @@ drawing.plot(98, 50, 60);
 **현대적 평가**: ES Modules의 `import`문이 이 패턴의 정확한 현대적 등가물이다.
 
 ```typescript
-// 의존성 선언 패턴의 현대 버전 — 그냥 import다
+// 의존성 선언 패턴의 현대 버전 - 그냥 import다
 import { fibonacci, sin } from "./utilities/math";
 import { plot } from "./utilities/drawing";
 
@@ -321,12 +321,12 @@ plot(98, 50, 60);
 
 ## 4. ES Modules 시대의 네임스페이스
 
-ES Modules(*ESM — ECMAScript 표준 모듈 시스템*)는 네임스페이스 충돌 문제를 **언어 차원에서 근본적으로 해결**했다. 각 파일이 독립적인 모듈 스코프를 가지므로, `export`하지 않은 것은 외부에서 접근할 수 없다.
+ES Modules(*ESM - ECMAScript 표준 모듈 시스템*)는 네임스페이스 충돌 문제를 **언어 차원에서 근본적으로 해결**했다. 각 파일이 독립적인 모듈 스코프를 가지므로, `export`하지 않은 것은 외부에서 접근할 수 없다.
 
 ### 4.1 ES Modules가 네임스페이스 문제를 해결하는 방법
 
 ```typescript
-// math.ts — 파일 자체가 네임스페이스
+// math.ts - 파일 자체가 네임스페이스
 const SECRET_CONSTANT = 42; // 외부에서 접근 불가 (private)
 
 export function fibonacci(n: number): number {
@@ -348,7 +348,7 @@ export function factorial(n: number): number {
 | 계층 구조 | 디렉터리 구조 + barrel files |
 | 지연 로딩 | `import()` 동적 임포트 |
 
-### 4.2 `import * as namespace` — 명시적 네임스페이스 임포트
+### 4.2 `import * as namespace` - 명시적 네임스페이스 임포트
 
 개별 함수를 하나씩 가져오는 대신, 모듈 전체를 네임스페이스 객체로 가져올 수 있다.
 
@@ -372,9 +372,9 @@ console.log(MathUtils.PI);
 - 모듈의 출처를 코드에서 명시적으로 드러내고 싶을 때
 - 서드파티 라이브러리의 유틸리티를 그룹화할 때
 
-### 4.3 Barrel Files — 모듈 그룹의 네임스페이스화
+### 4.3 Barrel Files - 모듈 그룹의 네임스페이스화
 
-배럴 파일(*Barrel File — 여러 모듈의 export를 하나의 진입점으로 모아 재수출하는 index 파일*)은 디렉터리 단위의 네임스페이스를 구현하는 현대적 방법이다.
+배럴 파일(*Barrel File - 여러 모듈의 export를 하나의 진입점으로 모아 재수출하는 index 파일*)은 디렉터리 단위의 네임스페이스를 구현하는 현대적 방법이다.
 
 ```typescript
 // utils/math.ts
@@ -389,14 +389,14 @@ export function truncate(s: string, len: number): string { /* ... */ }
 export * as math from "./math";
 export * as string from "./string";
 
-// app.ts — 깔끔한 네임스페이스 접근
+// app.ts - 깔끔한 네임스페이스 접근
 import { math, string } from "./utils";
 
 math.fibonacci(10);
 string.capitalize("hello");
 ```
 
-배럴 파일 사용 시 주의할 점이 있다. 트리 셰이킹(*Tree Shaking — 사용하지 않는 코드를 빌드에서 제거하는 최적화*)이 제대로 작동하지 않을 수 있으므로, 대규모 라이브러리에서는 개별 경로 임포트를 권장하는 경우가 많다.
+배럴 파일 사용 시 주의할 점이 있다. 트리 셰이킹(*Tree Shaking - 사용하지 않는 코드를 빌드에서 제거하는 최적화*)이 제대로 작동하지 않을 수 있으므로, 대규모 라이브러리에서는 개별 경로 임포트를 권장하는 경우가 많다.
 
 ```typescript
 // 트리 셰이킹 문제가 될 수 있음
@@ -429,7 +429,7 @@ const user = MyApp.createUser("Kim", "kim@example.com");
 **TypeScript 팀의 공식 입장**: ES Modules를 사용하라. `namespace`는 레거시 코드와의 호환성을 위해 유지되지만, 새 코드에서는 사용하지 않는 것이 권장된다. 유일한 예외는 **전역 타입 선언 파일**(`.d.ts`)에서 앰비언트 네임스페이스로 사용하는 경우다.
 
 ```typescript
-// global.d.ts — 이 경우에만 namespace가 정당화됨
+// global.d.ts - 이 경우에만 namespace가 정당화됨
 declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV: "development" | "production";
@@ -440,7 +440,7 @@ declare namespace NodeJS {
 
 ### 4.5 모노레포에서의 패키지 네임스페이싱
 
-대규모 조직에서는 npm 스코프(*Scope — `@org/` 접두사를 사용한 패키지 네임스페이스*)를 활용하여 패키지 수준의 네임스페이스를 구현한다.
+대규모 조직에서는 npm 스코프(*Scope - `@org/` 접두사를 사용한 패키지 네임스페이스*)를 활용하여 패키지 수준의 네임스페이스를 구현한다.
 
 ```
 @mycompany/ui-components
@@ -473,8 +473,8 @@ import { formatDate } from "@mycompany/shared-utils";
 | 중첩 네임스페이스 자동화 (`extend`) | 디렉터리 구조 | 폐기됨 |
 | 의존성 선언 (로컬 캐싱) | `import` 문 | `import`로 자연스럽게 대체 |
 | TypeScript `namespace` | ES Modules | `.d.ts` 앰비언트 선언에서만 유효 |
-| — | `@org/package` 스코프 패키지 | 모노레포 표준 |
-| — | Import Maps | 브라우저 네이티브 모듈 해석 |
+| - | `@org/package` 스코프 패키지 | 모노레포 표준 |
+| - | Import Maps | 브라우저 네이티브 모듈 해석 |
 
 ---
 
@@ -496,25 +496,25 @@ import { formatDate } from "@mycompany/shared-utils";
 
 ### 새 프로젝트를 시작할 때
 
-1. **ES Modules를 기본으로 사용한다** — 파일 하나가 모듈 하나다
-2. **디렉터리 구조로 네임스페이스를 표현한다** — `src/utils/`, `src/models/`, `src/services/`
-3. **barrel files는 신중하게 사용한다** — 트리 셰이킹 영향을 고려
+1. **ES Modules를 기본으로 사용한다** - 파일 하나가 모듈 하나다
+2. **디렉터리 구조로 네임스페이스를 표현한다** - `src/utils/`, `src/models/`, `src/services/`
+3. **barrel files는 신중하게 사용한다** - 트리 셰이킹 영향을 고려
 4. **모노레포에서는 `@org/` 스코프를 활용한다**
 
 ### 레거시 코드를 다룰 때
 
-1. **전역 변수 패턴을 인식하고 이해한다** — 리팩터링의 첫걸음
+1. **전역 변수 패턴을 인식하고 이해한다** - 리팩터링의 첫걸음
 2. **IIFE 패턴은 ES Module로 점진적으로 전환한다**
 3. **TypeScript `namespace`는 `export`/`import`로 대체한다**
 
 ### 라이브러리를 배포할 때
 
 1. **ESM을 기본 빌드 포맷으로 제공한다**
-2. **CDN 사용자를 위해 UMD/IIFE 빌드도 병행한다** — 이때 단일 전역 변수 패턴이 필요
+2. **CDN 사용자를 위해 UMD/IIFE 빌드도 병행한다** - 이때 단일 전역 변수 패턴이 필요
 3. **Import Maps 호환을 고려한다**
 
 ```typescript
-// 라이브러리의 UMD 빌드 — 전통 패턴이 여전히 필요한 유일한 케이스
+// 라이브러리의 UMD 빌드 - 전통 패턴이 여전히 필요한 유일한 케이스
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
     define([], factory);

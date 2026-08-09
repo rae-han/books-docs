@@ -17,7 +17,7 @@
 
 실제 사례: 한 Next.js 프로젝트의 2MB가 넘는 `_app.js` 파일은 **초기 페이지 로드 시 78%가 사용되지 않았다.** 초기 로딩에 불필요한 컴포넌트·라우트·라이브러리가 모두 메인 번들에 포함돼 있었다는 뜻이다.
 
-> **핵심 통찰**: Coverage 해석 시 주의점 — 초기 로드에는 안 쓰이지만 **특정 기능 사용 시 필요한 코드도 '미사용'으로 표시된다.** 따라서 "이 코드를 삭제하라"가 아니라 **"이 코드를 동적 임포트로 분리할 수 있는가", "이 페이지 렌더링에 정말 필요한가"**를 판단하는 데 써야 한다. Coverage를 켜둔 채 페이지를 탐색하면 기능별 코드 사용 패턴을 파악해 코드 스플리팅 전략을 세울 수 있다.
+> **핵심 통찰**: Coverage 해석 시 주의점 - 초기 로드에는 안 쓰이지만 **특정 기능 사용 시 필요한 코드도 '미사용'으로 표시된다.** 따라서 "이 코드를 삭제하라"가 아니라 **"이 코드를 동적 임포트로 분리할 수 있는가", "이 페이지 렌더링에 정말 필요한가"**를 판단하는 데 써야 한다. Coverage를 켜둔 채 페이지를 탐색하면 기능별 코드 사용 패턴을 파악해 코드 스플리팅 전략을 세울 수 있다.
 
 ### 1.2 웹팩 번들 분석기로 번들 구성 파악
 
@@ -50,9 +50,9 @@ module.exports = {
 
 자기 프로젝트가 아니라 경쟁사 벤치마킹, 소스맵 없는 레거시, 외부 사이트 조사에서는 난독화된 코드에서 라이브러리를 알아내야 한다.
 
-**방법 1 — AI에게 물어보기**: 현시점에서 가장 빠르고 정확하다. 난독화·압축된 코드라도 LLM은 패턴을 인식한다. 변수명은 `a`, `b`, `c`로 축약돼도 **API 이름들은 외부 인터페이스라서 원형 그대로 유지**되기 때문이다(예: `AbstractRecoilValue`, `getRecoilValueAsLoadable` 같은 이름으로 Recoil을 식별). AI가 식별했다면 깃허브 저장소 검색이나 `package.json`으로 크로스 체크한다. 단, 사내 라이브러리·마이너 패키지는 식별하지 못할 수 있고 보안상 외부 AI에 코드를 못 보내는 환경도 있다.
+**방법 1 - AI에게 물어보기**: 현시점에서 가장 빠르고 정확하다. 난독화·압축된 코드라도 LLM은 패턴을 인식한다. 변수명은 `a`, `b`, `c`로 축약돼도 **API 이름들은 외부 인터페이스라서 원형 그대로 유지**되기 때문이다(예: `AbstractRecoilValue`, `getRecoilValueAsLoadable` 같은 이름으로 Recoil을 식별). AI가 식별했다면 깃허브 저장소 검색이나 `package.json`으로 크로스 체크한다. 단, 사내 라이브러리·마이너 패키지는 식별하지 못할 수 있고 보안상 외부 AI에 코드를 못 보내는 환경도 있다.
 
-**방법 2 — 소스맵 확인**: 소스맵이 있으면 이보다 쉬운 방법이 없다.
+**방법 2 - 소스맵 확인**: 소스맵이 있으면 이보다 쉬운 방법이 없다.
 
 ```ts
 // 크롬 개발자 도구 Console에서
@@ -68,7 +68,7 @@ fetch('/static/js/main.abc123.js.map')
 
 > **실무 팁**: 소스맵은 양날의 검이다. 자기 프로젝트 분석에는 최고지만 **프로덕션에 배포되면 비즈니스 로직·API 엔드포인트·내부 구조가 모두 노출되는 보안 문제**가 된다. 대부분의 프로젝트는 프로덕션 빌드에서 소스맵을 제거한다. 남의 서비스를 분석할 때는 먼저 소스맵부터 확인해보는 것이 순서다.
 
-**방법 3 — 전역 객체 확인**: `Object.keys(window)`에서 `__`로 시작하거나 프레임워크 이름을 포함하는 객체를 찾는다. `window.next.version`(Next.js), `window.__mobxGlobals.version`(MobX), `window['__core-js_shared__']`(core-js), `window.$`(jQuery). 단, lodash·axios 같은 유틸리티 라이브러리는 전역 객체를 만들지 않으므로 프레임워크 식별에만 유용하다.
+**방법 3 - 전역 객체 확인**: `Object.keys(window)`에서 `__`로 시작하거나 프레임워크 이름을 포함하는 객체를 찾는다. `window.next.version`(Next.js), `window.__mobxGlobals.version`(MobX), `window['__core-js_shared__']`(core-js), `window.$`(jQuery). 단, lodash·axios 같은 유틸리티 라이브러리는 전역 객체를 만들지 않으므로 프레임워크 식별에만 유용하다.
 
 ## 2. 트리 셰이킹이 제대로 작동하지 않는 이유
 
@@ -79,7 +79,7 @@ Next.js·비트는 프로덕션 빌드에서 트리 셰이킹이 기본 활성�
 ESModule은 정적 구조를 가져서 번들러가 빌드 타임에 어떤 export가 사용되는지 분석할 수 있다. 반면 CommonJS는 런타임에 동작한다.
 
 ```js
-// ❌ CommonJS — module.exports 객체가 런타임에 생성됨
+// ❌ CommonJS - module.exports 객체가 런타임에 생성됨
 module.exports = {
   add: (a, b) => a + b,
   subtract: (a, b) => a - b,
@@ -94,7 +94,7 @@ console.log(utils.add(1, 2));
 ```
 
 ```ts
-// ✅ ESModule — import { add }가 빌드 타임에 "add만 사용"을 선언
+// ✅ ESModule - import { add }가 빌드 타임에 "add만 사용"을 선언
 export const add = (a: number, b: number) => a + b;
 export const subtract = (a: number, b: number) => a - b;
 
@@ -106,11 +106,11 @@ console.log(add(1, 2));
 대표적인 실전 사례가 lodash다.
 
 ```ts
-// ❌ 트리 셰이킹 불가능 — CommonJS 패키지, 전체 약 67KB 포함
+// ❌ 트리 셰이킹 불가능 - CommonJS 패키지, 전체 약 67KB 포함
 import _ from 'lodash';
 const debounced = _.debounce(fn, 300);
 
-// ✅ 트리 셰이킹 가능 — ESModule 패키지, debounce만 약 2KB
+// ✅ 트리 셰이킹 가능 - ESModule 패키지, debounce만 약 2KB
 import debounce from 'lodash-es/debounce';
 const debounced = debounce(fn, 300);
 ```
@@ -164,13 +164,13 @@ import './styles.css';                               // CSS 파일 로드
 **해결 방법**
 
 ```ts
-// ❌ Before: 모듈 레벨에서 실행 — 임포트하는 순간 무조건 실행
+// ❌ Before: 모듈 레벨에서 실행 - 임포트하는 순간 무조건 실행
 import { initAnalytics } from './analytics';
 initAnalytics();
 
 export function myFunction() { /* ... */ }
 
-// ✅ After: 명시적 호출 — 호출되지 않으면 모듈 전체 제거 가능
+// ✅ After: 명시적 호출 - 호출되지 않으면 모듈 전체 제거 가능
 export function myFunction() { /* ... */ }
 export function init() {
   initAnalytics();
@@ -196,7 +196,7 @@ CSS 임포트도 마찬가지다. 라이브러리 진입점에서 CSS를 임포�
 자바스크립트는 동적 언어라서 런타임에 결정되는 패턴이 많고, 번들러는 이런 패턴을 만나면 안전하게 모든 코드를 유지한다.
 
 ```ts
-// ❌ 동적 프로퍼티 접근 — functionName이 무엇일지 빌드 타임에 알 수 없음
+// ❌ 동적 프로퍼티 접근 - functionName이 무엇일지 빌드 타임에 알 수 없음
 const functionName = getUserInput();
 const result = utils[functionName]('hello');
 // utils 객체의 모든 메서드가 번들에 포함됨
@@ -205,7 +205,7 @@ const result = utils[functionName]('hello');
 클래스도 마찬가지다. `validator[`validate${fieldType}`]` 같은 동적 메서드 호출이 가능하므로 클래스 메서드를 공격적으로 트리 셰이킹할 수 없다. `validateEmail`만 써도 `validatePhone`, `validateUrl`이 함께 들어간다.
 
 ```ts
-// ❌ 변수를 통한 간접 참조 — 어떤 모듈이 로드될지 알 수 없음
+// ❌ 변수를 통한 간접 참조 - 어떤 모듈이 로드될지 알 수 없음
 const moduleName = isProduction ? './prod' : './dev';
 const config = require(moduleName);
 
@@ -218,7 +218,7 @@ const config = isProduction ? require('./prod') : require('./dev');
 **해결책은 동적 참조를 정적 맵으로 변환하는 것이다.**
 
 ```ts
-// ✅ 정적 맵 — 사용되지 않는 플러그인은 트리 셰이킹으로 제거됨
+// ✅ 정적 맵 - 사용되지 않는 플러그인은 트리 셰이킹으로 제거됨
 import { formatPlugin } from './plugins/format';
 import { validatePlugin } from './plugins/validate';
 import { transformPlugin } from './plugins/transform';
@@ -239,10 +239,10 @@ class PluginSystem {
 동적 임포트를 완전히 없앨 수 없다면 **명시적 분기**로 범위를 제한한다.
 
 ```ts
-// ❌ 범위가 너무 넓음 — locales 디렉터리의 모든 파일 포함
+// ❌ 범위가 너무 넓음 - locales 디렉터리의 모든 파일 포함
 import(`./locales/${lang}.json`);
 
-// ✅ 명시적 분기 — 정확히 세 파일만 포함되도록 보장
+// ✅ 명시적 분기 - 정확히 세 파일만 포함되도록 보장
 let localeData;
 switch (lang) {
   case 'en': localeData = await import('./locales/en.json'); break;
@@ -251,7 +251,7 @@ switch (lang) {
 }
 ```
 
-허용 목록 **검증**만으로는 부족하다. 검증을 통과해도 여전히 모든 파일이 번들에 포함되기 때문이다. 라이브러리 선택 시점에도 이를 고려한다 — i18next는 동적 로딩을 많이 써서 트리 셰이킹이 어렵고, react-intl은 정적 임포트를 권장해 더 잘 작동한다.
+허용 목록 **검증**만으로는 부족하다. 검증을 통과해도 여전히 모든 파일이 번들에 포함되기 때문이다. 라이브러리 선택 시점에도 이를 고려한다 - i18next는 동적 로딩을 많이 써서 트리 셰이킹이 어렵고, react-intl은 정적 임포트를 권장해 더 잘 작동한다.
 
 ### 2.4 배럴 엑스포트가 너무 깊으면 번들러가 분석을 포기한다
 
@@ -267,7 +267,7 @@ export * from './forms';
 export * from './buttons';
 export * from './modals';
 
-// 사용하는 곳 — Input 하나를 위해 번들러가 전체 의존성 트리를 분석해야 함
+// 사용하는 곳 - Input 하나를 위해 번들러가 전체 의존성 트리를 분석해야 함
 import { Input } from './components';
 ```
 
@@ -277,9 +277,9 @@ Next.js 팀 테스트에 따르면 일부 라이브러리의 진입점 배럴 �
 
 | 라우트 | Before | After | 감소량 |
 |---|---|---|---|
-| /login | 334KB | 103KB | −231KB |
-| /memos | 470KB | 339KB | −131KB |
-| /setting | 422KB | 266KB | −156KB |
+| /login | 334KB | 103KB | -231KB |
+| /memos | 470KB | 339KB | -131KB |
+| /setting | 422KB | 266KB | -156KB |
 
 **해결 방법**
 
@@ -287,7 +287,7 @@ Next.js 팀 테스트에 따르면 일부 라이브러리의 진입점 배럴 �
 // ❌ 배럴 엑스포트 사용
 import { Button, Input } from './components';
 
-// ✅ 직접 임포트 — 번들러가 정확히 어떤 파일이 필요한지 즉시 알 수 있음
+// ✅ 직접 임포트 - 번들러가 정확히 어떤 파일이 필요한지 즉시 알 수 있음
 import { Button } from './components/Button';
 import { Input } from './components/Input';
 ```
@@ -305,7 +305,7 @@ module.exports = {
 
 라이브러리 개발자라면 `package.json`의 `exports` 필드로 명시적 진입점을 제공한다(`"./Button": "./dist/Button.js"`).
 
-> **실무 팁 — 모노레포**: 내부 패키지의 `main`이 `src/index.ts` 같은 **소스코드를 직접 가리키면** 배럴 엑스포트 문제가 그대로 전달되고 트리 셰이킹이 작동하지 않는다. 내부 패키지도 빌드를 거쳐 `dist/index.js`(+ `module`·`exports` 필드)를 제공해야 한다.
+> **실무 팁 - 모노레포**: 내부 패키지의 `main`이 `src/index.ts` 같은 **소스코드를 직접 가리키면** 배럴 엑스포트 문제가 그대로 전달되고 트리 셰이킹이 작동하지 않는다. 내부 패키지도 빌드를 거쳐 `dist/index.js`(+ `module`·`exports` 필드)를 제공해야 한다.
 
 ## 3. 네이티브 API로 대체하거나 가벼운 대안을 선택하라
 
@@ -378,7 +378,7 @@ my-app@1.0.0
 
 > **실무 팁**: pnpm은 하드 링크로 디스크 공간을 절약하지만 **번들러는 심볼릭 링크를 따라가 실제 파일을 읽으므로 서로 다른 버전은 여전히 번들에 중복 포함된다.** 디스크 절약 ≠ 번들 절약이다.
 
-중복 발생의 세 가지 패턴: ① **레거시 의존성**(오래된 라이브러리가 구버전을 요구), ② **좁은 semver 범위**(정확한 버전 고정과 범위 지정이 섞임), ③ **전이적 의존성의 중복**(간접 의존성에서 발생 — 가장 흔함).
+중복 발생의 세 가지 패턴: ① **레거시 의존성**(오래된 라이브러리가 구버전을 요구), ② **좁은 semver 범위**(정확한 버전 고정과 범위 지정이 섞임), ③ **전이적 의존성의 중복**(간접 의존성에서 발생 - 가장 흔함).
 
 ### 4.2 dedupe로 중복 제거
 
@@ -432,7 +432,7 @@ overrides 적용 후에는 **반드시 전체 테스트 스위트를 실행**한
 강제 설치가 일으키는 문제:
 
 - **번들 크기 증가**: 호환되지 않는 조합이 설치되어 리액트(약 130KB gzip)가 번들에 두 번 들어갈 위험
-- **런타임 에러**: `Error: Invalid hook call.` — 리액트는 전역 상태를 유지하는데 두 개의 리액트가 있으면 훅이 올바른 인스턴스를 찾지 못한다. **타입 체크로 잡히지 않고**, 로컬에서는 잘 되다가 프로덕션의 특정 사용자 플로에서만 터져 디버깅이 매우 어렵다.
+- **런타임 에러**: `Error: Invalid hook call.` - 리액트는 전역 상태를 유지하는데 두 개의 리액트가 있으면 훅이 올바른 인스턴스를 찾지 못한다. **타입 체크로 잡히지 않고**, 로컬에서는 잘 되다가 프로덕션의 특정 사용자 플로에서만 터져 디버깅이 매우 어렵다.
 - **API 호환 불일치**: 라이브러리가 리액트 18의 `useSyncExternalStore`를 내부에서 쓰는데 프로젝트가 17이면 해당 API가 없어 런타임 에러
 
 **올바른 해결**
@@ -451,7 +451,7 @@ overrides 적용 후에는 **반드시 전체 테스트 스위트를 실행**한
 3. **트리 셰이킹 최적화**: CommonJS·배럴 엑스포트·`sideEffects` 설정을 점검한다. 즉각 효과는 크지 않아도 이후 추가되는 코드에서 자동으로 불필요한 부분이 제거되므로 장기 효과가 크다.
 4. **코드 스플리팅과 지연 로딩**: 초기 로드에 안 쓰이는 코드(관리자 패널·대시보드)를 동적 임포트로 분리. 단, 과도하면 HTTP 요청 증가·캐싱 효율 저하가 있으므로 청크 크기와 사용 빈도를 고려한다(Ch10).
 
-> **핵심 통찰**: 번들 분석은 일회성이 아니라 **지속적인 작업**이다. CI/CD에 번들 분석기를 통합해 PR마다 크기 변화를 자동 확인하고, 10% 이상 증가 시 경고를 띄운다. "번들이 크다"는 막연한 느낌이 아니라 **"`_app.js`의 78%가 미사용", "moment.js가 300KB", "lodash가 두 버전"**처럼 구체적 사실을 파악하고, "번들 50% 감축" 같은 막연한 목표 대신 **"moment.js 제거로 298KB 절감"**처럼 측정 가능한 목표를 세운다. 실제 프로젝트들에서 번들 최적화는 LCP 0.5~1초, TTI 1~2초 개선으로 이어졌다 — 숫자를 위한 최적화가 아니라 사용자 경험을 위한 최적화다.
+> **핵심 통찰**: 번들 분석은 일회성이 아니라 **지속적인 작업**이다. CI/CD에 번들 분석기를 통합해 PR마다 크기 변화를 자동 확인하고, 10% 이상 증가 시 경고를 띄운다. "번들이 크다"는 막연한 느낌이 아니라 **"`_app.js`의 78%가 미사용", "moment.js가 300KB", "lodash가 두 버전"**처럼 구체적 사실을 파악하고, "번들 50% 감축" 같은 막연한 목표 대신 **"moment.js 제거로 298KB 절감"**처럼 측정 가능한 목표를 세운다. 실제 프로젝트들에서 번들 최적화는 LCP 0.5~1초, TTI 1~2초 개선으로 이어졌다 - 숫자를 위한 최적화가 아니라 사용자 경험을 위한 최적화다.
 
 ## 자주 하는 실수
 
@@ -523,7 +523,7 @@ overrides 적용 후에는 **반드시 전체 테스트 스위트를 실행**한
 - 번들 최적화의 진짜 문제는 번들러 설정이 아니라 **코드 작성 단계의 선택**이다. 트리 셰이킹은 마법이 아니며 분석 불가능한 패턴을 만나면 "전부 유지"를 선택한다.
 - 최적화의 시작은 **측정**이다. Coverage(사용 여부) + 번들 분석기(구성)로 "78%가 미사용", "moment가 300KB" 같은 구체적 사실을 만든다.
 - 난독화된 번들의 라이브러리 식별은 **AI 패턴 인식 → 소스맵 확인 → 전역 객체 확인** 순서로 접근한다. 식별 결과는 깃허브 크로스 체크로 검증한다.
-- 트리 셰이킹을 방해하는 4대 원인: **① CommonJS**(런타임 구조라 정적 분석 불가 — `lodash` vs `lodash-es`), **② 사이드 이펙트**(모듈 레벨 실행 코드·CSS 임포트 — 함수로 감싸고 `sideEffects` 필드 명시), **③ 동적 참조**(`utils[name]`·`` require(`./x/${n}`) `` — 정적 맵과 명시적 분기로 변환), **④ 깊은 배럴 엑스포트**(직접 임포트 또는 `optimizePackageImports`).
+- 트리 셰이킹을 방해하는 4대 원인: **① CommonJS**(런타임 구조라 정적 분석 불가 - `lodash` vs `lodash-es`), **② 사이드 이펙트**(모듈 레벨 실행 코드·CSS 임포트 - 함수로 감싸고 `sideEffects` 필드 명시), **③ 동적 참조**(`utils[name]`·`` require(`./x/${n}`) `` - 정적 맵과 명시적 분기로 변환), **④ 깊은 배럴 엑스포트**(직접 임포트 또는 `optimizePackageImports`).
 - **네이티브 API는 번들 0KB다.** fetch·Intl·URLSearchParams·crypto.randomUUID가 axios·moment·qs·uuid를 대체한다. 어렵다면 es-toolkit·dayjs·ky 같은 ESModule 경량 대안을 쓴다.
 - 새 라이브러리 설치 전 3문: 네이티브로 가능한가 / ESModule인가 / 트리 셰이킹이 되는가. **설치는 쉽지만 제거는 어렵다.**
 - 중복 패키지는 `npm ls`로 찾고(핵심 키워드 `deduped`), `dedupe`(semver 범위 내) → overrides(패치·마이너만) 순으로 해결한다. pnpm의 디스크 절약은 번들 절약이 아니다.

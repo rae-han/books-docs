@@ -32,7 +32,7 @@ int fileAgeInDays;
 의도가 드러나는 이름의 위력을 보여주는 예제다. 다음 코드가 무엇을 하는지 짐작할 수 있는가?
 
 ```java
-// 나쁜 예 — 코드의 함축성이 문제
+// 나쁜 예 - 코드의 함축성이 문제
 public List<int[]> getThem() {
     List<int[]> list1 = new ArrayList<int[]>();
     for (int[] x : theList)
@@ -52,7 +52,7 @@ public List<int[]> getThem() {
 지뢰찾기 게임이라면 `theList`는 게임판이다. 각 칸은 배열이고, 0번째 값은 칸 상태, 값 4는 깃발이 꽂힌 상태를 가리킨다:
 
 ```java
-// 좋은 예 — 이름만 바꿨을 뿐인데 명확해짐
+// 좋은 예 - 이름만 바꿨을 뿐인데 명확해짐
 public List<int[]> getFlaggedCells() {
     List<int[]> flaggedCells = new ArrayList<int[]>();
     for (int[] cell : gameBoard)
@@ -65,7 +65,7 @@ public List<int[]> getFlaggedCells() {
 한 걸음 더 나아가, `int` 배열 대신 `Cell` 클래스를 만들면:
 
 ```java
-// 더 좋은 예 — 클래스로 의미를 캡슐화
+// 더 좋은 예 - 클래스로 의미를 캡슐화
 public List<Cell> getFlaggedCells() {
     List<Cell> flaggedCells = new ArrayList<Cell>();
     for (Cell cell : gameBoard)
@@ -98,7 +98,7 @@ public List<Cell> getFlaggedCells() {
 
 컴파일러나 인터프리터만 통과하려는 생각으로 코드를 구현하면 스스로 문제를 일으킨다.
 
-### 연속적 숫자 덧붙이기 — 의도가 전혀 드러나지 않는다
+### 연속적 숫자 덧붙이기 - 의도가 전혀 드러나지 않는다
 
 ```java
 // 나쁜 예
@@ -116,7 +116,7 @@ public static void copyChars(char source[], char destination[]) {
 }
 ```
 
-### 불용어(noise word) 추가 — 아무런 정보도 제공하지 못한다
+### 불용어(noise word) 추가 - 아무런 정보도 제공하지 못한다
 
 | 의미 없는 구분 | 문제 |
 |---|---|
@@ -135,7 +135,7 @@ public static void copyChars(char source[], char destination[]) {
 프로그래밍은 **사회 활동**이다. 발음하기 어려운 이름은 토론하기도 어렵다.
 
 ```java
-// 나쁜 예 — "젠 야 무다 힘즈"?
+// 나쁜 예 - "젠 야 무다 힘즈"?
 class DtaRcrd102 {
     private Date genymdhms;
     private Date modymdhms;
@@ -143,7 +143,7 @@ class DtaRcrd102 {
     /* ... */
 }
 
-// 좋은 예 — "Generation Timestamp 값이 내일 날짜입니다!"
+// 좋은 예 - "Generation Timestamp 값이 내일 날짜입니다!"
 class Customer {
     private Date generationTimestamp;
     private Date modificationTimestamp;
@@ -161,12 +161,12 @@ class Customer {
 문자 하나를 사용하는 이름과 상수는 텍스트 코드에서 쉽게 눈에 띄지 않는다. `WORK_DAYS_PER_WEEK`는 `grep`으로 쉽게 찾지만, 숫자 `5`는 5가 들어가는 모든 파일과 수식이 검색된다.
 
 ```java
-// 나쁜 예 — 검색 불가
+// 나쁜 예 - 검색 불가
 for (int j = 0; j < 34; j++) {
     s += (t[j] * 4) / 5;
 }
 
-// 좋은 예 — 검색 가능, 의미 명확
+// 좋은 예 - 검색 가능, 의미 명확
 int realDaysPerIdealDay = 4;
 const int WORK_DAYS_PER_WEEK = 5;
 int sum = 0;
@@ -238,7 +238,7 @@ public class Part {
 - 그 외에는 대부분 적절하지 못하다
 - `r`이라는 변수가 호스트와 프로토콜을 제외한 소문자 URL이라는 사실을 항상 기억한다면 확실히 똑똑한 사람이다
 
-> **핵심 통찰**: 똑똑한 프로그래머와 전문가 프로그래머의 차이 — 전문가 프로그래머는 **명료함이 최고**라는 사실을 이해한다. 자신의 능력을 좋은 방향으로 사용해 남들이 이해하는 코드를 내놓는다.
+> **핵심 통찰**: 똑똑한 프로그래머와 전문가 프로그래머의 차이 - 전문가 프로그래머는 **명료함이 최고**라는 사실을 이해한다. 자신의 능력을 좋은 방향으로 사용해 남들이 이해하는 코드를 내놓는다.
 
 ---
 
@@ -269,7 +269,7 @@ if (paycheck.isPosted()) ...
 생성자를 중복정의(overload)할 때는 **정적 팩토리 메서드**를 사용한다:
 
 ```java
-// 좋은 예 — 인수를 설명하는 이름
+// 좋은 예 - 인수를 설명하는 이름
 Complex fulcrumPoint = Complex.FromRealNumber(23.0);
 
 // 나쁜 예
@@ -284,7 +284,7 @@ Complex fulcrumPoint = new Complex(23.0);
 
 | 기발한 이름 | 명료한 이름 |
 |---|---|
-| `HolyHandGrenade`(*HolyHandGrenade — 몬티 파이썬에 나오는 가상의 무기(수류탄)*) | `DeleteItems` |
+| `HolyHandGrenade`(*HolyHandGrenade - 몬티 파이썬에 나오는 가상의 무기(수류탄)*) | `DeleteItems` |
 | `whack()` | `kill()` |
 | `eatMyShort()` | `abort()` |
 
@@ -311,7 +311,7 @@ Complex fulcrumPoint = new Complex(23.0);
 
 예를 들어, 기존 `add` 메서드가 모두 두 값을 더하거나 이어서 새로운 값을 만든다고 가정하자. 새로 작성하는 메서드가 집합에 값 하나를 추가한다면?
 
-- **나쁜 선택**: `add` — 기존 `add`와 맥락이 다르므로 말장난
+- **나쁜 선택**: `add` - 기존 `add`와 맥락이 다르므로 말장난
 - **좋은 선택**: `insert` 또는 `append`
 
 > **핵심 통찰**: 프로그래머는 코드를 최대한 이해하기 쉽게 짜야 한다. 의미를 해독할 책임이 독자에게 있는 '논문 모델'이 아니라, 의도를 밝힐 책임이 저자에게 있는 **'잡지 모델'** 이 바람직하다.
@@ -324,8 +324,8 @@ Complex fulcrumPoint = new Complex(23.0);
 
 코드를 읽을 사람도 프로그래머라는 사실을 명심한다. 전산 용어, 알고리즘 이름, 패턴 이름, 수학 용어 등을 사용해도 괜찮다.
 
-- `AccountVisitor` — VISITOR 패턴에 친숙한 프로그래머는 금방 이해
-- `JobQueue` — 모르는 프로그래머가 있을까?
+- `AccountVisitor` - VISITOR 패턴에 친숙한 프로그래머는 금방 이해
+- `JobQueue` - 모르는 프로그래머가 있을까?
 
 ### 문제 영역(Problem Domain)에서 가져온 이름
 
@@ -339,7 +339,7 @@ Complex fulcrumPoint = new Complex(23.0);
 
 대다수 이름은 스스로 의미가 분명하지 않다. 클래스, 함수, 이름 공간에 넣어 맥락을 부여한다. 모든 방법이 실패하면 마지막 수단으로 접두어를 붙인다.
 
-예: `firstName`, `lastName`, `street`, `state`, `zipcode` — 변수를 훑어보면 주소라는 사실을 알아챈다. 하지만 `state` 변수 하나만 사용한다면?
+예: `firstName`, `lastName`, `street`, `state`, `zipcode` - 변수를 훑어보면 주소라는 사실을 알아챈다. 하지만 `state` 변수 하나만 사용한다면?
 
 **해결 방법의 단계:**
 1. 접두어 추가: `addrFirstName`, `addrLastName`, `addrState`
@@ -348,7 +348,7 @@ Complex fulcrumPoint = new Complex(23.0);
 ### 맥락 개선 예제
 
 ```java
-// 나쁜 예 — 맥락이 불분명한 변수
+// 나쁜 예 - 맥락이 불분명한 변수
 private void printGuessStatistics(char candidate, int count) {
     String number;
     String verb;
@@ -376,7 +376,7 @@ private void printGuessStatistics(char candidate, int count) {
 함수가 길고, 세 변수의 맥락이 함수 전반에 흩어져 있다. `GuessStatisticsMessage` 클래스를 만들면:
 
 ```java
-// 좋은 예 — 맥락이 분명한 변수
+// 좋은 예 - 맥락이 분명한 변수
 public class GuessStatisticsMessage {
     private String number;
     private String verb;
@@ -432,7 +432,7 @@ public class GuessStatisticsMessage {
 | `GSDAccountAddress` | `Address` (클래스 이름으로 적합) |
 | 17자 중 10자가 중복이거나 부적절 | 포트 주소, MAC 주소, 웹 주소 구분 필요 시: `PostalAddress`, `MAC`, `URI` |
 
-일반적으로 **짧은 이름이 긴 이름보다 좋다** — 단, 의미가 분명한 경우에 한해서. 이름에 불필요한 맥락을 추가하지 않도록 주의한다.
+일반적으로 **짧은 이름이 긴 이름보다 좋다** - 단, 의미가 분명한 경우에 한해서. 이름에 불필요한 맥락을 추가하지 않도록 주의한다.
 
 ---
 
@@ -459,13 +459,13 @@ public class GuessStatisticsMessage {
 
 ## 요약
 
-- **이름 하나 잘 짓는 것이 주석 열 줄보다 낫다** — 의도를 분명히, 그릇된 정보 없이, 의미 있게 구분하라
-- **발음과 검색이 쉬운 이름**을 사용하라 — 프로그래밍은 사회 활동이다
-- **인코딩을 피하라** — 헝가리식 표기법과 멤버 변수 접두어는 현대 IDE에서 불필요하다
-- **클래스는 명사, 메서드는 동사** — 생성자 오버로드 시 정적 팩토리 메서드가 좋다
-- **한 개념에 한 단어, 말장난 금지** — 일관성과 명확성 사이의 균형
+- **이름 하나 잘 짓는 것이 주석 열 줄보다 낫다** - 의도를 분명히, 그릇된 정보 없이, 의미 있게 구분하라
+- **발음과 검색이 쉬운 이름**을 사용하라 - 프로그래밍은 사회 활동이다
+- **인코딩을 피하라** - 헝가리식 표기법과 멤버 변수 접두어는 현대 IDE에서 불필요하다
+- **클래스는 명사, 메서드는 동사** - 생성자 오버로드 시 정적 팩토리 메서드가 좋다
+- **한 개념에 한 단어, 말장난 금지** - 일관성과 명확성 사이의 균형
 - **맥락은 클래스로 부여**하되, 불필요한 맥락은 제거하라
-- 좋은 이름을 선택하는 능력은 기술 문제가 아니라 **교육 문제**다 — 이름을 바꾸는 것을 두려워하지 마라
+- 좋은 이름을 선택하는 능력은 기술 문제가 아니라 **교육 문제**다 - 이름을 바꾸는 것을 두려워하지 마라
 
 ---
 
@@ -473,6 +473,6 @@ public class GuessStatisticsMessage {
 
 - **← Chapter 1 (깨끗한 코드)**: 워드 커닝햄이 말한 "짐작한 대로 동작하는 코드"의 첫 번째 조건이 좋은 이름이다
 - **→ Chapter 3 (함수)**: 함수 이름 짓기(서술적인 이름, 동사와 키워드)가 이 장의 규칙을 함수에 적용한 것이다
-- **→ Chapter 4 (주석)**: "함수나 변수로 표현할 수 있다면 주석을 달지 마라" — 좋은 이름은 주석의 필요성을 줄인다
+- **→ Chapter 4 (주석)**: "함수나 변수로 표현할 수 있다면 주석을 달지 마라" - 좋은 이름은 주석의 필요성을 줄인다
 - **→ Chapter 6 (객체와 자료 구조)**: 추상화 수준에 맞는 이름 선택이 자료 추상화의 핵심이다
 - **→ Chapter 17 (냄새와 휴리스틱)**: [N1]~[N7] 이름 관련 냄새 항목이 이 장의 규칙을 코드 리뷰 체크리스트로 정리한 것이다

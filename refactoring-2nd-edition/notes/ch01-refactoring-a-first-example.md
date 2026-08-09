@@ -8,7 +8,7 @@
 
 ## 0. 이 장에서 다루는 것 · 코드 표기 규약
 
-이 장은 원칙을 나열하는 대신, **하나의 지저분한 함수를 처음부터 끝까지 리팩터링하는 과정**을 그대로 보여 준다. 예제는 극단의 **공연료 청구서(`statement`)** 출력 프로그램이다. 파울러는 이 과정을 세 국면으로 진행한다 — (1) 긴 함수를 잘게 **쪼개고**, (2) **계산과 표현(포맷)을 분리**하고, (3) 계산 로직을 **다형성**으로 재구성한다.
+이 장은 원칙을 나열하는 대신, **하나의 지저분한 함수를 처음부터 끝까지 리팩터링하는 과정**을 그대로 보여 준다. 예제는 극단의 **공연료 청구서(`statement`)** 출력 프로그램이다. 파울러는 이 과정을 세 국면으로 진행한다 - (1) 긴 함수를 잘게 **쪼개고**, (2) **계산과 표현(포맷)을 분리**하고, (3) 계산 로직을 **다형성**으로 재구성한다.
 
 > **코드 표기 규약**: 원서는 **JavaScript**로 작성되어 있다. 이 노트는 원서 JS를 `<details>`로 접어 두고(원문 확인용), 그 아래에 **TypeScript 변환본**을 펼쳐 병기한다. TS에서는 도메인 타입을 명시하고, 모든 `if`/`for` 본문에 중괄호를 사용한다.
 
@@ -50,7 +50,7 @@ interface Invoice {
 극단은 공연 장르(비극·희극)와 관객 규모로 공연료를 책정하고, 다음 의뢰 때 할인에 쓸 **적립 포인트(volume credits)**도 지급한다. 연극 정보(`plays.json`)와 청구 데이터(`invoices.json`)를 받아 청구 내역 문자열을 출력하는 함수가 다음의 `statement()`다.
 
 <details>
-<summary>원서 JavaScript — 시작 시점의 statement()</summary>
+<summary>원서 JavaScript - 시작 시점의 statement()</summary>
 
 ```javascript
 function statement(invoice, plays) {
@@ -169,17 +169,17 @@ function statement(invoice: Invoice, plays: Plays): string {
 
 ## 3. 리팩터링의 첫 단계: 자가진단 테스트 (1.3)
 
-리팩터링의 첫 단계는 **항상 똑같다 — 견고한 테스트부터 마련한다.** 리팩터링 기법이 실수를 줄이도록 설계됐다 해도 작업은 사람이 하므로 언제든 틀릴 수 있다. `statement()`는 문자열을 반환하므로, 여러 장르로 구성한 청구서 몇 개의 **정답 문자열**을 준비해 두고 반환값과 비교한다.
+리팩터링의 첫 단계는 **항상 똑같다 - 견고한 테스트부터 마련한다.** 리팩터링 기법이 실수를 줄이도록 설계됐다 해도 작업은 사람이 하므로 언제든 틀릴 수 있다. `statement()`는 문자열을 반환하므로, 여러 장르로 구성한 청구서 몇 개의 **정답 문자열**을 준비해 두고 반환값과 비교한다.
 
-핵심은 **자가진단(self-testing)** — 통과/실패를 사람 눈이 아니라 테스트 프레임워크가 초록불/빨간불로 판정하게 한다. 그래야 수시로, 빠르게 돌릴 수 있다.
+핵심은 **자가진단(self-testing)** - 통과/실패를 사람 눈이 아니라 테스트 프레임워크가 초록불/빨간불로 판정하게 한다. 그래야 수시로, 빠르게 돌릴 수 있다.
 
-> **핵심 통찰**: 리팩터링하기 전에 반드시 **자가진단 테스트**를 갖춰라. 테스트는 내 실수로부터 나를 지키는 버그 검출기다 — 소스와 테스트 양쪽에 의도를 적어 두면, 두 번 똑같이 실수하지 않는 한 반드시 걸린다.
+> **핵심 통찰**: 리팩터링하기 전에 반드시 **자가진단 테스트**를 갖춰라. 테스트는 내 실수로부터 나를 지키는 버그 검출기다 - 소스와 테스트 양쪽에 의도를 적어 두면, 두 번 똑같이 실수하지 않는 한 반드시 걸린다.
 
 ---
 
 ## 4. statement() 함수 쪼개기 (1.4~1.5)
 
-긴 함수는 먼저 **동작을 나눌 수 있는 지점**을 찾는다. 한가운데의 `switch`문이 "공연 하나의 요금 계산"을 하고 있으니, 이를 **함수 추출하기(6.1)**로 `amountFor(perf, play)`로 뽑아낸다. 추출 시 유효범위를 벗어나는 변수를 살핀다 — `perf`·`play`는 값이 안 바뀌니 매개변수로, 값이 바뀌는 `thisAmount`는 반환값으로 처리한다.
+긴 함수는 먼저 **동작을 나눌 수 있는 지점**을 찾는다. 한가운데의 `switch`문이 "공연 하나의 요금 계산"을 하고 있으니, 이를 **함수 추출하기(6.1)**로 `amountFor(perf, play)`로 뽑아낸다. 추출 시 유효범위를 벗어나는 변수를 살핀다 - `perf`·`play`는 값이 안 바뀌니 매개변수로, 값이 바뀌는 `thisAmount`는 반환값으로 처리한다.
 
 이후 **작은 단계마다 컴파일·테스트·커밋**하며 다음을 이어 간다.
 
@@ -190,7 +190,7 @@ function statement(invoice: Invoice, plays: Plays): string {
 그 결과 `statement()`는 **여러 중첩 함수로 이뤄진 얇은 골격**만 남는다.
 
 <details>
-<summary>원서 JavaScript — 쪼갠 뒤의 statement() 골격</summary>
+<summary>원서 JavaScript - 쪼갠 뒤의 statement() 골격</summary>
 
 ```javascript
 function statement(invoice, plays) {
@@ -223,7 +223,7 @@ function statement(invoice: Invoice, plays: Plays): string {
   result += `적립 포인트: ${totalVolumeCredits()}점\n`;
   return result;
 
-  // 아래는 statement 안의 중첩 함수 — 바깥 변수(invoice, plays)에 접근한다
+  // 아래는 statement 안의 중첩 함수 - 바깥 변수(invoice, plays)에 접근한다
   function totalAmount(): number {
     return invoice.performances.reduce((total, p) => total + amountFor(p), 0);
   }
@@ -271,16 +271,16 @@ function statement(invoice: Invoice, plays: Plays): string {
 }
 ```
 
-> **핵심 통찰**: 리팩터링은 프로그램 수정을 **아주 작은 단계**로 나눠 진행한다 — 그래서 중간에 실수해도 버그를 쉽게 찾는다. 코드가 늘어난 것처럼 보여도, 각 조각에 **이름**이 붙어 "무엇을 하는지"가 코드 스스로 말하게 된 것이 이득이다.
+> **핵심 통찰**: 리팩터링은 프로그램 수정을 **아주 작은 단계**로 나눠 진행한다 - 그래서 중간에 실수해도 버그를 쉽게 찾는다. 코드가 늘어난 것처럼 보여도, 각 조각에 **이름**이 붙어 "무엇을 하는지"가 코드 스스로 말하게 된 것이 이득이다.
 
 ---
 
-## 5. 계산과 표현(포맷)을 분리하라 — 단계 쪼개기 (1.6~1.7)
+## 5. 계산과 표현(포맷)을 분리하라 - 단계 쪼개기 (1.6~1.7)
 
-이제 원래 목표였던 **HTML 출력**을 준비한다. 핵심 기법은 **단계 쪼개기(6.11)** — 로직을 "① 청구 데이터를 계산하는 단계"와 "② 그 데이터를 문자열로 표현하는 단계"로 나눈다. 계산 결과를 중간 데이터 구조(`statementData`)에 담아 넘기면, 표현 단계는 텍스트든 HTML이든 **같은 데이터로 골라 쓰기만** 하면 된다.
+이제 원래 목표였던 **HTML 출력**을 준비한다. 핵심 기법은 **단계 쪼개기(6.11)** - 로직을 "① 청구 데이터를 계산하는 단계"와 "② 그 데이터를 문자열로 표현하는 단계"로 나눈다. 계산 결과를 중간 데이터 구조(`statementData`)에 담아 넘기면, 표현 단계는 텍스트든 HTML이든 **같은 데이터로 골라 쓰기만** 하면 된다.
 
 <details>
-<summary>원서 JavaScript — 두 단계(두 파일)로 분리</summary>
+<summary>원서 JavaScript - 두 단계(두 파일)로 분리</summary>
 
 ```javascript
 // statement.js
@@ -306,7 +306,7 @@ function htmlStatement(invoice, plays) {   // 이제 손쉽게 추가된다
 </details>
 
 ```typescript
-// statement.ts — "표현" 단계. 계산은 createStatementData가 이미 끝냈다.
+// statement.ts - "표현" 단계. 계산은 createStatementData가 이미 끝냈다.
 import { createStatementData, StatementData } from "./createStatementData";
 
 function statement(invoice: Invoice, plays: Plays): string {
@@ -323,13 +323,13 @@ function renderPlainText(data: StatementData): string {
   return result;
 }
 
-// 계산 단계를 재사용하므로 HTML 버전은 '표현'만 새로 쓰면 된다 — 중복 없음
+// 계산 단계를 재사용하므로 HTML 버전은 '표현'만 새로 쓰면 된다 - 중복 없음
 function htmlStatement(invoice: Invoice, plays: Plays): string {
   return renderHtml(createStatementData(invoice, plays));
 }
 ```
 
-이 분리 덕분에 `htmlStatement()`는 계산 로직을 복사하지 않고 **표현만** 새로 작성하면 된다 — 2절에서 걱정한 중복 문제가 사라졌다.
+이 분리 덕분에 `htmlStatement()`는 계산 로직을 복사하지 않고 **표현만** 새로 작성하면 된다 - 2절에서 걱정한 중복 문제가 사라졌다.
 
 ---
 
@@ -340,7 +340,7 @@ function htmlStatement(invoice: Invoice, plays: Plays): string {
 절차: (1) 계산을 담을 `PerformanceCalculator` 클래스를 만들고, (2) 장르별 서브클래스(`TragedyCalculator`·`ComedyCalculator`)를 두고, (3) **팩토리 함수** `createPerformanceCalculator()`가 `type`에 맞는 계산기를 생성하게 한 뒤, (4) `switch`의 각 분기를 해당 서브클래스의 `get amount()`·`get volumeCredits()`로 옮긴다.
 
 <details>
-<summary>원서 JavaScript — 다형성 계산기 계층</summary>
+<summary>원서 JavaScript - 다형성 계산기 계층</summary>
 
 ```javascript
 function createPerformanceCalculator(aPerformance, aPlay) {
@@ -388,7 +388,7 @@ class ComedyCalculator extends PerformanceCalculator {
 </details>
 
 ```typescript
-// 계산기 계층 — 장르별 계산을 각자의 서브클래스가 책임진다
+// 계산기 계층 - 장르별 계산을 각자의 서브클래스가 책임진다
 abstract class PerformanceCalculator {
   constructor(
     protected readonly performance: Performance,
@@ -421,7 +421,7 @@ class ComedyCalculator extends PerformanceCalculator {
     result += 300 * this.performance.audience;
     return result;
   }
-  // 희극만 다른 부분(관객 5명당 추가)만 오버라이드 — 공통은 슈퍼클래스에 남긴다
+  // 희극만 다른 부분(관객 5명당 추가)만 오버라이드 - 공통은 슈퍼클래스에 남긴다
   get volumeCredits(): number {
     return super.volumeCredits + Math.floor(this.performance.audience / 5);
   }
@@ -445,17 +445,17 @@ function createPerformanceCalculator(
 
 이제 **새 장르 추가 = 서브클래스 하나 작성 + 팩토리에 한 줄 추가**로 끝난다. 장르별 계산이 한 곳에 모여 있어 어디를 고칠지도 분명하다.
 
-> **핵심 통찰**: 다형성은 **같은 타입 분기를 여러 함수가 반복**할 때 특히 유리하다 — `amount`와 `volumeCredits` 두 곳의 `switch`가 팩토리 하나로 합쳐졌다. "공통은 슈퍼클래스, 예외만 서브클래스에서 오버라이드"가 장르 확장을 값싸게 만든다.
+> **핵심 통찰**: 다형성은 **같은 타입 분기를 여러 함수가 반복**할 때 특히 유리하다 - `amount`와 `volumeCredits` 두 곳의 `switch`가 팩토리 하나로 합쳐졌다. "공통은 슈퍼클래스, 예외만 서브클래스에서 오버라이드"가 장르 확장을 값싸게 만든다.
 
 ---
 
 ## 7. 좋은 코드의 기준과 리팩터링의 리듬 (1.10)
 
-이 장은 리팩터링을 **세 국면**으로 진행했다 — ① 원본 함수를 중첩 함수로 **쪼개기**, ② **단계 쪼개기**로 계산과 표현을 분리, ③ 계산 로직을 **다형성**으로 표현. 각 국면마다 구조가 보강됐고, 그럴 때마다 코드가 하는 일이 더 분명해졌다.
+이 장은 리팩터링을 **세 국면**으로 진행했다 - ① 원본 함수를 중첩 함수로 **쪼개기**, ② **단계 쪼개기**로 계산과 표현을 분리, ③ 계산 로직을 **다형성**으로 표현. 각 국면마다 구조가 보강됐고, 그럴 때마다 코드가 하는 일이 더 분명해졌다.
 
 > **핵심 통찰**: 좋은 코드를 가늠하는 확실한 방법은 **"얼마나 수정하기 쉬운가"**다. 미적 취향은 사람마다 다르지만, "고칠 곳을 쉽게 찾고 오류 없이 빠르게 바꿀 수 있는가"는 취향을 넘어서는 기준이다.
 
-> **핵심 통찰**: 이 예시에서 배울 가장 중요한 것은 **리팩터링의 리듬**이다 — 단계를 잘게 나눌수록 오히려 더 빠르고, 코드는 절대 깨지지 않으며, 작은 단계들이 모여 큰 변화를 이룬다. (파울러가 20년 전 디트로이트 호텔에서 켄트 벡의 작업을 처음 보고 놀란 지점이 바로 이것이다.)
+> **핵심 통찰**: 이 예시에서 배울 가장 중요한 것은 **리팩터링의 리듬**이다 - 단계를 잘게 나눌수록 오히려 더 빠르고, 코드는 절대 깨지지 않으며, 작은 단계들이 모여 큰 변화를 이룬다. (파울러가 20년 전 디트로이트 호텔에서 켄트 벡의 작업을 처음 보고 놀란 지점이 바로 이것이다.)
 
 ---
 
@@ -476,7 +476,7 @@ function createPerformanceCalculator(
 | 반복문을 파이프라인으로 바꾸기 (Replace Loop with Pipeline) | 합산 루프를 `reduce`로 | 8.8 |
 | 조건부 로직을 다형성으로 바꾸기 (Replace Conditional with Polymorphism) | 장르 `switch` → 계산기 서브클래스 | 10.4 |
 
-> **핵심 통찰**: 리팩터링은 대부분 **코드가 하는 일을 파악하는 데서 시작**한다 — 읽고, 개선점을 찾고, 그 개선을 코드에 반영하면 코드가 더 명확해지고, 그러면 또 다른 개선점이 보이는 **선순환**이 생긴다.
+> **핵심 통찰**: 리팩터링은 대부분 **코드가 하는 일을 파악하는 데서 시작**한다 - 읽고, 개선점을 찾고, 그 개선을 코드에 반영하면 코드가 더 명확해지고, 그러면 또 다른 개선점이 보이는 **선순환**이 생긴다.
 
 ---
 

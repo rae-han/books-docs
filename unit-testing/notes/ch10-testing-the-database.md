@@ -14,7 +14,7 @@
 
 - **마이그레이션 기반 접근법**: 스키마 변경을 마이그레이션 스크립트로 관리 (Flyway, Liquibase, EF Core Migrations 등)
 - 마이그레이션 스크립트는 **소스 코드의 일부**로 취급한다
-- 참조 데이터(*Reference data — 애플리케이션이 동작하기 위해 미리 존재해야 하는 데이터. 상태 코드, 카테고리 등*)도 마이그레이션에 포함한다
+- 참조 데이터(*Reference data - 애플리케이션이 동작하기 위해 미리 존재해야 하는 데이터. 상태 코드, 카테고리 등*)도 마이그레이션에 포함한다
 
 ```
 프로젝트 저장소
@@ -83,7 +83,7 @@ public abstract class IntegrationTestBase
 ### 2.3 왜 트랜잭션 래핑을 피하는가?
 
 ```csharp
-// 트랜잭션 래핑 방식 — 비권장
+// 트랜잭션 래핑 방식 - 비권장
 [Fact]
 public void Test()
 {
@@ -96,7 +96,7 @@ public void Test()
 ```
 
 문제점:
-- 프로덕션에서는 **커밋**하는데, 테스트에서는 **롤백**한다 — 동작이 다르다
+- 프로덕션에서는 **커밋**하는데, 테스트에서는 **롤백**한다 - 동작이 다르다
 - 프로덕션에서 커밋 시 발생하는 제약 조건 위반을 테스트에서 잡지 못한다
 - 암묵적 트랜잭션과 명시적 트랜잭션의 동작 차이가 버그를 숨길 수 있다
 
@@ -269,13 +269,13 @@ public void Test()
 ```
 IntegrationTests/
 ├── Infrastructure/
-│   ├── TestDatabase.cs           — DB 연결/정리
-│   ├── IntegrationTestBase.cs    — 기본 클래스 (정리, 팩토리)
-│   └── TestDataFactory.cs        — Object Mother
+│   ├── TestDatabase.cs           - DB 연결/정리
+│   ├── IntegrationTestBase.cs    - 기본 클래스 (정리, 팩토리)
+│   └── TestDataFactory.cs        - Object Mother
 ├── Controllers/
 │   ├── UserControllerTests.cs
 │   └── OrderControllerTests.cs
-└── Repositories/                  — 복잡한 쿼리만
+└── Repositories/                  - 복잡한 쿼리만
     └── OrderRepositoryTests.cs
 ```
 

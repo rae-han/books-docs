@@ -39,7 +39,7 @@ Chapter 1의 첫 번째 TODO 리스트에서 가장 처음 적었던 항목을 �
 
 ## 2. TDD 사이클
 
-### 2.1 Red — 혼합 통화 덧셈 테스트
+### 2.1 Red - 혼합 통화 덧셈 테스트
 
 ```java
 public void testMixedAddition() {
@@ -70,11 +70,11 @@ test('mixed addition', () => {
 
 이 테스트가 하는 일을 단계별로 분해하면:
 
-1. `Money.dollar(5)` — 5달러 생성
-2. `Money.franc(10)` — 10프랑 생성
-3. `bank.addRate("CHF", "USD", 2)` — 환율 등록: 2 CHF = 1 USD
-4. `fiveBucks.plus(tenFrancs)` — $5 + 10 CHF → Sum 객체 생성
-5. `bank.reduce(sum, "USD")` — Sum을 USD로 환산
+1. `Money.dollar(5)` - 5달러 생성
+2. `Money.franc(10)` - 10프랑 생성
+3. `bank.addRate("CHF", "USD", 2)` - 환율 등록: 2 CHF = 1 USD
+4. `fiveBucks.plus(tenFrancs)` - $5 + 10 CHF → Sum 객체 생성
+5. `bank.reduce(sum, "USD")` - Sum을 USD로 환산
    - $5 → $5 (이미 USD)
    - 10 CHF → $5 (10 ÷ 2)
    - $5 + $5 = $10
@@ -87,7 +87,7 @@ test('mixed addition', () => {
 `Sum.reduce()`를 살펴보자:
 
 ```java
-// Sum.java — 현재 코드
+// Sum.java - 현재 코드
 public Money reduce(Bank bank, String to) {
     int amount = augend.amount + addend.amount;
     return new Money(amount, to);
@@ -98,7 +98,7 @@ public Money reduce(Bank bank, String to) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Sum.ts — 현재 코드
+// Sum.ts - 현재 코드
 reduce(bank: Bank, to: string): Money {
     const amount = this.augend.amount + this.addend.amount;
     return new Money(amount, to);
@@ -109,12 +109,12 @@ reduce(bank: Bank, to: string): Money {
 
 문제가 보이는가? `augend.amount + addend.amount`에서 **각 피연산자를 먼저 목표 통화로 변환하지 않고** 그냥 금액을 더하고 있다. `5(USD) + 10(CHF) = 15`가 되어 버린다. 10 CHF를 먼저 5 USD로 변환한 후 더해야 한다.
 
-### 2.3 Green — Sum.reduce()에서 각 피연산자를 reduce
+### 2.3 Green - Sum.reduce()에서 각 피연산자를 reduce
 
 핵심 수정: 각 피연산자를 먼저 목표 통화로 `reduce()`한 후에 더한다:
 
 ```java
-// Sum.java — 수정 후
+// Sum.java - 수정 후
 public Money reduce(Bank bank, String to) {
     int amount = augend.reduce(bank, to).amount
                + addend.reduce(bank, to).amount;
@@ -126,7 +126,7 @@ public Money reduce(Bank bank, String to) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Sum.ts — 수정 후
+// Sum.ts - 수정 후
 reduce(bank: Bank, to: string): Money {
     const amount = this.augend.reduce(bank, to).amount
                  + this.addend.reduce(bank, to).amount;
@@ -147,8 +147,8 @@ int amount = augend.reduce(bank, to).amount
            + addend.reduce(bank, to).amount;
 ```
 
-`augend.reduce(bank, to)` — 왼쪽 피연산자를 목표 통화로 변환
-`addend.reduce(bank, to)` — 오른쪽 피연산자를 목표 통화로 변환
+`augend.reduce(bank, to)` - 왼쪽 피연산자를 목표 통화로 변환
+`addend.reduce(bank, to)` - 오른쪽 피연산자를 목표 통화로 변환
 
 이렇게 하면:
 - `Money.dollar(5).reduce(bank, "USD")` → `Money.dollar(5)` (변환 불필요)
@@ -157,9 +157,9 @@ int amount = augend.reduce(bank, to).amount
 
 **테스트 통과! Green Bar!**
 
-> **핵심 통찰**: 이 수정은 단 한 줄이지만, 의미는 크다. 각 피연산자가 자신을 목표 통화로 변환할 수 있다는 것은 `reduce()`가 **재귀적으로 동작**한다는 의미다. Sum의 augend나 addend가 또 다른 Sum이라면? 그 Sum도 자신의 피연산자를 reduce할 것이다. 이것이 Expression 트리의 힘이다 — 아무리 복잡한 산술 표현식도 재귀적으로 처리할 수 있다.
+> **핵심 통찰**: 이 수정은 단 한 줄이지만, 의미는 크다. 각 피연산자가 자신을 목표 통화로 변환할 수 있다는 것은 `reduce()`가 **재귀적으로 동작**한다는 의미다. Sum의 augend나 addend가 또 다른 Sum이라면? 그 Sum도 자신의 피연산자를 reduce할 것이다. 이것이 Expression 트리의 힘이다 - 아무리 복잡한 산술 표현식도 재귀적으로 처리할 수 있다.
 
-### 2.4 Refactor — 타입 정리
+### 2.4 Refactor - 타입 정리
 
 테스트 코드를 다시 보자:
 
@@ -330,7 +330,7 @@ TODO 리스트의 첫 번째 항목이 드디어 완료되었다! 하지만 새�
 
 - **$5 + 10 CHF = $10**: Chapter 1에서 시작된 핵심 목표를 드디어 달성했다.
 - 수정은 놀라울 정도로 간단했다: `Sum.reduce()`에서 각 피연산자를 `reduce()`한 후 더하도록 변경하면 끝이다.
-- `augend.reduce(bank, to).amount + addend.reduce(bank, to).amount` — 이 한 줄이 핵심이다.
+- `augend.reduce(bank, to).amount + addend.reduce(bank, to).amount` - 이 한 줄이 핵심이다.
 - 이 수정이 가능했던 이유는 이전 14개 챕터에서 **Expression 인터페이스, reduce() 프로토콜, 환율 변환**을 차근차근 쌓아왔기 때문이다.
 - **Expression 트리는 재귀적**으로 동작한다. 아무리 복잡한 표현식도 각 노드가 자신을 reduce()하면서 처리된다.
 - TDD의 작은 걸음 방식으로 14개 챕터에 걸쳐 점진적으로 해결책을 쌓아올린 결과, 최종 수정은 단 한 줄로 끝났다.

@@ -51,7 +51,7 @@
 - **지속성**: 탭이나 창을 닫아도 유지되며, 사용자가 "인터넷 사용 기록 삭제"로 지우면 사라진다.
 - **따르는 지시어**: `max-age`, `no-cache`, `no-store`. `private`과 `public`은 브라우저 캐시 동작을 바꾸지 않는다(브라우저 캐시는 이미 프라이빗 캐시다).
 
-> **참고 — 트리플 키 캐싱(Partitioned Cache)**<br><br>최신 브라우저는 프라이버시 보호를 위해 캐시 키로 URL만 쓰지 않고 **(최상위 사이트, 현재 프레임, 리소스 URL)** 세 값을 조합한다. `site-a.com`과 `site-b.com`이 모두 `cdn.example.com/script.js`를 로드해도 서로 다른 캐시 항목을 쓴다. 캐시가 URL만으로 공유되면 악의적 사이트가 특정 리소스의 로드 시간을 재서 사용자가 은행 사이트를 방문했는지 추론할 수 있는데(타이밍 공격), 트리플 키 캐싱은 이를 원천 차단한다. 개발자가 직접 제어할 수는 없지만 **같은 CDN 리소스라도 사이트마다 별도 캐싱된다는 점**을 CDN 히트율 계산에 반영해야 한다.
+> **참고 - 트리플 키 캐싱(Partitioned Cache)**<br><br>최신 브라우저는 프라이버시 보호를 위해 캐시 키로 URL만 쓰지 않고 **(최상위 사이트, 현재 프레임, 리소스 URL)** 세 값을 조합한다. `site-a.com`과 `site-b.com`이 모두 `cdn.example.com/script.js`를 로드해도 서로 다른 캐시 항목을 쓴다. 캐시가 URL만으로 공유되면 악의적 사이트가 특정 리소스의 로드 시간을 재서 사용자가 은행 사이트를 방문했는지 추론할 수 있는데(타이밍 공격), 트리플 키 캐싱은 이를 원천 차단한다. 개발자가 직접 제어할 수는 없지만 **같은 CDN 리소스라도 사이트마다 별도 캐싱된다는 점**을 CDN 히트율 계산에 반영해야 한다.
 
 **CDN 캐시(Shared Cache)**
 
@@ -100,19 +100,19 @@ CDN 캐시가 만료되면 CDN이 오리진에 재검증 요청을 보낸다. �
 4. `private` > `public` (공유 캐시 비활성화)
 
 ```http
-# 정적 리소스(해시 파일명) — 브라우저·CDN 모두 1년 캐싱
+# 정적 리소스(해시 파일명) - 브라우저·CDN 모두 1년 캐싱
 Cache-Control: public, max-age=31536000, immutable
 
-# HTML — 매번 재검증, 변경 없으면 304
+# HTML - 매번 재검증, 변경 없으면 304
 Cache-Control: no-cache
 
-# API 응답(짧은 캐싱) — 브라우저만 1분, CDN 캐싱 안 함
+# API 응답(짧은 캐싱) - 브라우저만 1분, CDN 캐싱 안 함
 Cache-Control: private, max-age=60
 
-# 사용자 대시보드 — 브라우저만 캐싱하되 매번 재검증
+# 사용자 대시보드 - 브라우저만 캐싱하되 매번 재검증
 Cache-Control: private, no-cache
 
-# 금융 거래 내역 — 아예 캐싱 안 함
+# 금융 거래 내역 - 아예 캐싱 안 함
 Cache-Control: no-store
 ```
 
@@ -176,8 +176,8 @@ export async function GET(): Promise<Response> {
 |---|---|---|
 | 정적 리소스(해시 파일명) | `public, max-age=31536000, immutable` | 파일명이 바뀌므로 `s-maxage` 불필요 |
 | HTML | `public, max-age=0, s-maxage=3600` | 브라우저는 매번 재검증, CDN은 1시간(배포 시 무효화) |
-| API — 준실시간 데이터 | `public, max-age=60, s-maxage=300` | 브라우저 1분, CDN 5분 |
-| API — 자주 안 바뀌는 데이터 | `public, max-age=300, s-maxage=3600` | 브라우저 5분, CDN 1시간 |
+| API - 준실시간 데이터 | `public, max-age=60, s-maxage=300` | 브라우저 1분, CDN 5분 |
+| API - 자주 안 바뀌는 데이터 | `public, max-age=300, s-maxage=3600` | 브라우저 5분, CDN 1시간 |
 | 사용자별 데이터 | `private, max-age=300` | 브라우저만 5분, CDN 캐싱 금지 |
 
 ### 1.4 no-cache vs no-store: 가장 많이 오해받는 지시어
@@ -291,7 +291,7 @@ Cache-Control: no-cache
 ETag(*Entity Tag*)는 파일의 '지문'이다. 파일 내용이 바뀌면 ETag도 바뀐다. 서버가 해시값이나 버전 번호를 ETag로 만들어 전달하면, 브라우저는 다음 요청 시 `If-None-Match` 헤더로 되돌려 보낸다.
 
 ```ts
-// Next.js Route Handler — ETag 직접 구현
+// Next.js Route Handler - ETag 직접 구현
 import crypto from 'node:crypto';
 
 export async function GET(req: Request): Promise<Response> {
@@ -409,10 +409,10 @@ export default {
 
 **실전 권장 사항**
 
-- ✅ `Vary: Accept-Encoding` — 값이 3~4가지뿐이라 안전하며 **모든 정적 리소스에 필수**
-- ⚠️ `Vary: Accept` — 사용 시 값의 가짓수가 많지 않은지 확인
-- ❌ `Vary: Cookie` — 절대 사용 금지
-- ❌ `Vary: User-Agent` — 절대 사용 금지
+- ✅ `Vary: Accept-Encoding` - 값이 3~4가지뿐이라 안전하며 **모든 정적 리소스에 필수**
+- ⚠️ `Vary: Accept` - 사용 시 값의 가짓수가 많지 않은지 확인
+- ❌ `Vary: Cookie` - 절대 사용 금지
+- ❌ `Vary: User-Agent` - 절대 사용 금지
 
 > **핵심 통찰**: `Vary`는 강력하지만 위험한 도구다. **가능하면 URL 구조로 문제를 해결하고**, `Vary`는 압축처럼 값의 가짓수가 명확히 제한된 경우에만 쓴다. `Vary` 추가 후 CDN 히트율이 급락했다면 값이 너무 다양하다는 신호다.
 
@@ -515,12 +515,12 @@ export default defineConfig({
 
 ```nginx
 server {
-    # 해시가 포함된 정적 파일 — 1년 캐싱
+    # 해시가 포함된 정적 파일 - 1년 캐싱
     location ~* \.[0-9a-f]{8,}\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2)$ {
         add_header Cache-Control "public, max-age=31536000";
     }
 
-    # 해시가 없는 정적 파일 — 1시간
+    # 해시가 없는 정적 파일 - 1시간
     location ~* \.(js|css|png|jpg|jpeg|gif|svg|woff|woff2)$ {
         add_header Cache-Control "public, max-age=3600";
     }
@@ -583,13 +583,13 @@ SWR의 총 유효 기간은 `max-age + stale-while-revalidate`다. 위 예시는
 ### 3.2 데이터 특성별 설정
 
 ```ts
-// 자주 변경되는 API — 1분 신선, 1시간 오래됨 허용
+// 자주 변경되는 API - 1분 신선, 1시간 오래됨 허용
 'Cache-Control': 'max-age=60, stale-while-revalidate=3600'
 
-// RSS 피드(적당히 변경) — 1시간 신선, 24시간 오래됨 허용
+// RSS 피드(적당히 변경) - 1시간 신선, 24시간 오래됨 허용
 'Cache-Control': 'max-age=3600, stale-while-revalidate=86400'
 
-// 정적 JSON(i18n 번역 파일 등) — 1시간 신선, 1주일 오래됨 허용
+// 정적 JSON(i18n 번역 파일 등) - 1시간 신선, 1주일 오래됨 허용
 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=604800'
 ```
 

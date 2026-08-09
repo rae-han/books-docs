@@ -67,10 +67,10 @@ interface Config {
 const obj3: Config = { apiUrl: "https://api.example.com", timeout: 5000 };
 ```
 
-속성 할당 — TypeScript에서는 인터페이스를 정의하여 타입 안전하게 속성을 관리한다:
+속성 할당 - TypeScript에서는 인터페이스를 정의하여 타입 안전하게 속성을 관리한다:
 
 ```typescript
-// Object.defineProperty — 세밀한 제어가 필요할 때
+// Object.defineProperty - 세밀한 제어가 필요할 때
 Object.defineProperty(obj1, "someKey", {
   value: "Hello World",
   writable: true,
@@ -97,7 +97,7 @@ class Car {
 ```
 
 ```typescript
-// TypeScript — 매개변수 프로퍼티로 간결하게
+// TypeScript - 매개변수 프로퍼티로 간결하게
 class Car {
   constructor(
     public model: string,
@@ -141,7 +141,7 @@ class Car {
     this._miles += distance;
   }
 
-  // 프로토타입에 자동 할당 — 모든 인스턴스가 공유
+  // 프로토타입에 자동 할당 - 모든 인스턴스가 공유
   toString(): string {
     return `${this.model} has done ${this._miles} miles`;
   }
@@ -185,7 +185,7 @@ class ModernCar {
 
 ## 3. 모듈 패턴 (Module Pattern)
 
-모듈(*Module*)은 애플리케이션 아키텍처의 핵심 구성 요소이며, 코드 단위를 체계적으로 분리 및 관리하는 데 활용된다. 모듈 패턴은 클로저(*Closure — 함수가 선언된 렉시컬 스코프를 기억하는 기능*)를 활용해 **공개(public)와 비공개(private) 멤버를 구분**한다.
+모듈(*Module*)은 애플리케이션 아키텍처의 핵심 구성 요소이며, 코드 단위를 체계적으로 분리 및 관리하는 데 활용된다. 모듈 패턴은 클로저(*Closure - 함수가 선언된 렉시컬 스코프를 기억하는 기능*)를 활용해 **공개(public)와 비공개(private) 멤버를 구분**한다.
 
 ### 패턴 카드: Module
 
@@ -244,7 +244,7 @@ ES Modules에서 파일 스코프에 정의된 변수는 `export`하지 않으�
 
 ```typescript
 // counterModule.ts
-let counter = 0; // 비공개 — 외부에서 접근 불가
+let counter = 0; // 비공개 - 외부에서 접근 불가
 
 export const testModule = {
   incrementCounter(): number {
@@ -265,10 +265,10 @@ import { testModule } from "./counterModule";
 testModule.incrementCounter();
 testModule.resetCounter(); // "counter value prior to reset: 1"
 
-// counter 변수에 직접 접근 불가 — 모듈 스코프 내부에서 보호
+// counter 변수에 직접 접근 불가 - 모듈 스코프 내부에서 보호
 ```
 
-### 3.3 장바구니 예제 — 실용적 모듈 패턴
+### 3.3 장바구니 예제 - 실용적 모듈 패턴
 
 ```typescript
 // basketModule.ts
@@ -309,7 +309,7 @@ console.log(basketModule.getTotal());     // 0.8
 // (basketModule as any).basket → 타입 에러! 비공개 접근 불가
 ```
 
-### 3.4 클래스 기반 모듈 패턴 — `#private` 필드
+### 3.4 클래스 기반 모듈 패턴 - `#private` 필드
 
 ES2022의 `#private` 필드를 TypeScript와 함께 사용하면 **런타임에서도 진정한 비공개**가 보장된다:
 
@@ -419,7 +419,7 @@ myRevealingModule.getName(); // "Name: Matt Gaunt"
 
 ## 5. 싱글톤 패턴 (Singleton Pattern)
 
-싱글톤(*Singleton*)은 클래스의 인스턴스(*instance — 클래스를 기반으로 생성된 실제 객체*)가 **오직 하나만 존재하도록 제한**하는 패턴이다. 전역에서 접근 및 공유해야 하는 단 하나의 객체가 필요할 때 유용하다.
+싱글톤(*Singleton*)은 클래스의 인스턴스(*instance - 클래스를 기반으로 생성된 실제 객체*)가 **오직 하나만 존재하도록 제한**하는 패턴이다. 전역에서 접근 및 공유해야 하는 단 하나의 객체가 필요할 때 유용하다.
 
 ### 패턴 카드: Singleton
 
@@ -431,10 +431,10 @@ myRevealingModule.getName(); // "Name: Matt Gaunt"
 | **장점** | 전역 접근, 지연 초기화 가능, 리소스 절약 |
 | **단점** | 테스트 어려움, 숨겨진 의존성, 전역 상태 문제 |
 
-### 5.1 싱글톤 구현 — JS vs TS 비교
+### 5.1 싱글톤 구현 - JS vs TS 비교
 
 ```javascript
-// JavaScript — 런타임에서만 단일 인스턴스 보장
+// JavaScript - 런타임에서만 단일 인스턴스 보장
 let instance;
 
 class MySingleton {
@@ -457,7 +457,7 @@ class MySingleton {
 ```
 
 ```typescript
-// TypeScript — private constructor로 컴파일 타임에 new 차단
+// TypeScript - private constructor로 컴파일 타임에 new 차단
 class MySingleton {
   static #instance: MySingleton | null = null;
 
@@ -490,7 +490,7 @@ console.log(singleA === singleB); // true
 
 TypeScript의 `private constructor`는 싱글톤의 핵심 제약("외부에서 인스턴스 생성 불가")을 **컴파일 타임에 강제**한다. JavaScript에서는 런타임 검사(`if (instance) return instance`)로만 방어할 수 있어, 코드를 읽기 전까지는 해당 클래스가 싱글톤인지 알기 어렵다.
 
-### 5.2 제네릭 싱글톤 — 지연 초기화
+### 5.2 제네릭 싱글톤 - 지연 초기화
 
 ```typescript
 interface SingletonOptions {
@@ -632,7 +632,7 @@ class Vehicle implements Cloneable<Vehicle> {
   }
 
   getInfo(): string {
-    return `${this.model} (${this.year}) — ${this._mileage} miles`;
+    return `${this.model} (${this.year}) - ${this._mileage} miles`;
   }
 
   clone(): Vehicle {
@@ -644,8 +644,8 @@ const car = new Vehicle("Ford Escort", 2020, 5000);
 const car2 = car.clone();
 
 car2.drive(100);
-console.log(car.getInfo());  // "Ford Escort (2020) — 5000 miles"
-console.log(car2.getInfo()); // "Ford Escort (2020) — 5100 miles" (독립적)
+console.log(car.getInfo());  // "Ford Escort (2020) - 5000 miles"
+console.log(car2.getInfo()); // "Ford Escort (2020) - 5100 miles" (독립적)
 ```
 
 ### 6.2 structuredClone을 활용한 깊은 복사
@@ -661,7 +661,7 @@ const originalState: AppState = {
   items: [{ id: 1, label: "Item 1" }],
 };
 
-// ES2022 structuredClone — 깊은 복사
+// ES2022 structuredClone - 깊은 복사
 const clonedState = structuredClone(originalState);
 clonedState.user.preferences.theme = "light";
 
@@ -717,17 +717,17 @@ const clone = structuredClone(original);
 | **장점** | 생성 로직 중앙화, Open-Closed 원칙 준수, 디커플링 |
 | **단점** | 간단한 경우 불필요한 복잡성 추가, 테스트 복잡도 증가 가능 |
 
-### 7.1 팩토리 구현 — JS vs TS 비교
+### 7.1 팩토리 구현 - JS vs TS 비교
 
 ```javascript
-// JavaScript — 반환 타입을 알 수 없고, 잘못된 vehicleType도 런타임까지 잡히지 않음
+// JavaScript - 반환 타입을 알 수 없고, 잘못된 vehicleType도 런타임까지 잡히지 않음
 class VehicleFactory {
   createVehicle(options) {
     const { vehicleType, ...rest } = options;
     switch (vehicleType) {
       case "car":    return new Car(rest);
       case "truck":  return new Truck(rest);
-      default:       return new Car(rest); // 기본값 — 실수해도 모름
+      default:       return new Car(rest); // 기본값 - 실수해도 모름
     }
   }
 }
@@ -740,7 +740,7 @@ const v = factory.createVehicle({ vehicleType: "car", color: "yellow" });
 TypeScript의 **판별 유니언**(*Discriminated Union*) + **함수 오버로드**를 사용하면 팩토리의 반환 타입이 입력에 따라 **자동으로 좁혀진다**:
 
 ```typescript
-// TypeScript — 입력 타입에 따라 반환 타입이 자동 결정
+// TypeScript - 입력 타입에 따라 반환 타입이 자동 결정
 interface CarOptions {
   vehicleType: "car";
   doors?: number;
@@ -781,7 +781,7 @@ class Truck {
   }
 }
 
-// 함수 오버로드 — 입력에 따라 반환 타입이 달라짐
+// 함수 오버로드 - 입력에 따라 반환 타입이 달라짐
 function createVehicle(options: CarOptions): Car;
 function createVehicle(options: TruckOptions): Truck;
 function createVehicle(options: VehicleOptions): Car | Truck {
@@ -798,10 +798,10 @@ function createVehicle(options: VehicleOptions): Car | Truck {
 }
 
 const car = createVehicle({ vehicleType: "car", color: "yellow", doors: 6 });
-//    ^? const car: Car — 자동 추론!
+//    ^? const car: Car - 자동 추론!
 
 const truck = createVehicle({ vehicleType: "truck", wheelSize: "small" });
-//    ^? const truck: Truck — 자동 추론!
+//    ^? const truck: Truck - 자동 추론!
 
 // createVehicle({ vehicleType: "boat" });
 // ^^^^^^^^^^^^^^^^^^^^^^^^ Error: '"boat"'은 할당할 수 없습니다.
@@ -852,10 +852,10 @@ console.log(car.describe());
 - 객체나 컴포넌트의 생성 과정이 높은 복잡성을 가지고 있을 때
 - 상황에 맞춰 다양한 객체 인스턴스를 편리하게 생성해야 할 때
 - 같은 인터페이스를 공유하는 여러 구현체를 다뤄야 할 때
-- 디커플링(*decoupling — 호출부가 구체적인 클래스를 몰라도 되도록 분리*)이 필요한 경우
+- 디커플링(*decoupling - 호출부가 구체적인 클래스를 몰라도 되도록 분리*)이 필요한 경우
 
 **사용하면 안 되는 상황**:
-- 객체 생성이 단순한 경우 — 불필요한 복잡성이 추가된다
+- 객체 생성이 단순한 경우 - 불필요한 복잡성이 추가된다
 - 객체 생성 인터페이스 제공이 라이브러리 설계 목표가 아닌 경우
 
 ---
@@ -875,13 +875,13 @@ console.log(car.describe());
 | **단점** | 새로운 타입 추가 시 수정 범위 증가 |
 
 ```javascript
-// JavaScript — 런타임에 프로토타입 메서드 존재 여부를 검사해야 함
+// JavaScript - 런타임에 프로토타입 메서드 존재 여부를 검사해야 함
 class AbstractVehicleFactory {
   #types = {};
 
   registerVehicle(type, Vehicle) {
     const proto = Vehicle.prototype;
-    // 인터페이스 충족 여부를 런타임에 수동 검증 — 실수하기 쉬움
+    // 인터페이스 충족 여부를 런타임에 수동 검증 - 실수하기 쉬움
     if (proto.drive && proto.breakDown) {
       this.#types[type] = Vehicle;
     }
@@ -896,7 +896,7 @@ class AbstractVehicleFactory {
 ```
 
 ```typescript
-// TypeScript — implements로 컴파일 타임에 인터페이스 충족을 강제
+// TypeScript - implements로 컴파일 타임에 인터페이스 충족을 강제
 interface Vehicle {
   drive(): void;
   breakDown(): void;
@@ -970,7 +970,7 @@ car.drive(); // "Vroom! Fast driving!"
 | **장점** | 가독성, 선택적 매개변수 처리, 불변 객체 생성에 유리 |
 | **단점** | 코드 양 증가, 단순 객체에는 과도한 추상화 |
 
-### TypeScript 빌더 — 타입 안전한 메서드 체이닝
+### TypeScript 빌더 - 타입 안전한 메서드 체이닝
 
 ```typescript
 class QueryBuilder {
@@ -1021,7 +1021,7 @@ const query = new QueryBuilder()
 // "SELECT * FROM users WHERE age > 18 AND active = true ORDER BY name LIMIT 10"
 ```
 
-### 옵션 객체 패턴 — TypeScript에서 빌더의 대안
+### 옵션 객체 패턴 - TypeScript에서 빌더의 대안
 
 TypeScript에서는 인터페이스의 선택적 속성(`?`)과 `Readonly`, `Partial` 유틸리티 타입이 빌더 패턴의 많은 사용 사례를 대체한다:
 
@@ -1072,7 +1072,7 @@ class Example {
 
 ### Explicit Resource Management (`using`)
 
-ES2024에 도입된 `using` 키워드 — TypeScript 5.2+에서 지원:
+ES2024에 도입된 `using` 키워드 - TypeScript 5.2+에서 지원:
 
 ```typescript
 class DatabaseConnection implements Disposable {

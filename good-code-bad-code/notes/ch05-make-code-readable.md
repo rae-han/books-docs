@@ -25,10 +25,10 @@
 이름은 대상을 식별할 뿐 아니라 그것이 무엇인지 **간단한 설명**도 해준다. 토스터를 "객체 A"라고 부르면 무엇인지 기억하기 어렵다. 서술적이지 않은 이름은 코드를 읽기 어렵게 만든다.
 
 <details>
-<summary>의사코드 (원서) — 예제 5.1 → 5.3 (나쁜 예 → 좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 5.1 → 5.3 (나쁜 예 → 좋은 예)</summary>
 
 ```java
-// ❌ 서술적이지 않은 이름 — 무슨 일을 하는지 알 수 없다
+// ❌ 서술적이지 않은 이름 - 무슨 일을 하는지 알 수 없다
 class T {
   Set<String> pns = new Set();
   Int s = 0;
@@ -42,7 +42,7 @@ Int? s(List<T> ts, String n) {
   return null;
 }
 
-// ✅ 서술적인 이름 — 자명하다
+// ✅ 서술적인 이름 - 자명하다
 class Team {
   Set<String> playerNames = new Set();
   Int score = 0;
@@ -68,7 +68,7 @@ class T {
   getS(): number { return this.s; }
 }
 
-// ✅ 서술적인 이름 — Team.containsPlayer(playerName)만 봐도 자명하다
+// ✅ 서술적인 이름 - Team.containsPlayer(playerName)만 봐도 자명하다
 class Team {
   playerNames = new Set<string>();
   score = 0;
@@ -106,7 +106,7 @@ function getTeamScoreForPlayer(teams: Team[], playerName: string): number | null
 줄 수가 적을수록 좋다는 것은 일반적으로 맞지만, 이는 우리가 진짜 신경 쓰는 것(이해하기 쉬움 / 오해하기 어려움 / 실수로 깨뜨리기 어려움)을 **간접 측정**할 뿐이다. 이해하기 어려운 한 줄은 같은 일을 하는 이해하기 쉬운 10줄보다 품질이 낮다.
 
 <details>
-<summary>의사코드 (원서) — 예제 5.9 → 5.10 (간결하지만 난해 → 길지만 명확)</summary>
+<summary>의사코드 (원서) - 예제 5.9 → 5.10 (간결하지만 난해 → 길지만 명확)</summary>
 
 ```java
 // ❌ 간결하지만 거의 이해할 수 없다 (패리티 비트 검사)
@@ -129,7 +129,7 @@ private UInt16 calculateParity(UInt16 value) { return countSetBits(value) % 2; }
 </details>
 
 ```typescript
-// ❌ 간결하지만 난해 — 유효한 ID 기준을 즉시 알 수 없다
+// ❌ 간결하지만 난해 - 유효한 ID 기준을 즉시 알 수 없다
 function isIdValid(id: number): boolean {
   return countSetBits(id & 0x7fff) % 2 === ((id & 0x8000) >> 15);
 }
@@ -153,7 +153,7 @@ function calculateParity(value: number): number { return countSetBits(value) % 2
 
 문법이 허용하는 것과 별개로, 잘 읽히는 스타일 지침이 있다. `SaaS`를 `SAAS`로 쓰면 다른 것으로 오해되듯, 코드 스타일이 어긋나면 혼란과 버그를 부른다.
 
-> **비유 — connectionManager 버그**: 클래스는 파스칼케이스, 변수는 캐멀케이스라는 관례를 따를 때, `connectionManager.terminateAll()`을 보면 "인스턴스 변수"라고 가정한다. 그런데 `connectionManager`가 실은 **클래스**(정적 함수 `terminateAll()`)라면, 해당 채팅만이 아니라 **서버의 모든 채팅 연결을 종료**하는 심각한 버그가 된다. `ConnectionManager`로 명명했다면 이 버그는 드러났을 것이다.
+> **비유 - connectionManager 버그**: 클래스는 파스칼케이스, 변수는 캐멀케이스라는 관례를 따를 때, `connectionManager.terminateAll()`을 보면 "인스턴스 변수"라고 가정한다. 그런데 `connectionManager`가 실은 **클래스**(정적 함수 `terminateAll()`)라면, 해당 채팅만이 아니라 **서버의 모든 채팅 연결을 종료**하는 심각한 버그가 된다. `ConnectionManager`로 명명했다면 이 버그는 드러났을 것이다.
 
 팀·조직의 스타일 가이드를 따르는 것은 모두가 같은 언어를 유창하게 말하는 것과 같다. **린터(*linter - 스타일 위반이나 알려진 나쁜 관행을 찾아 알려주는 도구*)**는 처음부터 좋은 코드를 쓰는 것을 대체하진 못하지만 빠르고 쉬운 개선 수단이다.
 
@@ -164,10 +164,10 @@ function calculateParity(value: number): number { return countSetBits(value) % 2
 제어 흐름(if/for)은 서로 중첩된 블록을 만든다. 인간의 눈은 각 줄의 중첩 수준을 추적하는 데 약하므로, 깊은 중첩은 "이 줄이 언제 실행되는가"를 파악하기 어렵게 한다.
 
 <details>
-<summary>의사코드 (원서) — 예제 5.14 → 5.15 (중첩 if → 일찍 반환)</summary>
+<summary>의사코드 (원서) - 예제 5.14 → 5.15 (중첩 if → 일찍 반환)</summary>
 
 ```java
-// ❌ 깊이 중첩된 if — 언제 어떤 값이 반환되는지 따라가기 어렵다
+// ❌ 깊이 중첩된 if - 언제 어떤 값이 반환되는지 따라가기 어렵다
 Address? getOwnersAddress(Vehicle vehicle) {
   if (vehicle.hasBeenScraped()) {
     return SCRAPYARD_ADDRESS;
@@ -222,7 +222,7 @@ function getOwnersAddress(vehicle: Vehicle): Address | null {
 }
 ```
 
-> **핵심 통찰**: 중첩된 모든 블록에 반환문이 있으면 일찍 반환으로 쉽게 펼 수 있다. 하지만 **중첩된 블록에 반환문이 없다면, 그건 대개 함수가 너무 많은 일을 한다는 신호**다(5.5.3). 이럴 땐 주소를 찾는 로직을 별도 함수로 분리한 뒤 중첩을 제거한다(5.5.4) — 2장의 "함수는 한 문장처럼"과 이어진다.
+> **핵심 통찰**: 중첩된 모든 블록에 반환문이 있으면 일찍 반환으로 쉽게 펼 수 있다. 하지만 **중첩된 블록에 반환문이 없다면, 그건 대개 함수가 너무 많은 일을 한다는 신호**다(5.5.3). 이럴 땐 주소를 찾는 로직을 별도 함수로 분리한 뒤 중첩을 제거한다(5.5.4) - 2장의 "함수는 한 문장처럼"과 이어진다.
 
 ---
 
@@ -230,10 +230,10 @@ function getOwnersAddress(vehicle: Vehicle): Address | null {
 
 함수 이름이 좋아도 인수가 무엇을 뜻하는지 불명확하면 호출이 이해되지 않는다. `sendMessage("hello", 1, true)`에서 `1`과 `true`가 무엇인지 알려면 함수 정의를 봐야 한다.
 
-**해결책 1 — 명명된 매개변수**: 지원 언어에서는 `sendMessage(message: "hello", priority: 1, allowRetry: true)`. TS/JS는 명명된 매개변수가 없지만 **객체 구조분해(object destructuring)**로 같은 효과를 낸다(원서도 TS로 이 기법을 보여준다).
+**해결책 1 - 명명된 매개변수**: 지원 언어에서는 `sendMessage(message: "hello", priority: 1, allowRetry: true)`. TS/JS는 명명된 매개변수가 없지만 **객체 구조분해(object destructuring)**로 같은 효과를 낸다(원서도 TS로 이 기법을 보여준다).
 
 <details>
-<summary>의사코드 (원서) — 예제 5.18 TypeScript 객체 구조분해</summary>
+<summary>의사코드 (원서) - 예제 5.18 TypeScript 객체 구조분해</summary>
 
 ```typescript
 interface SendMessageParams {
@@ -275,22 +275,22 @@ async function sendMessage(
 sendMessage({ message: "hello", priority: 1, allowRetry: true });
 ```
 
-**해결책 2 — 서술적 유형 사용**: `Int`·`Boolean` 대신 `MessagePriority` 클래스, `RetryPolicy` **열거형**(`ALLOW_RETRY`/`DISALLOW_RETRY`)을 쓰면 호출이 자명해진다.
+**해결책 2 - 서술적 유형 사용**: `Int`·`Boolean` 대신 `MessagePriority` 클래스, `RetryPolicy` **열거형**(`ALLOW_RETRY`/`DISALLOW_RETRY`)을 쓰면 호출이 자명해진다.
 
-> **핵심 통찰**: `BoundingBox(10, 50, 20, 5)`처럼 **훌륭한 해결책이 없을 때도 있다**(5.6.4). 이때는 인라인 주석(`/* top= */ 10`)이 차선책이지만 최신 유지 부담이 있다. **IDE가 매개변수 이름을 보여주는 기능(5.6.5)에 의존하지 말라** — 코드 리뷰·병합 도구는 IDE 도움 없이 코드만 보기 때문이다.
+> **핵심 통찰**: `BoundingBox(10, 50, 20, 5)`처럼 **훌륭한 해결책이 없을 때도 있다**(5.6.4). 이때는 인라인 주석(`/* top= */ 10`)이 차선책이지만 최신 유지 부담이 있다. **IDE가 매개변수 이름을 보여주는 기능(5.6.5)에 의존하지 말라** - 코드 리뷰·병합 도구는 IDE 도움 없이 코드만 보기 때문이다.
 
 ---
 
 ## 7. 설명되지 않은 값을 사용하지 말라 (5.7)
 
-하드코딩된 값에는 두 정보가 있다 — **값이 무엇인지**(컴퓨터가 알아야 함)와 **값이 무엇을 의미하는지**(개발자가 알아야 함). 후자를 빠뜨리기 쉽다. 예: `getKineticEnergy()`의 `907.1847`(미국톤→kg)과 `0.44704`(mph→m/s)는 의미가 불명확해, 누군가 `getMassUsTon()`을 `getMassKg()`로 바꿔도 `907.1847`을 지워야 하는지 몰라 **버그**가 난다.
+하드코딩된 값에는 두 정보가 있다 - **값이 무엇인지**(컴퓨터가 알아야 함)와 **값이 무엇을 의미하는지**(개발자가 알아야 함). 후자를 빠뜨리기 쉽다. 예: `getKineticEnergy()`의 `907.1847`(미국톤→kg)과 `0.44704`(mph→m/s)는 의미가 불명확해, 누군가 `getMassUsTon()`을 `getMassKg()`로 바꿔도 `907.1847`을 지워야 하는지 몰라 **버그**가 난다.
 
-- **해결책 A — 잘 명명된 상수**: `const KILOGRAMS_PER_US_TON = 907.1847;`
-- **해결책 B — 공급자 함수**: `kilogramsPerUsTon()`이 값을 반환
-- **해결책 C — 헬퍼 함수**: `usTonsToKilograms(value)`가 변환을 하위 문제로 처리(계수는 구현 세부사항으로 숨김)
+- **해결책 A - 잘 명명된 상수**: `const KILOGRAMS_PER_US_TON = 907.1847;`
+- **해결책 B - 공급자 함수**: `kilogramsPerUsTon()`이 값을 반환
+- **해결책 C - 헬퍼 함수**: `usTonsToKilograms(value)`가 변환을 하위 문제로 처리(계수는 구현 세부사항으로 숨김)
 
 <details>
-<summary>의사코드 (원서) — 예제 5.22 잘 명명된 상수</summary>
+<summary>의사코드 (원서) - 예제 5.22 잘 명명된 상수</summary>
 
 ```java
 class Vehicle {
@@ -366,8 +366,8 @@ class Vehicle {
 - 가독성을 높이려면 코드가 더 장황해질 수 있는데, 이는 대개 가치 있는 절충이다.
 - **서술적 이름**을 쓰고(주석으로 대체 금지), 주석은 **"왜"와 상위 요약**에 쓴다.
 - **코드 줄 수에 집착하지 말고**, 일관된 스타일을 지키며, **깊은 중첩은 일찍 반환·함수 분리**로 편다.
-- **함수 호출도 읽히게** — 명명된 매개변수(TS는 객체 구조분해)·서술적 유형(열거형)을 쓴다.
-- **설명되지 않은 값을 쓰지 말라** — 상수·공급자·헬퍼 함수로 의미를 드러낸다.
+- **함수 호출도 읽히게** - 명명된 매개변수(TS는 객체 구조분해)·서술적 유형(열거형)을 쓴다.
+- **설명되지 않은 값을 쓰지 말라** - 상수·공급자·헬퍼 함수로 의미를 드러낸다.
 - **익명 함수는 간단할 때만**, 복잡·긴 로직은 명명 함수로 분리한다.
 - 언어의 새 기능은 **작업에 적합할 때만** 쓴다.
 - 무엇보다 다른 개발자의 입장을 **공감**하고 상식과 판단을 적용해야 한다.

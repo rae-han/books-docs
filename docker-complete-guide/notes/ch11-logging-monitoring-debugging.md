@@ -1,4 +1,4 @@
-# Chapter 11: 로깅, 모니터링, 디버깅 — Logging, Monitoring & Debugging
+# Chapter 11: 로깅, 모니터링, 디버깅 - Logging, Monitoring & Debugging
 
 ## 핵심 질문
 
@@ -44,14 +44,14 @@ Docker의 로깅 모델은 놀라울 정도로 단순하다. 컨테이너 내부
 
 가장 단순한 형태는 `console.log`이지만, 프로덕션에서는 구조화 로깅(*Structured Logging - JSON 등 파싱 가능한 형식으로 로그를 출력하는 방식*)이 필수다.
 
-**console.log — 비구조화 로깅 (비추천)**:
+**console.log - 비구조화 로깅 (비추천)**:
 
 ```typescript
 // 파싱 어려움, 검색 불편
 console.log('User login failed for user@example.com');
 ```
 
-**Pino — 구조화 로깅 (추천)**:
+**Pino - 구조화 로깅 (추천)**:
 
 ```typescript
 import pino from 'pino';
@@ -71,7 +71,7 @@ logger.info({ userId: 'u-123', email: 'user@example.com' }, 'User login failed')
 // → {"level":30,"time":1709827200000,"userId":"u-123","email":"user@example.com","msg":"User login failed"}
 ```
 
-**Winston — stream을 stdout으로 설정**:
+**Winston - stream을 stdout으로 설정**:
 
 ```typescript
 import winston from 'winston';
@@ -292,7 +292,7 @@ docker logs my-next-app 2>&1 | jq -r 'select(.level == "error") | .msg' | sort |
 
 ## 4. 리소스 모니터링
 
-### docker stats — 실시간 리소스 사용량
+### docker stats - 실시간 리소스 사용량
 
 ```bash
 # 모든 실행 중인 컨테이너의 리소스 사용량
@@ -332,7 +332,7 @@ docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 docker stats --no-stream --format '{"name":"{{.Name}}","cpu":"{{.CPUPerc}}","mem":"{{.MemPerc}}"}'
 ```
 
-### docker top — 컨테이너 내 프로세스 목록
+### docker top - 컨테이너 내 프로세스 목록
 
 ```bash
 # 컨테이너 내부 프로세스 확인
@@ -349,7 +349,7 @@ UID    PID     PPID    C   STIME   TTY   TIME       CMD
 node   12345   12300   2   10:00   ?     00:00:15   node server.js
 ```
 
-### docker system df — 디스크 사용량
+### docker system df - 디스크 사용량
 
 ```bash
 # 디스크 사용량 요약
@@ -371,7 +371,7 @@ Build Cache     45      0       1.567GB   1.567GB (100%)
 
 > **핵심 통찰**: `Build Cache`의 RECLAIMABLE이 100%라면 `docker builder prune`으로 안전하게 회수할 수 있다. 이미지는 `docker image prune -a`로 사용하지 않는 이미지를 정리한다.
 
-### docker system events — Docker 데몬 이벤트
+### docker system events - Docker 데몬 이벤트
 
 ```bash
 # 실시간 이벤트 스트림
@@ -660,7 +660,7 @@ export default router;
 
 ## 7. 컨테이너 디버깅 기법
 
-### docker exec — 실행 중인 컨테이너 접속
+### docker exec - 실행 중인 컨테이너 접속
 
 ```bash
 # 셸 접속 (Alpine은 sh, Debian은 bash)
@@ -678,7 +678,7 @@ docker exec my-next-app cat /etc/hosts
 docker exec my-next-app cat /etc/resolv.conf
 ```
 
-### docker cp — 파일 복사
+### docker cp - 파일 복사
 
 ```bash
 # 컨테이너 → 호스트: 로그 파일이나 코어 덤프 추출
@@ -689,7 +689,7 @@ docker cp ./debug-script.js my-next-app:/tmp/debug-script.js
 docker exec my-next-app node /tmp/debug-script.js
 ```
 
-### docker diff — 파일시스템 변경 확인
+### docker diff - 파일시스템 변경 확인
 
 ```bash
 # 컨테이너 시작 이후 변경된 파일 확인

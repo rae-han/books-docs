@@ -523,7 +523,7 @@ aws s3api put-bucket-notification-configuration \
 ### 5.3 EventBridge (CloudWatch Events) 스케줄 트리거
 
 ```javascript
-// cleanup.mjs — 매일 자정에 실행되는 정리 작업
+// cleanup.mjs - 매일 자정에 실행되는 정리 작업
 export const handler = async (event) => {
   console.log('스케줄 이벤트:', JSON.stringify(event));
   // event.source === 'aws.events'
@@ -553,7 +553,7 @@ aws events put-targets \
 ### 5.4 SQS 트리거 예시
 
 ```javascript
-// emailSender.mjs — SQS 메시지를 처리하여 이메일 발송
+// emailSender.mjs - SQS 메시지를 처리하여 이메일 발송
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const ses = new SESClient({});

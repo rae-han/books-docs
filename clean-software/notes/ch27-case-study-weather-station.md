@@ -2,13 +2,13 @@
 
 ## 핵심 질문
 
-하나의 소프트웨어가 **여러 하드웨어 플랫폼**에서 동일하게 동작해야 하고, **새로운 하드웨어가 12개월 후에야 도착**하며, **사용자 인터페이스는 자주 바뀌고**, **영속성 메커니즘은 플랫폼마다 다르다**면, 우리는 어떻게 설계해야 하는가? PART 5에서 배운 디자인 패턴들(Observer, Bridge, Abstract Factory, Proxy, Template Method)은 이런 현실적 제약 속에서 어떻게 **함께 협력**하여 변경에 강한 아키텍처를 만드는가? 그리고 — **이 모든 결정 뒤에 숨은 원칙(SRP, OCP, DIP, ADP)**은 무엇인가?
+하나의 소프트웨어가 **여러 하드웨어 플랫폼**에서 동일하게 동작해야 하고, **새로운 하드웨어가 12개월 후에야 도착**하며, **사용자 인터페이스는 자주 바뀌고**, **영속성 메커니즘은 플랫폼마다 다르다**면, 우리는 어떻게 설계해야 하는가? PART 5에서 배운 디자인 패턴들(Observer, Bridge, Abstract Factory, Proxy, Template Method)은 이런 현실적 제약 속에서 어떻게 **함께 협력**하여 변경에 강한 아키텍처를 만드는가? 그리고 - **이 모든 결정 뒤에 숨은 원칙(SRP, OCP, DIP, ADP)**은 무엇인가?
 
 > 이 장은 짐 뉴커크(Jim Newkirk)와 공동으로 집필했다. 다음은 꾸민 이야기다. 그러나 여러분의 경험상 많은 부분에서 공감할지도 모른다.
 
 ---
 
-## 1. 시나리오 — 클라우드 컴퍼니의 딜레마
+## 1. 시나리오 - 클라우드 컴퍼니의 딜레마
 
 ### 1.1 사업적 배경
 
@@ -19,11 +19,11 @@
 | 신뢰성이 높다 | 가격이 비싸다 |
 | 까다로운 환경에서도 동작한다 | 저가 시장을 잡지 못한다 |
 
-### 1.2 위협 — 마이크로버스트의 등장
+### 1.2 위협 - 마이크로버스트의 등장
 
-**마이크로버스트(Microburst, Inc.)**라는 경쟁자가 등장했다. 저가형 제품부터 시작해 점진적으로 높은 신뢰성 수준으로 향상해갈 수 있는 **제품 계열(product line)**을 발표했다. 더 나쁜 소식은 고가형에는 **상호 연결 기능**까지 있다는 점이다 — 넓은 범위의 기상 관측 네트워크를 만들 수 있다.
+**마이크로버스트(Microburst, Inc.)**라는 경쟁자가 등장했다. 저가형 제품부터 시작해 점진적으로 높은 신뢰성 수준으로 향상해갈 수 있는 **제품 계열(product line)**을 발표했다. 더 나쁜 소식은 고가형에는 **상호 연결 기능**까지 있다는 점이다 - 넓은 범위의 기상 관측 네트워크를 만들 수 있다.
 
-### 1.3 전략 — 님버스-LC
+### 1.3 전략 - 님버스-LC
 
 마이크로버스트는 6개월간 실제 출하를 못 하고 있다. 클라우드 컴퍼니는 **6개월 안에 향상 가능하고 상호 연결되는 저가형 제품**을 출시해 마이크로버스트의 시장을 흔들기로 결정한다.
 
@@ -42,11 +42,11 @@
 - 1.0 QA에 6주 → 실제 개발 시간은 **20주**뿐
 - 2.0은 새 하드웨어이므로 8~10주의 긴 QA가 필요하다
 
-> **핵심 통찰**: 이 사례 연구의 핵심 제약은 **이식성(portability)**이다. 짧은 개발 시간과 미래 하드웨어에 대한 무지가 결합하면, 설계는 반드시 **추상적 행위와 구체적 구현을 분리**해야 한다. 언어로는 자바를 선택했다 — 이식성을 위해.
+> **핵심 통찰**: 이 사례 연구의 핵심 제약은 **이식성(portability)**이다. 짧은 개발 시간과 미래 하드웨어에 대한 무지가 결합하면, 설계는 반드시 **추상적 행위와 구체적 구현을 분리**해야 한다. 언어로는 자바를 선택했다 - 이식성을 위해.
 
 ---
 
-## 2. 첫 번째 시도 — Temperature Sensor
+## 2. 첫 번째 시도 - Temperature Sensor
 
 가장 자연스러운 출발점은 **하드웨어 추상화**다. "온도를 어떻게 표시할까?"가 아니라 "온도를 어떻게 추상화할까?"부터 시작한다.
 
@@ -70,11 +70,11 @@
 
 `TemperatureSensor`는 다형성을 지닌 `read()` 함수를 제공하고, 파생형이 각 하드웨어 플랫폼에 대응한다. **`TestTemperatureSensor`**는 일반 개발 컴퓨터에서 단위 테스트와 인수 테스트를 작성할 수 있게 해 준다.
 
-> **핵심 통찰**: 테스트 클래스는 단순히 "하드웨어가 없을 때의 대안"이 아니다. **하드웨어로 흉내내기 힘든 실패 상황**을 만들어볼 수 있는 유일한 수단이다. 그리고 **2.0 이식성 문제를 줄이는 보험**이기도 하다 — 다중 플랫폼에서 이미 돌아가고 있는 코드는 또 다른 플랫폼으로 옮기기도 쉽다.
+> **핵심 통찰**: 테스트 클래스는 단순히 "하드웨어가 없을 때의 대안"이 아니다. **하드웨어로 흉내내기 힘든 실패 상황**을 만들어볼 수 있는 유일한 수단이다. 그리고 **2.0 이식성 문제를 줄이는 보험**이기도 하다 - 다중 플랫폼에서 이미 돌아가고 있는 코드는 또 다른 플랫폼으로 옮기기도 쉽다.
 
 ---
 
-## 3. 두 번째 시도 — Scheduler와 그 한계
+## 3. 두 번째 시도 - Scheduler와 그 한계
 
 값마다 갱신 주기가 다르다. 온도는 1분, 기압은 5분. 그렇다면 **스케줄러(Scheduler)**가 필요해 보인다.
 
@@ -96,20 +96,20 @@
 
 `Scheduler`는 10ms마다 호출되는 `tic()`을 가지고, `tic()` 호출 횟수를 세어 1분마다 `TemperatureSensor.read()`를 호출하고, 그 결과를 `MonitoringScreen`에 전달한다.
 
-### 3.2 기압 동향 문제 — 알고리즘은 어디에 두는가?
+### 3.2 기압 동향 문제 - 알고리즘은 어디에 두는가?
 
 요구사항: 기압 동향(상승/하강/안정)을 보고해야 한다. 미연방 기상학 핸드북에 따르면 "기압이 시간당 0.06인치 이상 변하고 3시간 측정값이 0.02인치 이상이면 변화로 본다."
 
-**선택지 A** — `BarometricPressureSensor`에 알고리즘을 넣는다:
+**선택지 A** - `BarometricPressureSensor`에 알고리즘을 넣는다:
 - 매번 측정 시각을 알아야 한다
 - 3시간 분량의 측정값 기록을 가져야 한다
 - 사용자 인터페이스 갱신 빈도와 동향 계산이 **결합**된다
 
-**선택지 B** — `Scheduler`에 기록을 둔다:
+**선택지 B** - `Scheduler`에 기록을 둔다:
 - 그러면 온도, 풍속 기록도 모두 Scheduler에 둘 것인가?
 - 새로운 감지기가 추가될 때마다 Scheduler를 수정해야 한다 → **유지보수 악몽**
 
-### 3.3 Scheduler 다시 보기 — OCP 위반
+### 3.3 Scheduler 다시 보기 - OCP 위반
 
 ```
               모든 화살표가 Scheduler로 향한다
@@ -125,7 +125,7 @@
 
 ---
 
-## 4. Observer 패턴 — UI와 Scheduler 결합 끊기
+## 4. Observer 패턴 - UI와 Scheduler 결합 끊기
 
 사용자 인터페이스는 **변경되기 쉬운 곳**이다. 고객, 마케팅, 제품을 접해본 누구나의 변덕에 따라 바뀐다. 따라서 **먼저 UI 결합을 끊어야 한다**.
 
@@ -138,10 +138,10 @@
 ```
 
 - `Sensor`는 측정값이 바뀌면 `notifyObservers()`를 호출한다
-- `TemperatureObserver`는 어댑터다 — `update()`를 받아 `displayTemp(val)`을 호출한다
+- `TemperatureObserver`는 어댑터다 - `update()`를 받아 `displayTemp(val)`을 호출한다
 - `MonitoringScreen`은 감지기를 **직접 알 필요가 없다**
 
-### 4.2 기압 동향 — 또 다른 옵저버
+### 4.2 기압 동향 - 또 다른 옵저버
 
 `BarometricPressureTrendSensor`는 **`BarometricPressureSensor`의 옵저버**가 되어, 측정값을 받아 동향을 계산한다. 동향 계산은 이제 **별개의 컴포넌트**가 되었고, 누구도 Scheduler를 수정할 필요가 없다.
 
@@ -149,7 +149,7 @@
 
 ---
 
-## 5. AlarmClock — Scheduler의 또 다른 OCP 위반 해결
+## 5. AlarmClock - Scheduler의 또 다른 OCP 위반 해결
 
 옵저버로 UI와의 결합은 끊었지만, 여전히 **Scheduler가 어떤 감지기를 언제 깨울지 알고 있다**. 감지기를 추가하거나 주기를 바꾸려면 Scheduler를 수정해야 한다.
 
@@ -175,7 +175,7 @@
 - 등록할 때 **자신의 폴링 주기**를 명시한다 ("1초마다", "50ms마다")
 - 시간이 되면 `AlarmClock`이 어댑터에게 `wakeup()`을 보내고, 어댑터는 감지기의 `read()`를 호출한다
 
-### 5.2 변신 — Scheduler에서 AlarmClock으로
+### 5.2 변신 - Scheduler에서 AlarmClock으로
 
 Scheduler의 성격이 완전히 바뀌었다:
 
@@ -190,7 +190,7 @@ Scheduler의 성격이 완전히 바뀌었다:
 
 ---
 
-## 6. 감지기의 내부 구조 — Template Method
+## 6. 감지기의 내부 구조 - Template Method
 
 감지기와 시스템 사이의 결합은 끊겼다. 이제 **감지기 내부**를 살펴보자. 감지기에는 세 가지 독립된 기능이 있다:
 
@@ -218,7 +218,7 @@ public abstract class TemperatureSensor extends Observable {
         }
     }
 
-    // 파생형이 구현 — Template Method의 핵심
+    // 파생형이 구현 - Template Method의 핵심
     protected abstract double read();
 }
 
@@ -236,7 +236,7 @@ public class Nimbus1_0TemperatureSensor extends TemperatureSensor {
 abstract class TemperatureSensor extends Observable {
     private itsLastReading: number = 0;
 
-    // 일반적인 검사 로직 — 기반 클래스가 소유
+    // 일반적인 검사 로직 - 기반 클래스가 소유
     private check(): void {
         const val = this.read();
         if (val !== this.itsLastReading) {
@@ -246,7 +246,7 @@ abstract class TemperatureSensor extends Observable {
         }
     }
 
-    // 하드웨어 의존적 — 파생형이 구현
+    // 하드웨어 의존적 - 파생형이 구현
     protected abstract read(): number;
 }
 
@@ -262,7 +262,7 @@ class Nimbus1_0TemperatureSensor extends TemperatureSensor {
 
 ---
 
-## 7. API는 어디에 있는가? — Bridge 패턴
+## 7. API는 어디에 있는가? - Bridge 패턴
 
 하드웨어 공학자들은 **간단한 자바 API**를 원한다. 옵저버 등록 같은 귀찮은 일 없이, 직접 하드웨어에 접근하는 도구를 만들 수 있어야 한다.
 
@@ -272,7 +272,7 @@ public interface TemperatureSensor {
 }
 ```
 
-지금까지 만든 클래스 중 이런 API가 될 만한 것은 없다 — `TemperatureSensor`는 옵저버 등록, 익명 리스너 등 너무 많은 책임을 가진다.
+지금까지 만든 클래스 중 이런 API가 될 만한 것은 없다 - `TemperatureSensor`는 옵저버 등록, 익명 리스너 등 너무 많은 책임을 가진다.
 
 ### 7.1 Bridge 패턴으로 추상과 구현 분리
 
@@ -292,15 +292,15 @@ public interface TemperatureSensor {
 
 - `TemperatureSensor` = **추상** (애플리케이션이 보는 인터페이스)
 - `TemperatureSensorImp` = **구현** (진짜 API, 하드웨어 공학자가 직접 호출)
-- 추상과 구현이 **각자 변화**할 수 있다 — Bridge 패턴의 의도
+- 추상과 구현이 **각자 변화**할 수 있다 - Bridge 패턴의 의도
 
 ---
 
-## 8. 생성 문제 — Abstract Factory와 StationToolkit
+## 8. 생성 문제 - Abstract Factory와 StationToolkit
 
 `TemperatureSensor`를 생성할 때 `Nimbus1_0TemperatureSensorImp`를 같이 만들어 묶어야 한다. **누가 이 일을 하는가?** 누가 하든 그 부분은 **플랫폼 의존적**이 된다.
 
-### 8.1 첫 번째 시도 — main()에서 직접 생성
+### 8.1 첫 번째 시도 - main()에서 직접 생성
 
 <details>
 <summary>원문 Java 코드</summary>
@@ -322,7 +322,7 @@ public class WeatherStation {
 
 문제: **감지기 종류만큼 플랫폼 의존 코드가 main에 늘어난다.**
 
-### 8.2 Abstract Factory — StationToolkit 도입
+### 8.2 Abstract Factory - StationToolkit 도입
 
 ```
               ┌─────────────────────────────────────────┐
@@ -382,16 +382,16 @@ class TemperatureSensor extends Observable {
 ### 8.3 진화하는 main()
 
 ```typescript
-// 1차 — 모든 구현을 명시
+// 1차 - 모든 구현을 명시
 const ts = new TemperatureSensor(ac, new Nimbus1_0TemperatureSensorImp());
 const bps = new BarometricPressureSensor(ac, new Nimbus1_0BPSensorImp());
 
-// 2차 — StationToolkit으로 통합
+// 2차 - StationToolkit으로 통합
 const st: StationToolkit = new Nimbus1_0Toolkit();
 const ac = new AlarmClock(st);
 const ts = new TemperatureSensor(ac, st);
 
-// 3차 — 명령행 인자로 동적 로딩 (자바의 reflection)
+// 3차 - 명령행 인자로 동적 로딩 (자바의 reflection)
 const tkClass = Class.forName(args[0]);
 const st = tkClass.newInstance() as StationToolkit;
 ```
@@ -402,7 +402,7 @@ const st = tkClass.newInstance() as StationToolkit;
 
 ## 9. 패키지 구조와 의존성 비순환 원칙(ADP)
 
-### 9.1 1차 시도 — 순환 의존성
+### 9.1 1차 시도 - 순환 의존성
 
 UI를 별개 패키지로 빼고 싶지만, `MonitoringScreen`이 모든 감지기를 알아야 하므로 **UI와 WeatherMonitoringSystem 사이에 순환 의존**이 생긴다 → **ADP(Acyclic Dependencies Principle) 위반**.
 
@@ -425,11 +425,11 @@ UI를 별개 패키지로 빼고 싶지만, `MonitoringScreen`이 모든 감지�
 
 `MonitoringScreen`은 `WeatherStation`을 받아 감지기에 옵저버를 등록한다. 이를 위해 `WeatherStation`에 `addTempObserver()` 같은 메서드를 추가한다.
 
-### 9.3 2차 문제 — DIP 위반
+### 9.3 2차 문제 - DIP 위반
 
 UI가 구체 패키지인 `WeatherMonitoringSystem`에 직접 의존하면 **DIP(의존 관계 역전 원칙) 위반**이다. UI는 추상에 의존해야 한다.
 
-### 9.4 해결 — WeatherStationComponent 인터페이스
+### 9.4 해결 - WeatherStationComponent 인터페이스
 
 ```
    ┌────────────────────┐
@@ -451,11 +451,11 @@ UI가 구체 패키지인 `WeatherMonitoringSystem`에 직접 의존하면 **DIP
                └─────────────────────────┘
 ```
 
-UI와 WeatherMonitoringSystem은 이제 서로를 모른다. **둘 다 추상 패키지에만 의존**한다 — 진정한 DIP 적용이다.
+UI와 WeatherMonitoringSystem은 이제 서로를 모른다. **둘 다 추상 패키지에만 의존**한다 - 진정한 DIP 적용이다.
 
 ---
 
-## 10. 영속성 — 24시간 기록과 SRP 위반
+## 10. 영속성 - 24시간 기록과 SRP 위반
 
 릴리즈 1 요구사항: 지난 24시간의 최댓값/최솟값 기록을 유지하라. 단, "지난 24시간"이 아니라 **달력상 어제**의 값이다 (요구사항 명세를 재확인하여 발견).
 
@@ -472,7 +472,7 @@ interface PersistentImp {
 
 객체와 이름을 통해 읽고 쓰는 단순한 인터페이스다. **`Serializable` 구현이 유일한 제약**이다.
 
-### 10.2 HiLoData — Observer + AlarmClock 조합
+### 10.2 HiLoData - Observer + AlarmClock 조합
 
 ```
               ┌──────────────┐  observes
@@ -497,7 +497,7 @@ interface PersistentImp {
 - `HiLoData`: 데이터를 보관하고 갱신 알고리즘을 가진다
 - **두 클래스 분리 이유**: HiLo 알고리즘은 `BarometricPressureHiLo`, `DewPointHiLo` 등에서 **재사용**할 수 있다
 
-### 10.3 깔끔하지 않은 코드 — HiLoDataImp의 SRP 위반
+### 10.3 깔끔하지 않은 코드 - HiLoDataImp의 SRP 위반
 
 <details>
 <summary>원문 Java 코드 (목록 27-8 일부)</summary>
@@ -543,7 +543,7 @@ public class HiLoDataImp implements HiLoData, Serializable {
 
 ---
 
-## 11. Proxy 패턴 — 정책과 메커니즘 분리
+## 11. Proxy 패턴 - 정책과 메커니즘 분리
 
 ### 11.1 HiLoDataProxy 도입
 
@@ -633,7 +633,7 @@ class HiLoDataImp implements HiLoData {
 
 ### 12.1 Proxy 생성을 위한 또 하나의 Factory
 
-`TemperatureHiLo`는 `HiLoDataProxy`를 직접 알면 안 된다 — 정책 레이어가 메커니즘 레이어에 의존하게 되기 때문이다. 따라서 또 하나의 추상 팩토리 `DataToolkit`을 도입한다.
+`TemperatureHiLo`는 `HiLoDataProxy`를 직접 알면 안 된다 - 정책 레이어가 메커니즘 레이어에 의존하게 되기 때문이다. 따라서 또 하나의 추상 팩토리 `DataToolkit`을 도입한다.
 
 ```
    ┌────────────────────────┐
@@ -677,9 +677,9 @@ class HiLoDataImp implements HiLoData {
    └────────────────┘
 ```
 
-> **핵심 통찰**: 패키지 구조는 **추상 인터페이스를 담는 패키지(wmsdata)**가 위에, **구체 구현을 담는 패키지(persistence)**가 아래에 위치한다. 모든 의존성은 **추상 쪽을 향한다** — DIP의 패키지 레벨 적용이다.
+> **핵심 통찰**: 패키지 구조는 **추상 인터페이스를 담는 패키지(wmsdata)**가 위에, **구체 구현을 담는 패키지(persistence)**가 아래에 위치한다. 모든 의존성은 **추상 쪽을 향한다** - DIP의 패키지 레벨 적용이다.
 
-### 12.3 Scope 유틸리티 — 정적 전역 변수의 자리
+### 12.3 Scope 유틸리티 - 정적 전역 변수의 자리
 
 ```typescript
 // wmsdata.Scope - 추상 패키지의 유틸리티 (변수만)
@@ -703,7 +703,7 @@ class Scope {
 
 > **Uncle Bob의 경험**: 우리는 프록시와 imp 사이의 의존 관계가 큰 유지보수 위험이 되지 않을 것이라고 결정을 내렸으며, 이 결정에 따라 팩토리 없이 그냥 갈 것이다. wmsDataImp 패키지는 앞으로 상당 기간 변하지 않을 기상 관측 정책과 업무 규칙을 담고 있다. "이것은 앞으로 변하지 않을 거야"라고 말하는 것을 믿기는 힘들겠지만, 그래도 어딘가에서 선을 긋긴 그어야 한다.
 
-**모든 의존성에 팩토리를 둘 수는 없다.** 어디선가는 선을 그어야 한다 — 변경 가능성을 평가하고, 위험 대비 비용을 따져야 한다.
+**모든 의존성에 팩토리를 둘 수는 없다.** 어디선가는 선을 그어야 한다 - 변경 가능성을 평가하고, 위험 대비 비용을 따져야 한다.
 
 ---
 
@@ -757,7 +757,7 @@ class Scope {
 | **이름이 책임을 따라간다** | Scheduler → AlarmClock으로 변경, 책임이 바뀌면 이름도 바뀐다 |
 | **테스트 플랫폼은 일급 시민** | TestTemperatureSensor는 보조가 아니라 다중 플랫폼 검증의 첫 번째 사례 |
 | **현실이 깨끗한 설계에 양보를 요구한다** | NVRAM 수명 같은 하드웨어 제약이 boolean 반환 같은 시그너처를 결정한다 |
-| **어딘가에서는 선을 긋는다** | 모든 의존성을 팩토리로 추상화할 수는 없다 — 위험을 평가해 결정한다 |
+| **어딘가에서는 선을 긋는다** | 모든 의존성을 팩토리로 추상화할 수는 없다 - 위험을 평가해 결정한다 |
 
 ---
 

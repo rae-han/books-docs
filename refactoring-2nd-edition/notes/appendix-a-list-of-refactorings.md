@@ -4,7 +4,7 @@
 
 ---
 
-## 6장 — 기본적인 리팩터링 ([ch06](ch06-a-first-set-of-refactorings.md))
+## 6장 - 기본적인 리팩터링 ([ch06](ch06-a-first-set-of-refactorings.md))
 
 - **함수 추출하기 (Extract Function, 6.1)**: 코드 조각을 목적이 드러나는 이름의 함수로 뽑아낸다.
 - **함수 인라인하기 (Inline Function, 6.2)**: 본문이 이름만큼 명확하면 호출부에 직접 넣고 함수를 없앤다.
@@ -18,7 +18,7 @@
 - **여러 함수를 변환 함수로 묶기 (Combine Functions into Transform, 6.10)**: 파생 데이터 계산을 변환 함수 한 곳에 모은다.
 - **단계 쪼개기 (Split Phase, 6.11)**: 서로 다른 두 대상을 다루는 코드를 별개의 단계로 나눈다.
 
-## 7장 — 캡슐화 ([ch07](ch07-encapsulation.md))
+## 7장 - 캡슐화 ([ch07](ch07-encapsulation.md))
 
 - **레코드 캡슐화하기 (Encapsulate Record, 7.1)**: 가변 레코드를 클래스로 바꿔 저장 방식을 숨긴다.
 - **컬렉션 캡슐화하기 (Encapsulate Collection, 7.2)**: 게터는 복제본을 반환하고 변경은 전용 메서드로만 하게 한다.
@@ -30,7 +30,7 @@
 - **중개자 제거하기 (Remove Middle Man, 7.8)**: 단순 위임이 많아지면 위임 객체를 직접 호출하게 한다.
 - **알고리즘 교체하기 (Substitute Algorithm, 7.9)**: 복잡한 알고리즘을 더 간명한 것으로 통째 교체한다.
 
-## 8장 — 기능 이동 ([ch08](ch08-moving-features.md))
+## 8장 - 기능 이동 ([ch08](ch08-moving-features.md))
 
 - **함수 옮기기 (Move Function, 8.1)**: 다른 모듈 요소를 더 많이 참조하는 함수를 그 모듈로 옮긴다.
 - **필드 옮기기 (Move Field, 8.2)**: 함께 갱신·전달되는 필드를 어울리는 레코드로 옮긴다.
@@ -42,7 +42,7 @@
 - **반복문을 파이프라인으로 바꾸기 (Replace Loop with Pipeline, 8.8)**: 반복문을 map·filter 등 컬렉션 파이프라인으로 바꾼다.
 - **죽은 코드 제거하기 (Remove Dead Code, 8.9)**: 더 이상 쓰이지 않는 코드를 지운다.
 
-## 9장 — 데이터 조직화 ([ch09](ch09-organizing-data.md))
+## 9장 - 데이터 조직화 ([ch09](ch09-organizing-data.md))
 
 - **변수 쪼개기 (Split Variable, 9.1)**: 역할이 둘 이상인 변수를 역할 하나당 하나로 나눈다.
 - **필드 이름 바꾸기 (Rename Field, 9.2)**: 레코드·클래스의 필드(및 접근자) 이름을 더 잘 드러나게 바꾼다.
@@ -51,7 +51,7 @@
 - **값을 참조로 바꾸기 (Change Value to Reference, 9.5)**: 같은 엔티티의 여러 복제본을 저장소를 통한 단일 참조로 바꾼다.
 - **매직 리터럴 바꾸기 (Replace Magic Literal, 9.6)**: 의미를 알기 어려운 리터럴을 이름 있는 상수로 바꾼다.
 
-## 10장 — 조건부 로직 간소화 ([ch10](ch10-simplifying-conditional-logic.md))
+## 10장 - 조건부 로직 간소화 ([ch10](ch10-simplifying-conditional-logic.md))
 
 - **조건문 분해하기 (Decompose Conditional, 10.1)**: 조건식·조건절을 의도가 드러나는 함수로 추출한다.
 - **조건식 통합하기 (Consolidate Conditional Expression, 10.2)**: 동작이 같은 여러 검사를 하나의 조건식으로 합친다.
@@ -61,7 +61,7 @@
 - **어서션 추가하기 (Introduce Assertion, 10.6)**: 코드가 항상 참이라 가정하는 조건을 어서션으로 명시한다.
 - **제어 플래그를 탈출문으로 바꾸기 (Replace Control Flag with Break, 10.7)**: 흐름 제어 플래그를 `break`·`continue`·`return`으로 없앤다.
 
-## 11장 — API 리팩터링 ([ch11](ch11-refactoring-apis.md))
+## 11장 - API 리팩터링 ([ch11](ch11-refactoring-apis.md))
 
 - **질의 함수와 변경 함수 분리하기 (Separate Query from Modifier, 11.1)**: 값 반환과 부수효과가 섞인 함수를 나눈다.
 - **함수 매개변수화하기 (Parameterize Function, 11.2)**: 리터럴만 다른 함수들을 매개변수 하나로 합친다.
@@ -77,7 +77,7 @@
 - **오류 코드를 예외로 바꾸기 (Replace Error Code with Exception, 11.12)**: 예상 밖 오류를 나타내는 반환 코드를 예외로 바꾼다.
 - **예외를 사전확인으로 바꾸기 (Replace Exception with Precheck, 11.13)**: 호출 전 검사할 수 있는 조건이면 예외 대신 사전 확인한다.
 
-## 12장 — 상속 다루기 ([ch12](ch12-dealing-with-inheritance.md))
+## 12장 - 상속 다루기 ([ch12](ch12-dealing-with-inheritance.md))
 
 - **메서드 올리기 (Pull Up Method, 12.1)**: 서브클래스의 똑같은 메서드를 슈퍼클래스로 올린다.
 - **필드 올리기 (Pull Up Field, 12.2)**: 서브클래스의 중복 필드를 슈퍼클래스로 올린다.
@@ -93,7 +93,7 @@
 
 ---
 
-## 참고 — 이름·반대 관계 한눈에 보기
+## 참고 - 이름·반대 관계 한눈에 보기
 
 여러 기법은 **반대 방향의 짝**을 이룬다. 한쪽을 알면 다른 쪽도 자연스럽게 이해된다.
 

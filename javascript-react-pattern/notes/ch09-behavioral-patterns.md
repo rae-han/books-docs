@@ -66,7 +66,7 @@ interface Subject<T> {
   notify(data: T): void;
 }
 
-// 구체적 주체 — 주식 가격을 관찰하는 예제
+// 구체적 주체 - 주식 가격을 관찰하는 예제
 class StockTicker implements Subject<StockUpdate> {
   #observers = new Set<Observer<StockUpdate>>();
   #prices = new Map<string, number>();
@@ -98,14 +98,14 @@ interface StockUpdate {
   previousPrice?: number;
 }
 
-// 구체적 관찰자 — 가격 표시
+// 구체적 관찰자 - 가격 표시
 class PriceDisplay implements Observer<StockUpdate> {
   update(data: StockUpdate): void {
     console.log(`[Display] ${data.symbol}: $${data.price}`);
   }
 }
 
-// 구체적 관찰자 — 큰 변동 경고
+// 구체적 관찰자 - 큰 변동 경고
 class PriceAlert implements Observer<StockUpdate> {
   constructor(private threshold: number) {}
 
@@ -141,7 +141,7 @@ ticker.unsubscribe(alert5); // 구독 해제
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 인터페이스가 없으므로 observer.update 존재 여부를 런타임에 확인해야 함
+// JavaScript - 인터페이스가 없으므로 observer.update 존재 여부를 런타임에 확인해야 함
 class StockTicker {
   #observers = new Set();
 
@@ -161,11 +161,11 @@ class StockTicker {
 ```
 
 ```typescript
-// TypeScript — Observer<T> 인터페이스를 implements하지 않으면 컴파일 에러
+// TypeScript - Observer<T> 인터페이스를 implements하지 않으면 컴파일 에러
 // observer.update()의 매개변수 타입도 제네릭으로 안전하게 강제
 class PriceAlert implements Observer<StockUpdate> {
   update(data: StockUpdate): void { /* ... */ }
-  //     ^? data: StockUpdate — 타입이 보장됨
+  //     ^? data: StockUpdate - 타입이 보장됨
 }
 ```
 
@@ -194,7 +194,7 @@ class EventBus<E extends EventMap> {
     }
     this.#handlers.get(event)!.add(handler);
 
-    // 구독 해제 함수 반환 — 메모리 누수 방지
+    // 구독 해제 함수 반환 - 메모리 누수 방지
     return () => {
       this.#handlers.get(event)?.delete(handler);
     };
@@ -205,7 +205,7 @@ class EventBus<E extends EventMap> {
   }
 }
 
-// 이벤트 맵 정의 — 토픽별 데이터 타입을 강제
+// 이벤트 맵 정의 - 토픽별 데이터 타입을 강제
 interface AppEvents {
   "user:login": { userId: string; timestamp: number };
   "cart:add": { productId: string; quantity: number };
@@ -266,7 +266,7 @@ unsubscribe(); // 구독 해제
 | 비교 항목 | 관찰자 / Pub/Sub (이벤트 집합) | 중재자 |
 |-----------|-------------------------------|--------|
 | **로직 위치** | 이벤트 소스와 핸들러에 분산 | 중재자 내부에 집중 |
-| **의도** | 이벤트 전파 — "발행 후 망각" | 워크플로 조율 — 의사결정 |
+| **의도** | 이벤트 전파 - "발행 후 망각" | 워크플로 조율 - 의사결정 |
 | **방향성** | 다방향 (누구나 발행/구독) | 중앙 집중 (중재자가 조율) |
 | **사용 사례** | 독립적 이벤트 처리 | 비즈니스 로직에 따른 상호작용 조정 |
 
@@ -295,7 +295,7 @@ class ChatRoom {
     this.broadcast("System", `${userName} left the room`);
   }
 
-  // 특정 사용자에게 메시지 전달 — 중재자가 라우팅 결정
+  // 특정 사용자에게 메시지 전달 - 중재자가 라우팅 결정
   send(from: string, to: string, message: string): void {
     const recipient = this.#users.get(to);
     if (recipient) {
@@ -305,7 +305,7 @@ class ChatRoom {
     }
   }
 
-  // 전체 브로드캐스트 — 발신자를 제외하고 전파
+  // 전체 브로드캐스트 - 발신자를 제외하고 전파
   broadcast(from: string, message: string): void {
     for (const [name, user] of this.#users) {
       if (name !== from) {
@@ -382,7 +382,7 @@ alice.broadcast("Hello everyone!");
 | **장점** | 실행/취소 지원, 매크로 명령 조합, 호출자와 수신자 분리 |
 | **단점** | 클래스 수 증가, 간단한 작업에 과도한 설계 |
 
-### 3.1 기본 구현 — 텍스트 에디터
+### 3.1 기본 구현 - 텍스트 에디터
 
 ```typescript
 // 커맨드 인터페이스
@@ -412,7 +412,7 @@ class TextEditor {
   }
 }
 
-// 구체적 커맨드 — 텍스트 삽입
+// 구체적 커맨드 - 텍스트 삽입
 class InsertTextCommand implements Command {
   constructor(
     private editor: TextEditor,
@@ -429,7 +429,7 @@ class InsertTextCommand implements Command {
   }
 }
 
-// 구체적 커맨드 — 텍스트 삭제
+// 구체적 커맨드 - 텍스트 삭제
 class DeleteTextCommand implements Command {
   #deletedText = "";
 
@@ -448,7 +448,7 @@ class DeleteTextCommand implements Command {
   }
 }
 
-// 호출자 (Invoker) — 커맨드 히스토리 관리
+// 호출자 (Invoker) - 커맨드 히스토리 관리
 class CommandHistory {
   #history: Command[] = [];
   #undone: Command[] = [];
@@ -568,7 +568,7 @@ console.log(executeCarCommand(manager, "requestInfo", "Ford Mondeo", "54323"));
 ### 4.2 Symbol.iterator와 제네레이터
 
 ```typescript
-// 커스텀 이터러블 — 이진 트리 중위 순회
+// 커스텀 이터러블 - 이진 트리 중위 순회
 class TreeNode<T> {
   constructor(
     public value: T,
@@ -585,7 +585,7 @@ class BinaryTree<T> implements Iterable<T> {
     yield* this.#inOrder(this.root);
   }
 
-  // 제네레이터 함수 — 중위 순회
+  // 제네레이터 함수 - 중위 순회
   *#inOrder(node: TreeNode<T> | null): Generator<T> {
     if (node === null) return;
     yield* this.#inOrder(node.left);
@@ -614,7 +614,7 @@ const tree = new BinaryTree(
   ),
 );
 
-// for...of — 기본은 중위 순회
+// for...of - 기본은 중위 순회
 for (const value of tree) {
   process.stdout.write(`${value} `);
 }
@@ -663,7 +663,7 @@ async function processAllUsers(): Promise<void> {
 ### JavaScript vs TypeScript
 
 ```javascript
-// JavaScript — 이터레이터 프로토콜은 동일하지만 타입 안전성 없음
+// JavaScript - 이터레이터 프로토콜은 동일하지만 타입 안전성 없음
 class BinaryTree {
   *[Symbol.iterator]() {
     yield* this.#inOrder(this.root);
@@ -673,7 +673,7 @@ class BinaryTree {
 ```
 
 ```typescript
-// TypeScript — Iterable<T>, Iterator<T>, AsyncGenerator<T>로 타입 안전한 순회
+// TypeScript - Iterable<T>, Iterator<T>, AsyncGenerator<T>로 타입 안전한 순회
 class BinaryTree<T> implements Iterable<T> {
   *[Symbol.iterator](): Iterator<T> { /* ... */ }
   //                     ^? 소비자가 T 타입의 값을 받음을 보장
@@ -759,7 +759,7 @@ class PasswordStrengthStrategy implements ValidationStrategy {
   }
 }
 
-// 컨텍스트 — 전략을 조합하여 사용
+// 컨텍스트 - 전략을 조합하여 사용
 class FormValidator {
   #rules = new Map<string, ValidationStrategy[]>();
 
@@ -814,7 +814,7 @@ console.log(errors.get("password"));
 // ["최소 8자 이상이어야 합니다", "대소문자, 숫자, 특수문자 중 3가지 이상 포함해야 합니다"]
 ```
 
-### 5.2 함수형 전략 — TypeScript에서의 간결한 대안
+### 5.2 함수형 전략 - TypeScript에서의 간결한 대안
 
 TypeScript에서는 인터페이스 + 클래스 대신 **함수 타입**으로 전략을 더 간결하게 표현할 수 있다:
 
@@ -896,7 +896,7 @@ interface OrderState {
   cancel(order: Order): void;
 }
 
-// 구체적 상태 — 대기
+// 구체적 상태 - 대기
 class PendingState implements OrderState {
   readonly name = "Pending";
 
@@ -919,7 +919,7 @@ class PendingState implements OrderState {
   }
 }
 
-// 구체적 상태 — 확인됨
+// 구체적 상태 - 확인됨
 class ConfirmedState implements OrderState {
   readonly name = "Confirmed";
 
@@ -942,7 +942,7 @@ class ConfirmedState implements OrderState {
   }
 }
 
-// 구체적 상태 — 배송됨
+// 구체적 상태 - 배송됨
 class ShippedState implements OrderState {
   readonly name = "Shipped";
 
@@ -964,7 +964,7 @@ class ShippedState implements OrderState {
   }
 }
 
-// 구체적 상태 — 배달 완료
+// 구체적 상태 - 배달 완료
 class DeliveredState implements OrderState {
   readonly name = "Delivered";
 
@@ -985,7 +985,7 @@ class DeliveredState implements OrderState {
   }
 }
 
-// 구체적 상태 — 취소됨
+// 구체적 상태 - 취소됨
 class CancelledState implements OrderState {
   readonly name = "Cancelled";
 
@@ -1048,7 +1048,7 @@ order.deliver();
 //   [ORD-001] Shipped → Delivered
 ```
 
-### 6.2 신호등 예제 — 상태 전환의 순환
+### 6.2 신호등 예제 - 상태 전환의 순환
 
 ```typescript
 interface TrafficLightState {
@@ -1111,9 +1111,9 @@ class TrafficLight {
 ### 7.1 데이터 처리 파이프라인
 
 ```typescript
-// 기본 클래스 — 알고리즘 골격 정의
+// 기본 클래스 - 알고리즘 골격 정의
 abstract class DataProcessor<TRaw, TParsed, TResult> {
-  // 템플릿 메서드 — 전체 흐름을 정의 (final 역할)
+  // 템플릿 메서드 - 전체 흐름을 정의 (final 역할)
   process(source: string): TResult {
     console.log(`Processing: ${source}`);
     const raw = this.fetch(source);
@@ -1124,12 +1124,12 @@ abstract class DataProcessor<TRaw, TParsed, TResult> {
     return result;
   }
 
-  // 추상 메서드 — 하위 클래스가 반드시 구현
+  // 추상 메서드 - 하위 클래스가 반드시 구현
   protected abstract fetch(source: string): TRaw;
   protected abstract parse(raw: TRaw): TParsed;
   protected abstract transform(data: TParsed): TResult;
 
-  // 훅 메서드 — 기본 구현이 있지만 재정의 가능
+  // 훅 메서드 - 기본 구현이 있지만 재정의 가능
   protected validate(data: TParsed): TParsed {
     return data; // 기본: 검증 없이 통과
   }
@@ -1139,7 +1139,7 @@ abstract class DataProcessor<TRaw, TParsed, TResult> {
   }
 }
 
-// 구체적 구현 — CSV 처리
+// 구체적 구현 - CSV 처리
 interface CsvRow {
   [key: string]: string;
 }
@@ -1175,7 +1175,7 @@ class CsvProcessor extends DataProcessor<string, CsvRow[], CsvRow[]> {
   }
 }
 
-// 구체적 구현 — JSON API 처리
+// 구체적 구현 - JSON API 처리
 interface ApiResponse {
   data: UserData[];
   total: number;
@@ -1250,7 +1250,7 @@ const activeUsers = apiProcessor.process("/api/users");
 ### 8.1 미들웨어 체인 구현
 
 ```typescript
-// 미들웨어 타입 — Express.js 스타일
+// 미들웨어 타입 - Express.js 스타일
 interface Context {
   path: string;
   method: string;
@@ -1318,14 +1318,14 @@ const handler: Middleware = async (ctx, _next) => {
   ctx.response = { status: 200, body: { message: "Success", user: ctx.user } };
 };
 
-// 사용 — 체인 구성
+// 사용 - 체인 구성
 const app = new MiddlewareChain()
   .use(logger)
   .use(auth)
   .use(roleGuard("admin"))
   .use(handler);
 
-// 인증 없는 요청 — 체인이 auth에서 중단
+// 인증 없는 요청 - 체인이 auth에서 중단
 await app.execute({
   path: "/admin",
   method: "GET",
@@ -1335,7 +1335,7 @@ await app.execute({
 // ← GET /admin (1ms)
 // response: { status: 401, body: { error: "Unauthorized" } }
 
-// 인증된 요청 — 체인이 끝까지 실행
+// 인증된 요청 - 체인이 끝까지 실행
 await app.execute({
   path: "/admin",
   method: "GET",
@@ -1437,10 +1437,10 @@ console.log(bot.handle({ id: 2, severity: "critical", message: "시스템 장애
 | **장점** | 새 연산 추가 용이, 관련 동작을 하나의 방문자에 모음, 단일 책임 원칙 |
 | **단점** | 새 요소 타입 추가 시 모든 방문자 수정 필요, 캡슐화 위반 가능성 |
 
-### 9.1 AST 방문자 — 컴파일러/린터 패턴
+### 9.1 AST 방문자 - 컴파일러/린터 패턴
 
 ```typescript
-// 요소 인터페이스 — accept 메서드 정의
+// 요소 인터페이스 - accept 메서드 정의
 interface ASTNode {
   accept<T>(visitor: ASTVisitor<T>): T;
 }
@@ -1481,7 +1481,7 @@ interface ASTVisitor<T> {
   visitUnary(node: UnaryExpression): T;
 }
 
-// 구체적 방문자 — 수식 평가
+// 구체적 방문자 - 수식 평가
 class Evaluator implements ASTVisitor<number> {
   visitNumber(node: NumberLiteral): number {
     return node.value;
@@ -1507,7 +1507,7 @@ class Evaluator implements ASTVisitor<number> {
   }
 }
 
-// 구체적 방문자 — 수식을 문자열로 변환
+// 구체적 방문자 - 수식을 문자열로 변환
 class Printer implements ASTVisitor<string> {
   visitNumber(node: NumberLiteral): string {
     return String(node.value);
@@ -1525,7 +1525,7 @@ class Printer implements ASTVisitor<string> {
   }
 }
 
-// 구체적 방문자 — 노드 수 카운팅
+// 구체적 방문자 - 노드 수 카운팅
 class NodeCounter implements ASTVisitor<number> {
   visitNumber(_node: NumberLiteral): number {
     return 1;
@@ -1540,7 +1540,7 @@ class NodeCounter implements ASTVisitor<number> {
   }
 }
 
-// 사용 — (3 + 4) * (-2) 를 표현
+// 사용 - (3 + 4) * (-2) 를 표현
 const ast: ASTNode = new BinaryExpression(
   new BinaryExpression(
     new NumberLiteral(3),
@@ -1562,7 +1562,7 @@ console.log(ast.accept(counter));    // 5
 
 새로운 연산(예: 최적화, 코드 생성)을 추가할 때 기존 노드 클래스는 전혀 수정할 필요가 없다. `ASTVisitor<T>`를 구현하는 새 클래스만 만들면 된다.
 
-### 9.2 파일 시스템 예제 — 더 실용적인 시나리오
+### 9.2 파일 시스템 예제 - 더 실용적인 시나리오
 
 ```typescript
 interface FileSystemEntry {
@@ -1649,7 +1649,7 @@ console.log(root.accept(new ExtensionFinder("ts"))); // [index.ts, helpers.ts, c
 TC39 Signals 제안(*Stage 1*)은 관찰자 패턴을 언어 레벨에서 지원하려는 움직임이다. React의 `useState`, Solid의 `createSignal`, Angular의 `signal()`이 모두 이 방향을 가리킨다:
 
 ```typescript
-// TC39 Signals 제안 (미확정 — 2026년 기준 Stage 1)
+// TC39 Signals 제안 (미확정 - 2026년 기준 Stage 1)
 // 아래는 개념적 사용 예시
 import { Signal, Computed, Effect } from "std:signals";
 
@@ -1669,9 +1669,9 @@ count.set(5);
 | 라이브러리 | 관찰자 패턴 구현 방식 |
 |-----------|---------------------|
 | **RxJS** | Observable/Observer + 연산자 파이프라인 |
-| **Zustand** | `subscribe()` 메서드 — 선택적 상태 구독 |
-| **Jotai** | 원자(*Atom*) 단위 구독 — 세밀한 리렌더링 |
-| **SolidJS Signals** | 자동 의존성 추적 — 가장 Signals 제안에 가까움 |
+| **Zustand** | `subscribe()` 메서드 - 선택적 상태 구독 |
+| **Jotai** | 원자(*Atom*) 단위 구독 - 세밀한 리렌더링 |
+| **SolidJS Signals** | 자동 의존성 추적 - 가장 Signals 제안에 가까움 |
 
 ### Iterator → 내장 프로토콜과 비동기 확장
 
@@ -1683,7 +1683,7 @@ const result = Iterator.from([1, 2, 3, 4, 5])
   .toArray();
 // [20, 40]
 
-// for-await-of — 비동기 이터레이터
+// for-await-of - 비동기 이터레이터
 for await (const chunk of readableStream) {
   process(chunk);
 }
@@ -1700,7 +1700,7 @@ for await (const chunk of readableStream) {
 ### Command → Redux 액션과 useReducer
 
 ```typescript
-// Redux Toolkit — 커맨드 패턴의 현대적 구현
+// Redux Toolkit - 커맨드 패턴의 현대적 구현
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // 액션 = 커맨드 객체
@@ -1716,7 +1716,7 @@ const counterSlice = createSlice({
   },
 });
 
-// useReducer — 로컬 상태에서의 커맨드 패턴
+// useReducer - 로컬 상태에서의 커맨드 패턴
 type Action =
   | { type: "increment" }
   | { type: "decrement" }
@@ -1742,7 +1742,7 @@ function useSearchStrategy(strategy: "local" | "api") {
   return strategy === "local" ? localSearch : apiSearch;
 }
 
-// 사용 — 전략 교체가 Hook 교체로 자연스럽게 이루어짐
+// 사용 - 전략 교체가 Hook 교체로 자연스럽게 이루어짐
 function SearchComponent({ mode }: { mode: "local" | "api" }) {
   const { search, results } = useSearchStrategy(mode);
   // ...
@@ -1752,7 +1752,7 @@ function SearchComponent({ mode }: { mode: "local" | "api" }) {
 ### State → XState와 useReducer 상태 머신
 
 ```typescript
-// XState v5 — 선언적 상태 머신
+// XState v5 - 선언적 상태 머신
 import { createMachine, createActor } from "xstate";
 
 const orderMachine = createMachine({
@@ -1788,7 +1788,7 @@ console.log(actor.getSnapshot().value); // "shipped"
 ### Chain of Responsibility → Next.js 미들웨어
 
 ```typescript
-// next.js middleware.ts — 책임 연쇄 패턴의 실제 적용
+// next.js middleware.ts - 책임 연쇄 패턴의 실제 적용
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -1837,7 +1837,7 @@ export const config = {
 
 | 조합 | 사례 |
 |------|------|
-| Observer + Command | Redux — 상태 변경 알림 + 액션 캡슐화 |
+| Observer + Command | Redux - 상태 변경 알림 + 액션 캡슐화 |
 | Strategy + State | 상태별로 다른 전략을 선택하는 게임 AI |
 | Chain of Responsibility + Command | 미들웨어 체인에서 각 단계가 커맨드를 실행 |
 | Mediator + Observer | 중재자가 Pub/Sub 이벤트를 수신하여 워크플로 조율 |

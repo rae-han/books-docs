@@ -1,4 +1,4 @@
-# Chapter 1: Objects and Design (객체, 설계) — 요약
+# Chapter 1: Objects and Design (객체, 설계) - 요약
 
 > 상세 노트: [ch01-objects-and-design.md](../notes/ch01-objects-and-design.md)
 
@@ -17,14 +17,14 @@
 ## 코드 한 컷
 
 ```typescript
-// Before — Theater가 남의 내부에 직접 손을 뻗는다 (절차적)
+// Before - Theater가 남의 내부에 직접 손을 뻗는다 (절차적)
 enter(audience: Audience): void {
     if (audience.getBag().hasInvitation()) {
         // 가방을 열어 보고, 매표소를 뒤지고, 돈을 옮기고...
     }
 }
 
-// After — 메시지로만 협력하는 자율적 객체 (객체지향)
+// After - 메시지로만 협력하는 자율적 객체 (객체지향)
 enter(audience: Audience): void {
     this.ticketSeller.sellTo(audience);   // 판매는 판매원이 알아서
 }

@@ -21,7 +21,7 @@
 얼마 전까지만 해도 예외를 지원하지 않는 프로그래밍 언어가 많았다. 오류 플래그를 설정하거나 호출자에게 오류 코드를 반환하는 방법이 전부였다.
 
 ```java
-// 나쁜 예 — 오류 코드 사용: 호출자 코드가 복잡해진다
+// 나쁜 예 - 오류 코드 사용: 호출자 코드가 복잡해진다
 public class DeviceController {
     ...
     public void sendShutDown() {
@@ -49,7 +49,7 @@ public class DeviceController {
 함수를 호출한 즉시 오류를 확인해야 하기 때문에 호출자 코드가 복잡해진다. 불행히도 이 단계는 잊어버리기 쉽다.
 
 ```java
-// 좋은 예 — 예외 사용: 논리와 오류 처리가 분리된다
+// 좋은 예 - 예외 사용: 논리와 오류 처리가 분리된다
 public class DeviceController {
     ...
     public void sendShutDown() {
@@ -109,7 +109,7 @@ public List<RecordedGrip> retrieveSection(String sectionName) {
 }
 ```
 
-**3단계**: 리팩터링 — catch 블록에서 예외 유형을 좁힌다.
+**3단계**: 리팩터링 - catch 블록에서 예외 유형을 좁힌다.
 
 ```java
 public List<RecordedGrip> retrieveSection(String sectionName) {
@@ -166,7 +166,7 @@ C#은 확인된 예외를 지원하지 않는다. C++, 파이썬, 루비도 마�
 
 오류를 분류하는 방법은 수없이 많다. 오류가 발생한 위치, 유형(디바이스 실패, 네트워크 실패, 프로그래밍 오류 등) 등으로 분류할 수 있다. 하지만 애플리케이션에서 오류를 정의할 때 프로그래머에게 **가장 중요한 관심사는 오류를 잡아내는 방법**이 되어야 한다.
 
-### 나쁜 예 — 외부 라이브러리의 예외를 그대로 노출
+### 나쁜 예 - 외부 라이브러리의 예외를 그대로 노출
 
 ```java
 ACMEPort port = new ACMEPort(12);
@@ -187,9 +187,9 @@ try {
 }
 ```
 
-중복이 심하다. 대다수 상황에서 오류를 처리하는 방식은 비교적 일정하다 — 오류를 기록하고, 프로그램을 계속 수행해도 좋은지 확인한다.
+중복이 심하다. 대다수 상황에서 오류를 처리하는 방식은 비교적 일정하다 - 오류를 기록하고, 프로그램을 계속 수행해도 좋은지 확인한다.
 
-### 좋은 예 — 감싸기(wrapper) 클래스로 예외 유형 통합
+### 좋은 예 - 감싸기(wrapper) 클래스로 예외 유형 통합
 
 ```java
 LocalPort port = new LocalPort(12);
@@ -245,7 +245,7 @@ public class LocalPort {
 앞 절의 지침을 충실히 따르면 비즈니스 논리와 오류 처리가 잘 분리된다. 하지만 때로는 **중단이 적합하지 않을 때**도 있다.
 
 ```java
-// 나쁜 예 — 예외가 논리를 따라가기 어렵게 만든다
+// 나쁜 예 - 예외가 논리를 따라가기 어렵게 만든다
 try {
     MealExpenses expenses = expenseReportDAO.getMeals(employee.getID());
     m_total += expenses.getTotal();
@@ -257,7 +257,7 @@ try {
 식비를 비용으로 청구했다면 직원이 청구한 식비를 총계에 더하고, 청구하지 않았다면 일일 기본 식비를 더한다. 하지만 예외가 논리를 따라가기 어렵게 만든다.
 
 ```java
-// 좋은 예 — 특수 사례 패턴으로 간결하게
+// 좋은 예 - 특수 사례 패턴으로 간결하게
 MealExpenses expenses = expenseReportDAO.getMeals(employee.getID());
 m_total += expenses.getTotal();
 ```
@@ -272,7 +272,7 @@ public class PerDiemMealExpenses implements MealExpenses {
 }
 ```
 
-이를 **특수 사례 패턴(Special Case Pattern)**(*Special Case Pattern — Martin Fowler의 『리팩터링』에서 소개된 패턴으로, Null Object 패턴의 일반화된 형태다.*)이라 부른다. 클래스를 만들거나 객체를 조작해 특수 사례를 처리하는 방식이다. 클라이언트 코드가 예외적인 상황을 처리할 필요가 없어진다.
+이를 **특수 사례 패턴(Special Case Pattern)**(*Special Case Pattern - Martin Fowler의 『리팩터링』에서 소개된 패턴으로, Null Object 패턴의 일반화된 형태다.*)이라 부른다. 클래스를 만들거나 객체를 조작해 특수 사례를 처리하는 방식이다. 클라이언트 코드가 예외적인 상황을 처리할 필요가 없어진다.
 
 ---
 
@@ -281,7 +281,7 @@ public class PerDiemMealExpenses implements MealExpenses {
 흔히 저지르는 실수 중 첫째가 **null을 반환하는 습관**이다.
 
 ```java
-// 나쁜 예 — null 확인이 누락되기 쉽다
+// 나쁜 예 - null 확인이 누락되기 쉽다
 public void registerItem(Item item) {
     if (item != null) {
         ItemRegistry registry = peristentStore.getItemRegistry();
@@ -300,7 +300,7 @@ public void registerItem(Item item) {
 **해결책**: 메서드에서 null을 반환하고픈 유혹이 든다면 그 대신 **예외를 던지거나 특수 사례 객체를 반환**한다.
 
 ```java
-// 나쁜 예 — null 반환 후 확인
+// 나쁜 예 - null 반환 후 확인
 List<Employee> employees = getEmployees();
 if (employees != null) {
     for (Employee e : employees) {
@@ -310,7 +310,7 @@ if (employees != null) {
 ```
 
 ```java
-// 좋은 예 — 빈 리스트 반환
+// 좋은 예 - 빈 리스트 반환
 List<Employee> employees = getEmployees();
 for (Employee e : employees) {
     totalPay += e.getPay();
@@ -340,7 +340,7 @@ public class MetricsCalculator {
 
 누군가 `calculator.xProjection(null, new Point(12, 13))`을 호출하면 `NullPointerException`이 발생한다.
 
-### 대안 1 — 새로운 예외 유형
+### 대안 1 - 새로운 예외 유형
 
 ```java
 public double xProjection(Point p1, Point p2) {
@@ -354,7 +354,7 @@ public double xProjection(Point p1, Point p2) {
 
 `NullPointerException`보다는 조금 나을지도 모르겠다. 하지만 `InvalidArgumentException`을 잡아내는 처리기가 필요하다.
 
-### 대안 2 — assert 문
+### 대안 2 - assert 문
 
 ```java
 public double xProjection(Point p1, Point p2) {
@@ -388,19 +388,19 @@ public double xProjection(Point p1, Point p2) {
 ## 요약
 
 - **오류 처리를 프로그램 논리와 분리**하면 튼튼하고 깨끗한 코드를 작성할 수 있다
-- **오류 코드 대신 예외**를 사용하라 — 비즈니스 로직과 오류 처리 로직이 뒤섞이지 않는다
-- **try-catch-finally 문부터 작성**하라 — TDD 방식으로 예외 처리를 구현하면 트랜잭션 본질을 유지하기 쉽다
-- **미확인(unchecked) 예외를 사용**하라 — 확인된 예외는 OCP를 위반하고 캡슐화를 깨뜨린다
-- **외부 API는 감싸기(wrapper) 클래스**로 처리하라 — 의존성 감소, 테스트 용이, API 설계 자유
-- **특수 사례 패턴**으로 정상 흐름을 정의하라 — 예외적 상황을 클래스가 캡슐화한다
-- **null을 반환하지도, 전달하지도 마라** — 빈 컬렉션이나 특수 사례 객체를 반환하라
-- 깨끗한 코드는 읽기도 좋아야 하지만 **안정성도 높아야 한다** — 이 둘은 상충하는 목표가 아니다
+- **오류 코드 대신 예외**를 사용하라 - 비즈니스 로직과 오류 처리 로직이 뒤섞이지 않는다
+- **try-catch-finally 문부터 작성**하라 - TDD 방식으로 예외 처리를 구현하면 트랜잭션 본질을 유지하기 쉽다
+- **미확인(unchecked) 예외를 사용**하라 - 확인된 예외는 OCP를 위반하고 캡슐화를 깨뜨린다
+- **외부 API는 감싸기(wrapper) 클래스**로 처리하라 - 의존성 감소, 테스트 용이, API 설계 자유
+- **특수 사례 패턴**으로 정상 흐름을 정의하라 - 예외적 상황을 클래스가 캡슐화한다
+- **null을 반환하지도, 전달하지도 마라** - 빈 컬렉션이나 특수 사례 객체를 반환하라
+- 깨끗한 코드는 읽기도 좋아야 하지만 **안정성도 높아야 한다** - 이 둘은 상충하는 목표가 아니다
 
 ---
 
 ## 다른 챕터와의 관계
 
-- **← Chapter 3 (함수)**: "한 가지를 하라" 원칙이 try-catch 블록의 분리 전략과 직접 연결된다 — try 블록 안의 함수는 하나의 작업만 수행해야 한다
+- **← Chapter 3 (함수)**: "한 가지를 하라" 원칙이 try-catch 블록의 분리 전략과 직접 연결된다 - try 블록 안의 함수는 하나의 작업만 수행해야 한다
 - **← Chapter 6 (객체와 자료 구조)**: 감싸기(wrapper) 클래스로 외부 API의 예외를 캡슐화하는 기법은 자료 추상화 원칙의 확장이다
 - **→ Chapter 8 (경계)**: 외부 API 감싸기 기법이 경계에서의 코드 관리 전략으로 확장된다
 - **→ Chapter 9 (단위 테스트)**: try-catch-finally 문을 TDD로 구현하는 방식이 단위 테스트 작성의 기본 패턴이다

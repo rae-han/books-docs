@@ -14,12 +14,12 @@
 
 ---
 
-## 1. 레코드 캡슐화하기 (7.1) — Encapsulate Record
+## 1. 레코드 캡슐화하기 (7.1) - Encapsulate Record
 
 가변 레코드를 **클래스로** 바꿔, 저장 방식을 숨기고 접근을 게터/세터로 통제한다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -60,16 +60,16 @@ class Organization {
 6. 임시 접근자와 원본 레코드 반환 함수를 제거한다.
 7. 테스트한다. (중첩 구조면 **컬렉션 캡슐화하기(7.2)**와 함께 재귀 적용)
 
-> **핵심 통찰**: 중첩 레코드(JSON 등)는 **쓰기(갱신) 부분에 집중**하라 — 값을 수정하는 곳을 세터로 추출·이동해 한 곳에 모으는 것이 캡슐화의 핵심이다. 읽기는 게터·`rawData()`(깊은 복사)·읽기전용 프락시 등으로 대응한다.
+> **핵심 통찰**: 중첩 레코드(JSON 등)는 **쓰기(갱신) 부분에 집중**하라 - 값을 수정하는 곳을 세터로 추출·이동해 한 곳에 모으는 것이 캡슐화의 핵심이다. 읽기는 게터·`rawData()`(깊은 복사)·읽기전용 프락시 등으로 대응한다.
 
 ---
 
-## 2. 컬렉션 캡슐화하기 (7.2) — Encapsulate Collection
+## 2. 컬렉션 캡슐화하기 (7.2) - Encapsulate Collection
 
 컬렉션 게터가 **원본을 반환하지 않게** 하고, 추가·제거는 **전용 변경자 메서드**로만 하게 한다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -103,7 +103,7 @@ class Person {
 }
 ```
 
-**배경**: 컬렉션은 캡슐화 실수가 잦다 — 게터가 컬렉션 **자체**를 반환하면, 소유 클래스 모르게 원소가 바뀐다. `add`/`remove` 변경자만 두고 게터는 **복제본(또는 읽기전용 뷰)**을 반환해 실수를 원천 차단한다.
+**배경**: 컬렉션은 캡슐화 실수가 잦다 - 게터가 컬렉션 **자체**를 반환하면, 소유 클래스 모르게 원소가 바뀐다. `add`/`remove` 변경자만 두고 게터는 **복제본(또는 읽기전용 뷰)**을 반환해 실수를 원천 차단한다.
 
 **절차**:
 1. (아직 안 했다면) 컬렉션을 **캡슐화(6.6)**한다.
@@ -115,12 +115,12 @@ class Person {
 
 ---
 
-## 3. 기본형을 객체로 바꾸기 (7.3) — Replace Primitive with Object
+## 3. 기본형을 객체로 바꾸기 (7.3) - Replace Primitive with Object
 
 단순 출력 이상의 동작이 필요해진 기본형 데이터를 **전용 값 클래스**로 승격한다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -167,12 +167,12 @@ class Priority {
 
 ---
 
-## 4. 임시 변수를 질의 함수로 바꾸기 (7.4) — Replace Temp with Query
+## 4. 임시 변수를 질의 함수로 바꾸기 (7.4) - Replace Temp with Query
 
 계산 결과를 담은 임시 변수를 **게터(질의 함수)**로 바꾼다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -209,12 +209,12 @@ class Order {
 
 ---
 
-## 5. 클래스 추출하기 (7.5) — Extract Class
+## 5. 클래스 추출하기 (7.5) - Extract Class
 
 한 클래스가 하는 일이 많아지면 **일부 데이터·메서드를 새 클래스로** 분리한다. (반대: 7.6)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before: Person이 전화번호까지 다룸
@@ -262,7 +262,7 @@ class Person {
 
 ---
 
-## 6. 클래스 인라인하기 (7.6) — Inline Class
+## 6. 클래스 인라인하기 (7.6) - Inline Class
 
 제 역할을 못 하는 클래스를 **가장 많이 쓰는 클래스로 흡수**한다. (반대: 7.5)
 
@@ -288,12 +288,12 @@ class Shipment {
 
 ---
 
-## 7. 위임 숨기기 (7.7) — Hide Delegate
+## 7. 위임 숨기기 (7.7) - Hide Delegate
 
 `서버.위임객체.메서드()`를 `서버.메서드()`로 감싸 **위임 객체의 존재를 숨긴다**. (반대: 7.8)
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before
@@ -308,7 +308,7 @@ class Person { get manager() { return this._department.manager; } }
 ```typescript
 class Person {
   constructor(private readonly _department: Department) {}
-  // department의 존재를 숨긴다 — 클라이언트는 aPerson.manager만 안다
+  // department의 존재를 숨긴다 - 클라이언트는 aPerson.manager만 안다
   get manager(): Person {
     return this._department.manager;
   }
@@ -325,7 +325,7 @@ class Person {
 
 ---
 
-## 8. 중개자 제거하기 (7.8) — Remove Middle Man
+## 8. 중개자 제거하기 (7.8) - Remove Middle Man
 
 단순 위임만 하는 메서드가 많아지면 **위임 객체를 직접 호출**하게 한다. (반대: 7.7)
 
@@ -341,23 +341,23 @@ class Person {
 // 클라이언트: manager = aPerson.department.manager;
 ```
 
-**배경**: 위임 숨기기(7.7)의 이점은 공짜가 아니다 — 클라이언트가 위임 객체의 새 기능을 쓸 때마다 서버에 위임 메서드를 추가해야 한다. 그렇게 서버가 **중개자로 전락**하면 차라리 직접 호출이 낫다. (디미터 법칙을 지나치게 신봉할 때 잘 생긴다 — "이따금 유용한 디미터의 제안"으로 여기는 편이 낫다.)
+**배경**: 위임 숨기기(7.7)의 이점은 공짜가 아니다 - 클라이언트가 위임 객체의 새 기능을 쓸 때마다 서버에 위임 메서드를 추가해야 한다. 그렇게 서버가 **중개자로 전락**하면 차라리 직접 호출이 낫다. (디미터 법칙을 지나치게 신봉할 때 잘 생긴다 - "이따금 유용한 디미터의 제안"으로 여기는 편이 낫다.)
 
 **절차**:
 1. 위임 객체를 얻는 게터를 만든다.
 2. 위임 메서드를 쓰는 클라이언트가 이 게터를 거치게 바꾼다(하나씩 테스트).
 3. 위임 메서드를 삭제한다.
 
-> **핵심 통찰**: 7.7과 7.8은 **반대 방향의 짝**이다. "어느 정도 숨길지"의 적절함은 시스템이 바뀌면 함께 바뀐다 — 자주 쓰는 위임은 숨기고, 성가신 위임은 제거하며 **언제든 균형점을 옮긴다**.
+> **핵심 통찰**: 7.7과 7.8은 **반대 방향의 짝**이다. "어느 정도 숨길지"의 적절함은 시스템이 바뀌면 함께 바뀐다 - 자주 쓰는 위임은 숨기고, 성가신 위임은 제거하며 **언제든 균형점을 옮긴다**.
 
 ---
 
-## 9. 알고리즘 교체하기 (7.9) — Substitute Algorithm
+## 9. 알고리즘 교체하기 (7.9) - Substitute Algorithm
 
 복잡한 알고리즘을 **더 간명한 알고리즘으로 통째로 교체**한다.
 
 <details>
-<summary>원서 JavaScript — 스케치</summary>
+<summary>원서 JavaScript - 스케치</summary>
 
 ```javascript
 // before: 긴 if 반복
@@ -400,7 +400,7 @@ function foundPerson(people: string[]): string {
 
 - **레코드 캡슐화(7.1)**·**컬렉션 캡슐화(7.2)**: 가변 데이터를 클래스/변경자로 감싸 변경을 통제(컬렉션 게터는 복제본 반환).
 - **기본형을 객체로(7.3)**: 동작이 필요해진 기본형을 전용 값 클래스로 승격.
-- **임시 변수를 질의로(7.4)**: 계산 변수를 게터로 — 추출을 쉽게 하고 중복을 줄인다.
+- **임시 변수를 질의로(7.4)**: 계산 변수를 게터로 - 추출을 쉽게 하고 중복을 줄인다.
 - **클래스 추출(7.5) ↔ 인라인(7.6)**: 비대한 클래스를 쪼개거나, 빈 껍데기를 흡수한다(재구성 시 합쳤다 다시 추출).
-- **위임 숨기기(7.7) ↔ 중개자 제거(7.8)**: 위임을 감출지 드러낼지의 반대 짝 — 상황에 따라 균형점을 옮긴다.
+- **위임 숨기기(7.7) ↔ 중개자 제거(7.8)**: 위임을 감출지 드러낼지의 반대 짝 - 상황에 따라 균형점을 옮긴다.
 - **알고리즘 교체(7.9)**: 더 간명한 알고리즘으로 통째 교체(먼저 잘게 나누고, 결과를 비교 테스트).

@@ -51,7 +51,7 @@ function getFifthElement(elements: Element[]): Element | null {
 이 함수를 호출하는 코드가 **널을 반환하는 경우를 처리하지 않으면 컴파일되지 않는다.** 예를 들어 `displayElement()`는 매개변수 타입이 `Element?`가 아니라 `Element`이므로 널이 아닌 값만 받는데, 여기에 널이 가능한 값을 그대로 넘기면 컴파일러가 오류를 낸다.
 
 <details>
-<summary>의사코드 (원서) — 널 확인 없이는 컴파일되지 않는다</summary>
+<summary>의사코드 (원서) - 널 확인 없이는 컴파일되지 않는다</summary>
 
 ```java
 // 매개변수 타입이 Element(널 불가)이므로 널이 아닌 값만 받는다
@@ -84,7 +84,7 @@ function displayFifthElement(elements: Element[]): void {
 코드가 컴파일되게 하려면 반환값이 널이 아닌지 먼저 확인한 뒤에 `displayElement()`를 호출해야 한다. 컴파일러는 **값이 널이 아닐 때만 도달할 수 있는 코드 경로를 유추**하므로, 널 확인 이후 지점에서는 그 값을 안전하게 사용할 수 있다고 판단한다. (TypeScript에서는 이를 **제어 흐름 기반 타입 좁히기**라고 부른다.)
 
 <details>
-<summary>의사코드 (원서) — 널을 확인하면 컴파일된다</summary>
+<summary>의사코드 (원서) - 널을 확인하면 컴파일된다</summary>
 
 ```java
 void displayFifthElement(List<Element> elements) {
@@ -114,20 +114,20 @@ function displayFifthElement(elements: Element[]): void {
 }
 ```
 
-> **참고 — 컴파일러 경고 vs 오류(C#)**: C#에서는 널이 가능한 값을 잘못 사용해도 컴파일러 **경고**만 보여 주고 오류는 내지 않기 때문에 안전하지 않을 수 있다.<br>C#을 쓰면서 널 안전성을 활성화했다면, 경고가 아니라 **오류**로 처리하도록 설정해 이런 경우가 눈에 띄게 만드는 것이 좋다.
+> **참고 - 컴파일러 경고 vs 오류(C#)**: C#에서는 널이 가능한 값을 잘못 사용해도 컴파일러 **경고**만 보여 주고 오류는 내지 않기 때문에 안전하지 않을 수 있다.<br>C#을 쓰면서 널 안전성을 활성화했다면, 경고가 아니라 **오류**로 처리하도록 설정해 이런 경우가 눈에 띄게 만드는 것이 좋다.
 
 이처럼 널 안전성을 사용하면 컴파일러가 논리적으로 널이 가능한 경로와 그렇지 않은 경로를 추적하여 **널 값이 안전하지 않게 사용되는 일이 없도록** 보장한다. 덕분에 널 포인터 예외(*null pointer exception - 널 값의 멤버에 접근하려다 발생하는 런타임 오류*) 같은 위험 없이 널 값의 유용함만 누릴 수 있다.
 
 ---
 
-## 2. 널 확인 — 간결한 구문 (B.1.1)
+## 2. 널 확인 - 간결한 구문 (B.1.1)
 
 널 안전성을 지원하는 언어는 값이 널인지 확인하고 **널이 아닐 때만 멤버 함수나 속성에 접근**하도록 하는 간결한 구문을 제공하는 경우가 많다. 이렇게 하면 반복적인 널 확인 구문을 줄일 수 있다. 다만 이런 문법을 제공하지 않는 언어가 더 많으므로, 이 책의 의사코드 규약은 널을 일일이 확인하는 다소 장황한 방식을 따른다.
 
 예를 들어 주소를 조회하되 찾지 못하면 널을 반환하는 `lookupAddress()` 함수가 있고, 호출하는 쪽에서 반환값이 널이 아닐 때만 `getCity()`를 호출하려 한다고 하자. 장황한 방식은 다음과 같다.
 
 <details>
-<summary>의사코드 (원서) — 장황한 널 확인</summary>
+<summary>의사코드 (원서) - 장황한 널 확인</summary>
 
 ```java
 Address? lookupAddress() {
@@ -165,7 +165,7 @@ function getCity(): City | null {
 그러나 널 안전성을 지원하는 대부분의 언어는 이 코드를 더 간결하게 만들 수 있는 구문을 제공한다. 예를 들어 **널 조건부 연산자(*null conditional operator - 앞 값이 널이면 멤버 접근을 건너뛰고 널을 반환하는 연산자, 보통 `?.`*)**를 쓰면 다음처럼 한 줄로 쓸 수 있다.
 
 <details>
-<summary>의사코드 (원서) — 널 조건부 연산자</summary>
+<summary>의사코드 (원서) - 널 조건부 연산자</summary>
 
 ```java
 City? getCity() {
@@ -183,7 +183,7 @@ function getCity(): City | null {
 }
 ```
 
-> **핵심 통찰**: TypeScript의 옵셔널 체이닝 `?.`은 널 조건부 연산자에 정확히 대응한다. 다만 미묘한 차이가 하나 있다 — 앞 값이 널일 때 `?.`은 `null`이 아니라 **`undefined`로 단락**된다. 따라서 반환 타입을 엄밀히 `T | null`로 유지하려면 `?? null`을 덧붙여야 한다. TypeScript는 `null`과 `undefined`를 구분하므로, 팀 컨벤션으로 둘 중 하나만 "값 없음"의 표현으로 정하면 이런 혼동을 줄일 수 있다.
+> **핵심 통찰**: TypeScript의 옵셔널 체이닝 `?.`은 널 조건부 연산자에 정확히 대응한다. 다만 미묘한 차이가 하나 있다 - 앞 값이 널일 때 `?.`은 `null`이 아니라 **`undefined`로 단락**된다. 따라서 반환 타입을 엄밀히 `T | null`로 유지하려면 `?? null`을 덧붙여야 한다. TypeScript는 `null`과 `undefined`를 구분하므로, 팀 컨벤션으로 둘 중 하나만 "값 없음"의 표현으로 정하면 이런 혼동을 줄일 수 있다.
 
 이처럼 널 안전성을 활용하면 코드의 오류 발생을 줄이면서도, 언어의 다른 기능을 이용해 가독성은 높이고 훨씬 더 간결한 코드를 작성할 수 있다.
 
@@ -194,7 +194,7 @@ function getCity(): City | null {
 사용 중인 언어가 널 안전성을 제공하지 않거나 어떤 이유로든 쓸 수 없는 경우, 함수가 널을 반환하면 **호출하는 쪽에서 이를 예상하지 못할 수 있다.** 이를 방지하기 위해 `Optional` 같은 타입을 쓰면, 반환값이 없을 수도 있음을 호출하는 쪽에서 **강제로 인지**하게 만들 수 있다. 앞 절의 `getFifthElement()`를 옵셔널로 바꾸면 다음과 같다.
 
 <details>
-<summary>의사코드 (원서) — 옵셔널로 반환</summary>
+<summary>의사코드 (원서) - 옵셔널로 반환</summary>
 
 ```java
 Optional<Element> getFifthElement(List<Element> elements) {
@@ -221,7 +221,7 @@ function getFifthElement(elements: Element[]): Element | null {
 이 코드를 사용하는 개발자는 옵셔널의 값을 쓰기 전에 **먼저 값이 있는지 확인(`isPresent()`)하고, 값은 `get()`으로 꺼내야** 한다. 즉 옵셔널 타입 자체가 "값이 없을 수도 있으니 확인하라"고 호출자에게 요구하는 셈이다.
 
 <details>
-<summary>의사코드 (원서) — 옵셔널 사용</summary>
+<summary>의사코드 (원서) - 옵셔널 사용</summary>
 
 ```java
 void displayFifthElement(List<Element> elements) {
@@ -251,7 +251,7 @@ function displayFifthElement(elements: Element[]): void {
 옵셔널을 쓰는 것이 다소 번거로운 것은 사실이다. 하지만 `Optional` 타입은 대개 다양한 멤버 함수를 제공해, 어떤 상황에서는 훨씬 더 간결한 코드를 쓸 수 있게 해 준다. 예를 들어 자바 9부터 제공되는 `ifPresentOrElse()`를 쓰면 값이 있을 때와 없을 때의 처리를 한 번에 넘길 수 있다.
 
 <details>
-<summary>의사코드 (원서) — ifPresentOrElse()</summary>
+<summary>의사코드 (원서) - ifPresentOrElse()</summary>
 
 ```java
 void displayFifthElement(List<Element> elements) {

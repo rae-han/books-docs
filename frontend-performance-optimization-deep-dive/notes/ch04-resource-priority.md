@@ -6,7 +6,7 @@
 
 ## 1. 브라우저의 리소스 우선순위 메커니즘
 
-> **참고 — 히어로 이미지란**<br><br>웹 페이지 상단에 가장 먼저 표시되는 대형 이미지로 사용자의 첫인상을 결정하는 핵심 시각 요소다. 뉴스 사이트의 메인 기사 이미지, 이커머스의 제품 배너, 랜딩 페이지의 상단 비주얼이 대표적이다. 보통 LCP 요소가 되므로 성능 최적화에서 중요하게 다룬다.
+> **참고 - 히어로 이미지란**<br><br>웹 페이지 상단에 가장 먼저 표시되는 대형 이미지로 사용자의 첫인상을 결정하는 핵심 시각 요소다. 뉴스 사이트의 메인 기사 이미지, 이커머스의 제품 배너, 랜딩 페이지의 상단 비주얼이 대표적이다. 보통 LCP 요소가 되므로 성능 최적화에서 중요하게 다룬다.
 
 브라우저는 HTML을 파싱하면서 수십~수백 개의 리소스를 발견한다. 대역폭은 제한돼 있고 HTTP/2 멀티플렉싱도 적절한 우선순위 없이는 혼잡만 가중시킨다. 그래서 브라우저는 각 리소스에 자동으로 우선순위를 매긴다. 크롬의 네트워크 스택은 **Highest / High / Medium / Low / Lowest** 5단계로 분류한다.
 
@@ -565,9 +565,9 @@ useHead({
 
 **라이트하우스**
 
-- "LCP request discovery" — LCP 리소스 발견이 늦은지 진단
-- "Preload Largest Contentful Paint image" — LCP 이미지 우선순위 문제
-- "Preconnect to required origins" — 외부 도메인 연결 준비 제안
+- "LCP request discovery" - LCP 리소스 발견이 늦은지 진단
+- "Preload Largest Contentful Paint image" - LCP 이미지 우선순위 문제
+- "Preconnect to required origins" - 외부 도메인 연결 준비 제안
 
 **Performance 패널**
 
@@ -575,9 +575,9 @@ useHead({
 
 **콘솔 경고**
 
-- `<link rel=preload> must have a valid 'as' value` — `as` 누락
-- `The resource was preloaded using link preload but not used within a few seconds` — 미사용 프리로드
-- `the request credentials mode does not match` — `crossorigin` 누락으로 인한 이중 다운로드
+- `<link rel=preload> must have a valid 'as' value` - `as` 누락
+- `The resource was preloaded using link preload but not used within a few seconds` - 미사용 프리로드
+- `the request credentials mode does not match` - `crossorigin` 누락으로 인한 이중 다운로드
 
 **개선 전후 비교**
 

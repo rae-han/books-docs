@@ -48,18 +48,18 @@ TDD의 Red-Green-Refactor 사이클에서, 이 챕터는 **Red 단계**: 실패�
             (배움이 있고, 구현 가능)
 ```
 
-- 너무 쉬운 테스트를 선택하면 진행이 느려진다 — 이미 아는 것을 반복할 뿐이다
-- 너무 어려운 테스트를 선택하면 막힌다 — Red Bar에서 벗어나지 못한다
-- **"한 걸음"**만큼의 테스트를 선택한다 — 현재 코드에서 한 단계만 확장하면 구현할 수 있는 테스트
+- 너무 쉬운 테스트를 선택하면 진행이 느려진다 - 이미 아는 것을 반복할 뿐이다
+- 너무 어려운 테스트를 선택하면 막힌다 - Red Bar에서 벗어나지 못한다
+- **"한 걸음"**만큼의 테스트를 선택한다 - 현재 코드에서 한 단계만 확장하면 구현할 수 있는 테스트
 
 ### Part I에서의 예시
 
 Part I에서 Kent Beck의 테스트 선택 순서를 보면:
 
-1. **Chapter 1**: `$5 × 2 = $10` — 곱하기는 더하기보다 쉽다. 다중 통화 더하기(`$5 + 10 CHF`)는 첫 테스트로 너무 크다.
-2. **Chapter 3**: `equals()` — 값 객체의 동등성은 `times()`가 동작하는 상태에서 자연스러운 다음 단계다.
-3. **Chapter 5**: `Franc` — Dollar가 동작하니, 같은 구조로 다른 통화를 추가할 수 있다.
-4. **Chapter 12**: `$5 + 10 CHF = $10` — 단일 통화 연산이 모두 동작한 후에야 다중 통화 더하기에 도전한다.
+1. **Chapter 1**: `$5 × 2 = $10` - 곱하기는 더하기보다 쉽다. 다중 통화 더하기(`$5 + 10 CHF`)는 첫 테스트로 너무 크다.
+2. **Chapter 3**: `equals()` - 값 객체의 동등성은 `times()`가 동작하는 상태에서 자연스러운 다음 단계다.
+3. **Chapter 5**: `Franc` - Dollar가 동작하니, 같은 구조로 다른 통화를 추가할 수 있다.
+4. **Chapter 12**: `$5 + 10 CHF = $10` - 단일 통화 연산이 모두 동작한 후에야 다중 통화 더하기에 도전한다.
 
 이 순서를 보면, Kent Beck은 항상 **"지금 있는 코드에서 한 걸음만 더"** 나아가는 테스트를 선택했다. `$5 + 10 CHF`라는 최종 목표를 향해 곧장 달려가지 않고, 작은 단계를 밟아 점진적으로 접근했다.
 
@@ -92,7 +92,7 @@ Starter Test의 후보들:
 정렬 알고리즘을 TDD로 구현한다고 하자. 첫 테스트로 무엇을 선택해야 하는가?
 
 ```java
-// 나쁜 시작 — 첫 테스트가 너무 복잡
+// 나쁜 시작 - 첫 테스트가 너무 복잡
 public void testSort() {
     int[] input = {5, 3, 8, 1, 9, 2, 7};
     int[] result = sort(input);
@@ -105,7 +105,7 @@ public void testSort() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 나쁜 시작 — 첫 테스트가 너무 복잡
+// 나쁜 시작 - 첫 테스트가 너무 복잡
 test('sort', () => {
     const input = [5, 3, 8, 1, 9, 2, 7];
     const result = sort(input);
@@ -117,48 +117,48 @@ test('sort', () => {
 </details>
 
 ```java
-// 좋은 시작 — 가장 퇴화된 경우부터
+// 좋은 시작 - 가장 퇴화된 경우부터
 public void testSortEmpty() {
     int[] result = sort(new int[]{});
     assertEquals(0, result.length);
 }
-// 빈 배열은 빈 배열을 반환하면 된다 — 즉시 Green!
+// 빈 배열은 빈 배열을 반환하면 된다 - 즉시 Green!
 
 public void testSortOneElement() {
     int[] result = sort(new int[]{1});
     assertArrayEquals(new int[]{1}, result);
 }
-// 원소 하나는 정렬할 필요 없다 — 그대로 반환
+// 원소 하나는 정렬할 필요 없다 - 그대로 반환
 
 public void testSortTwoElements() {
     int[] result = sort(new int[]{2, 1});
     assertArrayEquals(new int[]{1, 2}, result);
 }
-// 이제야 실제 정렬 로직이 필요하다 — 하지만 2개뿐이므로 간단
+// 이제야 실제 정렬 로직이 필요하다 - 하지만 2개뿐이므로 간단
 ```
 
 <details>
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 좋은 시작 — 가장 퇴화된 경우부터
+// 좋은 시작 - 가장 퇴화된 경우부터
 test('sort empty', () => {
     const result = sort([]);
     expect(result.length).toBe(0);
 });
-// 빈 배열은 빈 배열을 반환하면 된다 — 즉시 Green!
+// 빈 배열은 빈 배열을 반환하면 된다 - 즉시 Green!
 
 test('sort one element', () => {
     const result = sort([1]);
     expect(result).toEqual([1]);
 });
-// 원소 하나는 정렬할 필요 없다 — 그대로 반환
+// 원소 하나는 정렬할 필요 없다 - 그대로 반환
 
 test('sort two elements', () => {
     const result = sort([2, 1]);
     expect(result).toEqual([1, 2]);
 });
-// 이제야 실제 정렬 로직이 필요하다 — 하지만 2개뿐이므로 간단
+// 이제야 실제 정렬 로직이 필요하다 - 하지만 2개뿐이므로 간단
 ```
 
 </details>
@@ -378,12 +378,12 @@ Regression Test의 절차:
 
 1. **버그 보고를 받는다**: "환율 변환에서 소수점 이하가 잘린다"
 2. **재현 테스트를 작성한다**: 버그를 발생시키는 최소한의 테스트 케이스
-3. **테스트 실패를 확인한다**: Red Bar — 버그가 재현됨을 증명
-4. **버그를 수정한다**: Green Bar — 버그가 수정됨을 증명
+3. **테스트 실패를 확인한다**: Red Bar - 버그가 재현됨을 증명
+4. **버그를 수정한다**: Green Bar - 버그가 수정됨을 증명
 5. **테스트를 영구 보관한다**: 같은 버그가 다시 발생하면 이 테스트가 잡아낸다
 
 ```java
-// Step 1: 버그 보고 — "1.33 CHF를 USD로 변환하면 0 USD가 된다"
+// Step 1: 버그 보고 - "1.33 CHF를 USD로 변환하면 0 USD가 된다"
 
 // Step 2: 재현 테스트
 public void testFractionalConversion() {
@@ -405,7 +405,7 @@ public void testFractionalConversion() {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Step 1: 버그 보고 — "1.33 CHF를 USD로 변환하면 0 USD가 된다"
+// Step 1: 버그 보고 - "1.33 CHF를 USD로 변환하면 0 USD가 된다"
 
 // Step 2: 재현 테스트
 test('fractional conversion', () => {
@@ -467,7 +467,7 @@ TDD는 이 패턴을 특히 잘 지원한다. 왜냐하면:
 
 Kent Beck은 짝 프로그래밍(pair programming)에서도 이 원칙을 적용한다. 파트너에게 "5분만 쉬겠습니다"라고 말할 수 있어야 하며, 돌아왔을 때 Red Bar가 현재 상태를 알려준다.
 
-> **핵심 통찰**: Break는 "나약함"이 아니라 **생산성 전략**이다. 막혔을 때 30분을 억지로 투자하는 것보다, 15분 쉬고 5분 만에 해결하는 것이 더 효율적이다. TDD의 Red Bar는 이 휴식을 안전하게 만들어준다 — "어디까지 했지?"를 기억할 필요 없이, 테스트를 실행하면 된다.
+> **핵심 통찰**: Break는 "나약함"이 아니라 **생산성 전략**이다. 막혔을 때 30분을 억지로 투자하는 것보다, 15분 쉬고 5분 만에 해결하는 것이 더 효율적이다. TDD의 Red Bar는 이 휴식을 안전하게 만들어준다 - "어디까지 했지?"를 기억할 필요 없이, 테스트를 실행하면 된다.
 
 ---
 
@@ -558,7 +558,7 @@ Kent Beck의 핵심 메시지는, TDD에서 **피드백 루프의 속도**가 �
 ## 다른 챕터와의 관계
 
 - **Chapter 25 (TDD Patterns)**: Test List 패턴이 이 챕터의 One Step Test, Another Test와 직접 연결된다. Test List에서 어떤 항목을 선택하느냐가 이 챕터의 주제다.
-- **Chapter 1 (Multi-Currency Money)**: Starter Test의 실례다 — `$5 + 10 CHF` 대신 `$5 × 2`로 시작했다. One Step Test의 실례이기도 하다.
+- **Chapter 1 (Multi-Currency Money)**: Starter Test의 실례다 - `$5 + 10 CHF` 대신 `$5 × 2`로 시작했다. One Step Test의 실례이기도 하다.
 - **Chapter 27 (Testing Patterns)**: Red Bar를 만들기 위한 전략(이 챕터)과, 더 나은 테스트를 작성하는 기법(Chapter 27)이 상호 보완한다.
 - **Chapter 28 (Green Bar Patterns)**: 이 챕터가 "어떤 테스트를 작성할 것인가?"를 다룬다면, Chapter 28은 "그 테스트를 어떻게 통과시킬 것인가?"를 다룬다. Red와 Green은 동전의 양면이다.
 - **Chapter 17 (Money Retrospective)**: Part I 전체를 돌아보며, 테스트 선택 순서와 TDD 리듬에 대한 회고를 제공한다. 이 챕터의 패턴들이 실전에서 어떻게 작동했는지를 보여준다.

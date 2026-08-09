@@ -136,7 +136,7 @@ public class Member {
     // getter 생략
 }
 
-// 사용하는 코드 — 만료 판단 로직이 여러 곳에 분산
+// 사용하는 코드 - 만료 판단 로직이 여러 곳에 분산
 Member m = getMember(id);
 if (m.getExpiry().isBefore(LocalDate.now())) {
     // ...
@@ -156,7 +156,7 @@ public class Member {
     }
 }
 
-// 사용하는 코드 — 만료 판단은 Member에게 위임
+// 사용하는 코드 - 만료 판단은 Member에게 위임
 if (m.isExpired()) {
     // ...
 }

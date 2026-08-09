@@ -37,7 +37,7 @@ class Bank {
 
 </details>
 
-**문제 1**: `(Sum) source` — source가 Money일 수도 있는데, 무조건 Sum으로 캐스팅한다.
+**문제 1**: `(Sum) source` - source가 Money일 수도 있는데, 무조건 Sum으로 캐스팅한다.
 
 **문제 2**: Bank가 Sum의 내부 구조(`augend`, `addend`)를 직접 접근한다. 이것은 **캡슐화 위반**이다.
 
@@ -49,7 +49,7 @@ class Bank {
 
 ## 2. 첫 번째 과제: Sum.reduce()
 
-### 2.1 리팩토링 전략 — reduce를 Sum에 위임
+### 2.1 리팩토링 전략 - reduce를 Sum에 위임
 
 Bank가 Sum의 내부를 직접 계산하는 대신, **Sum 자신이 reduce를 수행**하도록 위임한다:
 
@@ -61,11 +61,11 @@ int amount = sum.augend.amount + sum.addend.amount;
 Money result = sum.reduce(to);
 ```
 
-이것은 **다형성(polymorphism)** 의 기본 원칙이다 — "데이터를 가진 객체가 그 데이터를 처리하는 로직도 가져야 한다."
+이것은 **다형성(polymorphism)** 의 기본 원칙이다 - "데이터를 가진 객체가 그 데이터를 처리하는 로직도 가져야 한다."
 
-### 2.2 TDD 사이클 — Sum.reduce()
+### 2.2 TDD 사이클 - Sum.reduce()
 
-#### Red — 테스트 작성
+#### Red - 테스트 작성
 
 Sum을 직접 reduce하는 테스트를 작성한다:
 
@@ -94,9 +94,9 @@ test('reduce sum', () => {
 
 기존 `testSimpleAddition`과 비슷하지만, Sum을 직접 생성하여 reduce하는 것에 초점을 맞춘다.
 
-현재 구현으로도 이 테스트는 통과한다 — Bank.reduce()가 이미 Sum을 처리하기 때문이다. 하지만 **구조를 개선**하기 위해 리팩토링을 진행한다.
+현재 구현으로도 이 테스트는 통과한다 - Bank.reduce()가 이미 Sum을 처리하기 때문이다. 하지만 **구조를 개선**하기 위해 리팩토링을 진행한다.
 
-#### Green → Refactor — reduce 로직을 Sum으로 이동
+#### Green → Refactor - reduce 로직을 Sum으로 이동
 
 **Step 1**: Sum에 `reduce()` 메서드를 추가한다:
 
@@ -164,7 +164,7 @@ class Bank {
 
 </details>
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
 이제 Bank는 Sum의 내부 구조를 직접 접근하지 않는다. 대신 Sum에게 "너 자신을 reduce해라"라고 위임한다.
 
@@ -180,9 +180,9 @@ class Bank {
 
 하지만 Money도 Expression이다. `bank.reduce(Money.dollar(1), "USD")`는 당연히 `Money.dollar(1)`을 반환해야 한다 (통화가 같으므로 환율 변환 불필요).
 
-### 3.2 TDD 사이클 — Money.reduce()
+### 3.2 TDD 사이클 - Money.reduce()
 
-#### Red — 테스트 작성
+#### Red - 테스트 작성
 
 ```java
 public void testReduceMoney() {
@@ -205,9 +205,9 @@ test('reduce money', () => {
 
 </details>
 
-이 테스트는 실패한다 — `Bank.reduce()`에서 `(Sum) source` 캐스팅 시 ClassCastException이 발생한다.
+이 테스트는 실패한다 - `Bank.reduce()`에서 `(Sum) source` 캐스팅 시 ClassCastException이 발생한다.
 
-#### Green — Money에도 reduce() 추가
+#### Green - Money에도 reduce() 추가
 
 **Step 1**: Money에 `reduce()` 메서드를 추가한다:
 
@@ -269,11 +269,11 @@ class Bank {
 
 </details>
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
-하지만 이 코드에는 문제가 있다 — `instanceof`를 사용한 타입 체크는 좋지 않은 패턴이다. 다형성을 제대로 활용하면 `instanceof`가 필요 없어진다.
+하지만 이 코드에는 문제가 있다 - `instanceof`를 사용한 타입 체크는 좋지 않은 패턴이다. 다형성을 제대로 활용하면 `instanceof`가 필요 없어진다.
 
-### 3.3 Refactor — instanceof 제거, Expression에 reduce() 추가
+### 3.3 Refactor - instanceof 제거, Expression에 reduce() 추가
 
 핵심 아이디어: Expression 인터페이스에 `reduce()` 메서드를 선언하면, Bank는 **source의 타입을 알 필요가 없다**.
 
@@ -321,7 +321,7 @@ class Bank {
 
 </details>
 
-**테스트 실행 — Green Bar!**
+**테스트 실행 - Green Bar!**
 
 `instanceof`도 사라지고, 캐스팅도 사라졌다. Bank는 Expression의 구체적인 타입을 알 필요가 없다. 다형성이 알아서 처리한다.
 
@@ -356,25 +356,25 @@ Money reduce(Bank bank, String to);
 ### 5.1 Bank.reduce()의 진화
 
 ```java
-// Version 1 (Chapter 12) — 하드코딩
+// Version 1 (Chapter 12) - 하드코딩
 Money reduce(Expression source, String to) {
     return Money.dollar(10);
 }
 
-// Version 2 (Chapter 12) — Sum만 처리, 내부 접근
+// Version 2 (Chapter 12) - Sum만 처리, 내부 접근
 Money reduce(Expression source, String to) {
     Sum sum = (Sum) source;
     int amount = sum.augend.amount + sum.addend.amount;
     return new Money(amount, to);
 }
 
-// Version 3 (이 챕터) — Sum에 위임, 하지만 캐스팅
+// Version 3 (이 챕터) - Sum에 위임, 하지만 캐스팅
 Money reduce(Expression source, String to) {
     Sum sum = (Sum) source;
     return sum.reduce(to);
 }
 
-// Version 4 (이 챕터) — instanceof 사용
+// Version 4 (이 챕터) - instanceof 사용
 Money reduce(Expression source, String to) {
     if (source instanceof Money)
         return ((Money) source).reduce(to);
@@ -382,7 +382,7 @@ Money reduce(Expression source, String to) {
     return sum.reduce(to);
 }
 
-// Version 5 (이 챕터, 최종) — 다형성
+// Version 5 (이 챕터, 최종) - 다형성
 Money reduce(Expression source, String to) {
     return source.reduce(to);
 }
@@ -392,25 +392,25 @@ Money reduce(Expression source, String to) {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Version 1 (Chapter 12) — 하드코딩
+// Version 1 (Chapter 12) - 하드코딩
 reduce(source: Expression, to: string): Money {
     return Money.dollar(10);
 }
 
-// Version 2 (Chapter 12) — Sum만 처리, 내부 접근
+// Version 2 (Chapter 12) - Sum만 처리, 내부 접근
 reduce(source: Expression, to: string): Money {
     const sum = source as Sum;
     const amount = sum.augend.amount + sum.addend.amount;
     return new Money(amount, to);
 }
 
-// Version 3 (이 챕터) — Sum에 위임, 하지만 캐스팅
+// Version 3 (이 챕터) - Sum에 위임, 하지만 캐스팅
 reduce(source: Expression, to: string): Money {
     const sum = source as Sum;
     return sum.reduce(to);
 }
 
-// Version 4 (이 챕터) — instanceof 사용
+// Version 4 (이 챕터) - instanceof 사용
 reduce(source: Expression, to: string): Money {
     if (source instanceof Money)
         return (source as Money).reduce(to);
@@ -418,7 +418,7 @@ reduce(source: Expression, to: string): Money {
     return sum.reduce(to);
 }
 
-// Version 5 (이 챕터, 최종) — 다형성
+// Version 5 (이 챕터, 최종) - 다형성
 reduce(source: Expression, to: string): Money {
     return source.reduce(to);
 }

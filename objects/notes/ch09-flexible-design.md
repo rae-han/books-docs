@@ -242,7 +242,7 @@ class Movie {
         private runningTime: number,
         private fee: Money
     ) {
-        // 구체 클래스에 직접 의존 — OCP 위반!
+        // 구체 클래스에 직접 의존 - OCP 위반!
         this.discountPolicy = new AmountDiscountPolicy(/* ... */);
     }
 

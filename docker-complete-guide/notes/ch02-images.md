@@ -1,4 +1,4 @@
-# Chapter 2: 이미지 — 컨테이너의 청사진: Images
+# Chapter 2: 이미지 - 컨테이너의 청사진: Images
 
 ## 핵심 질문
 
@@ -686,7 +686,7 @@ docker system prune -f
 # 기존 이미지에 새 태그 붙이기
 docker tag my-next-app:latest ghcr.io/my-org/my-next-app:1.0.0
 
-# 이 명령은 이미지를 복사하지 않는다 — 같은 이미지를 가리키는 새 태그를 만들 뿐이다
+# 이 명령은 이미지를 복사하지 않는다 - 같은 이미지를 가리키는 새 태그를 만들 뿐이다
 docker images
 # my-next-app                    latest    a1b2c3d4   180MB
 # ghcr.io/my-org/my-next-app     1.0.0     a1b2c3d4   180MB  ← 같은 IMAGE ID
@@ -698,7 +698,7 @@ docker images
 
 레지스트리를 통한 push/pull이 이미지 배포의 표준이지만, 레지스트리를 사용할 수 없는 상황도 있다. 에어갭(*Air-gapped - 보안상 외부 네트워크와 완전히 분리된 환경*) 환경, 오프라인 배포, 이미지 백업, 다른 컨테이너 런타임(Podman 등)과의 이미지 공유 등이 그런 경우다.
 
-### 7.1 container commit — 컨테이너에서 이미지 생성
+### 7.1 container commit - 컨테이너에서 이미지 생성
 
 `docker container commit`은 실행 중인 컨테이너의 현재 상태를 새로운 이미지로 저장하는 명령이다.
 
@@ -735,7 +735,7 @@ docker container commit \
 
 > **실무 팁**: `commit`은 Dockerfile 기반 빌드를 대체하는 용도가 **아니다**. 재현 가능성이 없고, 어떤 변경이 이루어졌는지 추적할 수 없기 때문이다. 다만 프로덕션에서 문제가 발생한 컨테이너의 상태를 스냅샷으로 보존해 나중에 분석할 때, 디버깅 도구를 설치한 컨테이너를 임시 이미지로 만들어 팀에 공유할 때, Dockerfile 작성 전에 인터랙티브하게 이미지를 실험할 때는 유용하다.
 
-### 7.2 image save / image load — 이미지 tar 아카이브
+### 7.2 image save / image load - 이미지 tar 아카이브
 
 `docker image save`는 이미지의 모든 레이어와 메타데이터를 tar 파일로 내보내고, `docker image load`는 이를 다시 이미지로 복원한다.
 
@@ -751,7 +751,7 @@ docker image load -i my-next-app.tar
 # Loaded image: my-next-app:1.0.0
 ```
 
-`save`/`load`는 **이미지의 모든 정보를 완전히 보존**한다 — 레이어 구조, 태그, 메타데이터(ENV, CMD, EXPOSE 등)가 그대로 유지된다.
+`save`/`load`는 **이미지의 모든 정보를 완전히 보존**한다 - 레이어 구조, 태그, 메타데이터(ENV, CMD, EXPOSE 등)가 그대로 유지된다.
 
 **사용 사례:**
 
@@ -770,7 +770,7 @@ docker image save my-app:$CI_SHA -o image-artifact.tar
 docker image load -i image-artifact.tar
 ```
 
-### 7.3 container export / image import — 파일시스템 tar 아카이브
+### 7.3 container export / image import - 파일시스템 tar 아카이브
 
 `docker container export`는 컨테이너의 파일시스템을 **단일 레이어** tar로 내보내고, `docker image import`는 이를 새 이미지로 가져온다.
 

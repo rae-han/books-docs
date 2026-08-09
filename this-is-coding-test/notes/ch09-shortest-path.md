@@ -17,13 +17,13 @@
 
 > **핵심 통찰**: 다익스트라는 "매번 최단 거리 노드를 선택"하므로 **그리디**(Ch 03), 플로이드 워셜은 "거쳐 가는 노드 k 기준 점화식"으로 갱신하므로 **DP**(Ch 08)다. 즉 앞 챕터들의 사고방식이 그대로 최단 경로에 적용된다.
 
-## 2. 다익스트라 — 한 지점에서 모든 지점
+## 2. 다익스트라 - 한 지점에서 모든 지점
 
 음의 간선이 없을 때, 시작 노드에서 각 노드까지의 최단 거리를 구한다. 원리는 "방문 안 한 노드 중 **최단 거리가 가장 짧은 노드**를 골라, 그 노드를 거치는 경로로 최단 거리 테이블을 갱신"하는 것의 반복이다.
 
 매번 최단 노드를 **선형 탐색**하면 O(V²)이지만, **우선순위 큐(최소 힙)** 로 O(log V)에 꺼내면 전체 O(E log V)로 빨라진다.
 
-### 2.1 우선순위 큐 — TypeScript에서 직접 구현
+### 2.1 우선순위 큐 - TypeScript에서 직접 구현
 
 > **함정**: 파이썬은 `heapq`(최소 힙)를 표준 제공하지만, **JavaScript/TypeScript에는 내장 우선순위 큐가 없다**. 코딩 테스트에서 다익스트라·프림 등을 쓰려면 **최소 힙을 직접 구현**해야 한다. 아래 클래스를 외워 두면 유용하다.
 
@@ -91,7 +91,7 @@ class MinHeap<T> {
 ### 2.2 다익스트라 코드
 
 ```python
-# Python (책 원본) — heapq 사용
+# Python (책 원본) - heapq 사용
 import heapq
 
 def dijkstra(start):
@@ -110,7 +110,7 @@ def dijkstra(start):
 ```
 
 ```ts
-// TypeScript — 위 MinHeap 사용
+// TypeScript - 위 MinHeap 사용
 const INF = 1e9;
 
 function dijkstra(start: number, graph: [number, number][][], n: number): number[] {
@@ -143,7 +143,7 @@ function dijkstra(start: number, graph: [number, number][][], n: number): number
 
 > **함정**: `if (distance[now] < dist) continue;`가 핵심이다. 같은 노드가 더 큰 거리로 큐에 여러 번 들어갈 수 있는데, 이미 더 짧게 처리됐다면 건너뛴다. 이 검사가 없으면 불필요한 재처리로 느려진다.
 
-## 3. 플로이드 워셜 — 모든 지점에서 모든 지점
+## 3. 플로이드 워셜 - 모든 지점에서 모든 지점
 
 거쳐 가는 노드 `k`를 1부터 N까지 늘려 가며, "a→b 직접" vs "a→k→b 경유"를 비교해 더 짧은 쪽으로 갱신한다. **2차원 DP 테이블**을 쓴다.
 
@@ -181,7 +181,7 @@ function floydWarshall(n: number, edges: [number, number, number][]): number[][]
 
 ---
 
-## 4. 실전 문제 1 — 미래 도시
+## 4. 실전 문제 1 - 미래 도시
 
 | 항목 | 값 |
 |------|-----|
@@ -239,7 +239,7 @@ const result = graph[1][k] + graph[k][x];
 console.log(result >= INF ? -1 : result); // 3
 ```
 
-## 5. 실전 문제 2 — 전보
+## 5. 실전 문제 2 - 전보
 
 | 항목 | 값 |
 |------|-----|

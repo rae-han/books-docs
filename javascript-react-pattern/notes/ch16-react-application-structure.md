@@ -759,15 +759,15 @@ Next.js는 여러 층의 캐싱을 제공한다.
 
 ```tsx
 // 캐싱 전략 예시
-// 1. 정적 데이터 — 빌드 타임에 한 번만 페칭
+// 1. 정적 데이터 - 빌드 타임에 한 번만 페칭
 const staticData = await fetch('https://api.example.com/config');
 
-// 2. ISR — 주기적 재검증
+// 2. ISR - 주기적 재검증
 const isrData = await fetch('https://api.example.com/products', {
   next: { revalidate: 3600 }, // 1시간
 });
 
-// 3. 동적 데이터 — 매 요청마다 페칭
+// 3. 동적 데이터 - 매 요청마다 페칭
 const dynamicData = await fetch('https://api.example.com/user', {
   cache: 'no-store',
 });
@@ -904,7 +904,7 @@ import { Button } from '@shared/ui/Button';
 - 리액트는 프로젝트 구조에 대해 의견을 제시하지 않으므로, **팀이 합의한 규칙을 일관되게 따르는 것**이 가장 중요하다
 - 파일 그룹화 전략은 **기능별**, **유형별**, **혼합** 세 가지가 있으며, 대부분의 실무 프로젝트에서는 혼합 그룹화가 적합하다
 - 프로젝트 규모에 따라 구조를 진화시킨다: 소규모(유형별 평면) → 중규모(Feature Sliced) → 대규모(모노레포)
-- **코로케이션 원칙** — 함께 변경되는 파일은 함께 둔다
+- **코로케이션 원칙** - 함께 변경되는 파일은 함께 둔다
 - Next.js App Router는 **라우트 그룹**, **병렬 라우트**, **인터셉팅 라우트** 등 강력한 라우팅 기능을 제공한다
 - 상태 관리는 **에스컬레이션 전략**을 따른다: useState → Context → Zustand/Jotai/Redux
 - **서버 상태와 클라이언트 상태를 구분**하여 적합한 도구를 선택한다 (TanStack Query vs Zustand)

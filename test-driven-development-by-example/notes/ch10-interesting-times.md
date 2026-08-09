@@ -41,7 +41,7 @@ times(multiplier: number): Money {
 
 </details>
 
-두 메서드의 차이는 단 하나 — `Money.dollar()`를 호출하느냐, `Money.franc()`를 호출하느냐뿐이다.
+두 메서드의 차이는 단 하나 - `Money.dollar()`를 호출하느냐, `Money.franc()`를 호출하느냐뿐이다.
 
 ### 1.2 목표
 
@@ -51,7 +51,7 @@ times(multiplier: number): Money {
 
 ## 2. 팩토리 메서드를 직접 생성자 호출로 대체
 
-### 2.1 첫 번째 시도 — 직접 Money 생성자 호출
+### 2.1 첫 번째 시도 - 직접 Money 생성자 호출
 
 팩토리 메서드 대신 `new Money(...)`를 직접 호출하면 두 메서드가 동일해질까?
 
@@ -125,7 +125,7 @@ times(multiplier: number): Money {
 
 ## 3. TDD 사이클
 
-### 3.1 Red — Money를 직접 생성하는 테스트
+### 3.1 Red - Money를 직접 생성하는 테스트
 
 Money가 구체 클래스가 되면 `new Money(10, "USD")`로 직접 생성할 수 있어야 한다. 이것이 제대로 동작하는지 확인하는 테스트가 필요하다. 사실 기존 테스트들이 이미 이 역할을 하고 있지만, Kent Beck은 조심스럽게 진행한다.
 
@@ -156,7 +156,7 @@ equals(object: Object): boolean {
 
 이것은 문제다. `new Money(10, "USD")`와 `Money.dollar(10)`은 같은 10 USD를 나타내므로 동등해야 한다.
 
-### 3.2 equals() 변경 — 클래스 비교를 통화 비교로
+### 3.2 equals() 변경 - 클래스 비교를 통화 비교로
 
 이 문제를 해결하려면 `equals()`에서 클래스 비교를 **통화 비교**로 바꿔야 한다:
 
@@ -202,7 +202,7 @@ test('different class equality', () => {
 
 이 테스트를 실행하려면 Money가 구체 클래스여야 한다.
 
-### 3.3 Green — Money를 구체 클래스로 변경
+### 3.3 Green - Money를 구체 클래스로 변경
 
 **Step 1**: Money에서 `abstract` 키워드를 제거하고, `times()` 메서드에 기본 구현을 제공한다:
 
@@ -270,13 +270,13 @@ equals(object: Object): boolean {
 
 </details>
 
-**테스트 실행 — Green Bar!**
+**테스트 실행 - Green Bar!**
 
 `testDifferentClassEquality` 테스트가 통과한다. `new Money(10, "USD")`와 `new Dollar(10, "USD")`가 같다고 판단된다. 통화와 금액이 같으면 클래스와 관계없이 동등하다.
 
 > **핵심 통찰**: `equals()`에서 클래스 비교를 통화 비교로 바꾼 것은 단순한 코드 변경이 아니다. 이것은 **"Dollar는 USD 통화를 가진 Money다"** 라는 개념적 전환을 의미한다. 서브클래스의 정체성이 "타입"에서 "데이터"로 이동했다.
 
-### 3.4 Refactor — times()를 슈퍼클래스로 올리기
+### 3.4 Refactor - times()를 슈퍼클래스로 올리기
 
 이제 Dollar와 Franc의 `times()`를 변경할 수 있다.
 
@@ -294,7 +294,7 @@ Money times(int multiplier) {
 }
 ```
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 **Step 2**: Franc에도 동일하게 적용:
 
@@ -310,12 +310,12 @@ Money times(int multiplier) {
 }
 ```
 
-테스트 실행 — Green Bar.
+테스트 실행 - Green Bar.
 
 **Step 3**: 이제 Dollar와 Franc의 `times()` 메서드가 **완전히 동일**하다. 그리고 이 구현은 Money 슈퍼클래스에 이미 존재한다! 따라서 서브클래스에서 `times()`를 **삭제**할 수 있다:
 
 ```java
-// Money.java — times()가 여기에만 존재
+// Money.java - times()가 여기에만 존재
 class Money {
     // ...
 
@@ -324,14 +324,14 @@ class Money {
     }
 }
 
-// Dollar.java — times() 삭제됨
+// Dollar.java - times() 삭제됨
 class Dollar extends Money {
     Dollar(int amount, String currency) {
         super(amount, currency);
     }
 }
 
-// Franc.java — times() 삭제됨
+// Franc.java - times() 삭제됨
 class Franc extends Money {
     Franc(int amount, String currency) {
         super(amount, currency);
@@ -343,7 +343,7 @@ class Franc extends Money {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Money.ts — times()가 여기에만 존재
+// Money.ts - times()가 여기에만 존재
 class Money {
     // ...
 
@@ -352,14 +352,14 @@ class Money {
     }
 }
 
-// Dollar.ts — times() 삭제됨
+// Dollar.ts - times() 삭제됨
 class Dollar extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency);
     }
 }
 
-// Franc.ts — times() 삭제됨
+// Franc.ts - times() 삭제됨
 class Franc extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency);
@@ -369,7 +369,7 @@ class Franc extends Money {
 
 </details>
 
-테스트 실행 — **Green Bar!**
+테스트 실행 - **Green Bar!**
 
 ---
 
@@ -441,7 +441,7 @@ class Money {
 ```
 
 ```java
-// Dollar.java — times()가 없다!
+// Dollar.java - times()가 없다!
 class Dollar extends Money {
     Dollar(int amount, String currency) {
         super(amount, currency);
@@ -450,7 +450,7 @@ class Dollar extends Money {
 ```
 
 ```java
-// Franc.java — times()가 없다!
+// Franc.java - times()가 없다!
 class Franc extends Money {
     Franc(int amount, String currency) {
         super(amount, currency);
@@ -495,14 +495,14 @@ class Money {
     }
 }
 
-// Dollar.ts — times()가 없다!
+// Dollar.ts - times()가 없다!
 class Dollar extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency);
     }
 }
 
-// Franc.ts — times()가 없다!
+// Franc.ts - times()가 없다!
 class Franc extends Money {
     constructor(amount: number, currency: string) {
         super(amount, currency);

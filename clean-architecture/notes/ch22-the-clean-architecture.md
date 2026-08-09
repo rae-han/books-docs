@@ -14,7 +14,7 @@
 |----------|--------|----------|
 | **육각형 아키텍처** | 앨리스터 코오번(Alistair Cockburn) | 포트와 어댑터(Ports and Adapters)라고도 알려짐 |
 | **DCI** | 제임스 코플리언(James Coplien), 트리그베 린스쿠주(Trygve Reenskaug) | Data, Context and Interaction |
-| **BCE** | 이바 야콥슨(Ivar Jacobson) | Boundary-Control-Entity(*BCE — 순서를 바꿔 ECB(Entity-Control-Boundary)라고도 많이 쓰인다.*) |
+| **BCE** | 이바 야콥슨(Ivar Jacobson) | Boundary-Control-Entity(*BCE - 순서를 바꿔 ECB(Entity-Control-Boundary)라고도 많이 쓰인다.*) |
 
 이들 아키텍처는 세부적인 면에서는 다소 차이가 있더라도 그 내용은 상당히 비슷하다. 이들의 목표는 모두 같은데, 바로 **관심사의 분리(separation of concerns)**다. 이들은 모두 소프트웨어를 **계층으로 분리**함으로써 관심사의 분리라는 목표를 달성할 수 있었다. 각 아키텍처는 최소한 업무 규칙을 위한 계층 하나와, 사용자와 시스템 인터페이스를 위한 또 다른 계층 하나를 반드시 포함한다.
 
@@ -96,7 +96,7 @@
 
 이 계층에는 다음이 포함된다:
 
-- **GUI의 MVC 아키텍처** 전체 — 프레젠터(Presenter), 뷰(View), 컨트롤러(Controller) 모두
+- **GUI의 MVC 아키텍처** 전체 - 프레젠터(Presenter), 뷰(View), 컨트롤러(Controller) 모두
 - 모델은 그저 데이터 구조 정도에 지나지 않으며, 컨트롤러에서 유스케이스로 전달되고, 다시 유스케이스에서 프레젠터와 뷰로 되돌아 간다
 - 데이터를 엔티티와 유스케이스에게 가장 편리한 형식에서 **영속성 프레임워크(데이터베이스)**가 이용하기에 가장 편리한 형식으로 변환하는 어댑터
 

@@ -167,11 +167,11 @@ public class AuditManager
 }
 ```
 
-이 코드는 테스트하기 어렵다 — 파일 시스템에 의존하기 때문이다.
+이 코드는 테스트하기 어렵다 - 파일 시스템에 의존하기 때문이다.
 
 ```csharp
 // 좋은 예: 함수형 핵심으로 분리
-public class AuditManager    // 함수형 핵심 — 순수 함수
+public class AuditManager    // 함수형 핵심 - 순수 함수
 {
     private readonly int _maxEntriesPerFile;
 
@@ -185,7 +185,7 @@ public class AuditManager    // 함수형 핵심 — 순수 함수
     }
 }
 
-public class Persister       // 가변 셸 — 부수 효과 담당
+public class Persister       // 가변 셸 - 부수 효과 담당
 {
     public FileContent[] ReadDirectory(string directoryName) { /* ... */ }
     public void ApplyUpdate(FileUpdate update) { /* ... */ }
@@ -236,7 +236,7 @@ public void A_new_file_is_created_when_current_file_overflows()
 | 상황 | 함수형 아키텍처 적용 가능? |
 |------|------------------------|
 | 비즈니스 로직이 단순하고 독립적 | **적합** |
-| 결정 과정에서 외부 데이터를 추가로 읽어야 함 | **어려움** — 가변 셸이 복잡해짐 |
+| 결정 과정에서 외부 데이터를 추가로 읽어야 함 | **어려움** - 가변 셸이 복잡해짐 |
 | 성능이 중요하여 모든 데이터를 미리 읽을 수 없음 | **비실용적** |
 | 레거시 코드베이스 | **점진적 도입** 필요 |
 

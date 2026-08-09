@@ -499,7 +499,7 @@ ALB(*Application Load Balancer - HTTP/HTTPS 트래픽을 분산하는 L7 로드�
 ```
 
 ```bash
-# 1. Target Group 생성 (IP 타입 — Fargate에서 필수)
+# 1. Target Group 생성 (IP 타입 - Fargate에서 필수)
 aws elbv2 create-target-group \
   --name nextjs-tg \
   --protocol HTTP \

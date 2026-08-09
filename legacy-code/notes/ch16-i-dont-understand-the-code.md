@@ -404,4 +404,4 @@ public class OrderService {
 
 ## 다음 챕터와의 연결
 
-Chapter 17 "내 애플리케이션은 뼈대가 약하다 (My Application Has No Structure)"에서는 개별 코드 수준이 아닌 **아키텍처 수준에서 구조가 없는 애플리케이션**의 문제를 다룬다. 시스템의 전체적 구조를 파악하기 위한 기법들 — Telling the Story, CRC Cards, Naked CRC, Conversation Scrutiny — 을 통해 시스템 수준의 이해를 높이는 방법을 살펴본다.
+Chapter 17 "내 애플리케이션은 뼈대가 약하다 (My Application Has No Structure)"에서는 개별 코드 수준이 아닌 **아키텍처 수준에서 구조가 없는 애플리케이션**의 문제를 다룬다. 시스템의 전체적 구조를 파악하기 위한 기법들 - Telling the Story, CRC Cards, Naked CRC, Conversation Scrutiny - 을 통해 시스템 수준의 이해를 높이는 방법을 살펴본다.

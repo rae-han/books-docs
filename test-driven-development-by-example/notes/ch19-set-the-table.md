@@ -76,7 +76,7 @@ Kent Beck은 두 가지를 모두 사용하되, **3개 이상의 테스트에서
 
 ## 3. TDD 사이클
 
-### 3.1 Red — setUp()이 호출되는지 테스트
+### 3.1 Red - setUp()이 호출되는지 테스트
 
 `TestCaseTest`에 새 테스트를 추가한다. `setUp()` 메서드가 테스트 메서드 전에 호출되는지 확인해야 한다.
 
@@ -118,9 +118,9 @@ class TestCaseTest extends TestCase {
 
 </details>
 
-이 테스트는 실패한다 — `WasRun`에 `wasSetUp` 속성이 없기 때문이다. Red Bar!
+이 테스트는 실패한다 - `WasRun`에 `wasSetUp` 속성이 없기 때문이다. Red Bar!
 
-### 3.2 Green — setUp() 호출 구현
+### 3.2 Green - setUp() 호출 구현
 
 두 가지를 수정해야 한다:
 
@@ -217,7 +217,7 @@ TestCaseTest("testSetUp").run()
 
 통과! `setUp()`이 `testMethod()` 전에 호출되어 `wasSetUp`이 `1`로 설정된다. Green Bar!
 
-### 3.3 Refactor — setUp()을 활용하여 WasRun 간소화
+### 3.3 Refactor - setUp()을 활용하여 WasRun 간소화
 
 이제 `setUp()`이 동작하므로, `WasRun`의 초기화를 `setUp()`으로 옮길 수 있다:
 
@@ -295,7 +295,7 @@ class WasRun extends TestCase {
 
 ### 4.1 문제: 호출 순서를 어떻게 검증하는가?
 
-`setUp()`이 `testMethod()` **전에** 호출되는 것이 중요하다. 하지만 현재의 `wasSetUp` 플래그만으로는 순서를 확인할 수 없다 — 두 메서드가 모두 호출되었다는 것만 알 수 있지, 어떤 순서로 호출되었는지는 알 수 없다.
+`setUp()`이 `testMethod()` **전에** 호출되는 것이 중요하다. 하지만 현재의 `wasSetUp` 플래그만으로는 순서를 확인할 수 없다 - 두 메서드가 모두 호출되었다는 것만 알 수 있지, 어떤 순서로 호출되었는지는 알 수 없다.
 
 ### 4.2 해결: 로그 문자열(Log String)
 

@@ -154,7 +154,7 @@ hero.jpg                                                  ░░░ 발견·다�
 ```
 
 ```ts
-// app.js — DOM이 준비돼 있음
+// app.js - DOM이 준비돼 있음
 const root = document.getElementById('root'); // ✅ 안전
 root.innerHTML = '<h1>Hello</h1>';
 ```
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   root.innerHTML = '<h1>Hello</h1>';
 });
 
-// After: defer 스크립트 — 이벤트 리스너 불필요
+// After: defer 스크립트 - 이벤트 리스너 불필요
 const root = document.getElementById('root'); // 이미 DOM 준비됨
 root.innerHTML = '<h1>Hello</h1>';
 ```
@@ -458,7 +458,7 @@ if ('requestIdleCallback' in window) {
 
 1. **일반 `<script>`**: HTML 순서대로 즉시 실행(파싱 블로킹)
 2. **`<script defer>`**: HTML 파싱 완료 후, HTML 순서대로 실행
-3. **`<script type="module">`**: HTML 파싱 완료 후, HTML 순서대로 실행 — **`defer`와 같은 큐에서 실행**
+3. **`<script type="module">`**: HTML 파싱 완료 후, HTML 순서대로 실행 - **`defer`와 같은 큐에서 실행**
 4. **`<script type="module" async>`**: 다운로드 완료 즉시 실행
 
 > **핵심 통찰**: `<script defer>`와 `<script type="module">`은 **같은 defer 스크립트 큐**에 추가되어 HTML 선언 순서대로 실행된다. 두 타입을 섞어 써도 선언 순서가 곧 실행 순서다.
@@ -507,7 +507,7 @@ if ('requestIdleCallback' in window) {
 자바스크립트로 생성해 DOM에 추가한 스크립트는 **기본적으로 `async`처럼 동작**한다. 다운로드 완료 즉시 실행되고 순서가 보장되지 않는다.
 
 ```ts
-// ⚠ async처럼 동작 — 다운로드 완료 즉시 실행
+// ⚠ async처럼 동작 - 다운로드 완료 즉시 실행
 const script = document.createElement('script');
 script.src = '/analytics.js';
 document.head.appendChild(script);
@@ -633,7 +633,7 @@ HTML 명세는 **"Both attributes have no effect for inline scripts"**라고 명
 <head>
   <script defer>
     console.log('1. inline script');
-    console.log(document.body); // null — body가 아직 없음
+    console.log(document.body); // null - body가 아직 없음
   </script>
   <script defer src="/external.js"></script>
 </head>
@@ -693,8 +693,8 @@ null
 
 **라이트하우스**
 
-- "Reduce JavaScript execution time" — 스크립트 실행 시간 최적화 효과 측정
-- "Eliminate render-blocking resources" — 파서·렌더 블로킹 리소스 진단
+- "Reduce JavaScript execution time" - 스크립트 실행 시간 최적화 효과 측정
+- "Eliminate render-blocking resources" - 파서·렌더 블로킹 리소스 진단
 
 **A/B 테스트 + `web-vitals`**
 

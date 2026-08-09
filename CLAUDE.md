@@ -6,100 +6,100 @@
 
 ## 완료된 작업
 
-### 1. legacy-code/ — Working Effectively with Legacy Code (Michael Feathers)
+### 1. legacy-code/ - Working Effectively with Legacy Code (Michael Feathers)
 - 25개 챕터 + 부록 + 사례 연구 + README
 - 상태: **완료**
 
-### 2. philosophy-of-software-design/ — A Philosophy of Software Design (John Ousterhout, 2nd Edition)
+### 2. philosophy-of-software-design/ - A Philosophy of Software Design (John Ousterhout, 2nd Edition)
 - 22개 챕터 + README
 - 상태: **완료**
 
-### 3. clean-architecture/ — Clean Architecture (Robert C. Martin)
+### 3. clean-architecture/ - Clean Architecture (Robert C. Martin)
 - 상태: **보류**
 
-### 4. test-driven-development-by-example/ — Test-Driven Development: By Example / 테스트 주도 개발 (Kent Beck)
+### 4. test-driven-development-by-example/ - Test-Driven Development: By Example / 테스트 주도 개발 (Kent Beck)
 - 3 Parts, 32개 챕터 + README
 - 상태: **완료**
 
-### 5. structure-and-interpretation-of-computer-programs-javascript/ — Structure and Interpretation of Computer Programs, JavaScript Edition (Abelson, Sussman / Henz, Wrigstad)
+### 5. structure-and-interpretation-of-computer-programs-javascript/ - Structure and Interpretation of Computer Programs, JavaScript Edition (Abelson, Sussman / Henz, Wrigstad)
 - 5 Chapters, 22개 섹션 + README
 - 파일 네이밍: `sec{챕터}.{섹션}-{영문-kebab-case}.md`
 - 상태: **완료**
 
-### 6. the-clean-coder/ — The Clean Coder: A Code of Conduct for Professional Programmers (Robert C. Martin)
+### 6. the-clean-coder/ - The Clean Coder: A Code of Conduct for Professional Programmers (Robert C. Martin)
 - Introduction + 14개 챕터 + Appendix + README
 - 상태: **완료**
 
-### 7. code-the-hidden-language/ — CODE: The Hidden Language of Computer Hardware and Software (Charles Petzold, 2nd Edition)
+### 7. code-the-hidden-language/ - CODE: The Hidden Language of Computer Hardware and Software (Charles Petzold, 2nd Edition)
 - 28개 챕터 + README
 - 상태: **완료**
 
-### 8. docker-complete-guide/ — Docker 완전 가이드 (자체 구성)
+### 8. docker-complete-guide/ - Docker 완전 가이드 (자체 구성)
 - Docker Deep Dive + Docker in Action 범위를 커버하는 독자적 가이드
 - 6 Parts, 15개 챕터 + README (교재 본문 Ch1~15 작성 완료)
 - 공식 문서 + best practice 기반, 모든 예제는 Node.js/Next.js 기반
-- `hands-on-qna-notes.md`: 핸즈온 실습 복습 노트(자립형) — Part A 세션별 흐름+교재 핵심 / Part B vs 비교 모음 / Part C Q&A(실제 질문) / Part D 누적 명령어 치트시트. **사용자가 실제 실습한 세션만 기록**하며(질문·시행착오가 사용자 본인의 것), 세션이 챕터 진도를 따라 추가됨
+- `hands-on-qna-notes.md`: 핸즈온 실습 복습 노트(자립형) - Part A 세션별 흐름+교재 핵심 / Part B vs 비교 모음 / Part C Q&A(실제 질문) / Part D 누적 명령어 치트시트. **사용자가 실제 실습한 세션만 기록**하며(질문·시행착오가 사용자 본인의 것), 세션이 챕터 진도를 따라 추가됨
 - 상태: **진행 중** (교재 완료, 핸즈온 세션 0~4 = ch04까지 진행 → 다음은 세션 5 = ch05 볼륨)
 
-### 9. the-hexagonal-developer/ — 육각형 개발자 (최범균, 한빛미디어, 2023)
+### 9. the-hexagonal-developer/ - 육각형 개발자 (최범균, 한빛미디어, 2023)
 - 11개 챕터 + README
 - 시니어 개발자로 성장하기 위한 10가지 핵심 역량
 - 상태: **진행 중**
 
-### 10. aws-complete-guide/ — AWS 완전 가이드 (자체 구성)
+### 10. aws-complete-guide/ - AWS 완전 가이드 (자체 구성)
 - AWS 핵심 서비스를 체계적으로 학습하는 독자적 가이드
 - 7 Parts, 16개 챕터 + README
 - 공식 문서 + Well-Architected Framework 기반, 모든 예제는 Node.js/Next.js 기반
 - 상태: **진행 중**
 
-### 11. objects/ — 오브젝트: 코드로 이해하는 객체지향 설계 (조영호, 위키북스, 2019)
+### 11. objects/ - 오브젝트: 코드로 이해하는 객체지향 설계 (조영호, 위키북스, 2019)
 - 15개 챕터 + 3개 부록 + README
 - 자매편: the-essence-of-object-orientation-객체지향의-사실과-오해/
 - 코드 예제: Java(원본, `<details>` 접기) + TypeScript(변환, 항상 펼침) 병기
 - 상태: **완료**
 
-### 12. the-software-craftsman/ — The Software Craftsman: Professionalism, Pragmatism, Pride (Sandro Mancuso, 2015)
+### 12. the-software-craftsman/ - The Software Craftsman: Professionalism, Pragmatism, Pride (Sandro Mancuso, 2015)
 - 16개 챕터 + Appendix A + README
 - 소프트웨어 장인정신 이념·태도·조직 문화. 로버트 C. 마틴 시리즈
 - 저자 경험담(브라질→런던, LSCC, Codurance)이 풍부. 레이블 없는 `>` 인용문으로 표현
 - 상태: **완료**
 
-### 13. code-that-fits-in-your-head/ — Code That Fits in Your Head: Heuristics for Software Engineering (Mark Seemann, 2021)
+### 13. code-that-fits-in-your-head/ - Code That Fits in Your Head: Heuristics for Software Engineering (Mark Seemann, 2021)
 - 16개 챕터 + Appendix A/B/C + README
 - 소프트웨어 공학 휴리스틱 안내서. 로버트 C. 마틴 시리즈
 - 예제: C# 기반 레스토랑 예약 시스템 (하나의 코드베이스가 챕터마다 성장)
 - Part 1(가속): TDD·설계·팀워크 / Part 2(지속가능성): 기능 추가·테스트 편집·문제 해결
 - 상태: **완료**
 
-### 14. design-it-from-programmer-to-software-architect/ — Design It!: From Programmer to Software Architect (Michael Keeling, 2017)
+### 14. design-it-from-programmer-to-software-architect/ - Design It!: From Programmer to Software Architect (Michael Keeling, 2017)
 - 17개 챕터 + README (Ch1-13 본문 + Ch14-17 38가지 활동 카탈로그)
 - 개발자에서 아키텍트로 성장하기 위한 실전 훈련서
 - **라이언하트 프로젝트**(스프링필드시 RFP 시스템)를 사례 연구로 전 장 관통
 - Part 1(마인드셋), Part 2(설계 프로세스), Part 3(활동 카탈로그) 구성
 - 상태: **완료**
 
-### 15. fundamentals-of-software-architecture-1st-edition/ — Fundamentals of Software Architecture: An Engineering Approach (Mark Richards & Neal Ford, O'Reilly, 2020)
+### 15. fundamentals-of-software-architecture-1st-edition/ - Fundamentals of Software Architecture: An Engineering Approach (Mark Richards & Neal Ford, O'Reilly, 2020)
 - 24개 챕터 + Appendix A(자율평가문제) + README. 한국어판 『소프트웨어 아키텍처 101』
 - 서론 + PART I 기초(Ch2-8) + PART II 아키텍처 스타일(Ch9-18) + PART III 테크닉과 소프트 스킬(Ch19-24)
 - **시그니처 요소**: `> **소프트웨어 아키텍처 제N법칙**<br>내용` (제1법칙=모든 것은 트레이드오프, 제2법칙='어떻게'보다 '왜'), 아키텍처 스타일 장(Ch10-17)마다 **아키텍처 특성 등급표(별점 ★ scorecard)** + ASCII 토폴로지 다이어그램
 - 자매판: fundamentals-of-software-architecture-2nd-edition/ (2판 『The Basics』, 미작성)
 - 상태: **완료**
 
-### 16. refactoring-2nd-edition/ — Refactoring: Improving the Design of Existing Code (2nd Edition) (Martin Fowler, 2018)
+### 16. refactoring-2nd-edition/ - Refactoring: Improving the Design of Existing Code (2nd Edition) (Martin Fowler, 2018)
 - 12개 챕터 + 부록 A/B + README. 한국어판 『리팩터링 2판』. 원서 예제 언어는 **JavaScript**
 - **코드 표기**: 원서 JS를 `<details>`로 접고 **TypeScript 병기**(good-code-bad-code와 동일 패턴)
-- **두 가지 챕터 유형**: (1) 서사형(Ch1~5) — 핵심 질문→번호 섹션→핵심 통찰→요약, (2) **카탈로그형(Ch6~12)** — 기법마다 `스케치 · 배경 · 절차` 틀 + 카탈로그 절 번호 연결
-- **인용 처리**: 파울러 원칙 강조 → `> **핵심 통찰**:`, 켄트 벡·제시카 커 등 외부 인용 → 레이블 없는 `>`(+`<br>— 이름`)
+- **두 가지 챕터 유형**: (1) 서사형(Ch1~5) - 핵심 질문→번호 섹션→핵심 통찰→요약, (2) **카탈로그형(Ch6~12)** - 기법마다 `스케치 · 배경 · 절차` 틀 + 카탈로그 절 번호 연결
+- **인용 처리**: 파울러 원칙 강조 → `> **핵심 통찰**:`, 켄트 벡·제시카 커 등 외부 인용 → 레이블 없는 `>`(+`<br>- 이름`)
 - 상태: **완료** (Ch1~12 + 부록 A(66개 기법)·B(24개 악취) + README)
 
-### 17. functional-programming-complete-guide/ — 함수형 프로그래밍 완전 가이드 (자체 구성)
+### 17. functional-programming-complete-guide/ - 함수형 프로그래밍 완전 가이드 (자체 구성)
 - 5부 19장 + README. `fp/`(Notion 함수형 JS 노트 이관본: FP with ES6+ 10편·Functional JS 11편·실전 1편)와 `multi-paradigm-programming/`을 주제별 커리큘럼으로 병합한 자체 구성 가이드
 - **중복 우선순위**: 멀티패러다임 > ES6+(`fp/fp-with-es6-plus/`) > ES5(`fp/functional-js/`). 원본 두 폴더는 그대로 유지
 - Part 1 기초(개념·커링·컬렉션) / Part 2 이터러블·제너레이터·지연 평가 / Part 3 타입·FxIterable·LISP·하스켈 / Part 4 비동기(모나드·Kleisli·nop·C.*·toAsync) / Part 5 실전(패턴 9종·멀티패러다임 설계·OOP 프런트엔드·Result/Effect-TS)
 - ch16~18은 멀티파 ch05~07 이관본(`[코드 N-M]` 원본 번호 유지 + 장 서두 참고 문구), 병합 장은 코드 번호 제거. README에 장별 **소스 매핑 표**
 - 상태: **완료**
 
-### 18. fundamentals-of-software-architecture-2nd-edition/ — Fundamentals of Software Architecture: The Basics (2nd Edition) (Mark Richards & Neal Ford, O'Reilly, 2025)
+### 18. fundamentals-of-software-architecture-2nd-edition/ - Fundamentals of Software Architecture: The Basics (2nd Edition) (Mark Richards & Neal Ford, O'Reilly, 2025)
 - 27개 챕터 + 부록 A(토론용 질문) + README. 한국어판 『소프트웨어 아키텍처 The Basics』. 1판(fundamentals-1st, 24장)의 개정판
 - 제1부 기초(Ch1-8) + 제2부 아키텍처 스타일(Ch9-20) + 제3부 기법과 소프트 스킬(Ch21-27)
 - **1판→2판 확장**: 제3법칙(대부분 결정은 스펙트럼) 신규 + 4개 신규 장(Ch11 모듈형 모놀리스·Ch20 아키텍처 패턴·Ch26 아키텍처 교차점·Ch27 법칙 재검토) + 생성형 AI 반영(Ch21·26)
@@ -108,52 +108,52 @@
 - 작성 방식: 서브에이전트 없이 직접 순차 작성 + 샘플(Ch1·11) 먼저 확인. 커밋은 파트 경계(1부/2부/3부+부록+README)로 분할
 - 상태: **완료**
 
-### 19. the-pragmatic-programmer/ — The Pragmatic Programmer: Your Journey to Mastery (20th Anniversary Edition) (David Thomas & Andrew Hunt, 2019)
+### 19. the-pragmatic-programmer/ - The Pragmatic Programmer: Your Journey to Mastery (20th Anniversary Edition) (David Thomas & Andrew Hunt, 2019)
 - 9개 챕터 + tips.md + README. 한국어판 『실용주의 프로그래머 20주년 기념판』(정지용 옮김, 인사이트, 2022)
-- **Topic 기반 구성**: 9개 장 안에 53개 Topic(`## Topic N: 한글 (English)`). 각 Topic 여는 인용문은 `> 인용<br>— 이름`
+- **Topic 기반 구성**: 9개 장 안에 53개 Topic(`## Topic N: 한글 (English)`). 각 Topic 여는 인용문은 `> 인용<br>- 이름`
 - **시그니처 = 100개 Tip**: 본문 등장 지점에 `> **Tip N**: 내용` 콜아웃 + **각 장 끝 `## 이 장의 Tip 목록`(불릿 리스트, ❌표 금지)**. Tip 1·2는 서문(0.origin), Ch1은 Tip 3부터. 마스터 목록 `tips.md`(장별 불릿, 원서 뽑아 쓰는 팁 카드)
 - **연습 문제 = 옵션 A**: 각 장 끝 `## 연습 문제 (해답 예시)`에 전부 포함 + 부록(11.origin) 해답 요지를 인라인 연결(코드 구현형은 접근법 요지). **도전 과제**(해답 없는 열린 질문)는 각 Topic 안에 `**도전 과제**` 불릿
 - 우화·일화(돌멩이 수프·삶은 개구리·깨진 창문·헬리콥터 등)는 레이블 없는 `>` 인용. 서문 핵심(실용주의 프로그래머란·특징·Tip 1·2)은 README에 녹임(별도 ch00 없음)
 - 작성 방식: 직접 순차 작성 + 샘플(Ch1·2) 먼저 확인. 커밋은 논리 단위(Ch1-4 / Ch5-6 / Ch7-9+tips+README)
 - 상태: **완료**
 
-### 20. head-first-design-patterns/ — Head First Design Patterns (2nd Edition) (에릭 프리먼·엘리자베스 롭슨·케이시 시에라·버트 베이츠, O'Reilly, 2021)
+### 20. head-first-design-patterns/ - Head First Design Patterns (2nd Edition) (에릭 프리먼·엘리자베스 롭슨·케이시 시에라·버트 베이츠, O'Reilly, 2021)
 - 14개 챕터 + README. 한국어판 『헤드 퍼스트 디자인 패턴(개정판)』(서환수 옮김, 한빛미디어, 2022). GoF 디자인 패턴 입문서(오리 시뮬레이터·스타버즈·피자가게·뽑기기계 예제)
 - **코드 병기**: 원서 예제 언어 Java를 `<details>`로 접고 **TypeScript 병기**(기본 펼침, objects/·refactoring-2nd와 동일 패턴). 사용자가 TS 개발자라 JS/TS 고유 관점(내장 Iterator·Symbol.iterator·Proxy/Reflect·프로토타입·판별 유니언·모듈=싱글턴·Express미들웨어=책임연쇄·MVC↔React/Vue) 적극 반영
 - **시그니처 = 9개 디자인 원칙 누적**: 각 챕터에 `> **디자인 원칙 N**<br>내용` 콜아웃 + 각 챕터말 `## 디자인 원칙 정리 (누적)` 섹션으로 추적. 원칙 도입: 1~3(Ch1 전략)·4(Ch2 옵저버=느슨한결합)·5(Ch3 데코=OCP)·6(Ch4 팩토리=DIP)·7(Ch7 최소지식)·8(Ch8 할리우드)·9(Ch9 단일책임). Ch5·6·10·11·12·13·14는 새 원칙 없음
-- **본문 = ①번 선별**: 패턴 정의 박스(`> **패턴 정의 — XXX 패턴 (English)**`), 무엇이든 물어보세요(`> **무엇이든 물어보세요 (Q&A)**` 콜아웃), 핵심 통찰, 연습문제+해답. **각 챕터말 `## 보너스: 원서 복습 요소`** 에 원서 재미·복습 요소(낱말 퀴즈·뇌 단련·방구석 토크·5분 드라마·코드 자석·패턴 집중 인터뷰) 모아 보존(본문 흐름과 분리)
+- **본문 = ①번 선별**: 패턴 정의 박스(`> **패턴 정의 - XXX 패턴 (English)**`), 무엇이든 물어보세요(`> **무엇이든 물어보세요 (Q&A)**` 콜아웃), 핵심 통찰, 연습문제+해답. **각 챕터말 `## 보너스: 원서 복습 요소`** 에 원서 재미·복습 요소(낱말 퀴즈·뇌 단련·방구석 토크·5분 드라마·코드 자석·패턴 집중 인터뷰) 모아 보존(본문 흐름과 분리)
 - 저자 대화·우화(스승과 제자·방구석 토크·5분 드라마)는 레이블 없는 `>` 인용. 들어가며(Ch0 Head First 학습법)는 README에 녹임(별도 ch00 없음). Ch13은 코드보다 패턴 정의·분류(생성/구조/행동)·안티패턴·"패턴으로 생각하기" 중심, Ch14는 GoF 나머지 9개(브리지·빌더·책임연쇄·플라이웨이트·인터프리터·중재자·메멘토·프로토타입·비지터) 빠른 소개
 - 작성 방식: 직접 순차 작성 + 샘플(Ch1) 먼저 확인. ⚠️ OCR `>` 인용 접두어 오염 심한 챕터(9·14·1·2 등) 정리하며 작성. 커밋은 논리 단위(Ch1-4 / Ch5-8 / Ch9-12 / Ch13-14+README)
 - 상태: **완료**
 
-### 21. the-complete-software-developers-career-guide/ — The Complete Software Developer's Career Guide (John Sonmez, Simple Programmer, 2017)
+### 21. the-complete-software-developers-career-guide/ - The Complete Software Developer's Career Guide (John Sonmez, Simple Programmer, 2017)
 - Ch1(이 책의 활용법) + 5부 60장 + 부록(Ch61 개발자로 살아가기) + README = 62개 파일. 한국어판 『커리어 스킬: 완벽한 개발자 인생 로드맵』(길벗). 개발자 경력 전 주기(입문→취업→개발 지식→조직 생활→경력 발전)를 다루는 소프트 스킬/커리어 전략서
 - **부 구성**: Part 1 입문(Ch2-9)·Part 2 취업(Ch10-20)·Part 3 개발 지식(Ch21-35)·Part 4 조직 생활(Ch36-47)·Part 5 경력 발전(Ch48-60). 각 부 에피그래프는 README에 흡수(드루 하우스턴·공자·럼즈펠드·무하마드 알리·게리 라이언 블레어)
-- **시그니처 = 실천(Take Action)**: 마지막 당부가 "실천하라". `> **존의 조언**:` 콜아웃, 저자 경험담=레이블 없는 `>` 인용, **`### 대화: 〈잠깐만요, 존!〉`**(가상 독자 Q&A — 독자 반론에 저자가 답), `> **핵심 통찰**:`, **각 장 끝 `## 실천 항목`**(체크리스트)
-- **부록(Ch61)**: 한국어판 전용 한국 기여자 4인 칼럼(김요한·이동욱·이승민·한정수) — SI vs 서비스·국비학원·비전공자·블로그의 힘 등 한국 현실 보완. 기여자별 섹션으로 정리
+- **시그니처 = 실천(Take Action)**: 마지막 당부가 "실천하라". `> **존의 조언**:` 콜아웃, 저자 경험담=레이블 없는 `>` 인용, **`### 대화: 〈잠깐만요, 존!〉`**(가상 독자 Q&A - 독자 반론에 저자가 답), `> **핵심 통찰**:`, **각 장 끝 `## 실천 항목`**(체크리스트)
+- **부록(Ch61)**: 한국어판 전용 한국 기여자 4인 칼럼(김요한·이동욱·이승민·한정수) - SI vs 서비스·국비학원·비전공자·블로그의 힘 등 한국 현실 보완. 기여자별 섹션으로 정리
 - 작성 방식: 직접 순차 작성(서브에이전트 없음) + 샘플(Ch1·2) 먼저 확인 후 "싹 만들어줘". 커밋은 파트 경계(Part 1 / Part 2 / Part 3 / Part 4 / Part 5+부록 / README). ⚠️ OCR 한글 자모 낱글자 분리(`커 리 어`)·영문 깨짐 → 원본 이해 후 클린 한국어로 재작성
 - 상태: **완료**
 
-### 22. a-common-sense-guide-to-data-structures-and-algorithms/ — A Common-Sense Guide to Data Structures and Algorithms (2nd Edition) (Jay Wengrow, Pragmatic Bookshelf, 2020)
+### 22. a-common-sense-guide-to-data-structures-and-algorithms/ - A Common-Sense Guide to Data Structures and Algorithms (2nd Edition) (Jay Wengrow, Pragmatic Bookshelf, 2020)
 - 20개 챕터 + README. 한국어판 『누구나 자료 구조와 알고리즘 (개정2판)』(심지현 옮김, 길벗, 2021)
 - 수학 없이 **단계 수 세기**로 빅 오를 도출하는 입문서. 큰 흐름: 빅 오 렌즈(Ch1-7) → 자료 구조(Ch8-9·14-18) → 알고리즘 설계 기법(재귀·DP·퀵 정렬, Ch10-13·19-20). 원서 코드 Ruby·Python·JS 혼용
 - 개정2판 추가 요소: 각 장 연습 문제(+부록 해답), Ch7(일상 코드 빅 오)·Ch12(동적 프로그래밍) 등 신규 장
-- **코드는 전부 TypeScript로 통일 변환**(원서 혼용 언어를 노트에서는 단일화 — Java 병기 책들과 달리 원어 코드 접기 없음). 연습 문제는 각 챕터 노트에 `## 연습 문제 (해답 예시)`로 부록(21.origin.md) 해답 요지를 인라인 수록
-- origin 분리 완료(0~21, byte 일치 검증) — 상세는 아래 "완료된 분리 작업" 참조. README 목차 표 제목은 한국어판 실제 장 제목으로 교정 완료(중요한 까닭·간결한 코드 생성·재귀적 반복·트라이(trie)해·뭐든지 연결하기 등)
+- **코드는 전부 TypeScript로 통일 변환**(원서 혼용 언어를 노트에서는 단일화 - Java 병기 책들과 달리 원어 코드 접기 없음). 연습 문제는 각 챕터 노트에 `## 연습 문제 (해답 예시)`로 부록(21.origin.md) 해답 요지를 인라인 수록
+- origin 분리 완료(0~21, byte 일치 검증) - 상세는 아래 "완료된 분리 작업" 참조. README 목차 표 제목은 한국어판 실제 장 제목으로 교정 완료(중요한 까닭·간결한 코드 생성·재귀적 반복·트라이(trie)해·뭐든지 연결하기 등)
 - 상태: **완료** (Ch1~20 노트 + README 링크)
 
-### 23. mastering-api-architecture/ — 모던 API 아키텍처 설계 전략 (제임스 고프·대니얼 브라이언트·매튜 어번, 책만, 2026)
+### 23. mastering-api-architecture/ - 모던 API 아키텍처 설계 전략 (제임스 고프·대니얼 브라이언트·매튜 어번, 책만, 2026)
 - 0장~10장 + README. 원서 *Mastering API Architecture: Design, Operate, and Evolve API-Based Systems* (O'Reilly, 2023), 장현희 옮김
 - 4부 구성: 1부 설계·구현·테스트(Ch1-2) / 2부 트래픽 관리(Ch3-4) / 3부 운영과 보안(Ch5-7) / 4부 진화적 아키텍처(Ch8-10). 부록 없음
 - **컨퍼런스 시스템 사례 연구**가 0장~10장을 관통하며, 장마다 **ADR 가이드라인**(무엇을 결정해야 하는가)과 **가이드라인/체크리스트**가 붙는다. C4 다이어그램(컨텍스트·컨테이너·컴포넌트)으로 아키텍처 변화를 추적
-- **시그니처**: `### ADR 가이드라인: 제목`(결정사항·논의사항·권장사항 3불릿 — 원서 표를 리스트로 변환), `### ADR-00N`(상태·컨텍스트·결정사항·결론), `## N. 사례 연구: …`(장마다 아키텍처 변화 추적), C4/DFD/토폴로지 **ASCII 다이어그램 재구성**, 콜아웃 3종(`> **핵심 통찰**:`·`> **실무 팁**:`·`> **참고**:`)
+- **시그니처**: `### ADR 가이드라인: 제목`(결정사항·논의사항·권장사항 3불릿 - 원서 표를 리스트로 변환), `### ADR-00N`(상태·컨텍스트·결정사항·결론), `## N. 사례 연구: …`(장마다 아키텍처 변화 추적), C4/DFD/토폴로지 **ASCII 다이어그램 재구성**, 콜아웃 3종(`> **핵심 통찰**:`·`> **실무 팁**:`·`> **참고**:`)
 - **코드 병기**: 원서 Java는 `<details>`로 접고 **TypeScript 병기**(supertest·Pact JS·@grpc/grpc-js·express-openapi-validator 등으로 대응). HTTP·YAML·proto·CLI 예제는 언어 중립이라 원문 유지
-- origin 분리 완료(0~10, 99 = 12개 파일, byte 일치 검증) — 상세는 아래 "완료된 분리 작업" 참조
+- origin 분리 완료(0~10, 99 = 12개 파일, byte 일치 검증) - 상세는 아래 "완료된 분리 작업" 참조
 - 상태: **완료** (Ch0~10 노트 11개 + README + QUOTES 14건·KEYWORDS 12항목 반영. Notion 미업로드)
 
 ## 책 폴더 표준 구조
 
-모든 책 폴더는 아래 레이아웃을 따른다 (2026-08 전면 재구조화 완료 — 노트 702개 이동).
+모든 책 폴더는 아래 레이아웃을 따른다 (2026-08 전면 재구조화 완료 - 노트 702개 이동).
 
 ```
 <책 폴더>/
@@ -165,13 +165,13 @@
 ```
 
 - **링크 경로**: README 목차 표 → `notes/chNN-*.md` / 노트 안에서 README → `../README.md` / 노트 → 이미지 → `../images/…` / 노트 → 다른 책 노트 → `../../<책 폴더>/notes/…` / 요약 → 상세 노트 → `../notes/chNN-*.md`
-- **예외 폴더**: `fp/`(Notion 이관본 — 자체 구조 유지), `claude-code-definitive-guide/`(자체 `.git`을 가진 별도 저장소 — 건드리지 않음)
+- **예외 폴더**: `fp/`(Notion 이관본 - 자체 구조 유지), `claude-code-definitive-guide/`(자체 `.git`을 가진 별도 저장소 - 건드리지 않음)
 
 ## 새 책 폴더 만들기 (스캐폴딩)
 
 새 책을 시작할 때 만드는 파일은 **`origin.md`와 `README.md` 둘뿐**이다. 챕터 파일은 만들지 않는다 (`notes/`·`origin/`·`summary/` 폴더도 파일이 생기는 시점에 만든다).
 
-- **`origin.md`**: 빈 파일로 먼저 만들어 둔다 — PDF/OCR 원본을 통째로 붙여 넣을 자리. 나중에 깨끗한 OCR을 따로 받으면 `ocr.origin.md`로 추가하고 `origin.md`는 그대로 보존
+- **`origin.md`**: 빈 파일로 먼저 만들어 둔다 - PDF/OCR 원본을 통째로 붙여 넣을 자리. 나중에 깨끗한 OCR을 따로 받으면 `ocr.origin.md`로 추가하고 `origin.md`는 그대로 보존
 - **`README.md`**: 아래 "README 표준 구조" 1~6번 뼈대 + `## 작성 상태` 체크리스트(원본 투입·목차 교정·노트 작성 TODO)
 - **챕터 파일(`notes/ch{NN}-*.md`)은 이 단계에서 만들지 않는다**: 원본의 실제 목차·본문을 확인한 뒤 노트를 쓰면서 그때 만든다. 미리 만들면 원서 목차 기준의 잠정 파일명·제목이 남아 한국어판 실제 장 구성과 어긋난다
 - **`origin/N.origin.md` 분리 파일도 이때 만들지 않는다**: `origin.md`에 원본이 들어온 뒤 아래 "origin.md 파일 분리 작업" 절차로 분리한다
@@ -185,28 +185,28 @@
 **필수 섹션 (모든 책)**
 
 1. **제목 블록**: `# 한글 제목 (원제)` + `>` 인용으로 원서·한국어판 서지(옮긴이·출판사·연도) + 책 정체성 한 문단
-2. `## 책 정보`: 표 — 저자 / 역자 / 출판(사·연도) / 원서 / 대상 독자
+2. `## 책 정보`: 표 - 저자 / 역자 / 출판(사·연도) / 원서 / 대상 독자
 3. `## 개요`: 책의 포지션 2~3문단(무엇을·어떤 방식으로·왜). 관련 책은 **실제 관계(자매편·시리즈·본문 참조)가 있을 때만** 언급하고, "○○와 무관" 같은 소극적 언급은 쓰지 않는다
 4. `## 목차` ★: 파트가 있으면 `### Part N: 제목 (Ch a-b)` 그룹 아래, 없으면 단일(또는 책별 분류 딱지 기준 그룹) 표
 
    `| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`
    - **제목**: 노트 파일 링크(경로는 `notes/chNN-*.md`. 미작성이면 텍스트만 → 미작성 상태 신호를 겸함)
-   - **핵심 단어**: 챕터당 3~6개, `·` 구분. 나중에 "그 개념 어느 장이더라?" 검색용. **같은 개념은 항상 같은 표기**로 쓰며, 대표 표기·동의어는 루트 `KEYWORDS.md`(용어 사전)에서 확인·등록한다 — 새 핵심 단어를 쓰기 전에 사전에 이미 있는 표기인지 확인하고, 동의어가 새로 생기면 사전에 추가
+   - **핵심 단어**: 챕터당 3~6개, `·` 구분. 나중에 "그 개념 어느 장이더라?" 검색용. **같은 개념은 항상 같은 표기**로 쓰며, 대표 표기·동의어는 루트 `KEYWORDS.md`(용어 사전)에서 확인·등록한다 - 새 핵심 단어를 쓰기 전에 사전에 이미 있는 표기인지 확인하고, 동의어가 새로 생기면 사전에 추가
    - **한 줄 요약**: ~80자 이내
 5. `## 학습 가이드`: 추천 읽기 순서(+이유). 챕터 간 의존이 강한 책은 ASCII 의존 다이어그램(오브젝트 README 참조), 아니면 주제별 역인덱스(실용주의 README 참조)
-6. `## 핵심 개념 맵`: 불릿 5~7개 — 목차와 달리 **개념 간 관계**를 요약
+6. `## 핵심 개념 맵`: 불릿 5~7개 - 목차와 달리 **개념 간 관계**를 요약
 
 **선택 섹션 (해당 시)**
 
 - 책 고유 자산 절: Tip 마스터 목록(실용주의), Red Flags(philosophy), 패턴 지도(head-first), 핵심 예제 도메인(objects) 등
-- `## 인용문`: 그 책의 에피그래프·명언·기억할 문장 모음. 형식 `> 인용문<br>— 화자 (위치: Ch/Topic)`. ① 책이 인용한 외부 명언은 화자 = 원 발화자, ② 저자 문장 중 인용문감은 화자 = 책 저자로 구분. 위치는 페이지가 아닌 **챕터/Topic 단위**(개정판에서도 유지되도록). 여기 정리한 것은 **루트 `QUOTES.md`(전 책 통합 모음)에도 동일하게 추가**한다
+- `## 인용문`: 그 책의 에피그래프·명언·기억할 문장 모음. 형식 `> 인용문<br>- 화자 (위치: Ch/Topic)`. ① 책이 인용한 외부 명언은 화자 = 원 발화자, ② 저자 문장 중 인용문감은 화자 = 책 저자로 구분. 위치는 페이지가 아닌 **챕터/Topic 단위**(개정판에서도 유지되도록). 여기 정리한 것은 **루트 `QUOTES.md`(전 책 통합 모음)에도 동일하게 추가**한다
 - `## 시그니처 요소와 표기 규칙`: 노트 작성 스타일 정의 (노트 작성 시점에 추가)
 - `## origin 분리`: 분리 파일 구성·검증 결과·⚠️ 함정 (origin 분리한 책)
 - `## Notion DB 구조`: 업로드한 책 (아래 DB 정책 참조)
 
 기존 README를 이 표준으로 갱신할 때는 책별로 진행하고 커밋도 책별로 분리한다.
 
-**루트 `README.md`**는 별도다 — 저장소 전체 현황(책 목록 3분류: 노트+Notion 완료 / 노트만 완료 / origin만, 공통 자산, Notion DB·뷰 표준, 새 책 추가 절차)을 담는다. **책을 새로 끝내거나 Notion에 올릴 때마다 여기 한 줄을 갱신**한다.
+**루트 `README.md`**는 별도다 - 저장소 전체 현황(책 목록 3분류: 노트+Notion 완료 / 노트만 완료 / origin만, 공통 자산, Notion DB·뷰 표준, 새 책 추가 절차)을 담는다. **책을 새로 끝내거나 Notion에 올릴 때마다 여기 한 줄을 갱신**한다.
 
 ## 공통 작성 스타일
 
@@ -214,13 +214,13 @@
 - **구조**: 각 챕터별 독립 마크다운 파일 + README.md (목차/개요)
 - **챕터 파일 구성**:
   - `# Chapter N: 영문 제목 (한국어 부제)` 형식의 제목
-  - `## 핵심 질문` — 챕터의 핵심 물음
+  - `## 핵심 질문` - 챕터의 핵심 물음
   - 번호가 매겨진 주요 섹션 (`## 1.`, `## 2.`, ...)
   - 코드 예시 (나쁜 예 vs 좋은 예 대비)
   - `> **핵심 통찰**:` blockquote로 핵심 인사이트 강조
-  - 비교 테이블 (markdown table) — **표는 컬럼이 2개 이상 의미 있게 나뉠 때만 사용**. 아래 "표 vs 리스트 선택 규칙" 참고
-  - `## 요약` — 불릿 포인트 정리
-  - `## 다른 챕터와의 관계` — 관련 챕터 간 연결고리 설명 (선택적, 챕터 간 연결이 약한 책은 생략 가능)
+  - 비교 테이블 (markdown table) - **표는 컬럼이 2개 이상 의미 있게 나뉠 때만 사용**. 아래 "표 vs 리스트 선택 규칙" 참고
+  - `## 요약` - 불릿 포인트 정리
+  - `## 다른 챕터와의 관계` - 관련 챕터 간 연결고리 설명 (선택적, 챕터 간 연결이 약한 책은 생략 가능)
 - **책별 특수 요소**: 각 책의 고유 개념에 맞는 요소 추가
   - philosophy-of-software-design: `## Red Flags` 섹션
   - legacy-code: 기법별 단계(Step) 정리
@@ -234,19 +234,20 @@
   - objects: `## 리팩터링 과정` (나쁜 코드→좋은 코드 단계별 개선 테이블), `## 설계 원칙` (챕터별 OOP 원칙 테이블), `### 나쁜 설계`/`### 좋은 설계` (before/after 코드 대비), 클래스 다이어그램 (ASCII/유니코드 텍스트 기반), `>` 인용문 (저자 경험담/외부 인용, 레이블 없는 blockquote), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), 코드 예제는 Java(`<details>` 접기)+TypeScript(펼침) 병기
   - the-software-craftsman: `>` 인용문 (산드로 만쿠소의 개인 경험담과 외부 명언, 레이블 없는 blockquote), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), 비교 테이블 (좋은/나쁜 실행 관례, 채용 안티패턴 등), 커리어 관점의 서술 (개인·조직 두 축)
   - code-that-fits-in-your-head: `>` 인용문 (마크 시먼의 경험담과 외부 명언, Kent Beck·Robert Martin·Kevlin Henney·Adam Barr 등), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), **C# 코드 예제** (레스토랑 예약 시스템 예제 코드베이스 일관 유지), 휴리스틱 관점 강조 (규칙이 아니라 상황에 따라 적용되는 지침), 인간 뇌 한계(단기 기억 7개, 순환 복잡도 7 이하)를 기준으로 한 정량적 임계값 강조
-  - design-it-from-programmer-to-software-architect: `>` 인용문 (저자 마이클 킬링의 경험담과 외부 인용), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), `> **직접 해보기**:` (실전 실습 안내 blockquote), `## N. 라이언하트 프로젝트 사례` 별도 섹션 (Ch1-13에서 사례 연구를 통일된 형태로 정리), Ch14-17은 다른 구조 — `## 활동 개요` 표 + 각 활동을 `## 활동 N: 활동명 (영문명)`으로 상세 정리(목적·참가자·소요 시간·준비물·실행 단계·지침과 팁)
-  - fundamentals-of-software-architecture-1st-edition: `>` 인용문 (저자 마크 리처즈·닐 포드의 경험담과 외부 인용, 랄프 존슨·마틴 파울러 등), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), `> **소프트웨어 아키텍처 제N법칙**<br>내용` (이 책 시그니처 — 아키텍처 법칙), 아키텍처 스타일 장(Ch10-17)은 **아키텍처 특성 등급표**(특성 \| 등급 별점 ★☆ 2~3열 표) + ASCII/유니코드 **토폴로지 다이어그램** 필수, 부록 A는 장별 자율평가 질문 numbered list
-  - functional-programming-complete-guide: `> **핵심 통찰**:`/`> **참고**:` 콜아웃, **코드 블록은 원본 노트 유지**(산문만 "-다"체 재작성. 단, 동일 장 안에서 es6판과 직접 중복되는 es5 구현 코드는 설명으로 대체 — ch03), 표기법 비교 명시(`L.*`·`go/pipe` vs `fx()` 체이닝 — TS 타입 추론이 진화 이유, README "코드 표기법 로드맵" 참조), `## 다른 챕터와의 관계` 전 장 필수(19장 교차 연결), 접근이 다른 중복 구현(nop 방식 vs toAsync 방식)은 둘 다 수록 후 비교 표로 정리
+  - design-it-from-programmer-to-software-architect: `>` 인용문 (저자 마이클 킬링의 경험담과 외부 인용), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), `> **직접 해보기**:` (실전 실습 안내 blockquote), `## N. 라이언하트 프로젝트 사례` 별도 섹션 (Ch1-13에서 사례 연구를 통일된 형태로 정리), Ch14-17은 다른 구조 - `## 활동 개요` 표 + 각 활동을 `## 활동 N: 활동명 (영문명)`으로 상세 정리(목적·참가자·소요 시간·준비물·실행 단계·지침과 팁)
+  - fundamentals-of-software-architecture-1st-edition: `>` 인용문 (저자 마크 리처즈·닐 포드의 경험담과 외부 인용, 랄프 존슨·마틴 파울러 등), `> **핵심 통찰**:` (핵심 인사이트 콜아웃), `> **소프트웨어 아키텍처 제N법칙**<br>내용` (이 책 시그니처 - 아키텍처 법칙), 아키텍처 스타일 장(Ch10-17)은 **아키텍처 특성 등급표**(특성 \| 등급 별점 ★☆ 2~3열 표) + ASCII/유니코드 **토폴로지 다이어그램** 필수, 부록 A는 장별 자율평가 질문 numbered list
+  - functional-programming-complete-guide: `> **핵심 통찰**:`/`> **참고**:` 콜아웃, **코드 블록은 원본 노트 유지**(산문만 "-다"체 재작성. 단, 동일 장 안에서 es6판과 직접 중복되는 es5 구현 코드는 설명으로 대체 - ch03), 표기법 비교 명시(`L.*`·`go/pipe` vs `fx()` 체이닝 - TS 타입 추론이 진화 이유, README "코드 표기법 로드맵" 참조), `## 다른 챕터와의 관계` 전 장 필수(19장 교차 연결), 접근이 다른 중복 구현(nop 방식 vs toAsync 방식)은 둘 다 수록 후 비교 표로 정리
 - **용어 설명 스타일**: 부가 설명이 필요한 용어는 인라인 이탤릭으로 처리
   - 형식: `용어(*Term - 설명*)` (예: `테스트 스위트(*Test Suite - 프로젝트에 속한 모든 테스트의 집합*)`)
   - 용어가 처음 등장하는 곳에서 한 번만 설명하고, 이후에는 한국어 용어만 사용
+- **대시는 하이픈만 사용 (키보드 문자 우선)**: em dash(U+2014)·en dash(U+2013)·유니코드 마이너스(U+2212) 등 키보드에 없는 대시류는 쓰지 않는다. 전부 하이픈 `-`로 표기한다: 문장 중 삽입은 ` - `(앞뒤 공백), 인용 출처는 `<br>- 화자`, 표의 빈 값도 `-`. ASCII 다이어그램의 박스 문자(`─`·`│`)는 대시가 아니므로 그대로 둔다. 단, 인용 출처가 **줄 맨 앞**에 오면 `- `가 리스트로 오해석되므로 반드시 앞 줄에 `<br>`로 병합한다. (2026-08-09 기존 문서 전량 치환 완료. fp/ 이관 원본 제외)
 - **표 vs 리스트 선택 규칙**: 마크다운 표는 **컬럼이 2개 이상 의미 있게 나뉠 때만** 사용한다.
   - ❌ **금지 (억지 순번 열)**: 실질 컬럼이 1개인데 순번(`#`, `1`, `2`) 컬럼만 붙여 억지로 2열 표로 만드는 것. 헤더가 하나뿐인 내용(예: "정의가 어려운 이유" 목록)은 표로 만들지 않는다
   - ❌ **금지 (용어사전 형태)**: `용어 | 의미`, `요소 | 설명`처럼 **왼쪽이 항목 이름이고 오른쪽이 그 항목의 단일 설명**인 2열 표. 이는 대조가 아니라 정의 나열이므로 `- **용어(영문)**: 설명` 불릿 리스트로 작성한다 (예: 코드베이스·프로덕션 등 용어 정의, "각 요소가 무엇에 기여하는가" 나열)
   - ✅ **표 사용**: 한 항목을 **2개 이상의 독립 속성으로 대조**하거나(예: `요소 | 정의 | 성격`, `특성 | 등급`) **병렬 대조**일 때만 (예: `좋은 예 | 나쁜 예`, before/after)
   - ✅ **리스트 사용**: 같은 성격의 항목을 나열하고 각각 한 덩어리 설명만 붙는 경우 → `1. **항목**: 설명` numbered list (순서 의미 있을 때) 또는 `- **항목**: 설명` 불릿
   - 판단 기준: (1) "순번 컬럼을 빼면 컬럼이 1개만 남는가?" (2) "왼쪽이 '항목 이름', 오른쪽이 그 이름의 '설명 하나'뿐인가?(용어사전 형태)" → 둘 중 하나라도 해당하면 리스트가 맞다
-- **파일 네이밍**: `ch{번호:두자리}-{영문-kebab-case}.md` — 위치는 책 폴더의 `notes/` 하위 ("책 폴더 표준 구조" 참조)
+- **파일 네이밍**: `ch{번호:두자리}-{영문-kebab-case}.md` - 위치는 책 폴더의 `notes/` 하위 ("책 폴더 표준 구조" 참조)
 
 ## Notion 업로드 규칙
 
@@ -259,12 +260,12 @@
 - 파일 용량이 커서 sub-agent 업로드 실패 시, 메인 에이전트가 직접 `replace_content`로 원본을 업로드
 - **원본 그대로 업로드 필수**: Notion에 업로드할 때 내용을 요약하거나 압축하지 않는다. 반드시 로컬 마크다운 파일의 원본 내용을 그대로 업로드해야 한다. 파일이 커서 한 번에 올릴 수 없으면 여러 번에 나눠서라도 원본 전체를 올린다. 사용자가 작성한 내용과 다른 것이 Notion에 올라가면 안 된다.
 - **각주 변환**: `<sub>` 태그 각주는 Notion에서 렌더링되지 않으므로, 업로드 시 본문의 `용어¹` → `용어(*Term - 설명*)` 인라인 이탤릭 형태로 변환하고 `<sub>...</sub><br>` 각주 블록은 제거한다
-- **한글은 리터럴 그대로 (유니코드 이스케이프 절대 금지)**: `notion-create-pages`/`notion-update-page`의 `content`에 한국어를 넣을 때 `\uXXXX` 유니코드 이스케이프로 손수 변환하지 말고 **한글 문자를 그대로** 넣는다. 수동 이스케이프 변환은 음절 손상("캡슐화"→"캐슸화", "말썽꾼"→"말썰꾼" 등)을 일으켜 원본과 다른 내용이 올라간다(head-first-design-patterns 15개 챕터 전량 재업로드 사례, a-common-sense-guide 20개 챕터 전량 재업로드 사례 — 돈다→돌다·잰다→잴다·옮겨야→옆겨야·썼다면→쎜다면·뺀→뻐·붓는다→부는다·숟가락→숨가락 등 챕터당 3~10곳 손상. `update_content` 개별 치환으로 고치려 해도 치환 문자열 자체가 또 깨지므로, **본문 전체를 리터럴 한글로 `replace_content`** 하는 것이 유일하게 확실한 해법). 또한 `__unparsedToolInput`으로 raw JSON을 조립하지 말고 정상 파라미터(`parent`/`pages` 등)로 전달한다 — JSON 인코딩은 harness가 처리하며, raw JSON은 `InputValidationError`/hex escape 파싱 에러를 반복 유발한다. **업로드 후 반드시 1~2개 페이지를 `notion-fetch`로 열어 한글 손상 여부를 눈으로 확인**하고, 손상 발견 시 `replace_content`로 한글 리터럴 재업로드한다.
+- **한글은 리터럴 그대로 (유니코드 이스케이프 절대 금지)**: `notion-create-pages`/`notion-update-page`의 `content`에 한국어를 넣을 때 `\uXXXX` 유니코드 이스케이프로 손수 변환하지 말고 **한글 문자를 그대로** 넣는다. 수동 이스케이프 변환은 음절 손상("캡슐화"→"캐슸화", "말썽꾼"→"말썰꾼" 등)을 일으켜 원본과 다른 내용이 올라간다(head-first-design-patterns 15개 챕터 전량 재업로드 사례, a-common-sense-guide 20개 챕터 전량 재업로드 사례 - 돈다→돌다·잰다→잴다·옮겨야→옆겨야·썼다면→쎜다면·뺀→뻐·붓는다→부는다·숟가락→숨가락 등 챕터당 3~10곳 손상. `update_content` 개별 치환으로 고치려 해도 치환 문자열 자체가 또 깨지므로, **본문 전체를 리터럴 한글로 `replace_content`** 하는 것이 유일하게 확실한 해법). 또한 `__unparsedToolInput`으로 raw JSON을 조립하지 말고 정상 파라미터(`parent`/`pages` 등)로 전달한다 - JSON 인코딩은 harness가 처리하며, raw JSON은 `InputValidationError`/hex escape 파싱 에러를 반복 유발한다. **업로드 후 반드시 1~2개 페이지를 `notion-fetch`로 열어 한글 손상 여부를 눈으로 확인**하고, 손상 발견 시 `replace_content`로 한글 리터럴 재업로드한다.
 
 ### DB 구조(파트·챕터·딱지) 정책
 
-- **파트/챕터/딱지 구성**: 챕터를 Notion 인라인 DB에 올릴 때, 책에 **파트 구분이 있으면** `Part`(select 색상 딱지) + `Chapter`(number) + `Title` 속성으로 구성한다(예: legacy-code — Part 1/2/3/부록을 파랑·초록·보라·회색 딱지로). **기준형(이상형): [Book] Grokking Simplicity 페이지의 인라인 DB "쏙쏙"**(`collection://194de498-6fe3-818a-bc16-000b17ef1592`) — `Done`(체크)·`Chapters`(title)·`Parts`(색상 딱지)·`주요 키워드`·`난이도`(★)·`중요도`(★) 구성.
-- **챕터 DB 표준 속성**: ① `Done`(checkbox, **맨 앞 열** — 읽음 표시) ② `Title` ③ `Part`(select 색상 딱지) ④ `Chapter`(number) ⑤ `핵심 단어`(multi-select, 챕터당 3~6개 — 검색·필터용. 기준형에서는 text였으나 필터링을 위해 multi-select 권장) ⑥ `핵심 요약`(text, 한 줄 ~80자). 선택: `난이도`·`중요도`(★~★★★ select). **핵심 단어 표기는 루트 `KEYWORDS.md` 용어 사전을 따르고**, 핵심 단어·핵심 요약 **값의 소스는 그 책 README의 목차 표**(`| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`)다 — 업로드·재업로드 시 README 기준으로 채운다. 새 DB는 `create-database` 시점에 속성 전체를 한 번에 만들 수 있지만, **기존 DB에 속성 추가는 API 404**이므로 UI에서 수동 생성 후 값 채우기만 API로 한다. **파트가 없어도** 챕터를 묶을 좋은 분류 기준이 있으면(예: head-first의 GoF `패턴 범주` = 생성/구조/행동/복합/정리) 파트 대신 그 기준으로 select/multi-select 색상 딱지를 붙인다 — 기준 이름은 책에 맞게 정하고(꼭 `Part`일 필요 없음), 한 챕터가 여러 범주에 걸치면 multi-select를 쓴다. 파트도 없고 마땅한 분류 기준도 없으면 `Name` 하나로만 둔다.
+- **파트/챕터/딱지 구성**: 챕터를 Notion 인라인 DB에 올릴 때, 책에 **파트 구분이 있으면** `Part`(select 색상 딱지) + `Chapter`(number) + `Title` 속성으로 구성한다(예: legacy-code - Part 1/2/3/부록을 파랑·초록·보라·회색 딱지로). **기준형(이상형): [Book] Grokking Simplicity 페이지의 인라인 DB "쏙쏙"**(`collection://194de498-6fe3-818a-bc16-000b17ef1592`) - `Done`(체크)·`Chapters`(title)·`Parts`(색상 딱지)·`주요 키워드`·`난이도`(★)·`중요도`(★) 구성.
+- **챕터 DB 표준 속성**: ① `Done`(checkbox, **맨 앞 열** - 읽음 표시) ② `Title` ③ `Part`(select 색상 딱지) ④ `Chapter`(number) ⑤ `핵심 단어`(multi-select, 챕터당 3~6개 - 검색·필터용. 기준형에서는 text였으나 필터링을 위해 multi-select 권장) ⑥ `핵심 요약`(text, 한 줄 ~80자). 선택: `난이도`·`중요도`(★~★★★ select). **핵심 단어 표기는 루트 `KEYWORDS.md` 용어 사전을 따르고**, 핵심 단어·핵심 요약 **값의 소스는 그 책 README의 목차 표**(`| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`)다 - 업로드·재업로드 시 README 기준으로 채운다. 새 DB는 `create-database` 시점에 속성 전체를 한 번에 만들 수 있지만, **기존 DB에 속성 추가는 API 404**이므로 UI에서 수동 생성 후 값 채우기만 API로 한다. **파트가 없어도** 챕터를 묶을 좋은 분류 기준이 있으면(예: head-first의 GoF `패턴 범주` = 생성/구조/행동/복합/정리) 파트 대신 그 기준으로 select/multi-select 색상 딱지를 붙인다 - 기준 이름은 책에 맞게 정하고(꼭 `Part`일 필요 없음), 한 챕터가 여러 범주에 걸치면 multi-select를 쓴다. 파트도 없고 마땅한 분류 기준도 없으면 `Name` 하나로만 둔다.
 - **책별 DB 구조는 그 책 README에 기록**: 각 책 README에 `## Notion DB 구조` 절을 두어 위치·속성·딱지 매핑·정렬을 적어두고, 업로드/재업로드 시 이 절을 참조한다. 책마다 분류 기준이 달라(파트 vs 패턴 범주 등) 공통 CLAUDE.md가 아니라 각 README에 두는 것이 맞다.
 - **정렬**: `Name`에 `ChNN.`(두 자리) 접두어를 붙이고 이름 오름차순 정렬하면 챕터 순서가 유지된다. 파트가 있으면 뷰에서 `Part`로 그룹핑하거나 `Chapter` 오름차순 정렬을 쓴다.
 - ✅ **스키마 편집 API 사용 가능(2026-08-02 확인)**: 과거 404로 막혀 있던 `update-data-source`가 지금은 정상 동작한다. 기존 DB에도 SQL DDL로 속성을 추가할 수 있으므로 **UI 수동 생성 없이 속성 추가 → 값 채우기를 모두 API로** 끝낼 수 있다.
@@ -274,7 +275,7 @@
   ADD COLUMN "구분" SELECT('본문':blue, '부록':gray)
   ```
   `update-page`는 여전히 스키마에 없는 속성을 거부하므로 **속성 추가가 먼저**다. 값 채우기는 `update-page`(command: `update_properties`)로 한 페이지씩 처리한다.
-  - ⚠️ **예외 — 특정 DB만 404**: 읽기(`query-database-view`)는 되는데 `update-data-source`만 404를 반환하는 DB가 있다(head-first-design-patterns의 옛 인라인 DB 사례). 이때는 **같은 페이지에 속성을 갖춘 새 DB를 `create-database`로 만들고, 기존 챕터 페이지를 `move-pages`로 통째 이동**하면 본문 손실 없이 우회된다. 이동 후 빈 옛 DB 블록은 UI에서 삭제.
+  - ⚠️ **예외 - 특정 DB만 404**: 읽기(`query-database-view`)는 되는데 `update-data-source`만 404를 반환하는 DB가 있다(head-first-design-patterns의 옛 인라인 DB 사례). 이때는 **같은 페이지에 속성을 갖춘 새 DB를 `create-database`로 만들고, 기존 챕터 페이지를 `move-pages`로 통째 이동**하면 본문 손실 없이 우회된다. 이동 후 빈 옛 DB 블록은 UI에서 삭제.
 
 ### 뷰 레이아웃 표준 (2026-08-02 확립)
 
@@ -284,8 +285,8 @@
 SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter" ASC
 ```
 
-- **`Done`은 항상 맨 앞** — `SHOW`에 나열한 순서가 곧 열 순서다.
-- **`Chapter` 열은 숨긴다** — 제목이 `Chapter N: …`/`ChNN. …` 형식이면 번호가 이미 제목에 있어 중복이다. **숨겨도 `SORT BY "Chapter"`는 정상 동작**하므로 순서는 유지된다. 제목에 번호가 없는 DB(예: CODE — `Best Friends (가장 친한 친구)`)만 `Chapter` 열을 남긴다.
+- **`Done`은 항상 맨 앞** - `SHOW`에 나열한 순서가 곧 열 순서다.
+- **`Chapter` 열은 숨긴다** - 제목이 `Chapter N: …`/`ChNN. …` 형식이면 번호가 이미 제목에 있어 중복이다. **숨겨도 `SORT BY "Chapter"`는 정상 동작**하므로 순서는 유지된다. 제목에 번호가 없는 DB(예: CODE - `Best Friends (가장 친한 친구)`)만 `Chapter` 열을 남긴다.
 - **정렬은 `Chapter` 오름차순**을 명시한다. 정렬이 없으면 생성 순서대로 뒤죽박죽 보인다.
 
 ### 빈 값 점검 요령 (전수 조사용)
@@ -298,7 +299,7 @@ SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter
 
 `Query Data Source`(SQL)는 워크스페이스 사용량 한도가 따로 있어 쉽게 소진되지만, `query-database-view`는 별도 쿼터라 이 방법이 안전하다.
 
-> **주의**: "DB가 비어 보인다"는 신고의 실제 원인은 세 가지로 갈린다 — ① 속성 자체가 없음(스키마에 `핵심 단어`가 없음) ② 속성은 있는데 값이 없음 ③ **값은 다 있는데 뷰에서 그 열이 숨겨져 있음**(philosophy-of-software-design 사례). 채우기 전에 스키마 → 값 → 뷰 순으로 확인한다.
+> **주의**: "DB가 비어 보인다"는 신고의 실제 원인은 세 가지로 갈린다 - ① 속성 자체가 없음(스키마에 `핵심 단어`가 없음) ② 속성은 있는데 값이 없음 ③ **값은 다 있는데 뷰에서 그 열이 숨겨져 있음**(philosophy-of-software-design 사례). 채우기 전에 스키마 → 값 → 뷰 순으로 확인한다.
 
 ## origin.md 파일 분리 작업
 
@@ -337,25 +338,25 @@ origin.md에 페이지 번호가 OCR로 담겨 있으면, 분리·정리 시 **�
 - [x] `the-essence-of-object-orientation-객체지향의-사실과-오해/` (0~9, 99 = 11개 파일)
 - [x] `essential-skills-for-junior-backend-developers-주니어-백엔드-개발자가-반드시-알아야-할-실무=-지식/` (0~14, 99 = 16개 파일)
 - [x] `objects/` (0~19, 99 = 21개 파일)
-- [x] `programmers-coding-test/` (0~18, 99 = 20개 파일) — 0=서문+00장, 1~16=01~16장, 17=부록 모의고사, 18=별책 정리노트, 99=찾아보기+판권
-- [x] `design-it-from-programmer-to-software-architect/` (0~17, 18~19, 99 = 21개 파일) — 0=서문/목차, 1~17=Ch1~Ch17, 18=부록 기여자들, 19=참고문헌, 99=찾아보기
-- [x] `the-software-craftsman/` (0~17 = 18개 파일) — 0=서문, 1~16=Ch1~Ch16, 17=Appendix A
-- [x] `code-that-fits-in-your-head/` (0~19, 99 = 21개 파일) — 0=서문, 1~16=Ch1~Ch16, 17=부록A(프랙티스), 18=부록B(참고문헌), 19=부록C(빌드), 99=주석
-- [x] `fundamentals-of-software-architecture-1st-edition/` (0~25, 99 = 27개 파일) — 0=서문/목차, 1~24=Ch1~Ch24, 25=부록A(자율평가문제), 99=찾아보기. **페이지 번호: OCR 캡처 불충분**(본문 러닝 헤더 3개만 잡힘 — `1장 43`, `2장 61`, `4장 89` / 인덱스 449~471만 안정적) → 순차 검증 불가로 생략
-- [x] `clean-architecture/` (0~35, 99 = 37개 파일) — 클린 아키텍처(로버트 마틴). 0=서문/목차/추천사, 1~34=1장~34장(6부 구성, 부 표지는 각 부 첫 챕터 파일 맨 앞), 35=부록A(아키텍처 고고학), 99=찾아보기. 원본 11,764줄 = 합계 일치. **페이지 번호: 부분 캡처·형식 혼재**(제목형 푸터 + 단독 숫자 라인 + 워터마크 오염)로 순차 검증 신뢰 곤란 → 생략. 라인 합계로 무결성 확인
-- [x] `clean-code/` (0~21, 99 = 23개 파일) — 클린 코드(로버트 마틴). 0=서문/목차, 1~17=1장~17장(파트 구분 없음), 18=부록A(동시성 II), 19=부록B(SerialDate), 20=부록C(휴리스틱 교차참조), 21=에필로그, 99=용어대역표+색인. 원본 20,526줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차성 검증 통과**(486개, 챕터 경계 직전 페이지가 TOC와 전부 일치). ⚠️ **16·17장은 OCR이 전체를 인용 블록으로 인식해 모든 줄 앞에 `> ` 접두어** — 노트 작성 시 제거 필요
-- [x] `docker-illustrated-introduction/` (0~32, 99 = 34개 파일) — 그림으로 배우는 도커(스즈키 료, 한빛미디어). 0=서문/목차, 1~32=1장~32장(7부 구성, 부 표지는 각 부 첫 챕터 파일 맨 앞), 99=찾아보기. 원본 9,140줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 완료**(짝수 페이지 푸터 92%, 누락은 챕터/부 표지 페이지)
-- [x] `fundamentals-of-software-architecture-2nd-edition/` (0~28, 99 = 30개 파일) — 소프트웨어 아키텍처 101 2판. 0=서문/목차, 1~27=Ch1~Ch27(PART 01 기초=Ch2-8 / PART 02 스타일=Ch9-20 / PART 03 기법·소프트스킬=Ch21-27, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 28=부록A(토론용 질문), 99=색인. 원본 17,588줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 통과**(540개 약 89%). **1판(24장)→2판(27장) 확장**: Ch11 모듈형 모놀리스·Ch20 아키텍처 패턴·Ch26 아키텍처 교차점·Ch27 법칙 재검토 신규. **⚠️ ocr 재분할 완료(2026-07): 기존 분할은 글자 사이 공백이 낀 noisy `origin.md`(17,588줄) 기반이었으나, 사용자가 제공한 깨끗한 `ocr.origin.md`(공백 없는 한글, 18,212줄)로 전체 재분할**(경계 동일: 0=서문/목차, 1=Ch1, 파트 표지는 각 파트 첫 챕터 파일 맨 앞(file 2·9·21), 28=APPENDIX A, 99=INDEX). 재결합본이 `ocr.origin.md`와 byte 단위 완전 일치(cksum 1327654577) 검증. 두 OCR 대조: 본문 99.8% 일치(공백 제거 시 origin 463,014자 vs ocr 464,066자, ocr +1,052자), ocr이 더 정확·완전(닫는 따옴표 보존, 위협/위험 등 오탈자 정정). `origin.md`(noisy 원본)는 그대로 보존
-- [x] `good-code-bad-code/` (0~14, 99 = 16개 파일) — Good Code, Bad Code(톰 롱). 0=서문/목차, 1~11=Ch1~Ch11(PART I 이론=Ch1-4 / PART II 실전=Ch5-9 / PART III 단위테스트=Ch10-11, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 12=부록A, 13=부록B, 14=부록C, 99=색인. 원본 14,073줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 완료**(짝수 페이지 푸터 촘촘, 누락은 챕터 끝 공백/파트 표지)
-- [x] `quant/` (0, 14~19, 99 = 8개 파일) — 하면 된다! 퀀트 투자(강환국, 에프엔미디어) **4부 발췌본**. 0=4부 divider(2줄), 14~19=14장~19장(섹션 39~62), 99=주석/감수의 말/판권. 원본 2,154줄 = 합계 일치. 책 전체가 아닌 4부만이라 서문·목차 없음. **페이지 번호: 불충분/미캡처**(영문 러닝 헤더 `Quantitative Investment`만 있고 페이지 번호 없음) → 검증 생략. ⚠️ 16장 챕터 헤더 OCR 누락(섹션 46부터 본문 직결)
-- [x] `refactoring-2nd-edition/` (0~14, 99 = 16개 파일) — 리팩터링 2판(마틴 파울러). 0=서문/목차, 1~12=Ch1~Ch12, 13=부록A(리팩터링 목록), 14=부록B(악취 제거 기법), 99=색인. **⚠️ 재분할 완료(2026-07): 기존 분할은 글자 사이 공백이 낀 noisy OCR(`origin.md`) 기반이었으나, 사용자가 제공한 깨끗한 `ocr.origin.md`(공백 없는 한글, 16,139줄)로 전체 재분할**. 재결합본이 `ocr.origin.md`와 byte 단위 완전 일치(cksum 60556805) 검증. 두 OCR 내용 대조 결과 본문 98.8% 일치·누락 없음이며, 부록 A(참조 63개)·부록 B(악취 23개)는 오히려 `ocr.origin.md`가 더 완전(기존 origin.md는 부록 B 악취 1개 누락). `origin.md`의 색인 뒤 부록 중복 재캡처 노이즈도 새 분할에는 없음. `origin.md`(noisy 원본)는 그대로 보존
-- [x] `this-is-coding-test/` (0~23, 99 = 25개 파일) — 이것이 취업을 위한 코딩 테스트다(나동빈). 0=서문/목차, 1~19=CH01~CH19(PART01~04, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 20=부록A(파이썬 문법), 21=부록B(기타 알고리즘), 22=부록C(개발형 코테), 23=부록D(유형별 기출풀이), 99=찾아보기. 원본 17,950줄 = 합계 일치(diff 바이트 완전 일치). **페이지 번호: 안정적 캡처, 순차 검증 완료**(512개, 누락은 GUIDE 헤더 섹션/표지 페이지)
-- [x] `the-complete-software-developers-career-guide/` (0~61 = 62개 파일) — 커리어 스킬: 완벽한 개발자 인생 로드맵(존 손메즈, 길벗). 0=서문/판권/책 사용법 앞부분, 1~60=Ch1~Ch60(5부 구성), 61=개발자로 살아가기(한국 기여자 칼럼 — 부록성 후기). 원본 14,664줄 = 합계 일치. **페이지 번호: 없음(ePub 전자책 → 리플로우)** → 대신 **`Chapter` 마커 번호 1~60 완전 연속** 확인으로 무결성 검증(누락 0). ⚠️ 챕터 마커는 `Chapter`/`{번호}`/`{제목}` 3줄, 부는 `Part`/`{부제목}` 형식(**영문 단어** — 대문자 CHAPTER 아님). 부 표지는 **3부(소프트웨어 개발에 대해 알아야 할 것)@Ch21·4부(개발자로 일하기)@Ch36만 OCR 캡처**되어 해당 챕터 파일 맨 앞에 포함, 1·2·5부 표지는 미캡처(챕터 마커부터 시작). OCR 한글 자모 낱글자 분리(`커 리 어`) — 노트 작성 시 정리 필요
-- [x] `the-pragmatic-programmer/` (0~12, 99 = 14개 파일) — 실용주의 프로그래머 20주년 기념판(데이비드 토머스·앤드류 헌트, 인사이트, 2022). 0=판권/차례/추천사/2판·1판 서문, 1~9=1장~9장(Topic 1~53 포함), 10=참고 문헌, 11=연습 문제 해답 예시, 12=옮긴이 후기, 99=찾아보기. 원본 14,970줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 1394218985, 879,363 bytes) 검증**. ⚠️ **원본 마지막 줄에 개행 없음** → 마지막 파일은 `sed -n '12667,$p'`로 EOF까지 캡처(라인 번호로 끊으면 마지막 줄 누락). 본문 장 제목은 `N장`+제목 2줄 형식(예: `1장`\`실용주의 철학`), Topic은 러닝 헤더. **페이지 번호: 안정적 캡처, 순차 검증 통과**(짝수 페이지 푸터 `{쪽} {N}장 {제목}` 형식으로 2~404 중 201개 캡처, 누락은 p.240 하나뿐 — 5장→6장 경계 페이지)
-- [x] `hex/` (0~16, 99 = 18개 파일) — 만들면서 배우는 헥사고날 아키텍처 설계와 구현(다비 비에이라 지음, 김영기 옮김, 위키북스, 2023. 원서 Designing Hexagonal Architecture with Java and Quarkus, Packt 2021). 0=표지/판권/저자·역자 소개/목차/서문, 1~15=1~15장(3부 구성: 1부=Ch1-5·2부=Ch6-9·3부=Ch10-15, 부 표지는 각 부 첫 챕터 파일 맨 앞), 16=모범 답안(연습 문제 해답), 99=찾아보기. 원본 11,878줄 = 합계 일치. **페이지 번호: 부분 캡처(296개/77%, 4~387쪽)** — 홀수쪽 러닝 헤더 변형·전면 그림 페이지로 산발 누락이라 순차 검증은 참고용, 무결성은 라인 합계로 확인. ⚠️ 목차 OCR의 3부 제목이 "아키텍처 핵심 기초"로 오염되어 있음(본문 3부 표지 "클라우드 네이티브로의 전환"이 정본)
-- [x] `a-common-sense-guide-to-data-structures-and-algorithms/` (0~21 = 22개 파일) — 누구나 자료 구조와 알고리즘 개정2판(제이 웬그로우, 길벗). 0=표지/서문/목차, 1~20=1장~20장, 21=부록(연습 문제 해답+주석). 색인 없음(99 없음). 원본 13,529줄, **재결합본이 원본과 byte 단위 완전 일치** 검증. **페이지 번호: 미캡처**(러닝 헤더/푸터 없음) → 검증 생략, 라인 합계로 무결성 확인. ⚠️ 챕터 마커 OCR 오염: `N장`이 `4정`·`6잔`·`7잫`·`9자`·`11정`·`12자`·`13잔`~`16잔`·`17자`·`18`·`19` 등으로 깨져 있음(위치는 `연습 문제 해답` 러닝 라인 + 마커 + 제목 + 미니 목차 순으로 일정). 각 장 첫머리에 절 번호 미니 목차(N.1~N.M) 포함
-- [x] `head-first-design-patterns/` (0~14, 99 = 16개 파일) — 헤드 퍼스트 디자인 패턴(개정판)(에릭 프리먼·엘리자베스 롭슨·케이시 시에라·버트 베이츠 지음, 서환수 옮김, 한빛미디어, 2022. 원서 Head First Design Patterns 2nd Edition). 0=찬사/판권/목차+00장(들어가며), 1~14=Ch01~Ch14, 99=찾아보기. 원본 23,971줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 636882572, 1,185,374 bytes) 검증**. 챕터 시작 마커는 `CHAPTER`+번호 2줄 형식(예: `CHAPTER`\`01`), 러닝 헤더/푸터는 `{쪽} Chapter {NN} {제목}`(짝수쪽)·`{제목} {쪽}`(홀수쪽) 형식. **페이지 번호: 안정적 캡처, 순차 검증 통과**(짝수쪽 26~648 중 299개, 누락 13개는 챕터 시작/전면 그림 페이지). ⚠️ **OCR `>` 인용 접두어 오염**: 일부 구간이 통째로 인용 블록으로 인식되어 줄 앞에 `> ` 부착(9장=815줄·14장=299줄(44%)·1장=382줄·2장=327줄에 집중, clean-code 16·17장과 유사) → 노트 작성 시 제거 필요. CHAPTER 12 마커도 이 오염으로 자동 탐지에서 누락되어 수동 확정(line 19052). Chapter 00(들어가며)은 도입부(이 책을 읽는 방법·학습법) 성격이라 0에 포함
-- [x] `mastering-api-architecture/` (0~10, 99 = 12개 파일) — 모던 API 아키텍처 설계 전략(제임스 고프·대니얼 브라이언트·매튜 어번 지음, 장현희 옮김, 책만, 2026. 원서 *Mastering API Architecture*, O'Reilly 2023). **0=표지/판권/추천의 글/여는 글/지은이·옮긴이 소개/목차/들어가며 + 0장**(0장이 있는 책이라 앞부분과 한 파일로 — programmers-coding-test 선례), 1~10=1장~10장(4부 구성: 1부=Ch1-2·2부=Ch3-4·3부=Ch5-7·4부=Ch8-10, 부 표지는 각 부 첫 챕터 파일 맨 앞), 99=찾아보기+뒤표지. 부록 없음. 원본 10,041줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 4052774667, 673,915 bytes) 검증**. **페이지 번호: 안정적 캡처, 순차 검증 통과**(단독 숫자 라인 277개/294 = 94%, 누락 17개는 전부 부·장 표지와 전면 그림 페이지 — 32·48~50·108~110·146·187~188·238·264~266·318). ⚠️ **장 마커 OCR 오염**: `1잫`·`2잠`·`5잫`·`6잠`·`7잫`처럼 깨져 있어 단독 `N장` 패턴 검색으로는 0·3·4·8·9·10장만 잡힌다(나머지는 장 제목 문자열로 탐색). 러닝 헤더는 장 제목이 단독 라인으로 반복 등장
+- [x] `programmers-coding-test/` (0~18, 99 = 20개 파일) - 0=서문+00장, 1~16=01~16장, 17=부록 모의고사, 18=별책 정리노트, 99=찾아보기+판권
+- [x] `design-it-from-programmer-to-software-architect/` (0~17, 18~19, 99 = 21개 파일) - 0=서문/목차, 1~17=Ch1~Ch17, 18=부록 기여자들, 19=참고문헌, 99=찾아보기
+- [x] `the-software-craftsman/` (0~17 = 18개 파일) - 0=서문, 1~16=Ch1~Ch16, 17=Appendix A
+- [x] `code-that-fits-in-your-head/` (0~19, 99 = 21개 파일) - 0=서문, 1~16=Ch1~Ch16, 17=부록A(프랙티스), 18=부록B(참고문헌), 19=부록C(빌드), 99=주석
+- [x] `fundamentals-of-software-architecture-1st-edition/` (0~25, 99 = 27개 파일) - 0=서문/목차, 1~24=Ch1~Ch24, 25=부록A(자율평가문제), 99=찾아보기. **페이지 번호: OCR 캡처 불충분**(본문 러닝 헤더 3개만 잡힘 - `1장 43`, `2장 61`, `4장 89` / 인덱스 449~471만 안정적) → 순차 검증 불가로 생략
+- [x] `clean-architecture/` (0~35, 99 = 37개 파일) - 클린 아키텍처(로버트 마틴). 0=서문/목차/추천사, 1~34=1장~34장(6부 구성, 부 표지는 각 부 첫 챕터 파일 맨 앞), 35=부록A(아키텍처 고고학), 99=찾아보기. 원본 11,764줄 = 합계 일치. **페이지 번호: 부분 캡처·형식 혼재**(제목형 푸터 + 단독 숫자 라인 + 워터마크 오염)로 순차 검증 신뢰 곤란 → 생략. 라인 합계로 무결성 확인
+- [x] `clean-code/` (0~21, 99 = 23개 파일) - 클린 코드(로버트 마틴). 0=서문/목차, 1~17=1장~17장(파트 구분 없음), 18=부록A(동시성 II), 19=부록B(SerialDate), 20=부록C(휴리스틱 교차참조), 21=에필로그, 99=용어대역표+색인. 원본 20,526줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차성 검증 통과**(486개, 챕터 경계 직전 페이지가 TOC와 전부 일치). ⚠️ **16·17장은 OCR이 전체를 인용 블록으로 인식해 모든 줄 앞에 `> ` 접두어** - 노트 작성 시 제거 필요
+- [x] `docker-illustrated-introduction/` (0~32, 99 = 34개 파일) - 그림으로 배우는 도커(스즈키 료, 한빛미디어). 0=서문/목차, 1~32=1장~32장(7부 구성, 부 표지는 각 부 첫 챕터 파일 맨 앞), 99=찾아보기. 원본 9,140줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 완료**(짝수 페이지 푸터 92%, 누락은 챕터/부 표지 페이지)
+- [x] `fundamentals-of-software-architecture-2nd-edition/` (0~28, 99 = 30개 파일) - 소프트웨어 아키텍처 101 2판. 0=서문/목차, 1~27=Ch1~Ch27(PART 01 기초=Ch2-8 / PART 02 스타일=Ch9-20 / PART 03 기법·소프트스킬=Ch21-27, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 28=부록A(토론용 질문), 99=색인. 원본 17,588줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 통과**(540개 약 89%). **1판(24장)→2판(27장) 확장**: Ch11 모듈형 모놀리스·Ch20 아키텍처 패턴·Ch26 아키텍처 교차점·Ch27 법칙 재검토 신규. **⚠️ ocr 재분할 완료(2026-07): 기존 분할은 글자 사이 공백이 낀 noisy `origin.md`(17,588줄) 기반이었으나, 사용자가 제공한 깨끗한 `ocr.origin.md`(공백 없는 한글, 18,212줄)로 전체 재분할**(경계 동일: 0=서문/목차, 1=Ch1, 파트 표지는 각 파트 첫 챕터 파일 맨 앞(file 2·9·21), 28=APPENDIX A, 99=INDEX). 재결합본이 `ocr.origin.md`와 byte 단위 완전 일치(cksum 1327654577) 검증. 두 OCR 대조: 본문 99.8% 일치(공백 제거 시 origin 463,014자 vs ocr 464,066자, ocr +1,052자), ocr이 더 정확·완전(닫는 따옴표 보존, 위협/위험 등 오탈자 정정). `origin.md`(noisy 원본)는 그대로 보존
+- [x] `good-code-bad-code/` (0~14, 99 = 16개 파일) - Good Code, Bad Code(톰 롱). 0=서문/목차, 1~11=Ch1~Ch11(PART I 이론=Ch1-4 / PART II 실전=Ch5-9 / PART III 단위테스트=Ch10-11, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 12=부록A, 13=부록B, 14=부록C, 99=색인. 원본 14,073줄 = 합계 일치. **페이지 번호: 안정적 캡처, 순차 검증 완료**(짝수 페이지 푸터 촘촘, 누락은 챕터 끝 공백/파트 표지)
+- [x] `quant/` (0, 14~19, 99 = 8개 파일) - 하면 된다! 퀀트 투자(강환국, 에프엔미디어) **4부 발췌본**. 0=4부 divider(2줄), 14~19=14장~19장(섹션 39~62), 99=주석/감수의 말/판권. 원본 2,154줄 = 합계 일치. 책 전체가 아닌 4부만이라 서문·목차 없음. **페이지 번호: 불충분/미캡처**(영문 러닝 헤더 `Quantitative Investment`만 있고 페이지 번호 없음) → 검증 생략. ⚠️ 16장 챕터 헤더 OCR 누락(섹션 46부터 본문 직결)
+- [x] `refactoring-2nd-edition/` (0~14, 99 = 16개 파일) - 리팩터링 2판(마틴 파울러). 0=서문/목차, 1~12=Ch1~Ch12, 13=부록A(리팩터링 목록), 14=부록B(악취 제거 기법), 99=색인. **⚠️ 재분할 완료(2026-07): 기존 분할은 글자 사이 공백이 낀 noisy OCR(`origin.md`) 기반이었으나, 사용자가 제공한 깨끗한 `ocr.origin.md`(공백 없는 한글, 16,139줄)로 전체 재분할**. 재결합본이 `ocr.origin.md`와 byte 단위 완전 일치(cksum 60556805) 검증. 두 OCR 내용 대조 결과 본문 98.8% 일치·누락 없음이며, 부록 A(참조 63개)·부록 B(악취 23개)는 오히려 `ocr.origin.md`가 더 완전(기존 origin.md는 부록 B 악취 1개 누락). `origin.md`의 색인 뒤 부록 중복 재캡처 노이즈도 새 분할에는 없음. `origin.md`(noisy 원본)는 그대로 보존
+- [x] `this-is-coding-test/` (0~23, 99 = 25개 파일) - 이것이 취업을 위한 코딩 테스트다(나동빈). 0=서문/목차, 1~19=CH01~CH19(PART01~04, 파트 표지는 각 파트 첫 챕터 파일 맨 앞), 20=부록A(파이썬 문법), 21=부록B(기타 알고리즘), 22=부록C(개발형 코테), 23=부록D(유형별 기출풀이), 99=찾아보기. 원본 17,950줄 = 합계 일치(diff 바이트 완전 일치). **페이지 번호: 안정적 캡처, 순차 검증 완료**(512개, 누락은 GUIDE 헤더 섹션/표지 페이지)
+- [x] `the-complete-software-developers-career-guide/` (0~61 = 62개 파일) - 커리어 스킬: 완벽한 개발자 인생 로드맵(존 손메즈, 길벗). 0=서문/판권/책 사용법 앞부분, 1~60=Ch1~Ch60(5부 구성), 61=개발자로 살아가기(한국 기여자 칼럼 - 부록성 후기). 원본 14,664줄 = 합계 일치. **페이지 번호: 없음(ePub 전자책 → 리플로우)** → 대신 **`Chapter` 마커 번호 1~60 완전 연속** 확인으로 무결성 검증(누락 0). ⚠️ 챕터 마커는 `Chapter`/`{번호}`/`{제목}` 3줄, 부는 `Part`/`{부제목}` 형식(**영문 단어** - 대문자 CHAPTER 아님). 부 표지는 **3부(소프트웨어 개발에 대해 알아야 할 것)@Ch21·4부(개발자로 일하기)@Ch36만 OCR 캡처**되어 해당 챕터 파일 맨 앞에 포함, 1·2·5부 표지는 미캡처(챕터 마커부터 시작). OCR 한글 자모 낱글자 분리(`커 리 어`) - 노트 작성 시 정리 필요
+- [x] `the-pragmatic-programmer/` (0~12, 99 = 14개 파일) - 실용주의 프로그래머 20주년 기념판(데이비드 토머스·앤드류 헌트, 인사이트, 2022). 0=판권/차례/추천사/2판·1판 서문, 1~9=1장~9장(Topic 1~53 포함), 10=참고 문헌, 11=연습 문제 해답 예시, 12=옮긴이 후기, 99=찾아보기. 원본 14,970줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 1394218985, 879,363 bytes) 검증**. ⚠️ **원본 마지막 줄에 개행 없음** → 마지막 파일은 `sed -n '12667,$p'`로 EOF까지 캡처(라인 번호로 끊으면 마지막 줄 누락). 본문 장 제목은 `N장`+제목 2줄 형식(예: `1장`\`실용주의 철학`), Topic은 러닝 헤더. **페이지 번호: 안정적 캡처, 순차 검증 통과**(짝수 페이지 푸터 `{쪽} {N}장 {제목}` 형식으로 2~404 중 201개 캡처, 누락은 p.240 하나뿐 - 5장→6장 경계 페이지)
+- [x] `hex/` (0~16, 99 = 18개 파일) - 만들면서 배우는 헥사고날 아키텍처 설계와 구현(다비 비에이라 지음, 김영기 옮김, 위키북스, 2023. 원서 Designing Hexagonal Architecture with Java and Quarkus, Packt 2021). 0=표지/판권/저자·역자 소개/목차/서문, 1~15=1~15장(3부 구성: 1부=Ch1-5·2부=Ch6-9·3부=Ch10-15, 부 표지는 각 부 첫 챕터 파일 맨 앞), 16=모범 답안(연습 문제 해답), 99=찾아보기. 원본 11,878줄 = 합계 일치. **페이지 번호: 부분 캡처(296개/77%, 4~387쪽)** - 홀수쪽 러닝 헤더 변형·전면 그림 페이지로 산발 누락이라 순차 검증은 참고용, 무결성은 라인 합계로 확인. ⚠️ 목차 OCR의 3부 제목이 "아키텍처 핵심 기초"로 오염되어 있음(본문 3부 표지 "클라우드 네이티브로의 전환"이 정본)
+- [x] `a-common-sense-guide-to-data-structures-and-algorithms/` (0~21 = 22개 파일) - 누구나 자료 구조와 알고리즘 개정2판(제이 웬그로우, 길벗). 0=표지/서문/목차, 1~20=1장~20장, 21=부록(연습 문제 해답+주석). 색인 없음(99 없음). 원본 13,529줄, **재결합본이 원본과 byte 단위 완전 일치** 검증. **페이지 번호: 미캡처**(러닝 헤더/푸터 없음) → 검증 생략, 라인 합계로 무결성 확인. ⚠️ 챕터 마커 OCR 오염: `N장`이 `4정`·`6잔`·`7잫`·`9자`·`11정`·`12자`·`13잔`~`16잔`·`17자`·`18`·`19` 등으로 깨져 있음(위치는 `연습 문제 해답` 러닝 라인 + 마커 + 제목 + 미니 목차 순으로 일정). 각 장 첫머리에 절 번호 미니 목차(N.1~N.M) 포함
+- [x] `head-first-design-patterns/` (0~14, 99 = 16개 파일) - 헤드 퍼스트 디자인 패턴(개정판)(에릭 프리먼·엘리자베스 롭슨·케이시 시에라·버트 베이츠 지음, 서환수 옮김, 한빛미디어, 2022. 원서 Head First Design Patterns 2nd Edition). 0=찬사/판권/목차+00장(들어가며), 1~14=Ch01~Ch14, 99=찾아보기. 원본 23,971줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 636882572, 1,185,374 bytes) 검증**. 챕터 시작 마커는 `CHAPTER`+번호 2줄 형식(예: `CHAPTER`\`01`), 러닝 헤더/푸터는 `{쪽} Chapter {NN} {제목}`(짝수쪽)·`{제목} {쪽}`(홀수쪽) 형식. **페이지 번호: 안정적 캡처, 순차 검증 통과**(짝수쪽 26~648 중 299개, 누락 13개는 챕터 시작/전면 그림 페이지). ⚠️ **OCR `>` 인용 접두어 오염**: 일부 구간이 통째로 인용 블록으로 인식되어 줄 앞에 `> ` 부착(9장=815줄·14장=299줄(44%)·1장=382줄·2장=327줄에 집중, clean-code 16·17장과 유사) → 노트 작성 시 제거 필요. CHAPTER 12 마커도 이 오염으로 자동 탐지에서 누락되어 수동 확정(line 19052). Chapter 00(들어가며)은 도입부(이 책을 읽는 방법·학습법) 성격이라 0에 포함
+- [x] `mastering-api-architecture/` (0~10, 99 = 12개 파일) - 모던 API 아키텍처 설계 전략(제임스 고프·대니얼 브라이언트·매튜 어번 지음, 장현희 옮김, 책만, 2026. 원서 *Mastering API Architecture*, O'Reilly 2023). **0=표지/판권/추천의 글/여는 글/지은이·옮긴이 소개/목차/들어가며 + 0장**(0장이 있는 책이라 앞부분과 한 파일로 - programmers-coding-test 선례), 1~10=1장~10장(4부 구성: 1부=Ch1-2·2부=Ch3-4·3부=Ch5-7·4부=Ch8-10, 부 표지는 각 부 첫 챕터 파일 맨 앞), 99=찾아보기+뒤표지. 부록 없음. 원본 10,041줄, **재결합본이 원본과 byte 단위 완전 일치(cksum 4052774667, 673,915 bytes) 검증**. **페이지 번호: 안정적 캡처, 순차 검증 통과**(단독 숫자 라인 277개/294 = 94%, 누락 17개는 전부 부·장 표지와 전면 그림 페이지 - 32·48~50·108~110·146·187~188·238·264~266·318). ⚠️ **장 마커 OCR 오염**: `1잫`·`2잠`·`5잫`·`6잠`·`7잫`처럼 깨져 있어 단독 `N장` 패턴 검색으로는 0·3·4·8·9·10장만 잡힌다(나머지는 장 제목 문자열로 탐색). 러닝 헤더는 장 제목이 단독 라인으로 반복 등장
 
 ---
 
@@ -367,16 +368,16 @@ origin.md에 페이지 번호가 OCR로 담겨 있으면, 분리·정리 시 **�
 
 코드 블록 내부에 `// ①` `// ②` 원문자 주석이 **있는지 없는지**에 따라 설명 리스트 형식을 분기한다.
 
-**Case A — 코드에 `// ①` 마커 없음 → `1. 2. 3.` numbered list**
+**Case A - 코드에 `// ①` 마커 없음 → `1. 2. 3.` numbered list**
 - 원문자가 임의 번호 역할만 하므로 표준 numbered list 사용
 - ❌ 금지: `- ① 설명` (Notion에서 불릿 + 원문자 이중 마킹으로 보임)
 - ✅ 사용: `1. 설명`
 
-**Case B — 코드에 `// ①` 마커 있음 → 원문자 유지 필수**
+**Case B - 코드에 `// ①` 마커 있음 → 원문자 유지 필수**
 - 코드 주석과 설명이 일대일 매칭되어야 하므로 리터럴 원문자 유지
 - ✅ 사용: `- **① `code signature`**: 설명` 또는 `**①** `code`\n설명` 형식
 
-**Case C — `> **참고**:` 안에 리스트가 들어가는 패턴 → 인용문 해체**
+**Case C - `> **참고**:` 안에 리스트가 들어가는 패턴 → 인용문 해체**
 - Notion에서 인용문 안 리스트는 별개 블록으로 조각남
 - 해결: 인용문(`>`)을 제거하고 일반 텍스트 + numbered list로 재구성
 
@@ -386,26 +387,25 @@ origin.md에 페이지 번호가 OCR로 담겨 있으면, 분리·정리 시 **�
 
 ```md
 ❌ Notion에서 두 개의 별개 인용 블록으로 나옴
-> 교회 첨탑 위의 풍향계가 강철로 만들어졌다 해도, ...
-> — 하인리히 하이네(Heinrich Heine)
+> 교회 첨탑 위의 풍향계가 강철로 만들어졌다 해도, ...<br>- 하인리히 하이네(Heinrich Heine)
 
 ✅ 하나의 인용 블록에 두 줄로 렌더링
-> 교회 첨탑 위의 풍향계가 강철로 만들어졌다 해도, ...<br>— 하인리히 하이네(Heinrich Heine)
+> 교회 첨탑 위의 풍향계가 강철로 만들어졌다 해도, ...<br>- 하인리히 하이네(Heinrich Heine)
 ```
 
 **적용 대상 (isolated 인용 run)**:
-- 챕터 여는 인용문 + 저자 표기 (`> 인용문<br>— 저자명`)
+- 챕터 여는 인용문 + 저자 표기 (`> 인용문<br>- 저자명`)
 - 원칙/개념 정의 (`> **원칙명**<br>**정의 내용**`)
 - 대화 시나리오 (`> 화자A: "..."<br>화자B: "..."<br>...`)
 - 영문 원문 + 한국어 번역 병기 (`> English<br>한국어`)
 
 **병합 예외 (그대로 유지)**:
-- 콜아웃 라벨로 시작하는 인용문 (`> **핵심 통찰**:`, `> **Uncle Bob의 경험**:`, `> **Petzold의 비유**:`, `> **실무 팁**:`) — Notion 업로드 시 콜아웃 블록으로 별도 변환됨
-- `>` 빈 줄이 포함된 multi-line 인용문 (콜아웃 내부 구조, 유스케이스 블록 등) — 자체 구조 보존 필요
+- 콜아웃 라벨로 시작하는 인용문 (`> **핵심 통찰**:`, `> **Uncle Bob의 경험**:`, `> **Petzold의 비유**:`, `> **실무 팁**:`) - Notion 업로드 시 콜아웃 블록으로 별도 변환됨
+- `>` 빈 줄이 포함된 multi-line 인용문 (콜아웃 내부 구조, 유스케이스 블록 등) - 자체 구조 보존 필요
 
 **문단 구분이 필요한 경우**: `<br><br>` 사용
 ```md
-> 첫 번째 문단<br><br>두 번째 문단<br><br>— 저자
+> 첫 번째 문단<br><br>두 번째 문단<br><br>- 저자
 ```
 
 ### 인라인 코드 백틱 규칙
@@ -422,7 +422,7 @@ origin.md에 페이지 번호가 OCR로 담겨 있으면, 분리·정리 시 **�
 
 **리터럴 백틱 문자를 인라인 코드로 표기**할 때도 더블 백틱 사용:
 ```md
-✅ `` ` `` — 백틱 문자 한 개 표기
+✅ `` ` `` - 백틱 문자 한 개 표기
 ```
 
 ### 검증 도구
@@ -444,11 +444,11 @@ origin.md에 페이지 번호가 OCR로 담겨 있으면, 분리·정리 시 **�
 
 1. **책 README 완성**: 개요·학습 가이드·핵심 개념 맵을 채우고, 목차 표의 제목을 노트 파일 링크로 연결한다 ("README 표준 구조")
 2. **`## 시그니처 요소와 표기 규칙` 절 추가**: 그 책에서 실제로 쓴 콜아웃·인용·코드 병기 방식을 정의로 남긴다 (다음에 이어 쓰거나 Notion에 올릴 때의 기준이 된다)
-3. **인용문 수집**: 에피그래프·외부 명언·저자의 기억할 문장을 README `## 인용문` 절에 모으고 **루트 `QUOTES.md`에도 같은 내용을 추가**한다 (형식 `> 인용문<br>— 화자 (위치: Ch/Topic)`). 인용문이 마땅치 않은 책이면 생략하되 그 사실을 사용자에게 알린다
+3. **인용문 수집**: 에피그래프·외부 명언·저자의 기억할 문장을 README `## 인용문` 절에 모으고 **루트 `QUOTES.md`에도 같은 내용을 추가**한다 (형식 `> 인용문<br>- 화자 (위치: Ch/Topic)`). 인용문이 마땅치 않은 책이면 생략하되 그 사실을 사용자에게 알린다
 4. **`KEYWORDS.md` 등록**: 목차 표에 새로 쓴 핵심 단어 중 **동의어·이표기가 갈리는 개념**을 가나다순으로 추가한다 (역어가 여러 개인 외래 개념은 특히 빠뜨리지 말 것)
 5. **Notion 업로드용 규칙 자체 점검**: "Notion 업로드용 마크다운 작성 규칙"의 검사 4종(인용문 `<br>` 병합 누락, 리스트 넘버링 Case A/B/C 위반, 인라인 코드 백틱 짝)을 노트 전체에 돌린다. 업로드 시점이 아니라 **작성 시점에** 맞춰 둔다
 6. **상태 갱신**: 이 파일 "완료된 작업"의 해당 항목을 **완료**로 바꾸고, 루트 `README.md` 책 목록에서 분류(노트만 완료 / origin만)와 한 줄을 옮긴다
-7. **커밋**: 논리 단위(파트 경계 등)로 나눠 커밋을 제안한다. **Notion 업로드는 여기에 포함하지 않는다** — 외부 서비스 반영이므로 사용자가 요청할 때만 진행한다
+7. **커밋**: 논리 단위(파트 경계 등)로 나눠 커밋을 제안한다. **Notion 업로드는 여기에 포함하지 않는다** - 외부 서비스 반영이므로 사용자가 요청할 때만 진행한다
 
 ## 작업 시 유의사항
 

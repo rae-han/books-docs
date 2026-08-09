@@ -632,7 +632,7 @@ DATABASE_URL="postgresql://admin:SecurePassword123@my-app-proxy.proxy-xxxxxx.ap-
 ```
 
 ```typescript
-// src/db.ts — Prisma 클라이언트 싱글턴
+// src/db.ts - Prisma 클라이언트 싱글턴
 import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
@@ -647,7 +647,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 ```
 
 ```typescript
-// src/routes/users.ts — 사용 예시
+// src/routes/users.ts - 사용 예시
 import { prisma } from '../db';
 
 // 사용자 생성

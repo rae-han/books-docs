@@ -8,7 +8,7 @@
 
 ## 1. 안티패턴의 정의와 기원
 
-**안티패턴**(*Anti-Pattern — 문제를 해결하는 것처럼 보이지만 실제로는 더 큰 문제를 야기하는 잘못된 설계*)이라는 용어는 1995년 앤드루 쾨니히(*Andrew Koenig*)가 GoF의 디자인 패턴에서 영감을 받아 처음 만들었다. 디자인 패턴이 "반복되는 문제에 대한 검증된 해결책"이라면, 안티패턴은 "반복되는 문제에 대한 **검증된 나쁜 해결책**"이다.
+**안티패턴**(*Anti-Pattern - 문제를 해결하는 것처럼 보이지만 실제로는 더 큰 문제를 야기하는 잘못된 설계*)이라는 용어는 1995년 앤드루 쾨니히(*Andrew Koenig*)가 GoF의 디자인 패턴에서 영감을 받아 처음 만들었다. 디자인 패턴이 "반복되는 문제에 대한 검증된 해결책"이라면, 안티패턴은 "반복되는 문제에 대한 **검증된 나쁜 해결책**"이다.
 
 안티패턴에는 두 가지 핵심 개념이 담겨 있다:
 
@@ -25,10 +25,10 @@
 
 | 상황 | 결과 |
 |------|------|
-| 좋은 설계 + 좋은 컨텍스트 | **패턴** — 올바른 해결책 |
-| 나쁜 설계 + 좋은 컨텍스트 | **안티패턴** — 상황은 맞지만 접근이 잘못됨 |
-| 좋은 설계 + 나쁜 컨텍스트 | **오용** — 올바른 패턴을 잘못된 상황에 적용 |
-| 나쁜 설계 + 나쁜 컨텍스트 | **혼란** — 전면 재설계 필요 |
+| 좋은 설계 + 좋은 컨텍스트 | **패턴** - 올바른 해결책 |
+| 나쁜 설계 + 좋은 컨텍스트 | **안티패턴** - 상황은 맞지만 접근이 잘못됨 |
+| 좋은 설계 + 나쁜 컨텍스트 | **오용** - 올바른 패턴을 잘못된 상황에 적용 |
+| 나쁜 설계 + 나쁜 컨텍스트 | **혼란** - 전면 재설계 필요 |
 
 > **핵심 통찰**: 안티패턴을 이해하는 것은 디자인 패턴을 아는 것만큼이나 중요하다. 패턴을 배우면 "무엇을 해야 하는지" 알 수 있지만, 안티패턴을 배우면 "무엇을 하지 말아야 하는지"와 "잘못된 길에서 어떻게 빠져나오는지"를 알 수 있다.
 
@@ -86,7 +86,7 @@ export function getCurrentUser(): string | null {
 `setTimeout`이나 `setInterval`에 함수 대신 문자열을 전달하면 내부적으로 `eval()`이 호출된다. 이는 보안 취약점과 성능 저하를 야기한다.
 
 ```typescript
-// 안티패턴: 문자열 전달 — 내부적으로 eval() 호출
+// 안티패턴: 문자열 전달 - 내부적으로 eval() 호출
 setTimeout("console.log('hello')", 1000);
 setInterval("updateCounter()", 500);
 
@@ -201,7 +201,7 @@ document.body.appendChild(heading);
 ```typescript
 // 예: 싱글턴 패턴의 양면
 
-// 올바른 사용: DB 연결 풀 — 실제로 하나만 있어야 하는 리소스
+// 올바른 사용: DB 연결 풀 - 실제로 하나만 있어야 하는 리소스
 class DatabasePool {
   private static instance: DatabasePool | null = null;
   private constructor(private pool: Connection[]) {}
@@ -214,7 +214,7 @@ class DatabasePool {
   }
 }
 
-// 안티패턴: 모든 서비스를 싱글턴으로 — 테스트와 의존성 주입 불가능
+// 안티패턴: 모든 서비스를 싱글턴으로 - 테스트와 의존성 주입 불가능
 class UserService {
   private static instance: UserService | null = null;
   private constructor() {}
@@ -265,7 +265,7 @@ const CartContext = createContext<CartState>(defaultCart);
 TypeScript를 사용하면서 `any`를 남발하면 타입 시스템의 이점을 모두 잃게 된다. "TypeScript를 사용하고 있다"는 착각만 남는다.
 
 ```typescript
-// 안티패턴: any 남용 — "TypeScript를 사용하는 척하는 JavaScript"
+// 안티패턴: any 남용 - "TypeScript를 사용하는 척하는 JavaScript"
 function processData(data: any): any {
   return data.items.map((item: any) => ({
     id: item.id,
@@ -317,7 +317,7 @@ async function fetchUser(id: string): Promise<User> {
 
 ### 4.2 배럴 파일의 무분별한 사용
 
-배럴 파일(*Barrel File — `index.ts`에서 여러 모듈을 re-export하는 파일*)은 import를 깔끔하게 만들어 주지만, 과도하게 사용하면 번들 크기 증가와 순환 의존성 문제를 야기한다.
+배럴 파일(*Barrel File - `index.ts`에서 여러 모듈을 re-export하는 파일*)은 import를 깔끔하게 만들어 주지만, 과도하게 사용하면 번들 크기 증가와 순환 의존성 문제를 야기한다.
 
 ```typescript
 // 안티패턴: 깊은 배럴 파일 체인
@@ -361,7 +361,7 @@ export * from "./Label";
 "나중에 필요할지도 모른다"는 이유로 불필요한 추상 계층을 만드는 것은 코드의 복잡성만 증가시킨다.
 
 ```typescript
-// 안티패턴: 과도한 추상화 — 단순한 API 호출에 3개의 추상 계층
+// 안티패턴: 과도한 추상화 - 단순한 API 호출에 3개의 추상 계층
 
 // Layer 1: 추상 HTTP 클라이언트
 abstract class BaseHttpClient {
@@ -390,7 +390,7 @@ class UserRepository extends BaseRepository<User> {
 ```
 
 ```typescript
-// 탈출 경로: YAGNI 원칙 — 필요할 때 추상화하라
+// 탈출 경로: YAGNI 원칙 - 필요할 때 추상화하라
 
 // 시작: 단순한 함수로 충분
 async function getUsers(): Promise<User[]> {
@@ -407,7 +407,7 @@ async function getUserById(id: string): Promise<User> {
 // 필요시 점진적으로 추상화 계층 추가
 ```
 
-> **핵심 통찰**: YAGNI(*You Aren't Gonna Need It — 지금 필요하지 않은 것을 미리 만들지 마라*)는 안티패턴을 방지하는 핵심 원칙이다. Ch02에서 배운 "세 가지 법칙"처럼, 추상화도 최소 세 번의 반복이 확인된 후에 도입하는 것이 안전하다.
+> **핵심 통찰**: YAGNI(*You Aren't Gonna Need It - 지금 필요하지 않은 것을 미리 만들지 마라*)는 안티패턴을 방지하는 핵심 원칙이다. Ch02에서 배운 "세 가지 법칙"처럼, 추상화도 최소 세 번의 반복이 확인된 후에 도입하는 것이 안전하다.
 
 ### 4.4 Prop Drilling 대신 컴포지션 미활용
 
@@ -493,7 +493,7 @@ React의 `useEffect`를 모든 로직의 만능 도구로 사용하는 것은 �
 function FilteredList({ items, query }: FilteredListProps) {
   const [filteredItems, setFilteredItems] = useState<Item[]>([]);
 
-  // 불필요한 useEffect — 렌더링 중에 계산하면 충분하다
+  // 불필요한 useEffect - 렌더링 중에 계산하면 충분하다
   useEffect(() => {
     setFilteredItems(items.filter((item) => item.name.includes(query)));
   }, [items, query]);
@@ -505,7 +505,7 @@ function FilteredList({ items, query }: FilteredListProps) {
 function Form() {
   const [submitted, setSubmitted] = useState(false);
 
-  // 불필요한 useEffect — 이벤트 핸들러에서 직접 처리하면 된다
+  // 불필요한 useEffect - 이벤트 핸들러에서 직접 처리하면 된다
   useEffect(() => {
     if (submitted) {
       sendAnalytics("form_submitted");
@@ -743,9 +743,9 @@ const eslintConfig = {
 ## 요약
 
 - **안티패턴**은 앤드루 쾨니히가 1995년 GoF에서 영감을 받아 만든 용어로, **잘못된 해결책**과 **올바른 해결책으로의 탈출 경로**를 함께 기술한다
-- 안티패턴을 배우는 것은 패턴을 배우는 것만큼 중요하다 — "하지 말아야 할 것"을 아는 것이 좋은 설계의 절반이다
+- 안티패턴을 배우는 것은 패턴을 배우는 것만큼 중요하다 - "하지 말아야 할 것"을 아는 것이 좋은 설계의 절반이다
 - 자바스크립트의 전통적 안티패턴: **전역 네임스페이스 오염**, **setTimeout 문자열 전달**, **Object.prototype 수정**, **인라인 JS**, **document.write**
-- **완벽한 설계도 잘못된 상황에서 사용되면 안티패턴이 된다** — 패턴 적용 시 항상 컨텍스트를 고려해야 한다
+- **완벽한 설계도 잘못된 상황에서 사용되면 안티패턴이 된다** - 패턴 적용 시 항상 컨텍스트를 고려해야 한다
 - 현대 TypeScript/React 안티패턴: **`any` 남용**, **배럴 파일 과용**, **불필요한 추상화**, **prop drilling**, **useEffect 만능주의**, **조기 최적화**, **신 컴포넌트**
 - 안티패턴 탈출은 **인식 → 영향 분석 → 대안 탐색 → 점진적 전환**의 4단계 프로세스를 따른다
 - ESLint와 TypeScript strict 모드를 활용하면 많은 안티패턴을 자동으로 감지할 수 있다

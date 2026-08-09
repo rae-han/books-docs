@@ -256,7 +256,7 @@ private Money calculateTax(Money subtotal) {
 | 테스트하기 어렵다 | 격리된 부분만 독립적으로 테스트 가능 |
 | 실수 시 원인 파악이 어렵다 | 문제 발생 시 격리된 부분에 한정된다 |
 
-> **핵심 통찰**: "변경하기 전에 변경을 쉽게 만들어라. (경고: 이것은 어려울 수 있다.) 그다음 쉬운 변경을 하라." — Kent Beck. Isolate Change는 "변경을 쉽게 만드는" 첫 번째 단계다.
+> **핵심 통찰**: "변경하기 전에 변경을 쉽게 만들어라. (경고: 이것은 어려울 수 있다.) 그다음 쉬운 변경을 하라." - Kent Beck. Isolate Change는 "변경을 쉽게 만드는" 첫 번째 단계다.
 
 ---
 
@@ -502,7 +502,7 @@ Extract Method는 TDD에서 **가장 자주 사용하는 리팩토링**이다. G
 ### 6.3 예시
 
 ```java
-// 인라인 전 — 메서드가 오히려 가독성을 해친다
+// 인라인 전 - 메서드가 오히려 가독성을 해친다
 class Account {
     boolean isOverdrawn() {
         return !isPositiveBalance();
@@ -513,7 +513,7 @@ class Account {
     }
 }
 
-// 인라인 후 — 더 명확하다
+// 인라인 후 - 더 명확하다
 class Account {
     boolean isOverdrawn() {
         return balance <= 0;
@@ -525,7 +525,7 @@ class Account {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 인라인 전 — 메서드가 오히려 가독성을 해친다
+// 인라인 전 - 메서드가 오히려 가독성을 해친다
 class Account {
   isOverdrawn(): boolean {
     return !this.isPositiveBalance();
@@ -536,7 +536,7 @@ class Account {
   }
 }
 
-// 인라인 후 — 더 명확하다
+// 인라인 후 - 더 명확하다
 class Account {
   isOverdrawn(): boolean {
     return this.balance <= 0;
@@ -639,7 +639,7 @@ class Sum implements Expression { /* ... */ }
 Kent Beck은 메서드 이동의 신호로 **Feature Envy**(기능 질투)를 든다:
 
 ```java
-// Feature Envy — Printer가 Order의 내부를 너무 많이 들여다본다
+// Feature Envy - Printer가 Order의 내부를 너무 많이 들여다본다
 class Printer {
     String formatOrder(Order order) {
         return order.getCustomerName() + ": "
@@ -653,7 +653,7 @@ class Printer {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// Feature Envy — Printer가 Order의 내부를 너무 많이 들여다본다
+// Feature Envy - Printer가 Order의 내부를 너무 많이 들여다본다
 class Printer {
   formatOrder(order: Order): string {
     return `${order.getCustomerName()}: `
@@ -715,7 +715,7 @@ TDD에서 Move Method는 "코드를 작성하고 보니 이 메서드의 위치�
 ### 9.3 예시
 
 ```java
-// 복잡한 메서드 — 많은 지역 변수와 매개변수
+// 복잡한 메서드 - 많은 지역 변수와 매개변수
 class Order {
     Money calculatePrice(
             List<Item> items, Customer customer,
@@ -734,7 +734,7 @@ class Order {
 <summary>TypeScript 버전</summary>
 
 ```typescript
-// 복잡한 메서드 — 많은 지역 변수와 매개변수
+// 복잡한 메서드 - 많은 지역 변수와 매개변수
 class Order {
   calculatePrice(
     items: Item[], customer: Customer,
@@ -781,7 +781,7 @@ class PriceCalculator {
         return applyTax();
     }
 
-    // 이제 Extract Method가 쉽다 — 지역 변수가 필드이므로
+    // 이제 Extract Method가 쉽다 - 지역 변수가 필드이므로
     private void computeBasePrice() { ... }
     private void computeItemDiscount() { ... }
     private void computeMemberDiscount() { ... }
@@ -823,7 +823,7 @@ class PriceCalculator {
     return this.applyTax();
   }
 
-  // 이제 Extract Method가 쉽다 — 지역 변수가 필드이므로
+  // 이제 Extract Method가 쉽다 - 지역 변수가 필드이므로
   private computeBasePrice(): void { /* ... */ }
   private computeItemDiscount(): void { /* ... */ }
   private computeMemberDiscount(): void { /* ... */ }
@@ -905,7 +905,7 @@ test('multiplication with currency', () => {
 매개변수가 계속 늘어나면 설계에 문제가 있다는 신호다:
 
 ```java
-// 매개변수가 너무 많은 메서드 — 나쁜 신호
+// 매개변수가 너무 많은 메서드 - 나쁜 신호
 Money calculate(int amount, String currency, double rate,
                 boolean taxIncluded, String discountCode,
                 Date validUntil, Customer customer) { ... }
@@ -999,7 +999,7 @@ class Converter {
     }
 }
 
-// 사용 — 훨씬 깔끔하다
+// 사용 - 훨씬 깔끔하다
 Converter converter = new Converter("CHF", bank);
 converter.convert(fiveDollars);
 converter.convertAll(portfolio);
@@ -1026,7 +1026,7 @@ class Converter {
   }
 }
 
-// 사용 — 훨씬 깔끔하다
+// 사용 - 훨씬 깔끔하다
 const converter = new Converter("CHF", bank);
 converter.convert(fiveDollars);
 converter.convertAll(portfolio);
