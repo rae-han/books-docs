@@ -1,7 +1,7 @@
 # 단위 테스트 (Unit Testing: Principles, Practices, and Patterns)
 
 > *Unit Testing: Principles, Practices, and Patterns* (Vladimir Khorikov, Manning, 2020)
-> 한국어판: 『단위 테스트 - 생산성과 품질을 위한 단위 테스트 원칙과 패턴』 (에이콘출판사, 2021)
+> 한국어판: "단위 테스트 - 생산성과 품질을 위한 단위 테스트 원칙과 패턴" (에이콘출판사, 2021)
 
 단위 테스트의 **"왜"와 "어떻게"**를 체계적으로 다루는 책. 단순한 작성 기법이 아니라 **좋은 테스트와 나쁜 테스트를 구분하는 원칙**을 제시한다.
 

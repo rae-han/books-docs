@@ -1,7 +1,7 @@
 # 리팩터링 2판 (Refactoring: Improving the Design of Existing Code, 2nd Edition)
 
 > *Refactoring: Improving the Design of Existing Code* (2nd Edition, Martin Fowler, Addison-Wesley, 2018)
-> 한국어판: 『리팩터링 2판 - 코드 구조를 체계적으로 개선하여 효율적인 리팩터링 구현하기』 (마틴 파울러 지음, 개앞맵시·남기혁 옮김, 한빛미디어, 2020)
+> 한국어판: "리팩터링 2판 - 코드 구조를 체계적으로 개선하여 효율적인 리팩터링 구현하기" (마틴 파울러 지음, 개앞맵시·남기혁 옮김, 한빛미디어, 2020)
 
 리팩터링의 고전. **겉보기 동작을 보존한 채 내부 구조를 개선하는** 작은 단계들의 기법을 정의하고, 코드에서 나는 **악취(bad smells)**를 감지해 **카탈로그의 기법**으로 치유하는 법을 다룬다.
 

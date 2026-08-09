@@ -96,7 +96,7 @@
 
 ## 5. 자율성, 통달, 목적의식
 
-다니엘 핑크(*Daniel Pink - 저서 『Drive』로 유명한 경영/동기부여 저술가*)의 저서 『Drive: The Surprising Truth about What Motivates』에서 돈은 충족되어야 할 기본 조건이고, 지식 노동자를 움직이는 것은 다음 세 가지라고 이야기한다.
+다니엘 핑크(*Daniel Pink - 저서 "Drive"로 유명한 경영/동기부여 저술가*)의 저서 "Drive: The Surprising Truth about What Motivates"에서 돈은 충족되어야 할 기본 조건이고, 지식 노동자를 움직이는 것은 다음 세 가지라고 이야기한다.
 
 | 요소 | 의미 |
 |---|---|

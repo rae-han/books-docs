@@ -4,7 +4,7 @@
 
 "stringly typed" 코드는 어떤 버그를 숨기는가? `string`을 리터럴 유니온·`keyof`로 좁히면 무엇이 좋아지는가?
 
-Item 7에서 봤듯 타입의 도메인은 그 타입에 할당 가능한 값의 집합이다. `string`의 도메인은 어마어마하다 — `"x"`와 `"y"`도 들어 있지만 『모비 딕』 전문(약 120만 자)도 들어 있다. `string` 타입 변수를 선언할 때마다 더 좁은 타입이 적절하지 않은지 물어야 한다.
+Item 7에서 봤듯 타입의 도메인은 그 타입에 할당 가능한 값의 집합이다. `string`의 도메인은 어마어마하다 — `"x"`와 `"y"`도 들어 있지만 "모비 딕" 전문(약 120만 자)도 들어 있다. `string` 타입 변수를 선언할 때마다 더 좁은 타입이 적절하지 않은지 물어야 한다.
 
 ## 1. "stringly typed" 인터페이스의 문제
 
@@ -39,7 +39,7 @@ recordRelease(kindOfBlue.releaseDate, kindOfBlue.title);  // OK — 에러여야
 
 인수 순서가 뒤바뀌었는데 둘 다 string이라 통과한다. string 타입이 만연한 이런 코드를 "stringly typed"라고 부르기도 한다(같은 타입의 위치 매개변수 반복 문제는 Item 38).
 
-타입을 좁혀 보자. 『모비 딕』 전문이 아티스트 이름이나 앨범 제목일 가능성은 낮아도 아주 없지는 않으니 그 둘은 `string`이 적절하다. `releaseDate`는 `Date` 객체로 형식 문제를 원천 차단하고, `recordingType`은 값 두 개짜리 유니온으로 정의한다(enum도 가능하지만 일반적으로 피하길 권한다 — Item 72).
+타입을 좁혀 보자. "모비 딕" 전문이 아티스트 이름이나 앨범 제목일 가능성은 낮아도 아주 없지는 않으니 그 둘은 `string`이 적절하다. `releaseDate`는 `Date` 객체로 형식 문제를 원천 차단하고, `recordingType`은 값 두 개짜리 유니온으로 정의한다(enum도 가능하지만 일반적으로 피하길 권한다 — Item 72).
 
 ```typescript
 type RecordingType = 'studio' | 'live';

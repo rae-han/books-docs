@@ -1,7 +1,7 @@
 # 레거시 코드 활용 전략 (Working Effectively with Legacy Code)
 
 > *Working Effectively with Legacy Code* (Michael C. Feathers, Prentice Hall, 2004. Robert C. Martin Series)
-> 한국어판: 『레거시 코드 활용 전략 - 손대기 두려운 낡은 코드, 안전한 변경과 테스트 기법』 (심윤보·이정문 옮김, 에이콘출판사)
+> 한국어판: "레거시 코드 활용 전략 - 손대기 두려운 낡은 코드, 안전한 변경과 테스트 기법" (심윤보·이정문 옮김, 에이콘출판사)
 
 기존 코드베이스를 안전하고 효과적으로 변경하기 위한 전략과 기법을 체계적으로 정리한 실무 지침서. 저자의 유명한 정의 - **"레거시 코드란 단순히 테스트가 없는 코드다(Legacy code is simply code without tests)"** - 위에서, 테스트 없는 코드에 안전망을 만들어 점진적으로 개선하는 법을 다룬다.
 

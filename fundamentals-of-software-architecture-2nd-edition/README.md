@@ -1,9 +1,9 @@
 # 소프트웨어 아키텍처 The Basics (Fundamentals of Software Architecture, 2nd Edition)
 
 > *Fundamentals of Software Architecture: The Basics* (2nd Edition, Mark Richards & Neal Ford, O'Reilly, 2025)
-> 한국어판: 『소프트웨어 아키텍처 The Basics』 (한빛미디어)
+> 한국어판: "소프트웨어 아키텍처 The Basics" (한빛미디어)
 
-마크 리처즈와 닐 포드의 소프트웨어 아키텍처 입문 고전 **개정 2판**. 1판(『소프트웨어 아키텍처 101』, 24장)을 27장으로 확장하며 **제3법칙**과 4개 신규 장(모듈형 모놀리스·아키텍처 패턴·아키텍처 교차점·법칙 재검토), 생성형 AI의 영향을 반영했다.
+마크 리처즈와 닐 포드의 소프트웨어 아키텍처 입문 고전 **개정 2판**. 1판("소프트웨어 아키텍처 101", 24장)을 27장으로 확장하며 **제3법칙**과 4개 신규 장(모듈형 모놀리스·아키텍처 패턴·아키텍처 교차점·법칙 재검토), 생성형 AI의 영향을 반영했다.
 
 ## 책 정보
 

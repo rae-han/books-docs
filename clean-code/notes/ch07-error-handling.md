@@ -272,7 +272,7 @@ public class PerDiemMealExpenses implements MealExpenses {
 }
 ```
 
-이를 **특수 사례 패턴(Special Case Pattern)**(*Special Case Pattern - Martin Fowler의 『리팩터링』에서 소개된 패턴으로, Null Object 패턴의 일반화된 형태다.*)이라 부른다. 클래스를 만들거나 객체를 조작해 특수 사례를 처리하는 방식이다. 클라이언트 코드가 예외적인 상황을 처리할 필요가 없어진다.
+이를 **특수 사례 패턴(Special Case Pattern)**(*Special Case Pattern - Martin Fowler의 "리팩터링"에서 소개된 패턴으로, Null Object 패턴의 일반화된 형태다.*)이라 부른다. 클래스를 만들거나 객체를 조작해 특수 사례를 처리하는 방식이다. 클라이언트 코드가 예외적인 상황을 처리할 필요가 없어진다.
 
 ---
 

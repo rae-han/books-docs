@@ -2,6 +2,63 @@
 
 로컬 노트가 수정되어 Notion에 올라간 버전과 달라진 내역을 추적한다. 재업로드를 마친 항목은 체크한다.
 
+## 2026-08-09 책 제목 표기 전환 (낫표 -> 큰따옴표)
+
+**무엇이 바뀌었나**
+
+낫표(`『』`, `「」`)로 표기하던 책/작품 제목을 전부 큰따옴표로 치환했다(490건 / 162개 파일, 코드 펜스 안 2건은 보존). 꺾쇠(`<제목>`)는 마크다운이 raw HTML로 파싱해 영문 제목이 렌더링에서 사라지므로 채택하지 않았다.
+
+**재업로드 대상**: 아래는 `notes/` 본문이 바뀐 책이다(총 124개 파일). README/공통 문서만 바뀐 책은 Notion 본문에 영향이 없다.
+
+| 책 | 변경 노트 수 | Notion 조치 |
+|----|----|----|
+| a-common-sense-guide-to-data-structures-and-algorithms | 1 | **재업로드 필요** |
+| clean-code | 3 | **재업로드 필요** |
+| clean-software | 9 | **재업로드 필요** |
+| code-that-fits-in-your-head | 7 | **재업로드 필요** |
+| design-it-from-programmer-to-software-architect | 12 | **재업로드 필요** |
+| effective-typescript-2nd | 4 | 미업로드 - 해당 없음 |
+| functional-programming-complete-guide | 3 | **재업로드 필요** |
+| fundamentals-of-software-architecture-1st-edition | 12 | **재업로드 필요** |
+| fundamentals-of-software-architecture-2nd-edition | 5 | **재업로드 필요** |
+| head-first-design-patterns | 1 | **재업로드 필요** |
+| javascript-react-pattern | 2 | **재업로드 필요** |
+| mastering-api-architecture | 5 | **재업로드 필요** |
+| minimalism-programmer | 1 | **재업로드 필요** |
+| multi-paradigm-programming | 2 | **재업로드 필요** |
+| quant | 5 | 미업로드 - 해당 없음 |
+| refactoring-2nd-edition | 1 | **재업로드 필요** |
+| the-complete-software-developers-career-guide | 26 | **재업로드 필요** |
+| the-essence-of-object-orientation-객체지향의-사실과-오해 | 3 | **재업로드 필요** |
+| the-hexagonal-developer | 9 | **재업로드 필요** |
+| the-pragmatic-programmer | 1 | **재업로드 필요** |
+| the-software-craftsman | 11 | **재업로드 필요** |
+| this-is-coding-test | 1 | 미업로드 - 해당 없음 |
+
+**재업로드 체크리스트** (완료 시 체크)
+
+- [ ] a-common-sense-guide-to-data-structures-and-algorithms (1개)
+- [ ] clean-code (3개)
+- [ ] clean-software (9개)
+- [ ] code-that-fits-in-your-head (7개)
+- [ ] design-it-from-programmer-to-software-architect (12개)
+- [ ] functional-programming-complete-guide (3개)
+- [ ] fundamentals-of-software-architecture-1st-edition (12개)
+- [ ] fundamentals-of-software-architecture-2nd-edition (5개)
+- [ ] head-first-design-patterns (1개)
+- [ ] javascript-react-pattern (2개)
+- [ ] mastering-api-architecture (5개)
+- [ ] minimalism-programmer (1개)
+- [ ] multi-paradigm-programming (2개)
+- [ ] refactoring-2nd-edition (1개)
+- [ ] the-complete-software-developers-career-guide (26개)
+- [ ] the-essence-of-object-orientation-객체지향의-사실과-오해 (3개)
+- [ ] the-hexagonal-developer (9개)
+- [ ] the-pragmatic-programmer (1개)
+- [ ] the-software-craftsman (11개)
+
+---
+
 ## 2026-08-09 문장부호 정리 (dash + 가운뎃점)
 
 **무엇이 바뀌었나**
@@ -38,7 +95,7 @@
 | head-first-design-patterns | 14 | **재업로드 필요** |
 | javascript-react-pattern | 16 | **재업로드 필요** |
 | legacy-code | 8 | **재업로드 필요** |
-| mastering-api-architecture | 11 | 미업로드 - 해당 없음 |
+| mastering-api-architecture | 11 | 해당 없음 - 2026-08-09 정리본으로 신규 업로드 완료 |
 | minimalism-programmer | 9 | **재업로드 필요** |
 | multi-paradigm-programming | 4 | **재업로드 필요** |
 | objects | 8 | **재업로드 필요** |

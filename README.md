@@ -16,7 +16,7 @@ docs/
     ├── origin.md                    ← PDF/OCR 통짜 원본 (.gitignore 대상, 커밋되지 않음)
     ├── origin/N.origin.md           ← 원본 챕터별 분리본 (.gitignore 대상, 커밋되지 않음)
     ├── notes/chNN-<kebab-case>.md   ← 상세 챕터 노트
-    └── summary/                     ← 요약 노트 (핵심만 추린 복습용)
+    └── summary/                     ← 요약 노트 (챕터 핵심을 담은 독립 학습 노트)
 ```
 
 각 책 README의 **목차 표**(`| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`)가 Notion 챕터 DB의 `핵심 단어`·`핵심 요약` 값의 **유일한 소스**다. 재업로드 시 항상 이 표를 기준으로 채운다.

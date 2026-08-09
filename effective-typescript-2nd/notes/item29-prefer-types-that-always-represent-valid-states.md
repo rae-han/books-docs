@@ -8,7 +8,7 @@
 
 이 장(Chapter 4) 전체를 여는 인용문이 방향을 잡아 준다.
 
-> Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowcharts; they'll be obvious.<br>순서도를 보여 주고 테이블을 감추면 나는 계속 어리둥절할 것이다. 테이블을 보여 달라. 그러면 순서도는 대개 필요 없을 것이다 — 자명할 테니까.<br>— 프레드 브룩스(Fred Brooks), 『맨먼스 미신』
+> Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowcharts; they'll be obvious.<br>순서도를 보여 주고 테이블을 감추면 나는 계속 어리둥절할 것이다. 테이블을 보여 달라. 그러면 순서도는 대개 필요 없을 것이다 — 자명할 테니까.<br>— 프레드 브룩스(Fred Brooks), "맨먼스 미신"
 
 ## 1. 웹 앱 상태 설계 — 무효한 상태가 만드는 혼란
 

@@ -1,7 +1,7 @@
 # 헤드 퍼스트 디자인 패턴 (Head First Design Patterns, 2nd Edition)
 
 > *Head First Design Patterns* (2nd Edition, Eric Freeman & Elisabeth Robson with Kathy Sierra & Bert Bates, O'Reilly, 2021)
-> 한국어판: 『헤드 퍼스트 디자인 패턴 (개정판)』 (서환수 옮김, 한빛미디어, 2022)
+> 한국어판: "헤드 퍼스트 디자인 패턴 (개정판)" (서환수 옮김, 한빛미디어, 2022)
 
 GoF 디자인 패턴을 Head First 시리즈 특유의 **시각적이고 대화체인 방식**으로 풀어낸 입문서. 오리 시뮬레이터·스타버즈 커피·피자 가게·뽑기 기계 같은 친근한 예제로 14가지 핵심 패턴과 9가지 객체지향 디자인 원칙을 학습한다.
 

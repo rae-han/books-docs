@@ -267,7 +267,7 @@ public class AutoDebitRegistererTest {
 
 ### 딥 다이브: Characterization Test
 
-『레거시 코드 활용 전략』(에이콘출판사, 2018)이란 책에 Characterization Test가 소개되어 있다. 우리말로는 '기능·특징 묘사 테스트' 정도로 번역할 수 있다. Characterization Test는 소프트웨어가 실제로 어떻게 동작하는지를 기술하는 용도로 사용된다. 앞서 새로운 주문 시스템에서 작성한 통합 테스트가 Characterization Test에 해당한다.
+"레거시 코드 활용 전략"(에이콘출판사, 2018)이란 책에 Characterization Test가 소개되어 있다. 우리말로는 '기능·특징 묘사 테스트' 정도로 번역할 수 있다. Characterization Test는 소프트웨어가 실제로 어떻게 동작하는지를 기술하는 용도로 사용된다. 앞서 새로운 주문 시스템에서 작성한 통합 테스트가 Characterization Test에 해당한다.
 
 ### 딥 다이브: 통합 테스트 코드 작성 경험
 

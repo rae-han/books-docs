@@ -1,7 +1,7 @@
 # 테스트 주도 개발 (Test-Driven Development: By Example)
 
 > *Test-Driven Development: By Example* (Kent Beck, Addison-Wesley, 2002)
-> 한국어판: 『테스트 주도 개발』 (김창준·강규영 옮김, 인사이트, 2014)
+> 한국어판: "테스트 주도 개발" (김창준·강규영 옮김, 인사이트, 2014)
 
 TDD 창시자 켄트 벡이 TDD의 철학과 실천법을 **직접 시연**하는 책. 이론 설명이 아니라 실제 코딩 세션을 따라가며 TDD를 체험하게 만드는 구조로, **Red(실패하는 테스트) → Green(최소한의 코드로 통과) → Refactor(중복 제거)**의 리듬이 책 전체를 관통한다.
 

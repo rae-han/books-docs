@@ -953,7 +953,7 @@ public interface Modem {
 
 - **DECORATOR** 패턴 → 클래스 이름에 `Decorator` 포함 (예: `AutoHangupModemDecorator`)
 - **객체를 문자열로 변환** → 자바의 `toString` 관례를 따르기
-- 팀이 고안한 **유비쿼터스 언어**(ubiquitous language)(*ubiquitous language - 에릭 에반스(Eric Evans)가 『Domain Driven Design』에서 제안한 개념. 프로젝트 전반에서 개발자와 도메인 전문가가 공유하는 일관된 용어 체계.*) 사용하기
+- 팀이 고안한 **유비쿼터스 언어**(ubiquitous language)(*ubiquitous language - 에릭 에반스(Eric Evans)가 "Domain Driven Design"에서 제안한 개념. 프로젝트 전반에서 개발자와 도메인 전문가가 공유하는 일관된 용어 체계.*) 사용하기
 
 > **핵심 통찰**: 프로젝트에 유효한 의미가 담긴 이름을 많이 사용할수록 독자가 코드를 이해하기 쉬워진다.
 

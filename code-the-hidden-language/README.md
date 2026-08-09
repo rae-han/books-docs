@@ -1,7 +1,7 @@
 # 코드 (CODE: The Hidden Language of Computer Hardware and Software)
 
 > *CODE: The Hidden Language of Computer Hardware and Software* (2nd Edition, Charles Petzold, Microsoft Press, 2022)
-> 한국어판: 『CODE 코드 - 하드웨어와 소프트웨어에 숨어 있는 언어』 (김현규 옮김, 인사이트)
+> 한국어판: "CODE 코드 - 하드웨어와 소프트웨어에 숨어 있는 언어" (김현규 옮김, 인사이트)
 
 컴퓨터는 어떻게 작동하는가? 모스 부호와 손전등이라는 가장 단순한 통신 수단에서 출발해 전기 회로 → 논리 게이트 → 가산기 → 메모리 → CPU → 운영체제 → 프로그래밍 언어 → 웹까지, 컴퓨터의 모든 층위를 **밑바닥부터 하나씩 쌓아올리며** 설명하는 책.
 

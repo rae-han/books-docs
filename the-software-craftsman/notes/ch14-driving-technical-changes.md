@@ -8,7 +8,7 @@
 
 ## 1. 회의론(*Skepticism - 새로운 아이디어에 대한 반발/의심*)의 종류
 
-테렌스 라이언(*Terrence Ryan - 『Driving Technical Change』 저자*)의 분류에 저자의 관찰을 더한 회의론자 유형이다.
+테렌스 라이언(*Terrence Ryan - "Driving Technical Change" 저자*)의 분류에 저자의 관찰을 더한 회의론자 유형이다.
 
 ### 1.1 라이언의 분류
 

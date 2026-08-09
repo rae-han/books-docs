@@ -1,7 +1,7 @@
 # 컴퓨터 프로그램의 구조와 해석 (SICP: JavaScript Edition)
 
 > *Structure and Interpretation of Computer Programs, JavaScript Edition* (Harold Abelson, Gerald Jay Sussman with Julie Sussman / JavaScript 개편: Martin Henz, Tobias Wrigstad, MIT Press, 2022)
-> 한국어판: 『컴퓨터 프로그램의 구조와 해석: 자바스크립트 에디션』 (류광 옮김, 인사이트), 온라인: https://sicp.sourceacademy.org/
+> 한국어판: "컴퓨터 프로그램의 구조와 해석: 자바스크립트 에디션" (류광 옮김, 인사이트), 온라인: https://sicp.sourceacademy.org/
 
 1985년 초판 이래 컴퓨터 과학 교육의 고전인 MIT 입문 교재("마법사 책"). JavaScript Edition은 원서의 Scheme 코드를 JavaScript로 옮기면서 SICP의 핵심 철학 - **계산적 사고와 추상화의 힘** - 을 온전히 보존한다.
 

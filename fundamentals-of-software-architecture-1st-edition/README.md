@@ -1,7 +1,7 @@
 # 소프트웨어 아키텍처 101 (Fundamentals of Software Architecture, 1st Edition)
 
 > *Fundamentals of Software Architecture: An Engineering Approach* (Mark Richards & Neal Ford, O'Reilly, 2020)
-> 한국어판: 『소프트웨어 아키텍처 101 - 엔지니어링 접근 방식으로 배우는 소프트웨어 아키텍처 기초』 (이일웅 옮김, 한빛미디어, 2021)
+> 한국어판: "소프트웨어 아키텍처 101 - 엔지니어링 접근 방식으로 배우는 소프트웨어 아키텍처 기초" (이일웅 옮김, 한빛미디어, 2021)
 
 마크 리처즈(*Mark Richards - 분산 아키텍처 전문 소프트웨어 아키텍트, DeveloperToArchitect.com 창립자*)와 닐 포드(*Neal Ford - 쏘우트웍스 이사, 밈랭글러*)의 소프트웨어 아키텍처 입문 고전. 아키텍처를 **엔지니어링 접근 방식**으로 바라보며, 아키텍처 특성의 정의·측정·거버넌스부터 아키텍처 스타일 비교, 아키텍트의 테크닉과 소프트 스킬까지 다룬다.
 
@@ -19,7 +19,7 @@
 
 이 책의 뼈대는 두 개의 법칙이다 - **제1법칙: 소프트웨어 아키텍처의 모든 것은 다 트레이드오프다**, **제2법칙: '어떻게'보다 '왜'가 더 중요하다**. 아키텍처는 구조 하나로 정의되지 않고 **구조 + 아키텍처 특성 + 결정 + 설계 원칙**의 조합이며, 모든 결정은 그 당시 콘텍스트의 결과물이다.
 
-PART I은 아키텍처를 말하는 데 필요한 어휘(아키텍처 사고·모듈성·특성·퀀텀·컴포넌트), PART II는 8가지 아키텍처 스타일을 토폴로지와 **아키텍처 특성 등급표(별점 scorecard)**로 비교, PART III는 결정 기록(ADR)·리스크 분석·도식화·팀·협상·커리어를 다룬다. 같은 저자의 2판(『The Basics』)은 별도 폴더 [fundamentals-of-software-architecture-2nd-edition/](../fundamentals-of-software-architecture-2nd-edition/)에 있다.
+PART I은 아키텍처를 말하는 데 필요한 어휘(아키텍처 사고·모듈성·특성·퀀텀·컴포넌트), PART II는 8가지 아키텍처 스타일을 토폴로지와 **아키텍처 특성 등급표(별점 scorecard)**로 비교, PART III는 결정 기록(ADR)·리스크 분석·도식화·팀·협상·커리어를 다룬다. 같은 저자의 2판("The Basics")은 별도 폴더 [fundamentals-of-software-architecture-2nd-edition/](../fundamentals-of-software-architecture-2nd-edition/)에 있다.
 
 ## 목차
 

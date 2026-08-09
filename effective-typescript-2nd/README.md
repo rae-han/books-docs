@@ -1,6 +1,6 @@
 # 이펙티브 타입스크립트 2판 (Effective TypeScript, 2nd Edition)
 
-> Dan Vanderkam, *Effective TypeScript: 83 Specific Ways to Improve Your TypeScript* (2nd Edition), O'Reilly, 2024<br>1판 한국어판: 『이펙티브 타입스크립트』 (장원호 옮김, 인사이트, 2021) — 본 노트는 **원서 2판(영어)** 기반
+> Dan Vanderkam, *Effective TypeScript: 83 Specific Ways to Improve Your TypeScript* (2nd Edition), O'Reilly, 2024<br>1판 한국어판: "이펙티브 타입스크립트" (장원호 옮김, 인사이트, 2021) — 본 노트는 **원서 2판(영어)** 기반
 
 타입스크립트를 "아는" 단계에서 "잘 쓰는" 단계로 끌어올리는 Effective 시리즈 스타일의 실전 지침서. 83개의 독립적인 아이템(Item)이 각각 하나의 구체적인 조언을 담고, 아이템마다 "Things to Remember"로 마무리된다. 2판은 조건부 타입·템플릿 리터럴 타입 등 최근 5년의 언어 발전을 반영해 제네릭과 타입 수준 프로그래밍에 챕터 하나(Ch6)를 통째로 할애했다.
 
@@ -204,7 +204,7 @@ Effective 시리즈(Effective C++ 등)의 전통을 따라 **각 아이템은 �
 
 ## 인용문
 
-> Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowcharts; they'll be obvious.<br>순서도를 보여 주고 테이블을 감추면 나는 계속 어리둥절할 것이다. 테이블을 보여 달라. 그러면 순서도는 대개 필요 없을 것이다 — 자명할 테니까.<br>— 프레드 브룩스(Fred Brooks), 『맨먼스 미신』 (위치: Ch4 서두)
+> Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowcharts; they'll be obvious.<br>순서도를 보여 주고 테이블을 감추면 나는 계속 어리둥절할 것이다. 테이블을 보여 달라. 그러면 순서도는 대개 필요 없을 것이다 — 자명할 테니까.<br>— 프레드 브룩스(Fred Brooks), "맨먼스 미신" (위치: Ch4 서두)
 
 > TCP 구현은 일반적 견고성 원칙을 따라야 한다: 자신이 하는 일에는 보수적으로, 남에게서 받는 것에는 너그럽게.<br>— 존 포스텔(Jon Postel), 포스텔의 법칙 (위치: Item 30)
 
@@ -212,9 +212,9 @@ Effective 시리즈(Effective C++ 등)의 전통을 따라 **각 아이템은 �
 
 > 중복은 잘못된 추상화보다 훨씬 싸다.<br>— 샌디 메츠(Sandi Metz) (위치: Item 15)
 
-> 인터페이스는 올바르게 쓰기는 쉽고 잘못 쓰기는 어렵게 만들어라.<br>— 스콧 마이어스(Scott Meyers), 『Effective C++』 (위치: Item 38)
+> 인터페이스는 올바르게 쓰기는 쉽고 잘못 쓰기는 어렵게 만들어라.<br>— 스콧 마이어스(Scott Meyers), "Effective C++" (위치: Item 38)
 
-> 두려움이 지루함으로 바뀔 때까지 테스트를 써라.<br>— Phlip, 켄트 벡 『테스트 주도 개발』에서 재인용 (위치: Item 55)
+> 두려움이 지루함으로 바뀔 때까지 테스트를 써라.<br>— Phlip, 켄트 벡 "테스트 주도 개발"에서 재인용 (위치: Item 55)
 
 > 모든 것이 가능하지만 흥미로운 어떤 것도 쉽지 않은 튜링 타르 구덩이를 조심하라.<br>— 앨런 펄리스(Alan Perlis) (위치: Item 58)
 

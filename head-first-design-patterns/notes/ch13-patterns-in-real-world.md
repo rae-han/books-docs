@@ -38,7 +38,7 @@
 
 > **3의 규칙 (Rule of Three)**: 어떤 해결책이 **실전에서 3번 이상** 문제를 해결하는 데 쓰여야 비로소 "패턴"으로 인정받는다. 패턴은 **발명되는 것이 아니라 발견되는 것**이다.
 
-> **GoF (Gang of Four)**: 에릭 감마·리처드 헬름·랠프 존슨·존 블리시디즈. 1995년 『Design Patterns』로 23개 기본 패턴 카탈로그를 정립했다. 패턴 개념 자체는 건축가 **크리스토퍼 알렉산더**가 창시했다.
+> **GoF (Gang of Four)**: 에릭 감마·리처드 헬름·랠프 존슨·존 블리시디즈. 1995년 "Design Patterns"로 23개 기본 패턴 카탈로그를 정립했다. 패턴 개념 자체는 건축가 **크리스토퍼 알렉산더**가 창시했다.
 
 ---
 
@@ -170,5 +170,5 @@
 
 ### 📝 GoF 필독서
 
-- 『Design Patterns』(GoF, 1995) - 디자인 패턴의 정석, 23개 기본 패턴.
-- 『The Timeless Way of Building』/『A Pattern Language』(크리스토퍼 알렉산더) - 패턴 개념의 건축학적 기원.
+- "Design Patterns"(GoF, 1995) - 디자인 패턴의 정석, 23개 기본 패턴.
+- "The Timeless Way of Building"/"A Pattern Language"(크리스토퍼 알렉산더) - 패턴 개념의 건축학적 기원.

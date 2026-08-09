@@ -1,7 +1,7 @@
 # The Pragmatic Programmer (실용주의 프로그래머, 20주년 기념판)
 
 > *The Pragmatic Programmer: Your Journey to Mastery* (20th Anniversary Edition, 2nd Edition) (David Thomas & Andrew Hunt, Addison-Wesley, 2019)
-> 한국어판: 『실용주의 프로그래머 (20주년 기념판)』 (정지용 옮김, 김창준 감수, 인사이트, 2022)
+> 한국어판: "실용주의 프로그래머 (20주년 기념판)" (정지용 옮김, 김창준 감수, 인사이트, 2022)
 
 데이비드 토머스와 앤드류 헌트가 1999년 초판을 낸 지 20년 만에 전면 개정한 소프트웨어 개발의 고전. 특정 언어·프레임워크가 아니라 **문제와 해법에 접근하는 태도·방식·철학**을 다룬다 - 9개 장, 53개 Topic, 그리고 책 전체를 관통하는 **100개의 실용주의 Tip**으로 이루어져 있다.
 

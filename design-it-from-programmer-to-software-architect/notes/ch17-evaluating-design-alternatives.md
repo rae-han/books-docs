@@ -178,7 +178,7 @@
 
 ## 활동 35: 리스크 스토밍 (Risk Storming)
 
-**목적**: 아키텍처의 위험 요소를 협업으로 파악한다. 사이먼 브라운이 『Software Architecture for Developers』에서 제안한 방법이다.
+**목적**: 아키텍처의 위험 요소를 협업으로 파악한다. 사이먼 브라운이 "Software Architecture for Developers"에서 제안한 방법이다.
 
 **참가자**: 3~7명 정도의 소규모 개발자 그룹. 참가자들은 아키텍처를 잘 알고 있어야 한다.
 

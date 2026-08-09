@@ -1,6 +1,6 @@
 # 누구나 자료 구조와 알고리즘 (A Common-Sense Guide to Data Structures and Algorithms)
 
-> *A Common-Sense Guide to Data Structures and Algorithms* (2nd Edition, Jay Wengrow, Pragmatic Bookshelf, 2020)<br>한국어판: 『누구나 자료 구조와 알고리즘 (개정2판)』 (심지현 옮김, 길벗, 2021)
+> *A Common-Sense Guide to Data Structures and Algorithms* (2nd Edition, Jay Wengrow, Pragmatic Bookshelf, 2020)<br>한국어판: "누구나 자료 구조와 알고리즘 (개정2판)" (심지현 옮김, 길벗, 2021)
 
 수학 공식 없이 **상식적인 직관과 그림**으로 자료 구조와 알고리즘을 이해하는 입문서. "이 코드가 몇 단계 걸리는가?"라는 단 하나의 질문을 축으로 배열부터 그래프까지, 버블 정렬부터 동적 프로그래밍까지를 관통한다. 개정2판에서 각 장 연습 문제(+해답), 일상 코드 빅 오 분석, 동적 프로그래밍 등 새 장이 추가되었다.
 

@@ -123,7 +123,7 @@
 
 ### 3.3 C4 모델
 
-> 단순하고 완결성 있게 하세요.<br>- 사이먼 브라운, 『Software Architecture for Developers』 저자
+> 단순하고 완결성 있게 하세요.<br>- 사이먼 브라운, "Software Architecture for Developers" 저자
 
 사이먼 브라운의 **C4 모델**은 다양한 추상화 수준을 보여주는 다이어그램 모음이다.
 

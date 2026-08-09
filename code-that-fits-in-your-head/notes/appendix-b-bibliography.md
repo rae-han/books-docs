@@ -2,7 +2,7 @@
 
 ## 핵심 질문
 
-『Code That Fits in Your Head』의 저자 Mark Seemann이 이 책을 쓰기 위해 기댔던 지적 자산은 어떤 책과 논문들인가? 각 분야에서 이 책을 넘어 더 깊게 파고들려면 어떤 자료로 나아가야 하는가?
+"Code That Fits in Your Head"의 저자 Mark Seemann이 이 책을 쓰기 위해 기댔던 지적 자산은 어떤 책과 논문들인가? 각 분야에서 이 책을 넘어 더 깊게 파고들려면 어떤 자료로 나아가야 하는가?
 
 ---
 
@@ -187,6 +187,6 @@
 - 이 책은 소프트웨어 공학 고전, 애자일, 리팩터링, 디자인 패턴, 아키텍처, 테스트, 보안, 인지 과학, 함수형 프로그래밍, REST, 코드 분석, 사회과학까지 폭넓게 참조
 - 저자가 자주 인용하는 축: **Kent Beck, Martin Fowler, Robert C. Martin, Michael Feathers, Gerald Weinberg**
 - **콘웨이의 법칙, 시스템 1/2, 명료성**은 이 책의 이론적 뼈대 - 각각 콘웨이(1968), 카너먼(2011), 스콧(1998)에서 옴
-- Steven van Deursen과 공저한 『Dependency Injection Principles, Practices, and Patterns』은 저자 본인의 핵심 저서
+- Steven van Deursen과 공저한 "Dependency Injection Principles, Practices, and Patterns"은 저자 본인의 핵심 저서
 - 저자의 [blog.ploeh.dk](https://blog.ploeh.dk) 에는 이 책의 각 주장을 뒷받침하는 상세 코드 예제가 있다
 - 우선 다섯 권: Fowler(Refactoring), Feathers(Legacy Code), Accelerate, GOOS, Thinking Fast and Slow

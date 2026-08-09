@@ -69,7 +69,7 @@ drawRect({x: 25, y: 50, width: 75, height: 100, opacity: 1.0});
 1. **인수가 교환 가능한 경우**(순서가 무관): `max(a, b)`, `isEqual(a, b)`는 모호하지 않다.
 2. **"자연스러운" 순서가 있는 경우**: `array.slice(start, stop)`은 stop, start보다 말이 된다. 단 조심할 것 — 무엇이 "자연스러운" 순서인지 개발자들이 늘 동의하는 것은 아니다. (연·월·일? 월·일·년? 일·월·년?)
 
-> Make interfaces easy to use correctly and hard to use incorrectly.<br>인터페이스는 올바르게 쓰기는 쉽고 잘못 쓰기는 어렵게 만들어라.<br>— 스콧 마이어스(Scott Meyers), 『Effective C++』
+> Make interfaces easy to use correctly and hard to use incorrectly.<br>인터페이스는 올바르게 쓰기는 쉽고 잘못 쓰기는 어렵게 만들어라.<br>— 스콧 마이어스(Scott Meyers), "Effective C++"
 
 반박하기 어려운 말이다!
 

@@ -1,7 +1,7 @@
 # 함수형 프로그래밍 완전 가이드 (Functional Programming Complete Guide)
 
 > 자체 구성 가이드. 두 개의 개인 학습 노트를 하나의 커리큘럼으로 재조립했다.
-> 소스 1: [multi-paradigm-programming/](../multi-paradigm-programming/) - 『멀티패러다임 프로그래밍』(유인동, 한빛미디어, 2025) 책 노트
+> 소스 1: [multi-paradigm-programming/](../multi-paradigm-programming/) - "멀티패러다임 프로그래밍"(유인동, 한빛미디어, 2025) 책 노트
 > 소스 2: [fp/](../fp/) - Notion 함수형 JS 노트 이관본 (FP with ES6+, Functional JS, 실전 함수형)
 
 ES5 시절의 `_filter`/`_map` 직접 구현부터 ES6+ 이터레이션 프로토콜, 지연 평가, 타입 시스템, 비동기/동시성, 그리고 OOP와 FP를 결합하는 멀티패러다임 설계까지 - **함수형 자바스크립트/타입스크립트를 개념 → 메커니즘 → 실전 순서로 학습**한다.
@@ -13,7 +13,7 @@ ES5 시절의 `_filter`/`_map` 직접 구현부터 ES6+ 이터레이션 프로�
 | 항목 | 내용 |
 |------|------|
 | **성격** | 자체 구성 가이드 (5 Parts, 19개 챕터) - 두 학습 노트의 주제별 병합 |
-| **소스** | 『멀티패러다임 프로그래밍』(유인동, 한빛미디어, 2025) 노트 + Notion 함수형 JS 노트(FP with ES6+ 10편·Functional JS 11편·실전 1편) |
+| **소스** | "멀티패러다임 프로그래밍"(유인동, 한빛미디어, 2025) 노트 + Notion 함수형 JS 노트(FP with ES6+ 10편·Functional JS 11편·실전 1편) |
 | **언어** | TypeScript 위주 (비교용 JS/Haskell/Clojure 병용) |
 | **대상 독자** | 함수형 JS/TS를 개념부터 실전까지 체계적으로 배우려는 개발자 |
 

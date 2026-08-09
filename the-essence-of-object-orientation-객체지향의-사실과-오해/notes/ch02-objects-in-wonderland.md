@@ -60,7 +60,7 @@
 
 ### 2.1 이상한 나라의 앨리스
 
-1862년, 영국의 수학자 찰스 루트위지 도지슨(Charles Lutwidge Dodgson)은 앨리스 리델이라는 소녀를 기쁘게 해 주기 위해 환상적인 이야기를 짓게 된다. 몇 년 후 루이스 캐럴(Lewis Carroll)이라는 필명으로 출간된 이 책이 바로 「이상한 나라의 앨리스(Alice's Adventures in Wonderland)」다.
+1862년, 영국의 수학자 찰스 루트위지 도지슨(Charles Lutwidge Dodgson)은 앨리스 리델이라는 소녀를 기쁘게 해 주기 위해 환상적인 이야기를 짓게 된다. 몇 년 후 루이스 캐럴(Lewis Carroll)이라는 필명으로 출간된 이 책이 바로 "이상한 나라의 앨리스(Alice's Adventures in Wonderland)"다.
 
 이 이야기에서 가장 인상 깊은 장면은 앨리스가 아름다운 정원에 들어가기 위해 몸의 크기를 변화시키는 부분이다:
 
@@ -323,7 +323,7 @@
 
 ## 7. 기계로서의 객체
 
-버트란드 마이어는 「Object-Oriented Software Construction」에서 객체를 **기계**에 비유해 설명한다.
+버트란드 마이어는 "Object-Oriented Software Construction"에서 객체를 **기계**에 비유해 설명한다.
 
 ### 7.1 기계 은유의 구조
 
