@@ -71,6 +71,7 @@ docs/
 | [이것이 취업을 위한 코딩 테스트다](this-is-coding-test/) | 나동빈 | 19장 | 파이썬 → TypeScript 변환 |
 | [코딩 테스트 합격자 되기 (JS편)](programmers-coding-test/) | 이선협·박경록 | 17장+부록 | |
 | [하면 된다! 퀀트 투자](quant/) | 강환국 | 6장 | Part 4~5 발췌본 |
+| [이펙티브 타입스크립트 2판](effective-typescript-2nd/) | 댄 밴더캄 | 83아이템 | 영어 원서 2판 기반, 아이템 단위 파일 |
 
 ### origin 분리만 완료 (노트 미작성)
 

@@ -472,6 +472,30 @@
 
 > 우리는 아키텍트라면 실용적인 소프트웨어 엔지니어로 머물러 있어야 한다고 믿는다. (…) 이런 작업을 정기적으로 하지 않으면 아키텍트로서 개발자에 대한 공감을 잃기가 쉽다.<br>- 제임스 고프·대니얼 브라이언트·매튜 어번 (Ch10)
 
+## 『이펙티브 타입스크립트 2판』 - 댄 밴더캄
+
+> 순서도를 보여 주고 테이블을 감추면 나는 계속 어리둥절할 것이다. 테이블을 보여 달라. 그러면 순서도는 대개 필요 없을 것이다 - 자명할 테니까.<br>*Show me your flowcharts and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowcharts; they'll be obvious.*<br>- 프레드 브룩스(Fred Brooks), 『맨먼스 미신』 (Ch4 서두)
+
+> TCP 구현은 일반적 견고성 원칙을 따라야 한다: 자신이 하는 일에는 보수적으로, 남에게서 받는 것에는 너그럽게.<br>*Be conservative in what you do, be liberal in what you accept from others.*<br>- 존 포스텔(Jon Postel), 포스텔의 법칙 (Item 30)
+
+> 컴퓨터 과학에는 어려운 문제가 딱 둘 있다: 캐시 무효화, 그리고 이름 짓기.<br>- 필 칼튼(Phil Karlton) (Item 41 - 출처 통설이 불확실한 인용, 아래 '출처 주의' 참조)
+
+> 중복은 잘못된 추상화보다 훨씬 싸다.<br>*Duplication is far cheaper than the wrong abstraction.*<br>- 샌디 메츠(Sandi Metz), 「All the Little Things」(RailsConf 2014) (Item 15)
+
+> 인터페이스는 올바르게 쓰기는 쉽고 잘못 쓰기는 어렵게 만들어라.<br>*Make interfaces easy to use correctly and hard to use incorrectly.*<br>- 스콧 마이어스(Scott Meyers), 『Effective C++』 (Item 38)
+
+> 두려움이 지루함으로 바뀔 때까지 테스트를 써라.<br>*Write tests until fear is transformed into boredom.*<br>- Phlip, 켄트 벡 『테스트 주도 개발』에서 재인용 (Item 55)
+
+> 모든 것이 가능하지만 흥미로운 어떤 것도 쉽지 않은 튜링 타르 구덩이를 조심하라.<br>*Beware of the Turing tar-pit in which everything is possible but nothing of interest is easy.*<br>- 앨런 펄리스(Alan Perlis) (Item 58)
+
+> 약간의 복사가 약간의 의존성보다 낫다.<br>*A little copying is better than a little dependency.*<br>- Go 언어 커뮤니티 (Item 70)
+
+> 휴리스틱을 원한다면, type의 기능이 필요해질 때까지는 interface를 써라.<br>*If you would like a heuristic, use interface until you need to use features from type.*<br>- 타입스크립트 공식 핸드북 (Item 13)
+
+> 제네릭의 첫 번째 규칙은 "쓰지 마라"다.<br>- 댄 밴더캄(Dan Vanderkam) (Item 51)
+
+> 정확하게 모델링할 수 없다면 부정확하게 모델링하지 마라. any나 unknown으로 빈틈을 인정하라.<br>- 댄 밴더캄(Dan Vanderkam) (Item 40)
+
 ---
 
 **아래는 저장소에 노트가 없는 출처들이다** - 발표 자료·인터넷에서 수집. 책이면 `(노트 없음)` 섹션, 책이 아니면 맨 아래 `개발 명언 모음`에 둔다.
