@@ -26,32 +26,32 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [The Goal of Unit Testing](notes/ch01-the-goal-of-unit-testing.md) | 지속 가능한 성장 · 커버리지 함정 | 테스트의 목표는 성장 - 커버리지는 좋은 부정 지표일 뿐 |
-| 2 | [What is a Unit Test?](notes/ch02-what-is-a-unit-test.md) | 고전파 vs 런던파 · 격리 | 무엇을 격리하는가 - 두 학파의 차이와 선택 |
-| 3 | [The Anatomy of a Unit Test](notes/ch03-the-anatomy-of-a-unit-test.md) | AAA 패턴 · 테스트 네이밍 · 매개변수화 | 테스트의 해부학 - 준비/실행/검증과 이름 짓기 |
+| 1 | [The Goal of Unit Testing](notes/ch01-the-goal-of-unit-testing.md) | 지속 가능한 성장, 커버리지 함정 | 테스트의 목표는 성장 - 커버리지는 좋은 부정 지표일 뿐 |
+| 2 | [What is a Unit Test?](notes/ch02-what-is-a-unit-test.md) | 고전파 vs 런던파, 격리 | 무엇을 격리하는가 - 두 학파의 차이와 선택 |
+| 3 | [The Anatomy of a Unit Test](notes/ch03-the-anatomy-of-a-unit-test.md) | AAA 패턴, 테스트 네이밍, 매개변수화 | 테스트의 해부학 - 준비/실행/검증과 이름 짓기 |
 
 ### Part 2: 좋은 테스트의 기준 (Ch 4-7)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 4 | [The Four Pillars of a Good Unit Test](notes/ch04-the-four-pillars-of-a-good-unit-test.md) | 네 가지 기둥 · 테스트 피라미드 | 회귀 방지·리팩터링 내성·빠른 피드백·유지보수성 - 내성은 타협 불가 |
-| 5 | [Mocks and Test Fragility](notes/ch05-mocks-and-test-fragility.md) | 목 vs 스텁 · 관찰 가능한 동작 · 포트와 어댑터 | 취약한 테스트의 뿌리 - 구현 세부사항 검증 |
-| 6 | [Styles of Unit Testing](notes/ch06-styles-of-unit-testing.md) | 출력/상태/커뮤니케이션 기반 · 함수형 아키텍처 | 세 가지 스타일 - 출력 기반이 최고 품질 |
-| 7 | [Refactoring Toward Valuable Tests](notes/ch07-refactoring-toward-valuable-tests.md) | 코드 4유형 · 험블 객체 · 도메인 이벤트 | 복잡한 코드를 테스트 가능한 구조로 리팩터링 |
+| 4 | [The Four Pillars of a Good Unit Test](notes/ch04-the-four-pillars-of-a-good-unit-test.md) | 네 가지 기둥, 테스트 피라미드 | 회귀 방지·리팩터링 내성·빠른 피드백·유지보수성 - 내성은 타협 불가 |
+| 5 | [Mocks and Test Fragility](notes/ch05-mocks-and-test-fragility.md) | 목 vs 스텁, 관찰 가능한 동작, 포트와 어댑터 | 취약한 테스트의 뿌리 - 구현 세부사항 검증 |
+| 6 | [Styles of Unit Testing](notes/ch06-styles-of-unit-testing.md) | 출력/상태/커뮤니케이션 기반, 함수형 아키텍처 | 세 가지 스타일 - 출력 기반이 최고 품질 |
+| 7 | [Refactoring Toward Valuable Tests](notes/ch07-refactoring-toward-valuable-tests.md) | 코드 4유형, 험블 객체, 도메인 이벤트 | 복잡한 코드를 테스트 가능한 구조로 리팩터링 |
 
 ### Part 3: 통합 테스트 (Ch 8-10)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 8 | [Why Integration Testing?](notes/ch08-why-integration-testing.md) | 통합 테스트 · 관리/비관리 의존성 | 단위 테스트가 못 지키는 것 - 통합 테스트의 역할과 범위 |
-| 9 | [Mocking Best Practices](notes/ch09-mocking-best-practices.md) | 목 모범 사례 · 시스템 경계 | Mock은 시스템 경계에, 비관리 의존성에만 |
-| 10 | [Testing the Database](notes/ch10-testing-the-database.md) | DB 형상 관리 · 테스트 데이터 생명주기 | 데이터베이스 테스트 - 마이그레이션·트랜잭션·정리 전략 |
+| 8 | [Why Integration Testing?](notes/ch08-why-integration-testing.md) | 통합 테스트, 관리/비관리 의존성 | 단위 테스트가 못 지키는 것 - 통합 테스트의 역할과 범위 |
+| 9 | [Mocking Best Practices](notes/ch09-mocking-best-practices.md) | 목 모범 사례, 시스템 경계 | Mock은 시스템 경계에, 비관리 의존성에만 |
+| 10 | [Testing the Database](notes/ch10-testing-the-database.md) | DB 형상 관리, 테스트 데이터 생명주기 | 데이터베이스 테스트 - 마이그레이션·트랜잭션·정리 전략 |
 
 ### Part 4: 안티패턴 (Ch 11)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 11 | [Unit Testing Anti-patterns](notes/ch11-unit-testing-anti-patterns.md) | 프라이빗 메서드 테스트 · 코드 오염 · 시간 처리 | 흔한 안티패턴 모음 - 왜 나쁘고 어떻게 피하나 |
+| 11 | [Unit Testing Anti-patterns](notes/ch11-unit-testing-anti-patterns.md) | 프라이빗 메서드 테스트, 코드 오염, 시간 처리 | 흔한 안티패턴 모음 - 왜 나쁘고 어떻게 피하나 |
 
 ## 학습 가이드
 

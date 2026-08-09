@@ -23,17 +23,17 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [들어가며](notes/ch01-getting-started.md) | 육각형 개발자 · 개발의 범주 | 개발이라는 일의 범주와 시니어에게 필요한 역량 지도 |
-| 2 | [구현 기술과 학습](notes/ch02-implementation-skills-and-learning.md) | 학습 전략 · 기술 선택 | 무엇을 어떻게 배울 것인가 - 기술 적용 시 고려사항 |
-| 3 | [소프트웨어 가치와 비용](notes/ch03-software-value-and-cost.md) | 소프트웨어 가치 · 유지보수 비용 | 소프트웨어의 가치는 변경에서 나온다 - 유지보수 비용 절감이 핵심 |
-| 4 | [코드 이해](notes/ch04-understanding-code.md) | 코드 이해 도구 · 가독성 | 개발 시간의 대부분은 읽기 - 이해하기 좋은 코드 작성법 |
-| 5 | [응집도와 결합도](notes/ch05-cohesion-and-coupling.md) | 응집도 · 결합도 · 추상화 · 이벤트 | 변경 파급을 줄이는 두 축 - 응집도 높이고 결합도 낮추기 |
-| 6 | [리팩터링](notes/ch06-refactoring.md) | 리팩터링 · 수정 공포 · 레거시 | 수정 공포를 이기는 기초 리팩터링 기법 |
-| 7 | [테스트](notes/ch07-testing.md) | 테스트 코드 · 테스트 주도 개발 · 테스트 가능성 | 회귀를 막는 테스트 - 테스트 가능성이 설계를 개선한다 |
-| 8 | [아키텍처·패턴](notes/ch08-architecture-and-patterns.md) | 아키텍처 결정 · 트레이드오프 · 패턴 | 아키텍처는 트레이드오프 - 결정 요인과 패턴 활용법 |
-| 9 | [업무 관리](notes/ch09-task-management.md) | 업무 나누기 · 위험 관리 · 점진적 개발 | 일을 잘게 나누고 위험을 먼저 - 점진적·반복적으로 |
-| 10 | [정리하고 공유하기](notes/ch10-organizing-and-sharing.md) | 글쓰기 · 발표 · 소통 | 정리하고 공유해야 내 역량이 된다 |
-| 11 | [리더와 팔로워](notes/ch11-leaders-and-followers.md) | 리더십 · 팔로워십 · 겸손/존중/신뢰 | 리더 연습과 좋은 팔로워 되기 |
+| 1 | [들어가며](notes/ch01-getting-started.md) | 육각형 개발자, 개발의 범주 | 개발이라는 일의 범주와 시니어에게 필요한 역량 지도 |
+| 2 | [구현 기술과 학습](notes/ch02-implementation-skills-and-learning.md) | 학습 전략, 기술 선택 | 무엇을 어떻게 배울 것인가 - 기술 적용 시 고려사항 |
+| 3 | [소프트웨어 가치와 비용](notes/ch03-software-value-and-cost.md) | 소프트웨어 가치, 유지보수 비용 | 소프트웨어의 가치는 변경에서 나온다 - 유지보수 비용 절감이 핵심 |
+| 4 | [코드 이해](notes/ch04-understanding-code.md) | 코드 이해 도구, 가독성 | 개발 시간의 대부분은 읽기 - 이해하기 좋은 코드 작성법 |
+| 5 | [응집도와 결합도](notes/ch05-cohesion-and-coupling.md) | 응집도, 결합도, 추상화, 이벤트 | 변경 파급을 줄이는 두 축 - 응집도 높이고 결합도 낮추기 |
+| 6 | [리팩터링](notes/ch06-refactoring.md) | 리팩터링, 수정 공포, 레거시 | 수정 공포를 이기는 기초 리팩터링 기법 |
+| 7 | [테스트](notes/ch07-testing.md) | 테스트 코드, 테스트 주도 개발, 테스트 가능성 | 회귀를 막는 테스트 - 테스트 가능성이 설계를 개선한다 |
+| 8 | [아키텍처·패턴](notes/ch08-architecture-and-patterns.md) | 아키텍처 결정, 트레이드오프, 패턴 | 아키텍처는 트레이드오프 - 결정 요인과 패턴 활용법 |
+| 9 | [업무 관리](notes/ch09-task-management.md) | 업무 나누기, 위험 관리, 점진적 개발 | 일을 잘게 나누고 위험을 먼저 - 점진적·반복적으로 |
+| 10 | [정리하고 공유하기](notes/ch10-organizing-and-sharing.md) | 글쓰기, 발표, 소통 | 정리하고 공유해야 내 역량이 된다 |
+| 11 | [리더와 팔로워](notes/ch11-leaders-and-followers.md) | 리더십, 팔로워십, 겸손/존중/신뢰 | 리더 연습과 좋은 팔로워 되기 |
 
 ## 학습 가이드
 

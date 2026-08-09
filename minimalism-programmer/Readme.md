@@ -44,14 +44,14 @@ AI가 코드를 대신 작성해 주고 프레임워크가 점점 더 거대해�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [단순함의 미학](notes/ch01-the-aesthetics-of-simplicity.md) | 복합적 vs 복잡함 · 현황파악/실행/학습 | 메타 프레임워크 - 본질적 어려움과 인위적 복잡함의 구분 |
-| 2 | [코드 다이어트](notes/ch02-code-diet.md) | 의존성 · 프레임워크 성분표 · 기능 최소화 | 만들지 않을 용기 - Practice 01~03 |
-| 3 | [프로젝트 최적화](notes/ch03-project-optimization.md) | 팀 결합도 · 회의 줄이기 · 지식 분산 | 일하는 방식의 군더더기 제거 - Practice 04~08 |
-| 4 | [업무 자동화](notes/ch04-task-automation.md) | 데스크톱 · 터미널 · 에디터 장악 | 인지 부담을 자동화에 외주 - Practice 09~13 |
-| 5 | [변화의 수용](notes/ch05-embracing-change.md) | 실용성과 기발함 · 탐색과 놀이 | 미래에서 놀고 과거에서 일하기 - Practice 14~15 |
-| 6 | [소프트스킬](notes/ch06-soft-skills.md) | 의견 대립 · 공감 · 이야기 엮기 | 마찰 없는 협업 - Practice 16~19 |
-| 7 | [데이터 주도 개발](notes/ch07-data-driven-development.md) | 데이터에 운전대 · 테이블 테스트 · 상태 머신 | 로직을 데이터로 단순화 - Practice 20~22 |
-| 8 | [가독성 높은 코드](notes/ch08-readable-code.md) | 주석 최소화 · 정렬 · 코드 배치 | 텍스트 표현의 단순함 - Practice 23~29 |
+| 1 | [단순함의 미학](notes/ch01-the-aesthetics-of-simplicity.md) | 복합적 vs 복잡함, 현황파악/실행/학습 | 메타 프레임워크 - 본질적 어려움과 인위적 복잡함의 구분 |
+| 2 | [코드 다이어트](notes/ch02-code-diet.md) | 의존성, 프레임워크 성분표, 기능 최소화 | 만들지 않을 용기 - Practice 01~03 |
+| 3 | [프로젝트 최적화](notes/ch03-project-optimization.md) | 팀 결합도, 회의 줄이기, 지식 분산 | 일하는 방식의 군더더기 제거 - Practice 04~08 |
+| 4 | [업무 자동화](notes/ch04-task-automation.md) | 데스크톱, 터미널, 에디터 장악 | 인지 부담을 자동화에 외주 - Practice 09~13 |
+| 5 | [변화의 수용](notes/ch05-embracing-change.md) | 실용성과 기발함, 탐색과 놀이 | 미래에서 놀고 과거에서 일하기 - Practice 14~15 |
+| 6 | [소프트스킬](notes/ch06-soft-skills.md) | 의견 대립, 공감, 이야기 엮기 | 마찰 없는 협업 - Practice 16~19 |
+| 7 | [데이터 주도 개발](notes/ch07-data-driven-development.md) | 데이터에 운전대, 테이블 테스트, 상태 머신 | 로직을 데이터로 단순화 - Practice 20~22 |
+| 8 | [가독성 높은 코드](notes/ch08-readable-code.md) | 주석 최소화, 정렬, 코드 배치 | 텍스트 표현의 단순함 - Practice 23~29 |
 | 9 | [마치며](notes/ch09-conclusion.md) | 단순함 5가지 평가 기준 | 1장의 사이클이 평가 기준으로 닫히는 원형 구조 |
 
 ### 4개 파트 구조

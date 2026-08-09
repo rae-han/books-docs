@@ -23,7 +23,7 @@ docs/
 
 ## 책 목록
 
-### 노트 완료 · Notion 업로드 완료
+### 노트 완료, Notion 업로드 완료
 
 | 책 | 저자 | 노트 | 인용문 | Notion |
 |----|------|------|--------|--------|
@@ -63,21 +63,21 @@ docs/
 
 > **Notion 페이지 위치 주의**: 대부분은 `Must reads` → `Dev` DB 항목 안에 있지만, **자바스크립트+리액트 디자인 패턴**은 `Front-End & JavaScript & Typescript` DB 아래, **미니멀리즘 프로그래머**는 Dev DB 밖의 별도 페이지 트리에, **fp**는 이관 원본(`Functional Javascript with ES6+` / `FP with ES6+` DB / `Functional JS`)으로 각각 다른 위치에 있다. Dev DB만 훑으면 누락된다.
 
-### 노트 완료 · Notion 미업로드
+### 노트 완료, Notion 미업로드
 
 | 책 | 저자 | 노트 | 비고 |
 |----|------|------|------|
 | [이것이 취업을 위한 코딩 테스트다](this-is-coding-test/) | 나동빈 | 19장 | 파이썬 → TypeScript 변환 |
 | [코딩 테스트 합격자 되기 (JS편)](programmers-coding-test/) | 이선협·박경록 | 17장+부록 | |
 | [하면 된다! 퀀트 투자](quant/) | 강환국 | 6장 | Part 4~5 발췌본 |
-| [모던 API 아키텍처 설계 전략](mastering-api-architecture/) | 제임스 고프 외 | 11장 | 0장~10장 · Java→TypeScript 병기 |
+| [모던 API 아키텍처 설계 전략](mastering-api-architecture/) | 제임스 고프 외 | 11장 | 0장~10장, Java→TypeScript 병기 |
 
 ### origin 분리만 완료 (노트 미작성)
 
 | 책 | 저자 | 상태 |
 |----|------|------|
 | [그림으로 배우는 도커](docker-illustrated-introduction/) | 스즈키 료 | origin 32장 분리 완료 |
-| [만들면서 배우는 헥사고날 아키텍처](hex/) | 다비 비에이라 | origin 15장 분리 완료 · 인용문 절만 작성 |
+| [만들면서 배우는 헥사고날 아키텍처](hex/) | 다비 비에이라 | origin 15장 분리 완료, 인용문 절만 작성 |
 
 ## 공통 자산
 

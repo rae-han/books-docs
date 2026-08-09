@@ -6,7 +6,7 @@
 
 ---
 
-## 0. 이 장에서 다루는 것 · 코드 표기 규약
+## 0. 이 장에서 다루는 것, 코드 표기 규약
 
 - 시스템이 복구할 수 있는 오류와 복구할 수 없는 오류의 구분
 - 신속하게 실패하고(fail fast) 분명하게 실패하기(fail loudly)
@@ -247,7 +247,7 @@ function getSquareRoot(value: number): number | null {
 > **핵심 통찰**: 원서는 리절트를 `Optional<V>`와 `Optional<E>`를 감싼 클래스로 구현하지만(`hasError()` 확인 후 `getValue()` 호출), **TypeScript에서는 판별 유니언(discriminated union)**이 훨씬 낫다. `ok` 태그로 분기하면, 오류를 확인하지 않고 값에 접근하는 실수를 **타입 시스템이 컴파일 타임에 차단**한다.
 
 <details>
-<summary>의사코드 (원서) - 예제 4.16 · 4.17 리절트 유형</summary>
+<summary>의사코드 (원서) - 예제 4.16, 4.17 리절트 유형</summary>
 
 ```java
 class Result<V, E> {

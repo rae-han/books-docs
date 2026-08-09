@@ -29,20 +29,20 @@ TS 고유의 함정 - `Array.prototype.sort()`의 사전순 기본 동작, 우�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 0 | [코딩 테스트용 JS/TS 기본 문법](notes/ch00-javascript-basics-for-coding-test.md) | 자료형 · Map/Set · 복잡도 · 입출력 | 원서 부록 A의 JS/TS 변환판 - 코테 기본기 총정리 |
+| 0 | [코딩 테스트용 JS/TS 기본 문법](notes/ch00-javascript-basics-for-coding-test.md) | 자료형, Map/Set, 복잡도, 입출력 | 원서 부록 A의 JS/TS 변환판 - 코테 기본기 총정리 |
 
 ### Part 2: 주요 알고리즘 이론 (Ch 3-10)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 3 | [그리디](notes/ch03-greedy.md) | 그리디 · 정당성 검증 | 국소 최적 선택이 전체 최적이 되는 조건 |
-| 4 | [구현](notes/ch04-implementation.md) | 방향 벡터 · 시뮬레이션 · 완전 탐색 | dx/dy 패턴과 시뮬레이션 문제의 기본기 |
-| 5 | [DFS/BFS](notes/ch05-dfs-bfs.md) | DFS · BFS · 격자 그래프 · O(1) 큐 | 스택·큐·재귀로 탐색 - 큐 O(1) 구현 포함 |
-| 6 | [정렬](notes/ch06-sorting.md) | 선택/삽입/퀵/계수 정렬 · 비교 함수 | 정렬 알고리즘과 `sort()` 비교 함수 필수 함정 |
-| 7 | [이진 탐색](notes/ch07-binary-search.md) | 이진 탐색 · lower/upper bound · 파라메트릭 서치 | 탐색 범위를 절반씩 - 답을 탐색하는 파라메트릭 서치까지 |
-| 8 | [다이나믹 프로그래밍](notes/ch08-dynamic-programming.md) | 점화식 · 탑다운/바텀업 · 메모이제이션 | 큰 문제를 작은 문제로 - DP의 두 접근 |
-| 9 | [최단 경로](notes/ch09-shortest-path.md) | 다익스트라 · 플로이드 워셜 · MinHeap | 최단 경로 2대장 - MinHeap 직접 구현 포함 |
-| 10 | [그래프 이론](notes/ch10-graph-theory.md) | Union-Find · 크루스칼 · 위상 정렬 | 서로소 집합에서 MST·위상 정렬까지 |
+| 3 | [그리디](notes/ch03-greedy.md) | 그리디, 정당성 검증 | 국소 최적 선택이 전체 최적이 되는 조건 |
+| 4 | [구현](notes/ch04-implementation.md) | 방향 벡터, 시뮬레이션, 완전 탐색 | dx/dy 패턴과 시뮬레이션 문제의 기본기 |
+| 5 | [DFS/BFS](notes/ch05-dfs-bfs.md) | DFS, BFS, 격자 그래프, O(1) 큐 | 스택·큐·재귀로 탐색 - 큐 O(1) 구현 포함 |
+| 6 | [정렬](notes/ch06-sorting.md) | 선택/삽입/퀵/계수 정렬, 비교 함수 | 정렬 알고리즘과 `sort()` 비교 함수 필수 함정 |
+| 7 | [이진 탐색](notes/ch07-binary-search.md) | 이진 탐색, lower/upper bound, 파라메트릭 서치 | 탐색 범위를 절반씩 - 답을 탐색하는 파라메트릭 서치까지 |
+| 8 | [다이나믹 프로그래밍](notes/ch08-dynamic-programming.md) | 점화식, 탑다운/바텀업, 메모이제이션 | 큰 문제를 작은 문제로 - DP의 두 접근 |
+| 9 | [최단 경로](notes/ch09-shortest-path.md) | 다익스트라, 플로이드 워셜, MinHeap | 최단 경로 2대장 - MinHeap 직접 구현 포함 |
+| 10 | [그래프 이론](notes/ch10-graph-theory.md) | Union-Find, 크루스칼, 위상 정렬 | 서로소 집합에서 MST·위상 정렬까지 |
 
 ### Part 3: 알고리즘 유형별 기출문제 (Ch 11-19)
 

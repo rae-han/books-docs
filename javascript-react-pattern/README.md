@@ -37,8 +37,8 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Introduction to Design Patterns](notes/ch01-introduction-to-design-patterns.md) | 패턴의 역사 · GoF | 알렉산더에서 GoF까지 - 현대 JS에서 패턴의 위치 |
-| 2 | ["Pattern"-ity Testing, Proto-Patterns, and the Rule of Three](notes/ch02-patternity-testing-and-proto-patterns.md) | 프로토 패턴 · 3의 법칙 | 패턴이 패턴으로 인정받는 검증 기준 |
+| 1 | [Introduction to Design Patterns](notes/ch01-introduction-to-design-patterns.md) | 패턴의 역사, GoF | 알렉산더에서 GoF까지 - 현대 JS에서 패턴의 위치 |
+| 2 | ["Pattern"-ity Testing, Proto-Patterns, and the Rule of Three](notes/ch02-patternity-testing-and-proto-patterns.md) | 프로토 패턴, 3의 법칙 | 패턴이 패턴으로 인정받는 검증 기준 |
 | 3 | [Structuring Design Patterns](notes/ch03-structuring-design-patterns.md) | 패턴 문서화 구조 | 좋은 패턴 설명서의 구성 요소 |
 | 4 | [Anti-Patterns](notes/ch04-anti-patterns.md) | 안티패턴 | JS/React에서 흔한 안티패턴과 리팩터링 방향 |
 
@@ -46,33 +46,33 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 5 | [Modern JavaScript Syntax and Features](notes/ch05-modern-javascript-syntax-and-features.md) | ES2015~2024+ · 클래스 · 모듈 | 패턴 구현의 언어 재료 - `#private`·`using`까지 |
+| 5 | [Modern JavaScript Syntax and Features](notes/ch05-modern-javascript-syntax-and-features.md) | ES2015~2024+, 클래스, 모듈 | 패턴 구현의 언어 재료 - `#private`·`using`까지 |
 | 6 | [Categories of Design Patterns](notes/ch06-categories-of-design-patterns.md) | 생성/구조/행위 분류 | GoF 23가지 패턴의 분류 체계 개관 |
 
 ### Part III: 디자인 패턴 (Ch 7-9)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 7 | [Creational Patterns](notes/ch07-creational-patterns.md) | 팩토리 · 빌더 · 싱글턴 · 프로토타입 | 객체 생성 6패턴의 TS 구현 - ES 모듈=싱글턴 관점 포함 |
-| 8 | [Structural Patterns](notes/ch08-structural-patterns.md) | 퍼사드 · 데코레이터 · 어댑터 · 프록시 · 컴포지트 · 믹스인 · 플라이웨이트 | 구조 7패턴 - `Proxy` 내장 객체와 반응성의 관계 |
-| 9 | [Behavioral Patterns](notes/ch09-behavioral-patterns.md) | 옵저버 · 중재자 · 커맨드 · 전략 · 상태 · 이터레이터 | 행위 9패턴 - 일급 함수가 패턴을 단순화하는 지점 |
+| 7 | [Creational Patterns](notes/ch07-creational-patterns.md) | 팩토리, 빌더, 싱글턴, 프로토타입 | 객체 생성 6패턴의 TS 구현 - ES 모듈=싱글턴 관점 포함 |
+| 8 | [Structural Patterns](notes/ch08-structural-patterns.md) | 퍼사드, 데코레이터, 어댑터, 프록시, 컴포지트, 믹스인, 플라이웨이트 | 구조 7패턴 - `Proxy` 내장 객체와 반응성의 관계 |
+| 9 | [Behavioral Patterns](notes/ch09-behavioral-patterns.md) | 옵저버, 중재자, 커맨드, 전략, 상태, 이터레이터 | 행위 9패턴 - 일급 함수가 패턴을 단순화하는 지점 |
 
 ### Part IV: 아키텍처 패턴 (Ch 10-13)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 10 | [MV* Patterns](notes/ch10-mv-star-patterns.md) | MVC · MVP · MVVM | MV* 삼형제의 원리와 현대 프레임워크에서의 진화 |
-| 11 | [Asynchronous Programming Patterns](notes/ch11-asynchronous-programming-patterns.md) | Promise · AsyncIterator · Observable · Signals | 비동기 패턴의 스펙트럼 - 동시성 제어까지 |
-| 12 | [Modular JavaScript Design Patterns](notes/ch12-modular-javascript-design-patterns.md) | ES Modules · Import Maps · 번들러 · Tree Shaking | 모듈 시스템의 역사와 현재 - Vite·Turbopack 시대 |
+| 10 | [MV* Patterns](notes/ch10-mv-star-patterns.md) | MVC, MVP, MVVM | MV* 삼형제의 원리와 현대 프레임워크에서의 진화 |
+| 11 | [Asynchronous Programming Patterns](notes/ch11-asynchronous-programming-patterns.md) | Promise, AsyncIterator, Observable, Signals | 비동기 패턴의 스펙트럼 - 동시성 제어까지 |
+| 12 | [Modular JavaScript Design Patterns](notes/ch12-modular-javascript-design-patterns.md) | ES Modules, Import Maps, 번들러, Tree Shaking | 모듈 시스템의 역사와 현재 - Vite·Turbopack 시대 |
 | 13 | [Namespacing Patterns](notes/ch13-namespacing-patterns.md) | 네임스페이스 | 전통적 네임스페이스 기법과 ESM 시대의 재평가 |
 
 ### Part V: 리액트 패턴 (Ch 14-16)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 14 | [React Design Patterns](notes/ch14-react-design-patterns.md) | HOC · Render Props · Hooks · 합성 | React 패턴의 진화 - HOC에서 Hooks·React 19까지 |
-| 15 | [Rendering Patterns](notes/ch15-rendering-patterns.md) | CSR/SSR/SSG/ISR · RSC · Islands · PPR | 렌더링 전략 지도 - Core Web Vitals 기준 선택법 |
-| 16 | [React Application Structure](notes/ch16-react-application-structure.md) | 폴더 구조 · App Router · Server Actions | 애플리케이션 구조와 데이터 패칭 전략 |
+| 14 | [React Design Patterns](notes/ch14-react-design-patterns.md) | HOC, Render Props, Hooks, 합성 | React 패턴의 진화 - HOC에서 Hooks·React 19까지 |
+| 15 | [Rendering Patterns](notes/ch15-rendering-patterns.md) | CSR/SSR/SSG/ISR, RSC, Islands, PPR | 렌더링 전략 지도 - Core Web Vitals 기준 선택법 |
+| 16 | [React Application Structure](notes/ch16-react-application-structure.md) | 폴더 구조, App Router, Server Actions | 애플리케이션 구조와 데이터 패칭 전략 |
 
 ## 학습 가이드
 
@@ -97,4 +97,4 @@
 - `> **Osmani의 조언**:` / `> **핵심 통찰**:` 콜아웃
 - `### 전통 vs 현대` - 전통적 구현과 현대적 구현의 코드 비교
 - `### JS vs TS 비교` - TS 고유 기능(매개변수 프로퍼티·private constructor·판별 유니언)이 가치를 더하는 경우만
-- `최신 업데이트 (2026)` · `실무 적용 가이드` · `다른 챕터와의 관계` 절
+- `최신 업데이트 (2026)`, `실무 적용 가이드`, `다른 챕터와의 관계` 절

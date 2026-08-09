@@ -27,59 +27,59 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| 0 | [들어가며 - 왜 웹 성능인가](notes/ch00-introduction.md) | 핵심 웹 지표 · LCP · INP · CLS · 성능과 비즈니스 | 성능 지표가 이탈률·전환율·매출로 이어지는 근거와 책 전체의 지도 |
+| 0 | [들어가며 - 왜 웹 성능인가](notes/ch00-introduction.md) | 핵심 웹 지표, LCP, INP, CLS, 성능과 비즈니스 | 성능 지표가 이탈률·전환율·매출로 이어지는 근거와 책 전체의 지도 |
 
 ### Part 1: 네트워크와 로딩 최적화 (Ch1-7)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| 1 | [네트워크 최적화는 가장 손쉬운 성능 개선이다](notes/ch01-network-optimization.md) | CDN · HTTP/2 · HTTP/3 · QUIC · RTT | 물리적 거리(CDN)와 프로토콜(멀티플렉싱·QUIC)로 코드 수정 없이 얻는 최대 효과 |
-| 2 | [네트워크 압축으로 전송 크기 줄이기](notes/ch02-network-compression.md) | Gzip · 브로틀리 · Zstandard · 압축 레벨 | 텍스트 리소스 압축의 알고리즘별 트레이드오프와 정적 사전 압축 전략 |
-| 3 | [브라우저 캐시는 믿는 게 아니라 설계하는 것이다](notes/ch03-browser-cache-design.md) | Cache-Control · ETag · stale-while-revalidate · BFCache | 불변 에셋 영구 캐싱 + HTML no-cache + SWR - 캐시는 기본값이 아니라 설계다 |
-| 4 | [리소스 우선순위를 재정의하면 로딩이 빨라진다](notes/ch04-resource-priority.md) | preload · prefetch · preconnect · fetchpriority | 브라우저 기본 우선순위를 이해하고 중요한 리소스를 힌트로 끌어올리기 |
-| 5 | [프리로드 스캐너를 방해하지 말고 활용하라](notes/ch05-preload-scanner.md) | 프리로드 스캐너 · 파서 블로킹 · 동적 삽입 | 스캐너가 발견할 수 있는 마크업이 어떤 힌트보다 먼저다 |
-| 6 | [async와 defer는 로딩 병목을 풀기 위한 가장 기본적인 도구다](notes/ch06-async-and-defer.md) | async · defer · 모듈 스크립트 · 파서 블로킹 | 스크립트가 파서를 멈추는 원리와 속성별 실행 타이밍의 정확한 구분 |
-| 7 | [렌더링 블로킹 리소스를 줄이는 것이 진짜 '빠름'의 시작이다](notes/ch07-render-blocking-resources.md) | 렌더 블로킹 · 크리티컬 CSS · 14KB · link media | 첫 렌더링을 막는 CSS/JS를 식별·제거하는 크리티컬 렌더링 패스 설계 |
+| 1 | [네트워크 최적화는 가장 손쉬운 성능 개선이다](notes/ch01-network-optimization.md) | CDN, HTTP/2, HTTP/3, QUIC, RTT | 물리적 거리(CDN)와 프로토콜(멀티플렉싱·QUIC)로 코드 수정 없이 얻는 최대 효과 |
+| 2 | [네트워크 압축으로 전송 크기 줄이기](notes/ch02-network-compression.md) | Gzip, 브로틀리, Zstandard, 압축 레벨 | 텍스트 리소스 압축의 알고리즘별 트레이드오프와 정적 사전 압축 전략 |
+| 3 | [브라우저 캐시는 믿는 게 아니라 설계하는 것이다](notes/ch03-browser-cache-design.md) | Cache-Control, ETag, stale-while-revalidate, BFCache | 불변 에셋 영구 캐싱 + HTML no-cache + SWR - 캐시는 기본값이 아니라 설계다 |
+| 4 | [리소스 우선순위를 재정의하면 로딩이 빨라진다](notes/ch04-resource-priority.md) | preload, prefetch, preconnect, fetchpriority | 브라우저 기본 우선순위를 이해하고 중요한 리소스를 힌트로 끌어올리기 |
+| 5 | [프리로드 스캐너를 방해하지 말고 활용하라](notes/ch05-preload-scanner.md) | 프리로드 스캐너, 파서 블로킹, 동적 삽입 | 스캐너가 발견할 수 있는 마크업이 어떤 힌트보다 먼저다 |
+| 6 | [async와 defer는 로딩 병목을 풀기 위한 가장 기본적인 도구다](notes/ch06-async-and-defer.md) | async, defer, 모듈 스크립트, 파서 블로킹 | 스크립트가 파서를 멈추는 원리와 속성별 실행 타이밍의 정확한 구분 |
+| 7 | [렌더링 블로킹 리소스를 줄이는 것이 진짜 '빠름'의 시작이다](notes/ch07-render-blocking-resources.md) | 렌더 블로킹, 크리티컬 CSS, 14KB, link media | 첫 렌더링을 막는 CSS/JS를 식별·제거하는 크리티컬 렌더링 패스 설계 |
 
 ### Part 2: 번들과 리소스 최적화 (Ch8-15)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| 8 | [폴리필은 '필요한 경우'에만 로드하라](notes/ch08-polyfills-on-demand.md) | 폴리필 · browserslist · core-js · 차등 서빙 | 타깃 브라우저를 좁히고 필요한 환경에만 폴리필을 조건부 제공 |
-| 9 | [트리 셰이킹보다 불필요한 리소스 자체를 없애는 것이 우선이다](notes/ch09-remove-unused-resources-first.md) | 트리 셰이킹 · 배럴 익스포트 · Coverage · 번들 분석 | 셰이킹을 믿기 전에 Coverage·번들 분석으로 안 쓰는 의존성부터 제거 |
-| 10 | [코드 스플리팅은 기능이 아니라 전략이다](notes/ch10-code-splitting-strategy.md) | 코드 스플리팅 · React.lazy · Suspense · 동적 임포트 · 청크 | 라우트·컴포넌트·조건별 분할 기준과 청크 크기·개수의 균형 |
-| 11 | [서버가 할 수 있는 일은 클라이언트가 하지 않게 하라](notes/ch11-move-work-to-server.md) | 서버 컴포넌트 · BFF · GraphQL · 서버 오프로딩 | 무거운 연산·라이브러리·데이터 가공을 서버로 옮겨 클라이언트 번들 축소 |
-| 12 | [이미지는 화질이 아니라 전달 방식이 성능을 좌우한다](notes/ch12-image-delivery.md) | WebP · AVIF · srcset · sizes · 지연 로딩 | 포맷·반응형·지연 로딩·CDN 변환 - 페이로드 절반을 차지하는 이미지의 전달 설계 |
-| 13 | [동영상 최적화는 전송량과 로딩 전략이 핵심이다](notes/ch13-video-optimization.md) | H.264 · VP9 · AV1 · FFmpeg · 스트리밍 | 코덱 선택과 poster·preload·지연 재생으로 동영상 전송량 통제 |
-| 14 | [폰트는 디자인보다 성능 자산으로 관리하라](notes/ch14-fonts-as-performance-asset.md) | font-display · 서브셋 · 가변 폰트 · FOUT · 메트릭 오버라이드 | 서브세팅·로딩 전략·메트릭 오버라이드로 FOIT/FOUT과 CLS를 함께 잡기 |
-| 15 | [CSS는 최소한만 남겨야 빠르다](notes/ch15-minimal-css.md) | 크리티컬 CSS · PurgeCSS · CSS-in-JS · Zero-runtime | 크리티컬 CSS 인라인의 손익, 미사용 CSS 제거, Runtime CSS-in-JS 탈출 |
+| 8 | [폴리필은 '필요한 경우'에만 로드하라](notes/ch08-polyfills-on-demand.md) | 폴리필, browserslist, core-js, 차등 서빙 | 타깃 브라우저를 좁히고 필요한 환경에만 폴리필을 조건부 제공 |
+| 9 | [트리 셰이킹보다 불필요한 리소스 자체를 없애는 것이 우선이다](notes/ch09-remove-unused-resources-first.md) | 트리 셰이킹, 배럴 익스포트, Coverage, 번들 분석 | 셰이킹을 믿기 전에 Coverage·번들 분석으로 안 쓰는 의존성부터 제거 |
+| 10 | [코드 스플리팅은 기능이 아니라 전략이다](notes/ch10-code-splitting-strategy.md) | 코드 스플리팅, React.lazy, Suspense, 동적 임포트, 청크 | 라우트·컴포넌트·조건별 분할 기준과 청크 크기·개수의 균형 |
+| 11 | [서버가 할 수 있는 일은 클라이언트가 하지 않게 하라](notes/ch11-move-work-to-server.md) | 서버 컴포넌트, BFF, GraphQL, 서버 오프로딩 | 무거운 연산·라이브러리·데이터 가공을 서버로 옮겨 클라이언트 번들 축소 |
+| 12 | [이미지는 화질이 아니라 전달 방식이 성능을 좌우한다](notes/ch12-image-delivery.md) | WebP, AVIF, srcset, sizes, 지연 로딩 | 포맷·반응형·지연 로딩·CDN 변환 - 페이로드 절반을 차지하는 이미지의 전달 설계 |
+| 13 | [동영상 최적화는 전송량과 로딩 전략이 핵심이다](notes/ch13-video-optimization.md) | H.264, VP9, AV1, FFmpeg, 스트리밍 | 코덱 선택과 poster·preload·지연 재생으로 동영상 전송량 통제 |
+| 14 | [폰트는 디자인보다 성능 자산으로 관리하라](notes/ch14-fonts-as-performance-asset.md) | font-display, 서브셋, 가변 폰트, FOUT, 메트릭 오버라이드 | 서브세팅·로딩 전략·메트릭 오버라이드로 FOIT/FOUT과 CLS를 함께 잡기 |
+| 15 | [CSS는 최소한만 남겨야 빠르다](notes/ch15-minimal-css.md) | 크리티컬 CSS, PurgeCSS, CSS-in-JS, Zero-runtime | 크리티컬 CSS 인라인의 손익, 미사용 CSS 제거, Runtime CSS-in-JS 탈출 |
 
 ### Part 3: 렌더링과 런타임 최적화 (Ch16-21)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| 16 | [하이드레이션은 줄이는 것이 아니라 제거하는 것이다](notes/ch16-eliminate-hydration.md) | 하이드레이션 · 스트리밍 SSR · 아일랜드 · Resumability · TTI | FCP~TTI의 불쾌한 골짜기를 시간 분산·공간 축소·제거의 3축으로 해소 |
-| 17 | [데이터 캐싱과 낙관적 업데이트로 체감 속도를 높여라](notes/ch17-data-caching-optimistic-updates.md) | 리액트 쿼리 · SWR · staleTime · 낙관적 업데이트 · 캐시 무효화 | 서버 상태 전용 도구로 "API를 덜 부르고, 부를 때도 기다리지 않는" 아키텍처 |
-| 18 | [자바스크립트는 짧게 자주 실행해야 한다](notes/ch18-short-frequent-javascript.md) | 긴 작업 · scheduler.yield · 디바운스 · 스로틀 · 웹 워커 | 50ms 긴 작업을 분할·유예·격리해 INP를 지키는 다섯 가지 표준 API 도구 |
-| 19 | [메모리 누수는 코드가 아니라 생명주기의 문제다](notes/ch19-memory-leak-lifecycle.md) | 메모리 누수 · useEffect 정리 · AbortController · WeakMap · 힙 스냅샷 | "생성했으면 해제한다" - 1시간 후에도 빠른 앱을 위한 생명주기 관리와 힙 디버깅 |
-| 20 | [CLS는 동적 콘텐츠를 어떻게 다루느냐의 문제다](notes/ch20-cls-dynamic-content.md) | CLS · 광고 슬롯 · aspect-ratio · contain · content-visibility | 광고·임베드·배너·무한 스크롤의 공간 예약과 레이아웃 격리 실전 |
-| 21 | [애니메이션은 60fps가 기본이다](notes/ch21-animations-at-60fps.md) | transform · opacity · 컴포지터 레이어 · will-change · rAF | 레이아웃 트리거를 피하고 GPU 컴포지터에서만 움직이는 60fps 구현과 측정 |
+| 16 | [하이드레이션은 줄이는 것이 아니라 제거하는 것이다](notes/ch16-eliminate-hydration.md) | 하이드레이션, 스트리밍 SSR, 아일랜드, Resumability, TTI | FCP~TTI의 불쾌한 골짜기를 시간 분산·공간 축소·제거의 3축으로 해소 |
+| 17 | [데이터 캐싱과 낙관적 업데이트로 체감 속도를 높여라](notes/ch17-data-caching-optimistic-updates.md) | 리액트 쿼리, SWR, staleTime, 낙관적 업데이트, 캐시 무효화 | 서버 상태 전용 도구로 "API를 덜 부르고, 부를 때도 기다리지 않는" 아키텍처 |
+| 18 | [자바스크립트는 짧게 자주 실행해야 한다](notes/ch18-short-frequent-javascript.md) | 긴 작업, scheduler.yield, 디바운스, 스로틀, 웹 워커 | 50ms 긴 작업을 분할·유예·격리해 INP를 지키는 다섯 가지 표준 API 도구 |
+| 19 | [메모리 누수는 코드가 아니라 생명주기의 문제다](notes/ch19-memory-leak-lifecycle.md) | 메모리 누수, useEffect 정리, AbortController, WeakMap, 힙 스냅샷 | "생성했으면 해제한다" - 1시간 후에도 빠른 앱을 위한 생명주기 관리와 힙 디버깅 |
+| 20 | [CLS는 동적 콘텐츠를 어떻게 다루느냐의 문제다](notes/ch20-cls-dynamic-content.md) | CLS, 광고 슬롯, aspect-ratio, contain, content-visibility | 광고·임베드·배너·무한 스크롤의 공간 예약과 레이아웃 격리 실전 |
+| 21 | [애니메이션은 60fps가 기본이다](notes/ch21-animations-at-60fps.md) | transform, opacity, 컴포지터 레이어, will-change, rAF | 레이아웃 트리거를 피하고 GPU 컴포지터에서만 움직이는 60fps 구현과 측정 |
 
 ### Part 4: 프레임워크와 고급 주제 (Ch22-26)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| 22 | [컴포넌트 최적화는 상태 범위를 줄이는 것에서 시작한다](notes/ch22-component-optimization-state-scope.md) | 상태 콜로케이션 · 컨텍스트 분리 · 메모이제이션 · 리스트 키 · 가상 스크롤 | 메모이제이션은 최후의 수단 - 상태를 사용처 가까이 두는 것이 최적화의 시작 |
-| 23 | [서드파티 코드는 당신이 통제해야 한다](notes/ch23-control-third-party-code.md) | 파사드 패턴 · 파티타운 · 지연 로딩 · iframe 샌드박스 · CSP | 실행 시간의 57%를 차지하는 서드파티를 측정→제거→지연→격리로 되찾기 |
-| 24 | [다국어는 사용자별로 코드를 달리 제공하라](notes/ch24-i18n-per-user-code.md) | Accept-Language · 언어 코드 스플리팅 · 네임스페이스 · hreflang · CJK 서브셋 | 언어가 10개든 100개든 사용자당 번들은 동일하게 - 감지·분리·엣지·SEO 전략 |
-| 25 | [차세대 웹 표준으로 성능을 한 단계 더 개선하라](notes/ch25-next-gen-web-standards.md) | View Transitions · Speculation Rules · LoAF · 압축 사전 · Baseline | 새 표준 4종의 원리와 "지원율·Baseline·표준 단계"로 도입을 판단하는 기준 |
-| 26 | [마치며](notes/ch26-closing.md) | 성능 예산 · 라이트하우스 CI · RUM · 성능 문화 | 단기 7가지→중장기 투자→상황별 우선순위, 그리고 측정과 문화로 유지하기 |
+| 22 | [컴포넌트 최적화는 상태 범위를 줄이는 것에서 시작한다](notes/ch22-component-optimization-state-scope.md) | 상태 콜로케이션, 컨텍스트 분리, 메모이제이션, 리스트 키, 가상 스크롤 | 메모이제이션은 최후의 수단 - 상태를 사용처 가까이 두는 것이 최적화의 시작 |
+| 23 | [서드파티 코드는 당신이 통제해야 한다](notes/ch23-control-third-party-code.md) | 파사드 패턴, 파티타운, 지연 로딩, iframe 샌드박스, CSP | 실행 시간의 57%를 차지하는 서드파티를 측정→제거→지연→격리로 되찾기 |
+| 24 | [다국어는 사용자별로 코드를 달리 제공하라](notes/ch24-i18n-per-user-code.md) | Accept-Language, 언어 코드 스플리팅, 네임스페이스, hreflang, CJK 서브셋 | 언어가 10개든 100개든 사용자당 번들은 동일하게 - 감지·분리·엣지·SEO 전략 |
+| 25 | [차세대 웹 표준으로 성능을 한 단계 더 개선하라](notes/ch25-next-gen-web-standards.md) | View Transitions, Speculation Rules, LoAF, 압축 사전, Baseline | 새 표준 4종의 원리와 "지원율·Baseline·표준 단계"로 도입을 판단하는 기준 |
+| 26 | [마치며](notes/ch26-closing.md) | 성능 예산, 라이트하우스 CI, RUM, 성능 문화 | 단기 7가지→중장기 투자→상황별 우선순위, 그리고 측정과 문화로 유지하기 |
 
 ### 부록
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |---|---|---|---|
-| A | [핵심 웹 지표의 역사](notes/appendix-a-history-of-core-web-vitals.md) | 핵심 웹 지표 · FID→INP · 페이지 경험 업데이트 · CrUX | 2020년 탄생부터 2024년 INP 교체, 크로스 브라우저 확대까지 지표 5년사 |
+| A | [핵심 웹 지표의 역사](notes/appendix-a-history-of-core-web-vitals.md) | 핵심 웹 지표, FID→INP, 페이지 경험 업데이트, CrUX | 2020년 탄생부터 2024년 INP 교체, 크로스 브라우저 확대까지 지표 5년사 |
 
 ## 학습 가이드
 
@@ -122,7 +122,7 @@
 ## Notion DB 구조
 
 - **위치**: `Raehan's Must reads` → **프런트엔드 성능 최적화 Deep Dive**(아이콘 ⚡) 페이지 안의 인라인 DB.
-- **속성**: `Done`(checkbox) · `Title` · `Part`(select) · `Chapter`(number) · `핵심 단어`(text) · `핵심 요약`(text). 값의 소스는 위 **목차 표**다 - 재업로드 시 목차 표 기준으로 채운다.
+- **속성**: `Done`(checkbox), `Title`, `Part`(select), `Chapter`(number), `핵심 단어`(text), `핵심 요약`(text). 값의 소스는 위 **목차 표**다 - 재업로드 시 목차 표 기준으로 채운다.
 - **`Part` 딱지**: `들어가며` / `Part 1 네트워크와 로딩` / `Part 2 번들과 리소스` / `Part 3 렌더링과 런타임` / `Part 4 프레임워크와 고급` / `부록`. 부록 A(핵심 웹 지표의 역사)는 `Chapter` 27로 두어 맨 뒤에 정렬된다.
 - **뷰**: `SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter" ASC`. 제목에 `ChNN.` 접두어가 있으므로 `Chapter` 열은 숨긴다(숨겨도 정렬은 유지된다).
 - **업로드 순서**: 챕터 페이지는 **번호 역순**(부록 A → Ch26 → … → Ch0)으로 생성한다. Notion DB는 최신 생성이 위로 오므로 이렇게 해야 정렬을 걸지 않아도 목차 순서로 읽힌다.

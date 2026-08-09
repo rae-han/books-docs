@@ -6,7 +6,7 @@
 
 ---
 
-## 0. 이 장에서 다루는 것 · 코드 표기 규약
+## 0. 이 장에서 다루는 것, 코드 표기 규약
 
 - 모듈화된 코드의 이점
 - 이상적인 모듈화가 되지 않는 흔한 방식
@@ -23,7 +23,7 @@
 클래스는 보통 다른 클래스에 의존한다. 그런데 하위 문제의 해결책이 **항상 하나뿐인 것은 아니므로**, 의존 대상을 나중에 교체할 수 있게 열어 두는 것이 유용하다. `RoutePlanner`(자동차 여행 플래너)가 생성자에서 직접 `NorthAmericaRoadMap`을 생성하면, 이 클래스는 **북미 여행에만** 쓸 수 있고 다른 지역엔 무용지물이 된다.
 
 <details>
-<summary>의사코드 (원서) - 예제 8.1 · 8.3 하드코드된 의존성 (나쁜 예)</summary>
+<summary>의사코드 (원서) - 예제 8.1, 8.3 하드코드된 의존성 (나쁜 예)</summary>
 
 ```java
 class RoutePlanner {
@@ -59,7 +59,7 @@ class RoutePlanner {
 **해결책 - 의존성 주입(*dependency injection*)**: 의존 대상을 생성자 매개변수로 **주입**받는다. 이제 어떤 로드맵으로도 설정할 수 있어 모듈화되고 적응성이 높아진다.
 
 <details>
-<summary>의사코드 (원서) - 예제 8.4 · 8.5 의존성 주입 + 팩토리 함수 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.4, 8.5 의존성 주입 + 팩토리 함수 (좋은 예)</summary>
 
 ```java
 class RoutePlanner {
@@ -149,7 +149,7 @@ class RoutePlanner {
 두 클래스가 진정한 **is-a 관계**(예: 포드 머스탱 *is a* 자동차)면 상속이 적절할 수 있다. 하지만 상속은 함정이 많아, 상속을 쓸 수 있는 많은 상황에서 **구성(*composition*)**이 더 낫다. "쉼표로 구분된 정수 파일을 읽는" 문제를 예로 보자. `CsvFileHandler`(파일을 열고 문자열을 읽음)를 재사용해 `IntFileReader`를 만들 때, 상속을 쓰면 두 가지 문제가 생긴다.
 
 <details>
-<summary>의사코드 (원서) - 예제 8.11 · 8.12 상속 (나쁜 예)</summary>
+<summary>의사코드 (원서) - 예제 8.11, 8.12 상속 (나쁜 예)</summary>
 
 ```java
 class IntFileReader extends CsvFileHandler {   // CsvFileHandler를 상속(확장)
@@ -195,7 +195,7 @@ class IntFileReader extends CsvFileHandler {
 **해결책 - 구성(composition)**: 클래스를 확장하는 대신, 필요한 인터페이스의 인스턴스를 **멤버로 갖고**(주입받고), 노출할 함수만 직접 골라 **전달(forwarding)**한다.
 
 <details>
-<summary>의사코드 (원서) - 예제 8.15 · 8.17 구성 + 팩토리 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.15, 8.17 구성 + 팩토리 (좋은 예)</summary>
 
 ```java
 class IntFileReader {
@@ -456,7 +456,7 @@ enum ProfilePictureStatus {
 **해결책 - 계층에 맞는 예외로 감싸라(wrap)**: 각 계층이 자신의 추상화에 맞는 예외 유형만 드러내도록, 하위 계층 오류를 현재 계층의 예외로 감싼다(원래 오류 정보는 `cause`로 보존).
 
 <details>
-<summary>의사코드 (원서) - 예제 8.28 · 8.29 계층에 적합한 예외 (좋은 예)</summary>
+<summary>의사코드 (원서) - 예제 8.28, 8.29 계층에 적합한 예외 (좋은 예)</summary>
 
 ```java
 class TextImportanceScorerException extends Exception {

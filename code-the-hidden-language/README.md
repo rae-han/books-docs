@@ -23,34 +23,34 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Best Friends](notes/ch01-best-friends.md) | 손전등 · 모스 부호 · 코드의 본질 | 코드 = 정보를 다른 형태로 옮기는 약속 - 손전등 깜빡임에서 시작 |
-| 2 | [Codes and Combinations](notes/ch02-codes-and-combinations.md) | 조합론 · 정보 용량 | 부호 n개로 2^n가지 표현 - 코드의 수학 |
-| 3 | [Braille and Binary Codes](notes/ch03-braille-and-binary-codes.md) | 점자 · 이진 코드 · 이스케이프 코드 | 점자 체계로 배우는 이진 코드와 이스케이프의 원형 |
-| 4 | [Anatomy of a Flashlight](notes/ch04-anatomy-of-a-flashlight.md) | 전기 회로 · 전자 · 도체와 절연체 | 손전등 분해 - 전기가 흐른다는 것의 물리학 |
-| 5 | [Communicating Around Corners](notes/ch05-communicating-around-corners.md) | 양방향 통신 · 접지 | 옆집 친구와의 통신 - 접지로 전선을 절약하는 회로 확장 |
-| 6 | [Logic with Switches](notes/ch06-logic-with-switches.md) | 불 대수 · 직렬과 병렬 | 스위치 직렬 = AND, 병렬 = OR - 논리학과 회로의 만남 |
-| 7 | [Telegraphs and Relays](notes/ch07-telegraphs-and-relays.md) | 전신 · 릴레이 · 증폭 | 릴레이(중계기) - 스위치를 움직이는 스위치라는 발명 |
-| 8 | [Relays and Gates](notes/ch08-relays-and-gates.md) | 논리 게이트 · AND/OR/NOT/NAND/NOR | 릴레이를 조합해 논리 게이트를 만들다 |
-| 9 | [Our Ten Digits](notes/ch09-our-ten-digits.md) | 십진법 · 수 체계의 역사 | 당연하게 쓰던 십진법의 구조를 재발견 |
-| 10 | [Alternative 10s](notes/ch10-alternative-10s.md) | 8진법 · 2진법 · 자릿값 | 손가락이 8개였다면? - 진법의 일반화와 이진수 |
-| 11 | [Bit by Bit by Bit](notes/ch11-bit-by-bit-by-bit.md) | 비트 · 정보의 최소 단위 · UPC 바코드 | 비트 = 정보의 최소 단위 - 바코드·QR로 보는 실전 비트 |
-| 12 | [Bytes and Hexadecimal](notes/ch12-bytes-and-hexadecimal.md) | 바이트 · 16진법 · 니블 | 비트를 다루는 실용 단위, 바이트와 16진 표기 |
-| 13 | [From ASCII to Unicode](notes/ch13-from-ascii-to-unicode.md) | ASCII · 유니코드 · UTF-8 | 문자 인코딩의 역사 - 7비트 ASCII에서 UTF-8까지 |
-| 14 | [Adding with Logic Gates](notes/ch14-adding-with-logic-gates.md) | 반가산기 · 전가산기 · 리플 캐리 | 논리 게이트로 덧셈 기계를 조립하다 |
-| 15 | [Is This for Real?](notes/ch15-is-this-for-real.md) | 트랜지스터 · 집적회로 | 릴레이 회로가 실제 하드웨어(트랜지스터·IC)가 되는 법 |
-| 16 | [But What About Subtraction?](notes/ch16-but-what-about-subtraction.md) | 2의 보수 · 오버플로 | 뺄셈을 덧셈으로 - 2의 보수와 음수 표현 |
-| 17 | [Feedback and Flip-Flops](notes/ch17-feedback-and-flip-flops.md) | 피드백 · SR 래치 · D 플립플롭 | 피드백 회로가 '기억'을 만든다 |
-| 18 | [Let's Build a Clock!](notes/ch18-lets-build-a-clock.md) | 오실레이터 · 카운터 · 분주기 | 진동하는 회로로 디지털 시계 만들기 |
-| 19 | [An Assemblage of Memory](notes/ch19-an-assemblage-of-memory.md) | RAM · 주소 지정 · 메모리 배열 | 래치를 배열로 조직해 RAM을 만들다 |
-| 20 | [Automating Arithmetic](notes/ch20-automating-arithmetic.md) | 자동 계산 · 명령어 코드 | 계산의 자동화 - 명령어와 데이터의 분리라는 대발상 |
-| 21 | [The Arithmetic Logic Unit](notes/ch21-the-arithmetic-logic-unit.md) | ALU · 연산 선택 · 상태 플래그 | CPU의 계산 심장부 ALU 설계 |
-| 22 | [Registers and Busses](notes/ch22-registers-and-busses.md) | 레지스터 · 버스 · 3-상태 출력 | 레지스터와 버스 - 부품들이 신호를 공유하는 법 |
-| 23 | [CPU Control Signals](notes/ch23-cpu-control-signals.md) | 제어 신호 · 명령어 디코딩 | 제어 신호로 부품을 지휘 - CPU의 완성 |
-| 24 | [Jumps, Loops, and Calls](notes/ch24-jumps-loops-and-calls.md) | 분기 · 반복 · 서브루틴 · 스택 | 점프·루프·호출 - 프로그램다운 프로그램의 조건 |
-| 25 | [Peripherals](notes/ch25-peripherals.md) | 입출력 · 키보드 · 디스플레이 · 디스크 | CPU 바깥 세상 - 주변장치와의 대화 |
-| 26 | [The Operating System](notes/ch26-the-operating-system.md) | 운영체제 · 파일 시스템 · API | 하드웨어 위의 첫 소프트웨어 층 - OS의 역할 |
-| 27 | [Coding](notes/ch27-coding.md) | 프로그래밍 언어 · 컴파일러 · 고급 언어 | 어셈블리에서 고급 언어로 - 코딩이라는 추상화 |
-| 28 | [The World Wide Web](notes/ch28-the-world-wide-web.md) | HTML · URL · HTTP | 웹의 작동 원리 - 이 책의 모든 층위가 만나는 곳 (2판 신규) |
+| 1 | [Best Friends](notes/ch01-best-friends.md) | 손전등, 모스 부호, 코드의 본질 | 코드 = 정보를 다른 형태로 옮기는 약속 - 손전등 깜빡임에서 시작 |
+| 2 | [Codes and Combinations](notes/ch02-codes-and-combinations.md) | 조합론, 정보 용량 | 부호 n개로 2^n가지 표현 - 코드의 수학 |
+| 3 | [Braille and Binary Codes](notes/ch03-braille-and-binary-codes.md) | 점자, 이진 코드, 이스케이프 코드 | 점자 체계로 배우는 이진 코드와 이스케이프의 원형 |
+| 4 | [Anatomy of a Flashlight](notes/ch04-anatomy-of-a-flashlight.md) | 전기 회로, 전자, 도체와 절연체 | 손전등 분해 - 전기가 흐른다는 것의 물리학 |
+| 5 | [Communicating Around Corners](notes/ch05-communicating-around-corners.md) | 양방향 통신, 접지 | 옆집 친구와의 통신 - 접지로 전선을 절약하는 회로 확장 |
+| 6 | [Logic with Switches](notes/ch06-logic-with-switches.md) | 불 대수, 직렬과 병렬 | 스위치 직렬 = AND, 병렬 = OR - 논리학과 회로의 만남 |
+| 7 | [Telegraphs and Relays](notes/ch07-telegraphs-and-relays.md) | 전신, 릴레이, 증폭 | 릴레이(중계기) - 스위치를 움직이는 스위치라는 발명 |
+| 8 | [Relays and Gates](notes/ch08-relays-and-gates.md) | 논리 게이트, AND/OR/NOT/NAND/NOR | 릴레이를 조합해 논리 게이트를 만들다 |
+| 9 | [Our Ten Digits](notes/ch09-our-ten-digits.md) | 십진법, 수 체계의 역사 | 당연하게 쓰던 십진법의 구조를 재발견 |
+| 10 | [Alternative 10s](notes/ch10-alternative-10s.md) | 8진법, 2진법, 자릿값 | 손가락이 8개였다면? - 진법의 일반화와 이진수 |
+| 11 | [Bit by Bit by Bit](notes/ch11-bit-by-bit-by-bit.md) | 비트, 정보의 최소 단위, UPC 바코드 | 비트 = 정보의 최소 단위 - 바코드·QR로 보는 실전 비트 |
+| 12 | [Bytes and Hexadecimal](notes/ch12-bytes-and-hexadecimal.md) | 바이트, 16진법, 니블 | 비트를 다루는 실용 단위, 바이트와 16진 표기 |
+| 13 | [From ASCII to Unicode](notes/ch13-from-ascii-to-unicode.md) | ASCII, 유니코드, UTF-8 | 문자 인코딩의 역사 - 7비트 ASCII에서 UTF-8까지 |
+| 14 | [Adding with Logic Gates](notes/ch14-adding-with-logic-gates.md) | 반가산기, 전가산기, 리플 캐리 | 논리 게이트로 덧셈 기계를 조립하다 |
+| 15 | [Is This for Real?](notes/ch15-is-this-for-real.md) | 트랜지스터, 집적회로 | 릴레이 회로가 실제 하드웨어(트랜지스터·IC)가 되는 법 |
+| 16 | [But What About Subtraction?](notes/ch16-but-what-about-subtraction.md) | 2의 보수, 오버플로 | 뺄셈을 덧셈으로 - 2의 보수와 음수 표현 |
+| 17 | [Feedback and Flip-Flops](notes/ch17-feedback-and-flip-flops.md) | 피드백, SR 래치, D 플립플롭 | 피드백 회로가 '기억'을 만든다 |
+| 18 | [Let's Build a Clock!](notes/ch18-lets-build-a-clock.md) | 오실레이터, 카운터, 분주기 | 진동하는 회로로 디지털 시계 만들기 |
+| 19 | [An Assemblage of Memory](notes/ch19-an-assemblage-of-memory.md) | RAM, 주소 지정, 메모리 배열 | 래치를 배열로 조직해 RAM을 만들다 |
+| 20 | [Automating Arithmetic](notes/ch20-automating-arithmetic.md) | 자동 계산, 명령어 코드 | 계산의 자동화 - 명령어와 데이터의 분리라는 대발상 |
+| 21 | [The Arithmetic Logic Unit](notes/ch21-the-arithmetic-logic-unit.md) | ALU, 연산 선택, 상태 플래그 | CPU의 계산 심장부 ALU 설계 |
+| 22 | [Registers and Busses](notes/ch22-registers-and-busses.md) | 레지스터, 버스, 3-상태 출력 | 레지스터와 버스 - 부품들이 신호를 공유하는 법 |
+| 23 | [CPU Control Signals](notes/ch23-cpu-control-signals.md) | 제어 신호, 명령어 디코딩 | 제어 신호로 부품을 지휘 - CPU의 완성 |
+| 24 | [Jumps, Loops, and Calls](notes/ch24-jumps-loops-and-calls.md) | 분기, 반복, 서브루틴, 스택 | 점프·루프·호출 - 프로그램다운 프로그램의 조건 |
+| 25 | [Peripherals](notes/ch25-peripherals.md) | 입출력, 키보드, 디스플레이, 디스크 | CPU 바깥 세상 - 주변장치와의 대화 |
+| 26 | [The Operating System](notes/ch26-the-operating-system.md) | 운영체제, 파일 시스템, API | 하드웨어 위의 첫 소프트웨어 층 - OS의 역할 |
+| 27 | [Coding](notes/ch27-coding.md) | 프로그래밍 언어, 컴파일러, 고급 언어 | 어셈블리에서 고급 언어로 - 코딩이라는 추상화 |
+| 28 | [The World Wide Web](notes/ch28-the-world-wide-web.md) | HTML, URL, HTTP | 웹의 작동 원리 - 이 책의 모든 층위가 만나는 곳 (2판 신규) |
 
 ## 학습 가이드
 

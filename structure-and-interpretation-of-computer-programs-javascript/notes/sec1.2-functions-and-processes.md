@@ -257,7 +257,7 @@ function expt_iter(b, counter, product) {
 
 핵심 관찰:
 - b^n = (b^(n/2))² (n이 짝수일 때)
-- b^n = b · b^(n-1) (n이 홀수일 때)
+- b^n = b, b^(n-1) (n이 홀수일 때)
 
 ```javascript
 function fast_expt(b, n) {

@@ -25,19 +25,19 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [협력하는 객체들의 공동체](notes/ch01-cooperating-objects.md) | 협력 · 역할 · 책임 · 커피 공화국 | 객체지향의 본질은 클래스가 아니라 협력하는 객체들의 공동체 |
-| 2 | [이상한 나라의 객체](notes/ch02-objects-in-wonderland.md) | 상태 · 행동 · 식별자 | 객체 = 상태+행동+식별자 - 행동이 상태를 결정한다 (앨리스) |
-| 3 | [타입과 추상화](notes/ch03-types-and-abstraction.md) | 타입 · 추상화 · 분류 | 타입은 행동에 의한 분류 - 동적인 객체를 정적인 타입으로 (지하철 노선도) |
-| 4 | [역할, 책임, 협력](notes/ch04-roles-responsibilities-collaboration.md) | 협력 · 역할 · 책임 주도 설계 | 협력 → 역할 → 책임 순으로 정의되는 설계의 재료 (재판 협력) |
-| 5 | [책임과 메시지](notes/ch05-responsibility-and-messages.md) | 메시지 · 인터페이스 · 묻지 말고 시켜라 | 메시지가 객체를 결정한다 - 저자가 "단 하나만 읽는다면" 추천하는 장 |
-| 6 | [객체 지도](notes/ch06-object-map.md) | 도메인 모델 · 유스케이스 · 기능과 구조 | 안정적인 구조(도메인 모델) 위에 불안정한 기능(유스케이스)을 배치 |
-| 7 | [함께 모으기](notes/ch07-putting-it-all-together.md) | 개념/명세/구현 관점 · 커피 전문점 | 1~6장의 개념을 코드로 - 유일하게 구현이 등장하는 장 |
+| 1 | [협력하는 객체들의 공동체](notes/ch01-cooperating-objects.md) | 협력, 역할, 책임, 커피 공화국 | 객체지향의 본질은 클래스가 아니라 협력하는 객체들의 공동체 |
+| 2 | [이상한 나라의 객체](notes/ch02-objects-in-wonderland.md) | 상태, 행동, 식별자 | 객체 = 상태+행동+식별자 - 행동이 상태를 결정한다 (앨리스) |
+| 3 | [타입과 추상화](notes/ch03-types-and-abstraction.md) | 타입, 추상화, 분류 | 타입은 행동에 의한 분류 - 동적인 객체를 정적인 타입으로 (지하철 노선도) |
+| 4 | [역할, 책임, 협력](notes/ch04-roles-responsibilities-collaboration.md) | 협력, 역할, 책임 주도 설계 | 협력 → 역할 → 책임 순으로 정의되는 설계의 재료 (재판 협력) |
+| 5 | [책임과 메시지](notes/ch05-responsibility-and-messages.md) | 메시지, 인터페이스, 묻지 말고 시켜라 | 메시지가 객체를 결정한다 - 저자가 "단 하나만 읽는다면" 추천하는 장 |
+| 6 | [객체 지도](notes/ch06-object-map.md) | 도메인 모델, 유스케이스, 기능과 구조 | 안정적인 구조(도메인 모델) 위에 불안정한 기능(유스케이스)을 배치 |
+| 7 | [함께 모으기](notes/ch07-putting-it-all-together.md) | 개념/명세/구현 관점, 커피 전문점 | 1~6장의 개념을 코드로 - 유일하게 구현이 등장하는 장 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [추상화 기법](notes/appendix-a-abstraction-techniques.md) | 분류 · 일반화 · 집합 | 세 가지 추상화 기법의 심화 정리 |
+| A | [추상화 기법](notes/appendix-a-abstraction-techniques.md) | 분류, 일반화, 집합 | 세 가지 추상화 기법의 심화 정리 |
 
 ## 학습 가이드
 

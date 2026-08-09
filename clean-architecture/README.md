@@ -27,65 +27,65 @@ Uncle Bob이 1970년부터 축적한 50년 가까운 경험에서 추출한 아�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [What Is Design and Architecture?](notes/ch01-what-is-design-and-architecture.md) | 설계 = 아키텍처 · 엉망진창의 비용 | 설계와 아키텍처는 같은 것 - 좋은 아키텍처의 목표는 인력 최소화 |
-| 2 | [A Tale of Two Values](notes/ch02-a-tale-of-two-values.md) | 행위 vs 구조 · 아이젠하워 매트릭스 | 행위(긴급)보다 구조(중요)가 더 높은 가치 - 아키텍처를 위해 투쟁하라 |
+| 1 | [What Is Design and Architecture?](notes/ch01-what-is-design-and-architecture.md) | 설계 = 아키텍처, 엉망진창의 비용 | 설계와 아키텍처는 같은 것 - 좋은 아키텍처의 목표는 인력 최소화 |
+| 2 | [A Tale of Two Values](notes/ch02-a-tale-of-two-values.md) | 행위 vs 구조, 아이젠하워 매트릭스 | 행위(긴급)보다 구조(중요)가 더 높은 가치 - 아키텍처를 위해 투쟁하라 |
 
 ### Part 2: 벽돌부터 시작하기 - 프로그래밍 패러다임 (Ch 3-6)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
 | 3 | [Paradigm Overview](notes/ch03-paradigm-overview.md) | 세 패러다임 | 각 패러다임은 무언가를 '빼앗는' 규율이다 |
-| 4 | [Structured Programming](notes/ch04-structured-programming.md) | 구조적 프로그래밍 · goto 제거 | 직접적 제어 이동에 부과된 규율 - 테스트 가능한 단위의 토대 |
-| 5 | [Object-Oriented Programming](notes/ch05-object-oriented-programming.md) | 다형성 · 의존성 역전 | OOP의 본질은 다형성 - 의존성 방향을 마음대로 제어하는 힘 |
-| 6 | [Functional Programming](notes/ch06-functional-programming.md) | 불변성 · 가변성 분리 | 변수 할당에 부과된 규율 - 경합·교착의 근원 제거 |
+| 4 | [Structured Programming](notes/ch04-structured-programming.md) | 구조적 프로그래밍, goto 제거 | 직접적 제어 이동에 부과된 규율 - 테스트 가능한 단위의 토대 |
+| 5 | [Object-Oriented Programming](notes/ch05-object-oriented-programming.md) | 다형성, 의존성 역전 | OOP의 본질은 다형성 - 의존성 방향을 마음대로 제어하는 힘 |
+| 6 | [Functional Programming](notes/ch06-functional-programming.md) | 불변성, 가변성 분리 | 변수 할당에 부과된 규율 - 경합·교착의 근원 제거 |
 
 ### Part 3: 설계 원칙 (Ch 7-11) - SOLID
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 7 | [SRP: The Single Responsibility Principle](notes/ch07-srp-the-single-responsibility-principle.md) | 단일 책임 원칙 · 액터 | 모듈은 하나의 액터에 대해서만 책임진다 - 함수 하나의 얘기가 아니다 |
-| 8 | [OCP: The Open-Closed Principle](notes/ch08-ocp-the-open-closed-principle.md) | 개방-폐쇄 원칙 · 방향성 제어 | 확장에 열리고 수정에 닫히게 - 컴포넌트 계층으로 보호하라 |
-| 9 | [LSP: The Liskov Substitution Principle](notes/ch09-lsp-the-liskov-substitution-principle.md) | 리스코프 치환 원칙 · 정사각형/직사각형 | 치환 가능성 - 위반하면 상위 수준에 조건문이 오염된다 |
+| 7 | [SRP: The Single Responsibility Principle](notes/ch07-srp-the-single-responsibility-principle.md) | 단일 책임 원칙, 액터 | 모듈은 하나의 액터에 대해서만 책임진다 - 함수 하나의 얘기가 아니다 |
+| 8 | [OCP: The Open-Closed Principle](notes/ch08-ocp-the-open-closed-principle.md) | 개방-폐쇄 원칙, 방향성 제어 | 확장에 열리고 수정에 닫히게 - 컴포넌트 계층으로 보호하라 |
+| 9 | [LSP: The Liskov Substitution Principle](notes/ch09-lsp-the-liskov-substitution-principle.md) | 리스코프 치환 원칙, 정사각형/직사각형 | 치환 가능성 - 위반하면 상위 수준에 조건문이 오염된다 |
 | 10 | [ISP: The Interface Segregation Principle](notes/ch10-isp-the-interface-segregation-principle.md) | 인터페이스 분리 원칙 | 사용하지 않는 것에 의존하지 마라 |
-| 11 | [DIP: The Dependency Inversion Principle](notes/ch11-dip-the-dependency-inversion-principle.md) | 의존성 역전 · 추상 팩토리 | 추상화에 의존하라 - 제어 흐름과 의존 방향의 분리 |
+| 11 | [DIP: The Dependency Inversion Principle](notes/ch11-dip-the-dependency-inversion-principle.md) | 의존성 역전, 추상 팩토리 | 추상화에 의존하라 - 제어 흐름과 의존 방향의 분리 |
 
 ### Part 4: 컴포넌트 원칙 (Ch 12-14)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 12 | [Components](notes/ch12-components.md) | 컴포넌트 · 배포 단위의 역사 | 컴포넌트 = 배포 단위 - 링커·라이브러리의 역사에서 배우기 |
-| 13 | [Component Cohesion](notes/ch13-component-cohesion.md) | REP · CCP · CRP | 어떤 클래스를 한 컴포넌트로 묶나 - 응집 3원칙의 장력 |
-| 14 | [Component Coupling](notes/ch14-component-coupling.md) | ADP · SDP · SAP · 메인 시퀀스 | 컴포넌트 간 관계 - 순환 금지·안정 방향 의존·안정=추상 |
+| 12 | [Components](notes/ch12-components.md) | 컴포넌트, 배포 단위의 역사 | 컴포넌트 = 배포 단위 - 링커·라이브러리의 역사에서 배우기 |
+| 13 | [Component Cohesion](notes/ch13-component-cohesion.md) | REP, CCP, CRP | 어떤 클래스를 한 컴포넌트로 묶나 - 응집 3원칙의 장력 |
+| 14 | [Component Coupling](notes/ch14-component-coupling.md) | ADP, SDP, SAP, 메인 시퀀스 | 컴포넌트 간 관계 - 순환 금지·안정 방향 의존·안정=추상 |
 
 ### Part 5: 아키텍처 (Ch 15-29)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 15 | [What Is Architecture?](notes/ch15-what-is-architecture.md) | 아키텍처 정의 · 선택지 보존 | 좋은 아키텍처는 결정을 미룰 수 있게 한다 |
-| 16 | [Independence](notes/ch16-independence.md) | 독립성 · 유스케이스/개발/배포 분리 | 수직·수평 분리로 유스케이스와 팀·배포의 독립성 확보 |
-| 17 | [Boundaries: Drawing Lines](notes/ch17-boundaries-drawing-lines.md) | 경계 · 플러그인 아키텍처 | 어디에 선을 긋는가 - 업무 규칙과 세부사항 사이 |
-| 18 | [Boundary Anatomy](notes/ch18-boundary-anatomy.md) | 경계 형태 · 배포/스레드/프로세스/서비스 | 경계 횡단의 물리적 형태들 |
-| 19 | [Policy and Level](notes/ch19-policy-and-level.md) | 정책 · 수준 | 수준 = 입력과 출력으로부터의 거리 - 고수준일수록 안쪽 |
-| 20 | [Business Rules](notes/ch20-business-rules.md) | 엔티티 · 유스케이스 | 핵심 업무 규칙(엔티티)과 애플리케이션 규칙(유스케이스)의 구분 |
+| 15 | [What Is Architecture?](notes/ch15-what-is-architecture.md) | 아키텍처 정의, 선택지 보존 | 좋은 아키텍처는 결정을 미룰 수 있게 한다 |
+| 16 | [Independence](notes/ch16-independence.md) | 독립성, 유스케이스/개발/배포 분리 | 수직·수평 분리로 유스케이스와 팀·배포의 독립성 확보 |
+| 17 | [Boundaries: Drawing Lines](notes/ch17-boundaries-drawing-lines.md) | 경계, 플러그인 아키텍처 | 어디에 선을 긋는가 - 업무 규칙과 세부사항 사이 |
+| 18 | [Boundary Anatomy](notes/ch18-boundary-anatomy.md) | 경계 형태, 배포/스레드/프로세스/서비스 | 경계 횡단의 물리적 형태들 |
+| 19 | [Policy and Level](notes/ch19-policy-and-level.md) | 정책, 수준 | 수준 = 입력과 출력으로부터의 거리 - 고수준일수록 안쪽 |
+| 20 | [Business Rules](notes/ch20-business-rules.md) | 엔티티, 유스케이스 | 핵심 업무 규칙(엔티티)과 애플리케이션 규칙(유스케이스)의 구분 |
 | 21 | [Screaming Architecture](notes/ch21-screaming-architecture.md) | 소리치는 아키텍처 | 아키텍처는 프레임워크가 아니라 유스케이스를 소리쳐야 한다 |
-| 22 | [The Clean Architecture](notes/ch22-the-clean-architecture.md) | 의존성 규칙 · 동심원 · 경계 횡단 | 이 책의 중심 - 엔티티→유스케이스→어댑터→프레임워크 동심원 |
-| 23 | [Presenters and Humble Objects](notes/ch23-presenters-and-humble-objects.md) | 험블 객체 · 프레젠터 | 테스트하기 어려운 부분을 얇게 - 험블 객체 패턴 |
+| 22 | [The Clean Architecture](notes/ch22-the-clean-architecture.md) | 의존성 규칙, 동심원, 경계 횡단 | 이 책의 중심 - 엔티티→유스케이스→어댑터→프레임워크 동심원 |
+| 23 | [Presenters and Humble Objects](notes/ch23-presenters-and-humble-objects.md) | 험블 객체, 프레젠터 | 테스트하기 어려운 부분을 얇게 - 험블 객체 패턴 |
 | 24 | [Partial Boundaries](notes/ch24-partial-boundaries.md) | 부분적 경계 | 완전한 경계는 비싸다 - 부분 경계 전략 3가지 |
-| 25 | [Layers and Boundaries](notes/ch25-layers-and-boundaries.md) | 계층과 경계 · 움퍼스 사냥 게임 | 경계는 어디에나 있을 수 있다 - 비용과 저울질하라 |
+| 25 | [Layers and Boundaries](notes/ch25-layers-and-boundaries.md) | 계층과 경계, 움퍼스 사냥 게임 | 경계는 어디에나 있을 수 있다 - 비용과 저울질하라 |
 | 26 | [The Main Component](notes/ch26-the-main-component.md) | 메인 컴포넌트 | Main은 가장 바깥의 가장 지저분한 컴포넌트 - 궁극의 세부사항 |
-| 27 | [Services: Great and Small](notes/ch27-services-great-and-small.md) | 서비스 · 마이크로서비스 비판 | 서비스 분리 자체는 아키텍처가 아니다 - 경계가 아키텍처다 |
-| 28 | [The Test Boundary](notes/ch28-the-test-boundary.md) | 테스트 경계 · 테스트 API | 테스트도 시스템 컴포넌트 - 깨지기 쉬운 테스트 문제 |
-| 29 | [Clean Embedded Architecture](notes/ch29-clean-embedded-architecture.md) | 임베디드 · HAL/OSAL | 펌웨어를 줄이고 하드웨어를 세부사항으로 |
+| 27 | [Services: Great and Small](notes/ch27-services-great-and-small.md) | 서비스, 마이크로서비스 비판 | 서비스 분리 자체는 아키텍처가 아니다 - 경계가 아키텍처다 |
+| 28 | [The Test Boundary](notes/ch28-the-test-boundary.md) | 테스트 경계, 테스트 API | 테스트도 시스템 컴포넌트 - 깨지기 쉬운 테스트 문제 |
+| 29 | [Clean Embedded Architecture](notes/ch29-clean-embedded-architecture.md) | 임베디드, HAL/OSAL | 펌웨어를 줄이고 하드웨어를 세부사항으로 |
 
 ### Part 6: 세부사항 (Ch 30-34)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
 | 30 | [The Database Is a Detail](notes/ch30-the-database-is-a-detail.md) | 데이터베이스 = 세부사항 | 데이터 모델은 중요하지만 DB 기술은 세부사항이다 |
-| 31 | [The Web Is a Detail](notes/ch31-the-web-is-a-detail.md) | 웹 = 세부사항 · GUI 진자 | UI 기술은 반복 진동해 왔다 - 웹도 IO 장치일 뿐 |
-| 32 | [Frameworks Are Details](notes/ch32-frameworks-are-details.md) | 프레임워크 = 세부사항 · 비대칭 결혼 | 프레임워크와 결혼하지 마라 - 일방적 헌신의 위험 |
-| 33 | [Case Study: Video Sales](notes/ch33-case-study-video-sales.md) | 사례 연구 · 컴포넌트 다이어그램 | 비디오 판매 시스템으로 원칙 종합 적용 |
-| 34 | [The Missing Chapter](notes/ch34-the-missing-chapter.md) | 패키지 구조 · 구현 세부사항 (Simon Brown) | 계층/기능/포트와 어댑터/컴포넌트 기준 패키징 - 구현이 따라주지 않으면 무너진다 |
+| 31 | [The Web Is a Detail](notes/ch31-the-web-is-a-detail.md) | 웹 = 세부사항, GUI 진자 | UI 기술은 반복 진동해 왔다 - 웹도 IO 장치일 뿐 |
+| 32 | [Frameworks Are Details](notes/ch32-frameworks-are-details.md) | 프레임워크 = 세부사항, 비대칭 결혼 | 프레임워크와 결혼하지 마라 - 일방적 헌신의 위험 |
+| 33 | [Case Study: Video Sales](notes/ch33-case-study-video-sales.md) | 사례 연구, 컴포넌트 다이어그램 | 비디오 판매 시스템으로 원칙 종합 적용 |
+| 34 | [The Missing Chapter](notes/ch34-the-missing-chapter.md) | 패키지 구조, 구현 세부사항 (Simon Brown) | 계층/기능/포트와 어댑터/컴포넌트 기준 패키징 - 구현이 따라주지 않으면 무너진다 |
 
 ### 부록
 

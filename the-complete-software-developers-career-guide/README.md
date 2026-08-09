@@ -32,9 +32,9 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 2 | [입문하기](notes/ch02-getting-started.md) | 입문 로드맵 · 계획 | 막연한 동경 대신 계획 - 개발자가 되는 큰 그림 |
+| 2 | [입문하기](notes/ch02-getting-started.md) | 입문 로드맵, 계획 | 막연한 동경 대신 계획 - 개발자가 되는 큰 그림 |
 | 3 | [당신이 배워야 하는 기술](notes/ch03-what-skills-you-need.md) | 필수 기술 지도 | 언어 하나·구조화·소스 제어·디버깅 등 기본기 목록 |
-| 4 | [기술을 발전시키는 방법](notes/ch04-how-to-improve-your-skills.md) | 학습 사이클 · 실천 | 배우면 바로 써먹어라 - 가르치면 완성된다 |
+| 4 | [기술을 발전시키는 방법](notes/ch04-how-to-improve-your-skills.md) | 학습 사이클, 실천 | 배우면 바로 써먹어라 - 가르치면 완성된다 |
 | 5 | [프로그래밍 언어 고르기](notes/ch05-choosing-a-programming-language.md) | 언어 선택 기준 | 첫 언어는 생각보다 덜 중요하다 - 시장·흥미 기준으로 |
 | 6 | [첫 번째 프로그래밍 언어 배우기](notes/ch06-learning-your-first-language.md) | 첫 언어 학습법 | 동작하는 코드를 만지며 배워라 - 문법 암기가 아니라 |
 | 7 | [대학 진학하기](notes/ch07-going-to-college.md) | 학위 장단점 | 학위는 유리하지만 필수는 아니다 |
@@ -46,10 +46,10 @@
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
 | 10 | [인턴십](notes/ch10-internships.md) | 인턴십 | 경력의 첫 단추 - 무급이라도 가치가 있다 |
-| 11 | [경력 없이 일자리 구하기](notes/ch11-getting-a-job-without-experience.md) | 무경력 취업 · 포트폴리오 | 경력이 없으면 증거(사이드 프로젝트·오픈소스)를 만들어라 |
-| 12 | [일자리를 구하는 방법](notes/ch12-how-to-find-a-job.md) | 구직 채널 · 인맥 | 공고 지원은 최악의 채널 - 인맥과 직접 접촉이 낫다 |
+| 11 | [경력 없이 일자리 구하기](notes/ch11-getting-a-job-without-experience.md) | 무경력 취업, 포트폴리오 | 경력이 없으면 증거(사이드 프로젝트·오픈소스)를 만들어라 |
+| 12 | [일자리를 구하는 방법](notes/ch12-how-to-find-a-job.md) | 구직 채널, 인맥 | 공고 지원은 최악의 채널 - 인맥과 직접 접촉이 낫다 |
 | 13 | [이력서 만들기](notes/ch13-creating-a-resume.md) | 이력서 | 이력서는 마케팅 문서 - 전문가의 도움도 방법 |
-| 14 | [면접 절차](notes/ch14-the-interview-process.md) | 면접 유형 · 준비 | 면접의 본질은 "함께 일하고 싶은 사람인가" |
+| 14 | [면접 절차](notes/ch14-the-interview-process.md) | 면접 유형, 준비 | 면접의 본질은 "함께 일하고 싶은 사람인가" |
 | 15 | [연봉과 협상](notes/ch15-salary-and-negotiation.md) | 연봉 협상 | 먼저 숫자를 부르지 마라 - 협상의 기본기 |
 | 16 | [퇴사하는 법](notes/ch16-how-to-quit-a-job.md) | 퇴사 매너 | 다리를 불태우지 말고 프로답게 떠나라 |
 | 17 | [소프트웨어 개발자로 전향하기](notes/ch17-changing-careers-to-software.md) | 커리어 전향 | 비전공·타업계에서 개발자로 - 전환 전략 |
@@ -63,17 +63,17 @@
 |----|------|-----------|-----------|
 | 21 | [프로그래밍 언어 개요](notes/ch21-overview-of-programming-languages.md) | 언어 지형도 | 주요 언어들의 특징과 쓰임새 한눈에 |
 | 22 | [웹 개발이란 무엇인가?](notes/ch22-what-is-web-development.md) | 웹 개발 구조 | 웹의 동작 원리와 프런트/백 구분 |
-| 23 | [모바일 개발](notes/ch23-mobile-development.md) | 모바일 · 네이티브/크로스 | 모바일 개발의 선택지들 |
-| 24 | [백엔드 개발](notes/ch24-backend-development.md) | 백엔드 · 서버 로직 | 화면 뒤에서 벌어지는 일 |
+| 23 | [모바일 개발](notes/ch23-mobile-development.md) | 모바일, 네이티브/크로스 | 모바일 개발의 선택지들 |
+| 24 | [백엔드 개발](notes/ch24-backend-development.md) | 백엔드, 서버 로직 | 화면 뒤에서 벌어지는 일 |
 | 25 | [비디오 게임 개발](notes/ch25-video-game-development.md) | 게임 개발 | 낭만과 현실 - 게임 업계의 실제 |
-| 26 | [DBA와 데브옵스](notes/ch26-dba-and-devops.md) | DBA · 데브옵스 | 데이터와 인프라를 다루는 직군 이해 |
-| 27 | [소프트웨어 개발 방법론](notes/ch27-software-development-methodologies.md) | 워터폴 · 애자일 · 스크럼 | 방법론의 계보와 실제 |
-| 28 | [테스트와 QA 기초](notes/ch28-testing-and-qa-basics.md) | 테스트 유형 · QA | 테스트의 종류와 QA와 일하는 법 |
-| 29 | [테스트 주도 개발과 단위 테스트](notes/ch29-tdd-and-unit-testing.md) | 테스트 주도 개발 · 단위 테스트 | TDD의 사이클과 단위 테스트의 가치 |
-| 30 | [소스 제어](notes/ch30-source-control.md) | 버전 관리 · Git | 소스 제어는 선택이 아니라 기본 소양 |
-| 31 | [지속적 통합](notes/ch31-continuous-integration.md) | 지속적 통합 · 빌드 자동화 | 코드를 항상 배포 가능한 상태로 |
+| 26 | [DBA와 데브옵스](notes/ch26-dba-and-devops.md) | DBA, 데브옵스 | 데이터와 인프라를 다루는 직군 이해 |
+| 27 | [소프트웨어 개발 방법론](notes/ch27-software-development-methodologies.md) | 워터폴, 애자일, 스크럼 | 방법론의 계보와 실제 |
+| 28 | [테스트와 QA 기초](notes/ch28-testing-and-qa-basics.md) | 테스트 유형, QA | 테스트의 종류와 QA와 일하는 법 |
+| 29 | [테스트 주도 개발과 단위 테스트](notes/ch29-tdd-and-unit-testing.md) | 테스트 주도 개발, 단위 테스트 | TDD의 사이클과 단위 테스트의 가치 |
+| 30 | [소스 제어](notes/ch30-source-control.md) | 버전 관리, Git | 소스 제어는 선택이 아니라 기본 소양 |
+| 31 | [지속적 통합](notes/ch31-continuous-integration.md) | 지속적 통합, 빌드 자동화 | 코드를 항상 배포 가능한 상태로 |
 | 32 | [디버깅](notes/ch32-debugging.md) | 디버깅 접근법 | 찍기 전에 재현하고 가설을 세워라 |
-| 33 | [코드 유지보수](notes/ch33-code-maintenance.md) | 유지보수 · 보이스카웃 규칙 | 개발자의 시간 대부분은 유지보수 - 잘하는 법 |
+| 33 | [코드 유지보수](notes/ch33-code-maintenance.md) | 유지보수, 보이스카웃 규칙 | 개발자의 시간 대부분은 유지보수 - 잘하는 법 |
 | 34 | [직업과 직함](notes/ch34-jobs-and-titles.md) | 직함 체계 | 주니어부터 아키텍트까지 직함의 실제 의미 |
 | 35 | [업무 유형](notes/ch35-types-of-work.md) | 업무 유형 | 스타트업/대기업/에이전시 등 일터별 특성 |
 
@@ -84,30 +84,30 @@
 | 36 | [동료 대하기](notes/ch36-dealing-with-coworkers.md) | 동료 관계 | 까다로운 동료 유형별 대처법 |
 | 37 | [상사 대하기](notes/ch37-dealing-with-your-boss.md) | 상사 관리 | 상사를 이해하고 관리하라 - 관계의 기술 |
 | 38 | [QA 대하기](notes/ch38-dealing-with-qa.md) | QA 협업 | QA는 적이 아니라 같은 편 |
-| 39 | [일과 삶의 균형](notes/ch39-work-life-balance.md) | 워라밸 · 우선순위 | 균형은 시간이 아니라 우선순위의 문제 |
+| 39 | [일과 삶의 균형](notes/ch39-work-life-balance.md) | 워라밸, 우선순위 | 균형은 시간이 아니라 우선순위의 문제 |
 | 40 | [팀에서 일하기](notes/ch40-working-on-a-team.md) | 팀워크 | 팀의 목표가 내 목표 - 팀 플레이어 되기 |
 | 41 | [설득하기](notes/ch41-being-persuasive.md) | 설득 기술 | 논쟁이 아니라 설득 - 사람을 움직이는 법 |
 | 42 | [적절한 복장 갖추기](notes/ch42-dressing-for-success.md) | 복장 전략 | 옷차림도 커리어 전략이다 - 두 단계 위로 입어라 |
 | 43 | [좋은 평가받기](notes/ch43-getting-a-good-review.md) | 성과 평가 | 평가는 평소의 가시성이 결정한다 |
 | 44 | [편견에 대처하기](notes/ch44-dealing-with-prejudice.md) | 편견 대응 | 부당함에 대처하는 현실적 전략 |
 | 45 | [좋은 리더 되기](notes/ch45-being-a-good-leader.md) | 리더십 | 리더는 직함이 아니라 행동 - 모범으로 이끈다 |
-| 46 | [연봉 인상과 승진](notes/ch46-raises-and-promotions.md) | 인상 · 승진 전략 | 가치를 올리고, 그 가치를 증명하라 |
+| 46 | [연봉 인상과 승진](notes/ch46-raises-and-promotions.md) | 인상, 승진 전략 | 가치를 올리고, 그 가치를 증명하라 |
 | 47 | [기술 분야에 종사하는 여성](notes/ch47-women-in-tech.md) | 여성 개발자 | 기술 업계의 성별 문제에 대한 저자의 관점 |
 
 ### Part 5: 경력 발전시키기 (Ch 48-60)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 48 | [좋은 평판 쌓기](notes/ch48-building-your-reputation.md) | 평판 · 개인 브랜드 | 평판은 복리로 쌓인다 - 이름을 알려라 |
-| 49 | [인맥과 커뮤니티](notes/ch49-networking.md) | 인맥 · 커뮤니티 | 기브 앤 테이크 - 먼저 주는 네트워킹 |
-| 50 | [최신 기술 따라잡기](notes/ch50-staying-relevant.md) | 기술 트렌드 · 학습 습관 | 도태되지 않는 법 - 매일 조금씩 |
+| 48 | [좋은 평판 쌓기](notes/ch48-building-your-reputation.md) | 평판, 개인 브랜드 | 평판은 복리로 쌓인다 - 이름을 알려라 |
+| 49 | [인맥과 커뮤니티](notes/ch49-networking.md) | 인맥, 커뮤니티 | 기브 앤 테이크 - 먼저 주는 네트워킹 |
+| 50 | [최신 기술 따라잡기](notes/ch50-staying-relevant.md) | 기술 트렌드, 학습 습관 | 도태되지 않는 법 - 매일 조금씩 |
 | 51 | [제너럴리스트 vs. 스페셜리스트](notes/ch51-generalist-vs-specialist.md) | 전문화 | 니치를 정하라 - 전문화가 몸값을 만든다 |
-| 52 | [강연과 콘퍼런스](notes/ch52-speaking-at-conferences.md) | 강연 · 콘퍼런스 | 무대에 서면 커리어가 가속된다 |
-| 53 | [블로그 만들기](notes/ch53-blogging.md) | 블로그 · 콘텐츠 | 저자 인생을 바꾼 도구 - 꾸준한 블로깅 |
-| 54 | [프리랜서와 창업](notes/ch54-freelancing-and-entrepreneurship.md) | 프리랜싱 · 창업 | 월급 밖의 선택지 - 준비된 독립 |
+| 52 | [강연과 콘퍼런스](notes/ch52-speaking-at-conferences.md) | 강연, 콘퍼런스 | 무대에 서면 커리어가 가속된다 |
+| 53 | [블로그 만들기](notes/ch53-blogging.md) | 블로그, 콘텐츠 | 저자 인생을 바꾼 도구 - 꾸준한 블로깅 |
+| 54 | [프리랜서와 창업](notes/ch54-freelancing-and-entrepreneurship.md) | 프리랜싱, 창업 | 월급 밖의 선택지 - 준비된 독립 |
 | 55 | [진로](notes/ch55-career-paths.md) | 커리어 패스 | 관리자·전문가·독립 - 세 갈래 길 |
 | 56 | [고용의 안정성과 보장](notes/ch56-job-security.md) | 고용 안정 | 안정은 회사가 아니라 내 실력에서 나온다 |
-| 57 | [교육과 자격증](notes/ch57-education-and-certifications.md) | 자격증 · 재교육 | 자격증의 실제 가치 판단법 |
+| 57 | [교육과 자격증](notes/ch57-education-and-certifications.md) | 자격증, 재교육 | 자격증의 실제 가치 판단법 |
 | 58 | [사이드 프로젝트](notes/ch58-side-projects.md) | 사이드 프로젝트 | 퇴근 후의 작은 프로젝트가 기회가 된다 |
 | 59 | [추천 도서](notes/ch59-recommended-reading.md) | 추천 도서 | 저자의 인생 책 목록 |
 | 60 | [마치며](notes/ch60-conclusion.md) | 실천 | 아는 것과 하는 것은 다르다 - 지금 실천하라 |
@@ -116,7 +116,7 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 61 | [개발자로 살아가기 (한국 기여자 칼럼)](notes/ch61-living-as-a-developer.md) | SI vs 서비스 · 국비 학원 · 비전공 · 블로그 | 김요한·이동욱·이승민·한정수 - 한국 개발 생태계 보완 칼럼 |
+| 61 | [개발자로 살아가기 (한국 기여자 칼럼)](notes/ch61-living-as-a-developer.md) | SI vs 서비스, 국비 학원, 비전공, 블로그 | 김요한·이동욱·이승민·한정수 - 한국 개발 생태계 보완 칼럼 |
 
 ## 학습 가이드
 

@@ -6,7 +6,7 @@
 
 ---
 
-## 0. 이 장에서 다루는 것 · 코드 표기 규약
+## 0. 이 장에서 다루는 것, 코드 표기 규약
 
 - 코드가 어떻게 예측을 벗어나 작동할 수 있는지
 - 예측을 벗어나는 코드가 어떻게 버그로 이어지는지
@@ -149,7 +149,7 @@ function getBillableInvoices(
 **해결책: 모든 경우를 명시적으로 처리하고, 처리 안 된 새 값이 오면 컴파일/테스트가 실패하게 한다.**
 
 <details>
-<summary>의사코드 (원서) - 예제 6.31 · 6.32 모든 경우를 처리하는 스위치문 + 단위 테스트</summary>
+<summary>의사코드 (원서) - 예제 6.31, 6.32 모든 경우를 처리하는 스위치문 + 단위 테스트</summary>
 
 ```java
 Boolean isOutcomeSafe(PredictedOutcome prediction) {

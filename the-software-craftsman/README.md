@@ -27,33 +27,33 @@ Part 1은 개인(이념·태도·커리어), Part 2는 조직(채용·면접·�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Software Development in the 21st Century](notes/ch01-software-development-in-the-21st-century.md) | 시니어의 기준 · 아키텍트/개발자 이분법 | 연차가 아니라 역량 - 21세기 개발자의 확장된 책임 |
-| 2 | [Agile](notes/ch02-agile.md) | 애자일 매니페스토 · 애자일 행오버 · XP | 애자일이 바꾼 것과 남긴 공백 - 절차만 남고 기술이 빠진 도입의 후유증 |
-| 3 | [Software Craftsmanship](notes/ch03-software-craftsmanship.md) | 장인정신 정의 · 장인정신 매니페스토 · 보이스카웃 규칙 | 1992 잭 리브스에서 2009 매니페스토까지 - 장인정신의 정의와 4가지 가치 |
-| 4 | [The Attitude of a Software Craftsman](notes/ch04-the-attitude-of-a-software-craftsman.md) | 자기 계발 · 카타 · 펫 프로젝트 · 의도한 발견 | 장인의 태도 = 자기 시간을 들이는 학습·훈련 루틴 |
-| 5 | [Heroes, Goodwill, and Professionalism](notes/ch05-heroes-goodwill-and-professionalism.md) | 거절 · 대안 제시 · 영웅 심리 | "노력해보겠다"는 실패의 완곡어 - 프로는 대안 있는 "아니오"를 말한다 |
-| 6 | [Working Software](notes/ch06-working-software.md) | 동작하는 소프트웨어 · 정원 돌보기 · 기술 부채 | 동작만 하는 코드는 충분하지 않다 - 코드는 정원처럼 돌봐야 한다 |
-| 7 | [Technical Practices](notes/ch07-technical-practices.md) | XP 실행 관례 · 테스트 주도 개발 · 지속적 통합 · 짝 프로그래밍 | 가치를 모르는 관례는 버려진다 - XP 관례가 주는 진짜 효용 |
-| 8 | [The Long Road](notes/ch08-the-long-road.md) | 커리어 투자 · 자율성/통달/목적의식 · 피터의 원리 | 브라질에서 런던까지 - 커리어는 긴 여정이며 투자다 |
+| 1 | [Software Development in the 21st Century](notes/ch01-software-development-in-the-21st-century.md) | 시니어의 기준, 아키텍트/개발자 이분법 | 연차가 아니라 역량 - 21세기 개발자의 확장된 책임 |
+| 2 | [Agile](notes/ch02-agile.md) | 애자일 매니페스토, 애자일 행오버, XP | 애자일이 바꾼 것과 남긴 공백 - 절차만 남고 기술이 빠진 도입의 후유증 |
+| 3 | [Software Craftsmanship](notes/ch03-software-craftsmanship.md) | 장인정신 정의, 장인정신 매니페스토, 보이스카웃 규칙 | 1992 잭 리브스에서 2009 매니페스토까지 - 장인정신의 정의와 4가지 가치 |
+| 4 | [The Attitude of a Software Craftsman](notes/ch04-the-attitude-of-a-software-craftsman.md) | 자기 계발, 카타, 펫 프로젝트, 의도한 발견 | 장인의 태도 = 자기 시간을 들이는 학습·훈련 루틴 |
+| 5 | [Heroes, Goodwill, and Professionalism](notes/ch05-heroes-goodwill-and-professionalism.md) | 거절, 대안 제시, 영웅 심리 | "노력해보겠다"는 실패의 완곡어 - 프로는 대안 있는 "아니오"를 말한다 |
+| 6 | [Working Software](notes/ch06-working-software.md) | 동작하는 소프트웨어, 정원 돌보기, 기술 부채 | 동작만 하는 코드는 충분하지 않다 - 코드는 정원처럼 돌봐야 한다 |
+| 7 | [Technical Practices](notes/ch07-technical-practices.md) | XP 실행 관례, 테스트 주도 개발, 지속적 통합, 짝 프로그래밍 | 가치를 모르는 관례는 버려진다 - XP 관례가 주는 진짜 효용 |
+| 8 | [The Long Road](notes/ch08-the-long-road.md) | 커리어 투자, 자율성/통달/목적의식, 피터의 원리 | 브라질에서 런던까지 - 커리어는 긴 여정이며 투자다 |
 
 ### Part 2: 조직과 문화 (Ch 9-16)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 9 | [Recruitment](notes/ch09-recruitment.md) | 채용 공고 안티패턴 · 추천 채용 · 커뮤니티 | 스펙 나열식 공고의 실패 - 태도와 커뮤니티로 채용하라 |
-| 10 | [Interviewing Software Craftsmen](notes/ch10-interviewing-software-craftsmen.md) | 면접 = 비즈니스 협상 · 페어 프로그래밍 면접 | 면접은 쌍방향 협상 - 코드로 대화하는 면접 설계 |
-| 11 | [Wrong Interview Approaches](notes/ch11-wrong-interview-approaches.md) | 면접 안티패턴 · 수수께끼 문제 | 8가지 잘못된 면접 방식 - 좋은 개발자를 쫓아내는 법 |
-| 12 | [The Cost of Low Morale](notes/ch12-the-cost-of-low-morale.md) | 낮은 사기 · 문화 반전 · 장인 수혈 | 사기 저하의 비용은 눈에 보이지 않게 크다 - 열정은 전염된다 |
-| 13 | [The Culture of Learning](notes/ch13-the-culture-of-learning.md) | 북 클럽 · 테크 런치 · 그룹 코드 리뷰 | 배움의 문화 만들기 - 아무도 참여하지 않을 때의 처방까지 |
-| 14 | [Driving Technical Changes](notes/ch14-driving-technical-changes.md) | 회의론 유형 · 신뢰 쌓기 · 점진적 변화 | 회의론자 유형별 설득 전략 - 신뢰·전문성·모범으로 변화를 이끈다 |
-| 15 | [Pragmatic Craftsmanship](notes/ch15-pragmatic-craftsmanship.md) | 품질 비용 편견 · 단순 설계 4원칙 | "고품질=고비용"은 편견이다 - 잘 짜는 것이 결국 빠르다 |
-| 16 | [A Career as a Software Craftsman](notes/ch16-a-career-as-a-software-craftsman.md) | 열정 · 커리어 전략 · 정체와 이동 | 장인으로 사는 커리어 - 열정·겸손·정직·용기 |
+| 9 | [Recruitment](notes/ch09-recruitment.md) | 채용 공고 안티패턴, 추천 채용, 커뮤니티 | 스펙 나열식 공고의 실패 - 태도와 커뮤니티로 채용하라 |
+| 10 | [Interviewing Software Craftsmen](notes/ch10-interviewing-software-craftsmen.md) | 면접 = 비즈니스 협상, 페어 프로그래밍 면접 | 면접은 쌍방향 협상 - 코드로 대화하는 면접 설계 |
+| 11 | [Wrong Interview Approaches](notes/ch11-wrong-interview-approaches.md) | 면접 안티패턴, 수수께끼 문제 | 8가지 잘못된 면접 방식 - 좋은 개발자를 쫓아내는 법 |
+| 12 | [The Cost of Low Morale](notes/ch12-the-cost-of-low-morale.md) | 낮은 사기, 문화 반전, 장인 수혈 | 사기 저하의 비용은 눈에 보이지 않게 크다 - 열정은 전염된다 |
+| 13 | [The Culture of Learning](notes/ch13-the-culture-of-learning.md) | 북 클럽, 테크 런치, 그룹 코드 리뷰 | 배움의 문화 만들기 - 아무도 참여하지 않을 때의 처방까지 |
+| 14 | [Driving Technical Changes](notes/ch14-driving-technical-changes.md) | 회의론 유형, 신뢰 쌓기, 점진적 변화 | 회의론자 유형별 설득 전략 - 신뢰·전문성·모범으로 변화를 이끈다 |
+| 15 | [Pragmatic Craftsmanship](notes/ch15-pragmatic-craftsmanship.md) | 품질 비용 편견, 단순 설계 4원칙 | "고품질=고비용"은 편견이다 - 잘 짜는 것이 결국 빠르다 |
+| 16 | [A Career as a Software Craftsman](notes/ch16-a-career-as-a-software-craftsman.md) | 열정, 커리어 전략, 정체와 이동 | 장인으로 사는 커리어 - 열정·겸손·정직·용기 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [Misconceptions About Software Craftsmanship](notes/appendix-a-misconceptions-about-software-craftsmanship.md) | 엘리트주의 반박 · 오해와 답변 | 장인정신에 대한 흔한 오해(엘리트주의·TDD 근시안 등)와 저자의 답 |
+| A | [Misconceptions About Software Craftsmanship](notes/appendix-a-misconceptions-about-software-craftsmanship.md) | 엘리트주의 반박, 오해와 답변 | 장인정신에 대한 흔한 오해(엘리트주의·TDD 근시안 등)와 저자의 답 |
 
 ## 학습 가이드
 
