@@ -27,33 +27,33 @@ Part 1이 마인드셋(아키텍트의 역할, 디자인 싱킹), Part 2가 설�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Becoming a Software Architect](ch01-becoming-a-software-architect.md) | 아키텍트의 역할 · 3가지 구조 · 품질 속성 | 아키텍트의 6가지 역할과 아키텍처의 정의 — 라이언하트 프로젝트 개막 |
-| 2 | [Design Thinking Fundamentals](ch02-design-thinking-fundamentals.md) | 디자인 싱킹 · HART 원칙 · 4가지 마인드셋 | 이해→탐색→실현→평가 마인드셋과 생각-실행-확인 순환 |
+| 1 | [Becoming a Software Architect](notes/ch01-becoming-a-software-architect.md) | 아키텍트의 역할 · 3가지 구조 · 품질 속성 | 아키텍트의 6가지 역할과 아키텍처의 정의 — 라이언하트 프로젝트 개막 |
+| 2 | [Design Thinking Fundamentals](notes/ch02-design-thinking-fundamentals.md) | 디자인 싱킹 · HART 원칙 · 4가지 마인드셋 | 이해→탐색→실현→평가 마인드셋과 생각-실행-확인 순환 |
 
 ### Part 2: 아키텍처 설계의 기초 (Ch 3-13)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 3 | [Designing Strategies](ch03-designing-strategies.md) | 만족화 · 스위트 스폿 · 위험 기반 설계 | 얼마나 미리 설계할 것인가 — 위험이 설계 투자량을 결정한다 |
-| 4 | [Empathizing with Stakeholders](ch04-empathizing-with-stakeholders.md) | 이해관계자 맵 · 비즈니스 목표 | 설계는 공감에서 시작 — 이해관계자와 비즈니스 목표 정의 |
-| 5 | [Architecturally Significant Requirements](ch05-architecturally-significant-requirements.md) | ASR · 품질 속성 시나리오 · 콘웨이 법칙 | 아키텍처를 결정짓는 요구사항 4카테고리와 ASR 워크북 |
-| 6 | [Choosing Architecture](ch06-choosing-architecture.md) | 분기와 융합 · 의사결정 매트릭스 · 책임 있는 마지막 순간 | 대안을 벌리고 좁히기 — 트레이드오프 기반 아키텍처 선택 |
-| 7 | [Patterns](ch07-patterns.md) | 레이어 · 포트와 어댑터 · 파이프-필터 · 발행/구독 | 검증된 출발점 — 10가지 아키텍처 패턴 카탈로그 |
-| 8 | [Modeling Complexity](ch08-modeling-complexity.md) | 메타모델 · 개념 개별화 · 이름 짓기 | 의미 있는 모델로 복잡도 관리 — 모델을 코드로 구현 |
-| 9 | [Architecture Design Studio](ch09-architecture-design-studio.md) | 디자인 스튜디오 · 샤레트 · 만들기-공유-비평 | 아키텍처 워크숍 운영법 — 3F 원칙과 7단계 |
-| 10 | [Visualizing Design](ch10-visualizing-design.md) | 뷰 · C4 모델 · 다이어그램 원칙 | 설계를 보이게 — 5가지 뷰와 C4 모델 계층 |
-| 11 | [Documenting Architecture](ch11-documenting-architecture.md) | SAD · ADR · 아키텍처 하이쿠 | 상황에 맞는 문서화 — 무겁게(SAD)부터 가볍게(하이쿠·ADR)까지 |
-| 12 | [Evaluating Architecture](ch12-evaluating-architecture.md) | 아키텍처 평가 · ATAM · 루브릭 | 설계를 시험대에 — 산출물·루브릭·통찰의 평가 3요소 |
-| 13 | [Empowering the Architect](ch13-empowering-the-architect.md) | 함께 설계 · 위임 레벨 · 안전한 훈련 | 팀 전체를 아키텍트로 — 7가지 위임 레벨과 성장 지원 |
+| 3 | [Designing Strategies](notes/ch03-designing-strategies.md) | 만족화 · 스위트 스폿 · 위험 기반 설계 | 얼마나 미리 설계할 것인가 — 위험이 설계 투자량을 결정한다 |
+| 4 | [Empathizing with Stakeholders](notes/ch04-empathizing-with-stakeholders.md) | 이해관계자 맵 · 비즈니스 목표 | 설계는 공감에서 시작 — 이해관계자와 비즈니스 목표 정의 |
+| 5 | [Architecturally Significant Requirements](notes/ch05-architecturally-significant-requirements.md) | ASR · 품질 속성 시나리오 · 콘웨이 법칙 | 아키텍처를 결정짓는 요구사항 4카테고리와 ASR 워크북 |
+| 6 | [Choosing Architecture](notes/ch06-choosing-architecture.md) | 분기와 융합 · 의사결정 매트릭스 · 책임 있는 마지막 순간 | 대안을 벌리고 좁히기 — 트레이드오프 기반 아키텍처 선택 |
+| 7 | [Patterns](notes/ch07-patterns.md) | 레이어 · 포트와 어댑터 · 파이프-필터 · 발행/구독 | 검증된 출발점 — 10가지 아키텍처 패턴 카탈로그 |
+| 8 | [Modeling Complexity](notes/ch08-modeling-complexity.md) | 메타모델 · 개념 개별화 · 이름 짓기 | 의미 있는 모델로 복잡도 관리 — 모델을 코드로 구현 |
+| 9 | [Architecture Design Studio](notes/ch09-architecture-design-studio.md) | 디자인 스튜디오 · 샤레트 · 만들기-공유-비평 | 아키텍처 워크숍 운영법 — 3F 원칙과 7단계 |
+| 10 | [Visualizing Design](notes/ch10-visualizing-design.md) | 뷰 · C4 모델 · 다이어그램 원칙 | 설계를 보이게 — 5가지 뷰와 C4 모델 계층 |
+| 11 | [Documenting Architecture](notes/ch11-documenting-architecture.md) | SAD · ADR · 아키텍처 하이쿠 | 상황에 맞는 문서화 — 무겁게(SAD)부터 가볍게(하이쿠·ADR)까지 |
+| 12 | [Evaluating Architecture](notes/ch12-evaluating-architecture.md) | 아키텍처 평가 · ATAM · 루브릭 | 설계를 시험대에 — 산출물·루브릭·통찰의 평가 3요소 |
+| 13 | [Empowering the Architect](notes/ch13-empowering-the-architect.md) | 함께 설계 · 위임 레벨 · 안전한 훈련 | 팀 전체를 아키텍트로 — 7가지 위임 레벨과 성장 지원 |
 
 ### Part 3: 아키텍트의 은빛 도구상자 (Ch 14-17) — 38가지 활동 카탈로그
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 14 | [When You Want to Understand the Problem](ch14-understanding-the-problem.md) | 이해하기 마인드셋 · 활동 1-10 | 문제를 이해하고 싶을 때 — 이해관계자 인터뷰·GQM 등 10개 활동 |
-| 15 | [When You Want to Explore Solutions](ch15-exploring-solutions.md) | 탐색하기 마인드셋 · 활동 11-19 | 해결책을 찾고 싶을 때 — 컴포넌트 책임 카드 등 9개 활동 |
-| 16 | [When You Want to Make Design Tangible](ch16-making-design-tangible.md) | 실현하기 마인드셋 · 활동 20-29 | 설계를 손에 잡히게 — ADR·아키텍처 하이쿠 등 10개 활동 |
-| 17 | [When You Want to Evaluate Design Alternatives](ch17-evaluating-design-alternatives.md) | 평가하기 마인드셋 · 활동 30-38 | 대안을 평가하고 싶을 때 — 위험 폭풍·시나리오 훑기 등 9개 활동 |
+| 14 | [When You Want to Understand the Problem](notes/ch14-understanding-the-problem.md) | 이해하기 마인드셋 · 활동 1-10 | 문제를 이해하고 싶을 때 — 이해관계자 인터뷰·GQM 등 10개 활동 |
+| 15 | [When You Want to Explore Solutions](notes/ch15-exploring-solutions.md) | 탐색하기 마인드셋 · 활동 11-19 | 해결책을 찾고 싶을 때 — 컴포넌트 책임 카드 등 9개 활동 |
+| 16 | [When You Want to Make Design Tangible](notes/ch16-making-design-tangible.md) | 실현하기 마인드셋 · 활동 20-29 | 설계를 손에 잡히게 — ADR·아키텍처 하이쿠 등 10개 활동 |
+| 17 | [When You Want to Evaluate Design Alternatives](notes/ch17-evaluating-design-alternatives.md) | 평가하기 마인드셋 · 활동 30-38 | 대안을 평가하고 싶을 때 — 위험 폭풍·시나리오 훑기 등 9개 활동 |
 
 ## 학습 가이드
 

@@ -25,29 +25,29 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [객체, 설계](ch01-objects-and-design.md) | 티켓 판매 시스템 · 캡슐화 · 결합도 | 극장 예제 리팩터링 — 의존성을 낮추고 객체를 자율적 존재로 |
-| 2 | [객체지향 프로그래밍](ch02-object-oriented-programming.md) | 영화 예매 시스템 · 상속 · 다형성 · 추상화 | 영화 예매로 보는 OOP 기본기 — 컴파일 타임과 런타임 의존성의 차이 |
-| 3 | [역할, 책임, 협력](ch03-roles-responsibilities-collaboration.md) | 역할 · 책임 · 협력 · 책임 주도 설계 | 객체지향 설계의 세 재료 — 중심은 클래스가 아니라 책임 |
-| 4 | [설계 품질과 트레이드오프](ch04-design-quality-and-tradeoffs.md) | 데이터 중심 설계 · 캡슐화 · 응집도 · 결합도 | 데이터 중심 설계가 취약한 이유 — 같은 기능, 다른 설계의 품질 비교 |
-| 5 | [책임 할당하기](ch05-assigning-responsibilities.md) | GRASP · 정보 전문가 · 낮은 결합 · 높은 응집 | 책임 주도 설계의 실행법 — GRASP 패턴으로 책임 배치 |
-| 6 | [메시지와 인터페이스](ch06-messages-and-interfaces.md) | 디미터 법칙 · 묻지 말고 시켜라 · 명령-쿼리 분리 | 훌륭한 인터페이스의 원칙 — 메시지가 객체를 결정한다 |
-| 7 | [객체 분해](ch07-object-decomposition.md) | 프로시저 추상화 · 모듈 · 추상 데이터 타입 | 프로시저→모듈→ADT→클래스 — 분해 기술의 역사로 보는 객체지향 |
-| 8 | [의존성 관리하기](ch08-managing-dependencies.md) | 의존성 · 컨텍스트 독립성 · 명시적 의존성 | 의존성의 종류와 관리 기법 — 유연한 설계의 토대 |
-| 9 | [유연한 설계](ch09-flexible-design.md) | 개방-폐쇄 원칙 · 의존성 역전 · 의존성 주입 · 팩토리 | OCP·DIP·DI — 추상화에 의존해야 확장에 열린다 |
-| 10 | [상속과 코드 재사용](ch10-inheritance-and-code-reuse.md) | 상속 · 중복 코드 · 취약한 기반 클래스 | 전화 요금 예제 — 재사용 목적의 상속이 만드는 강한 결합 |
-| 11 | [합성과 유연한 설계](ch11-composition-and-flexible-design.md) | 합성 · 믹스인 · 상속에서 합성으로 | 합성은 컴파일 의존을 런타임 의존으로 — 요금제 조합 폭발의 해법 |
-| 12 | [다형성](ch12-polymorphism.md) | 다형성 · 동적 메서드 탐색 · self/super 참조 | 다형성이 실제로 동작하는 메커니즘 — 상속의 본질은 메서드 탐색 |
-| 13 | [서브클래싱과 서브타이핑](ch13-subclassing-and-subtyping.md) | 서브타이핑 · 리스코프 치환 원칙 · 행동 호환성 | is-a는 행동 호환성이다 — 구현 상속과 인터페이스 상속의 구분 |
-| 14 | [일관성 있는 협력](ch14-consistent-collaboration.md) | 일관된 협력 패턴 · 변경 캡슐화 | 유사한 기능에는 유사한 협력 패턴을 — 변하는 것과 변하지 않는 것의 분리 |
-| 15 | [디자인 패턴과 프레임워크](ch15-design-patterns-and-frameworks.md) | 디자인 패턴 · 프레임워크 · 제어 역전 | 패턴은 설계 재사용, 프레임워크는 코드 재사용 — IoC의 의미 |
+| 1 | [객체, 설계](notes/ch01-objects-and-design.md) | 티켓 판매 시스템 · 캡슐화 · 결합도 | 극장 예제 리팩터링 — 의존성을 낮추고 객체를 자율적 존재로 |
+| 2 | [객체지향 프로그래밍](notes/ch02-object-oriented-programming.md) | 영화 예매 시스템 · 상속 · 다형성 · 추상화 | 영화 예매로 보는 OOP 기본기 — 컴파일 타임과 런타임 의존성의 차이 |
+| 3 | [역할, 책임, 협력](notes/ch03-roles-responsibilities-collaboration.md) | 역할 · 책임 · 협력 · 책임 주도 설계 | 객체지향 설계의 세 재료 — 중심은 클래스가 아니라 책임 |
+| 4 | [설계 품질과 트레이드오프](notes/ch04-design-quality-and-tradeoffs.md) | 데이터 중심 설계 · 캡슐화 · 응집도 · 결합도 | 데이터 중심 설계가 취약한 이유 — 같은 기능, 다른 설계의 품질 비교 |
+| 5 | [책임 할당하기](notes/ch05-assigning-responsibilities.md) | GRASP · 정보 전문가 · 낮은 결합 · 높은 응집 | 책임 주도 설계의 실행법 — GRASP 패턴으로 책임 배치 |
+| 6 | [메시지와 인터페이스](notes/ch06-messages-and-interfaces.md) | 디미터 법칙 · 묻지 말고 시켜라 · 명령-쿼리 분리 | 훌륭한 인터페이스의 원칙 — 메시지가 객체를 결정한다 |
+| 7 | [객체 분해](notes/ch07-object-decomposition.md) | 프로시저 추상화 · 모듈 · 추상 데이터 타입 | 프로시저→모듈→ADT→클래스 — 분해 기술의 역사로 보는 객체지향 |
+| 8 | [의존성 관리하기](notes/ch08-managing-dependencies.md) | 의존성 · 컨텍스트 독립성 · 명시적 의존성 | 의존성의 종류와 관리 기법 — 유연한 설계의 토대 |
+| 9 | [유연한 설계](notes/ch09-flexible-design.md) | 개방-폐쇄 원칙 · 의존성 역전 · 의존성 주입 · 팩토리 | OCP·DIP·DI — 추상화에 의존해야 확장에 열린다 |
+| 10 | [상속과 코드 재사용](notes/ch10-inheritance-and-code-reuse.md) | 상속 · 중복 코드 · 취약한 기반 클래스 | 전화 요금 예제 — 재사용 목적의 상속이 만드는 강한 결합 |
+| 11 | [합성과 유연한 설계](notes/ch11-composition-and-flexible-design.md) | 합성 · 믹스인 · 상속에서 합성으로 | 합성은 컴파일 의존을 런타임 의존으로 — 요금제 조합 폭발의 해법 |
+| 12 | [다형성](notes/ch12-polymorphism.md) | 다형성 · 동적 메서드 탐색 · self/super 참조 | 다형성이 실제로 동작하는 메커니즘 — 상속의 본질은 메서드 탐색 |
+| 13 | [서브클래싱과 서브타이핑](notes/ch13-subclassing-and-subtyping.md) | 서브타이핑 · 리스코프 치환 원칙 · 행동 호환성 | is-a는 행동 호환성이다 — 구현 상속과 인터페이스 상속의 구분 |
+| 14 | [일관성 있는 협력](notes/ch14-consistent-collaboration.md) | 일관된 협력 패턴 · 변경 캡슐화 | 유사한 기능에는 유사한 협력 패턴을 — 변하는 것과 변하지 않는 것의 분리 |
+| 15 | [디자인 패턴과 프레임워크](notes/ch15-design-patterns-and-frameworks.md) | 디자인 패턴 · 프레임워크 · 제어 역전 | 패턴은 설계 재사용, 프레임워크는 코드 재사용 — IoC의 의미 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [계약에 의한 설계](appendix-a-design-by-contract.md) | 계약에 의한 설계 · 사전조건/사후조건 · 불변식 | 인터페이스만으로 담지 못하는 협력의 제약을 계약으로 명시 |
-| B | [타입 계층의 구현](appendix-b-implementing-type-hierarchies.md) | 타입 계층 · 상속/인터페이스/합성 구현 | 타입 계층을 구현하는 다양한 기법 카탈로그 |
-| C | [동적인 협력, 정적인 코드](appendix-c-dynamic-collaboration-static-code.md) | 동적 협력 · 정적 타입 | 동적인 객체 협력을 정적인 코드로 담아내는 관점 |
+| A | [계약에 의한 설계](notes/appendix-a-design-by-contract.md) | 계약에 의한 설계 · 사전조건/사후조건 · 불변식 | 인터페이스만으로 담지 못하는 협력의 제약을 계약으로 명시 |
+| B | [타입 계층의 구현](notes/appendix-b-implementing-type-hierarchies.md) | 타입 계층 · 상속/인터페이스/합성 구현 | 타입 계층을 구현하는 다양한 기법 카탈로그 |
+| C | [동적인 협력, 정적인 코드](notes/appendix-c-dynamic-collaboration-static-code.md) | 동적 협력 · 정적 타입 | 동적인 객체 협력을 정적인 코드로 담아내는 관점 |
 
 ## 학습 가이드
 

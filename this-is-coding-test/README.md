@@ -29,34 +29,34 @@ TS 고유의 함정 — `Array.prototype.sort()`의 사전순 기본 동작, 우
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 0 | [코딩 테스트용 JS/TS 기본 문법](ch00-javascript-basics-for-coding-test.md) | 자료형 · Map/Set · 복잡도 · 입출력 | 원서 부록 A의 JS/TS 변환판 — 코테 기본기 총정리 |
+| 0 | [코딩 테스트용 JS/TS 기본 문법](notes/ch00-javascript-basics-for-coding-test.md) | 자료형 · Map/Set · 복잡도 · 입출력 | 원서 부록 A의 JS/TS 변환판 — 코테 기본기 총정리 |
 
 ### Part 2: 주요 알고리즘 이론 (Ch 3-10)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 3 | [그리디](ch03-greedy.md) | 그리디 · 정당성 검증 | 국소 최적 선택이 전체 최적이 되는 조건 |
-| 4 | [구현](ch04-implementation.md) | 방향 벡터 · 시뮬레이션 · 완전 탐색 | dx/dy 패턴과 시뮬레이션 문제의 기본기 |
-| 5 | [DFS/BFS](ch05-dfs-bfs.md) | DFS · BFS · 격자 그래프 · O(1) 큐 | 스택·큐·재귀로 탐색 — 큐 O(1) 구현 포함 |
-| 6 | [정렬](ch06-sorting.md) | 선택/삽입/퀵/계수 정렬 · 비교 함수 | 정렬 알고리즘과 `sort()` 비교 함수 필수 함정 |
-| 7 | [이진 탐색](ch07-binary-search.md) | 이진 탐색 · lower/upper bound · 파라메트릭 서치 | 탐색 범위를 절반씩 — 답을 탐색하는 파라메트릭 서치까지 |
-| 8 | [다이나믹 프로그래밍](ch08-dynamic-programming.md) | 점화식 · 탑다운/바텀업 · 메모이제이션 | 큰 문제를 작은 문제로 — DP의 두 접근 |
-| 9 | [최단 경로](ch09-shortest-path.md) | 다익스트라 · 플로이드 워셜 · MinHeap | 최단 경로 2대장 — MinHeap 직접 구현 포함 |
-| 10 | [그래프 이론](ch10-graph-theory.md) | Union-Find · 크루스칼 · 위상 정렬 | 서로소 집합에서 MST·위상 정렬까지 |
+| 3 | [그리디](notes/ch03-greedy.md) | 그리디 · 정당성 검증 | 국소 최적 선택이 전체 최적이 되는 조건 |
+| 4 | [구현](notes/ch04-implementation.md) | 방향 벡터 · 시뮬레이션 · 완전 탐색 | dx/dy 패턴과 시뮬레이션 문제의 기본기 |
+| 5 | [DFS/BFS](notes/ch05-dfs-bfs.md) | DFS · BFS · 격자 그래프 · O(1) 큐 | 스택·큐·재귀로 탐색 — 큐 O(1) 구현 포함 |
+| 6 | [정렬](notes/ch06-sorting.md) | 선택/삽입/퀵/계수 정렬 · 비교 함수 | 정렬 알고리즘과 `sort()` 비교 함수 필수 함정 |
+| 7 | [이진 탐색](notes/ch07-binary-search.md) | 이진 탐색 · lower/upper bound · 파라메트릭 서치 | 탐색 범위를 절반씩 — 답을 탐색하는 파라메트릭 서치까지 |
+| 8 | [다이나믹 프로그래밍](notes/ch08-dynamic-programming.md) | 점화식 · 탑다운/바텀업 · 메모이제이션 | 큰 문제를 작은 문제로 — DP의 두 접근 |
+| 9 | [최단 경로](notes/ch09-shortest-path.md) | 다익스트라 · 플로이드 워셜 · MinHeap | 최단 경로 2대장 — MinHeap 직접 구현 포함 |
+| 10 | [그래프 이론](notes/ch10-graph-theory.md) | Union-Find · 크루스칼 · 위상 정렬 | 서로소 집합에서 MST·위상 정렬까지 |
 
 ### Part 3: 알고리즘 유형별 기출문제 (Ch 11-19)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 11 | [그리디 기출](ch11-greedy-problems.md) | 그리디 응용 | 모험가 길드·곱하기 혹은 더하기·무지의 먹방 등 6문제 |
-| 12 | [구현 기출](ch12-implementation-problems.md) | 시뮬레이션 응용 | 럭키 스트레이트·자물쇠와 열쇠·뱀·치킨 배달 등 7문제 |
-| 13 | [DFS/BFS 기출](ch13-dfs-bfs-problems.md) | 탐색 응용 | 연구소·경쟁적 전염·괄호 변환·블록 이동하기 등 8문제 |
-| 14 | [정렬 기출](ch14-sorting-problems.md) | 정렬 응용 | 국영수·안테나·실패율·카드 정렬하기 4문제 |
-| 15 | [이진 탐색 기출](ch15-binary-search-problems.md) | 이진 탐색 응용 | 공유기 설치·가사 검색 등 4문제 |
-| 16 | [DP 기출](ch16-dynamic-programming-problems.md) | DP 응용 | 금광·퇴사·병사 배치·편집 거리 등 6문제 |
-| 17 | [최단 경로 기출](ch17-shortest-path-problems.md) | 최단 경로 응용 | 플로이드·정확한 순위·화성 탐사·숨바꼭질 4문제 |
-| 18 | [그래프 이론 기출](ch18-graph-theory-problems.md) | 그래프 응용 | 여행 계획·행성 터널·최종 순위 등 5문제 |
-| 19 | [삼성 기출 2020](ch19-samsung-2020.md) | 대형 시뮬레이션 | 아기 상어·청소년 상어·어른 상어 |
+| 11 | [그리디 기출](notes/ch11-greedy-problems.md) | 그리디 응용 | 모험가 길드·곱하기 혹은 더하기·무지의 먹방 등 6문제 |
+| 12 | [구현 기출](notes/ch12-implementation-problems.md) | 시뮬레이션 응용 | 럭키 스트레이트·자물쇠와 열쇠·뱀·치킨 배달 등 7문제 |
+| 13 | [DFS/BFS 기출](notes/ch13-dfs-bfs-problems.md) | 탐색 응용 | 연구소·경쟁적 전염·괄호 변환·블록 이동하기 등 8문제 |
+| 14 | [정렬 기출](notes/ch14-sorting-problems.md) | 정렬 응용 | 국영수·안테나·실패율·카드 정렬하기 4문제 |
+| 15 | [이진 탐색 기출](notes/ch15-binary-search-problems.md) | 이진 탐색 응용 | 공유기 설치·가사 검색 등 4문제 |
+| 16 | [DP 기출](notes/ch16-dynamic-programming-problems.md) | DP 응용 | 금광·퇴사·병사 배치·편집 거리 등 6문제 |
+| 17 | [최단 경로 기출](notes/ch17-shortest-path-problems.md) | 최단 경로 응용 | 플로이드·정확한 순위·화성 탐사·숨바꼭질 4문제 |
+| 18 | [그래프 이론 기출](notes/ch18-graph-theory-problems.md) | 그래프 응용 | 여행 계획·행성 터널·최종 순위 등 5문제 |
+| 19 | [삼성 기출 2020](notes/ch19-samsung-2020.md) | 대형 시뮬레이션 | 아기 상어·청소년 상어·어른 상어 |
 
 ## 학습 가이드
 

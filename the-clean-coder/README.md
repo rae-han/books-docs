@@ -29,47 +29,47 @@ Uncle Bob이 40년 이상의 개발 경험에서 얻은 실패와 성공의 교�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 0 | [Introduction](ch00-introduction.md) | 챌린저 참사 · 프로 의식 | 챌린저호 폭발 사고로 여는 이야기 — 기술자의 경고와 책임의 무게 |
+| 0 | [Introduction](notes/ch00-introduction.md) | 챌린저 참사 · 프로 의식 | 챌린저호 폭발 사고로 여는 이야기 — 기술자의 경고와 책임의 무게 |
 
 ### Part I: 프로의 기본 자세 (Ch 1-3)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Professionalism](ch01-professionalism.md) | 책임감 · 해를 끼치지 마라 · 자기 개발 | 프로 = 자기 일에 책임지는 사람 — QA가 버그를 찾게 두지 않고, 자기 시간에 공부한다 |
-| 2 | [Saying No](ch02-saying-no.md) | 거절 · 대립의 의무 · 팀 플레이어 | 못 지킬 약속에는 프로답게 "아니오" — 대립은 회피가 아니라 의무다 |
-| 3 | [Saying Yes](ch03-saying-yes.md) | 약속의 언어 · 말하고-진심을-담아-실행 | "할 것이다(I will)"와 "시도해 보겠다(I'll try)"를 구분하라 — 약속의 3단계 |
+| 1 | [Professionalism](notes/ch01-professionalism.md) | 책임감 · 해를 끼치지 마라 · 자기 개발 | 프로 = 자기 일에 책임지는 사람 — QA가 버그를 찾게 두지 않고, 자기 시간에 공부한다 |
+| 2 | [Saying No](notes/ch02-saying-no.md) | 거절 · 대립의 의무 · 팀 플레이어 | 못 지킬 약속에는 프로답게 "아니오" — 대립은 회피가 아니라 의무다 |
+| 3 | [Saying Yes](notes/ch03-saying-yes.md) | 약속의 언어 · 말하고-진심을-담아-실행 | "할 것이다(I will)"와 "시도해 보겠다(I'll try)"를 구분하라 — 약속의 3단계 |
 
 ### Part II: 프로의 기술 (Ch 4-6)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 4 | [Coding](ch04-coding.md) | 준비된 자세 · 새벽 3시 코드 · 몰입 경계 | 피곤하거나 불안할 때는 코딩하지 마라 — 몰입(존)도 경계 대상 |
-| 5 | [Test Driven Development](ch05-test-driven-development.md) | 테스트 주도 개발 · TDD 세 가지 법칙 · 확신 | TDD 세 법칙과 그것이 주는 확신 — 프로의 기본 규율 |
-| 6 | [Practicing](ch06-practicing.md) | 카타 · 와사 · 랜도리 | 연주자처럼 자기 시간에 연습하라 — 업무는 연습이 아니다 |
+| 4 | [Coding](notes/ch04-coding.md) | 준비된 자세 · 새벽 3시 코드 · 몰입 경계 | 피곤하거나 불안할 때는 코딩하지 마라 — 몰입(존)도 경계 대상 |
+| 5 | [Test Driven Development](notes/ch05-test-driven-development.md) | 테스트 주도 개발 · TDD 세 가지 법칙 · 확신 | TDD 세 법칙과 그것이 주는 확신 — 프로의 기본 규율 |
+| 6 | [Practicing](notes/ch06-practicing.md) | 카타 · 와사 · 랜도리 | 연주자처럼 자기 시간에 연습하라 — 업무는 연습이 아니다 |
 
 ### Part III: 프로의 협업 (Ch 7-11)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 7 | [Acceptance Testing](ch07-acceptance-testing.md) | 인수 테스트 · 완료의 정의 · 자동화 | 요구사항의 모호함을 자동화된 인수 테스트로 해소 — '완료'를 합의하라 |
-| 8 | [Testing Strategies](ch08-testing-strategies.md) | 테스트 피라미드 · 단위/컴포넌트/통합/시스템 테스트 | "QA는 아무것도 찾지 못해야 한다"를 실현하는 계층별 테스트 전략 |
-| 9 | [Time Management](ch09-time-management.md) | 회의 관리 · 뽀모도로 · 우선순위 뒤집기 · 막다른 길 | 하루 8시간을 지키는 기술 — 회의 거절도 프로의 일 |
-| 10 | [Estimation](ch10-estimation.md) | 추정 vs 약속 · PERT · 광대역 델파이 | 추정은 약속이 아니라 확률 분포다 — 불확실성을 정직하게 전달하라 |
-| 11 | [Pressure](ch11-pressure.md) | 압박 속 규율 · 침착함 | 위기 상황의 행동이 진짜 규율을 드러낸다 — 압박 속에서 규율을 버리지 마라 |
+| 7 | [Acceptance Testing](notes/ch07-acceptance-testing.md) | 인수 테스트 · 완료의 정의 · 자동화 | 요구사항의 모호함을 자동화된 인수 테스트로 해소 — '완료'를 합의하라 |
+| 8 | [Testing Strategies](notes/ch08-testing-strategies.md) | 테스트 피라미드 · 단위/컴포넌트/통합/시스템 테스트 | "QA는 아무것도 찾지 못해야 한다"를 실현하는 계층별 테스트 전략 |
+| 9 | [Time Management](notes/ch09-time-management.md) | 회의 관리 · 뽀모도로 · 우선순위 뒤집기 · 막다른 길 | 하루 8시간을 지키는 기술 — 회의 거절도 프로의 일 |
+| 10 | [Estimation](notes/ch10-estimation.md) | 추정 vs 약속 · PERT · 광대역 델파이 | 추정은 약속이 아니라 확률 분포다 — 불확실성을 정직하게 전달하라 |
+| 11 | [Pressure](notes/ch11-pressure.md) | 압박 속 규율 · 침착함 | 위기 상황의 행동이 진짜 규율을 드러낸다 — 압박 속에서 규율을 버리지 마라 |
 
 ### Part IV: 프로의 조직 (Ch 12-14)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 12 | [Collaboration](ch12-collaboration.md) | 비즈니스 이해 · 코드 공동 소유 · 짝 프로그래밍 | 프로그래밍은 혼자 하는 일이 아니다 — 고용주의 문제를 내 문제로 |
-| 13 | [Teams and Projects](ch13-teams-and-projects.md) | 응집된 팀 · 팀 해체 비용 | 팀에 프로젝트를 할당하지 말고, 응집된 팀에 프로젝트를 맡겨라 |
-| 14 | [Mentoring, Apprenticeship, and Craftsmanship](ch14-mentoring-apprenticeship-and-craftsmanship.md) | 멘토링 · 도제 제도 · 장인정신 | 학교는 프로를 만들지 못한다 — 도제 모델로 다음 세대를 키워라 |
+| 12 | [Collaboration](notes/ch12-collaboration.md) | 비즈니스 이해 · 코드 공동 소유 · 짝 프로그래밍 | 프로그래밍은 혼자 하는 일이 아니다 — 고용주의 문제를 내 문제로 |
+| 13 | [Teams and Projects](notes/ch13-teams-and-projects.md) | 응집된 팀 · 팀 해체 비용 | 팀에 프로젝트를 할당하지 말고, 응집된 팀에 프로젝트를 맡겨라 |
+| 14 | [Mentoring, Apprenticeship, and Craftsmanship](notes/ch14-mentoring-apprenticeship-and-craftsmanship.md) | 멘토링 · 도제 제도 · 장인정신 | 학교는 프로를 만들지 못한다 — 도제 모델로 다음 세대를 키워라 |
 
 ### Appendix
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [Tooling](appendix-tooling.md) | 소스 관리 · IDE · 이슈 추적 · 지속적 통합 | Uncle Bob의 도구함 — 프로가 갖출 기본 도구 |
+| A | [Tooling](notes/appendix-tooling.md) | 소스 관리 · IDE · 이슈 추적 · 지속적 통합 | Uncle Bob의 도구함 — 프로가 갖출 기본 도구 |
 
 ## 학습 가이드
 

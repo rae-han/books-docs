@@ -12,6 +12,21 @@ Claude 전용 설정은 `.claude/` 아래에 있다. Codex는 `.claude/agents/*.
 
 이 저장소는 주로 문서 저장소다. 별도 요청이 없으면 빌드, 테스트, 패키지 설치 같은 코드 프로젝트 명령을 실행하지 않는다.
 
+## 책 폴더 표준 구조
+
+모든 책 폴더는 아래 레이아웃을 따른다 (2026-08 전면 재구조화 완료).
+
+```
+<책 폴더>/
+├── README.md      ← 책 정보·목차 표·학습 가이드 (책 폴더 루트 유지)
+├── origin.md      ← PDF/OCR 통짜 원본 (.gitignore 대상. ocr.origin.md도 루트에)
+├── origin/        ← N.origin.md 챕터별 분리본 (.gitignore 대상)
+├── notes/         ← 상세 챕터 노트 (chNN-*.md + tips.md 등 책 고유 노트 자산)
+└── summary/       ← 요약 노트 (핵심만 추린 복습용)
+```
+
+README 목차 표 링크는 `notes/chNN-*.md`, 노트에서 README로는 `../README.md`, 요약에서 상세 노트로는 `../notes/chNN-*.md`를 쓴다. 예외: `fp/`(자체 구조), `claude-code-definitive-guide/`(별도 저장소).
+
 ## 공통 작성 스타일
 
 - 언어는 한국어를 사용한다.
@@ -68,7 +83,7 @@ Claude 전용 설정은 `.claude/` 아래에 있다. Codex는 `.claude/agents/*.
 
 ## origin.md 파일 분리 작업
 
-PDF에서 추출한 `origin.md` 원본 파일은 내용 수정 없이 라인 기반으로 분리한다.
+PDF에서 추출한 `origin.md` 원본 파일은 내용 수정 없이 라인 기반으로 분리한다. 분리 파일은 책 폴더의 `origin/` 하위에 둔다.
 
 ### 파일 네이밍 규칙
 

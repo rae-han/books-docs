@@ -27,54 +27,54 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Introduction](ch01-introduction.md) | 아키텍처 4요소 · 아키텍트 기대치 · 아키텍처 법칙 | 아키텍처 = 구조+특성+결정+원칙, 아키텍트의 8가지 기대치와 세 가지 법칙 |
+| 1 | [Introduction](notes/ch01-introduction.md) | 아키텍처 4요소 · 아키텍트 기대치 · 아키텍처 법칙 | 아키텍처 = 구조+특성+결정+원칙, 아키텍트의 8가지 기대치와 세 가지 법칙 |
 
 ### 제1부: 기초 (Ch 2-8)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 2 | [Architectural Thinking](ch02-architectural-thinking.md) | 아키텍처적 사고 · 지식 피라미드 · 기술 깊이 vs 폭 | 아키텍처 vs 설계는 이분법이 아니라 스펙트럼 — 깊이보다 너비 |
-| 3 | [Modularity](ch03-modularity.md) | 결합 · 응집 · 동변성 · 세분도 | 모듈성의 측정 어휘 — 동변성(connascence)의 정적/동적 분류 |
-| 4 | [아키텍처 특성의 정의](ch04-defining-architecture-characteristics.md) | 아키텍처 특성 · 운영/구조/횡단 | '-성' 속성의 세계 — 명시적/암묵적 특성 구분 |
-| 5 | [아키텍처 특성의 식별](ch05-identifying-architecture-characteristics.md) | 특성 식별 · 확장성 vs 탄력성 · 복합 특성 | 비즈니스 요구를 아키텍처 특성으로 번역하는 법 |
-| 6 | [특성의 측정과 거버넌스](ch06-measuring-and-governing-architecture-characteristics.md) | 특성 측정 · 순환 복잡도 · 피트니스 함수 | 특성을 선언이 아니라 적합성 함수로 지속 검증 |
-| 7 | [아키텍처 특성의 범위](ch07-scope-of-architecture-characteristics.md) | 아키텍처 퀀텀 · 정적/동적 결합 | 특성 판단의 단위는 시스템이 아니라 퀀텀 |
-| 8 | [컴포넌트 기반 사고](ch08-component-based-thinking.md) | 컴포넌트 · 기술/도메인 분할 · 엔티티 함정 | 컴포넌트 식별 — 기술 분할 vs 도메인 분할과 함정들 |
+| 2 | [Architectural Thinking](notes/ch02-architectural-thinking.md) | 아키텍처적 사고 · 지식 피라미드 · 기술 깊이 vs 폭 | 아키텍처 vs 설계는 이분법이 아니라 스펙트럼 — 깊이보다 너비 |
+| 3 | [Modularity](notes/ch03-modularity.md) | 결합 · 응집 · 동변성 · 세분도 | 모듈성의 측정 어휘 — 동변성(connascence)의 정적/동적 분류 |
+| 4 | [아키텍처 특성의 정의](notes/ch04-defining-architecture-characteristics.md) | 아키텍처 특성 · 운영/구조/횡단 | '-성' 속성의 세계 — 명시적/암묵적 특성 구분 |
+| 5 | [아키텍처 특성의 식별](notes/ch05-identifying-architecture-characteristics.md) | 특성 식별 · 확장성 vs 탄력성 · 복합 특성 | 비즈니스 요구를 아키텍처 특성으로 번역하는 법 |
+| 6 | [특성의 측정과 거버넌스](notes/ch06-measuring-and-governing-architecture-characteristics.md) | 특성 측정 · 순환 복잡도 · 피트니스 함수 | 특성을 선언이 아니라 적합성 함수로 지속 검증 |
+| 7 | [아키텍처 특성의 범위](notes/ch07-scope-of-architecture-characteristics.md) | 아키텍처 퀀텀 · 정적/동적 결합 | 특성 판단의 단위는 시스템이 아니라 퀀텀 |
+| 8 | [컴포넌트 기반 사고](notes/ch08-component-based-thinking.md) | 컴포넌트 · 기술/도메인 분할 · 엔티티 함정 | 컴포넌트 식별 — 기술 분할 vs 도메인 분할과 함정들 |
 
 ### 제2부: 아키텍처 스타일 (Ch 9-20) — 토폴로지 + 13특성 별점 등급표
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 9 | [아키텍처 스타일의 기초](ch09-foundations.md) | 스타일 분류 · 분산 컴퓨팅의 오해 | 모놀리스 vs 분산 분류와 스코어카드 읽는 법 |
-| 10 | [Layered (계층형)](ch10-layered-architecture-style.md) | 레이어드 · 닫힌 계층 · 싱크홀 | 기술 분할의 기본형 — 계층 격리와 싱크홀 안티패턴 |
-| 11 | [Modular Monolith (모듈형 모놀리스)](ch11-modular-monolith-architecture-style.md) | 모듈형 모놀리스 · 도메인 모듈 · 단일 배포 | 🆕 도메인 분리는 원하지만 분산은 부담일 때의 선택지 |
-| 12 | [Pipeline (파이프라인)](ch12-pipeline-architecture-style.md) | 파이프-필터 · 4종 필터 | 단방향 파이프와 필터(생산자·변환자·검사자·소비자) |
-| 13 | [Microkernel (마이크로커널)](ch13-microkernel-architecture-style.md) | 마이크로커널 · 플러그인 · 커스텀화 격리 | 코어 + 플러그인 — 제품형 커스터마이즈 구조 |
-| 14 | [Service-Based (서비스 기반)](ch14-service-based-architecture-style.md) | 서비스 기반 · 성긴 도메인 서비스 | "가장 실용적인 분산" — 마이크로서비스의 디딤돌 |
-| 15 | [Event-Driven (이벤트 주도)](ch15-event-driven-architecture-style.md) | 이벤트 주도 · 코레오그래피 vs 중재자 · 비동기 | 이벤트 vs 메시지, 두 토폴로지 — 고성능 비동기의 대가 |
-| 16 | [Space-Based (공간 기반)](ch16-space-based-architecture-style.md) | 공간 기반 · 처리 단위 · 데이터 그리드 | DB 병목 제거 — 극한·가변 고부하(티켓·경매)용 |
-| 17 | [Orchestration-Driven SOA](ch17-orchestration-driven-service-oriented-architecture.md) | SOA · ESB · 재사용의 재앙 | 전사적 재사용을 노린 SOA의 역사적 교훈 |
-| 18 | [Microservices (마이크로서비스)](ch18-microservices-architecture-style.md) | 마이크로서비스 · 경계 컨텍스트 · 사가 · 사이드카 | 무공유·도메인 단위 극단적 분리의 트레이드오프 |
-| 19 | [적절한 스타일 선택](ch19-choosing-the-appropriate-architecture-style.md) | 스타일 선정 · 결정 기준 · 동형성 | 정답은 없다 — 특성 우선순위와 조직 조건으로 선택 |
-| 20 | [Architectural Patterns (아키텍처 패턴)](ch20-architectural-patterns.md) | 육각형 · 서비스 메시 · CQRS · 브로커 | 🆕 스타일보다 작은 재사용 단위 — 패턴 카탈로그 |
+| 9 | [아키텍처 스타일의 기초](notes/ch09-foundations.md) | 스타일 분류 · 분산 컴퓨팅의 오해 | 모놀리스 vs 분산 분류와 스코어카드 읽는 법 |
+| 10 | [Layered (계층형)](notes/ch10-layered-architecture-style.md) | 레이어드 · 닫힌 계층 · 싱크홀 | 기술 분할의 기본형 — 계층 격리와 싱크홀 안티패턴 |
+| 11 | [Modular Monolith (모듈형 모놀리스)](notes/ch11-modular-monolith-architecture-style.md) | 모듈형 모놀리스 · 도메인 모듈 · 단일 배포 | 🆕 도메인 분리는 원하지만 분산은 부담일 때의 선택지 |
+| 12 | [Pipeline (파이프라인)](notes/ch12-pipeline-architecture-style.md) | 파이프-필터 · 4종 필터 | 단방향 파이프와 필터(생산자·변환자·검사자·소비자) |
+| 13 | [Microkernel (마이크로커널)](notes/ch13-microkernel-architecture-style.md) | 마이크로커널 · 플러그인 · 커스텀화 격리 | 코어 + 플러그인 — 제품형 커스터마이즈 구조 |
+| 14 | [Service-Based (서비스 기반)](notes/ch14-service-based-architecture-style.md) | 서비스 기반 · 성긴 도메인 서비스 | "가장 실용적인 분산" — 마이크로서비스의 디딤돌 |
+| 15 | [Event-Driven (이벤트 주도)](notes/ch15-event-driven-architecture-style.md) | 이벤트 주도 · 코레오그래피 vs 중재자 · 비동기 | 이벤트 vs 메시지, 두 토폴로지 — 고성능 비동기의 대가 |
+| 16 | [Space-Based (공간 기반)](notes/ch16-space-based-architecture-style.md) | 공간 기반 · 처리 단위 · 데이터 그리드 | DB 병목 제거 — 극한·가변 고부하(티켓·경매)용 |
+| 17 | [Orchestration-Driven SOA](notes/ch17-orchestration-driven-service-oriented-architecture.md) | SOA · ESB · 재사용의 재앙 | 전사적 재사용을 노린 SOA의 역사적 교훈 |
+| 18 | [Microservices (마이크로서비스)](notes/ch18-microservices-architecture-style.md) | 마이크로서비스 · 경계 컨텍스트 · 사가 · 사이드카 | 무공유·도메인 단위 극단적 분리의 트레이드오프 |
+| 19 | [적절한 스타일 선택](notes/ch19-choosing-the-appropriate-architecture-style.md) | 스타일 선정 · 결정 기준 · 동형성 | 정답은 없다 — 특성 우선순위와 조직 조건으로 선택 |
+| 20 | [Architectural Patterns (아키텍처 패턴)](notes/ch20-architectural-patterns.md) | 육각형 · 서비스 메시 · CQRS · 브로커 | 🆕 스타일보다 작은 재사용 단위 — 패턴 카탈로그 |
 
 ### 제3부: 기법과 소프트 스킬 (Ch 21-27)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 21 | [Architecture Decisions](ch21-architecture-decisions.md) | 아키텍처 결정 레코드 · 결정 안티패턴 · 생성형 AI | 결정의 '왜'를 기록 — ADR과 AI 시대의 결정 |
-| 22 | [아키텍처 위험 분석](ch22-analyzing-architecture-risk.md) | 위험 평가 행렬 · 리스크스토밍 | 가능성×영향 행렬과 팀 단위 리스크스토밍 |
-| 23 | [아키텍처 도식화](ch23-diagramming-architecture.md) | 도식화 · UML · C4 · ArchiMate | 표현 일관성 — 아키텍처를 그리는 기술 |
-| 24 | [유능한 팀 만들기](ch24-making-teams-effective.md) | 아키텍트 성향 · 탄력적 리더십 · 체크리스트 | 통제와 조력 사이 — 팀 경계를 조절하는 아키텍트 |
-| 25 | [협상과 리더십 스킬](ch25-negotiation-and-leadership-skills.md) | 협상 · 4C · 솔선수범 | 이해관계자별 협상 기법과 리더십 |
-| 26 | [Architecture Intersections](ch26-architecture-intersections.md) | 아키텍처 교차점 · 데이터 · 팀 · AI | 🆕 아키텍처가 만나는 9개 영역(구현·인프라·데이터·비즈니스·AI 등) |
-| 27 | [법칙 재검토](ch27-software-architecture-laws-revisited.md) | 세 법칙 종합 · 트레이드오프 분석 | 🆕 세 법칙으로 책 전체를 재조망 — 마지막 조언 |
+| 21 | [Architecture Decisions](notes/ch21-architecture-decisions.md) | 아키텍처 결정 레코드 · 결정 안티패턴 · 생성형 AI | 결정의 '왜'를 기록 — ADR과 AI 시대의 결정 |
+| 22 | [아키텍처 위험 분석](notes/ch22-analyzing-architecture-risk.md) | 위험 평가 행렬 · 리스크스토밍 | 가능성×영향 행렬과 팀 단위 리스크스토밍 |
+| 23 | [아키텍처 도식화](notes/ch23-diagramming-architecture.md) | 도식화 · UML · C4 · ArchiMate | 표현 일관성 — 아키텍처를 그리는 기술 |
+| 24 | [유능한 팀 만들기](notes/ch24-making-teams-effective.md) | 아키텍트 성향 · 탄력적 리더십 · 체크리스트 | 통제와 조력 사이 — 팀 경계를 조절하는 아키텍트 |
+| 25 | [협상과 리더십 스킬](notes/ch25-negotiation-and-leadership-skills.md) | 협상 · 4C · 솔선수범 | 이해관계자별 협상 기법과 리더십 |
+| 26 | [Architecture Intersections](notes/ch26-architecture-intersections.md) | 아키텍처 교차점 · 데이터 · 팀 · AI | 🆕 아키텍처가 만나는 9개 영역(구현·인프라·데이터·비즈니스·AI 등) |
+| 27 | [법칙 재검토](notes/ch27-software-architecture-laws-revisited.md) | 세 법칙 종합 · 트레이드오프 분석 | 🆕 세 법칙으로 책 전체를 재조망 — 마지막 조언 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [토론용 질문 모음](appendix-a-discussion-questions.md) | 자율평가 | 27개 장별 토론·복습용 질문 |
+| A | [토론용 질문 모음](notes/appendix-a-discussion-questions.md) | 자율평가 | 27개 장별 토론·복습용 질문 |
 
 ## 학습 가이드
 

@@ -23,14 +23,14 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 0 | [서문](ch00-introduction.md) | 멀티패러다임 언어 | 주요 언어들이 멀티패러다임으로 수렴한 배경과 책의 목표 |
-| 1 | [멀티패러다임이 현대 언어를 확장하는 방법](ch01-multi-paradigm-extends-modern-languages.md) | 이터레이터 · 제너레이터 · 리스트 프로세싱 · 지연 평가 | 반복자 패턴(OOP)·제너레이터(명령형)·리스트 프로세싱(FP)이 이터레이션 프로토콜에서 만난다 |
-| 2 | [함수형 프로그래밍과 타입 시스템 그리고 LISP](ch02-functional-programming-type-system-and-lisp.md) | 고차 함수 · 타입 추론 · 제네릭 · LISP 매크로 | 고차 함수에 타입을 입히고, 코드=데이터인 LISP의 세계까지 |
-| 3 | [코드·객체·함수·제너레이터·이터레이터·LISP](ch03-code-object-function-generator-iterator-lisp.md) | 패러다임 전환 · FxIterable · 지연 평가 심화 | 같은 문제의 명령형/객체지향/함수형 1:1:1 풀이 — find·every·some·concat |
-| 4 | [비동기 프로그래밍](ch04-asynchronous-programming.md) | Promise · `C.*` 동시성 · AsyncIterator · 에러 핸들링 | 비동기의 3층위 — 값(Promise)·지연성(동시성 제어)·타입(AsyncIterator) |
-| 5 | [실전 함수형 프로그래밍](ch05-practical-functional-programming.md) | 실전 데이터 처리 · 스케줄러 · 리스트 프로세싱 패턴 | 커머스 데이터와 백엔드 스케줄러로 보는 실전 함수형 |
-| 6 | [멀티패러다임 프로그래밍](ch06-multi-paradigm-programming.md) | 템플릿 엔진 · View 클래스 · TaskRunner | HTML 템플릿 엔진 — 구조는 OOP, 로직은 FP로 |
-| 7 | [객체지향 프런트엔드 개발과 멀티패러다임적 접근](ch07-oop-frontend-and-multi-paradigm-approach.md) | Headless UI · 옵저버/전략/상태 패턴 · Promise 통신 | Setting/Todo 앱 — 디자인 패턴과 Promise 기반 컴포넌트 설계 |
+| 0 | [서문](notes/ch00-introduction.md) | 멀티패러다임 언어 | 주요 언어들이 멀티패러다임으로 수렴한 배경과 책의 목표 |
+| 1 | [멀티패러다임이 현대 언어를 확장하는 방법](notes/ch01-multi-paradigm-extends-modern-languages.md) | 이터레이터 · 제너레이터 · 리스트 프로세싱 · 지연 평가 | 반복자 패턴(OOP)·제너레이터(명령형)·리스트 프로세싱(FP)이 이터레이션 프로토콜에서 만난다 |
+| 2 | [함수형 프로그래밍과 타입 시스템 그리고 LISP](notes/ch02-functional-programming-type-system-and-lisp.md) | 고차 함수 · 타입 추론 · 제네릭 · LISP 매크로 | 고차 함수에 타입을 입히고, 코드=데이터인 LISP의 세계까지 |
+| 3 | [코드·객체·함수·제너레이터·이터레이터·LISP](notes/ch03-code-object-function-generator-iterator-lisp.md) | 패러다임 전환 · FxIterable · 지연 평가 심화 | 같은 문제의 명령형/객체지향/함수형 1:1:1 풀이 — find·every·some·concat |
+| 4 | [비동기 프로그래밍](notes/ch04-asynchronous-programming.md) | Promise · `C.*` 동시성 · AsyncIterator · 에러 핸들링 | 비동기의 3층위 — 값(Promise)·지연성(동시성 제어)·타입(AsyncIterator) |
+| 5 | [실전 함수형 프로그래밍](notes/ch05-practical-functional-programming.md) | 실전 데이터 처리 · 스케줄러 · 리스트 프로세싱 패턴 | 커머스 데이터와 백엔드 스케줄러로 보는 실전 함수형 |
+| 6 | [멀티패러다임 프로그래밍](notes/ch06-multi-paradigm-programming.md) | 템플릿 엔진 · View 클래스 · TaskRunner | HTML 템플릿 엔진 — 구조는 OOP, 로직은 FP로 |
+| 7 | [객체지향 프런트엔드 개발과 멀티패러다임적 접근](notes/ch07-oop-frontend-and-multi-paradigm-approach.md) | Headless UI · 옵저버/전략/상태 패턴 · Promise 통신 | Setting/Todo 앱 — 디자인 패턴과 Promise 기반 컴포넌트 설계 |
 
 ## 학습 가이드
 

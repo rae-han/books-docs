@@ -12,9 +12,11 @@ docs/
 ├── KEYWORDS.md        ← 용어 사전 (핵심 단어 표기 통일용)
 ├── QUOTES.md          ← 전 책 인용문 통합 모음
 └── <책 폴더>/
-    ├── README.md              ← 책 정보·목차 표·학습 가이드·핵심 개념 맵
-    ├── chNN-<kebab-case>.md   ← 챕터 노트
-    └── N.origin.md            ← PDF/OCR 원본 분리본 (.gitignore 대상, 커밋되지 않음)
+    ├── README.md                    ← 책 정보·목차 표·학습 가이드·핵심 개념 맵
+    ├── origin.md                    ← PDF/OCR 통짜 원본 (.gitignore 대상, 커밋되지 않음)
+    ├── origin/N.origin.md           ← 원본 챕터별 분리본 (.gitignore 대상, 커밋되지 않음)
+    ├── notes/chNN-<kebab-case>.md   ← 상세 챕터 노트
+    └── summary/                     ← 요약 노트 (핵심만 추린 복습용)
 ```
 
 각 책 README의 **목차 표**(`| Ch | 제목 | 핵심 단어 | 한 줄 요약 |`)가 Notion 챕터 DB의 `핵심 단어`·`핵심 요약` 값의 **유일한 소스**다. 재업로드 시 항상 이 표를 기준으로 채운다.
@@ -57,6 +59,7 @@ docs/
 | [자바스크립트 + 리액트 디자인 패턴](javascript-react-pattern/) | 애디 오스마니 | 16장 | — | [🔗](https://app.notion.com/p/31cde4986fe381cfb282cdbabe55db08) |
 | [미니멀리즘 프로그래머](minimalism-programmer/) | 데이비드 토머스 | 9장 | ✓ | [🔗](https://app.notion.com/p/35cde4986fe380b88921dc601eb5c917) |
 | [함수형 자바스크립트 (fp)](fp/) | Notion 이관본 | 22편 | — | [🔗](https://app.notion.com/p/f5344f83755c4de68f96732af6eb21f9) |
+| [프런트엔드 성능 최적화 Deep Dive](frontend-performance-optimization-deep-dive/) | 김용찬 | 26장+부록 | — | [🔗](https://app.notion.com/p/3b1de4986fe3812c8b85e533839e6586) |
 
 > **Notion 페이지 위치 주의**: 대부분은 `Must reads` → `Dev` DB 항목 안에 있지만, **자바스크립트+리액트 디자인 패턴**은 `Front-End & JavaScript & Typescript` DB 아래, **미니멀리즘 프로그래머**는 Dev DB 밖의 별도 페이지 트리에, **fp**는 이관 원본(`Functional Javascript with ES6+` / `FP with ES6+` DB / `Functional JS`)으로 각각 다른 위치에 있다. Dev DB만 훑으면 누락된다.
 
@@ -64,7 +67,6 @@ docs/
 
 | 책 | 저자 | 노트 | 비고 |
 |----|------|------|------|
-| [프런트엔드 성능 최적화 Deep Dive](frontend-performance-optimization-deep-dive/) | 김용찬 | 26장+부록 | 최근 작성 |
 | [이것이 취업을 위한 코딩 테스트다](this-is-coding-test/) | 나동빈 | 19장 | 파이썬 → TypeScript 변환 |
 | [코딩 테스트 합격자 되기 (JS편)](programmers-coding-test/) | 이선협·박경록 | 17장+부록 | |
 | [하면 된다! 퀀트 투자](quant/) | 강환국 | 6장 | Part 4~5 발췌본 |
@@ -79,7 +81,7 @@ docs/
 
 ## 공통 자산
 
-- **[QUOTES.md](QUOTES.md)** — 전 책 인용문 통합 모음. 각 책 README의 `## 인용문` 절과 동기화하며, **현재 27권**이 인용문 절을 보유한다. 노트가 없는 책(클린 애자일·맨먼스 미신 등 12권)의 인용도 하단 구역에 수집하고, 출처가 책이 아닌 것은 `개발 명언 모음`에 둔다.
+- **[QUOTES.md](QUOTES.md)** — 전 책 인용문 통합 모음. 각 책 README의 `## 인용문` 절과 동기화하며, **현재 28권**이 인용문 절을 보유한다. 노트가 없는 책(클린 애자일·맨먼스 미신 등 12권)의 인용도 하단 구역에 수집하고, 출처가 책이 아닌 것은 `개발 명언 모음`(9개 주제 소절)에 둔다. 명언은 **1차 출처를 확인한 것만 화자 뒤에 출처를 적고**(강연은 콘퍼런스·연도, 논문·표준은 매체·연도, 메일링 리스트·트윗은 날짜까지), 출처가 흔히 잘못 알려진 것은 맨 아래 `출처 주의` 구역에 따로 모은다. 영어로 더 널리 인용되는 문장은 한국어 뒤에 이탤릭으로 원문을 병기한다(`> 한국어<br>*English*<br>— 화자, 출처`).
 - **[KEYWORDS.md](KEYWORDS.md)** — 용어 사전. 목차 표의 `핵심 단어`를 쓰기 전에 여기서 대표 표기를 확인하고, 동의어가 생기면 등록한다. 같은 개념은 책이 달라도 같은 표기를 쓴다.
 - **[CLAUDE.md](CLAUDE.md)** — 작업 규칙 전체. 노트 작성 스타일, 표 vs 리스트 선택 규칙, Notion 업로드 규칙(한글 리터럴·콜아웃 변환·표 형식), DB/뷰 표준, origin 분리 절차가 들어 있다.
 
@@ -119,7 +121,7 @@ SHOW "Done", "Title", "Part", "핵심 단어", "핵심 요약"; SORT BY "Chapter
 ## 작업 순서 (새 책 추가 시)
 
 0. 책 폴더 스캐폴딩 — `origin.md`(빈 파일)와 `README.md`(표준 뼈대)만 먼저 만든다 (챕터 파일은 노트 작성 시점에)
-1. PDF/OCR 원본을 `origin.md` → 챕터별 `N.origin.md`로 분리 (라인 합계·byte 검증)
+1. PDF/OCR 원본을 `origin.md` → 챕터별 `origin/N.origin.md`로 분리 (라인 합계·byte 검증)
 2. 1~2개 챕터를 샘플로 작성해 확인받은 뒤 전체 진행
 3. 책 README 작성 — 목차 표의 `핵심 단어`는 KEYWORDS.md 표기를 따를 것
 4. 인용문이 있으면 README `## 인용문` 절 + QUOTES.md에 동시 반영

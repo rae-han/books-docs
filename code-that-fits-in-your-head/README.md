@@ -27,35 +27,35 @@ Part 1(가속)은 새 코드베이스에서 배포까지 속도를 내는 방법
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Art or Science?](ch01-art-or-science.md) | 은유의 한계 · 휴리스틱 · 소프트웨어 공학 | 집짓기·정원 은유를 넘어 — 프로그래밍을 공학으로 만드는 길 |
-| 2 | [Checklists](ch02-checklists.md) | 체크리스트 · 새 코드베이스 3항목 | B-17 사례 — 깃/자동 빌드/모든 오류 켜기부터 시작하라 |
-| 3 | [Tackling Complexity](ch03-tackling-complexity.md) | 시스템 1/2 · 단기 기억 7개 · 인간 친화 코드 | 코드는 컴퓨터가 아니라 뇌에 맞춰야 한다 — 7이라는 임계값 |
-| 4 | [Vertical Slice](ch04-vertical-slice.md) | 수직 슬라이스 · 외부 접근 TDD · 험블 객체 | 걷는 뼈대 — HTTP부터 DB까지 얇게 관통하는 첫 기능 |
-| 5 | [Encapsulation](ch05-encapsulation.md) | 캡슐화 · 계약 · 포스텔의 법칙 · 항상 유효한 상태 | 캡슐화 = 객체가 항상 유효한 상태임을 보증하는 계약 |
-| 6 | [Triangulation](ch06-triangulation.md) | 삼각측량 · 악마의 변호인 · 변환 우선순위 | 테스트가 충분한지 어떻게 아는가 — 다각화와 위험 평가 |
-| 7 | [Decomposition](ch07-decomposition.md) | 순환 복잡도 · 80/24 규칙 · 기능 편애 | 코드 썩음의 척도와 분해 — 복잡도 7·80자×24줄 규칙 |
-| 8 | [API Design](ch08-api-design.md) | 어포던스 · 포카요케 · 명령-쿼리 분리 | 잘못 쓰기 어려운 API — 타입 > 이름 > 주석의 소통 계층 |
-| 9 | [Teamwork](ch09-teamwork.md) | 작은 커밋 · 지속적 통합 · 몹 프로그래밍 · 코드 리뷰 | 팀으로 일하기 — 짧게 사는 브랜치와 공동 코드 소유권 |
+| 1 | [Art or Science?](notes/ch01-art-or-science.md) | 은유의 한계 · 휴리스틱 · 소프트웨어 공학 | 집짓기·정원 은유를 넘어 — 프로그래밍을 공학으로 만드는 길 |
+| 2 | [Checklists](notes/ch02-checklists.md) | 체크리스트 · 새 코드베이스 3항목 | B-17 사례 — 깃/자동 빌드/모든 오류 켜기부터 시작하라 |
+| 3 | [Tackling Complexity](notes/ch03-tackling-complexity.md) | 시스템 1/2 · 단기 기억 7개 · 인간 친화 코드 | 코드는 컴퓨터가 아니라 뇌에 맞춰야 한다 — 7이라는 임계값 |
+| 4 | [Vertical Slice](notes/ch04-vertical-slice.md) | 수직 슬라이스 · 외부 접근 TDD · 험블 객체 | 걷는 뼈대 — HTTP부터 DB까지 얇게 관통하는 첫 기능 |
+| 5 | [Encapsulation](notes/ch05-encapsulation.md) | 캡슐화 · 계약 · 포스텔의 법칙 · 항상 유효한 상태 | 캡슐화 = 객체가 항상 유효한 상태임을 보증하는 계약 |
+| 6 | [Triangulation](notes/ch06-triangulation.md) | 삼각측량 · 악마의 변호인 · 변환 우선순위 | 테스트가 충분한지 어떻게 아는가 — 다각화와 위험 평가 |
+| 7 | [Decomposition](notes/ch07-decomposition.md) | 순환 복잡도 · 80/24 규칙 · 기능 편애 | 코드 썩음의 척도와 분해 — 복잡도 7·80자×24줄 규칙 |
+| 8 | [API Design](notes/ch08-api-design.md) | 어포던스 · 포카요케 · 명령-쿼리 분리 | 잘못 쓰기 어려운 API — 타입 > 이름 > 주석의 소통 계층 |
+| 9 | [Teamwork](notes/ch09-teamwork.md) | 작은 커밋 · 지속적 통합 · 몹 프로그래밍 · 코드 리뷰 | 팀으로 일하기 — 짧게 사는 브랜치와 공동 코드 소유권 |
 
 ### Part 2: 지속가능성 (Ch 10-16)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 10 | [Augmenting Code](ch10-augmenting-code.md) | 기능 플래그 · 스트랭글러 패턴 · 유의적 버전 | 기존 코드에 기능 더하기 — 큰 재작성 대신 점진적 교살 |
-| 11 | [Editing Unit Tests](ch11-editing-unit-tests.md) | 테스트 편집 · 리스코프 치환 원칙 | 안전망 자체를 고치는 법 — 추가는 안전, 삭제는 위험 |
-| 12 | [Troubleshooting](ch12-troubleshooting.md) | 과학적 디버깅 · 고무 오리 · 결함 재현 테스트 | 이해가 먼저다 — 가설·예측·실험의 과학적 문제 해결 |
-| 13 | [Separation of Concerns](ch13-separation-of-concerns.md) | 함수형 코어·명령 셸 · 순수 함수 · 데코레이터 | 관심사 분리 — 로그 같은 횡단 관심사는 데코레이터로 |
-| 14 | [Rhythm](ch14-rhythm.md) | 타임박싱 · 콘웨이의 법칙 · 의존성 갱신 | 개인과 팀의 리듬 — 휴식·자동화·정기 점검 |
-| 15 | [The Usual Suspects](ch15-the-usual-suspects.md) | 성능 집착 · STRIDE 위협 모델 · 속성 기반 테스트 | 성능·보안 같은 단골 관심사를 휴리스틱으로 다루기 |
-| 16 | [Tour](ch16-tour.md) | 코드베이스 탐색 · 프랙탈 아키텍처 | 완성된 코드베이스 투어 — 어디서부터 읽어야 하는가 |
+| 10 | [Augmenting Code](notes/ch10-augmenting-code.md) | 기능 플래그 · 스트랭글러 패턴 · 유의적 버전 | 기존 코드에 기능 더하기 — 큰 재작성 대신 점진적 교살 |
+| 11 | [Editing Unit Tests](notes/ch11-editing-unit-tests.md) | 테스트 편집 · 리스코프 치환 원칙 | 안전망 자체를 고치는 법 — 추가는 안전, 삭제는 위험 |
+| 12 | [Troubleshooting](notes/ch12-troubleshooting.md) | 과학적 디버깅 · 고무 오리 · 결함 재현 테스트 | 이해가 먼저다 — 가설·예측·실험의 과학적 문제 해결 |
+| 13 | [Separation of Concerns](notes/ch13-separation-of-concerns.md) | 함수형 코어·명령 셸 · 순수 함수 · 데코레이터 | 관심사 분리 — 로그 같은 횡단 관심사는 데코레이터로 |
+| 14 | [Rhythm](notes/ch14-rhythm.md) | 타임박싱 · 콘웨이의 법칙 · 의존성 갱신 | 개인과 팀의 리듬 — 휴식·자동화·정기 점검 |
+| 15 | [The Usual Suspects](notes/ch15-the-usual-suspects.md) | 성능 집착 · STRIDE 위협 모델 · 속성 기반 테스트 | 성능·보안 같은 단골 관심사를 휴리스틱으로 다루기 |
+| 16 | [Tour](notes/ch16-tour.md) | 코드베이스 탐색 · 프랙탈 아키텍처 | 완성된 코드베이스 투어 — 어디서부터 읽어야 하는가 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [List of Practices](appendix-a-list-of-practices.md) | 프랙티스 체크리스트 | 본문 28개 프랙티스 요약표 (8개 카테고리) |
-| B | [Bibliography](appendix-b-bibliography.md) | 참고문헌 | 12개 카테고리로 정리된 참고 도서·블로그 |
-| C | [Building the Example](appendix-c-building-the-example.md) | 예제 빌드 · 깃 로그 학습 | 예제 빌드 절차 — 진짜 의도는 커밋 로그로 배우기 |
+| A | [List of Practices](notes/appendix-a-list-of-practices.md) | 프랙티스 체크리스트 | 본문 28개 프랙티스 요약표 (8개 카테고리) |
+| B | [Bibliography](notes/appendix-b-bibliography.md) | 참고문헌 | 12개 카테고리로 정리된 참고 도서·블로그 |
+| C | [Building the Example](notes/appendix-c-building-the-example.md) | 예제 빌드 · 깃 로그 학습 | 예제 빌드 절차 — 진짜 의도는 커밋 로그로 배우기 |
 
 ## 학습 가이드
 

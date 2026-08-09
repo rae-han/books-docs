@@ -27,33 +27,33 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Clean Code](ch01-clean-code.md) | 깨끗한 코드 정의 · 보이스카우트 규칙 · 르블랑의 법칙 | 대가들의 정의 종합 — "나중에"는 결코 오지 않는다 |
-| 2 | [Meaningful Names](ch02-meaningful-names.md) | 의도를 드러내는 이름 · 발음/검색 가능 | 이름만으로 의도가 드러나게 — 그릇된 정보를 피하라 |
-| 3 | [Functions](ch03-functions.md) | 작은 함수 · 한 가지만 · 추상화 수준 | 함수는 작게, 더 작게 — 한 가지만 제대로 |
-| 4 | [Comments](ch04-comments.md) | 주석 최소화 · 자기 문서화 | 주석은 실패의 표현 — 코드로 의도를 표현하라 |
-| 5 | [Formatting](ch05-formatting.md) | 세로/가로 형식 · 신문 기사 구조 | 형식은 소통이다 — 위에서 아래로 읽히는 코드 |
-| 6 | [Objects and Data Structures](ch06-objects-and-data-structures.md) | 객체 vs 자료 구조 · 디미터 법칙 | 객체는 동작을 공개하고 자료를 숨긴다 — 반대는 자료 구조 |
-| 7 | [Error Handling](ch07-error-handling.md) | 예외 · null 금지 · 특수 사례 객체 | 오류 처리도 한 가지 작업 — null을 반환도 전달도 하지 마라 |
-| 8 | [Boundaries](ch08-boundaries.md) | 경계 · 학습 테스트 · 어댑터 | 외부 코드와의 경계를 깔끔히 — 학습 테스트로 길들이기 |
-| 9 | [Unit Tests](ch09-unit-tests.md) | TDD 세 법칙 · FIRST · 테스트 가독성 | 테스트 코드도 실제 코드만큼 깨끗하게 |
-| 10 | [Classes](ch10-classes.md) | 작은 클래스 · 단일 책임 원칙 · 응집도 | 클래스는 책임 기준으로 작게 — 변경하기 쉽게 |
-| 11 | [Systems](ch11-systems.md) | 제작과 사용 분리 · 의존성 주입 · 관심사 분리 | 시스템 수준의 깨끗함 — 도시처럼 추상화 수준별로 |
-| 12 | [Emergence](ch12-emergence.md) | 단순한 설계 4규칙 | 켄트 벡의 4규칙 — 테스트·중복 제거·의도 표현·최소 요소 |
-| 13 | [Concurrency](ch13-concurrency.md) | 동시성 · 스레드 방어 원칙 | 동시성은 관심사 분리 — 공유 자료를 줄이고 경계를 지켜라 |
+| 1 | [Clean Code](notes/ch01-clean-code.md) | 깨끗한 코드 정의 · 보이스카우트 규칙 · 르블랑의 법칙 | 대가들의 정의 종합 — "나중에"는 결코 오지 않는다 |
+| 2 | [Meaningful Names](notes/ch02-meaningful-names.md) | 의도를 드러내는 이름 · 발음/검색 가능 | 이름만으로 의도가 드러나게 — 그릇된 정보를 피하라 |
+| 3 | [Functions](notes/ch03-functions.md) | 작은 함수 · 한 가지만 · 추상화 수준 | 함수는 작게, 더 작게 — 한 가지만 제대로 |
+| 4 | [Comments](notes/ch04-comments.md) | 주석 최소화 · 자기 문서화 | 주석은 실패의 표현 — 코드로 의도를 표현하라 |
+| 5 | [Formatting](notes/ch05-formatting.md) | 세로/가로 형식 · 신문 기사 구조 | 형식은 소통이다 — 위에서 아래로 읽히는 코드 |
+| 6 | [Objects and Data Structures](notes/ch06-objects-and-data-structures.md) | 객체 vs 자료 구조 · 디미터 법칙 | 객체는 동작을 공개하고 자료를 숨긴다 — 반대는 자료 구조 |
+| 7 | [Error Handling](notes/ch07-error-handling.md) | 예외 · null 금지 · 특수 사례 객체 | 오류 처리도 한 가지 작업 — null을 반환도 전달도 하지 마라 |
+| 8 | [Boundaries](notes/ch08-boundaries.md) | 경계 · 학습 테스트 · 어댑터 | 외부 코드와의 경계를 깔끔히 — 학습 테스트로 길들이기 |
+| 9 | [Unit Tests](notes/ch09-unit-tests.md) | TDD 세 법칙 · FIRST · 테스트 가독성 | 테스트 코드도 실제 코드만큼 깨끗하게 |
+| 10 | [Classes](notes/ch10-classes.md) | 작은 클래스 · 단일 책임 원칙 · 응집도 | 클래스는 책임 기준으로 작게 — 변경하기 쉽게 |
+| 11 | [Systems](notes/ch11-systems.md) | 제작과 사용 분리 · 의존성 주입 · 관심사 분리 | 시스템 수준의 깨끗함 — 도시처럼 추상화 수준별로 |
+| 12 | [Emergence](notes/ch12-emergence.md) | 단순한 설계 4규칙 | 켄트 벡의 4규칙 — 테스트·중복 제거·의도 표현·최소 요소 |
+| 13 | [Concurrency](notes/ch13-concurrency.md) | 동시성 · 스레드 방어 원칙 | 동시성은 관심사 분리 — 공유 자료를 줄이고 경계를 지켜라 |
 
 ### Part II: 사례 연구 (Ch 14-16)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 14 | [Successive Refinement](ch14-successive-refinement.md) | Args 파서 · 점진적 개선 | 프로그램은 단번에 좋아지지 않는다 — 돌아가는 코드에서 시작해 다듬기 |
-| 15 | [JUnit Internals](ch15-junit-internals.md) | JUnit · 보이스카우트 규칙 실전 | 유명 프레임워크의 코드도 더 깨끗해질 수 있다 |
-| 16 | [Refactoring SerialDate](ch16-refactoring-serialdate.md) | SerialDate · 실전 리팩터링 | 실제 라이브러리를 테스트로 보호하며 개선하는 전 과정 |
+| 14 | [Successive Refinement](notes/ch14-successive-refinement.md) | Args 파서 · 점진적 개선 | 프로그램은 단번에 좋아지지 않는다 — 돌아가는 코드에서 시작해 다듬기 |
+| 15 | [JUnit Internals](notes/ch15-junit-internals.md) | JUnit · 보이스카우트 규칙 실전 | 유명 프레임워크의 코드도 더 깨끗해질 수 있다 |
+| 16 | [Refactoring SerialDate](notes/ch16-refactoring-serialdate.md) | SerialDate · 실전 리팩터링 | 실제 라이브러리를 테스트로 보호하며 개선하는 전 과정 |
 
 ### Part III: 냄새와 휴리스틱 (Ch 17)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 17 | [Smells and Heuristics](ch17-smells-and-heuristics.md) | 코드 악취 · 휴리스틱 카탈로그 | 책 전체의 체크리스트 — 7개 카테고리(주석·환경·함수·일반·자바·이름·테스트) |
+| 17 | [Smells and Heuristics](notes/ch17-smells-and-heuristics.md) | 코드 악취 · 휴리스틱 카탈로그 | 책 전체의 체크리스트 — 7개 카테고리(주석·환경·함수·일반·자바·이름·테스트) |
 
 ## 학습 가이드
 

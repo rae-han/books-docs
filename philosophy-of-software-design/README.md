@@ -25,48 +25,48 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Introduction](ch01-introduction.md) | 복잡성 · 점진적 설계 | 설계의 근본 문제는 복잡성 — 책 전체의 문제 제기 |
-| 2 | [The Nature of Complexity](ch02-the-nature-of-complexity.md) | 복잡성 정의 · 변경 증폭 · 인지 부하 · 알려지지 않은 미지 | 복잡성의 3가지 증상과 2가지 원인(의존성·모호성) — 복잡성은 조금씩 쌓인다 |
+| 1 | [Introduction](notes/ch01-introduction.md) | 복잡성 · 점진적 설계 | 설계의 근본 문제는 복잡성 — 책 전체의 문제 제기 |
+| 2 | [The Nature of Complexity](notes/ch02-the-nature-of-complexity.md) | 복잡성 정의 · 변경 증폭 · 인지 부하 · 알려지지 않은 미지 | 복잡성의 3가지 증상과 2가지 원인(의존성·모호성) — 복잡성은 조금씩 쌓인다 |
 
 ### Part II: 설계 원칙 (Ch 3-11)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 3 | [Working Code Isn't Enough](ch03-working-code-isnt-enough.md) | 전략적 프로그래밍 · 전술적 프로그래밍 | '일단 돌아가게'(전술)가 아니라 좋은 설계(전략)에 10~20%를 투자하라 |
-| 4 | [Modules Should Be Deep](ch04-modules-should-be-deep.md) | 깊은 모듈 · 얕은 모듈 · 인터페이스와 구현 | 이 책의 중심 개념 — 최고의 모듈은 단순한 인터페이스 뒤에 강력한 기능을 숨긴다 |
-| 5 | [Information Hiding and Leakage](ch05-information-hiding-and-leakage.md) | 정보 은닉 · 정보 누출 · 시간적 분해 | 설계 결정을 모듈 안에 가두어라 — 실행 순서로 모듈을 나누면 정보가 샌다 |
-| 6 | [General-Purpose Modules are Deeper](ch06-general-purpose-modules-are-deeper.md) | 범용 모듈 · 다소 범용적 설계 | 지금 필요보다 '다소 범용'으로 만들면 인터페이스가 오히려 단순해진다 |
-| 7 | [Different Layer, Different Abstraction](ch07-different-layer-different-abstraction.md) | 계층별 추상화 · 통과 메서드 · 데코레이터 | 인접 계층의 추상화가 같다면 설계 문제의 신호 |
-| 8 | [Pull Complexity Downwards](ch08-pull-complexity-downwards.md) | 복잡성 하향 · 설정 매개변수 | 사용자를 편하게, 복잡성은 구현(아래)이 흡수하게 |
-| 9 | [Better Together Or Better Apart?](ch09-better-together-or-better-apart.md) | 결합과 분리 · 특수-범용 혼합 | 무조건 잘게 나누는 게 답이 아니다 — 합칠지 나눌지의 판단 기준 |
-| 10 | [Define Errors Out Of Existence](ch10-define-errors-out-of-existence.md) | 오류 정의 제거 · 예외 마스킹 · 예외 통합 | 예외 처리보다 예외가 아예 생기지 않는 의미론을 정의하라 (unset 예제) |
-| 11 | [Design it Twice](ch11-design-it-twice.md) | 두 번 설계하기 | 첫 아이디어에 만족하지 말고 근본적으로 다른 대안을 만들어 비교하라 |
+| 3 | [Working Code Isn't Enough](notes/ch03-working-code-isnt-enough.md) | 전략적 프로그래밍 · 전술적 프로그래밍 | '일단 돌아가게'(전술)가 아니라 좋은 설계(전략)에 10~20%를 투자하라 |
+| 4 | [Modules Should Be Deep](notes/ch04-modules-should-be-deep.md) | 깊은 모듈 · 얕은 모듈 · 인터페이스와 구현 | 이 책의 중심 개념 — 최고의 모듈은 단순한 인터페이스 뒤에 강력한 기능을 숨긴다 |
+| 5 | [Information Hiding and Leakage](notes/ch05-information-hiding-and-leakage.md) | 정보 은닉 · 정보 누출 · 시간적 분해 | 설계 결정을 모듈 안에 가두어라 — 실행 순서로 모듈을 나누면 정보가 샌다 |
+| 6 | [General-Purpose Modules are Deeper](notes/ch06-general-purpose-modules-are-deeper.md) | 범용 모듈 · 다소 범용적 설계 | 지금 필요보다 '다소 범용'으로 만들면 인터페이스가 오히려 단순해진다 |
+| 7 | [Different Layer, Different Abstraction](notes/ch07-different-layer-different-abstraction.md) | 계층별 추상화 · 통과 메서드 · 데코레이터 | 인접 계층의 추상화가 같다면 설계 문제의 신호 |
+| 8 | [Pull Complexity Downwards](notes/ch08-pull-complexity-downwards.md) | 복잡성 하향 · 설정 매개변수 | 사용자를 편하게, 복잡성은 구현(아래)이 흡수하게 |
+| 9 | [Better Together Or Better Apart?](notes/ch09-better-together-or-better-apart.md) | 결합과 분리 · 특수-범용 혼합 | 무조건 잘게 나누는 게 답이 아니다 — 합칠지 나눌지의 판단 기준 |
+| 10 | [Define Errors Out Of Existence](notes/ch10-define-errors-out-of-existence.md) | 오류 정의 제거 · 예외 마스킹 · 예외 통합 | 예외 처리보다 예외가 아예 생기지 않는 의미론을 정의하라 (unset 예제) |
+| 11 | [Design it Twice](notes/ch11-design-it-twice.md) | 두 번 설계하기 | 첫 아이디어에 만족하지 말고 근본적으로 다른 대안을 만들어 비교하라 |
 
 ### Part III: 주석과 이름 (Ch 12-15)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 12 | [Why Write Comments? The Four Excuses](ch12-why-write-comments.md) | 주석의 네 가지 변명 | "좋은 코드는 자기 문서화된다"는 신화에 대한 반박 |
-| 13 | [Comments Should Describe Things That Aren't Obvious](ch13-comments-should-describe-things-that-arent-obvious.md) | 인터페이스 주석 · 구현 주석 · 낮은 수준/높은 수준 주석 | 코드로 표현할 수 없는 것(왜, 전제, 추상화)을 주석으로 |
-| 14 | [Choosing Names](ch14-choosing-names.md) | 이름 짓기 · 모호한 이름 | 정확하고 일관된 이름 — 이름 짓기가 어렵다면 설계가 불명확하다는 신호 |
-| 15 | [Write The Comments First](ch15-write-the-comments-first.md) | 주석 우선 작성 · 설계 도구로서의 주석 | 주석을 먼저 쓰면 설계 검증 도구가 된다 |
+| 12 | [Why Write Comments? The Four Excuses](notes/ch12-why-write-comments.md) | 주석의 네 가지 변명 | "좋은 코드는 자기 문서화된다"는 신화에 대한 반박 |
+| 13 | [Comments Should Describe Things That Aren't Obvious](notes/ch13-comments-should-describe-things-that-arent-obvious.md) | 인터페이스 주석 · 구현 주석 · 낮은 수준/높은 수준 주석 | 코드로 표현할 수 없는 것(왜, 전제, 추상화)을 주석으로 |
+| 14 | [Choosing Names](notes/ch14-choosing-names.md) | 이름 짓기 · 모호한 이름 | 정확하고 일관된 이름 — 이름 짓기가 어렵다면 설계가 불명확하다는 신호 |
+| 15 | [Write The Comments First](notes/ch15-write-the-comments-first.md) | 주석 우선 작성 · 설계 도구로서의 주석 | 주석을 먼저 쓰면 설계 검증 도구가 된다 |
 
 ### Part IV: 기존 코드와 일관성 (Ch 16-18)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 16 | [Modifying Existing Code](ch16-modifying-existing-code.md) | 전략적 수정 · 주석 최신화 | 수정도 설계 활동 — 떠날 때는 찾았을 때보다 깨끗하게 |
-| 17 | [Consistency](ch17-consistency.md) | 일관성 · 컨벤션 | 일관성은 인지 부하를 줄인다 — 더 나은 아이디어라도 일관성을 깨려면 신중히 |
-| 18 | [Code Should be Obvious](ch18-code-should-be-obvious.md) | 명확한 코드 · 가독성 | 명확성은 작성자가 아니라 읽는 사람이 판단한다 |
+| 16 | [Modifying Existing Code](notes/ch16-modifying-existing-code.md) | 전략적 수정 · 주석 최신화 | 수정도 설계 활동 — 떠날 때는 찾았을 때보다 깨끗하게 |
+| 17 | [Consistency](notes/ch17-consistency.md) | 일관성 · 컨벤션 | 일관성은 인지 부하를 줄인다 — 더 나은 아이디어라도 일관성을 깨려면 신중히 |
+| 18 | [Code Should be Obvious](notes/ch18-code-should-be-obvious.md) | 명확한 코드 · 가독성 | 명확성은 작성자가 아니라 읽는 사람이 판단한다 |
 
 ### Part V: 더 넓은 시각 (Ch 19-22)
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 19 | [Software Trends](ch19-software-trends.md) | 객체지향 · 애자일 · 테스트 주도 개발 · 디자인 패턴 비평 | 유행하는 방법론들을 '복잡성 관점'으로 재평가 |
-| 20 | [Designing for Performance](ch20-designing-for-performance.md) | 성능 설계 · 임계 경로 단순화 | 성능과 단순성은 대립하지 않는다 — 임계 경로를 근본적으로 단순하게 |
-| 21 | [Decide What Matters](ch21-decide-what-matters.md) | 중요한 것 가려내기 | 무엇이 중요하고 무엇이 아닌지의 구분이 설계 판단의 핵심 (2판 신규) |
-| 22 | [Conclusion](ch22-conclusion.md) | 복잡성과의 싸움 | 책 전체 요약 — 설계는 복잡성과의 지속적인 싸움 |
+| 19 | [Software Trends](notes/ch19-software-trends.md) | 객체지향 · 애자일 · 테스트 주도 개발 · 디자인 패턴 비평 | 유행하는 방법론들을 '복잡성 관점'으로 재평가 |
+| 20 | [Designing for Performance](notes/ch20-designing-for-performance.md) | 성능 설계 · 임계 경로 단순화 | 성능과 단순성은 대립하지 않는다 — 임계 경로를 근본적으로 단순하게 |
+| 21 | [Decide What Matters](notes/ch21-decide-what-matters.md) | 중요한 것 가려내기 | 무엇이 중요하고 무엇이 아닌지의 구분이 설계 판단의 핵심 (2판 신규) |
+| 22 | [Conclusion](notes/ch22-conclusion.md) | 복잡성과의 싸움 | 책 전체 요약 — 설계는 복잡성과의 지속적인 싸움 |
 
 ## 학습 가이드
 

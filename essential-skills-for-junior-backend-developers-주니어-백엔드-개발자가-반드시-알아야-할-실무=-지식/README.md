@@ -23,25 +23,25 @@
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [들어가며: 코딩을 할 수 있게 된 것일 뿐](ch01-introduction.md) | 실무 지식 지도 | 코딩 다음에 필요한 것들 — 책 전체의 문제 제기 |
-| 2 | [느려진 서비스, 어디부터 봐야 할까](ch02-service-performance.md) | 성능 · 병목 · 응답 시간 | 성능 문제의 원인을 좁혀 가는 탐색 순서 |
-| 3 | [성능을 좌우하는 DB 설계와 쿼리](ch03-db-design-and-query.md) | 인덱스 · 쿼리 튜닝 · DB 설계 | 성능의 대부분은 DB에서 — 인덱스와 쿼리의 기초 |
-| 4 | [외부 연동이 문제일 때 살펴봐야 할 것들](ch04-external-integration.md) | 타임아웃 · 재시도 · 연동 장애 | 외부 시스템은 반드시 실패한다 — 방어적 연동 설계 |
-| 5 | [비동기 연동, 언제 어떻게 써야 할까](ch05-async-integration.md) | 비동기 · 메시지 큐 | 동기가 한계일 때 — 큐 기반 비동기 연동의 판단 기준 |
-| 6 | [동시성, 데이터가 꼬이기 전에 잡아야 한다](ch06-concurrency.md) | 동시성 · 잠금 · 원자성 | 동시 요청이 만드는 데이터 꼬임과 잠금 전략 |
-| 7 | [IO 병목, 어떻게 해결하지](ch07-io-bottleneck.md) | IO 병목 · 캐시 · 커넥션 풀 | IO가 막힐 때의 해법들 — 캐시·풀·비동기 IO |
-| 8 | [실무에서 꼭 필요한 보안 지식](ch08-security-essentials.md) | 인증/인가 · 암호화 · 취약점 | 서비스를 지키는 최소한의 보안 상식 |
-| 9 | [최소한 알고 있어야 할 서버 지식](ch09-server-management.md) | 리눅스 · 프로세스 · 배포 | 내 코드가 도는 서버를 이해하기 |
-| 10 | [모르면 답답해지는 네트워크 기초](ch10-network-fundamentals.md) | HTTP · TCP · DNS | 장애 분석의 어휘 — 네트워크 기초 |
-| 11 | [자주 쓰는 서버 구조와 설계 패턴](ch11-architecture-patterns.md) | 서버 구조 · 설계 패턴 | 흔히 쓰는 구조와 패턴의 지도 |
+| 1 | [들어가며: 코딩을 할 수 있게 된 것일 뿐](notes/ch01-introduction.md) | 실무 지식 지도 | 코딩 다음에 필요한 것들 — 책 전체의 문제 제기 |
+| 2 | [느려진 서비스, 어디부터 봐야 할까](notes/ch02-service-performance.md) | 성능 · 병목 · 응답 시간 | 성능 문제의 원인을 좁혀 가는 탐색 순서 |
+| 3 | [성능을 좌우하는 DB 설계와 쿼리](notes/ch03-db-design-and-query.md) | 인덱스 · 쿼리 튜닝 · DB 설계 | 성능의 대부분은 DB에서 — 인덱스와 쿼리의 기초 |
+| 4 | [외부 연동이 문제일 때 살펴봐야 할 것들](notes/ch04-external-integration.md) | 타임아웃 · 재시도 · 연동 장애 | 외부 시스템은 반드시 실패한다 — 방어적 연동 설계 |
+| 5 | [비동기 연동, 언제 어떻게 써야 할까](notes/ch05-async-integration.md) | 비동기 · 메시지 큐 | 동기가 한계일 때 — 큐 기반 비동기 연동의 판단 기준 |
+| 6 | [동시성, 데이터가 꼬이기 전에 잡아야 한다](notes/ch06-concurrency.md) | 동시성 · 잠금 · 원자성 | 동시 요청이 만드는 데이터 꼬임과 잠금 전략 |
+| 7 | [IO 병목, 어떻게 해결하지](notes/ch07-io-bottleneck.md) | IO 병목 · 캐시 · 커넥션 풀 | IO가 막힐 때의 해법들 — 캐시·풀·비동기 IO |
+| 8 | [실무에서 꼭 필요한 보안 지식](notes/ch08-security-essentials.md) | 인증/인가 · 암호화 · 취약점 | 서비스를 지키는 최소한의 보안 상식 |
+| 9 | [최소한 알고 있어야 할 서버 지식](notes/ch09-server-management.md) | 리눅스 · 프로세스 · 배포 | 내 코드가 도는 서버를 이해하기 |
+| 10 | [모르면 답답해지는 네트워크 기초](notes/ch10-network-fundamentals.md) | HTTP · TCP · DNS | 장애 분석의 어휘 — 네트워크 기초 |
+| 11 | [자주 쓰는 서버 구조와 설계 패턴](notes/ch11-architecture-patterns.md) | 서버 구조 · 설계 패턴 | 흔히 쓰는 구조와 패턴의 지도 |
 
 ### 부록
 
 | 부록 | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| A | [처음 해보는 성능 테스트를 위한 기본 정리](appendix-a-performance-testing.md) | 성능 테스트 · 부하 도구 | 성능 테스트 입문 — 지표와 도구 |
-| B | [NoSQL 이해하기](appendix-b-nosql.md) | NoSQL · 데이터 모델 | RDB 밖의 선택지 이해 |
-| C | [DB로 분산 잠금 구현하기](appendix-c-distributed-locking.md) | 분산 잠금 | DB만으로 구현하는 분산 잠금 |
+| A | [처음 해보는 성능 테스트를 위한 기본 정리](notes/appendix-a-performance-testing.md) | 성능 테스트 · 부하 도구 | 성능 테스트 입문 — 지표와 도구 |
+| B | [NoSQL 이해하기](notes/appendix-b-nosql.md) | NoSQL · 데이터 모델 | RDB 밖의 선택지 이해 |
+| C | [DB로 분산 잠금 구현하기](notes/appendix-c-distributed-locking.md) | 분산 잠금 | DB만으로 구현하는 분산 잠금 |
 
 ## 학습 가이드
 

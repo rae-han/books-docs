@@ -27,48 +27,48 @@ Part I·II는 각각 하나의 완전한 프로젝트(다중 통화 Money, 테�
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 1 | [Multi-Currency Money](ch01-multi-currency-money.md) | 첫 테스트 · TODO 리스트 · 가짜 구현 | 컴파일도 안 되는 `$5 × 2 = $10` 테스트에서 시작 — TDD의 첫 리듬 |
-| 2 | [Degenerate Objects](ch02-degenerate-objects.md) | 값 객체 · 명백한 구현 | `times()`가 새 객체를 반환하게 — 부작용 제거 |
-| 3 | [Equality for All](ch03-equality-for-all.md) | 동등성 · 삼각측량 | 삼각측량(예제 2개)으로 `equals()` 일반화 |
-| 4 | [Privacy](ch04-privacy.md) | 캡슐화 · 테스트 의존 | amount를 private으로 — 테스트가 구현이 아닌 인터페이스에 묻게 |
-| 5 | [Franc-ly Speaking](ch05-franc-ly-speaking.md) | 복사-붙여넣기 부채 | 죄를 지으며(복붙) Franc을 만들고 TODO에 부채를 기록 |
-| 6 | [Equality for All, Redux](ch06-equality-for-all-redux.md) | 상위 클래스 · 중복 제거 | Money 상위 클래스로 `equals()` 끌어올리기 |
-| 7 | [Apples and Oranges](ch07-apples-and-oranges.md) | 클래스 비교 | Franc ≠ Dollar — getClass 비교라는 찜찜한 임시 해법 |
-| 8 | [Makin' Objects](ch08-makin-objects.md) | 팩토리 메서드 | `Money.dollar()` 팩토리로 하위 클래스의 존재를 숨기기 |
-| 9 | [Times We're Livin' In](ch09-times-were-livin-in.md) | 통화 개념 | currency 도입 — 하위 클래스 제거를 향한 포석 |
-| 10 | [Interesting Times](ch10-interesting-times.md) | 구현 통일 · 과감한 실험 | 두 `times()`를 동일하게 — 확인하며 전진 |
-| 11 | [The Root of All Evil](ch11-the-root-of-all-evil.md) | 하위 클래스 제거 | Dollar·Franc 삭제 — Money 단일 클래스로 |
-| 12 | [Addition, Finally](ch12-addition-finally.md) | Expression · Bank 은유 | `$5 + $5` — 수식(Expression)과 은행이라는 은유 도입 |
-| 13 | [Make It](ch13-make-it.md) | Sum · reduce | 가짜 구현을 Sum.reduce의 진짜 구현으로 |
-| 14 | [Change](ch14-change.md) | 환율 · 환전 | 2CHF → 1USD — Bank에 환율 테이블 |
-| 15 | [Mixed Currencies](ch15-mixed-currencies.md) | 혼합 통화 연산 | `$5 + 10CHF` — 서로 다른 통화의 덧셈 완성 |
-| 16 | [Abstraction, Finally](ch16-abstraction-finally.md) | Expression 추상화 완성 | Sum.times·plus까지 — Expression 인터페이스로 마무리 |
-| 17 | [Money Retrospective](ch17-money-retrospective.md) | 회고 · 테스트 품질 · 메트릭 | Money 전체 회고 — 리듬·은유·테스트 품질 점검 |
+| 1 | [Multi-Currency Money](notes/ch01-multi-currency-money.md) | 첫 테스트 · TODO 리스트 · 가짜 구현 | 컴파일도 안 되는 `$5 × 2 = $10` 테스트에서 시작 — TDD의 첫 리듬 |
+| 2 | [Degenerate Objects](notes/ch02-degenerate-objects.md) | 값 객체 · 명백한 구현 | `times()`가 새 객체를 반환하게 — 부작용 제거 |
+| 3 | [Equality for All](notes/ch03-equality-for-all.md) | 동등성 · 삼각측량 | 삼각측량(예제 2개)으로 `equals()` 일반화 |
+| 4 | [Privacy](notes/ch04-privacy.md) | 캡슐화 · 테스트 의존 | amount를 private으로 — 테스트가 구현이 아닌 인터페이스에 묻게 |
+| 5 | [Franc-ly Speaking](notes/ch05-franc-ly-speaking.md) | 복사-붙여넣기 부채 | 죄를 지으며(복붙) Franc을 만들고 TODO에 부채를 기록 |
+| 6 | [Equality for All, Redux](notes/ch06-equality-for-all-redux.md) | 상위 클래스 · 중복 제거 | Money 상위 클래스로 `equals()` 끌어올리기 |
+| 7 | [Apples and Oranges](notes/ch07-apples-and-oranges.md) | 클래스 비교 | Franc ≠ Dollar — getClass 비교라는 찜찜한 임시 해법 |
+| 8 | [Makin' Objects](notes/ch08-makin-objects.md) | 팩토리 메서드 | `Money.dollar()` 팩토리로 하위 클래스의 존재를 숨기기 |
+| 9 | [Times We're Livin' In](notes/ch09-times-were-livin-in.md) | 통화 개념 | currency 도입 — 하위 클래스 제거를 향한 포석 |
+| 10 | [Interesting Times](notes/ch10-interesting-times.md) | 구현 통일 · 과감한 실험 | 두 `times()`를 동일하게 — 확인하며 전진 |
+| 11 | [The Root of All Evil](notes/ch11-the-root-of-all-evil.md) | 하위 클래스 제거 | Dollar·Franc 삭제 — Money 단일 클래스로 |
+| 12 | [Addition, Finally](notes/ch12-addition-finally.md) | Expression · Bank 은유 | `$5 + $5` — 수식(Expression)과 은행이라는 은유 도입 |
+| 13 | [Make It](notes/ch13-make-it.md) | Sum · reduce | 가짜 구현을 Sum.reduce의 진짜 구현으로 |
+| 14 | [Change](notes/ch14-change.md) | 환율 · 환전 | 2CHF → 1USD — Bank에 환율 테이블 |
+| 15 | [Mixed Currencies](notes/ch15-mixed-currencies.md) | 혼합 통화 연산 | `$5 + 10CHF` — 서로 다른 통화의 덧셈 완성 |
+| 16 | [Abstraction, Finally](notes/ch16-abstraction-finally.md) | Expression 추상화 완성 | Sum.times·plus까지 — Expression 인터페이스로 마무리 |
+| 17 | [Money Retrospective](notes/ch17-money-retrospective.md) | 회고 · 테스트 품질 · 메트릭 | Money 전체 회고 — 리듬·은유·테스트 품질 점검 |
 
 ### Part II: The xUnit Example (Ch 18-24) — 테스트 프레임워크를 TDD로
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 18 | [First Steps to xUnit](ch18-first-steps-to-xunit.md) | 부트스트래핑 · 자기 참조 | 테스트 프레임워크를 그 자신으로 테스트하는 첫 걸음 (Python) |
-| 19 | [Set the Table](ch19-set-the-table.md) | setUp · 템플릿 메서드 | 테스트 전 준비 단계 — 준비(Arrange)의 자리 만들기 |
-| 20 | [Cleaning Up After](ch20-cleaning-up-after.md) | tearDown · 로그 문자열 | 뒷정리 tearDown — 플래그 대신 로그 문자열로 호출 순서 검증 |
-| 21 | [Counting](ch21-counting.md) | TestResult | 실행 결과 집계 — "1 run, 0 failed" |
-| 22 | [Dealing with Failure](ch22-dealing-with-failure.md) | 실패 격리 · 예외 포착 | 한 테스트가 실패해도 나머지는 계속 — 예외를 잡아 결과에 기록 |
-| 23 | [How Suite It Is](ch23-how-suite-it-is.md) | TestSuite · 컴포지트 패턴 | 여러 테스트를 묶어 한 번에 — Composite로 테스트 스위트 |
-| 24 | [xUnit Retrospective](ch24-xunit-retrospective.md) | 회고 · 프레임워크 학습법 | xUnit 회고 — 자기 프레임워크 구현이 주는 학습 효과 |
+| 18 | [First Steps to xUnit](notes/ch18-first-steps-to-xunit.md) | 부트스트래핑 · 자기 참조 | 테스트 프레임워크를 그 자신으로 테스트하는 첫 걸음 (Python) |
+| 19 | [Set the Table](notes/ch19-set-the-table.md) | setUp · 템플릿 메서드 | 테스트 전 준비 단계 — 준비(Arrange)의 자리 만들기 |
+| 20 | [Cleaning Up After](notes/ch20-cleaning-up-after.md) | tearDown · 로그 문자열 | 뒷정리 tearDown — 플래그 대신 로그 문자열로 호출 순서 검증 |
+| 21 | [Counting](notes/ch21-counting.md) | TestResult | 실행 결과 집계 — "1 run, 0 failed" |
+| 22 | [Dealing with Failure](notes/ch22-dealing-with-failure.md) | 실패 격리 · 예외 포착 | 한 테스트가 실패해도 나머지는 계속 — 예외를 잡아 결과에 기록 |
+| 23 | [How Suite It Is](notes/ch23-how-suite-it-is.md) | TestSuite · 컴포지트 패턴 | 여러 테스트를 묶어 한 번에 — Composite로 테스트 스위트 |
+| 24 | [xUnit Retrospective](notes/ch24-xunit-retrospective.md) | 회고 · 프레임워크 학습법 | xUnit 회고 — 자기 프레임워크 구현이 주는 학습 효과 |
 
 ### Part III: Patterns for Test-Driven Development (Ch 25-32) — 패턴 카탈로그
 
 | Ch | 제목 | 핵심 단어 | 한 줄 요약 |
 |----|------|-----------|-----------|
-| 25 | [Test-Driven Development Patterns](ch25-test-driven-development-patterns.md) | 격리된 테스트 · TODO 리스트 · 단언 우선 | 기본 패턴 — 왜 테스트를 먼저, 어디까지 격리하나 |
-| 26 | [Red Bar Patterns](ch26-red-bar-patterns.md) | 시작 테스트 · 학습 테스트 · 회귀 테스트 | 다음 테스트를 고르는 법 — 언제 어떤 테스트를 쓰나 |
-| 27 | [Testing Patterns](ch27-testing-patterns.md) | 목 객체 · 자식 테스트 · 깨진 테스트 | 테스트 작성의 세부 기법 — 혼자/팀으로 코딩 마칠 때의 습관 |
-| 28 | [Green Bar Patterns](ch28-green-bar-patterns.md) | 가짜로 만들기 · 삼각측량 · 명백한 구현 | 테스트를 통과시키는 세 가지 방법 |
-| 29 | [xUnit Patterns](ch29-xunit-patterns.md) | 단언 · 픽스처 · 외부 픽스처 | xUnit 계열 프레임워크를 쓰는 패턴 |
-| 30 | [Design Patterns](ch30-design-patterns.md) | 커맨드 · 값 객체 · 널 객체 · 임포스터 | TDD 관점에서 다시 보는 디자인 패턴 |
-| 31 | [Refactoring](ch31-refactoring.md) | 차이 일치시키기 · 메서드 추출 | TDD에서의 리팩터링 — 관찰된 사실에 근거해 변경 |
-| 32 | [Mastering TDD](ch32-mastering-tdd.md) | 단계 크기 · 피드백 · 열린 질문 | 얼마나 큰 단계로? 무엇을 테스트하나? — TDD 숙련의 질문들 |
+| 25 | [Test-Driven Development Patterns](notes/ch25-test-driven-development-patterns.md) | 격리된 테스트 · TODO 리스트 · 단언 우선 | 기본 패턴 — 왜 테스트를 먼저, 어디까지 격리하나 |
+| 26 | [Red Bar Patterns](notes/ch26-red-bar-patterns.md) | 시작 테스트 · 학습 테스트 · 회귀 테스트 | 다음 테스트를 고르는 법 — 언제 어떤 테스트를 쓰나 |
+| 27 | [Testing Patterns](notes/ch27-testing-patterns.md) | 목 객체 · 자식 테스트 · 깨진 테스트 | 테스트 작성의 세부 기법 — 혼자/팀으로 코딩 마칠 때의 습관 |
+| 28 | [Green Bar Patterns](notes/ch28-green-bar-patterns.md) | 가짜로 만들기 · 삼각측량 · 명백한 구현 | 테스트를 통과시키는 세 가지 방법 |
+| 29 | [xUnit Patterns](notes/ch29-xunit-patterns.md) | 단언 · 픽스처 · 외부 픽스처 | xUnit 계열 프레임워크를 쓰는 패턴 |
+| 30 | [Design Patterns](notes/ch30-design-patterns.md) | 커맨드 · 값 객체 · 널 객체 · 임포스터 | TDD 관점에서 다시 보는 디자인 패턴 |
+| 31 | [Refactoring](notes/ch31-refactoring.md) | 차이 일치시키기 · 메서드 추출 | TDD에서의 리팩터링 — 관찰된 사실에 근거해 변경 |
+| 32 | [Mastering TDD](notes/ch32-mastering-tdd.md) | 단계 크기 · 피드백 · 열린 질문 | 얼마나 큰 단계로? 무엇을 테스트하나? — TDD 숙련의 질문들 |
 
 ## 학습 가이드
 
