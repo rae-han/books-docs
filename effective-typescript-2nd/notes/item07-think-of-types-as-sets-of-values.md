@@ -4,7 +4,7 @@
 
 "할당 가능(assignable)"·"extends"·"서브타입"이라는 말은 정확히 무엇을 뜻하는가? 타입 연산(`|`·`&`·`keyof`)의 결과를 어떻게 예측하는가?
 
-런타임에 모든 변수는 자바스크립트 값의 우주에서 뽑은 **하나의 값**을 갖는다(`42`, `null`, `'Canada'`, `/regex/`, `(x, y) => x + y`, …). 하지만 코드가 실행되기 전, 타입스크립트가 에러를 체크하는 시점에 변수는 **타입**을 갖는다. 타입은 **가능한 값들의 집합**으로 생각하는 것이 가장 좋다. 이 집합을 타입의 도메인(*domain - 타입에 속하는 값들의 집합. 이 아이템에서 타입 자체와 구분해 부르기 위한 용어*)이라 부른다. `number` 타입은 모든 숫자 값의 집합이다 — `42`와 `-37.25`는 속하고 `'Canada'`는 속하지 않는다. `strictNullChecks`에 따라 `null`과 `undefined`는 집합에 속할 수도, 아닐 수도 있다.
+런타임에 모든 변수는 자바스크립트 값의 우주에서 뽑은 **하나의 값**을 갖는다(`42`, `null`, `'Canada'`, `/regex/`, `(x, y) => x + y`, …). 하지만 코드가 실행되기 전, 타입스크립트가 에러를 체크하는 시점에 변수는 **타입**을 갖는다. 타입은 **가능한 값들의 집합**으로 생각하는 것이 가장 좋다. 이 집합을 타입의 도메인(*domain - 타입에 속하는 값들의 집합. 이 아이템에서 타입 자체와 구분해 부르기 위한 용어*)이라 부른다. `number` 타입은 모든 숫자 값의 집합이다 - `42`와 `-37.25`는 속하고 `'Canada'`는 속하지 않는다. `strictNullChecks`에 따라 `null`과 `undefined`는 집합에 속할 수도, 아닐 수도 있다.
 
 ## 1. 작은 집합부터: never, 리터럴, 유니온
 
@@ -25,19 +25,19 @@ type B = 'B';
 type Twelve = 12;
 ```
 
-값 두세 개짜리 타입은 리터럴 타입을 **유니온**하면 된다. 유니온 타입의 도메인은 구성 타입 도메인들의 합집합이다 — "유니온 타입"의 "유니온"이 가리키는 것이 바로 이것이다.
+값 두세 개짜리 타입은 리터럴 타입을 **유니온**하면 된다. 유니온 타입의 도메인은 구성 타입 도메인들의 합집합이다 - "유니온 타입"의 "유니온"이 가리키는 것이 바로 이것이다.
 
 ```typescript
 type AB = 'A' | 'B';
 type AB12 = 'A' | 'B' | 12;
 ```
 
-## 2. "할당 가능"의 의미 — 원소이거나, 부분집합이거나
+## 2. "할당 가능"의 의미 - 원소이거나, 부분집합이거나
 
 타입스크립트 에러에 수없이 등장하는 "assignable"은 집합의 언어로 두 가지 중 하나다: **원소(∈)** (값↔타입 관계) 또는 **부분집합(⊆)** (타입↔타입 관계).
 
 ```typescript
-const a: AB = 'A';  // OK — 값 'A'는 집합 {'A', 'B'}의 원소
+const a: AB = 'A';  // OK - 값 'A'는 집합 {'A', 'B'}의 원소
 const c: AB = 'C';
 //    ~ Type '"C"' is not assignable to type 'AB'
 ```
@@ -45,8 +45,8 @@ const c: AB = 'C';
 `"C"`는 리터럴 타입으로 도메인이 `"C"` 하나인데, `AB`의 도메인(`"A"`, `"B"`)의 부분집합이 아니므로 에러다. **타입 체커가 하는 일의 상당 부분은 결국 한 집합이 다른 집합의 부분집합인지 검사하는 것이다.**
 
 ```typescript
-const ab: AB = Math.random() < 0.5 ? 'A' : 'B';  // OK — {"A","B"} ⊆ {"A","B"}
-const ab12: AB12 = ab;                           // OK — {"A","B"} ⊆ {"A","B",12}
+const ab: AB = Math.random() < 0.5 ? 'A' : 'B';  // OK - {"A","B"} ⊆ {"A","B"}
+const ab12: AB12 = ab;                           // OK - {"A","B"} ⊆ {"A","B",12}
 
 declare let twelve: AB12;
 const back: AB = twelve;
@@ -54,7 +54,7 @@ const back: AB = twelve;
 //         Type '12' is not assignable to type 'AB'
 ```
 
-## 3. 무한 집합 다루기 — 인터페이스는 "값의 묘사"다
+## 3. 무한 집합 다루기 - 인터페이스는 "값의 묘사"다
 
 실무에서 쓰는 타입 대부분은 도메인이 무한하다. 원소를 나열하는 대신 **구성원의 조건을 서술**한다고 생각하면 된다.
 
@@ -64,7 +64,7 @@ interface Identified {
 }
 ```
 
-이 인터페이스는 도메인에 속하는 값들의 묘사다: "값이 객체인가? `string`에 할당 가능한 `id` 속성이 있는가? 그렇다면 `Identified`다." **그게 전부다.** Item 4의 구조적 타이핑 규칙대로 값은 다른 속성을 더 가질 수 있고, 심지어 호출 가능할 수도 있다. (이 사실은 잉여 속성 체크 때문에 가려질 때가 있다 — Item 11.)
+이 인터페이스는 도메인에 속하는 값들의 묘사다: "값이 객체인가? `string`에 할당 가능한 `id` 속성이 있는가? 그렇다면 `Identified`다." **그게 전부다.** Item 4의 구조적 타이핑 규칙대로 값은 다른 속성을 더 가질 수 있고, 심지어 호출 가능할 수도 있다. (이 사실은 잉여 속성 체크 때문에 가려질 때가 있다 - Item 11.)
 
 이 관점은 타입 연산의 결과를 추론하는 데 힘을 발휘한다.
 
@@ -121,7 +121,7 @@ interface PersonSpan extends Person {
 
 집합의 관점에서 `extends`는 "할당 가능"과 마찬가지로 **"~의 부분집합"** 으로 읽으면 된다. `PersonSpan`의 모든 값은 `name`을 갖고 `birth`도 가져야 하므로 진부분집합이다.
 
-`extends`는 보통 필드 추가에 쓰이지만, 기반 타입 값의 부분집합이기만 하면 무엇이든 된다 — 속성 타입을 **좁히는** 것도 가능하다.
+`extends`는 보통 필드 추가에 쓰이지만, 기반 타입 값의 부분집합이기만 하면 무엇이든 된다 - 속성 타입을 **좁히는** 것도 가능하다.
 
 ```typescript
 interface NullyStudent {
@@ -129,7 +129,7 @@ interface NullyStudent {
   ageYears: number | null;
 }
 interface Student extends NullyStudent {
-  ageYears: number;   // OK — number ⊆ number | null
+  ageYears: number;   // OK - number ⊆ number | null
 }
 interface StringyStudent extends NullyStudent {
   //      ~~~~~~~~~~~~~~ Interface 'StringyStudent' incorrectly
@@ -144,7 +144,7 @@ interface StringyStudent extends NullyStudent {
 interface Vector1D { x: number; }
 interface Vector2D { x: number; y: number; }
 interface Vector3D { x: number; y: number; z: number; }
-// Vector3D ⊂ Vector2D ⊂ Vector1D — extends로 썼을 때와 동일
+// Vector3D ⊂ Vector2D ⊂ Vector1D - extends로 썼을 때와 동일
 ```
 
 제네릭 타입의 제약(constraint)으로 나오는 `extends`도 같은 뜻이다(Item 15).
@@ -154,14 +154,14 @@ function getKey<K extends string>(val: any, key: K) {
   // ...
 }
 
-getKey({}, 'x');                                  // OK — 'x' ⊆ string
-getKey({}, Math.random() < 0.5 ? 'a' : 'b');      // OK — 'a'|'b' ⊆ string
-getKey({}, document.title);                       // OK — string ⊆ string
+getKey({}, 'x');                                  // OK - 'x' ⊆ string
+getKey({}, Math.random() < 0.5 ? 'a' : 'b');      // OK - 'a'|'b' ⊆ string
+getKey({}, document.title);                       // OK - string ⊆ string
 getKey({}, 12);
 //         ~~ Type 'number' is not assignable to parameter of type 'string'
 ```
 
-"`string`을 상속한다"를 객체 상속으로 해석하려 하면 난감하지만, 집합으로 보면 자명하다 — 도메인이 `string`의 부분집합인 타입(문자열 리터럴, 리터럴 유니온, 템플릿 리터럴 타입(Item 54), `string` 자신)이면 된다. 마지막 에러에서 "extends"가 "assignable"로 바뀌었지만 둘 다 "부분집합"으로 읽으면 흔들릴 일이 없다.
+"`string`을 상속한다"를 객체 상속으로 해석하려 하면 난감하지만, 집합으로 보면 자명하다 - 도메인이 `string`의 부분집합인 타입(문자열 리터럴, 리터럴 유니온, 템플릿 리터럴 타입(Item 54), `string` 자신)이면 된다. 마지막 에러에서 "extends"가 "assignable"로 바뀌었지만 둘 다 "부분집합"으로 읽으면 흔들릴 일이 없다.
 
 ## 5. 엄격한 계층이 아니라 겹치는 집합
 
@@ -188,7 +188,7 @@ const double: [number, number] = triple;
 
 타입스크립트가 숫자 쌍을 `{0: number, 1: number}`가 아니라 `{0: number, 1: number, length: 2}`로 모델링하기 때문이다. 튜플의 길이를 체크할 수 있으니 합리적이고, 이 할당을 막아 주니 다행이기도 하다.
 
-타입스크립트는 할당 가능성(부분집합/서브타입 관계)은 끊임없이 검사하지만 **타입의 동등성은 거의 검사하지 않는다**. 이 때문에 타입에 대한 테스트를 쓰기가 까다로운데, Item 55의 주제다. 타입이 값의 집합이라면 같은 집합을 갖는 두 타입은 같은 타입이다 — 실제로 그렇다(아래 단서 하나 제외). 의미가 다른데 우연히 도메인이 같은 경우가 아니라면 같은 타입을 두 번 정의할 이유가 없다.
+타입스크립트는 할당 가능성(부분집합/서브타입 관계)은 끊임없이 검사하지만 **타입의 동등성은 거의 검사하지 않는다**. 이 때문에 타입에 대한 테스트를 쓰기가 까다로운데, Item 55의 주제다. 타입이 값의 집합이라면 같은 집합을 갖는 두 타입은 같은 타입이다 - 실제로 그렇다(아래 단서 하나 제외). 의미가 다른데 우연히 도메인이 같은 경우가 아니라면 같은 타입을 두 번 정의할 이유가 없다.
 
 ## 6. 스펙트럼의 반대편, 그리고 대응표
 
@@ -216,9 +216,9 @@ type NonZeroNums = Exclude<number, 0>;
 | T1 & T2 | T1 ∩ T2 (교집합) |
 | `unknown` | 전체 집합 |
 
-**중요한 단서**: 이 해석은 값을 **불변으로 볼 때** 가장 잘 맞는다. `Lockbox { code: number }`와 `ReadonlyLockbox { readonly code: number }`는 도메인이 정확히 같지만 관찰 가능하게 다르다 — 후자는 `code` 재할당이 에러다. 그래서 이 아이템 제목의 변주로 "타입은 값들의 집합, **그리고 그 값으로 할 수 있는 일들**"이라는 말도 있다. `readonly`는 Item 14에서 다루며, 일반 규칙으로 불변 값으로 일할 때 타입 체커가 더 효과적이다.
+**중요한 단서**: 이 해석은 값을 **불변으로 볼 때** 가장 잘 맞는다. `Lockbox { code: number }`와 `ReadonlyLockbox { readonly code: number }`는 도메인이 정확히 같지만 관찰 가능하게 다르다 - 후자는 `code` 재할당이 에러다. 그래서 이 아이템 제목의 변주로 "타입은 값들의 집합, **그리고 그 값으로 할 수 있는 일들**"이라는 말도 있다. `readonly`는 Item 14에서 다루며, 일반 규칙으로 불변 값으로 일할 때 타입 체커가 더 효과적이다.
 
-> **핵심 통찰**: "assignable" · "extends" · "subtype"은 전부 "부분집합"의 동의어다. 에러 메시지가 어렵게 느껴질 때마다 두 타입의 도메인을 그려 보라 — 타입 체커가 하는 일은 결국 집합의 포함 관계 검사다.
+> **핵심 통찰**: "assignable" · "extends" · "subtype"은 전부 "부분집합"의 동의어다. 에러 메시지가 어렵게 느껴질 때마다 두 타입의 도메인을 그려 보라 - 타입 체커가 하는 일은 결국 집합의 포함 관계 검사다.
 
 ## 기억해야 할 것들
 

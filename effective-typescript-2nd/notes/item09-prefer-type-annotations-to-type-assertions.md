@@ -58,7 +58,7 @@ const people = ['alice', 'bob', 'jan'].map(name => ({name}));
 
 ```typescript
 const people = ['alice', 'bob', 'jan'].map(name => ({name} as Person));
-// Person[] — 하지만…
+// Person[] - 하지만…
 const people = ['alice', 'bob', 'jan'].map(name => ({} as Person));
 // 에러 없음!
 ```
@@ -71,7 +71,7 @@ const people = ['alice', 'bob', 'jan'].map(
 );  // 타입은 Person[]
 ```
 
-앞의 변수 선언 버전과 동일한 검사를 전부 수행한다. **괄호가 중요하다** — `(name): Person`은 `name`의 타입은 추론하게 두고 반환 타입이 `Person`이라고 명시한다. 반면 `(name: Person)`은 `name`의 타입을 `Person`으로 명시하는 것이라 에러가 난다(함수 매개변수의 타입 추론은 Item 24).
+앞의 변수 선언 버전과 동일한 검사를 전부 수행한다. **괄호가 중요하다** - `(name): Person`은 `name`의 타입은 추론하게 두고 반환 타입이 `Person`이라고 명시한다. 반면 `(name: Person)`은 `name`의 타입을 `Person`으로 명시하는 것이라 에러가 난다(함수 매개변수의 타입 추론은 Item 24).
 
 이 경우엔 최종 타입을 변수에 선언하고 할당의 유효성을 검사하게 할 수도 있다.
 
@@ -79,9 +79,9 @@ const people = ['alice', 'bob', 'jan'].map(
 const people: Person[] = ['alice', 'bob', 'jan'].map(name => ({name}));  // OK
 ```
 
-하지만 함수 호출 체인이 길다면 이름 붙은 타입이 체인 앞쪽에 있는 편이 필요하거나 바람직할 수 있다 — 에러가 발생한 지점 가까이에서 잡히게 해 주기 때문이다.
+하지만 함수 호출 체인이 길다면 이름 붙은 타입이 체인 앞쪽에 있는 편이 필요하거나 바람직할 수 있다 - 에러가 발생한 지점 가까이에서 잡히게 해 주기 때문이다.
 
-## 3. 단언이 정당한 경우 — 타입 체커보다 내가 더 알 때
+## 3. 단언이 정당한 경우 - 타입 체커보다 내가 더 알 때
 
 타입 단언이 가장 말이 되는 경우는 **타입 체커가 접근할 수 없는 문맥을 통해 내가 타입을 진짜로 더 잘 알 때**다. 대표적으로 DOM:
 
@@ -110,14 +110,14 @@ const el = document.getElementById('foo') as HTMLElement;
 //    ^? const el: HTMLElement
 ```
 
-이런 단언은 워낙 흔해서 전용 문법이 있다 — 널 아님 단언(non-null assertion):
+이런 단언은 워낙 흔해서 전용 문법이 있다 - 널 아님 단언(non-null assertion):
 
 ```typescript
 const el = document.getElementById('foo')!;
 //    ^? const el: HTMLElement
 ```
 
-접두사 `!`는 논리 NOT이지만, **접미사 `!`는 값이 null이 아니라는 타입 단언**이다. `as`보다 나은 점은 타입의 널 아닌 부분을 건드리지 않고 통과시킨다는 것. 그래도 `!`는 다른 단언과 똑같이 신중히 다뤄야 한다 — 컴파일 시 지워지므로, 타입 체커가 모르는 정보로 값이 null이 아님을 **보장할 수 있을 때만** 쓰고, 아니면 조건문으로 null 케이스를 체크해야 한다.
+접두사 `!`는 논리 NOT이지만, **접미사 `!`는 값이 null이 아니라는 타입 단언**이다. `as`보다 나은 점은 타입의 널 아닌 부분을 건드리지 않고 통과시킨다는 것. 그래도 `!`는 다른 단언과 똑같이 신중히 다뤄야 한다 - 컴파일 시 지워지므로, 타입 체커가 모르는 정보로 값이 null이 아님을 **보장할 수 있을 때만** 쓰고, 아니면 조건문으로 null 케이스를 체크해야 한다.
 
 null일 수 있는 객체의 속성·메서드에 접근할 때는 옵셔널 체이닝 `?.`이 편리하다.
 
@@ -127,11 +127,11 @@ document.getElementById('foo')?.addEventListener('click', () => {
 });
 ```
 
-`!.`와 겉모습이 비슷하지만 전혀 다르다 — `a?.b`는 **런타임에** 객체가 null(또는 undefined)인지 확인하고 진행하는 자바스크립트 구문이고, `a!.b`는 그냥 `a.b`로 컴파일되는 **타입 수준** 구문이라 런타임에 null이면 예외를 던진다. `a?.b`가 더 안전하지만 남용하지는 말 것 — 이벤트 리스너 등록이 앱에 필수적이라면 실패했을 때 알아야 하지 않겠는가!
+`!.`와 겉모습이 비슷하지만 전혀 다르다 - `a?.b`는 **런타임에** 객체가 null(또는 undefined)인지 확인하고 진행하는 자바스크립트 구문이고, `a!.b`는 그냥 `a.b`로 컴파일되는 **타입 수준** 구문이라 런타임에 null이면 예외를 던진다. `a?.b`가 더 안전하지만 남용하지는 말 것 - 이벤트 리스너 등록이 앱에 필수적이라면 실패했을 때 알아야 하지 않겠는가!
 
-## 5. 단언의 한계 — "겹치는" 타입 사이에서만
+## 5. 단언의 한계 - "겹치는" 타입 사이에서만
 
-단언으로 임의의 타입 사이를 오갈 수는 없다. 일반 규칙: A와 B가 서로 "비교 가능(comparable)"해야 한다. Item 7의 집합 용어로는 **교집합이 비어 있지 않아야** 한다. 특히 서브타입 관계면 허용된다 — `HTMLElement`는 `HTMLElement | null`의 서브타입, `HTMLButtonElement`는 `EventTarget`의 서브타입, `Person`은 `{}`의 서브타입이라 앞의 단언들은 모두 OK였다.
+단언으로 임의의 타입 사이를 오갈 수는 없다. 일반 규칙: A와 B가 서로 "비교 가능(comparable)"해야 한다. Item 7의 집합 용어로는 **교집합이 비어 있지 않아야** 한다. 특히 서브타입 관계면 허용된다 - `HTMLElement`는 `HTMLElement | null`의 서브타입, `HTMLButtonElement`는 `EventTarget`의 서브타입, `Person`은 `{}`의 서브타입이라 앞의 단언들은 모두 OK였다.
 
 ```typescript
 interface Person { name: string; }
@@ -143,7 +143,7 @@ const el = body as Person;
 // convert the expression to 'unknown' first.
 ```
 
-에러 메시지가 탈출구를 알려 준다 — `unknown`(Item 46)을 거치는 것. 모든 타입은 `unknown`의 서브타입이므로 `unknown`이 낀 단언은 항상 허용된다. 임의 타입 간 변환이 가능해지지만, 적어도 **수상한 짓을 하고 있다는 것이 명시**된다.
+에러 메시지가 탈출구를 알려 준다 - `unknown`(Item 46)을 거치는 것. 모든 타입은 `unknown`의 서브타입이므로 `unknown`이 낀 단언은 항상 허용된다. 임의 타입 간 변환이 가능해지지만, 적어도 **수상한 짓을 하고 있다는 것이 명시**된다.
 
 ```typescript
 const el = document.body as unknown as Person;  // OK

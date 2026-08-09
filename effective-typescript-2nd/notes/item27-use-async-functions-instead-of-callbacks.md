@@ -53,7 +53,7 @@ async function fetchPages() {
 }
 ```
 
-`await`는 각 프로미스가 해소될 때까지 함수 실행을 멈춘다. async 함수 안에서 거부되는 프로미스를 await하면 예외를 던지므로 익숙한 try/catch를 쓸 수 있다(예외처럼 타입스크립트에서 프로미스 거부도 타입이 없다). `async`·`await`는 최신 런타임이 다 지원하고, ES5 이전을 타깃해도 컴파일러가 정교한 변환으로 동작하게 해 준다 — **런타임이 무엇이든 타입스크립트에서는 async/await를 쓸 수 있다.**
+`await`는 각 프로미스가 해소될 때까지 함수 실행을 멈춘다. async 함수 안에서 거부되는 프로미스를 await하면 예외를 던지므로 익숙한 try/catch를 쓸 수 있다(예외처럼 타입스크립트에서 프로미스 거부도 타입이 없다). `async`·`await`는 최신 런타임이 다 지원하고, ES5 이전을 타깃해도 컴파일러가 정교한 변환으로 동작하게 해 준다 - **런타임이 무엇이든 타입스크립트에서는 async/await를 쓸 수 있다.**
 
 ## 1. 콜백보다 프로미스를 선호할 이유
 
@@ -73,7 +73,7 @@ async function fetchPages() {
 
 세 `response` 변수의 타입이 전부 `Response`로 추론된다. 콜백으로 같은 동시 요청을 짜면 장치도 더 필요하고 타입 구문도 필요하다(`numDone` 카운터, `responses: string[]` 배열, 완료 검사…). 에러 처리를 넣거나 `Promise.all`만큼 일반적으로 만드는 것은 더 어렵다.
 
-입력 프로미스 중 첫 번째가 해소될 때 해소되는 `Promise.race`와도 추론이 잘 맞는다 — 프로미스에 타임아웃을 다는 일반적 방법:
+입력 프로미스 중 첫 번째가 해소될 때 해소되는 `Promise.race`와도 추론이 잘 맞는다 - 프로미스에 타임아웃을 다는 일반적 방법:
 
 ```typescript
 function timeout(timeoutMs: number): Promise<never> {
@@ -87,7 +87,7 @@ async function fetchWithTimeout(url: string, timeoutMs: number) {
 }
 ```
 
-`fetchWithTimeout`의 반환 타입은 구문 없이 `Promise<Response>`로 추론된다. 이유를 파 보면 흥미롭다 — `Promise.race`의 반환 타입은 입력 타입들의 유니온, 즉 `Promise<Response | never>`인데, `never`(공집합)와의 유니온은 아무 일도 하지 않으므로(Item 7) `Promise<Response>`로 단순화된다.
+`fetchWithTimeout`의 반환 타입은 구문 없이 `Promise<Response>`로 추론된다. 이유를 파 보면 흥미롭다 - `Promise.race`의 반환 타입은 입력 타입들의 유니온, 즉 `Promise<Response | never>`인데, `never`(공집합)와의 유니온은 아무 일도 하지 않으므로(Item 7) `Promise<Response>`로 단순화된다.
 
 ## 2. 프로미스보다 async/await를 선호할 이유
 
@@ -164,7 +164,7 @@ async function getUser(userId: string) {
 
 이제 `requestStatus`가 'success'로 끝난다는 것이 완전히 투명하다. 콜백이나 날 프로미스로는 반쯤 동기인 코드를 우연히 만들기 쉽지만 async로는 어렵다.
 
-async 함수에서 프로미스를 반환해도 또 다른 프로미스로 감싸이지 않는다 — 반환 타입은 `Promise<Promise<T>>`가 아니라 `Promise<T>`다. 이것도 타입스크립트가 직관을 세워 준다.
+async 함수에서 프로미스를 반환해도 또 다른 프로미스로 감싸이지 않는다 - 반환 타입은 `Promise<Promise<T>>`가 아니라 `Promise<T>`다. 이것도 타입스크립트가 직관을 세워 준다.
 
 ```typescript
 async function getJSON(url: string) {

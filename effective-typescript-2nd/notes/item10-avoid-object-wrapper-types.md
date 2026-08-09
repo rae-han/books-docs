@@ -31,7 +31,7 @@ console.log('primitive'.charAt(3));
 // m
 ```
 
-메서드 안의 `this`는 string 원시 값이 아니라 `String` 객체 래퍼다. `String` 객체를 직접 만들 수도 있고 가끔은 원시 값처럼 동작하지만, 항상 그렇지는 않다 — 예를 들어 `String` 객체는 오직 자기 자신하고만 같다.
+메서드 안의 `this`는 string 원시 값이 아니라 `String` 객체 래퍼다. `String` 객체를 직접 만들 수도 있고 가끔은 원시 값처럼 동작하지만, 항상 그렇지는 않다 - 예를 들어 `String` 객체는 오직 자기 자신하고만 같다.
 
 ```javascript
 > "hello" === new String("hello")
@@ -40,7 +40,7 @@ false
 false
 ```
 
-래퍼로의 암시적 변환은 자바스크립트의 기묘한 현상 하나를 설명해 준다 — **원시 값에 속성을 할당하면 사라진다**.
+래퍼로의 암시적 변환은 자바스크립트의 기묘한 현상 하나를 설명해 준다 - **원시 값에 속성을 할당하면 사라진다**.
 
 ```javascript
 > x = "hello"
@@ -56,7 +56,7 @@ undefined
 
 ## 2. 타입스크립트에서: string ⊂ String, 하지만 역은 아니다
 
-타입스크립트는 원시 타입과 객체 래퍼 타입을 구별해 모델링한다 — `string`/`String`, `number`/`Number`, `boolean`/`Boolean`, `symbol`/`Symbol`, `bigint`/`BigInt`.
+타입스크립트는 원시 타입과 객체 래퍼 타입을 구별해 모델링한다 - `string`/`String`, `number`/`Number`, `boolean`/`Boolean`, `symbol`/`Symbol`, `bigint`/`BigInt`.
 
 자바나 C#에서 온 개발자는 무심코 `String`이라고 쓰기 쉽고, 처음에는 동작하는 것처럼 보이기까지 한다.
 
@@ -90,9 +90,9 @@ const n: Number = 12;
 const b: Boolean = true;
 ```
 
-이것은 타입스크립트 타입만 바꿀 뿐이고, Item 3에서 봤듯 런타임 값에는 영향을 주지 못한다 — 값은 여전히 원시 값이다. 원시 타입이 래퍼에 할당 가능하므로 타입스크립트가 허용은 하지만, 오해를 부르는 데다 불필요하다(Item 18). 원시 타입을 쓰는 것이 낫다.
+이것은 타입스크립트 타입만 바꿀 뿐이고, Item 3에서 봤듯 런타임 값에는 영향을 주지 못한다 - 값은 여전히 원시 값이다. 원시 타입이 래퍼에 할당 가능하므로 타입스크립트가 허용은 하지만, 오해를 부르는 데다 불필요하다(Item 18). 원시 타입을 쓰는 것이 낫다.
 
-## 3. 예외 — BigInt와 Symbol 호출
+## 3. 예외 - BigInt와 Symbol 호출
 
 `BigInt`와 `Symbol`은 `new` 없이 **호출**하는 것은 괜찮다. 원시 값을 만들기 때문이다.
 

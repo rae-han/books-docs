@@ -22,14 +22,14 @@ function buildURL(route: keyof RouteQueryParams, params?: any) {
 }
 ```
 
-기대하는 URL은 만들어지지만 둘째 매개변수의 `any` 때문에 전혀 안전하지 않다 — 아무 라우트에나 아무 검색 매개변수를 붙일 수 있다.
+기대하는 URL은 만들어지지만 둘째 매개변수의 `any` 때문에 전혀 안전하지 않다 - 아무 라우트에나 아무 검색 매개변수를 붙일 수 있다.
 
 ```typescript
 buildURL('/', {query: 'recursion'});  // 에러여야 함 (루트에는 매개변수 없음)
 buildURL('/search');                  // 에러여야 함 (매개변수 누락)
 ```
 
-더 안전한 버전 — 라우트를 제네릭으로 만들고(보통 추론된다) 매개변수 타입이 라우트에 의존하게 한다.
+더 안전한 버전 - 라우트를 제네릭으로 만들고(보통 추론된다) 매개변수 타입이 라우트에 의존하게 한다.
 
 ```typescript
 function buildURL<Path extends keyof RouteQueryParams>(
@@ -52,7 +52,7 @@ buildURL('/search', {})
 그런데 루트 페이지에는 `null`을 추가로 넘겨야 한다.
 
 ```typescript
-buildURL('/', {query: 'recursion'});  // 에러 — 좋다!
+buildURL('/', {query: 'recursion'});  // 에러 - 좋다!
 buildURL('/', null);                  // OK
 buildURL('/');                        // 이것이 허용되길 원한다
 //        ~~~~~ Expected 2 arguments, but got 1.
@@ -60,7 +60,7 @@ buildURL('/');                        // 이것이 허용되길 원한다
 
 `null` 하나 더 쓰는 게 큰일은 아니지만 성가시고, 옵셔널 매개변수였던 옛 API가 더 보기 좋았다. 둘째 매개변수를 옵셔널로 만들되 **라우트가 검색 매개변수를 받지 않을 때만** 허용하고 싶다. 즉, **추론된 타입에 따라 인수 개수가 달라지는 함수**를 원한다.
 
-## 1. 트릭 — 조건부 타입 + 나머지 매개변수
+## 1. 트릭 - 조건부 타입 + 나머지 매개변수
 
 ```typescript
 function buildURL<Path extends keyof RouteQueryParams>(
@@ -76,7 +76,7 @@ function buildURL<Path extends keyof RouteQueryParams>(
 }
 ```
 
-쿼리 매개변수 타입이 null을 extends 하면 시그니처가 `(route: Path, ...args: [])` — **1개 매개변수 함수**처럼 보인다. 아니면 `(route: Path, ...args: [params: ...])` — **2개 매개변수 함수**다. 정확히 바라던 대로 동작한다.
+쿼리 매개변수 타입이 null을 extends 하면 시그니처가 `(route: Path, ...args: [])` - **1개 매개변수 함수**처럼 보인다. 아니면 `(route: Path, ...args: [params: ...])` - **2개 매개변수 함수**다. 정확히 바라던 대로 동작한다.
 
 ```typescript
 buildURL('/search', {query: 'do a barrel roll'})   // OK

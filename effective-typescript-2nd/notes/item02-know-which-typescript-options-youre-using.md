@@ -65,7 +65,7 @@ function add(a: number, b: number) {
 
 ```typescript
 const x: number = null;
-// strictNullChecks 꺼짐: OK — null은 유효한 number
+// strictNullChecks 꺼짐: OK - null은 유효한 number
 // strictNullChecks 켜짐:
 // ~ Type 'null' is not assignable to type 'number'
 ```
@@ -84,14 +84,14 @@ statusEl.textContent = 'Ready';
 // ~~~~~~~~ 'statusEl' is possibly 'null'.
 
 if (statusEl) {
-  statusEl.textContent = 'Ready';  // OK — null이 배제됨
+  statusEl.textContent = 'Ready';  // OK - null이 배제됨
 }
-statusEl!.textContent = 'Ready';   // OK — null이 아니라고 단언함
+statusEl!.textContent = 'Ready';   // OK - null이 아니라고 단언함
 ```
 
 `if`로 타입에서 `null`을 배제하는 것을 좁히기(*narrowing - 조건문 등으로 타입의 범위를 줄이는 것. refining이라고도 함*)라고 하며 Item 22에서 다룬다. `!`는 널 아님 단언(non-null assertion)인데, 타입 단언은 런타임 예외로 이어질 수 있으므로 Item 9의 기준에 따라 써야 한다.
 
-`strictNullChecks`는 `null`/`undefined` 관련 오류를 잡는 데 대단히 효과적이지만 언어 사용 난도를 높인다. 타입스크립트 경험자가 새 프로젝트를 시작한다면 켜는 것이 맞고, 언어 입문자나 마이그레이션 중이라면 미룰 수 있다 — 단, **`noImplicitAny`를 먼저 켜고 나서** 고려할 것. 끄고 일한다면 "undefined is not an object" 런타임 에러를 볼 때마다 더 엄격한 체크가 필요하다는 신호로 받아들여야 한다. 프로젝트가 커질수록 설정 변경은 어려워지므로 너무 오래 미루지 말 것. 대부분의 타입스크립트 코드는 `strictNullChecks`를 켜고 있으며, 결국 도달해야 할 지점이다.
+`strictNullChecks`는 `null`/`undefined` 관련 오류를 잡는 데 대단히 효과적이지만 언어 사용 난도를 높인다. 타입스크립트 경험자가 새 프로젝트를 시작한다면 켜는 것이 맞고, 언어 입문자나 마이그레이션 중이라면 미룰 수 있다 - 단, **`noImplicitAny`를 먼저 켜고 나서** 고려할 것. 끄고 일한다면 "undefined is not an object" 런타임 에러를 볼 때마다 더 엄격한 체크가 필요하다는 신호로 받아들여야 한다. 프로젝트가 커질수록 설정 변경은 어려워지므로 너무 오래 미루지 말 것. 대부분의 타입스크립트 코드는 `strictNullChecks`를 켜고 있으며, 결국 도달해야 할 지점이다.
 
 ## 3. 그 외 설정: strict와 그 너머
 
@@ -106,7 +106,7 @@ tenses[3].toUpperCase();
 // ~~~~~~~~~ Object is possibly 'undefined'.
 ```
 
-공짜는 아니다 — `tenses[0].toUpperCase()` 같은 유효한 접근도 `undefined` 가능성으로 지적된다. 쓰는 프로젝트도 있고 안 쓰는 프로젝트도 있지만, 존재는 알아 두어야 한다(Item 48).
+공짜는 아니다 - `tenses[0].toUpperCase()` 같은 유효한 접근도 `undefined` 가능성으로 지적된다. 쓰는 프로젝트도 있고 안 쓰는 프로젝트도 있지만, 존재는 알아 두어야 한다(Item 48).
 
 > **실무 팁**: 동료가 공유한 타입스크립트 예제의 에러가 내 환경에서 재현되지 않는다면, 가장 먼저 컴파일러 설정이 같은지 확인하라.
 

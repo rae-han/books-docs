@@ -4,11 +4,11 @@
 
 any를 쓸 수밖에 없을 때도 `any[]`·`Record<string, any>`·`() => any`가 그냥 any보다 나은 이유는?
 
-`any` 타입은 자바스크립트로 표현 가능한 **모든** 값을 아우른다. 광대한 도메인이다! 모든 숫자와 문자열은 물론 모든 배열·객체·정규식·함수·클래스·DOM 요소, 거기에 null과 undefined까지. any를 쓸 때는 자문하라 — **정말로 이것보다 구체적인 무언가를 생각하고 있지 않았나?** 정규식이나 함수가 넘어와도 괜찮은가?
+`any` 타입은 자바스크립트로 표현 가능한 **모든** 값을 아우른다. 광대한 도메인이다! 모든 숫자와 문자열은 물론 모든 배열·객체·정규식·함수·클래스·DOM 요소, 거기에 null과 undefined까지. any를 쓸 때는 자문하라 - **정말로 이것보다 구체적인 무언가를 생각하고 있지 않았나?** 정규식이나 함수가 넘어와도 괜찮은가?
 
 답이 "아니오"인 경우가 많고, 그렇다면 더 구체적인 타입으로 타입 안전성을 일부 지킬 수 있다.
 
-## 1. any[] — 배열이라는 것은 안다면
+## 1. any[] - 배열이라는 것은 안다면
 
 ```typescript
 function getLengthBad(array: any) {  // 이렇게 하지 말 것!
@@ -40,7 +40,7 @@ getLength(null);
 
 배열의 배열을 기대하면 `any[][]`를 쓰면 된다.
 
-## 2. Record<string, any> — 객체라는 것은 안다면
+## 2. Record<string, any> - 객체라는 것은 안다면
 
 어떤 객체인지는 몰라도 객체라는 것은 안다면 `{[key: string]: any}` 또는 `Record<string, any>`:
 
@@ -72,19 +72,19 @@ function hasAKeyThatEndsWithZ(o: object) {
 }
 ```
 
-객체 타입의 순회는 타입스크립트에서 특히 까다롭다 — 우회법은 Item 60에서 자세히.
+객체 타입의 순회는 타입스크립트에서 특히 까다롭다 - 우회법은 Item 60에서 자세히.
 
-## 3. 함수 타입 — Function 대신 시그니처
+## 3. 함수 타입 - Function 대신 시그니처
 
 함수 타입을 기대한다면 any를 피하라. 구체성의 수준에 따라 선택지가 있다.
 
 ```typescript
 type Fn0 = () => any;                // 매개변수 없이 호출 가능한 아무 함수
 type Fn1 = (arg: any) => any;        // 매개변수 1개
-type FnN = (...args: any[]) => any;  // 매개변수 개수 무관 — "Function" 타입과 동일
+type FnN = (...args: any[]) => any;  // 매개변수 개수 무관 - "Function" 타입과 동일
 ```
 
-전부 any보다 정밀하므로 any보다 낫다. 마지막 예에서 나머지 매개변수의 타입이 `any[]`인 것에 주목 — any도 동작하지만 덜 정밀하다.
+전부 any보다 정밀하므로 any보다 낫다. 마지막 예에서 나머지 매개변수의 타입이 `any[]`인 것에 주목 - any도 동작하지만 덜 정밀하다.
 
 ```typescript
 const numArgsBad = (...args: any) => args.length;

@@ -6,7 +6,7 @@
 
 Item 52에서 조건부 타입이 유니온 위로 분배되는 것이 `double` 함수 타이핑에 도움이 되는 것을 봤다. 분배는 대체로 원하는 동작이지만 항상은 아니다.
 
-## 1. 분배를 끄고 싶을 때 — [T] 한 요소 튜플
+## 1. 분배를 끄고 싶을 때 - [T] 한 요소 튜플
 
 첫 인수가 둘째보다 작은지 판정하는 `isLessThan`을 만들자. 날짜·숫자·문자열에 동작하되, 편의로 첫 인수가 Date면 둘째로 number(에포크 이후 밀리초)도 허용하고 싶다.
 
@@ -20,7 +20,7 @@ type Comparable<T> =
 declare function isLessThan<T>(a: T, b: Comparable<T>): boolean;
 
 isLessThan(new Date(), new Date());  // OK
-isLessThan(new Date(), Date.now());  // OK — Date/number 비교 허용
+isLessThan(new Date(), Date.now());  // OK - Date/number 비교 허용
 isLessThan(12, 23);                  // OK
 isLessThan('A', 'B');                // OK
 isLessThan(12, 'B');
@@ -56,9 +56,9 @@ isLessThan(dateOrStr, 'B');
 //                        parameter of type 'never'.
 ```
 
-## 2. 분배를 켜고 싶을 때 — 형식만을 위한 조건 추가
+## 2. 분배를 켜고 싶을 때 - 형식만을 위한 조건 추가
 
-상황이 반대일 때도 있다 — 분배가 안 되는 조건부 타입을 분배시키고 싶은 경우. 보통 제네릭 타입 구현 방식의 의도치 않은 결과다. 요소가 전부 T인 N-튜플을 만드는 `NTuple<T, N>`을 누산기로 구현해 보자.
+상황이 반대일 때도 있다 - 분배가 안 되는 조건부 타입을 분배시키고 싶은 경우. 보통 제네릭 타입 구현 방식의 의도치 않은 결과다. 요소가 전부 T인 N-튜플을 만드는 `NTuple<T, N>`을 누산기로 구현해 보자.
 
 ```typescript
 type NTuple<T, N extends number> = NTupleHelp<T, N, []>;
@@ -94,16 +94,16 @@ type NTuple<T, N extends number> =
     : never;
 ```
 
-N은 number로 제약되어 있으니 이 조건은 항상 참이다(`N extends any`나 `N extends unknown`으로 써도 된다). 유일한 목적은 분배에 맞는 형태의 조건부 타입을 추가하는 것 — 그리고 동작한다!
+N은 number로 제약되어 있으니 이 조건은 항상 참이다(`N extends any`나 `N extends unknown`으로 써도 된다). 유일한 목적은 분배에 맞는 형태의 조건부 타입을 추가하는 것 - 그리고 동작한다!
 
 ```typescript
 type PairOrTriple = NTuple<bigint, 2 | 3>;
 //   ^? type PairOrTriple = [bigint, bigint] | [bigint, bigint, bigint]
 ```
 
-`NTupleHelp`가 N=2와 N=3으로 각각 인스턴스화되고 결과가 유니온된 것이다. (누산기는 재귀 제네릭의 성능을 개선하는 흔한 기법이다 — Item 57.)
+`NTupleHelp`가 N=2와 N=3으로 각각 인스턴스화되고 결과가 유니온된 것이다. (누산기는 재귀 제네릭의 성능을 개선하는 흔한 기법이다 - Item 57.)
 
-## 3. 놀라움 두 가지 — boolean과 never
+## 3. 놀라움 두 가지 - boolean과 never
 
 **boolean**: true일 때 축하 메시지를 내는 제네릭.
 

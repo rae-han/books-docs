@@ -34,14 +34,14 @@ setLanguage(language);
 
 해법은 두 가지다.
 
-**① 타입 구문으로 가능한 값을 제약** — 언어 이름에 오타(`'Typescript'`)가 있으면 잡아 주는 덤도 있다.
+**① 타입 구문으로 가능한 값을 제약** - 언어 이름에 오타(`'Typescript'`)가 있으면 잡아 주는 덤도 있다.
 
 ```typescript
 let language: Language = 'JavaScript';
 setLanguage(language);  // OK
 ```
 
-**② 상수로 만들기** — 바뀔 수 없다고 알리면 더 정밀한 리터럴 타입 `"JavaScript"`가 추론된다.
+**② 상수로 만들기** - 바뀔 수 없다고 알리면 더 정밀한 리터럴 타입 `"JavaScript"`가 추론된다.
 
 ```typescript
 const language = 'JavaScript';
@@ -73,7 +73,7 @@ const loc: [number, number] = [10, 20];
 panTo(loc);  // OK
 ```
 
-또 다른 방법은 const 문맥(Item 20)이다 — `const`의 얕은 상수가 아니라 **깊은 상수**를 의도한다고 알린다.
+또 다른 방법은 const 문맥(Item 20)이다 - `const`의 얕은 상수가 아니라 **깊은 상수**를 의도한다고 알린다.
 
 ```typescript
 const loc = [10, 20] as const;
@@ -91,7 +91,7 @@ const loc = [10, 20] as const;
 panTo(loc);  // OK
 ```
 
-시그니처를 못 바꾸는 상황이면 타입 구문을 써야 한다. const 문맥의 아쉬운 단점도 알아 두자 — 정의에서 실수하면(튜플에 세 번째 요소 추가 등) 에러가 **정의가 아니라 호출부**에서 난다. 깊이 중첩된 객체가 정의에서 먼 곳에서 쓰인다면 특히 혼란스럽다. 그래서 인라인 형태나 타입 선언이 더 낫다.
+시그니처를 못 바꾸는 상황이면 타입 구문을 써야 한다. const 문맥의 아쉬운 단점도 알아 두자 - 정의에서 실수하면(튜플에 세 번째 요소 추가 등) 에러가 **정의가 아니라 호출부**에서 난다. 깊이 중첩된 객체가 정의에서 먼 곳에서 쓰인다면 특히 혼란스럽다. 그래서 인라인 형태나 타입 선언이 더 낫다.
 
 ```typescript
 const loc = [10, 20, 30] as const;  // 진짜 에러는 여기인데
@@ -126,7 +126,7 @@ complain(ts);
 //          Type 'string' is not assignable to type 'Language'
 ```
 
-`ts` 객체에서 `language`가 `string`으로 추론됐다. 해법은 앞과 같다 — 타입 구문(`const ts: GovernedLanguage = ...`), const 단언(`as const`), 또는 `satisfies` 연산자(Item 20).
+`ts` 객체에서 `language`가 `string`으로 추론됐다. 해법은 앞과 같다 - 타입 구문(`const ts: GovernedLanguage = ...`), const 단언(`as const`), 또는 `satisfies` 연산자(Item 20).
 
 ## 3. 콜백
 
@@ -154,7 +154,7 @@ const fn = (a, b) => {
 callWithRandomNumbers(fn);
 ```
 
-해법은 매개변수에 타입 구문을 붙이거나, 가능하다면 함수 표현식 전체에 타입 선언을 적용하는 것이다(Item 12). 함수가 한 곳에서만 쓰인다면 인라인 형태를 선호하라 — 구문이 덜 필요하다.
+해법은 매개변수에 타입 구문을 붙이거나, 가능하다면 함수 표현식 전체에 타입 선언을 적용하는 것이다(Item 12). 함수가 한 곳에서만 쓰인다면 인라인 형태를 선호하라 - 구문이 덜 필요하다.
 
 ```typescript
 const fn = (a: number, b: number) => {

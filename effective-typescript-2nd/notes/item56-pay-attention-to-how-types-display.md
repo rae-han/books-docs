@@ -17,7 +17,7 @@ type T123 = '1' | '2' | '3';
 
 1, 2, 3인가 2, 1, 3인가? 정확히 같은 타입의 똑같이 유효한 두 표현이다. 이 경우엔 가독성이 비슷하지만, 표현에 따라 가독성이 크게 갈릴 때도 있다.
 
-## 1. 구현이 새어 나오는 표시 — PartiallyPartial
+## 1. 구현이 새어 나오는 표시 - PartiallyPartial
 
 객체의 일부 속성만 옵셔널로 만드는 `PartiallyPartial` 제네릭을 구현해 보자.
 
@@ -35,7 +35,7 @@ type PartComment = PartiallyPartial<BlogComment, 'title'>;
 //        Partial<Pick<BlogComment, "title">> & Omit<BlogComment, "title">
 ```
 
-구현은 올바르고 이 표시도 완벽히 유효하다. 하지만 사용자 입장에서는 아쉽다 — `title`의 타입은 뭐지? nullable인가? `Omit` 뒤에는 어떤 필드들이 있지? 결과 타입이 **무엇인지**보다 제네릭이 **어떻게 정의됐는지**를 말해 주는, 온통 구현 냄새 나는 표시다.
+구현은 올바르고 이 표시도 완벽히 유효하다. 하지만 사용자 입장에서는 아쉽다 - `title`의 타입은 뭐지? nullable인가? `Omit` 뒤에는 어떤 필드들이 있지? 결과 타입이 **무엇인지**보다 제네릭이 **어떻게 정의됐는지**를 말해 주는, 온통 구현 냄새 나는 표시다.
 
 ## 2. Resolve 트릭
 
@@ -63,8 +63,8 @@ type PartComment = PartiallyPartial<BlogComment, 'title'>;
 
 주의할 점들:
 
-- **DeepResolve는 보통 나쁜 생각**이다 — 클래스에 지나치게 공격적이 된다. `Resolve<Date>`는 메서드 42개가 펼쳐진 흉물이 된다. `Date`는 그냥 `Date`로 표시되게 두는 것이 낫다.
-- `keyof` 표현식을 인라인하는 데도 쓸 수 있다 — 가독성이 나아진다고 판단되면.
+- **DeepResolve는 보통 나쁜 생각**이다 - 클래스에 지나치게 공격적이 된다. `Resolve<Date>`는 메서드 42개가 펼쳐진 흉물이 된다. `Date`는 그냥 `Date`로 표시되게 두는 것이 낫다.
+- `keyof` 표현식을 인라인하는 데도 쓸 수 있다 - 가독성이 나아진다고 판단되면.
 
 ```typescript
 interface Color { r: number; g: number; b: number; a: number };
@@ -74,7 +74,7 @@ type ChanInline = Resolve<keyof Color>;
 //   ^? type ChanInline = "r" | "g" | "b" | "a"
 ```
 
-- 다른 기법들 — `Exclude<keyof T, never>`(keyof 인라인), `unknown & T`·`{} & T`(객체 인라인) — 도 보이지만, 같은 효과에 덜 취약한 `Resolve`로 대체할 수 있다.
+- 다른 기법들 - `Exclude<keyof T, never>`(keyof 인라인), `unknown & T`·`{} & T`(객체 인라인) - 도 보이지만, 같은 효과에 덜 취약한 `Resolve`로 대체할 수 있다.
 
 ## 3. 중요한 특수 케이스는 따로 처리
 
@@ -92,13 +92,13 @@ type FullComment = PartiallyPartial<BlogComment, never>;
 //   ^? type FullComment = BlogComment
 ```
 
-(조건을 튜플로 감싼 것과 `T extends unknown` 절의 이유는 Item 53.) 이 특수 케이스 처리는 `PartiallyPartial`의 **동작을 전혀 바꾸지 않는다** — 한 상황에서 결과가 표시되는 방식만 개선한다.
+(조건을 튜플로 감싼 것과 `T extends unknown` 절의 이유는 Item 53.) 이 특수 케이스 처리는 `PartiallyPartial`의 **동작을 전혀 바꾸지 않는다** - 한 상황에서 결과가 표시되는 방식만 개선한다.
 
 > **핵심 통찰**: 타입 표시를 바꿀 때 한 경우의 가독성을 위해 다른 경우를 희생하지 않는지 확인하라. 이런 조작은 미묘하고 할당 가능성에 영향이 없어서 회귀가 눈에 안 띄기 쉽고, 새 타입스크립트 버전도 표시를 바꿀 수 있다. 그래서 **타입의 표시를 테스트하는 체계**가 중요하다(Item 55).
 
 ## 기억해야 할 것들
 
 - 같은 타입을 표시하는 유효한 방법은 여럿이며, 어떤 것은 다른 것보다 명확하다.
-- 타입스크립트는 표시를 통제하는 도구를 준다. 특히 `Resolve` 제네릭 — 타입 표시를 명료하게 하고 구현 세부를 감추는 데 분별 있게 활용하라.
+- 타입스크립트는 표시를 통제하는 도구를 준다. 특히 `Resolve` 제네릭 - 타입 표시를 명료하게 하고 구현 세부를 감추는 데 분별 있게 활용하라.
 - 제네릭 타입의 중요한 특수 케이스를 처리해 타입 표시를 개선하는 것을 고려하라.
 - 회귀를 막기 위해 제네릭 타입과 그 표시에 대한 테스트를 작성하라.

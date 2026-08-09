@@ -21,11 +21,11 @@ if (elem) {
 
 `elem`이 null이면 첫 분기는 실행되지 않으므로, 타입스크립트는 이 블록 안에서 유니온 타입에서 null을 제외할 수 있다. 컴파일러가 코드의 실행 경로를 따라가기 때문에 이를 제어 흐름 분석(*control flow analysis - 코드의 실행 경로를 따라 각 위치에서의 타입을 계산하는 것*)이라고도 한다.
 
-주목할 점: 같은 심벌 `elem`이 코드의 **위치마다 다른 정적 타입**을 갖는다. 프로그래밍 언어 중에서는 다소 특이한 능력이다 — C++·자바·러스트에서 변수는 평생 하나의 타입을 가지며, 좁히려면 새 변수를 만들어야 한다. 타입스크립트에서 심벌은 **위치에서의 타입**을 갖는다. 이를 활용할 줄 알면 더 간결하고 관용적인 타입스크립트를 쓰게 된다.
+주목할 점: 같은 심벌 `elem`이 코드의 **위치마다 다른 정적 타입**을 갖는다. 프로그래밍 언어 중에서는 다소 특이한 능력이다 - C++·자바·러스트에서 변수는 평생 하나의 타입을 가지며, 좁히려면 새 변수를 만들어야 한다. 타입스크립트에서 심벌은 **위치에서의 타입**을 갖는다. 이를 활용할 줄 알면 더 간결하고 관용적인 타입스크립트를 쓰게 된다.
 
 ## 1. 타입을 좁히는 여러 방법
 
-**분기에서 throw/return** — 블록의 나머지에서 타입이 좁혀진다.
+**분기에서 throw/return** - 블록의 나머지에서 타입이 좁혀진다.
 
 ```typescript
 const elem = document.getElementById('what-time-is-it');
@@ -63,7 +63,7 @@ function pickFruit(fruit: Apple | Orange) {
 }
 ```
 
-**일부 내장 함수** — `Array.isArray` 등.
+**일부 내장 함수** - `Array.isArray` 등.
 
 ```typescript
 function contains(text: string, terms: string | string[]) {
@@ -72,9 +72,9 @@ function contains(text: string, terms: string | string[]) {
 }
 ```
 
-## 2. 잘못된 좁히기 시도 — 타입스크립트가 맞을 때
+## 2. 잘못된 좁히기 시도 - 타입스크립트가 맞을 때
 
-타입스크립트는 조건문을 통한 타입 추적에 꽤 능하다. 타입 단언을 추가하기 전에 다시 생각하라 — 타입스크립트가 내가 놓친 것을 알고 있을 수 있다! 유니온에서 null을 제외하는 **잘못된** 방법:
+타입스크립트는 조건문을 통한 타입 추적에 꽤 능하다. 타입 단언을 추가하기 전에 다시 생각하라 - 타입스크립트가 내가 놓친 것을 알고 있을 수 있다! 유니온에서 null을 제외하는 **잘못된** 방법:
 
 ```typescript
 const elem = document.getElementById('what-time-is-it');
@@ -120,7 +120,7 @@ function handleEvent(e: AppEvent) {
 }
 ```
 
-태그된 유니온(판별 유니온)은 타입스크립트 어디에나 있다(Chapter 4에서 재론). switch를 쓸 때는 모든 가능성을 다뤘는지 테스트하는 것이 좋다 — 방법은 Item 59.
+태그된 유니온(판별 유니온)은 타입스크립트 어디에나 있다(Chapter 4에서 재론). switch를 쓸 때는 모든 가능성을 다뤘는지 테스트하는 것이 좋다 - 방법은 Item 59.
 
 타입스크립트가 타입을 알아내지 못하면 도와주는 특수 함수를 도입할 수 있다.
 
@@ -147,7 +147,7 @@ const formInputEls = [...formEls].filter(isInputElement);
 //    ^? const formInputEls: HTMLInputElement[]
 ```
 
-**주의**: 사용자 정의 타입 가드는 타입 단언(`el as HTMLInputElement`)보다 안전하지 않다 — 가드의 본문이 반환하는 타입 서술어와 일치하는지 검사해 주는 것은 아무것도 없다. (실제로 위 예에서도 `value` 속성이 있으면서 `HTMLInputElement`가 아닌 Element가 몇 있다.)
+**주의**: 사용자 정의 타입 가드는 타입 단언(`el as HTMLInputElement`)보다 안전하지 않다 - 가드의 본문이 반환하는 타입 서술어와 일치하는지 검사해 주는 것은 아무것도 없다. (실제로 위 예에서도 `value` 속성이 있으면서 `HTMLInputElement`가 아닌 Element가 몇 있다.)
 
 ## 4. 코드를 살짝 고쳐 타입스크립트를 돕기
 
@@ -165,7 +165,7 @@ if (nameToNickname.has(yourName)) {
 }
 ```
 
-타입스크립트는 Map의 `has`와 `get`의 관계를 이해하지 못한다 — `has` 체크가 이후 `get`의 undefined 가능성을 제거한다는 것을 모른다. 살짝 고치면 에러가 사라진다(동작도 그대로).
+타입스크립트는 Map의 `has`와 `get`의 관계를 이해하지 못한다 - `has` 체크가 이후 `get`의 undefined 가능성을 제거한다는 것을 모른다. 살짝 고치면 에러가 사라진다(동작도 그대로).
 
 ```typescript
 const nickname = nameToNickname.get(yourName);
@@ -185,7 +185,7 @@ const nameToUse = nameToNickname.get(yourName) ?? yourName;
 
 조건문에서 타입 체커와 싸우고 있다면, 타입스크립트가 따라올 수 있게 코드를 고칠 수 없는지 생각해 보라.
 
-## 5. 좁혀지지 않는 경우 — 콜백
+## 5. 좁혀지지 않는 경우 - 콜백
 
 타입이 **좁혀지지 않는** 때를 아는 것도 중요하다. 대표적으로 콜백 안:
 
