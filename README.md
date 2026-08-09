@@ -68,6 +68,7 @@ docs/
 | [이것이 취업을 위한 코딩 테스트다](this-is-coding-test/) | 나동빈 | 19장 | 파이썬 → TypeScript 변환 |
 | [코딩 테스트 합격자 되기 (JS편)](programmers-coding-test/) | 이선협·박경록 | 17장+부록 | |
 | [하면 된다! 퀀트 투자](quant/) | 강환국 | 6장 | Part 4~5 발췌본 |
+| [모던 API 아키텍처 설계 전략](mastering-api-architecture/) | 제임스 고프 외 | 11장 | 0장~10장 · Java→TypeScript 병기 |
 
 ### origin 분리만 완료 (노트 미작성)
 
@@ -75,7 +76,6 @@ docs/
 |----|------|------|
 | [그림으로 배우는 도커](docker-illustrated-introduction/) | 스즈키 료 | origin 32장 분리 완료 |
 | [만들면서 배우는 헥사고날 아키텍처](hex/) | 다비 비에이라 | origin 15장 분리 완료 · 인용문 절만 작성 |
-| [모던 API 아키텍처 설계 전략](mastering-api-architecture/) | 제임스 고프 외 | origin 0~10장 분리 완료 · README 목차 작성 |
 
 ## 공통 자산
 
